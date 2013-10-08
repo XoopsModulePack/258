@@ -270,7 +270,7 @@ class ContactContactHandler extends XoopsPersistableObjectHandler
         $xoopsMailer->setFromEmail($contact['contact_mail']);
         $xoopsMailer->setFromName($contact['contact_name']);
         $xoopsMailer->setSubject($contact['contact_subject']);
-        $xoopsMailer->setBody(html_entity_decode($contact['contact_message']), ENT_QUOTES, 'UTF-8');
+        $xoopsMailer->setBody(html_entity_decode($contact['contact_message'], ENT_QUOTES, 'UTF-8'));
         if ($xoopsMailer->send()) {
             $message = _MD_CONTACT_MES_SEND;
         } else {
