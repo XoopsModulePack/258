@@ -17,7 +17,7 @@
  * @author      Kazumi Ono (aka Onokazu)
  * @author      Trabis <lusopoemas@gmail.com>
  * @author      Hossein Azizabadi (AKA Voltan)
- * @version     $Id: index.php 12161 2013-10-07 20:46:22Z beckmi $
+ * @version     $Id: index.php 12162 2013-10-08 02:00:11Z beckmi $
  */
 
 include 'header.php';
@@ -48,7 +48,9 @@ switch ($op) {
         } else {
 
             // check captcha
-            if ($xoopsModuleConfig['captcha']) {
+            if ((!$xoopsUser && $xoopsModuleConfig['captchaAnonymous'])
+                || ($xoopsUser && !$xoopsUserIsAdmin && $xoopsModuleConfig['captchaRegistered'])
+            ) {
                 // Verify entered code
                 xoops_load('XoopsCaptcha');
                 if (class_exists('XoopsFormCaptcha')) {
@@ -60,7 +62,6 @@ switch ($op) {
                     }
                 }
             }
-
 
             // check email
             if (!$contact_handler->Contact_CleanVars($_POST, 'contact_mail', '', 'mail')) {

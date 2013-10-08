@@ -1,5 +1,5 @@
 <?php
-// $Id: modinfo.php 12161 2013-10-07 20:46:22Z beckmi $
+// $Id: modinfo.php 12162 2013-10-08 02:00:11Z beckmi $
 // Module Info
 // The name of this module
 define('_MI_CONTACT_NAME', "Contact us");
@@ -32,8 +32,8 @@ define('_MI_CONTACT_FORM_ADDRESS', "Get Address");
 define('_MI_CONTACT_FORM_ADDRESS_DESC', "");
 define('_MI_CONTACT_FORM_DEPT', "Select Departments");
 define('_MI_CONTACT_FORM_DEPT_DESC', "");
-define('_MI_CONTACT_FORM_CAPTCHA', "Use captcha in submit form?");
-define('_MI_CONTACT_FORM_CAPTCHA_DESC', "Select <em>Yes</em> to use captcha in the submit form.<br />Default: <em>Yes</em>");
+define('_MI_CONTACT_FORM_CAPTCHA_REGISTERED', "Use Captcha for Registered Users?");
+define('_MI_CONTACT_FORM_CAPTCHA_DESC', "Select <em>Yes</em> to use Captcha in the submit form.<br />Default: <em>Yes</em>");
 define('_MI_CONTACT_DEPT', "Departments");
 define('_MI_CONTACT_DEPT_DESC', "Departments allow you to define a department/email combination.  Users selecting<br />"
     . "from a defined department will have their contact information sent to the corresponding<br />"
@@ -48,3 +48,7 @@ define('_MI_CONTACT_TOPINFO_DESC', "Set HTML codes to show in contact page");
 define('_MI_CONTACT_HEAD_OPTIONS', "Form Options");
 define('_MI_CONTACT_HEAD_ADMIN', "Admin setting");
 define('_MI_CONTACT_HEAD_INFO', "Information");
+//1.81
+define('_MI_CONTACT_FORM_CAPTCHA_ANONYMOUS', "Use Captcha for Anonymous Users?");
+
+

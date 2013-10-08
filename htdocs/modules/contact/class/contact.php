@@ -56,7 +56,7 @@ class contact extends XoopsObject
 
     public function Contact_ContactForm($department)
     {
-        global $xoopsConfig, $xoopsOption, $xoopsUser,$xoopsModuleConfig;
+        global $xoopsConfig, $xoopsOption, $xoopsUser, $xoopsUserIsAdmin, $xoopsModuleConfig;
         if ($this->isNew()) {
             if (!empty($xoopsUser)) {
                 $contact_uid      = $xoopsUser->getVar('uid');
@@ -123,10 +123,14 @@ class contact extends XoopsObject
         $form->addElement(new XoopsFormText (_MD_CONTACT_SUBJECT, 'contact_subject', 50, 255, $this->getVar('contact_subject')), true);
         $form->addElement(new XoopsFormTextArea (_MD_CONTACT_MESSAGE, 'contact_message', $this->getVar('contact_message', 'e'), 5, 60), true);
 
-        if ($xoopsModuleConfig['captcha']) {
-            xoops_load('XoopsFormCaptcha');
-            $form->addElement(new XoopsFormCaptcha(), true);
-        }
+
+            // check captcha
+            if ((!$xoopsUser && $xoopsModuleConfig['captchaAnonymous'])
+                || ($xoopsUser && !$xoopsUserIsAdmin && $xoopsModuleConfig['captchaRegistered'])
+            ) {
+                xoops_load('XoopsFormCaptcha');
+                $form->addElement(new XoopsFormCaptcha('','',false), true);
+            }
 
         $form->addElement(new XoopsFormButton('', 'submit', _SUBMIT, 'submit'));
 

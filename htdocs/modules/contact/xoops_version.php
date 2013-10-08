@@ -17,7 +17,7 @@
  * @author      Kazumi Ono (aka Onokazu)
  * @author      Trabis <lusopoemas@gmail.com>
  * @author      Hossein Azizabadi (AKA Voltan)
- * @version     $Id: xoops_version.php 12161 2013-10-07 20:46:22Z beckmi $
+ * @version     $Id: xoops_version.php 12162 2013-10-08 02:00:11Z beckmi $
  */
 
 if (!defined('XOOPS_ROOT_PATH')) {
@@ -85,8 +85,17 @@ $modversion['config'][] = array(
 );
 
 $modversion['config'][] = array(
-    'name'        => 'captcha',
-    'title'       => '_MI_CONTACT_FORM_CAPTCHA',
+    'name'        => 'captchaRegistered',
+    'title'       => '_MI_CONTACT_FORM_CAPTCHA_REGISTERED',
+    'description' => '_MI_CONTACT_FORM_CAPTCHA_DESC',
+    'formtype'    => 'yesno',
+    'valuetype'   => 'int',
+    'default'     => 1
+);
+
+$modversion['config'][] = array(
+    'name'        => 'captchaAnonymous',
+    'title'       => '_MI_CONTACT_FORM_CAPTCHA_ANONYMOUS',
     'description' => '_MI_CONTACT_FORM_CAPTCHA_DESC',
     'formtype'    => 'yesno',
     'valuetype'   => 'int',

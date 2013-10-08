@@ -4,7 +4,7 @@ Version 1.81 from 2013-02-24
 - English corrections (Cesag)
 - fixed: bug when sending UTF-8 emails (cesag/mamba)
 - PSR-2 code reformatting (mamba)
-- making Captcha optional (mamba)
+- making Captcha optional for Anonymous/Registered users (mamba)
 
 Version 1.80 from 2012-1-19
 =================================
