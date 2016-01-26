@@ -373,12 +373,12 @@ function lista_users(){
 
   $categ = new Categoria();
   $lista_categs = $categ->getCategorias('ORDER BY cod ASC');
-  
+
   rwbanner_collapsableBar('users', 'usersicon');
   echo "<img id='userssicon' name='usersicon' src=" . XOOPS_URL . "/modules/" . $xoopsModule->dirname() . "/images/icon/close12.gif alt='' /></a>&nbsp;"._AM_RWBANNER_LIST_USERS."</h3>";
   echo "<span style=\"color: #567; margin: 3px 0 12px 0; font-size: small; display: block; text-align:justify; \">"._AM_RWBANNER_LIST_USERS_DESC."</span>";
   echo "<div id='users'>";
-        
+
   echo '
   <table style="font-size:10px;" width="100%" class="outer">
   <tr class="head">

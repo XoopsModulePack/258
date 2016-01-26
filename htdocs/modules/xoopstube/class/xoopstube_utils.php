@@ -298,7 +298,7 @@ class XoopstubeUtilities
 
         foreach ($tpllist as $onetemplate) { // Remove cache for each page.
             if ($onetemplate->getVar('tpl_type') == 'module') {
-                //	Note, I've been testing all the other methods (like the one of Smarty) and none of them run, that's why I have used this code
+                //  Note, I've been testing all the other methods (like the one of Smarty) and none of them run, that's why I have used this code
                 $files_del = array();
                 $files_del = glob(XOOPS_CACHE_PATH . '/*' . $onetemplate->getVar('tpl_file') . '*');
                 if (count($files_del) > 0 && is_array($files_del)) {

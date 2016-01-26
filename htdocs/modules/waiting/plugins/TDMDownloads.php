@@ -39,6 +39,6 @@ function b_waiting_tdmdownloads()
         $block['lang_linkname'] = _PI_WAITING_MODREQS ;
     }
     $ret[] = $block ;
-    
+
     return $ret;
 }

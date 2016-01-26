@@ -11,7 +11,7 @@
   <{foreachq item=topic from=$block.topics}>
   <div class="align_center <{cycle values="even,odd"}>">
     <div class="block_full_forum floatleft left"><a href="<{$topic.seo_forum_url}>"><{$topic.forum_name}></a></div>
-    <div class="block_full_topic floatleft left"><a href="<{$topic.seo_topic_url}>"><{$topic.title}></a></div>    
+    <div class="block_full_topic floatleft left"><a href="<{$topic.seo_topic_url}>"><{$topic.title}></a></div>
     <div class="block_full_reply floatleft"><{$topic.replies}></div>
     <div class="block_full_view floatleft"><{$topic.views}></div>
     <div class="_col_end right"><{$topic.time}><br /><{$topic.topic_poster}></div>

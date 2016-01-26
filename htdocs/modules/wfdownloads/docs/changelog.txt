@@ -331,7 +331,7 @@ Fixed Bug: New submission to webmaster displayed the wrong link (Taken to the wr
 submission.
 Fixed Bug: Duplicate code for image list array in image uploader.php.
 Fixed Bug: Group Permissions where not included within Wfdownloads search function.
-	Every file was shown whether a user had permission to see them or not.
+    Every file was shown whether a user had permission to see them or not.
 Fixed Bug: Change language Page Published/Expire Date to File Published/Expire date.
 Fixed Bug: Block Language define change _MB_MYDOWNLOADS_LENGTH to _MB_WFDOWNLOADS_LENGTH
 Fixed Bug: Filenames with spaces where broken, this has been corrected.

@@ -95,15 +95,15 @@ if( ! empty( $_FILES['upload_archive']['tmp_name'] ) && is_uploaded_file( $_FILE
     $orig_filename4check = strtolower( $_FILES['upload_archive']['name'] ) ;
     $orig_ext4check = substr( $orig_filename4check , strrpos( $orig_filename4check , '.' ) + 1 ) ;
     if( $orig_ext4check == 'zip' ) {
-    
+
         // zip
         include_once dirname(dirname(__FILE__)).'/include/Archive_Zip.php' ;
         $reader = new Archive_Zip( $_FILES['upload_archive']['tmp_name'] ) ;
         $files = $reader->extract( array( 'extract_as_string' => true ) ) ;
         if( ! is_array( @$files ) ) die( $reader->errorName() ) ;
-    
+
     } else if( $orig_ext4check == 'tar' || $orig_ext4check == 'tgz' || $orig_ext4check == 'gz' ) {
-    
+
         // tar or tgz or tar.gz
         include_once XOOPS_ROOT_PATH.'/class/class.tar.php' ;
         $tar = new tar() ;
@@ -119,7 +119,7 @@ if( ! empty( $_FILES['upload_archive']['tmp_name'] ) && is_uploaded_file( $_FILE
         if( empty( $files ) ) die( _AM_AVAMAN_ERR_INVALIDARCHIVE ) ;
 
     } else if( ! empty( $avaman_allowed_exts[$orig_ext4check] ) ) {
-    
+
         // a single image file
         $files = array() ;
         $files[] = array(
@@ -134,7 +134,7 @@ if( ! empty( $_FILES['upload_archive']['tmp_name'] ) && is_uploaded_file( $_FILE
     // import stage
     $imported = 0 ;
     foreach( $files as $file ) {
-    
+
         if( ! empty( $file['folder'] ) ) continue ;
         $file_pos = strrpos( $file['filename'] , '/' ) ;
         $file_name = $file_pos === false ? $file['filename'] : substr( $file['filename'] , $file_pos + 1 ) ;
@@ -152,7 +152,7 @@ if( ! empty( $_FILES['upload_archive']['tmp_name'] ) && is_uploaded_file( $_FILE
 
         $imported ++ ;
     }
-    
+
     redirect_header( $realmyname , 3 , sprintf( _AM_AVAMAN_FILEUPLOADED , $imported )  ) ;
     exit ;
 }
@@ -168,34 +168,34 @@ $result = $db->query( $sql ) ;
 
 echo "
 <form action='$realmyname' id='avaman_upload' method='post' enctype='multipart/form-data' class='odd'>
-	<label for='upload_archive'>"._AM_AVAMAN_UPLOAD."</label>
-	<br />
-	<input type='file' id='upload_archive' name='upload_archive' size='60' />
-	<input type='submit' value='"._SUBMIT."' />
+    <label for='upload_archive'>"._AM_AVAMAN_UPLOAD."</label>
+    <br />
+    <input type='file' id='upload_archive' name='upload_archive' size='60' />
+    <input type='submit' value='"._SUBMIT."' />
 </form>
 <form action='$realmyname' name='avaman_list' id='avaman_list' method='post'>
 <table class='outer' id='avaman_main'>
-	<tr>
-		<th>"._AM_AVAMAN_TH_ID."</th>
-		<th>"._AM_AVAMAN_TH_FILE."</th>
-		<th>"._AM_AVAMAN_TH_CODE."</th>
-		<th>"._AM_AVAMAN_TH_EMOTION."</th>
-		<th>"._AM_AVAMAN_TH_SMILEDISPLAY."</th>
-		<th>"._AM_AVAMAN_TH_DELETE."<input type='checkbox' name='selectall' onclick=\"with(document.avaman_list){for(i=0;i<length;i++){if(elements[i].type=='checkbox'&&elements[i].disabled==false&&elements[i].name.indexOf('deletes')>=0){elements[i].checked=this.checked;}}}\" title='"._AM_AVAMAN_CB_SELECTALL."' /></th>
-	</tr>\n" ;
+    <tr>
+        <th>"._AM_AVAMAN_TH_ID."</th>
+        <th>"._AM_AVAMAN_TH_FILE."</th>
+        <th>"._AM_AVAMAN_TH_CODE."</th>
+        <th>"._AM_AVAMAN_TH_EMOTION."</th>
+        <th>"._AM_AVAMAN_TH_SMILEDISPLAY."</th>
+        <th>"._AM_AVAMAN_TH_DELETE."<input type='checkbox' name='selectall' onclick=\"with(document.avaman_list){for(i=0;i<length;i++){if(elements[i].type=='checkbox'&&elements[i].disabled==false&&elements[i].name.indexOf('deletes')>=0){elements[i].checked=this.checked;}}}\" title='"._AM_AVAMAN_CB_SELECTALL."' /></th>
+    </tr>\n" ;
 
 while( list( $smiles_id , $code , $file , $emotion , $display ) = $db->fetchRow( $result ) ) {
     $evenodd = @$evenodd == 'even' ? 'odd' : 'even' ;
 
     echo "
-	<tr>
-		<td class='$evenodd' align='center'>$smiles_id</td>
-		<td class='$evenodd' align='center'><img src='".XOOPS_UPLOAD_URL.'/'.$file."' alt='' /></td>
-		<td class='$evenodd' align='center'><input type='text' size='12' name='codes[$smiles_id]' value='".htmlspecialchars($code,ENT_QUOTES)."' /></td>
-		<td class='$evenodd' align='center'><input type='text' size='24' name='emotions[$smiles_id]' value='".htmlspecialchars($emotion,ENT_QUOTES)."' /></td>
-		<td class='$evenodd' align='center'><input type='checkbox' name='displays[$smiles_id]' ".($display?"checked='checked'":"")." /></td>
-		<td class='$evenodd' align='center'><input type='checkbox' name='deletes[$smiles_id]' /></td>
-	</tr>\n" ;
+    <tr>
+        <td class='$evenodd' align='center'>$smiles_id</td>
+        <td class='$evenodd' align='center'><img src='".XOOPS_UPLOAD_URL.'/'.$file."' alt='' /></td>
+        <td class='$evenodd' align='center'><input type='text' size='12' name='codes[$smiles_id]' value='".htmlspecialchars($code,ENT_QUOTES)."' /></td>
+        <td class='$evenodd' align='center'><input type='text' size='24' name='emotions[$smiles_id]' value='".htmlspecialchars($emotion,ENT_QUOTES)."' /></td>
+        <td class='$evenodd' align='center'><input type='checkbox' name='displays[$smiles_id]' ".($display?"checked='checked'":"")." /></td>
+        <td class='$evenodd' align='center'><input type='checkbox' name='deletes[$smiles_id]' /></td>
+    </tr>\n" ;
 }
 echo "
 </table>

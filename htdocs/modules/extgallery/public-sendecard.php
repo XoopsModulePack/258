@@ -44,11 +44,11 @@ if(!$permHandler->isAllowed($xoopsUser, 'public_ecard', $photo->getVar('cat_id')
 }
 
 switch($step) {
-    
+
     case 'send':
-        
+
         include_once XOOPS_ROOT_PATH.'/modules/extgallery/class/php-captcha.inc.php';
-        
+
         // Enable captcha only if GD is Used
         if($xoopsModuleConfig['graphic_lib'] == 'GD') {
             if (!PhpCaptcha::Validate($_POST['captcha'])) {
@@ -56,10 +56,10 @@ switch($step) {
                 exit;
             }
         }
-        
+
         $ecardHandler = xoops_getmodulehandler('publicecard', 'extgallery');
         $photoHandler = xoops_getmodulehandler('publicphoto', 'extgallery');
-        
+
         if(isset($_SERVER['HTTP_X_FORWARDED_FOR'])) {
             $ip = $_SERVER['HTTP_X_FORWARDED_FOR'];
         } elseif(isset($_SERVER['HTTP_CLIENT_IP'])) {
@@ -67,7 +67,7 @@ switch($step) {
         } else {
             $ip = $_SERVER['REMOTE_ADDR'];
         }
-        
+
         $data = array(
                     'ecard_fromname'=>$_POST['ecard_fromname'],
                     'ecard_fromemail'=>$_POST['ecard_fromemail'],
@@ -78,29 +78,29 @@ switch($step) {
                     'ecard_ip'=>$ip,
                     'photo_id'=>$photoId
                 );
-        
+
         $ecardHandler->createEcard($data);
         $photoHandler->updateEcard($photoId);
-        
+
         redirect_header("public-photo.php?photoId=".$photoId."#photoNav", 3, _MD_EXTGALLERY_ECARD_SENT);
-        
+
         break;
-        
+
     case 'default':
     default:
-        
+
         $GLOBALS['xoopsOption']['template_main'] = 'extgallery_public-sendecard.html';
         include XOOPS_ROOT_PATH.'/header.php';
-        
+
         if($photo->getVar('photo_serveur') != "") {
             $photoUrl = $photo->getVar('photo_serveur')."thumb_".$photo->getVar('photo_name');
         } else {
             $photoUrl = XOOPS_URL."/uploads/extgallery/public-photo/thumb/thumb_".$photo->getVar('photo_name');
         }
-        
+
         $fromName = is_a($xoopsUser, "XoopsUser") ? $xoopsUser->getVar('uname') : "";
         $fromEmail = is_a($xoopsUser, "XoopsUser") ? $xoopsUser->getVar('email') : "";
-        
+
         $form = new XoopsThemeForm(_MD_EXTGALLERY_SEND_ECARD, 'send_ecard', 'public-sendecard.php', 'post', true);
         $form->addElement(new XoopsFormText(_MD_EXTGALLERY_FROM_NAME, 'ecard_fromname', '70', '255', $fromName),false);
         $form->addElement(new XoopsFormText(_MD_EXTGALLERY_FROM_EMAIL, 'ecard_fromemail', '70', '255', $fromEmail),false);
@@ -116,11 +116,11 @@ switch($step) {
         $form->addElement(new XoopsFormHidden("photo_id", $photoId));
         $form->addElement(new XoopsFormHidden("step", 'send'));
         $form->assign($xoopsTpl);
-        
+
         $xoopsTpl->assign('photo', $photoUrl);
         $xoopsTpl->assign('xoops_pagetitle', "Send ".$photo->getVar('photo_desc')." to eCard");
         $xoTheme->addMeta('meta','description',$photo->getVar('photo_desc'));
-        
+
         $rel = "alternate";
         $attributes['rel'] = $rel;
         $attributes['type'] = "application/rss+xml";
@@ -128,15 +128,15 @@ switch($step) {
         $attributes['href'] = XOOPS_URL."/modules/extgallery/public-rss.php";
         $xoTheme->addMeta('link', $rel, $attributes);
         $xoTheme->addStylesheet('modules/extgallery/include/style.css');
-        
+
         $lang = array(
             'to'=>_MD_EXTGALLERY_TO,
             'from'=>_MD_EXTGALLERY_FROM
         );
         $xoopsTpl->assign('lang', $lang);
-        
+
         include XOOPS_ROOT_PATH.'/footer.php';
-        
+
         break;
 
 }

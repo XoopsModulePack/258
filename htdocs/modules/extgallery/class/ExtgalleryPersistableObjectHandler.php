@@ -81,7 +81,7 @@ class ExtgalleryPersistableObjectHandler extends XoopsObjectHandler {
         }
         return $obj;
     } */
-    
+
     function &create($isNew = true)
     {
         $obj = new $this->className();
@@ -208,11 +208,11 @@ class ExtgalleryPersistableObjectHandler extends XoopsObjectHandler {
         if ($criteria == null) {
             $criteria = new CriteriaCompo();
         }
-        
+
         if ($criteria->getSort() == '') {
             $criteria->setSort($this->identifierName);
         }
-            
+
         $sql = 'SELECT '.$this->keyName;
         if(!empty($this->identifierName)){
             $sql .= ', '.$this->identifierName;
@@ -436,7 +436,7 @@ class ExtgalleryPersistableObjectHandler extends XoopsObjectHandler {
 
         return true;
     }
-    
+
     function updateFieldValue($fieldname, $fieldvalue, $criteria = null, $force = true)
     {
         $sql = 'UPDATE '.$this->table.' SET '.$fieldname.' = '.$fieldvalue;
@@ -495,10 +495,10 @@ class ExtgalleryPersistableObjectHandler extends XoopsObjectHandler {
             return $object;
         }
     }
-    
+
     function objectToArray($objects, $externalKeys = array(), $format = 's') {
         static $cache;
-        
+
         $ret = array();
         if(is_array($objects)) {
             $i = 0;
@@ -552,7 +552,7 @@ class ExtgalleryPersistableObjectHandler extends XoopsObjectHandler {
 
         return $ret;
     }
-    
+
     function objectToArrayWithoutExternalKey($object,$format = 's') {
         $ret = array();
         if($object != null) {
@@ -564,7 +564,7 @@ class ExtgalleryPersistableObjectHandler extends XoopsObjectHandler {
 
         return $ret;
     }
-    
+
     function updateCounter($fieldname,$criteria,$op='+') {
         $sql = 'UPDATE '.$this->table.' SET '.$fieldname.' = '.$fieldname.$op.'1';
         $sql .= ' '.$criteria->renderWhere();
@@ -575,7 +575,7 @@ class ExtgalleryPersistableObjectHandler extends XoopsObjectHandler {
 
         return true;
     }
-    
+
     function getSum($criteria = null,$sum = '*')
     {
         $field = "";
@@ -611,7 +611,7 @@ class ExtgalleryPersistableObjectHandler extends XoopsObjectHandler {
             return $ret;
         }
     }
-    
+
     function getMax($criteria = null,$max = '*')
     {
         $field = "";
@@ -646,7 +646,7 @@ class ExtgalleryPersistableObjectHandler extends XoopsObjectHandler {
             return $ret;
         }
     }
-    
+
     function getAvg($criteria = null,$avg = '*')
     {
         $field = "";
@@ -663,7 +663,7 @@ class ExtgalleryPersistableObjectHandler extends XoopsObjectHandler {
 
         return $sum;
     }
-    
+
     function getInsertId() {
         return $this->db->getInsertId();
     }

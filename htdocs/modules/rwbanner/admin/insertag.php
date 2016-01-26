@@ -122,7 +122,7 @@ $myDB = $db->prefix("rw_categorias");
 
   $obs = new XoopsFormTextArea(_AM_RWBANNER_TAG_TITLE20, "form[obs]", (isset($form['obs']) ? $form['obs'] : ''));
   $obs->setDescription(_AM_RWBANNER_TAG_TITLE21);
-  
+
   $status = new XoopsFormSelect(_AM_RWBANNER_TAG_TITLE18, 'form[status]', (isset($form['status']) ? $form['status'] : ''));
   $status->addOption(1, _AM_RWBANNER_TAG_STATUS1);
   $status->addOption(0, _AM_RWBANNER_TAG_STATUS2);

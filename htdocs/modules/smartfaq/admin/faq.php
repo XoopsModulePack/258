@@ -123,10 +123,10 @@ function editfaq($showmenu = false, $faqid = -1, $answerid = -1, $merge=false)
             break;
         }
 
-/*		if (!$answerObj) {
+/*      if (!$answerObj) {
             redirect_header("faq.php", 2, _AM_SF_ANSWERNOTFOUND);
             exit();
-        }		*/
+        }       */
 
         // Creating the category of this FAQ
         $categoryObj =& $faqObj->category();
@@ -302,7 +302,7 @@ $sform->addElement($editorTray);
     $sform->addElement(new XoopsFormHidden('status', $faqObj->status()));
 
     // Setting the FAQ Status
-    /*	$status_select = new XoopsFormSelect('', 'status', $status);
+    /*  $status_select = new XoopsFormSelect('', 'status', $status);
     $status_select->addOptionArray(sf_getStatusArray());
     $status_tray = new XoopsFormElementTray(_AM_SF_STATUS_EXP , '&nbsp;');
     $status_tray->addElement($status_select);

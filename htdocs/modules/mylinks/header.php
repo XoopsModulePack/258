@@ -4,10 +4,10 @@
 //                    Copyright (c) 2000 XOOPS.org                           //
 //                       <http://www.xoops.org/>                             //
 //  ------------------------------------------------------------------------ //
-// Based on:								                                 //
-// myPHPNUKE Web Portal System - http://myphpnuke.com/	  		             //
-// PHP-NUKE Web Portal System - http://phpnuke.org/	  		                 //
-// Thatware - http://thatware.org/					                         //
+// Based on:                                                                 //
+// myPHPNUKE Web Portal System - http://myphpnuke.com/                       //
+// PHP-NUKE Web Portal System - http://phpnuke.org/                          //
+// Thatware - http://thatware.org/                                           //
 // ------------------------------------------------------------------------- //
 //  This program is free software; you can redistribute it and/or modify     //
 //  it under the terms of the GNU General Public License as published by     //

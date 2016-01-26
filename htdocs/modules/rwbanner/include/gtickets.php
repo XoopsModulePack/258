@@ -85,7 +85,7 @@ class XoopsGTicket {
 
         global $xoopsModule ;
 
-    
+
 
         // create a token
 

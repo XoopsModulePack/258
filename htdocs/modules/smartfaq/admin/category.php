@@ -113,7 +113,7 @@ function editcat($showmenu = false, $categoryid = 0)
     $sform -> addElement( new XoopsFormLabel( _AM_SF_PARENT_CATEGORY_EXP, ob_get_contents() ) );
     ob_end_clean();
 
-/*	$mytree = new XoopsTree($xoopsDB->prefix("smartfaq_categories"), "categoryid" , "parentid");
+/*  $mytree = new XoopsTree($xoopsDB->prefix("smartfaq_categories"), "categoryid" , "parentid");
     ob_start();
     $sform->addElement(new XoopsFormHidden('categoryid', $categoryObj->categoryid()));
     $mytree->makeMySelBox("name", "weight", $categoryObj->categoryid());
@@ -245,8 +245,8 @@ switch ($op) {
     } else {
         $categoryObj->setGroups_read();
     }
-    //	$groups_admin = isset($_POST['groups_admin'])? $_POST['groups_admin'] : array();
-    //	$mod_perms = isset($_POST['mod_perms'])? $_POST['mod_perms'] : array();
+    //  $groups_admin = isset($_POST['groups_admin'])? $_POST['groups_admin'] : array();
+    //  $mod_perms = isset($_POST['mod_perms'])? $_POST['mod_perms'] : array();
 
     $categoryObj->setVar('name', $_POST['name']);
 

@@ -54,7 +54,7 @@
 
             }
         } */
-        
+
         $sql = "SELECT * FROM ".$xoopsDB->prefix('newblocks')." WHERE mid=".$mid." AND block_type <>'D' AND func_num > $count";
         $fresult = $xoopsDB->query($sql);
         while ($fblock = $xoopsDB->fetchArray($fresult)) {
@@ -62,7 +62,7 @@
             $sql = "DELETE FROM ".$xoopsDB->prefix('newblocks')." WHERE bid='".$fblock['bid']."'";
             $iret = $xoopsDB->query($sql);
         }
-        
+
         for ($i = 1 ; $i <= $count ; $i++) {
             $sql = "SELECT name,options FROM ".$xoopsDB->prefix('newblocks')." WHERE mid=".$mid." AND func_num=".$i." AND show_func='".addslashes($modversion['blocks'][$i]['show_func'])."' AND func_file='".addslashes($modversion['blocks'][$i]['file'])."'";
             $fresult = $xoopsDB->query($sql);

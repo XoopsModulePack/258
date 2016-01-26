@@ -5,6 +5,6 @@
 <p>For further information please click on following link:<br />{ACTLINK}</p>
 
 <p>-----------------------<br />
-{X_SITENAME}<br /> 
-({X_SITEURL})<br /> 
+{X_SITENAME}<br />
+({X_SITEURL})<br />
 Webmaster {X_ADMINMAIL}</p>

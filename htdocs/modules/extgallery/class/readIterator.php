@@ -92,7 +92,7 @@ class ExtgalleryModelReadIterator extends XoopsModelRead
 
         return $ret;
     }
-    
+
     /**
      * retrieve objects from the database
      *
@@ -110,7 +110,7 @@ class ExtgalleryModelReadIterator extends XoopsModelRead
 
         return $objects;
     }
-    
+
     /**
     * Retrieve a list of objects data
     *
@@ -126,7 +126,7 @@ class ExtgalleryModelReadIterator extends XoopsModelRead
         if ($criteria == null) {
             $criteria = new CriteriaCompo();
         }
-            
+
         $sql = "SELECT `{$this->handler->keyName}`";
         if (!empty($this->handler->identifierName)) {
             $sql .= ", `{$this->handler->identifierName}`";

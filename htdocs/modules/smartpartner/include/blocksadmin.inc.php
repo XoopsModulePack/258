@@ -467,7 +467,7 @@ if ($op == 'clone_ok') {
         xoops_cp_footer();
         exit();
     }
-/*	if ($cblock->getVar('template') != '') {
+/*  if ($cblock->getVar('template') != '') {
         $tplfile_handler =& xoops_gethandler('tplfile');
         $btemplate =& $tplfile_handler->find($GLOBALS['xoopsConfig']['template_set'], 'block', $bid);
         if (count($btemplate) > 0) {
@@ -484,7 +484,7 @@ if ($op == 'clone_ok') {
         $db->query($sql);
     }
 
-/*	global $xoopsUser;
+/*  global $xoopsUser;
     $groups =& $xoopsUser->getGroups();
     $count = count($groups);
     for ($i = 0; $i < $count; $i++) {
@@ -618,7 +618,7 @@ function myblocksadmin_update_blockinstance($id, $bside, $bweight, $bvisible, $b
 
     return 'Failed update of block instance. ID:' . $id;
 
-    /*		// NAME for CUSTOM BLOCK
+    /*      // NAME for CUSTOM BLOCK
             if ( $instance->getVar('block_type') == 'C') {
                 switch ( $instance->getVar('c_type') ) {
                 case 'H':
@@ -637,7 +637,7 @@ function myblocksadmin_update_blockinstance($id, $bside, $bweight, $bvisible, $b
                 $instance->setVar('name', $name);
             }
     */
-    /*			// CLEAR TEMPLATE CACHE
+    /*          // CLEAR TEMPLATE CACHE
                 include_once XOOPS_ROOT_PATH.'/class/template.php';
                 $xoopsTpl = new XoopsTpl();
                 $xoopsTpl->xoops_setCaching(2);

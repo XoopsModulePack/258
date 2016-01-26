@@ -46,7 +46,7 @@ class Categoria
           $sql = 'SELECT * FROM '.$this->db->prefix('rw_categorias').' WHERE cod='.$id;
           $query = $this->db->query($sql);
           $row = $this->db->fetchArray($query);
-          
+
           $this->cod = $row['cod'];
           $this->titulo = $row['titulo'];
           $this->larg = $row['larg'];
@@ -72,7 +72,7 @@ class Categoria
     {
         return $this->cod;
     }
-    
+
     function setTitulo($titulo)
     {
         $this->titulo = $titulo;
@@ -81,7 +81,7 @@ class Categoria
     {
         return $this->titulo;
     }
-    
+
     function setLarg($larg)
     {
         $this->larg = $larg;
@@ -90,7 +90,7 @@ class Categoria
     {
         return $this->larg;
     }
-    
+
     function setAlt($alt)
     {
         $this->alt = $alt;
@@ -109,11 +109,11 @@ class Categoria
         return $this->errormsg;
     }
     //fim métodos set e get dos atributos
-    
+
     function clearDb(){
          $this->db = null;
     }
-    
+
     //Insere uma nova categoria no banco de dados
     function grava(){
         $this->db = &XoopsDatabaseFactory::getDatabaseConnection();
@@ -157,7 +157,7 @@ class Categoria
           return false;
         }
     }
-    
+
     //Retorna um array associativo de todas as categorias encontradas.
     function getCategorias($order){
         $this->db = &XoopsDatabaseFactory::getDatabaseConnection();

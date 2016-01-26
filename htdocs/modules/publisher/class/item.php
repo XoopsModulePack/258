@@ -993,9 +993,9 @@ class PublisherItem extends XoopsObject
             }
             $this->setVar('images', implode('|', $imageItemIds));
         } else {
- 			$this->setVar('image', 0);
-			$this->setVar('images', '');
-		}
+            $this->setVar('image', 0);
+            $this->setVar('images', '');
+        }
 
         if (($authorAlias = XoopsRequest::getString('author_alias', '', 'POST'))) {
             $this->setVar('author_alias', $authorAlias);

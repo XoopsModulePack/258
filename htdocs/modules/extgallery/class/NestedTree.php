@@ -172,10 +172,10 @@ class NestedTree {
             return false;
 
         $query = sprintf('select count(*) as is_descendant
-		                              from %s
-		                              where %s = %d
-		                              and nleft > %d
-		                              and nright < %d', $this->table, $this->fields['id'], $descendant_id, $node->nleft, $node->nright);
+                                      from %s
+                                      where %s = %d
+                                      and nleft > %d
+                                      and nright < %d', $this->table, $this->fields['id'], $descendant_id, $node->nleft, $node->nright);
 
         $result = $this->db->query($query);
 
@@ -242,7 +242,7 @@ class NestedTree {
 
         return -1;
     }
-    
+
     function numLeef($id) {
         $query = sprintf('select count(*) as num_leef from %s where nright - nleft = 1', $this->table);
         if($id != 0) {
@@ -316,7 +316,7 @@ class NestedTree {
             // skip the root node
             if ($id == 0)
                 continue;
-            
+
             $query = sprintf('update %s set nlevel = %d, nleft = %d, nright = %d where %s = %d', $this->table, $row['nlevel'], $row['nleft'], $row['nright'], $this->fields['id'], $id);
             $this->db->queryF($query);
         }

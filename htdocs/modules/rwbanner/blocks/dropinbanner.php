@@ -63,7 +63,7 @@ $xoopsTpl->assign('module_dir', $dirname );
   $block['conteudo'] = $options[9];
   $block['title'] = _MI_RWBANNER_BLOCK5_NAME;
   $block['lang_close'] = _MB_RWBANNER_TEXT4;
-  
+
   $categ = new Categoria(null,$options[0]);
   $block['width'] = ($block['qtde'] > 1 && $block['cols'] > 1)?(($categ->getLarg()*$block['qtde'])+40):($categ->getLarg()+40);
   $block['height'] = ($block['qtde'] > 1 && $block['cols'] == 1)?(($categ->getAlt()*$block['qtde'])+40):($categ->getAlt()+40);
@@ -93,7 +93,7 @@ $xoopsTpl->assign('module_dir', $dirname );
     }
   }
   $block['banners'] = $arr3;
-  
+
   return $block;
 }
 

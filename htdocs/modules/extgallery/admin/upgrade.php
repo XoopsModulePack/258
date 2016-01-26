@@ -119,7 +119,7 @@ switch($step) {
             // Delete downloaded module's files
             unlink(XOOPS_ROOT_PATH."/uploads/".$langFileName);
         }
-  
+
   // Delete folder created by a small issu in PclTar lib
   if(is_dir(XOOPS_ROOT_PATH."/modules/".$localModuleDir."/modules")) {
    rmdir(XOOPS_ROOT_PATH."/modules/".$localModuleDir."/modules");

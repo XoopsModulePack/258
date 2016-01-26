@@ -137,10 +137,10 @@ $modversion['blocks'][6]['template'] = 'random_offer.html';
 /*
 $modversion['blocks'][2]['file'] = "random_partner.php";
 $modversion['blocks'][2]['name'] = _MI_SPARTNER_BLOCK_RANDOM_PARTNER;
-$modversion['blocks'][2]['description']	= _MI_SPARTNER_BLOCK_RANDOM_PARTNER_DESC;
+$modversion['blocks'][2]['description'] = _MI_SPARTNER_BLOCK_RANDOM_PARTNER_DESC;
 $modversion['blocks'][2]['show_func'] = "b_random_partner_show";
 $modversion['blocks'][2]['edit_func'] = "b_random_partner_edit";
-$modversion['blocks'][2]['options']	= "1|1|1";
+$modversion['blocks'][2]['options'] = "1|1|1";
 $modversion['blocks'][2]['template'] = 'random_partner.html';*/
 
 // Search

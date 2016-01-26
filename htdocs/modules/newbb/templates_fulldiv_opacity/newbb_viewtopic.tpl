@@ -99,7 +99,7 @@
 <div>
     <div class="dropdown floatleft">
         <{if $viewer_level gt 1}>
-            <select name="topicoption" id="topicoption" class="menu" onchange="if(this.options[this.selectedIndex].value.length >0 )	{ window.document.location=this.options[this.selectedIndex].value;}">
+            <select name="topicoption" id="topicoption" class="menu" onchange="if(this.options[this.selectedIndex].value.length >0 )    { window.document.location=this.options[this.selectedIndex].value;}">
                 <option value=""><{$smarty.const._MD_TOPICOPTION}></option>
                 <{foreachq item=act from=$admin_actions}>
                 <option value="<{$act.link}>"><{$act.name}></option>
@@ -123,7 +123,7 @@
                 <option value="<{$xoops_url}>/modules/<{$xoops_dirname}>/ratethread.php?topic_id=<{$topic_id}>&amp;forum=<{$forum_id}>&amp;rate=1"><{$smarty.const._MD_RATE1}></option>
             </select>
         <{/if}>
-        <select name="viewmode" id="viewmode" class="menu" onchange="if(this.options[this.selectedIndex].value.length >0 )	{ window.location=this.options[this.selectedIndex].value;}">
+        <select name="viewmode" id="viewmode" class="menu" onchange="if(this.options[this.selectedIndex].value.length >0 )  { window.location=this.options[this.selectedIndex].value;}">
             <option value=""><{$smarty.const._MD_VIEWMODE}></option>
             <{foreachq item=act from=$viewmode_options}>
             <option value="<{$act.link}>"><{$act.title}></option>

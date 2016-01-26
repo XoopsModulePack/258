@@ -23,11 +23,11 @@ if (!defined("XOOPS_ROOT_PATH")) {
 include_once XOOPS_ROOT_PATH.'/class/mail/xoopsmultimailer.php';
 
 class extgalleryMailer {
-    
+
     var $mailer;
     var $type;
     var $tags = array();
-    
+
     var $ecardId;
     var $subject;
     var $toEmail;
@@ -37,12 +37,12 @@ class extgalleryMailer {
     var $greetings;
     var $description;
     var $photo;
-    
+
     function extgalleryMailer($type) {
         $this->mailer = new XoopsMultiMailer();
         $this->type = $type;
     }
-    
+
     function imageIncluded() {
         if($this->photo->getVar('photo_serveur') == "") {
             $photoPath = XOOPS_ROOT_PATH.'/uploads/extgallery/public-photo/medium/'.$this->photo->getVar('photo_name');
@@ -54,7 +54,7 @@ class extgalleryMailer {
         $this->mailer->AddEmbeddedImage($photoPath, "photo");
         $this->mailer->AddEmbeddedImage(XOOPS_ROOT_PATH.'/modules/extgallery/images/stamp.gif', "stamp");
     }
-    
+
     function imageLinked() {
         if($this->photo->getVar('photo_serveur') == "") {
             $photoUrl = XOOPS_URL.'/uploads/extgallery/public-photo/medium/'.$this->photo->getVar('photo_name');
@@ -64,7 +64,7 @@ class extgalleryMailer {
         $this->tags['PHOTO_SRC'] = $photoUrl;
         $this->tags['STAMP_SRC'] = XOOPS_URL.'/modules/extgallery/images/stamp.gif';
     }
-    
+
     function send() {
         $this->assignTags();
         if($this->type == "included") {
@@ -72,7 +72,7 @@ class extgalleryMailer {
         } else if($this->type == "linked") {
             $this->imageLinked();
         }
-        
+
         $this->mailer->From = $this->fromEmail;
         $this->mailer->FromName = $this->fromName;
         $this->mailer->Subject = $this->subject;
@@ -82,7 +82,7 @@ class extgalleryMailer {
         //$this->mailer->AddReplyTo($this->fromEmail, $this->fromName);
         $this->mailer->Send();
     }
-    
+
     function assignTags() {
         $this->tags['ECARD_LINK'] = XOOPS_URL.'/modules/extgallery/public-viewecard.php?id='.$this->ecardId;
         $this->tags['EXP_EMAIL'] = $this->fromEmail;
@@ -94,10 +94,10 @@ class extgalleryMailer {
         $this->tags['SITE_NAME'] = $GLOBALS['xoopsConfig']['sitename'];
         $this->tags['SITE_URL'] = XOOPS_URL;
     }
-    
+
     function loadTemplate($name) {
         global $xoopsConfig;
-        
+
         if(file_exists(XOOPS_ROOT_PATH.'/modules/extgallery/language/'.$xoopsConfig['language'].'/mail_template/'.$name)) {
             $path = XOOPS_ROOT_PATH.'/modules/extgallery/language/'.$xoopsConfig['language'].'/mail_template/'.$name;
         } else {
@@ -112,41 +112,41 @@ class extgalleryMailer {
 
         return $body;
     }
-    
+
     function setEcardId($ecardId) {
         $this->ecardId = $ecardId;
     }
-    
+
     function setSubject($subject) {
         $this->subject = $subject;
     }
-    
+
     function setToEmail($email) {
         $this->toEmail = $email;
     }
-    
+
     function setToName($name) {
         $this->toName = $name;
     }
-    
+
     function setFromEmail($email) {
         $this->fromEmail = $email;
     }
-    
+
     function setFromName($name) {
         $this->fromName = $name;
     }
-    
+
     function setGreetings($greetings) {
         $this->greetings = $greetings;
     }
-    
+
     function setDescription($description) {
         $this->description = $description;
     }
-    
+
     function setPhoto(&$photo) {
         $this->photo = $photo;
     }
-    
+
 }

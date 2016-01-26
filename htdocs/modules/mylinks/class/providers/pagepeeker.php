@@ -29,7 +29,7 @@
  * @license::    {@link http://www.gnu.org/licenses/gpl-2.0.html GNU Public License}
  * @package::    mylinks
  * @subpackage:: class
- * @since::		 3.11
+ * @since::      3.11
  * @author::     zyspec <owner@zyspec.com>
  * @version::    $Id: $
  */

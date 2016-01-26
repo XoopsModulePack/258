@@ -1021,7 +1021,7 @@ function xtubeRenderCategoryListHeader($heading)
             <th style="text-align: center; font-size: smaller;">' . _AM_XOOPSTUBE_FCATEGORY_WEIGHT . '</th>
             <th style="text-align: center; font-size: smaller;">' . _AM_XOOPSTUBE_FCATEGORY_CIMAGE . '</th>
             <th style="text-align: center; font-size: smaller;">' . _AM_XOOPSTUBE_CATSPONSOR . '</th>
-<!--			<th style="text-align: center; font-size: smaller;">' . _AM_XOOPSTUBE_MINDEX_PUBLISH . '</th>
+<!--            <th style="text-align: center; font-size: smaller;">' . _AM_XOOPSTUBE_MINDEX_PUBLISH . '</th>
             <th style="text-align: center; font-size: smaller;">' . _AM_XOOPSTUBE_MINDEX_EXPIRE . '</th>
             <th style="text-align: center; font-size: smaller;">' . _AM_XOOPSTUBE_MINDEX_ONLINE . '</th>
             <th style="text-align: center; font-size: smaller;">' . _AM_XOOPSTUBE_MINDEX_ACTION . '</th> -->

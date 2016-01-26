@@ -40,10 +40,10 @@ function getCookie(name) {
 }
 
 function initAd(){
-	if(!ns && !ie && !w3) return;
-	if(ie)		adDiv=eval('document.all.sponsorAdDiv.style');
-	else if(ns)	adDiv=eval('document.layers["sponsorAdDiv"]');
-	else if(w3)	adDiv=eval('document.getElementById("sponsorAdDiv").style');
+    if(!ns && !ie && !w3) return;
+    if(ie)      adDiv=eval('document.all.sponsorAdDiv.style');
+    else if(ns) adDiv=eval('document.layers["sponsorAdDiv"]');
+    else if(w3) adDiv=eval('document.getElementById("sponsorAdDiv").style');
         if (ie||w3)
         adDiv.visibility="visible";
         else
@@ -52,7 +52,7 @@ function initAd(){
       var i = getCookie('rw_banner');
     else
       var i = 0;
-	if(i == chanceAd){
+    if(i == chanceAd){
       showAd();
       setCookie('rw_banner', 1);
     }else if(i == 0){
@@ -67,14 +67,14 @@ function initAd(){
 }
 function showAd(){
 if(adCount<adTime*10){adCount+=1;
-	if (ie){documentWidth  =truebody().offsetWidth/2+truebody().scrollLeft-20;
-	documentHeight =truebody().offsetHeight/2+truebody().scrollTop-20;}
-	else if (ns){documentWidth=window.innerWidth/2+window.pageXOffset-20;
-	documentHeight=window.innerHeight/2+window.pageYOffset-20;}
-	else if (w3){documentWidth=self.innerWidth/2+window.pageXOffset-20;
-	documentHeight=self.innerHeight/2+window.pageYOffset-20;}
-	adDiv.left=documentWidth-<{$width/2}>+calunit;adDiv.top =documentHeight-<{$height/2}>+calunit;
-	setTimeout("showAd()",100);}else closeAd();
+    if (ie){documentWidth  =truebody().offsetWidth/2+truebody().scrollLeft-20;
+    documentHeight =truebody().offsetHeight/2+truebody().scrollTop-20;}
+    else if (ns){documentWidth=window.innerWidth/2+window.pageXOffset-20;
+    documentHeight=window.innerHeight/2+window.pageYOffset-20;}
+    else if (w3){documentWidth=self.innerWidth/2+window.pageXOffset-20;
+    documentHeight=self.innerHeight/2+window.pageYOffset-20;}
+    adDiv.left=documentWidth-<{$width/2}>+calunit;adDiv.top =documentHeight-<{$height/2}>+calunit;
+    setTimeout("showAd()",100);}else closeAd();
 }
 function closeAd(){
 if (ie||w3)

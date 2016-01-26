@@ -13,11 +13,11 @@ define("_MI_XFORMS_ADMENU3", "Create form elements");
 define("_MI_XFORMS_ADMENU4", "Form Report");
 define("_MI_XFORMS_ADMENU5", "About");
 
-//	template descriptions
+//  template descriptions
 define("_MI_XFORMS_TMPL_FORM_DESC", "Template for forms");
 define("_MI_XFORMS_TMPL_ERROR_DESC", "Page to show when error occurs");
 
-//	preferences
+//  preferences
 define("_MI_XFORMS_TEXT_WIDTH", "Default width of text boxes");
 define("_MI_XFORMS_TEXT_MAX", "Default maximum length of text boxes");
 define("_MI_XFORMS_TAREA_ROWS", "Default rows of text areas");

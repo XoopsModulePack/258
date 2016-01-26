@@ -44,7 +44,7 @@ $ratingHandler = xoops_getmodulehandler('publicrating', 'extgallery');
 if($ratingHandler->rate($photoId, $rate)) {
     $rating = $ratingHandler->getRate($photoId);
     $photoHandler->modifyPhoto($photoId,array('photo_rating'=>$rating));
-    
+
     redirect_header("public-photo.php?photoId=".$photoId."#photoNav", 3, _MD_EXTGALLERY_VOTE_THANKS);
 } else {
     redirect_header("public-photo.php?photoId=".$photoId."#photoNav", 3, _MD_EXTGALLERY_ALREADY_VOTED);

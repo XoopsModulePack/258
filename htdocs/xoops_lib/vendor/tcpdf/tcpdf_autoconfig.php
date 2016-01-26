@@ -7,14 +7,14 @@ if(!is_array($pdf_data)) {
 }
 // DOCUMENT_ROOT fix for IIS Webserver
 if ((!isset($_SERVER['DOCUMENT_ROOT'])) OR (empty($_SERVER['DOCUMENT_ROOT']))) {
-	if(isset($_SERVER['SCRIPT_FILENAME'])) {
-		$_SERVER['DOCUMENT_ROOT'] = str_replace( '\\', '/', substr($_SERVER['SCRIPT_FILENAME'], 0, 0-strlen($_SERVER['PHP_SELF'])));
-	} elseif(isset($_SERVER['PATH_TRANSLATED'])) {
-		$_SERVER['DOCUMENT_ROOT'] = str_replace( '\\', '/', substr(str_replace('\\\\', '\\', $_SERVER['PATH_TRANSLATED']), 0, 0-strlen($_SERVER['PHP_SELF'])));
-	} else {
-		// define here your DOCUMENT_ROOT path if the previous fails (e.g. '/var/www')
-		$_SERVER['DOCUMENT_ROOT'] = '/';
-	}
+    if(isset($_SERVER['SCRIPT_FILENAME'])) {
+        $_SERVER['DOCUMENT_ROOT'] = str_replace( '\\', '/', substr($_SERVER['SCRIPT_FILENAME'], 0, 0-strlen($_SERVER['PHP_SELF'])));
+    } elseif(isset($_SERVER['PATH_TRANSLATED'])) {
+        $_SERVER['DOCUMENT_ROOT'] = str_replace( '\\', '/', substr(str_replace('\\\\', '\\', $_SERVER['PATH_TRANSLATED']), 0, 0-strlen($_SERVER['PHP_SELF'])));
+    } else {
+        // define here your DOCUMENT_ROOT path if the previous fails (e.g. '/var/www')
+        $_SERVER['DOCUMENT_ROOT'] = '/';
+    }
 }
 $_SERVER['DOCUMENT_ROOT'] = str_replace('//', '/', $_SERVER['DOCUMENT_ROOT']);
 if (substr($_SERVER['DOCUMENT_ROOT'], -1) != '/') $_SERVER['DOCUMENT_ROOT'] .= '/';
@@ -70,23 +70,23 @@ if (!defined('K_PATH_IMAGES')) {
     }
 }
 if (!defined('PDF_HEADER_LOGO_WIDTH')) {
-	if (PDF_HEADER_LOGO != '_blank.png') {
+    if (PDF_HEADER_LOGO != '_blank.png') {
         if(array_key_exists('header_logo_width',$pdf_data)){
             define('PDF_HEADER_LOGO_WIDTH', $pdf_data['header_logo_width']);
         }else{
-		    define ('PDF_HEADER_LOGO_WIDTH', 30);
+            define ('PDF_HEADER_LOGO_WIDTH', 30);
         }
-	} else {
-		define ('PDF_HEADER_LOGO_WIDTH', 0);
-	}
+    } else {
+        define ('PDF_HEADER_LOGO_WIDTH', 0);
+    }
 }
 if (!defined('K_PATH_CACHE')) {
     if(array_key_exists('path_cache',$pdf_data) && is_dir($pdf_data['path_cache'])){
         define('K_PATH_CACHE',$pdf_data['path_cache']);
     }else{
-	    $K_PATH_CACHE = ini_get('upload_tmp_dir') ? ini_get('upload_tmp_dir') : sys_get_temp_dir();
-	    if (substr($K_PATH_CACHE, -1) != '/') $K_PATH_CACHE .= '/';
-	    define ('K_PATH_CACHE', $K_PATH_CACHE);
+        $K_PATH_CACHE = ini_get('upload_tmp_dir') ? ini_get('upload_tmp_dir') : sys_get_temp_dir();
+        if (substr($K_PATH_CACHE, -1) != '/') $K_PATH_CACHE .= '/';
+        define ('K_PATH_CACHE', $K_PATH_CACHE);
     }
 }
 if (!defined('K_BLANK_IMAGE')) define ('K_BLANK_IMAGE', '_blank.png');
@@ -94,14 +94,14 @@ if (!defined('PDF_PAGE_FORMAT')) {
     if(array_key_exists('page_format',$pdf_data)){
         define('PDF_PAGE_FORMAT',$pdf_data['page_format']);
     }else{
-	    define ('PDF_PAGE_FORMAT', 'A4');
+        define ('PDF_PAGE_FORMAT', 'A4');
     }
 }
 if (!defined('PDF_PAGE_ORIENTATION')) {
     if(array_key_exists('page_orientation',$pdf_data)){
         define ('PDF_PAGE_ORIENTATION', $pdf_data['page_orientation']);
     }else{
-	    define ('PDF_PAGE_ORIENTATION', 'P');
+        define ('PDF_PAGE_ORIENTATION', 'P');
     }
 }
 if (!defined('PDF_CREATOR')) define ('PDF_CREATOR', 'TCPDF_for_Xoops');
@@ -290,6 +290,6 @@ if (!defined('K_TIMEZONE')) {
     }else{
         define('K_TIMEZONE', @date_default_timezone_get());
     }
-	
+
 }
 

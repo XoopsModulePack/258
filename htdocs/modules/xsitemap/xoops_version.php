@@ -16,12 +16,12 @@
  * @copyright       Urbanspaceman (http://www.takeaweb.it)
  * @license         GPL
  * @package         xsitemap
- * @author 			Urbanspaceman (http://www.takeaweb.it)
- * @version		    $Id $
+ * @author          Urbanspaceman (http://www.takeaweb.it)
+ * @version         $Id $
  * ****************************************************************************
  */
- 
-    
+
+
     $modversion["name"] = "xSiteMap";
     $modversion["version"] = 1.52;
     $modversion['description']    = _MI_XSITEMAP_DESC;
@@ -53,47 +53,47 @@
     $modversion["module_website_name"] = "XOOPS";
     $modversion["release_date"] = "2012/12/22";
     $modversion["module_status"] = "Final";
-    
+
     // Admin things
     $modversion["hasAdmin"] = 1;
-    
+
     $modversion["adminindex"] = "admin/index.php";
     $modversion["adminmenu"] = "admin/menu.php";
-    
-    
+
+
     // Mysql file
     $modversion["sqlfile"]["mysql"] = "sql/mysql.sql";
 
     // Tables
     $modversion["tables"][0] = "xsitemap_plugin";
-    
+
     // Scripts to run upon installation or update
     $modversion["onInstall"] = "include/install.php";
     //$modversion["onUpdate"] = "include/update.php";
-    
+
     // Menu
     $modversion["hasMain"] = 1;
     $modversion['system_menu'] = 1;
 
-    
+
     //Templates
     $i = 1;
     $modversion['templates'][$i]['file'] = 'xsitemap_index.html';
     $modversion['templates'][$i]['description'] = '';
     $i++;
-    
+
     $modversion['templates'][$i]['file'] = 'xsitemap_slickmap.html';
     $modversion['templates'][$i]['description'] = '';
     $i++;
-    
+
     $modversion['templates'][$i]['file'] = 'xsitemap_style.html';
     $modversion['templates'][$i]['description'] = '';
     $i++;
-        
+
     $modversion['templates'][$i]['file'] = 'xsitemap_xml.html';
     $modversion['templates'][$i]['description'] = '';
     $i++;
-    
+
     // Preferences
     $i = 1;
     $modversion['config'][$i]['name'] = 'show_subcategories';
@@ -118,7 +118,7 @@
     $modversion['config'][$i]['formtype'] = 'textbox';
     $modversion['config'][$i]['valuetype'] = 'text';
     $i++;
-    
+
     $modversion['config'][$i]['name'] = 'columns_number';
     $modversion['config'][$i]['title'] = '_MI_XSITEMAP_COLS';
     $modversion['config'][$i]['description'] = '_MI_XSITEMAP_COLS_DESC';

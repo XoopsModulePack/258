@@ -23,7 +23,7 @@ switch ($op)
         }
         xoops_confirm(array( 'backup' => "confirm_backup" ), 'main.php?op=backup', _AM_DBASE_BACKUP);
         break;
-    
+
 
     case "restore":
         xoops_cp_header();

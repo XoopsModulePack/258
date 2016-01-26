@@ -39,7 +39,7 @@ function mylinks_new($limit=0, $offset=0)
         $ret[$i]['cat_link'] = "{$moduleURL}/viewcat.php?cid={$row['cid']}";
         $ret[$i]['title'] = $row['ltitle'];
         $ret[$i]['time'] = $row['date'];
-//		  $ret[$i]['description'] = $row['description'];
+//        $ret[$i]['description'] = $row['description'];
 
         // atom feed
         $ret[$i]['id'] = $row['lid'];

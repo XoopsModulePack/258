@@ -15,7 +15,7 @@
  * @subpackage:: admin
  * @since::      2.5.0
  * @author::     XOOPS Devolopment Team
- * @version::	 $Id $
+ * @version::    $Id $
 **/
 include_once dirname(__FILE__) . '/admin_header.php';
 

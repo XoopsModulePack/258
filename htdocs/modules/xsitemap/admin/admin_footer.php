@@ -9,12 +9,12 @@
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  *
- * @copyright	The XOOPS Project http://sourceforge.net/projects/xoops/
+ * @copyright   The XOOPS Project http://sourceforge.net/projects/xoops/
  * @license             http://www.gnu.org/licenses/gpl-2.0.html GNU Public License
- * @package	xSitemMap
- * @since		2.5.0
- * @author 	XOOPS Module Team
- * @version	$Id $
+ * @package xSitemMap
+ * @since       2.5.0
+ * @author  XOOPS Module Team
+ * @version $Id $
 **/
 echo "<div class='adminfooter'>\n"
     ."  <div style='text-align: center;'>\n"

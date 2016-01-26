@@ -888,7 +888,7 @@ class sfFaqHandler extends XoopsObjectHandler
 
         global $xoopsUser;
 
-        //	if ( ($categoryid = -1) && (empty($status) || ($status == -1)) ) {
+        //  if ( ($categoryid = -1) && (empty($status) || ($status == -1)) ) {
         //return $this->getCount();
         //}
 
@@ -970,7 +970,7 @@ class sfFaqHandler extends XoopsObjectHandler
         include_once XOOPS_ROOT_PATH.'/modules/smartfaq/include/functions.php';
 
         //if ( ($categoryid == -1) && (empty($status) || ($status == -1)) && ($limit == 0) && ($start ==0) ) {
-        //	return $this->getObjects();
+        //  return $this->getObjects();
         //}
         $ret= array();
         $userIsAdmin= sf_userIsAdmin();

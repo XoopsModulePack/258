@@ -16,12 +16,12 @@ Cloning this module has never been easier ! Thanks to our friend Sudhaker, you c
 
 $patterns = array(
   // first one must be module directory name
-  'smartpartner'  => 'smartclient', 
+  'smartpartner'  => 'smartclient',
   'SMARTPARTNER'  => 'SMARTCLIENT',
   'SmartPartner'  => 'SmartClient',
   'Smart Partner' => 'Smart Client',
   'SPARTNER'      => 'SCLIENT',
-  'Smartpartner'  => 'Smartclient' 
+  'Smartpartner'  => 'Smartclient'
 );
 
 In this example, SmartPartner will be cloned into SmartClient.
@@ -34,7 +34,7 @@ In this example, SmartPartner will be cloned into SmartClient.
 
 - If your site is a local site on your computer, go to yoursite.com/clone.php.
 
-- If your site is on the web, run this command php -q clone.php 
+- If your site is on the web, run this command php -q clone.php
 
 - Delete the file yoursite.com/clone.php
 

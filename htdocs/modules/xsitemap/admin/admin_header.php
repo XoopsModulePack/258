@@ -13,7 +13,7 @@
  * @license::    {@link http://www.gnu.org/licenses/gpl-2.0.html GNU Public License}
  * @package::    xSiteMap
  * @subpackage:: admin
- * @since::		 2.5.0
+ * @since::      2.5.0
  * @author::     XOOPS Team
  * @version::    $Id $
 **/
@@ -51,20 +51,20 @@ function xsitemap_adminmenu ($currentoption = 0, $breadcrumb = "")
     global $xoopsModule, $xoopsConfig;
 
     echo "
-    	<style type=\"text/css\">
-    	#buttontop { float:left; width:100%; background: #e7e7e7; font-size:93%; line-height:normal; border-top: 1px solid black; border-left: 1px solid black; border-right: 1px solid black; margin: 0; }
-    	#buttonbar { float:left; width:100%; background: #e7e7e7 url(".XOOPS_URL."/modules/xsitemap/images/menu/bg.png) repeat-x left bottom; font-size:93%; line-height:normal; border-left: 1px solid black; border-right: 1px solid black; margin-bottom: 12px; }
-    	#buttonbar ul { margin:0; margin-top: 15px; padding:10px 10px 0; list-style:none; }
-		#buttonbar li { display:inline; margin:0; padding:0; }
-		#buttonbar a { float:left; background:url(".XOOPS_URL."/modules/xsitemap/images/deco/left_both.png) no-repeat left top; margin:0; padding:0 0 0 9px; border-bottom:1px solid #000; text-decoration:none; }
-		#buttonbar a span { float:left; display:block; background:url(".XOOPS_URL."/modules/xsitemap/images/deco/right_both.png) no-repeat right top; padding:5px 15px 4px 6px; font-weight:bold; color:#765; }
-		#buttonbar a span {float:none;}
-		#buttonbar a:hover span { color:#333; }
-		#buttonbar #current a { background-position:0 -150px; border-width:0; }
-		#buttonbar #current a span { background-position:100% -150px; padding-bottom:5px; color:#333; }
-		#buttonbar a:hover { background-position:0% -150px; }
-		#buttonbar a:hover span { background-position:100% -150px; }
-		</style>
+        <style type=\"text/css\">
+        #buttontop { float:left; width:100%; background: #e7e7e7; font-size:93%; line-height:normal; border-top: 1px solid black; border-left: 1px solid black; border-right: 1px solid black; margin: 0; }
+        #buttonbar { float:left; width:100%; background: #e7e7e7 url(".XOOPS_URL."/modules/xsitemap/images/menu/bg.png) repeat-x left bottom; font-size:93%; line-height:normal; border-left: 1px solid black; border-right: 1px solid black; margin-bottom: 12px; }
+        #buttonbar ul { margin:0; margin-top: 15px; padding:10px 10px 0; list-style:none; }
+        #buttonbar li { display:inline; margin:0; padding:0; }
+        #buttonbar a { float:left; background:url(".XOOPS_URL."/modules/xsitemap/images/deco/left_both.png) no-repeat left top; margin:0; padding:0 0 0 9px; border-bottom:1px solid #000; text-decoration:none; }
+        #buttonbar a span { float:left; display:block; background:url(".XOOPS_URL."/modules/xsitemap/images/deco/right_both.png) no-repeat right top; padding:5px 15px 4px 6px; font-weight:bold; color:#765; }
+        #buttonbar a span {float:none;}
+        #buttonbar a:hover span { color:#333; }
+        #buttonbar #current a { background-position:0 -150px; border-width:0; }
+        #buttonbar #current a span { background-position:100% -150px; padding-bottom:5px; color:#333; }
+        #buttonbar a:hover { background-position:0% -150px; }
+        #buttonbar a:hover span { background-position:100% -150px; }
+        </style>
     ";
 
     $tblColors = Array();
@@ -77,25 +77,25 @@ function xsitemap_adminmenu ($currentoption = 0, $breadcrumb = "")
     }
 
     echo "<div id=\"buttontop\">
-			<table style=\"width: 100%; padding: 0;\" cellspacing=\"0\">
-				<tr>
-					<td style=\"font-size: 10px; text-align: left; color: #2F5376; padding: 0 6px; line-height: 18px;\">
-					  <a class=\"nobutton\" href=\"".XOOPS_URL."/modules/system/admin.php?fct=preferences&amp;op=showmod&amp;mod=".$myts->displayTarea($xoopsModule->getVar("mid"))."\">_AM_XSITEMAP_GENERALSET</a>
-					| <a href=\"".XOOPS_URL."/modules/xsitemap/index.php\">_AM_XSITEMAP_GOINDEX</a>
-					| <a href=\"".XOOPS_URL."/modules/xsitemap/admin/upgrade.php\">_AM_XSITEMAP_UPGRADE</a>
-					</td>
-					<td style=\"font-size: 10px; text-align: right; color: #2F5376; padding: 0 6px; line-height: 18px;\"><b>".$myts->displayTarea($xoopsModule->name())."</b></td>
-				</tr>
-			</table>
-		  </div>
+            <table style=\"width: 100%; padding: 0;\" cellspacing=\"0\">
+                <tr>
+                    <td style=\"font-size: 10px; text-align: left; color: #2F5376; padding: 0 6px; line-height: 18px;\">
+                      <a class=\"nobutton\" href=\"".XOOPS_URL."/modules/system/admin.php?fct=preferences&amp;op=showmod&amp;mod=".$myts->displayTarea($xoopsModule->getVar("mid"))."\">_AM_XSITEMAP_GENERALSET</a>
+                    | <a href=\"".XOOPS_URL."/modules/xsitemap/index.php\">_AM_XSITEMAP_GOINDEX</a>
+                    | <a href=\"".XOOPS_URL."/modules/xsitemap/admin/upgrade.php\">_AM_XSITEMAP_UPGRADE</a>
+                    </td>
+                    <td style=\"font-size: 10px; text-align: right; color: #2F5376; padding: 0 6px; line-height: 18px;\"><b>".$myts->displayTarea($xoopsModule->name())."</b></td>
+                </tr>
+            </table>
+          </div>
 
-		  <div id=\"buttonbar\">
-			<ul><li id=\"$tblColors[0]\"><a href=\"".XOOPS_URL."/modules/xsitemap/admin/index.php\"><span>_MI_XSITEMAP_MANAGER_INDEX</span></a></li>
-				<li id=\"$tblColors[1]\"><a href=\"".XOOPS_URL."/modules/xsitemap/admin/plugin.php\"><span>_MI_XSITEMAP_MANAGER_PLUGIN</span></a></li>
+          <div id=\"buttonbar\">
+            <ul><li id=\"$tblColors[0]\"><a href=\"".XOOPS_URL."/modules/xsitemap/admin/index.php\"><span>_MI_XSITEMAP_MANAGER_INDEX</span></a></li>
+                <li id=\"$tblColors[1]\"><a href=\"".XOOPS_URL."/modules/xsitemap/admin/plugin.php\"><span>_MI_XSITEMAP_MANAGER_PLUGIN</span></a></li>
 
-				<li id=\"$tblColors[2]\"><a href=\"".XOOPS_URL."/modules/xsitemap/admin/permissions.php\"><span>_MI_XSITEMAP_MANAGER_PERMISSIONS</span></a></li>
-				<li id=\"$tblColors[3]\"><a href=\"".XOOPS_URL."/modules/xsitemap/admin/about.php\"><span>_MI_XSITEMAP_MANAGER_ABOUT</span></a></li>
-			</ul></div>";
+                <li id=\"$tblColors[2]\"><a href=\"".XOOPS_URL."/modules/xsitemap/admin/permissions.php\"><span>_MI_XSITEMAP_MANAGER_PERMISSIONS</span></a></li>
+                <li id=\"$tblColors[3]\"><a href=\"".XOOPS_URL."/modules/xsitemap/admin/about.php\"><span>_MI_XSITEMAP_MANAGER_ABOUT</span></a></li>
+            </ul></div>";
 }
 
 $pluginHandler =& xoops_getModuleHandler("xsitemap_plugin", "xsitemap");

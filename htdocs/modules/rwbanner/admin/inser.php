@@ -67,7 +67,7 @@ switch ($op){
          $upfolder = substr($local_folder,strlen(XOOPS_ROOT_PATH)+1,strlen($local_folder));
          $form['grafico'] = ($form['usarhtml'] != 1)?XOOPS_URL.'/'.$upfolder.'/'.$file_name:'';
          }
-         
+
          $form['usarhtml'] = (isset($form['usarhtml']))?$form['usarhtml']:0;
          $form['maxexib'] = (isset($form['maxexibe']))?$form['maxexibe']:0;
          $form['maxclick'] = (isset($form['maxclick']))?$form['maxclick']:0;
@@ -144,7 +144,7 @@ function monta_form($value){
   while (list($titulo,$cod) = $xoopsDB->fetchRow($consulta)) {
     $categ_selbox->addOption($cod, $titulo);
   }
-  
+
   if ($form['maxexib'] == 0){
     $exibe = _AM_RWBANNER_BANNER_EXIBREST;
     $check = 'checked';

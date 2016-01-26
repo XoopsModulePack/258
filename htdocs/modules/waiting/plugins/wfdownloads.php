@@ -5,7 +5,7 @@
 #                                                                        #
 # Author                                                                 #
 # coldfire                                                               #
-#																		 #
+#                                                                        #
 # Modified by                                                            #
 # flying.tux     -   flying.tux@gmail.com                                #
 #                                                                        #

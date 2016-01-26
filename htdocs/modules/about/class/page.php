@@ -153,11 +153,11 @@ class AboutPageHandler extends XoopsPersistableObjectHandler
     function insert()
     {
     }
-    
+
     function delete()
     {
     }
-    
+
     function getAll()
     {
     }

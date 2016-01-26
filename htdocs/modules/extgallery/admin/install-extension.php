@@ -80,19 +80,19 @@ switch($step) {
         PclTarExtract(XOOPS_ROOT_PATH."/uploads/".$extensionFileName,XOOPS_ROOT_PATH."/class/textsanitizer/","class/textsanitizer/");
         // Delete downloaded extension's files
         unlink(XOOPS_ROOT_PATH."/uploads/".$extensionFileName);
-  
+
     // Delete folder created by a small issu in PclTar lib
   if(is_dir(XOOPS_ROOT_PATH."/class/textsanitizer/class")) {
    rmdir(XOOPS_ROOT_PATH."/class/textsanitizer/class");
   }
-  
+
   // Activate extension
   $conf = include XOOPS_ROOT_PATH.'/class/textsanitizer/config.php';
   $conf['extensions']['gallery'] = 1;
   file_put_contents(XOOPS_ROOT_PATH.'/class/textsanitizer/config.custom.php', "<?php\rreturn \$config = ".var_export($conf,true)."\r?>");
 
   redirect_header("extension.php", 3, _AM_EXTGALLERY_EXTENSION_INSTALLED);
-  
+
         break;
 
     default:

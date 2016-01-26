@@ -13,7 +13,7 @@
  * @license::    {@link http://www.gnu.org/licenses/gpl-2.0.html GNU Public License}
  * @package::    mylinks
  * @subpackage:: admin
- * @since::		 2.5.0
+ * @since::      2.5.0
  * @author::     Magic.Shao <magic.shao@gmail.com> - Susheng Yang <ezskyyoung@gmail.com>
  * @version::    $Id $
 **/

@@ -15,7 +15,7 @@
  * @subpackage:: admin
  * @since:       2.5.0
  * @author::     XOOPS Development Team
- * @version::	 $Id $
+ * @version::    $Id $
 **/
 global $pathIcon32;
 

@@ -29,7 +29,7 @@
 <script language="JavaScript" type="text/javascript"><!--
     if (_ie == true) document.writeln('<object classid="clsid:8AD9C840-044E-11D1-B3E9-00805F499D93" WIDTH = "0" HEIGHT = "0" NAME = "JUploadApplet"  codebase="http://java.sun.com/update/1.5.0/jinstall-1_5-windows-i586.cab#Version=5,0,0,3"><noembed><xmp>');
     else if (_ns == true && _ns6 == false) document.writeln('<embed ' +
-	    'type="application/x-java-applet;version=1.5" \
+        'type="application/x-java-applet;version=1.5" \
             CODEBASE = "<{$xoops_url}>/modules/extgallery/include/applet" \
             ARCHIVE = "<{$xoops_url}>/modules/extgallery/include/applet/wjhk.jupload.jar" \
             CODE = "wjhk.jupload2.EmptyApplet" \
@@ -38,8 +38,8 @@
             HEIGHT = "0" \
             type ="application/x-java-applet;version=1.6" \
             scriptable ="false" ' +
-	    'scriptable=false ' +
-	    'pluginspage="http://java.sun.com/products/plugin/index.html#download"><noembed><xmp>');
+        'scriptable=false ' +
+        'pluginspage="http://java.sun.com/products/plugin/index.html#download"><noembed><xmp>');
 //--></script>
 <object classid="clsid:8AD9C840-044E-11D1-B3E9-00805F499D93" codebase="http://java.sun.com/products/plugin/autodl/jinstall-1_4-windows-i586.cab#Version=1,4,0,0">
     <param name="CODEBASE" value="<{$xoops_url}>/modules/extgallery/include/applet"/>

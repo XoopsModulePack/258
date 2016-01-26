@@ -49,11 +49,11 @@ if($photo->getVar('cat_id') == 0) {
 
     header ("Content-type: ".$type."");
     readfile(XOOPS_ROOT_PATH."/uploads/extgallery/public-photo/thumb/thumb_".$photo['photo_name']);
- 
+
 // If user isn't allowed to view this picture
 } else {
 
     header ("Content-type: image/jpeg");
     readfile(XOOPS_ROOT_PATH."/modules/extgallery/images/not-allowed.jpg");
- 
+
 }

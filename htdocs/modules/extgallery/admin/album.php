@@ -30,7 +30,7 @@ if(isset($_POST['op'])) {
 }
 
 switch($op) {
-    
+
    case 'overlay':
     $configHandler =& xoops_gethandler('config');
     $moduleIdCriteria = new Criteria('conf_modid',$xoopsModule->getVar('mid'));
@@ -54,7 +54,7 @@ switch($op) {
             $configHandler->insertConfig($config);
            }
       }
-      
+
       if(isset($_POST['album_overlay_width'])) {
            if($xoopsModuleConfig['album_overlay_width'] != $_POST['album_overlay_width']) {
             $criteria = new CriteriaCompo();
@@ -74,7 +74,7 @@ switch($op) {
             $configHandler->insertConfig($config);
            }
       }
-      
+
       if(isset($_POST['album_overlay_height'])) {
            if($xoopsModuleConfig['album_overlay_height'] != $_POST['album_overlay_height']) {
             $criteria = new CriteriaCompo();
@@ -94,10 +94,10 @@ switch($op) {
             $configHandler->insertConfig($config);
            }
       }
-  
+
     redirect_header("album.php", 3, _AM_EXTGALLERY_CONFIGURATION_SAVED);
    break;
-   
+
    case 'tooltip':
     $configHandler =& xoops_gethandler('config');
     $moduleIdCriteria = new Criteria('conf_modid',$xoopsModule->getVar('mid'));
@@ -139,7 +139,7 @@ switch($op) {
             $configHandler->insertConfig($config);
            }
       }
-      
+
       if(isset($_POST['album_tooltip_borderwidth'])) {
            if($xoopsModuleConfig['album_tooltip_borderwidth'] != $_POST['album_tooltip_borderwidth']) {
             $criteria = new CriteriaCompo();
@@ -159,7 +159,7 @@ switch($op) {
             $configHandler->insertConfig($config);
            }
       }
-      
+
         if(isset($_POST['album_tooltip_bordercolor'])) {
            if($xoopsModuleConfig['album_tooltip_bordercolor'] != $_POST['album_tooltip_bordercolor']) {
             $criteria = new CriteriaCompo();
@@ -179,10 +179,10 @@ switch($op) {
             $configHandler->insertConfig($config);
            }
       }
-      
+
     redirect_header("album.php", 3, _AM_EXTGALLERY_CONFIGURATION_SAVED);
    break;
-   
+
    case 'fancybox':
     $configHandler =& xoops_gethandler('config');
     $moduleIdCriteria = new Criteria('conf_modid',$xoopsModule->getVar('mid'));
@@ -206,7 +206,7 @@ switch($op) {
             $configHandler->insertConfig($config);
            }
       }
-      
+
       if(isset($_POST['album_fancybox_opacity'])) {
            if($xoopsModuleConfig['album_fancybox_opacity'] != $_POST['album_fancybox_opacity']) {
             $criteria = new CriteriaCompo();
@@ -226,7 +226,7 @@ switch($op) {
             $configHandler->insertConfig($config);
            }
       }
-      
+
       if(isset($_POST['album_fancybox_tin'])) {
            if($xoopsModuleConfig['album_fancybox_tin'] != $_POST['album_fancybox_tin']) {
             $criteria = new CriteriaCompo();
@@ -246,7 +246,7 @@ switch($op) {
             $configHandler->insertConfig($config);
            }
       }
-      
+
       if(isset($_POST['album_fancybox_tout'])) {
            if($xoopsModuleConfig['album_fancybox_tout'] != $_POST['album_fancybox_tout']) {
             $criteria = new CriteriaCompo();
@@ -266,7 +266,7 @@ switch($op) {
             $configHandler->insertConfig($config);
            }
       }
-      
+
       if(isset($_POST['album_fancybox_title'])) {
            if($xoopsModuleConfig['album_fancybox_title'] != $_POST['album_fancybox_title']) {
             $criteria = new CriteriaCompo();
@@ -286,7 +286,7 @@ switch($op) {
             $configHandler->insertConfig($config);
            }
       }
-      
+
       if(isset($_POST['album_fancybox_showtype'])) {
            if($xoopsModuleConfig['album_fancybox_showtype'] != $_POST['album_fancybox_showtype']) {
             $criteria = new CriteriaCompo();
@@ -306,10 +306,10 @@ switch($op) {
             $configHandler->insertConfig($config);
            }
       }
-  
+
     redirect_header("album.php", 3, _AM_EXTGALLERY_CONFIGURATION_SAVED);
    break;
-   
+
    case 'prettyphoto':
     $configHandler =& xoops_gethandler('config');
     $moduleIdCriteria = new Criteria('conf_modid',$xoopsModule->getVar('mid'));
@@ -333,7 +333,7 @@ switch($op) {
             $configHandler->insertConfig($config);
            }
       }
-      
+
       if(isset($_POST['album_prettyphoto_speed'])) {
            if($xoopsModuleConfig['album_prettyphoto_speed'] != $_POST['album_prettyphoto_speed']) {
             $criteria = new CriteriaCompo();
@@ -353,7 +353,7 @@ switch($op) {
             $configHandler->insertConfig($config);
            }
       }
-       
+
       if(isset($_POST['album_prettyphoto_slidspe'])) {
            if($xoopsModuleConfig['album_prettyphoto_slidspe'] != $_POST['album_prettyphoto_slidspe']) {
             $criteria = new CriteriaCompo();
@@ -373,7 +373,7 @@ switch($op) {
             $configHandler->insertConfig($config);
            }
       }
-      
+
       if(isset($_POST['album_prettyphoto_autopla'])) {
            if($xoopsModuleConfig['album_prettyphoto_autopla'] != $_POST['album_prettyphoto_autopla']) {
             $criteria = new CriteriaCompo();
@@ -393,14 +393,14 @@ switch($op) {
             $configHandler->insertConfig($config);
            }
       }
-  
+
     redirect_header("album.php", 3, _AM_EXTGALLERY_CONFIGURATION_SAVED);
    break;
- 
+
     case 'default':
     default:
         xoops_cp_header();
-      
+
       $xoopsTpl->assign('displayalbum', $xoopsModuleConfig['display_type'] == 'album');
 
         $form = new XoopsThemeForm(_AM_EXTGALLERY_OVERLAY_CONF, 'overlay_conf', 'album.php', 'post', true);
@@ -410,7 +410,7 @@ switch($op) {
         $form->addElement(new XoopsFormHidden("op", 'overlay'));
        $form->addElement(new XoopsFormButton("", "submit", _SUBMIT, "submit"));
        $xoopsTpl->assign('overlayform', $form->render());
-       
+
        $form = new XoopsThemeForm(_AM_EXTGALLERY_TOOLTIP_CONF, 'tooltip_conf', 'album.php', 'post', true);
         $form->addElement(new XoopsFormText(_AM_EXTGALLERY_TOOLTIP_WIDTH, 'album_tooltip_width', '6', '6', $xoopsModuleConfig['album_tooltip_width']),false);
         $form->addElement(new XoopsFormText(_AM_EXTGALLERY_TOOLTIP_BORDER_WIDTH, 'album_tooltip_borderwidth', '6', '6', $xoopsModuleConfig['album_tooltip_borderwidth']),false);
@@ -418,7 +418,7 @@ switch($op) {
         $form->addElement(new XoopsFormHidden("op", 'tooltip'));
        $form->addElement(new XoopsFormButton("", "submit", _SUBMIT, "submit"));
        $xoopsTpl->assign('tooltipform', $form->render());
-       
+
        $form = new XoopsThemeForm(_AM_EXTGALLERY_FANCYBOX_CONF, 'fancybox_conf', 'album.php', 'post', true);
         $form->addElement(new XoopsFormColorPicker(_AM_EXTGALLERY_FANCYBOX_BGCOLOR, 'album_fancybox_color', $xoopsModuleConfig['album_fancybox_color']),false);
        $form->addElement(new XoopsFormText(_AM_EXTGALLERY_FANCYBOX_OPACITY, 'album_fancybox_opacity', '6', '6', $xoopsModuleConfig['album_fancybox_opacity']),false);
@@ -442,7 +442,7 @@ switch($op) {
         $form->addElement(new XoopsFormHidden("op", 'fancybox'));
        $form->addElement(new XoopsFormButton("", "submit", _SUBMIT, "submit"));
        $xoopsTpl->assign('fancyboxform', $form->render());
-       
+
        $form = new XoopsThemeForm(_AM_EXTGALLERY_PRETTPHOTO_CONF, 'prettyphoto_conf', 'album.php', 'post', true);
         $prettyspeedSelect = new XoopsFormSelect(_AM_EXTGALLERY_PRETTPHOTO_SPEED, 'album_prettyphoto_speed',$xoopsModuleConfig['album_prettyphoto_speed']);
         $prettyspeedSelect->addOption("fast", _AM_EXTGALLERY_PRETTPHOTO_FAST);
@@ -467,7 +467,7 @@ switch($op) {
       // Call template file
         $xoopsTpl->display(XOOPS_ROOT_PATH . '/modules/extgallery/templates/admin/extgallery_admin_album.html');
         xoops_cp_footer();
-        
+
     break;
 
 }

@@ -50,7 +50,7 @@ function exibe_adbanner($options){
   $block['conteudo'] = $options[9];
   $block['title'] = _MB_RWBANNER_BLOCK3_NAME;
   $block['lang_mb_text1'] = _MB_RWBANNER_TEXT1;
-  
+
   $categ = new Categoria(null,$options[0]);
   $block['larg'] = ($block['qtde'] > 1 && $block['cols'] > 1)?(($categ->getLarg()*$block['qtde'])+20):($categ->getLarg());
   $block['alt'] = ($block['qtde'] > 1 && $block['cols'] == 1)?(($categ->getAlt()*$block['qtde'])+20):($categ->getAlt());
@@ -78,7 +78,7 @@ function exibe_adbanner($options){
     }
   }
   $block['banners'] = $arr3;
-  
+
   return $block;
 }
 

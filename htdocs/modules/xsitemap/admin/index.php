@@ -16,7 +16,7 @@
  * @copyright       Urbanspaceman (http://www.takeaweb.it)
  * @license         GPL
  * @package         xsitemap
- * @author 			Urbanspaceman (http://www.takeaweb.it)
+ * @author          Urbanspaceman (http://www.takeaweb.it)
  *
  * Version : 1.00:
  * ****************************************************************************
@@ -31,7 +31,7 @@ $index_admin = new ModuleAdmin();
 global $xoopsModule;
 
 //Apelle du menu admin
-// if ( !is_readable(XOOPS_ROOT_PATH."/Frameworks/art/functions.admin.php"))	{
+// if ( !is_readable(XOOPS_ROOT_PATH."/Frameworks/art/functions.admin.php"))    {
 // xsitemap_adminmenu(0, _AM_XSITEMAP_MANAGER_INDEX);
 // } else {
 // include_once XOOPS_ROOT_PATH."/Frameworks/art/functions.admin.php";
@@ -44,11 +44,11 @@ global $xoopsModule;
     $criteria = new CriteriaCompo();
     $criteria->add(new Criteria("plugin_online", 1));
     $plugin_online = $pluginHandler->getCount($criteria);
-    
+
     echo $index_admin->addNavigation('index.php');
     echo $index_admin->renderIndex();
 
-    
+
 // include_once XOOPS_ROOT_PATH."/modules/xsitemap/class/menu.php";
 
     // $menu = new xsitemapMenu();
@@ -58,19 +58,19 @@ global $xoopsModule;
     // $menu->addItem("preference", "../../system/admin.php?fct=preferences&amp;op=showmod&amp;mod=".$xoopsModule->getVar("mid").
                                                 // "&amp;&confcat_id=1", "../images/deco/pref.png", _AM_XSITEMAP_MANAGER_PREFERENCES);
     // $menu->addItem("update", "../../system/admin.php?fct=modulesadmin&op=update&module=xsitemap", "../images/deco/update.png",  _AM_XSITEMAP_MANAGER_UPDATE);
-    
 
 
-    
-//	echo $menu->getCSS();
-    
+
+
+//  echo $menu->getCSS();
+
 
 // echo "<div class=\"CPbigTitle\" style=\"background-image: url(../images/deco/index.png); background-repeat: no-repeat; background-position: left; padding-left: 50px;\"><strong>"._AM_XSITEMAP_MANAGER_INDEX."</strong></div><br />
         // <table width=\"100%\" border=\"0\" cellspacing=\"10\" cellpadding=\"4\">
             // <tr>
                 // <td valign=\"top\">".$menu->render()."</td>
                 // <td valign=\"top\" width=\"60%\">";
-                
+
                     // echo "<fieldset>
                         // <legend class=\"CPmediumTitle\">"._AM_XSITEMAP_MANAGER_PLUGIN."</legend>
                         // <br />";
@@ -79,7 +79,7 @@ global $xoopsModule;
                         // printf(_AM_XSITEMAP_THEREARE_PLUGIN_ONLINE, $plugin_online);
                         // echo "<br />
                     // </fieldset><br /><br />";
-                    
+
                 // echo "</td>
             // </tr>
         // </table>

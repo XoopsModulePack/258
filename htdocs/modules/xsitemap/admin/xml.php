@@ -16,12 +16,12 @@
  * @copyright       Urbanspaceman (http://www.takeaweb.it)
  * @license         GPL
  * @package         xsitemap
- * @author 			Urbanspaceman (http://www.takeaweb.it)
+ * @author          Urbanspaceman (http://www.takeaweb.it)
  *
  * Version : 1.00:
  * ****************************************************************************
  */
- 
+
 include '../../../include/cp_header.php';
 
 //xoops_cp_header();
@@ -44,7 +44,7 @@ $last_mod = date("d-m-Y H:i:s",$stat['mtime']);
 
 
 echo "<div style=\"padding: 8px;\">";
-                
+
                 echo ""._AM_XSITEMAP_XML_LASTUPD." ".$last_mod;
                 echo "<br/>";
                 echo "<br/>";
@@ -52,13 +52,13 @@ echo "<div style=\"padding: 8px;\">";
                 echo "<br/>";
                 echo "<br/>";
                 echo "<form action=xml.php method=post>
-						<input type=submit name=update value="._AM_XSITEMAP_MANAGER_UPDATE.">
-					</form><br/>";
+                        <input type=submit name=update value="._AM_XSITEMAP_MANAGER_UPDATE.">
+                    </form><br/>";
                 if(isset($_POST['update'])) {
                     xsitemap_xml_admin();
                 }
             echo "</div>
-	<br clear=\"all\" />";
+    <br clear=\"all\" />";
 /*
 $site_url = UrlEncode(XOOPS_URL."/modules/xsitemap/xsitemap.xml");
 echo "<div>";

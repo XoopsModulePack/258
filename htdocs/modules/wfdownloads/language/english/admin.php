@@ -19,7 +19,7 @@
  * @version         svn:$id$
  */
 
-// %%%%%%	Module NMDe 'MyDownloads' (Admin)	  %%%%%
+// %%%%%%   Module NMDe 'MyDownloads' (Admin)     %%%%%
 // Buttons
 define('_AM_WFDOWNLOADS_BMODIFY', "Modify");
 define('_AM_WFDOWNLOADS_BDELETE', "Delete");

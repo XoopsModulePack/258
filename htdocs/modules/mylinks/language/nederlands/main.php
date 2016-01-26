@@ -116,7 +116,7 @@ define("_MD_MYLINKS_NORATING","Geen keuze gemaakt.");
 define("_MD_MYLINKS_CANTVOTEOWN","Je kan geen link beoordelen die je zelf hebt ingezonden.<br />Alle beoordelingen worden opgeslaan en bekeken.");
 define("_MD_MYLINKS_VOTEONCE2","De gekozen link maar eenmalig beoordelen.<br />Alle beoordelingen worden opgeslaan en bekeken.");
 
-//%%%%%%	Module Name 'MyLinks' (Admin)	 %%%%%
+//%%%%%%    Module Name 'MyLinks' (Admin)    %%%%%
 
 define("_MD_MYLINKS_WEBLINKSCONF","Web Links Status Overzicht");
 define("_MD_MYLINKS_GENERALSET","MyLinks Module Voorkeuren");

@@ -689,11 +689,11 @@ input[type=radio]:checked + label {
 
 .metaslider .nav-tab-active {
     background: transparent;
-	padding: 9px 13px 8px;
-	border-bottom: 1px solid #f1f1f1;
-	margin-top: auto;
-	position: relative;
-	top: 1px;
+    padding: 9px 13px 8px;
+    border-bottom: 1px solid #f1f1f1;
+    margin-top: auto;
+    position: relative;
+    top: 1px;
 }
 
 .metaslider .nav-tab-active input {

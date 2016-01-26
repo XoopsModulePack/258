@@ -1,12 +1,12 @@
 .extmicrogallery {
-	 text-align: center;
+     text-align: center;
     margin: 70px 50px 50px 50px;
 }
 .extmicrogalleryblock {
-	margin: 30px 10px 10px 10px;
+    margin: 30px 10px 10px 10px;
 }
 .microGallery{
-	position:relative;
+    position:relative;
 }
 .microGallery img{
     margin-left:auto;
@@ -30,7 +30,7 @@
     box-shadow:1px 1px 5px #aaa;
     -moz-border-radius:5px;
     -webkit-border-radius:5px;
-    border-radius:5px;   
+    border-radius:5px;
 }
 .smallGallery .nav{
     width:105px;

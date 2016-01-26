@@ -46,7 +46,7 @@ function exibe_ajaxbanner($options){
   $block['tempo']  = $options[3];
   $block['id_div'] = rand(1,2000);
   $block['lang_carreg'] = _MB_RWBANNER_OPTION15;
-  
+
   $categ = new Categoria(null,$options[0]);
   $banner = new RWbanners();
   $block['qtde_encontrado'] = count($banner->getBanners(false, 'ORDER BY RAND()', $options[0], $options[1]));

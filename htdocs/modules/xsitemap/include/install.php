@@ -16,12 +16,12 @@
  * @copyright       Urbanspaceman (http://www.takeaweb.it)
  * @license         GPL
  * @package         xsitemap
- * @author 			Urbanspaceman (http://www.takeaweb.it)
+ * @author          Urbanspaceman (http://www.takeaweb.it)
  *
  * Version : 1.00:
  * ****************************************************************************
  */
- 
+
 //28/08/2009 by urbanspaceman
 
 include_once(XOOPS_ROOT_PATH . "/class/tree.php");
@@ -29,7 +29,7 @@ include_once XOOPS_ROOT_PATH."/modules/xsitemap/class/plugin.php";
 include_once XOOPS_ROOT_PATH."/modules/xsitemap/include/functions.php";
 include_once(XOOPS_ROOT_PATH . "/modules/xsitemap/class/xsitemap_class.php");
 $xsitemap_configs = $xoopsModuleConfig ;
- 
+
 $indexFile = XOOPS_ROOT_PATH."/modules/xsitemap/include/index.html";
 $blankFile = XOOPS_ROOT_PATH."/modules/xsitemap/images/icons/blank.gif";
 

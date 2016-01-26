@@ -115,7 +115,7 @@ define("_MD_MYLINKS_NORATING","No rating selected.");
 define("_MD_MYLINKS_CANTVOTEOWN","You cannot vote on the resource you submitted.<br />All votes are logged and reviewed.");
 define("_MD_MYLINKS_VOTEONCE2","Vote for the selected resource only once.<br />All votes are logged and reviewed.");
 
-//%%%%%%	Module Name 'MyLinks' (Admin)	 %%%%%
+//%%%%%%    Module Name 'MyLinks' (Admin)    %%%%%
 
 define("_MD_MYLINKS_WEBLINKSCONF","Web Links Dashboard");
 define("_MD_MYLINKS_GENERALSET","MyLinks Module Preferences");

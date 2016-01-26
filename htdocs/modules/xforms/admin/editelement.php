@@ -379,10 +379,10 @@ switch ($op) {
                     <td class="odd" align="center"><a href="' . _THIS_PAGE . '?op=edit&amp;ele_type=select">' . _AM_XFORMS_ELE_SELECT . '</a></td>
                 </tr>
                 <tr>
-		           <td class="even" align="center"><a href="'._THIS_PAGE.'?op=edit&amp;ele_type=select2">'. _AM_XFORMS_ELE_SELECT_CTRY .'</a></td>
+                   <td class="even" align="center"><a href="'._THIS_PAGE.'?op=edit&amp;ele_type=select2">'. _AM_XFORMS_ELE_SELECT_CTRY .'</a></td>
                 </tr>
                 <tr>
-		          <td class="odd" align="center"><a href="'._THIS_PAGE.'?op=edit&amp;ele_type=date">'._AM_XFORMS_ELE_DATE.'</a></td>
+                  <td class="odd" align="center"><a href="'._THIS_PAGE.'?op=edit&amp;ele_type=date">'._AM_XFORMS_ELE_DATE.'</a></td>
                 </tr>
                 <tr>
                     <td class="even" align="center"><a href="' . _THIS_PAGE . '?op=edit&amp;ele_type=checkbox">' . _AM_XFORMS_ELE_CHECK . '</a></td>

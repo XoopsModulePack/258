@@ -101,7 +101,7 @@ switch ($op) {
                                 <a href="' . XFORMS_ADMIN_URL . '?op=edit&clone=1&form_id=' . $id . '"><img src="' . $pathIcon16 . '/editcopy.png" class="tooltip" title="' . _AM_XFORMS_ACTION_CLONE
                         . '" alt="' . _AM_XFORMS_ACTION_CLONE . '"></a>&nbsp;&nbsp;';
                     if ($f->getVar('form_save_db') != 0) {
-                        echo '	<a href="report.php?op=show&form_id=' . $id . '"><img src="' . $mypathIcon16 . '/content.png" class="tooltip" title="' . _AM_XFORMS_ACTION_REPORT . '" alt="'
+                        echo '  <a href="report.php?op=show&form_id=' . $id . '"><img src="' . $mypathIcon16 . '/content.png" class="tooltip" title="' . _AM_XFORMS_ACTION_REPORT . '" alt="'
                             . _AM_XFORMS_ACTION_REPORT . '"></a>&nbsp;&nbsp;';
                     }
                     if ($f->getVar('form_active') == 1) {
@@ -119,7 +119,7 @@ switch ($op) {
             if ($totalList > 0) {
                 $submit = new XoopsFormButton('', 'saveorder', _AM_XFORMS_RESET_ORDER, 'submit');
                 $bshow  = new XoopsFormButton('', (($showAll) ? 'shownormal' : 'showall'), (($showAll) ? _AM_XFORMS_SHOW_NORMAL_FORMS : _AM_XFORMS_SHOW_ALL_FORMS), 'submit');
-                echo '	<tr>
+                echo '  <tr>
                             <td class="foot">&nbsp;</td>
                             <td class="foot" align="center">' . $submit->render() . '</td>
                             <td class="foot" colspan="4">' . $bshow->render() . '</td>

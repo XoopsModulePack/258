@@ -59,7 +59,7 @@ DISPOSITIFS :
 - Enregistrement des bannières par catégories et/ou par clients. Les catégories sont utilisées en différençant la taille des bannières de sorte que vous puissiez créer des plusieurs modèles d'affichage des bannières. Les clients sont des utilisateurs enregistrés sur le site et quand vous ajoutez une bannière.
 - 5 modèles de blocs clonables pour afficher les bannières dans plusieurs configurations, permettant à l'administrateur de choisir le nombre de bannières aléatoires qu'il veut montrer, la catégorie à afficher, l'option pour créer une table pour l'affichage des bannières permet de choisir seulement dans combien de colonnes elles devraient être affichées.
 - Bloc de statistiques pour le client. Dans ce bloc est montré un tableau avec les statistiques principales de toutes bannières liées au client.
-- Option d'activation et de désactivation des bannières par un clic. Seules les bannières actives seront montrées mais les inactives continuent d'être enregistrées dans la base de données, permettant de les réactiver à tout moment. 
+- Option d'activation et de désactivation des bannières par un clic. Seules les bannières actives seront montrées mais les inactives continuent d'être enregistrées dans la base de données, permettant de les réactiver à tout moment.
 - Au delà des blocs d'affichage des bannières il est également possible d'employer une bannière aléatoire dans le thème de votre sitet ou dans n'importe quelle autre page que vous souhaitez, en ajoutant seulement <{$rw_banner}> le tag (ce dispositif exige une petite modification dans le noyau de xoops qui est expliquée dans les instructions d'installation ci-dessous).
 - Page de statistiques pour le client. Dans la page principale du module, un tableau affiche toutes statistiques des bannières pour un client donné. De plus, sur cette page le client a l'option d'envoyer les statistiques de bannière sur son E-mail enregistré, et si l'administrateur l'autorise il pourra changer les informations concernant la bannière.- Affiche des bannières non aléatoires dans le texte d'autres modules. Maintenant vous pouvez montrer vos bannières dans n'importe quel module qui accepte les bbcodes. Vous pouvez éditer des bannières dans les news, articles, pages statiques, ainsi que dans le forum. (ce dispositif exige une petite modification dans le noyau de xoops qui est expliqué dans les instructions d'installation ci-dessous).
 
@@ -127,14 +127,14 @@ Le paramètre d'alignement accepte les valeurs "left" pour l'alignement gauche, 
 
 
 UPDATES:
-The modules had structural changes in relation to the database in relation to the previous verions. If you use any versions prior to 1.3RC we recommend you to unistall the module before installing the new version. 
+The modules had structural changes in relation to the database in relation to the previous verions. If you use any versions prior to 1.3RC we recommend you to unistall the module before installing the new version.
 In case you have a version newer than the 1.3RC, delete the rw_banner folder and replace it by the folder from the new version. Login as administrator to your site. If you use the hack in header.php file, comment it first. Access via browser the URL "dirname(dirname(__FILE__)) .'/admin/upgrade.php" and the script will update the tables automatically without loosing all the setup you have already defined and all the registered banners. Follow the steps described in the script and your module will be updated.
 
 KNOWN BUGS:
--Banners in HTML code don't have their click counted. This bug is originally from the original xoops banner module. This function is used in our module but with some changes. 
+-Banners in HTML code don't have their click counted. This bug is originally from the original xoops banner module. This function is used in our module but with some changes.
 
 THANKS:
-I thank all my friends from the XoopsTotal community that helped me with ideas and suggestions for the development of this module, in special to my great friend Wilson and Giba (board of XT) for their great help with their ideias and help in testing the module. 
+I thank all my friends from the XoopsTotal community that helped me with ideas and suggestions for the development of this module, in special to my great friend Wilson and Giba (board of XT) for their great help with their ideias and help in testing the module.
 
 For further information or problem solving for this module access the following site: http://rwbanner.brinfo.com.br
 

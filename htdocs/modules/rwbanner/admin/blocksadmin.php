@@ -112,23 +112,23 @@ if ($xoopsUser->isAdmin($xoopsModule->mid())) {
             $name = $i->getVar("name");
             echo"<tr valign='top'><td class='$class' align='center'><input type='text' name='title[" . $i->getVar("bid")
                 . "]' value='" . $title . "'></td><td class='$class' align='center' nowrap='nowrap'>
-                	<div align='center' >
+                    <div align='center' >
                     <input type='radio' name='side[" . $i->getVar("bid") . "]' value='" . XOOPS_CENTERBLOCK_LEFT . "'$ssel2 />
-                		<input type='radio' name='side[" . $i->getVar("bid") . "]' value='" . XOOPS_CENTERBLOCK_CENTER . "'$ssel3 />
+                        <input type='radio' name='side[" . $i->getVar("bid") . "]' value='" . XOOPS_CENTERBLOCK_CENTER . "'$ssel3 />
                     <input type='radio' name='side[" . $i->getVar("bid") . "]' value='" . XOOPS_CENTERBLOCK_RIGHT . "'$ssel4 />
-                	</div>
-                	<div>
-                		<span style='float:right'><input type='radio' name='side[" . $i->getVar("bid") . "]' value='"
+                    </div>
+                    <div>
+                        <span style='float:right'><input type='radio' name='side[" . $i->getVar("bid") . "]' value='"
                 . XOOPS_SIDEBLOCK_RIGHT . "'$ssel1 /></span>
                     <div align='left'><input type='radio' name='side[" . $i->getVar("bid") . "]' value='"
                 . XOOPS_SIDEBLOCK_LEFT . "'$ssel0 /></div>
-                	</div>
-                	<div align='center'>
+                    </div>
+                    <div align='center'>
                     <input type='radio' name='side[" . $i->getVar("bid") . "]' value='" . XOOPS_CENTERBLOCK_BOTTOMLEFT . "'$ssel5 />
-                		<input type='radio' name='side[" . $i->getVar("bid") . "]' value='" . XOOPS_CENTERBLOCK_BOTTOM . "'$ssel7 />
+                        <input type='radio' name='side[" . $i->getVar("bid") . "]' value='" . XOOPS_CENTERBLOCK_BOTTOM . "'$ssel7 />
                     <input type='radio' name='side[" . $i->getVar("bid") . "]' value='" . XOOPS_CENTERBLOCK_BOTTOMRIGHT
                 . "'$ssel6 />
-                	</div>
+                    </div>
                 </td><td class='$class' align='center'><input type='text' name='weight[" . $i->getVar("bid")
                 . "]' value='" . $i->getVar("weight")
                 . "' size='5' maxlength='5' /></td><td class='$class' align='center' nowrap><input type='radio' name='visible["

@@ -14,7 +14,7 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  *
  * @license     TDM GPL license
- * @author		TDM TEAM DEV MODULE
+ * @author      TDM TEAM DEV MODULE
  *
  * ****************************************************************************
  */
@@ -30,7 +30,7 @@ class XoopsPersistableObjectHandler extends XoopsObjectHandler{
   var $keyName;
   var $className;
   var $identifierName;
-  
+
 
   /**
    * Constructor - called from child classes

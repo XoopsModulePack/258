@@ -8,7 +8,7 @@ function b_waiting_yomi(){
     $log_file = "ys4_temp.cgi";
     ////////////////////////////////////
     //設定ここまで
-    
+
     $lang_linkname = "承認待ちリンク(Yomi)";
     $block = array();
     $Ctemp=0;

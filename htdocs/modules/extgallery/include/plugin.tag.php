@@ -11,7 +11,7 @@ function extgallery_tag_iteminfo(&$items)
             $items_id[] = intval($item_id);
         }
     }
-    
+
     $item_handler =& xoops_getmodulehandler('publicphoto', 'extgallery');
     $items_obj = $item_handler->getObjects(new Criteria("photo_id", "(" . implode(", ", $items_id) . ")", "IN"), true);
 
@@ -37,7 +37,7 @@ function extgallery_tag_synchronization($mid)
 {
     $item_handler =& xoops_getmodulehandler('publicphoto', 'extgallery');
     $link_handler =& xoops_getmodulehandler("link", "tag");
-        
+
     /* clear tag-item links */
     if (version_compare( mysql_get_server_info(), "4.1.0", "ge" )):
     $sql =  "    DELETE FROM {$link_handler->table}" .

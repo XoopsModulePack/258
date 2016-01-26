@@ -77,8 +77,8 @@ if (true == xtubeCheckGroups($cid, 'XTubeSubPerm')) {
             $sql = 'INSERT INTO ' . $xoopsDB->prefix(
                     'xoopstube_videos'
                 )
-                . '	(lid, cid, title, vidid, submitter, publisher, status, date, hits, rating, votes, comments, vidsource, published, expired, offline, description, ipaddress, notifypub, vidrating, time, keywords, item_tag, picurl) ';
-            $sql .= " VALUES 	('', $cid, '$title', '$vidid', '$submitter', '$publisher', '$status', '$date', 0, 0, 0, 0, '$vidsource', '$publishdate', 0, '$offline', '$descriptionb', '$ipaddress', '$notifypub', '$vidrating', '$time', '$keywords', '$item_tag', '$picurl')";
+                . ' (lid, cid, title, vidid, submitter, publisher, status, date, hits, rating, votes, comments, vidsource, published, expired, offline, description, ipaddress, notifypub, vidrating, time, keywords, item_tag, picurl) ';
+            $sql .= " VALUES    ('', $cid, '$title', '$vidid', '$submitter', '$publisher', '$status', '$date', 0, 0, 0, 0, '$vidsource', '$publishdate', 0, '$offline', '$descriptionb', '$ipaddress', '$notifypub', '$vidrating', '$time', '$keywords', '$item_tag', '$picurl')";
             if (!$result = $xoopsDB->query($sql)) {
                 $_error = $xoopsDB->error() . ' : ' . $xoopsDB->errno();
                 XoopsErrorHandler_HandleError(E_USER_WARNING, $_error, __FILE__, __LINE__);

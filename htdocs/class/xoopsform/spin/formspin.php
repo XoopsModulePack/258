@@ -1,9 +1,9 @@
 <?php
 /**
  * XoopsFormSpin element  -  Spin bytton
- *  
+ *
  * You may not change or alter any portion of this comment or credits
- * of supporting developers from this source code or any supporting source code 
+ * of supporting developers from this source code or any supporting source code
  * which is considered copyrighted (c) material of the original comment or credit authors.
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -17,7 +17,7 @@
  * @author          Jean-Jacques DELALANDRE <JJD@kiolo.com>
  * @version         XoopsFormSpin v 1.2
  */
- 
+
 defined('XOOPS_ROOT_PATH') or die('Restricted access');
 
 xoops_load('XoopsFormElement');
@@ -25,9 +25,9 @@ xoops_load('XoopsFormElement');
 /**
  * A select field
  *
- * @author 		Jean-Jacques DELALANDRE <jjd@kiolo.com>
+ * @author      Jean-Jacques DELALANDRE <jjd@kiolo.com>
  * @copyright JJD http:xoops.kiolo.com
- * @access 		public
+ * @access      public
  */
 
 
@@ -55,7 +55,7 @@ class XoopsFormSpin extends XoopsFormElement
      * @access private
      */
     var $_min = 0;
-    
+
     /**
      * Value maximum
      *
@@ -110,7 +110,7 @@ class XoopsFormSpin extends XoopsFormElement
      * @var integer
      * @access private
      */
-    var $_minMaxVisible= true;    
+    var $_minMaxVisible= true;
 
     /**
      *  tyleBordure ;  style CSS of frame control
@@ -126,7 +126,7 @@ class XoopsFormSpin extends XoopsFormElement
      * @var string
      * @access private
      */
-    var $_styleText = "color: #000000; text-align: right; margin-left: 1; margin-right: 2; padding-right: 8"; 
+    var $_styleText = "color: #000000; text-align: right; margin-left: 1; margin-right: 2; padding-right: 8";
 
 
     /**
@@ -136,8 +136,8 @@ class XoopsFormSpin extends XoopsFormElement
      * @access private
      */
     var $_loadJS = true;
-    
-    /*---------------------------------------------------------------*/    
+
+    /*---------------------------------------------------------------*/
     /**
      * Constructor
      *
@@ -154,13 +154,13 @@ class XoopsFormSpin extends XoopsFormElement
      * @param string $styleText style CSs of text
      * @param string $styleBordure style CSs of frame
      * @param bool $minMaxVisible show min and mas buttons
-     *                                        
+     *
      */
-    function XoopsFormSpin($caption, $name, $value = 0, 
-                           $min = 0, $max=100, 
-                           $smallIncrement = 1, $largeIncrement = 10, 
+    function XoopsFormSpin($caption, $name, $value = 0,
+                           $min = 0, $max=100,
+                           $smallIncrement = 1, $largeIncrement = 10,
                            $size = 5, $unite='', $imgFolder='default',
-                           $styleText = '', $styleBordure = '', 
+                           $styleText = '', $styleBordure = '',
                            $minMaxVisible = true)
     {
         $this->setName($name);
@@ -174,8 +174,8 @@ class XoopsFormSpin extends XoopsFormElement
         $this->setUnite($unite);
         $this->setImgFolder($imgFolder);
         $this->setStyleText($styleText);
-        $this->setStyleBordure($styleBordure);        
-        $this->setMinMaxVisible($minMaxVisible);        
+        $this->setStyleBordure($styleBordure);
+        $this->setMinMaxVisible($minMaxVisible);
     }
 
     /*-----------------------------------------------------------------*/
@@ -198,7 +198,7 @@ class XoopsFormSpin extends XoopsFormElement
     }
 
 
-    /*-----------------------------------------------------------------*/    
+    /*-----------------------------------------------------------------*/
     /**
      * Get the min value
      */
@@ -214,7 +214,7 @@ class XoopsFormSpin extends XoopsFormElement
      */
     function setMin($min)
     {
-        $this->_min = intval($min);        
+        $this->_min = intval($min);
     }
     /*-----------------------------------------------------------------*/
     /**
@@ -232,7 +232,7 @@ class XoopsFormSpin extends XoopsFormElement
      */
     function setMax($max)
     {
-        $this->_max = intval($max);        
+        $this->_max = intval($max);
     }
 
     /*-----------------------------------------------------------------*/
@@ -247,15 +247,15 @@ class XoopsFormSpin extends XoopsFormElement
     /**
      * Set the small increment when click a short time on up down nutton
      * must be  " > 0 "
-     *      
+     *
      * @param  $value int
      */
     function setSmallIncrement($smallIncrement)
     {
-        $this->_smallIncrement = intval($smallIncrement);        
-        if ($this->_smallIncrement == 0) $this->_smallIncrement =1; 
+        $this->_smallIncrement = intval($smallIncrement);
+        if ($this->_smallIncrement == 0) $this->_smallIncrement =1;
     }
-    
+
     /*-----------------------------------------------------------------*/
     /**
      * Get the large increment when click a long time on up down nutton
@@ -272,10 +272,10 @@ class XoopsFormSpin extends XoopsFormElement
      */
     function setLargeIncrement($largeIncrement)
     {
-        $this->_largeIncrement = intval($largeIncrement);        
-        if ($this->_largeIncrement == 0) $this->_largeIncrement = 10; 
+        $this->_largeIncrement = intval($largeIncrement);
+        if ($this->_largeIncrement == 0) $this->_largeIncrement = 10;
     }
-    
+
     /*-----------------------------------------------------------------*/
     /**
      * Get the size in nb car of the input text for the value
@@ -286,15 +286,15 @@ class XoopsFormSpin extends XoopsFormElement
     }
 
     /**
-     * Set the size in nb car of the input text for the value 
+     * Set the size in nb car of the input text for the value
      * must be 2 car min
-     *     
+     *
      * @param  $size mixed
      */
     function setSize($size)
     {
         $this->_size = $size;
-        if ($this->_size == 0) $this->_size = 2; 
+        if ($this->_size == 0) $this->_size = 2;
     }
     /*-----------------------------------------------------------------*/
     function getImgFolder()
@@ -312,7 +312,7 @@ class XoopsFormSpin extends XoopsFormElement
      */
     function setImgFolder($folder)
     {
-        if ($folder <> '' ) $this->_imgFolder = $folder;        
+        if ($folder <> '' ) $this->_imgFolder = $folder;
     }
     /*-----------------------------------------------------------------*/
     /**
@@ -324,13 +324,13 @@ class XoopsFormSpin extends XoopsFormElement
     }
 
     /**
-     * Set the label of unites between value and buttons 
+     * Set the label of unites between value and buttons
      *
      * @param  $unite string
      */
     function setUnite($unite)
     {
-        $this->_unite = $unite;        
+        $this->_unite = $unite;
     }
     /*-----------------------------------------------------------------*/
     /**
@@ -348,7 +348,7 @@ class XoopsFormSpin extends XoopsFormElement
      */
     function setStyleText($style)
     {
-        if ($style <> '') $this->_styleText = $style; 
+        if ($style <> '') $this->_styleText = $style;
     }
     /*-----------------------------------------------------------------*/
     /**
@@ -360,13 +360,13 @@ class XoopsFormSpin extends XoopsFormElement
     }
 
     /**
-     * Set the style CSS of the frame 
+     * Set the style CSS of the frame
      *
      * @param  $style string
      */
     function setStyleBordure($style)
     {
-        if ($style <> '') $this->_styleBordure = $style; 
+        if ($style <> '') $this->_styleBordure = $style;
     }
     /*-----------------------------------------------------------------*/
     /**
@@ -384,10 +384,10 @@ class XoopsFormSpin extends XoopsFormElement
      */
     function setMinMaxVisible($visible)
     {
-        $this->_minMaxVisible = $visible; 
+        $this->_minMaxVisible = $visible;
     }
     /**********************************************************************/
-    
+
     /**
      * Prepare HTML for output
      *
@@ -396,75 +396,75 @@ class XoopsFormSpin extends XoopsFormElement
     function render()
     {
      $sSpinFolder = $this->getFolder();
-     $sFolderImg =  "{$sSpinFolder}/images/{$this->getImgFolder()}/";       
+     $sFolderImg =  "{$sSpinFolder}/images/{$this->getImgFolder()}/";
 
-  
+
       $prefixe = $this->getName();
       $prefixe2 = 'spin'.$prefixe;
-    
+
       $smallIncrement = $this->getSmallIncrement();
       $largeIncrement = $this->getLargeIncrement();
-    
+
       /*----------------------------------------------*/
       $delai = 200;
       $onMouseDown1 = "spinStart(\"{$prefixe}\", \"{$prefixe2}\",  {$smallIncrement},  {$largeIncrement}, {$delai}, \"{$sFolderImg}spinUp1.gif\");";
-      $onMouseDown2 = "spinStart(\"{$prefixe}\", \"{$prefixe2}\", -{$smallIncrement}, -{$largeIncrement}, {$delai}, \"{$sFolderImg}spinDown1.gif\");";  
+      $onMouseDown2 = "spinStart(\"{$prefixe}\", \"{$prefixe2}\", -{$smallIncrement}, -{$largeIncrement}, {$delai}, \"{$sFolderImg}spinDown1.gif\");";
 
-      $onMouseUp = "spinStop();";  
+      $onMouseUp = "spinStop();";
       //----------------------------------------------------------------
       $styleBordure = $this->htmlAddAttribut ('style', $this->getStyleBordure());
-      $styleText    = $this->htmlAddAttribut ('style', $this->getStyleText());  
+      $styleText    = $this->htmlAddAttribut ('style', $this->getStyleText());
       $styleArrow = "style=\"display: table-cell;vertical-align: middle; text-align: center; line-height: 100%; font-size: 7 pt; margin-top: 0; margin-bottom: 0; padding: 0\"";
-      //----------------------------------------------------------------  
+      //----------------------------------------------------------------
       $t = array();
 
-      
+
       if ($this->_loadJS) {
         $js = $sSpinFolder . "/js/spin.js";
-        $t[] = "<script src='{$js}' type='text/javascript'></script>";  
+        $t[] = "<script src='{$js}' type='text/javascript'></script>";
       }
-      
-      $t[] = "<div STYLE='width:50px'>";  
+
+      $t[] = "<div STYLE='width:50px'>";
       //$t[] = "<table border='0' width='8%' cellpadding='0' cellspacing='0'>";
-      $t[] = "<table border='0' width='8%' cellpadding='0' cellspacing='0' {$styleBordure}>";  
+      $t[] = "<table border='0' width='8%' cellpadding='0' cellspacing='0' {$styleBordure}>";
       $t[] = "  <tr>";
-      //$t[] = "    <td width='60%'>{$Caption}</td>";    
+      //$t[] = "    <td width='60%'>{$Caption}</td>";
       $t[] = "    <td width='60%'>";
-      $t[] = "    	<INPUT TYPE='hidden' NAME='{$prefixe2}_min' VALUE='{$this->getMin()}'>";
-      $t[] = "    	<INPUT TYPE='hidden' NAME='{$prefixe2}_max' VALUE='{$this->getMax()}'>";  
-      $t[] = "    	<INPUT TYPE='hidden' NAME='{$prefixe2}_smallIncrement' VALUE='{$this->_smallIncrement}'  style='text-align: right'>";  
+      $t[] = "      <INPUT TYPE='hidden' NAME='{$prefixe2}_min' VALUE='{$this->getMin()}'>";
+      $t[] = "      <INPUT TYPE='hidden' NAME='{$prefixe2}_max' VALUE='{$this->getMax()}'>";
+      $t[] = "      <INPUT TYPE='hidden' NAME='{$prefixe2}_smallIncrement' VALUE='{$this->_smallIncrement}'  style='text-align: right'>";
       $t[] = "      <input type='text'  name='{$prefixe}' size='{$this->GetSize()}' value='{$this->getValue()}' {$styleText}>";
       $t[] = "    </td>";
-      
+
       $unite = $this->getUnite();
       if ($unite <> ''){
-        $t[] = "    <td style='display: table-cell;vertical-align: middle; '>&nbsp;{$unite}&nbsp;</td>";  
+        $t[] = "    <td style='display: table-cell;vertical-align: middle; '>&nbsp;{$unite}&nbsp;</td>";
       }
       //-------------------------------------------------------
       if ($this->getMinMaxVisible()){
         $onMouseDownMin = "spinSetValue(\"{$prefixe}\", \"{$prefixe2}\",  \"Min\", {$this->getMin()}, {$delai}, \"{$sFolderImg}spinMin1.gif\");";
         $t[] = "    <td width='63%' align='center' {$styleArrow}>";
         $t[] = "      <img border='0' name='{$prefixe2}_imgMin' src='{$sFolderImg}spinMin0.gif'   onmousedown='{$onMouseDownMin}'><br>";
-        $t[] = "    </td>";      
+        $t[] = "    </td>";
       }
       //-------------------------------------------------------
       $t[] = "    <td width='63%' align='center' {$styleArrow}>";
-    
+
       $t[] = "      <img border='0' name='{$prefixe2}_img0' src='{$sFolderImg}spinUp0.gif'   onmousedown='{$onMouseDown1}' onmouseup='{$onMouseUp}' onmouseout='{$onMouseUp}'><br>";
       $t[] = "      <img border='0' name='{$prefixe2}_img1' src='{$sFolderImg}spinDown0.gif' onmousedown='{$onMouseDown2}' onmouseup='{$onMouseUp}' onmouseout='{$onMouseUp}'>";
-    
+
       $t[] = "    </td>";
-      
+
       //-------------------------------------------------------
       if ($this->getMinMaxVisible()){
         $onMouseDownMax = "spinSetValue(\"{$prefixe}\", \"{$prefixe2}\",  \"Max\", {$this->getMax()}, {$delai}, \"{$sFolderImg}spinMax1.gif\");";
         $t[] = "    <td width='63%' align='center' {$styleArrow}>";
         $t[] = "      <img border='0' name='{$prefixe2}_imgMax' src='{$sFolderImg}spinMax0.gif'   onmousedown='{$onMouseDownMax}'><br>";
-        $t[] = "    </td>";      
+        $t[] = "    </td>";
       }
       //-------------------------------------------------------
-      
-      
+
+
       $t[] = "  </tr>";
       $t[] = "</table>"."\n";
       $t[] = "</div>";
@@ -489,15 +489,15 @@ function getFolder (){
 function htmlAddAttribut($attribut, $value, $default = ''){
 
   if ($value == ''){$value = $default;}
-  
+
   if ($value <> ""){
     if (substr($value,0,strlen($attribut)) <> $attribut){
-      $r ="{$attribut}=\"{$value}\""; 
+      $r ="{$attribut}=\"{$value}\"";
     }
   }else{
     $r = '';
   }
-  
+
   return $r;
 
 }

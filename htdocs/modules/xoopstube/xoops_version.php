@@ -26,7 +26,7 @@ $modversion['version'] = '1.06';
 //$modversion['releasedate'] = 'June 19, 2012';
 $modversion['status']      = 'Final';
 $modversion['description'] = _MI_XOOPSTUBE_DESC;
-//$modversion['license'] 		= _MI_XOOPSTUBE_LICENSEDSC;
+//$modversion['license']        = _MI_XOOPSTUBE_LICENSEDSC;
 $modversion['help']        = 'page=help';
 $modversion['license']     = 'GNU GPL 2.0';
 $modversion['license_url'] = "www.gnu.org/licenses/gpl-2.0.html";
@@ -36,7 +36,7 @@ $modversion['image']       = 'assets/images/xtube_slogo.png';
 $modversion['iconsmall'] = 'assets/images/xtube_iconsmall.png';
 $modversion['iconbig']   = 'assets/images/xtube_iconbig.png';
 $modversion['dirname']   = $mydirname;
-//$modversion['dirname'] 		= 'xoopstube';
+//$modversion['dirname']        = 'xoopstube';
 
 $modversion['author']                 = "McDonald";
 $modversion['credits']                = "WF-Projects Team. Based on the module WF-Links, thanks to the dream-team for some code snippits.";

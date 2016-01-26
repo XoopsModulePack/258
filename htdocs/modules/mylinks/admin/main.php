@@ -8,7 +8,7 @@
  * @license::    {@link http://www.gnu.org/licenses/gpl-2.0.html GNU Public License}
  * @package::    mylinks
  * @subpackage:: admin
- * @since::		 unknown
+ * @since::      unknown
  * @author::     Thatware - http://thatware.org/
  * @version::    $Id: main.php 11819 2013-07-09 18:21:40Z zyspec $
  */
@@ -82,26 +82,26 @@ function listNewLinks()
             $submitter = XoopsUser::getUnameFromId($submitterid);
             echo "  <tr><td>\n"
               ."    <form action='main.php' method='post'>\n"
-              ."	    <table style='width: 80%;'>\n"
+              ."        <table style='width: 80%;'>\n"
               ."          <tr><td style='text-align: right; nowrap='nowrap'>" . _MD_MYLINKS_SUBMITTER . "</td>\n"
               ."            <td><a href=\"".XOOPS_URL."/userinfo.php?uid=".$submitterid."\">$submitter</a></td>\n"
-              ."		  </tr>\n"
+              ."          </tr>\n"
               ."          <tr><td style='text-align: right;' nowrap='nowrap'>" . _MD_MYLINKS_SITETITLE . "</td>\n"
               ."            <td><input type='text' name='title' size='50' maxlength='100' value='{$title}' /></td>\n"
-              ."		  </tr>\n"
-              ."		  <tr><td style='text-align: right;' nowrap='nowrap'>" . _MD_MYLINKS_SITEURL . "</td>\n"
-              ."		    <td><input type='text' name='url' size='50' maxlength='250' value='{$url}' />&nbsp;\n"
+              ."          </tr>\n"
+              ."          <tr><td style='text-align: right;' nowrap='nowrap'>" . _MD_MYLINKS_SITEURL . "</td>\n"
+              ."            <td><input type='text' name='url' size='50' maxlength='250' value='{$url}' />&nbsp;\n"
               ."              [&nbsp;<a href='" . preg_replace("/javascript:/si", 'java script:', $url) . "' target='_blank'>" . _MD_MYLINKS_VISIT . "</a>&nbsp;]\n"
-              ."			</td>\n"
-              ."		  </tr>\n"
-              ."		  <tr><td style='text-align: right;' nowrap'nowrap'>" . _MD_MYLINKS_CATEGORYC . "</td>\n"
+              ."            </td>\n"
+              ."          </tr>\n"
+              ."          <tr><td style='text-align: right;' nowrap'nowrap'>" . _MD_MYLINKS_CATEGORYC . "</td>\n"
               ."            <td>" . $myCatTree->makeSelBox("cid", "title", '- ', $cid) . "</td>\n"
               ."          </tr>\n"
               ."        <tr><td style='text-align: right; vertical-align: top;' nowrap='nowrap'>" . _MD_MYLINKS_DESCRIPTIONC . "</td>\n"
               ."          <td><textarea name='description' cols='60' rows='5'>{$description}</textarea></td>\n"
               ."        </tr>\n"
               ."        <tr><td style='text-align: right; nowrap='nowrap'>" . _MD_MYLINKS_SHOTIMAGE . "</td>\n"
-              ."			<td><select size='1' name='logourl'><option value=' '>------</option>";
+              ."            <td><select size='1' name='logourl'><option value=' '>------</option>";
             foreach ($linkimg_array as $image){
                 echo "<option value='{$image}'>{$image}</option>";
             }
@@ -111,7 +111,7 @@ function listNewLinks()
                 ."        <tr><td></td><td>" . sprintf(_MD_MYLINKS_SHOTMUST, $shotdir) . "</td></tr>\n"
                 ."      </table>\n"
                 ."      <br /><input type='hidden' name='op' value='approve' />\n"
-                ."		<input type='hidden' name='lid' value='{$lid}' />\n"
+                ."      <input type='hidden' name='lid' value='{$lid}' />\n"
                 ."      <input type='submit' value='" . _MD_MYLINKS_APPROVE . "' />\n"
                 ."    </form>\n";
             echo "    <form action='main.php?op=delNewLink&amp;lid={$lid}' method='post'><input type='submit' value='" . _DELETE . "' /></form>\n"
@@ -150,8 +150,8 @@ function linksConfigMenu()
           ."      <table style='width: 80%;'>\n"
           ."        <tr>\n"
           ."          <td style='text-align: right;'>" . _MD_MYLINKS_SITETITLE . "</td>\n"
-          ."			<td><input type='text' name='title' size='50' maxlength='100' /></td>\n"
-          ."		  </tr>\n"
+          ."            <td><input type='text' name='title' size='50' maxlength='100' /></td>\n"
+          ."          </tr>\n"
           ."        <tr>\n"
           ."          <td style='text-align: right;' nowrap='nowrap'>" . _MD_MYLINKS_SITEURL . "</td>\n"
           ."          <td><input type='text' name='url' size='50' maxlength='250' value='http://' /></td>\n"
@@ -160,9 +160,9 @@ function linksConfigMenu()
           ."          <td style='text-align: right;' nowrap='nowrap'>" . _MD_MYLINKS_CATEGORYC . "</td>\n"
           ."          <td>\n"
           ."            " . $myCatTree->makeSelBox("cid", "title") . "\n"
-          ."		    </td>\n"
-          ."		  </tr>\n"
-          ."		  <tr>\n"
+          ."            </td>\n"
+          ."          </tr>\n"
+          ."          <tr>\n"
           ."          <td style='text-align: right; vertical-align: top;' nowrap='nowrap'>" . _MD_MYLINKS_DESCRIPTIONC . "</td>\n"
           ."          <td>";
         xoopsCodeTarea("descarea", 60, 8);
@@ -217,7 +217,7 @@ function linksConfigMenu()
         ."      <input type='text' name='title' size='30' maxlength='50' /><br />\n"
         ."      " . _MD_MYLINKS_IMGURL . "<br />\n"
         ."      <input type='text' name='imgurl' size='100' maxlength='150' value='http://' /><br /><br />\n"
-        ."	    <input type='hidden' name='cid' value='0' />\n"
+        ."      <input type='hidden' name='cid' value='0' />\n"
         ."      <input type='hidden' name='op' value='addCat' />\n"
         ."      <input type='submit' value='" . _ADD . "' /><br />\n"
         ."    </form>\n"
@@ -307,15 +307,15 @@ function modLink()
         ."        <table>\n"
         ."          <tr><td>" . _MD_MYLINKS_LINKID . "</td><td style='font-weight: bold;'>{$lid}</td></tr>\n"
         ."          <tr><td>" . _MD_MYLINKS_SITETITLE . "</td><td><input type='text' name='title' value='{$title}' size='50' maxlength='100' /></td></tr>\n"
-        ."			<tr><td>" . _MD_MYLINKS_SITEURL . "</td><td><input type='text' name='url' value='{$url}' size='50' maxlength='250' /></td></tr>\n"
+        ."          <tr><td>" . _MD_MYLINKS_SITEURL . "</td><td><input type='text' name='url' value='{$url}' size='50' maxlength='250' /></td></tr>\n"
         ."          <tr><td style='vertical-align: top;'>" . _MD_MYLINKS_DESCRIPTIONC . "</td><td>";
     xoopsCodeTarea("description", 60, 8);
     xoopsSmilies("description");
     echo "</td></tr>\n"
-        ."			<tr><td>" . _MD_MYLINKS_CATEGORYC . "</td><td>"
+        ."          <tr><td>" . _MD_MYLINKS_CATEGORYC . "</td><td>"
         ."" . $myCatTree->makeSelBox("cid", "title", '- ', $cid) . ""
         ."          </td></tr>\n"
-        ."			<tr><td>"._MD_MYLINKS_SHOTIMAGE."</td><td>"
+        ."          <tr><td>"._MD_MYLINKS_SHOTIMAGE."</td><td>"
         ."<select size='1' name='logourl'>"
         ."<option value=' '>------</option>";
     foreach ($linkimg_array as $image) {
@@ -333,8 +333,8 @@ function modLink()
         ."        <input type='hidden' name='op' value='modLinkS' />\n"
         ."        <input type='submit' value='" . _MD_MYLINKS_MODIFY . "' />"
         ."      </form>\n"
-        ."		<form action='main.php?op=delLink&amp;lid={$lid}' method='post' style='margin-left: 1em; display: inline;'><input type='submit' value='" . _DELETE . "' /></form>\n"
-        ."		<form action='main.php?op=linksConfigMenu' method='post' style='margin-left: 1em; display: inline;'><input type='submit' value='" . _CANCEL . "' /></form>\n"
+        ."      <form action='main.php?op=delLink&amp;lid={$lid}' method='post' style='margin-left: 1em; display: inline;'><input type='submit' value='" . _DELETE . "' /></form>\n"
+        ."      <form action='main.php?op=linksConfigMenu' method='post' style='margin-left: 1em; display: inline;'><input type='submit' value='" . _CANCEL . "' /></form>\n"
         ."      <hr />";
 
     $result5=$xoopsDB->query("SELECT COUNT(*) FROM ".$xoopsDB->prefix("mylinks_votedata")." WHERE lid='{$lid}'");
@@ -349,7 +349,7 @@ function modLink()
         ."          <th>" . _MD_MYLINKS_USER . "  </th>\n"
         ."          <th>" . _MD_MYLINKS_IP . "  </th>\n"
         ."          <th>" . _MD_MYLINKS_RATING . "  </th>\n"
-        ."			<th>" . _MD_MYLINKS_USERAVG . "  </th>\n"
+        ."          <th>" . _MD_MYLINKS_USERAVG . "  </th>\n"
         ."          <th>" . _MD_MYLINKS_TOTALRATE . "  </th>\n"
         ."          <th>" . _MD_MYLINKS_DATE . "  </th>\n"
         ."          <th>" . _DELETE . "</td>\n"
@@ -379,16 +379,16 @@ function modLink()
 */
         $ratingusername = XoopsUser::getUnameFromId($ratinguser);
         echo "        <tr>\n"
-            ."    		<td style='background-color: {$colorswitch};'>{$ratingusername}</td>\n"
-            ."    		<td style='background-color: {$colorswitch};'>{$ratinghostname}</td>\n"
-            ."    		<td style='background-color: {$colorswitch};'>{$rating}</td>\n"
-            ."    		<td style='background-color: {$colorswitch};'>{$useravgrating}</td>\n"
-            ."    		<td style='background-color: {$colorswitch};'>{$uservotes}</td>\n"
-            ."    		<td style='background-color: {$colorswitch};'>{$ratingtimestamp}</td>\n"
-            ."    		<td style='background-color: {$colorswitch}; text-align: center; font-weight: bold;'>\n"
-            ."      	  <form action='main.php?op=delVote&amp;lid={$lid}&amp;rid={$ratingid}' method='post'><input type='submit' value='X' /></form>\n"
-            ."    		</td>\n"
-            ."  	  </tr>\n";
+            ."          <td style='background-color: {$colorswitch};'>{$ratingusername}</td>\n"
+            ."          <td style='background-color: {$colorswitch};'>{$ratinghostname}</td>\n"
+            ."          <td style='background-color: {$colorswitch};'>{$rating}</td>\n"
+            ."          <td style='background-color: {$colorswitch};'>{$useravgrating}</td>\n"
+            ."          <td style='background-color: {$colorswitch};'>{$uservotes}</td>\n"
+            ."          <td style='background-color: {$colorswitch};'>{$ratingtimestamp}</td>\n"
+            ."          <td style='background-color: {$colorswitch}; text-align: center; font-weight: bold;'>\n"
+            ."            <form action='main.php?op=delVote&amp;lid={$lid}&amp;rid={$ratingid}' method='post'><input type='submit' value='X' /></form>\n"
+            ."          </td>\n"
+            ."        </tr>\n";
         $x++;
         $colorswitch = ( $colorswitch == "#DDDDDD" ) ? "#FFFFFF" : "#DDDDDD";
     }
@@ -398,8 +398,8 @@ function modLink()
     echo "        <tr><td colspan='7' style='font-weight: bold;'><br /><br />" . sprintf(_MD_MYLINKS_ANONTOTALVOTES , $votes) . "<br /><br /></td></tr>\n"
         ."        <tr>\n"
         ."          <th colspan='2'>" . _MD_MYLINKS_IP . "  </th>\n"
-        ."		    <th colspan='3' style='font-weight: bold;'>" . _MD_MYLINKS_RATING . "  </th>\n"
-        ."			<th style='font-weight: bold;'>" . _MD_MYLINKS_DATE . "  </th>\n"
+        ."          <th colspan='3' style='font-weight: bold;'>" . _MD_MYLINKS_RATING . "  </th>\n"
+        ."          <th style='font-weight: bold;'>" . _MD_MYLINKS_DATE . "  </th>\n"
         ."          <th style='text-align: center; font-weight: bold;'>" . _DELETE . "<br /></th>\n"
         ."        </tr>\n";
     if ( 0 == $votes ) {
@@ -509,8 +509,8 @@ function listBrokenLinks()
 //                ."          <a href='main.php?op=modLink&amp;lid={$lid}&amp;bknrptid={$reportid}'><img src=". $pathIcon16 ."/edit.png alt='" . _EDIT . "' title='" . _EDIT . "'></a>\n"
 //                ."          <a href='main.php?op=delBrokenLinks&amp;lid={$lid}'><img src=". $pathIcon16 ."/delete.png alt='" . _DELETE . "' title='" . _DELETE . "'></a>\n"
                . "          <form class='inline' action='" . $_SERVER['PHP_SELF'] . "' method='post'>\n"
-               . "	           <input type='hidden' name='op' value='ignoreBrokenLinks' />\n"
-               . "	           <input type='hidden' name='bknrptid' value='{$reportid}' />\n"
+               . "             <input type='hidden' name='op' value='ignoreBrokenLinks' />\n"
+               . "             <input type='hidden' name='bknrptid' value='{$reportid}' />\n"
                . "            {$formToken}\n"
                . "            <input type='button' title='" . _MD_MYLINKS_IGNOREDESC . "' alt='" . _AM_MYLINKS_IGNORE . "' id='image-button-on' onclick='this.form.submit();'></input>\n"
                . "          </form>\n"
@@ -521,8 +521,8 @@ function listBrokenLinks()
                . "            <input type='button' title='" . _MD_MYLINKS_EDITDESC . "' alt='" . _EDIT . "' id='image-button-edit' onclick='this.form.submit();'></input>\n"
                . "          </form>\n"
                . "          <form class='inline' action='" . $_SERVER['PHP_SELF'] . "' method='post'>\n"
-               . "	           <input type='hidden' name='op' value='delBrokenLinks' />\n"
-               . "	           <input type='hidden' name='lid' value='{$lid}' />\n"
+               . "             <input type='hidden' name='op' value='delBrokenLinks' />\n"
+               . "             <input type='hidden' name='lid' value='{$lid}' />\n"
                . "            {$formToken}\n"
                . "            <input type='button' title='" . _MD_MYLINKS_DELETEDESC . "' alt='" . _DELETE . "' id='image-button-delete' onclick='this.form.submit();'></input>\n"
                . "          </form>\n"
@@ -636,7 +636,7 @@ function listModReq()
             echo "        <table style='border-width: 1px; border-color: black; padding: 5px; margin: auto; text-align: center; width: 800px;'>\n"
                 ."          <tr><td>\n"
                 ."            <table style='width: 100%; background-color: #DDDDDD'>\n"
-                ."			    <tr>\n"
+                ."              <tr>\n"
                 ."                <td style='vertical-align: top; width: 45%; font-weight: bold;'>" . _MD_MYLINKS_ORIGINAL . "</td>\n"
                 ."                <td rowspan='14' style='vertical-align: top; text-align: left; font-size: small;'><br />" . _MD_MYLINKS_DESCRIPTIONC . "<br />{$origdescription}</td>\n"
                 ."              </tr>\n"
@@ -654,7 +654,7 @@ function listModReq()
                 ."      </td></tr>\n"
                 ."      <tr><td>\n"
                 ."        <table style='width: 100%; background-color: #DDDDDD'>\n"
-                ."		    <tr>\n"
+                ."          <tr>\n"
                 ."            <td style='vertical-align: top; width: 45%; font-weight: bold;'>" . _MD_MYLINKS_PROPOSED . "</td>\n"
                 ."            <td rowspan='14' style='vertical-align: top; text-align: left; font-size: small;'><br />" . _MD_MYLINKS_DESCRIPTIONC . "<br />{$description}</td>\n"
                 ."          </tr>\n"
@@ -853,7 +853,7 @@ function modCat()
         $pid    = $catObj->getVar('pid');
         echo "      <form action='main.php' method='post'>" . _MD_MYLINKS_TITLEC . "\n"
             ."        <input type='text' name='title' value='{$title}' size='51' maxlength='50' />\n"
-            ."		  <br /><br />\n";
+            ."        <br /><br />\n";
         if ( 0 == $catObj->getVar('pid') ) {
                 echo "        " . _MD_MYLINKS_IMGURLMAIN . "<br />\n"
                     ."        <input type='text' name='imgurl' value='{$imgurl}' size='100' maxlength='150' />\n"
@@ -927,13 +927,13 @@ function delCat()
         /**
          * nickname code:
          *
-         *	get all subcategories
+         *  get all subcategories
          *  get all links in these categories/subcategories
-         *	get all links in category & subcategories
-         *	delete all links in links, text, votedata, broken, & mod db tables that are in any of these categories
-         *	delete all comments and notifications for the links that have been deleted
-         *	delete category and all subcategories from category db table
-         *	delete all notifications for the categories that have been deleted
+         *  get all links in category & subcategories
+         *  delete all links in links, text, votedata, broken, & mod db tables that are in any of these categories
+         *  delete all comments and notifications for the links that have been deleted
+         *  delete category and all subcategories from category db table
+         *  delete all notifications for the categories that have been deleted
          */
         $mylinksCatHandler =& xoops_getmodulehandler('category', $xoopsModule->getVar('dirname'));
 

@@ -109,23 +109,23 @@ if($jquery == 1 && $ajaxeffect != 'none'){
             $xoTheme->addScript("browse.php?Frameworks/jquery/plugins/jquery.lightbox.js");
             $xoTheme->addStylesheet('browse.php?modules/system/css/lightbox.css');
         break;
-        
+
         case 'tooltip':
             $xoTheme->addScript("browse.php?modules/extgallery/include/tooltip/image.tooltip.js");
             $xoTheme->addStylesheet('browse.php?modules/extgallery/include/tooltip/image.tooltip.css');
         break;
-        
+
         case 'overlay':
             $xoTheme->addScript("browse.php?modules/extgallery/include/overlay/overlay.jquery.tools.min.js");
             $xoTheme->addStylesheet('browse.php?modules/extgallery/include/overlay/overlay.css');
         break;
-        
+
         case 'fancybox':
             $xoTheme->addScript("browse.php?modules/extgallery/include/fancybox/mousewheel.js");
             $xoTheme->addScript("browse.php?modules/extgallery/include/fancybox/fancybox.pack.js");
             $xoTheme->addStylesheet('browse.php?modules/extgallery/include/fancybox/fancybox.css');
         break;
-        
+
         case 'prettyphoto':
             $xoTheme->addScript("browse.php?modules/extgallery/include/prettyphoto/jquery.prettyPhoto.js");
             $xoTheme->addStylesheet('browse.php?modules/extgallery/include/prettyphoto/prettyPhoto.css');
@@ -155,7 +155,7 @@ $xoopsTpl->assign('extgalleryStart', $start);//xoops -blueteen - tri de l'affich
 $xoopsTpl->assign('extgallerySortbyOrderby', _MD_EXTGALLERY_ORDERBY.convertorderbytrans($SortbyOrderby));//xoops - blueteen - tri de l'affichage
 
 //DNPROSSI - VOLTAN - added preferences option
-//	enable_info, enable_submitter_lnk, enable_photo_hits
+//  enable_info, enable_submitter_lnk, enable_photo_hits
 if ( $xoopsModuleConfig['info_view'] == "album" || $xoopsModuleConfig['info_view'] == "both" )
 {
     if ( $xoopsModuleConfig['pubusr_info_view'] == "user" || $xoopsModuleConfig['pubusr_info_view'] == "both" )

@@ -90,7 +90,7 @@ class ExtgalleryGroupFormCheckBox extends XoopsGroupFormCheckBox {
  }
 
  function render() {
- 
+
   $ele_name = $this->getName();
   echo '<table class="outer"><tr><td class="odd"><table><tr>';
   $cols = 1;
@@ -117,7 +117,7 @@ class ExtgalleryGroupFormCheckBox extends XoopsGroupFormCheckBox {
   $option_ids_str = implode(', ', $option_ids);
   echo _ALL." <input id=\"".$checkallbtn_id."\" type=\"checkbox\" value=\"\" onclick=\"var optionids = new Array(".$option_ids_str."); xoopsCheckAllElements(optionids, '".$checkallbtn_id."');\" />";
   echo '</td></tr></table>';
-  
+
  }
 
 }

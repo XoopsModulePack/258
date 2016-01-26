@@ -60,7 +60,7 @@ switch($op) {
                 xoops_cp_header();
 
                 $xoopsTpl->assign('uploadfont', true);
-                
+
                 $fonts = array();
 
                 $rep = XOOPS_ROOT_PATH.'/modules/extgallery/fonts/';
@@ -74,13 +74,13 @@ switch($op) {
                 }
 
                 $xoopsTpl->assign('fonts', $fonts);
-                
+
                 $form = new XoopsThemeForm(_AM_EXTGALLERY_ADD_FONT, 'add_font', 'watermark-border.php?op=uploadfont', 'post', true);
                 $form->setExtra('enctype="multipart/form-data"');
                 $form->addElement(new XoopsFormFile(_AM_EXTGALLERY_FONT_FILE, 'font_file', get_cfg_var('upload_max_filesize')*1024*1024),false);
                 $form->addElement(new XoopsFormHidden("step", 'enreg'));
                 $form->addElement(new XoopsFormButton("", "submit", _SUBMIT, "submit"));
-                
+
                 $xoopsTpl->assign('fontform', $form->display());
 
             // Call template file
@@ -436,7 +436,7 @@ switch($op) {
         if(function_exists('imagettfbbox')) {
 
             $xoopsTpl->assign('imagettfbbox', true);
-            
+
             $form = new XoopsThemeForm(_AM_EXTGALLERY_WATERMARK_CONF, 'watermark_conf', 'watermark-border.php?op=conf', 'post', true);
             $fontSelect = new XoopsFormSelect(_AM_EXTGALLERY_FONT, 'watermark_font', $xoopsModuleConfig['watermark_font']);
             foreach($fonts as $font) {
@@ -474,7 +474,7 @@ switch($op) {
             $form->addElement(new XoopsFormText(_AM_EXTGALLERY_WATERMARK_PADDING, 'watermark_padding', '2', '2', $xoopsModuleConfig['watermark_padding']),false);
             $form->addElement(new XoopsFormHidden("step", 'enreg'));
             $form->addElement(new XoopsFormButton("", "submit", _SUBMIT, "submit"));
-            
+
             $xoopsTpl->assign('watermarkform', $form->render());
 
         // Else display Warning message
@@ -495,7 +495,7 @@ switch($op) {
         $xoopsTpl->assign('borderform', $form->render());
 
         $imageTest = getImageTest();
-        
+
         $xoopsTpl->assign('imagetest', $imageTest[0]);
 
       // Call template file

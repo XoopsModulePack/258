@@ -54,7 +54,7 @@ class RWTag
           $sql = 'SELECT * FROM '.$this->db->prefix('rw_tags').' WHERE id='.$id;
           $query = $this->db->query($sql);
           $row = $this->db->fetchArray($query);
-          
+
           $this->id = $row['id'];
           $this->title = $row['title'];
           $this->name = $row['name'];
@@ -136,7 +136,7 @@ class RWTag
     {
         return $this->categ;
     }
-    
+
     function setQtde($qtde)
     {
         $this->qtde = $qtde;
@@ -181,7 +181,7 @@ class RWTag
     {
         return $this->status;
     }
-    
+
     function setError($error)
     {
         $this->errormsg = $error;
@@ -191,11 +191,11 @@ class RWTag
         return $this->errormsg;
     }
     //fim métodos set e get dos atributos
-    
+
     function clearDb(){
          $this->db = null;
     }
-    
+
     //Insere uma nova tag no banco de dados
     function grava($flag=null){
         $this->db = &XoopsDatabaseFactory::getDatabaseConnection();
@@ -245,7 +245,7 @@ class RWTag
           return false;
         }
     }
-    
+
     //Retorna um array associativo de todas as tags encontradas.
     function getTags($order, $inArray=false){
         $this->db = &XoopsDatabaseFactory::getDatabaseConnection();
@@ -277,7 +277,7 @@ class RWTag
 
       return $this->edita();
     }
-    
+
     //Retorna o nome da categoria que a tag está vinculada
     function getTagCategName(){
         $this->db = &XoopsDatabaseFactory::getDatabaseConnection();
@@ -287,7 +287,7 @@ class RWTag
 
         return $nome;
     }
-    
+
     //Retorna o nome do módulo que a tag instanciada está vinculada. Caso não esteja vinculada a nenhum módulo retorna false
     function getModuleName(){
       $mids = unserialize($this->getModid());

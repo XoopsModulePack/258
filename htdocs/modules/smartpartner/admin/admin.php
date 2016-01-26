@@ -35,7 +35,7 @@ $fct = empty($_POST['fct']) ? '' : trim($_POST['fct']);
 $fct = empty($_GET['fct']) ? $fct : trim($_GET['fct']);
 if (empty($fct)) $fct = 'preferences';
 //if (isset($fct) && $fct == "users") {
-//	$xoopsOption['pagetype'] = "user";
+//  $xoopsOption['pagetype'] = "user";
 //}
 include "../../../mainfile.php";
 // include "../../mainfile.php"; GIJ
@@ -83,8 +83,8 @@ if ($admintest != 0) {
             if ($category > 0) {
                 $groups =& $xoopsUser->getGroups();
                 if (in_array(XOOPS_GROUP_ADMIN, $groups) || false != $sysperm_handler->checkRight('system_admin', $category, $groups, $xoopsModule->getVar('mid'))) {
-                    //					if (file_exists(XOOPS_ROOT_PATH."/modules/system/admin/".$fct."/main.php")) {
-                    //						include_once XOOPS_ROOT_PATH."/modules/system/admin/".$fct."/main.php"; GIJ
+                    //                  if (file_exists(XOOPS_ROOT_PATH."/modules/system/admin/".$fct."/main.php")) {
+                    //                      include_once XOOPS_ROOT_PATH."/modules/system/admin/".$fct."/main.php"; GIJ
                     if (file_exists("../include/{$fct}.inc.php")) {
                         include_once "../include/{$fct}.inc.php";
                     } else {

@@ -117,7 +117,7 @@ function BannersAdmin()
 function import($dados){
   global $xoopsDB;
   include_once ("../class/class.banner.php");
-  
+
   $banners = array();
   for ($i = 0; $i <= count($dados)-1; $i++){
     $ban = explode("|", $dados[$i]);

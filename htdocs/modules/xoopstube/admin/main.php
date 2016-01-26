@@ -111,7 +111,7 @@ function edit($lid = 0)
         echo '
             <fieldset style="border: #E8E8E8 1px solid;"><legend style="display: inline; font-weight: bold; color: #0A3760;">' . _AM_XOOPSTUBE_INFORMATION . '</legend>
             <div style="padding: 8px;">' . $text_info . '</div>
-        <!--	<div style="padding: 8px;"><li>' . $xtubeImageArray['deleteimg'] . ' ' . _AM_XOOPSTUBE_VOTE_DELETEDSC . '</li></div>\n    -->
+        <!--    <div style="padding: 8px;"><li>' . $xtubeImageArray['deleteimg'] . ' ' . _AM_XOOPSTUBE_VOTE_DELETEDSC . '</li></div>\n    -->
             </fieldset>
             <br />';
     }
@@ -369,7 +369,7 @@ switch (strtolower($op)) {
             $ipaddress   = $_SERVER['REMOTE_ADDR'];
             $sql         = "INSERT INTO " . $xoopsDB->prefix('xoopstube_videos')
                 . " (lid, cid, title, vidid, screenshot, submitter, publisher, status, date, hits, rating, votes, comments, vidsource, published, expired, updated, offline, description, ipaddress, notifypub, vidrating, time, keywords, item_tag, picurl )";
-            $sql .= " VALUES 	(NULL, $cid, '$title', '$vidid', '', '$submitter', '$publisher', '$status', '$date', 0, 0, 0, 0, '$vidsource', '$published', '$expiredate', '$updated', '$offline', '$descriptionb', '$ipaddress', '0', '$vidrating', '$time', '$keywords', '$item_tag', '$picurl')";
+            $sql .= " VALUES    (NULL, $cid, '$title', '$vidid', '', '$submitter', '$publisher', '$status', '$date', 0, 0, 0, 0, '$vidsource', '$published', '$expiredate', '$updated', '$offline', '$descriptionb', '$ipaddress', '0', '$vidrating', '$time', '$keywords', '$item_tag', '$picurl')";
             //    $newid = $xoopsDB -> getInsertId();
         } else {
             $sql = "UPDATE " . $xoopsDB->prefix('xoopstube_videos') . " SET cid = $cid, title='$title', vidid='$vidid', screenshot='', publisher='$publisher', status='$status', vidsource='$vidsource', published='$published', expired='$expiredate', updated='$updated', offline='$offline', description='$descriptionb', vidrating='$vidrating', time='$time', keywords='$keywords', item_tag='$item_tag', picurl='$picurl' WHERE lid="
@@ -560,18 +560,18 @@ switch (strtolower($op)) {
 
         //xtubeRenderAdminMenu( _AM_XOOPSTUBE_BINDEX );
 //    echo '
-//			<fieldset style="border: #E8E8E8 1px solid;">
-//			<legend style="display: inline; font-weight: bold; color: #0A3760;">' . _AM_XOOPSTUBE_MINDEX_VIDEOSUMMARY . '</legend>
-//			<div style="padding: 8px;">
-//			<span style="font-size: small;">
-//			<a href="category.php">' . _AM_XOOPSTUBE_SCATEGORY . '</a><b>' . $totalcats . '</b> |
-//			<a href="main.php">' . _AM_XOOPSTUBE_SFILES . '</a><b>' . $totalvideos . '</b> |
-//			<a href="newvideos.php">' . _AM_XOOPSTUBE_SNEWFILESVAL . '</a><b>' . $totalnewvideos . '</b> |
-//			<a href="modifications.php">' . _AM_XOOPSTUBE_SMODREQUEST . '</a><b>' . $totalmodrequests . '</b> |
-//			<a href="brokenvideo.php">' . _AM_XOOPSTUBE_SBROKENSUBMIT . '</a><b>' . $totalbrokenvideos . '</b>
-//			</span>
-//			</div>
-//			</fieldset>';
+//          <fieldset style="border: #E8E8E8 1px solid;">
+//          <legend style="display: inline; font-weight: bold; color: #0A3760;">' . _AM_XOOPSTUBE_MINDEX_VIDEOSUMMARY . '</legend>
+//          <div style="padding: 8px;">
+//          <span style="font-size: small;">
+//          <a href="category.php">' . _AM_XOOPSTUBE_SCATEGORY . '</a><b>' . $totalcats . '</b> |
+//          <a href="main.php">' . _AM_XOOPSTUBE_SFILES . '</a><b>' . $totalvideos . '</b> |
+//          <a href="newvideos.php">' . _AM_XOOPSTUBE_SNEWFILESVAL . '</a><b>' . $totalnewvideos . '</b> |
+//          <a href="modifications.php">' . _AM_XOOPSTUBE_SMODREQUEST . '</a><b>' . $totalmodrequests . '</b> |
+//          <a href="brokenvideo.php">' . _AM_XOOPSTUBE_SBROKENSUBMIT . '</a><b>' . $totalbrokenvideos . '</b>
+//          </span>
+//          </div>
+//          </fieldset>';
 
         if ($totalcats > 0) {
             $sform = new XoopsThemeForm(_AM_XOOPSTUBE_CCATEGORY_MODIFY, 'category', 'category.php');

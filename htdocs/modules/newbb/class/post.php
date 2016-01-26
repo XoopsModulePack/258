@@ -1133,7 +1133,7 @@ class NewbbPostHandler extends ArtObjectHandler //class NewbbPostHandler extends
         } else {
             // for 4.0+
             $sql = 'DELETE ' . $this->db->prefix('bb_posts_text') . ' FROM ' . $this->db->prefix('bb_posts_text') . ' LEFT JOIN ' . $this->table . ' AS aa ON ' . $this->db->prefix('bb_posts_text') . '.post_id = aa.post_id ' . ' WHERE (aa.post_id IS NULL)';
-            
+
             // Alternative for 4.1+
             /*
             $sql =     "DELETE bb FROM ".$this->db->prefix("bb_posts_text")." AS bb".

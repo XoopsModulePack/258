@@ -462,7 +462,7 @@ if (!$error && !isset($_REQUEST["fn"]) && $filename=="")
   else
   { fclose($tempfile);
     unlink ($tempfilename);
- 
+
     echo ("<p>You can now upload your dump file up to $upload_max_filesize bytes (".round ($upload_max_filesize/1024/1024)." Mbytes)  ");
     echo ("directly from your browser to the server. Alternatively you can upload your dump files of any size via FTP.</p>\n");
 ?>
@@ -570,7 +570,7 @@ if (!$error && isset($_REQUEST["start"]) && isset($_REQUEST["foffset"]) && preg_
       $error=true;
     }
   }
-  
+
 // Print start message
 
   if (!$error)
@@ -645,7 +645,7 @@ if (!$error && isset($_REQUEST["start"]) && isset($_REQUEST["foffset"]) && preg_
 
       $dumpline=str_replace("\r\n", "\n", $dumpline);
       $dumpline=str_replace("\r", "\n", $dumpline);
-            
+
 // DIAGNOSTIC
 // echo ("<p>Line $linenumber: $dumpline</p>\n");
 
@@ -680,7 +680,7 @@ if (!$error && isset($_REQUEST["start"]) && isset($_REQUEST["foffset"]) && preg_
       }
 
 // Remove double back-slashes from the dumpline prior to count the quotes ('\\' can only be within strings)
-      
+
       $dumpline_deslashed = str_replace ("\\\\","",$dumpline);
 
 // Count ' and \' (or " and \") in the dumpline to avoid query break within a text field ending by $delimiter
@@ -694,10 +694,10 @@ if (!$error && isset($_REQUEST["start"]) && isset($_REQUEST["foffset"]) && preg_
       $query .= $dumpline;
 
 // Don't count the line if in parents (text fields may include unlimited linebreaks)
-      
+
       if (!$inparents)
         $querylines++;
-      
+
 // Stop if query contains more lines as defined by MAX_QUERY_LINES
 
       if ($querylines>MAX_QUERY_LINES)
@@ -770,7 +770,7 @@ skin_open();
     $lines_done   = $linenumber-1;
     $lines_togo   = ' ? ';
     $lines_tota   = ' ? ';
-    
+
     $queries_this = $queries;
     $queries_done = $totalqueries;
     $queries_togo = ' ? ';
@@ -782,7 +782,7 @@ skin_open();
     $kbytes_done  = round($bytes_done/1024,2);
     $mbytes_this  = round($kbytes_this/1024,2);
     $mbytes_done  = round($kbytes_done/1024,2);
-   
+
     if (!$gzipmode)
     {
       $bytes_togo  = $filesize-$foffset;
@@ -791,7 +791,7 @@ skin_open();
       $kbytes_tota = round($bytes_tota/1024,2);
       $mbytes_togo = round($kbytes_togo/1024,2);
       $mbytes_tota = round($kbytes_tota/1024,2);
-      
+
       $pct_this   = ceil($bytes_this/$filesize*100);
       $pct_done   = ceil($foffset/$filesize*100);
       $pct_togo   = 100 - $pct_done;
@@ -814,14 +814,14 @@ skin_open();
       $kbytes_tota = ' ? ';
       $mbytes_togo = ' ? ';
       $mbytes_tota = ' ? ';
-      
+
       $pct_this    = ' ? ';
       $pct_done    = ' ? ';
       $pct_togo    = ' ? ';
       $pct_tota    = 100;
       $pct_bar     = str_replace(' ','&nbsp;','<tt>[         Not available for gzipped files          ]</tt>');
     }
-    
+
     echo ("
     <center>
     <table width=\"520\" border=\"0\" cellpadding=\"3\" cellspacing=\"1\">
@@ -873,7 +873,7 @@ skin_open();
       echo ("<noscript>\n");
       echo ("<p class=\"centr\"><a href=\"".$_SERVER["PHP_SELF"]."?start=$linenumber&amp;fn=".urlencode($curfilename)."&amp;foffset=$foffset&amp;totalqueries=$totalqueries&amp;delimiter=".urlencode($delimiter)."\">Continue from the line $linenumber</a> (Enable JavaScript to do it automatically)</p>\n");
       echo ("</noscript>\n");
-   
+
       echo ("<p class=\"centr\">Press <b><a href=\"".$_SERVER["PHP_SELF"]."\">STOP</a></b> to abort the import <b>OR WAIT!</b></p>\n");
     }
   }
@@ -935,7 +935,7 @@ ob_flush();
 
 
 // *******************************************************************************************
-// 				AJAX utilities
+//              AJAX utilities
 // *******************************************************************************************
 
 function create_xml_response()
@@ -950,7 +950,7 @@ function create_xml_response()
 
     header('Content-Type: application/xml');
     header('Cache-Control: no-cache');
-    
+
     echo '<?xml version="1.0" encoding="ISO-8859-1"?>';
     echo "<root>";
 
@@ -968,33 +968,33 @@ function create_xml_response()
     echo "<elem2>$lines_done</elem2>";
     echo "<elem3>$lines_togo</elem3>";
     echo "<elem4>$lines_tota</elem4>";
-    
+
     echo "<elem5>$queries_this</elem5>";
     echo "<elem6>$queries_done</elem6>";
     echo "<elem7>$queries_togo</elem7>";
     echo "<elem8>$queries_tota</elem8>";
-    
+
     echo "<elem9>$bytes_this</elem9>";
     echo "<elem10>$bytes_done</elem10>";
     echo "<elem11>$bytes_togo</elem11>";
     echo "<elem12>$bytes_tota</elem12>";
-            
+
     echo "<elem13>$kbytes_this</elem13>";
     echo "<elem14>$kbytes_done</elem14>";
     echo "<elem15>$kbytes_togo</elem15>";
     echo "<elem16>$kbytes_tota</elem16>";
-    
+
     echo "<elem17>$mbytes_this</elem17>";
     echo "<elem18>$mbytes_done</elem18>";
     echo "<elem19>$mbytes_togo</elem19>";
     echo "<elem20>$mbytes_tota</elem20>";
-    
+
     echo "<elem21>$pct_this</elem21>";
     echo "<elem22>$pct_done</elem22>";
     echo "<elem23>$pct_togo</elem23>";
     echo "<elem24>$pct_tota</elem24>";
     echo "<elem_bar>".htmlentities($pct_bar)."</elem_bar>";
-                
+
     echo "</root>";
 }
 
@@ -1003,101 +1003,101 @@ function create_ajax_script()
   global $linenumber, $foffset, $totalqueries, $delaypersession, $curfilename, $delimiter;
 ?>
 
-	<script type="text/javascript" language="javascript">
+    <script type="text/javascript" language="javascript">
 
-	// creates next action url (upload page, or XML response)
-	function get_url(linenumber,fn,foffset,totalqueries,delimiter) {
-		return "<?php echo $_SERVER['PHP_SELF'] ?>?start="+linenumber+"&fn="+fn+"&foffset="+foffset+"&totalqueries="+totalqueries+"&delimiter="+delimiter+"&ajaxrequest=true";
-	}
-	
-	// extracts text from XML element (itemname must be unique)
-	function get_xml_data(itemname,xmld) {
-		return xmld.getElementsByTagName(itemname).item(0).firstChild.data;
-	}
-	
-	function makeRequest(url) {
-		http_request = false;
-		if (window.XMLHttpRequest) {
-		// Mozilla etc.
-			http_request = new XMLHttpRequest();
-			if (http_request.overrideMimeType) {
-				http_request.overrideMimeType("text/xml");
-			}
-		} else if (window.ActiveXObject) {
-		// IE
-			try {
-				http_request = new ActiveXObject("Msxml2.XMLHTTP");
-			} catch(e) {
-				try {
-					http_request = new ActiveXObject("Microsoft.XMLHTTP");
-				} catch(e) {}
-			}
-		}
-		if (!http_request) {
-				alert("Cannot create an XMLHTTP instance");
-				return false;
-		}
-		http_request.onreadystatechange = server_response;
-		http_request.open("GET", url, true);
-		http_request.send(null);
-	}
-	
-	function server_response()
-	{
+    // creates next action url (upload page, or XML response)
+    function get_url(linenumber,fn,foffset,totalqueries,delimiter) {
+        return "<?php echo $_SERVER['PHP_SELF'] ?>?start="+linenumber+"&fn="+fn+"&foffset="+foffset+"&totalqueries="+totalqueries+"&delimiter="+delimiter+"&ajaxrequest=true";
+    }
 
-	  // waiting for correct response
-	  if (http_request.readyState != 4)
-		return;
+    // extracts text from XML element (itemname must be unique)
+    function get_xml_data(itemname,xmld) {
+        return xmld.getElementsByTagName(itemname).item(0).firstChild.data;
+    }
 
-	  if (http_request.status != 200)
-	  {
-	    alert("Page unavailable, or wrong url!")
-	    return;
-	  }
-		
-		// r = xml response
-		var r = http_request.responseXML;
-		
-		//if received not XML but HTML with new page to show
-		if (!r || r.getElementsByTagName('root').length == 0)
-		{	var text = http_request.responseText;
-			document.open();
-			document.write(text);
-			document.close();
-			return;
-		}
-		
-		// update "Starting from line: "
-		document.getElementsByTagName('p').item(1).innerHTML =
-			"Starting from line: " +
-			   r.getElementsByTagName('linenumber').item(0).firstChild.nodeValue;
-		
-		// update table with new values
-		for(i = 1; i <= 24; i++)
-			document.getElementsByTagName('td').item(i).firstChild.data = get_xml_data('elem'+i,r);
-		
-		// update color bar
-		document.getElementsByTagName('td').item(25).innerHTML =
-			r.getElementsByTagName('elem_bar').item(0).firstChild.nodeValue;
-			 
-		// action url (XML response)
-		url_request =  get_url(
-			get_xml_data('linenumber',r),
-			get_xml_data('fn',r),
-			get_xml_data('foffset',r),
-			get_xml_data('totalqueries',r),
-			get_xml_data('delimiter',r));
-		
-		// ask for XML response
-		window.setTimeout("makeRequest(url_request)",500+<?php echo $delaypersession; ?>);
-	}
+    function makeRequest(url) {
+        http_request = false;
+        if (window.XMLHttpRequest) {
+        // Mozilla etc.
+            http_request = new XMLHttpRequest();
+            if (http_request.overrideMimeType) {
+                http_request.overrideMimeType("text/xml");
+            }
+        } else if (window.ActiveXObject) {
+        // IE
+            try {
+                http_request = new ActiveXObject("Msxml2.XMLHTTP");
+            } catch(e) {
+                try {
+                    http_request = new ActiveXObject("Microsoft.XMLHTTP");
+                } catch(e) {}
+            }
+        }
+        if (!http_request) {
+                alert("Cannot create an XMLHTTP instance");
+                return false;
+        }
+        http_request.onreadystatechange = server_response;
+        http_request.open("GET", url, true);
+        http_request.send(null);
+    }
 
-	// First Ajax request from initial page
+    function server_response()
+    {
 
-	var http_request = false;
-	var url_request =  get_url(<?php echo ($linenumber.',"'.urlencode($curfilename).'",'.$foffset.','.$totalqueries.',"'.urlencode($delimiter).'"') ;?>);
-	window.setTimeout("makeRequest(url_request)",500+<?php echo $delaypersession; ?>);
-	</script>
+      // waiting for correct response
+      if (http_request.readyState != 4)
+        return;
+
+      if (http_request.status != 200)
+      {
+        alert("Page unavailable, or wrong url!")
+        return;
+      }
+
+        // r = xml response
+        var r = http_request.responseXML;
+
+        //if received not XML but HTML with new page to show
+        if (!r || r.getElementsByTagName('root').length == 0)
+        {   var text = http_request.responseText;
+            document.open();
+            document.write(text);
+            document.close();
+            return;
+        }
+
+        // update "Starting from line: "
+        document.getElementsByTagName('p').item(1).innerHTML =
+            "Starting from line: " +
+               r.getElementsByTagName('linenumber').item(0).firstChild.nodeValue;
+
+        // update table with new values
+        for(i = 1; i <= 24; i++)
+            document.getElementsByTagName('td').item(i).firstChild.data = get_xml_data('elem'+i,r);
+
+        // update color bar
+        document.getElementsByTagName('td').item(25).innerHTML =
+            r.getElementsByTagName('elem_bar').item(0).firstChild.nodeValue;
+
+        // action url (XML response)
+        url_request =  get_url(
+            get_xml_data('linenumber',r),
+            get_xml_data('fn',r),
+            get_xml_data('foffset',r),
+            get_xml_data('totalqueries',r),
+            get_xml_data('delimiter',r));
+
+        // ask for XML response
+        window.setTimeout("makeRequest(url_request)",500+<?php echo $delaypersession; ?>);
+    }
+
+    // First Ajax request from initial page
+
+    var http_request = false;
+    var url_request =  get_url(<?php echo ($linenumber.',"'.urlencode($curfilename).'",'.$foffset.','.$totalqueries.',"'.urlencode($delimiter).'"') ;?>);
+    window.setTimeout("makeRequest(url_request)",500+<?php echo $delaypersession; ?>);
+    </script>
 
 <?php
 }

@@ -258,15 +258,15 @@ class ExtcalEventHandler extends ExtcalPersistableObjectHandler
         }
     }
 
-// 	function getPicture1(&$event) {
-// 		return $event['event_picture1'];
-// 	}
-// 	function getPicture2(&$event) {
-// 		return $event['event_picture2'];
-// 	}
-// 	function getDesc(&$event) {
-// 		return $event['event_desc'];
-// 	}
+//  function getPicture1(&$event) {
+//      return $event['event_picture1'];
+//  }
+//  function getPicture2(&$event) {
+//      return $event['event_picture2'];
+//  }
+//  function getDesc(&$event) {
+//      return $event['event_desc'];
+//  }
 
     /**
      * @param $event

@@ -8,7 +8,7 @@
  * @license::    {@link http://www.gnu.org/licenses/gpl-2.0.html GNU Public License}
  * @package::    mylinks
  * @subpackage:: class
- * @since::		 unknown
+ * @since::      unknown
  * @author::     Thatware - http://thatware.org/
  * @version::    $Id: index.php 8574 2011-12-27 02:45:39Z beckmi $
  */

@@ -39,14 +39,14 @@ function estatisticas_banner($options){
       $block['title'] = _MI_RWBANNER_BLOCK2_NAME;
 
       $uid = $xoopsUser -> getVar( 'uid' );
-      
+
       $order = (isset($_GET['order']))?$_GET['order']:'codigo';
       $seq = (isset($_GET['seq']))?$_GET['seq']:'ASC';
       $start = (isset($_GET['start']))?$_GET['start']:0;
       $limit = (isset($_GET['limit']))?$_GET['limit']:10;
 
       $ord = ($order != '')?'ORDER BY '.$order.' '.$seq:null;
-      
+
       $sel1 = ($order == 'clicks')?' selected="selected"':'';
       $sel2 = ($order == 'codigo')?' selected="selected"':'';
       $sel3 = ($order == 'data')?' selected="selected"':'';
@@ -65,7 +65,7 @@ function estatisticas_banner($options){
         <option value="ASC"'.$sel5.'>ASC</option>
         <option value="DESC"'.$sel6.'>DESC</option>
       </select>';
-      
+
       $qtdes = array('5','10','15','20');
       $block['select1'] = '<select name="limit">';
       for ($i = 0; $i <= count($qtdes)-1; $i++){
@@ -73,11 +73,11 @@ function estatisticas_banner($options){
         $block['select1'] .= '<option value="'.$qtdes[$i].'"'.$sel7.'>'.$qtdes[$i].'</option>';
       }
       $block['select1'] .= '</select>';
-      
+
       $banner = new RWbanners();
       $arr = $banner->getAllByClient($uid, $ord, null, $limit, $start);
       $total = $banner->getRowNum(null,$uid);
-      
+
       $arr2 = array();
       $arr3 = array();
       for($i = 0; $i <= count($arr)-1; $i++){
@@ -102,7 +102,7 @@ function estatisticas_banner($options){
         $arr3[$i]['data'] = converte($arr3[$i]['data'],'BR',0);
       }
       $block['rows'] = $arr3;
-      
+
       if (substr($_SERVER['QUERY_STRING'],0,5) != 'start'){
         $arr_qs = explode('&',$_SERVER['QUERY_STRING']);
         $n = (substr($arr_qs[count($arr_qs)-1],0,5) != 'start')?$n = 1:$n = 2;

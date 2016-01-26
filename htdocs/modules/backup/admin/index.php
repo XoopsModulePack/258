@@ -66,5 +66,5 @@ $val2=mysql_query("SHOW VARIABLES LIKE 'collation%'");
     }
     echo $indexadmin->addNavigation('index.php') ;
         echo $indexadmin->renderIndex();
-    
+
 include "admin_footer.php";

@@ -3,7 +3,7 @@
 /*
 
 Usage:
-    
+
     Copy clone.php in <xoops_root>
     Change current working directory to <xoops_root>
     Update mappings as per new modulename.
@@ -13,7 +13,7 @@ Usage:
 */
 
 // ##########################################################
-//	Define your mapping here
+//  Define your mapping here
 // ##########################################################
 $patterns = array(
     // first one must be module directory name

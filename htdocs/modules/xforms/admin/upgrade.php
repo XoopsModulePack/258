@@ -44,19 +44,19 @@ if ($version >= 1.2 || $count > 0) {
     $msgs[] = 'Create forms table...';
     $sql[] =
     "CREATE TABLE `".$xoopsDB->prefix('xforms_forms')."` (
-	  `form_id` smallint(5) NOT NULL auto_increment,
-	  `form_send_method` char(1) NOT NULL default 'e',
-	  `form_send_to_group` smallint(3) NOT NULL default '0',
-	  `form_order` smallint(3) NOT NULL default '0',
-	  `form_delimiter` char(1) NOT NULL default 's',
-	  `form_title` varchar(255) NOT NULL default '',
-	  `form_submit_text` varchar(50) NOT NULL default '',
-	  `form_desc` text NOT NULL,
-	  `form_intro` text NOT NULL,
-	  `form_whereto` varchar(255) NOT NULL default '',
-	  PRIMARY KEY  (`form_id`),
-	  KEY `form_order` (`form_order`)
-	) ENGINE=MyISAM;";
+      `form_id` smallint(5) NOT NULL auto_increment,
+      `form_send_method` char(1) NOT NULL default 'e',
+      `form_send_to_group` smallint(3) NOT NULL default '0',
+      `form_order` smallint(3) NOT NULL default '0',
+      `form_delimiter` char(1) NOT NULL default 's',
+      `form_title` varchar(255) NOT NULL default '',
+      `form_submit_text` varchar(50) NOT NULL default '',
+      `form_desc` text NOT NULL,
+      `form_intro` text NOT NULL,
+      `form_whereto` varchar(255) NOT NULL default '',
+      PRIMARY KEY  (`form_id`),
+      KEY `form_order` (`form_order`)
+    ) ENGINE=MyISAM;";
 
     $msgs[] = 'Insert default data into forms table...';
     $sql[] =

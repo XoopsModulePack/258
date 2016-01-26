@@ -5,10 +5,10 @@ Avaman is a little module for managing System Avatars and Smilies.
 
  Requirements
  _____________________________________________________________________
- 
+
 - XOOPS >= 2.5.0
 - PHP version >= 5.2.0
-- ModuleClasses in /Frameworks (download it from here: http://goo.gl/Bmknt)  
+- ModuleClasses in /Frameworks (download it from here: http://goo.gl/Bmknt)
 
 
 USAGE:

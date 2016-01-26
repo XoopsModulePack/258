@@ -124,7 +124,7 @@ class ExtgalleryPhotoHandler extends ExtgalleryPersistableObjectHandler {
 
         return $this->getCount($criteria);
     }
-    
+
     function getAlbumPhotoPage($catId, $start, $sortby, $orderby) {
         $criteria = new CriteriaCompo();
         $criteria->add(new Criteria('cat_id',$catId));
@@ -298,11 +298,11 @@ class ExtgalleryPhotoHandler extends ExtgalleryPersistableObjectHandler {
 
         global $xoopsModuleConfig;
 
-        /*	Text position param
+        /*  Text position param
         /
-        /	0 : orig
-        /	-1 : opposit
-        /	1 : center
+        /   0 : orig
+        /   -1 : opposit
+        /   1 : center
         /
         */
         if($xoopsModuleConfig['watermark_position'] == "tl") {
@@ -497,7 +497,7 @@ class ExtgalleryPhotoHandler extends ExtgalleryPersistableObjectHandler {
     function _getAutoDescription($photoName) {
 
         global $xoopsModuleConfig;
-    
+
         //DNPROSSI
         /*if ($xoopsModuleConfig['enable_longdesc']) {
             $newphotoname = '';
@@ -621,12 +621,12 @@ class ExtgalleryPhotoHandler extends ExtgalleryPersistableObjectHandler {
         $photoDesc = '';
         $photoExtra = '';
         $photoTag = '';
-        
+
         if ( isset($_POST['photo_title']) ) { $photoTitle = $_POST['photo_title']; }
         if ( isset($_POST['photo_desc']) ) { $photoDesc = $_POST['photo_desc']; }
         if ( isset($_POST['photo_extra']) ) { $photoExtra = $_POST['photo_extra']; }
         if ( isset($_POST['tag']) ) { $photoTag = $_POST["tag"]; }
-        
+
         $photoStatus = $this->addLocalPhoto($catId,$this->photoUploader->getSavedFilename(), $photoTitle, $photoDesc , $photoExtra , $photoTag);
         $cat = $catHandler->getCat($catId);
         $cat->setVar('cat_isalbum',1);
@@ -677,7 +677,7 @@ class ExtgalleryPhotoHandler extends ExtgalleryPersistableObjectHandler {
         // Replace all bad file name character
         $photoName = $this->_makeFileName($dirtyPhotoName);
         rename($this->_getUploadPhotoPath().$dirtyPhotoName, $this->_getUploadPhotoPath().$photoName);
-        
+
         //DNPROSSI - changed photo_desc to photo_title
         // Making auto description
         if($photoTitle == "") {
@@ -728,7 +728,7 @@ class ExtgalleryPhotoHandler extends ExtgalleryPersistableObjectHandler {
            $tag_handler = xoops_getmodulehandler('tag', 'tag');
            $tag_handler->updateByItem($photoTag, $newid , 'extgallery', 0);
         }
-           
+
         return $data['photo_approved'];
     }
 

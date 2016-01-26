@@ -1,8 +1,8 @@
 <?php
 // $Id: index.php,v 1.2 2005/04/06 09:49:05 gij Exp $
-// FILE		::	index.php
-// AUTHOR	::	Ryuji AMANO <info@ryus.co.jp>
-// WEB		::	Ryu's Planning <http://ryus.co.jp/>
+// FILE     ::  index.php
+// AUTHOR   ::  Ryuji AMANO <info@ryus.co.jp>
+// WEB      ::  Ryu's Planning <http://ryus.co.jp/>
 //
 
 require_once "../../../include/cp_header.php";

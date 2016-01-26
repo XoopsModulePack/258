@@ -16,12 +16,12 @@
  * @copyright       Urbanspaceman (http://www.takeaweb.it)
  * @license         GPL
  * @package         xsitemap
- * @author 			Urbanspaceman (http://www.takeaweb.it)
+ * @author          Urbanspaceman (http://www.takeaweb.it)
  *
  * Version : 1.00:
  * ****************************************************************************
  */
-    
+
 define("_MB_XSITEMAP_PLUGIN_ID","Id");
 define("_MB_XSITEMAP_PLUGIN_NAME","Name");
 define("_MB_XSITEMAP_PLUGIN_MOD_VERSION","Mod_version");

@@ -63,16 +63,16 @@ function xoops_module_update_smartpartner($module)
         $table = new SmartDbTable('smartpartner_categories');
         if (!$table->exists()) {
             $table->setStructure("
-			  `categoryid` int(11) NOT NULL auto_increment,
-			  `parentid` int(11) NOT NULL default '0',
-			  `name` varchar(100) NOT NULL default '',
-			  `description` text NOT NULL,
-			  `image` varchar(255) NOT NULL default '',
-			  `total` int(11) NOT NULL default '0',
-			  `weight` int(11) NOT NULL default '1',
-			  `created` int(11) NOT NULL default '0',
-			  PRIMARY KEY  (`categoryid`)
-			");
+              `categoryid` int(11) NOT NULL auto_increment,
+              `parentid` int(11) NOT NULL default '0',
+              `name` varchar(100) NOT NULL default '',
+              `description` text NOT NULL,
+              `image` varchar(255) NOT NULL default '',
+              `total` int(11) NOT NULL default '0',
+              `weight` int(11) NOT NULL default '1',
+              `created` int(11) NOT NULL default '0',
+              PRIMARY KEY  (`categoryid`)
+            ");
 
             if (!$dbupdater->updateTable($table)) {
                 /**
@@ -84,11 +84,11 @@ function xoops_module_update_smartpartner($module)
         $table = new SmartDbTable('smartpartner_partner_cat_link');
         if (!$table->exists()) {
             $table->setStructure("
-			  `partner_cat_linkid` int(11) NOT NULL auto_increment,
-			  `categoryid` int(11) NOT NULL default '0',
-			  `partnerid` int(11) NOT NULL default '0',
-			   PRIMARY KEY  (`partner_cat_linkid`)
-			");
+              `partner_cat_linkid` int(11) NOT NULL auto_increment,
+              `categoryid` int(11) NOT NULL default '0',
+              `partnerid` int(11) NOT NULL default '0',
+               PRIMARY KEY  (`partner_cat_linkid`)
+            ");
 
             if (!$dbupdater->updateTable($table)) {
                 /**
@@ -101,20 +101,20 @@ function xoops_module_update_smartpartner($module)
         $table = new SmartDbTable('smartpartner_offer');
         if (!$table->exists()) {
             $table->setStructure("
-			   `offerid` int(11) NOT NULL auto_increment,
-			  `partnerid` int(11) NOT NULL default '0',
-			  `title` varchar(255) NOT NULL default '',
-			  `description` TEXT NOT NULL,
-			  `url` varchar(150) default '',
-			  `image` varchar(150) NOT NULL default '',
-			  `date_sub` int(11) NOT NULL default '0',
-			  `date_pub` int(11) NOT NULL default '0',
-			  `date_end` int(11) NOT NULL default '0',
-			  `status` int(10) NOT NULL default '-1',
-			  `weight` int(1) NOT NULL default '0',
-			  `dohtml` int(1) NOT NULL default '1',
-			  PRIMARY KEY  (`offerid`)
-			");
+               `offerid` int(11) NOT NULL auto_increment,
+              `partnerid` int(11) NOT NULL default '0',
+              `title` varchar(255) NOT NULL default '',
+              `description` TEXT NOT NULL,
+              `url` varchar(150) default '',
+              `image` varchar(150) NOT NULL default '',
+              `date_sub` int(11) NOT NULL default '0',
+              `date_pub` int(11) NOT NULL default '0',
+              `date_end` int(11) NOT NULL default '0',
+              `status` int(10) NOT NULL default '-1',
+              `weight` int(1) NOT NULL default '0',
+              `dohtml` int(1) NOT NULL default '1',
+              PRIMARY KEY  (`offerid`)
+            ");
 
             if (!$dbupdater->updateTable($table)) {
                 /**
@@ -127,19 +127,19 @@ function xoops_module_update_smartpartner($module)
         $table = new SmartDbTable('smartpartner_files');
         if (!$table->exists()) {
             $table->setStructure("
-			  `fileid` int(11) NOT NULL auto_increment,
-			  `id` int(11) NOT NULL default '0',
-			  `name` varchar(255) NOT NULL default '',
-			  `description` TEXT NOT NULL,
-			  `filename` varchar(255) NOT NULL default '',
-			  `mimetype` varchar(64) NOT NULL default '',
-			  `uid` int(6) default '0',
-			  `datesub` int(11) NOT NULL default '0',
-			  `status` int(1) NOT NULL default '-1',
-			  `notifypub` tinyint(1) NOT NULL default '1',
-			  `counter` int(8) unsigned NOT NULL default '0',
-			  PRIMARY KEY  (`fileid`)
-			");
+              `fileid` int(11) NOT NULL auto_increment,
+              `id` int(11) NOT NULL default '0',
+              `name` varchar(255) NOT NULL default '',
+              `description` TEXT NOT NULL,
+              `filename` varchar(255) NOT NULL default '',
+              `mimetype` varchar(64) NOT NULL default '',
+              `uid` int(6) default '0',
+              `datesub` int(11) NOT NULL default '0',
+              `status` int(1) NOT NULL default '-1',
+              `notifypub` tinyint(1) NOT NULL default '1',
+              `counter` int(8) unsigned NOT NULL default '0',
+              PRIMARY KEY  (`fileid`)
+            ");
 
             if (!$dbupdater->updateTable($table)) {
                 /**

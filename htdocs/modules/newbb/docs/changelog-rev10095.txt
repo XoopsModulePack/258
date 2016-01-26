@@ -7,7 +7,7 @@ newbb/votepolls.php, newbb/include/notification.inc.php, newbb/class/permission.
 newbb/class/xoopsformloader.php, newbb/votepolls.php, newbb/class/tree.php, newbb/topicmanager.php, newbb/class/readtopic.php
 newbb/class/readforum.php, newbb/class/read.php, newbb/ratethread.php, newbb/class/rate.php, newbb/class/newbbtree.php
 newbb/blocks/newbb_block_tag.php, newbb/index.php, newbb/admin/*.php,
-newbb/include/sitemap.plugin.php, newbb/include/search.inc.php, newbb/include/notification.inc.php, newbb/include/functions.user.php, 
+newbb/include/sitemap.plugin.php, newbb/include/search.inc.php, newbb/include/notification.inc.php, newbb/include/functions.user.php,
 newbb/include/module.v100.php, newbb/include/module.v220.php, newbb/include/module.php, newbb/include/functions.ini.php
 newbb/include/form.forum.php,
 newbb/notification_update.php, newbb/report.php, newbb/reply.php
@@ -27,7 +27,7 @@ newbb/include/functions.image.php, newbb/include/form.post.php, newbb/viewforum.
 newbb/seo.php, newbb/post.php, newbb/search.php, newbb/docs/changelog.txt, newbb/language/german/*.php
 
 7- Add new language definitions.
-newbb/language/english/admin.php, newbb/language/english/main.php, newbb/language/persian/admin.php, newbb/language/persian/main.php, 
+newbb/language/english/admin.php, newbb/language/english/main.php, newbb/language/persian/admin.php, newbb/language/persian/main.php,
 newbb/docs/lang_diff.txt
 
 8- Fix Undefined variable: pseudo_height (Cesag/irmtfan)

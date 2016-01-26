@@ -36,7 +36,7 @@ include_once dirname(dirname(__FILE__)) .'/include/functions.php';
 if (is_object($xoopsUser) && $xoopsUser->isAdmin($xoopsModule->mid())){
 
   $errors = 0;
-  
+
   //Checa se a tabela ds banners existe, caso n?o exista cria.
   if (!rwTableExists($xoopsDB->prefix('rw_banner'))){
     $sql = "
@@ -87,7 +87,7 @@ if (is_object($xoopsUser) && $xoopsUser->isAdmin($xoopsModule->mid())){
       rwAddField("maxclick int(11) NOT NULL default '0' AFTER clicks",$xoopsDB->prefix('rw_banner'));
     }
   }
-  
+
   if (!rwTableExists($xoopsDB->prefix('rw_categorias'))){
     $sql = "
     CREATE TABLE ".$xoopsDB->prefix('rw_categorias')." (
@@ -107,7 +107,7 @@ if (is_object($xoopsUser) && $xoopsUser->isAdmin($xoopsModule->mid())){
       rwRemoveField("modid",$xoopsDB->prefix('rw_categorias'));
     }
   }
-  
+
   if (!rwTableExists($xoopsDB->prefix('rw_tags'))){
     $sql = "
     CREATE TABLE ".$xoopsDB->prefix('rw_tags')." (

@@ -6,17 +6,17 @@
 
 1.52 Final 2012-12-22
 ============================
-- changed GUI to standard XOOPS Module GUI 
+- changed GUI to standard XOOPS Module GUI
 - included ModuleAdmin class from Mage
 
 28/08/2009
 ============================
-- Modificata la fase di creazione del file XML. Ora il file viene creato durante l'installazione del modulo nella ROOT del sito come richiesto 
-  dallo standard XML per le sitemap. Quando viene creato il file XML in fase di installazione del modulo, esso non è completo poichè 
-  Xsitemap non è ancora in grado di leggere i plugin installati. 
+- Modificata la fase di creazione del file XML. Ora il file viene creato durante l'installazione del modulo nella ROOT del sito come richiesto
+  dallo standard XML per le sitemap. Quando viene creato il file XML in fase di installazione del modulo, esso non è completo poichè
+  Xsitemap non è ancora in grado di leggere i plugin installati.
   Bisogna quindi rigenerare il file xml con l'apposito pulsante dal pannello di controllo oppure visitando la pagina xsitemap/xml_google.php.
- 
- 
+
+
 26/08/2009
 ============================
 - Aggiunta la gestione della sitemap XML ora viene generato dal sistema un file xsitemap.xml da inviare ai motori di ricerca
@@ -30,7 +30,7 @@
 - Sistemato un piccolo bug nel file include/install.php grazie a DUGRIS per la segnalazione
 - Aggiunto il Portoghesebr tra le lingue del modulo by Artsgeral
 - Aggiunto l'inglese tra le lingue del modulo by dbman
-- Modificato file di traduzione admin.php 
+- Modificato file di traduzione admin.php
 
 
 21/08/2009

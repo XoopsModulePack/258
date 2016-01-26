@@ -40,8 +40,8 @@ require_once XOOPS_ROOT_PATH.'/class/xoopsform/form.php';
 /**
  * Renders a form for setting module specific group permissions
  *
- * @author	Kazumi Ono	<onokazu@myweb.ne.jp>
- * @copyright	copyright (c) 2000-2003 XOOPS.org
+ * @author  Kazumi Ono  <onokazu@myweb.ne.jp>
+ * @copyright   copyright (c) 2000-2003 XOOPS.org
  *
  * @package     kernel
  * @subpackage  form
@@ -210,8 +210,8 @@ class MyXoopsGroupPermForm extends XoopsForm
 /**
  * Renders checkbox options for a group permission form
  *
- * @author	Kazumi Ono	<onokazu@myweb.ne.jp>
- * @copyright	copyright (c) 2000-2003 XOOPS.org
+ * @author  Kazumi Ono  <onokazu@myweb.ne.jp>
+ * @copyright   copyright (c) 2000-2003 XOOPS.org
  *
  * @package     kernel
  * @subpackage  form

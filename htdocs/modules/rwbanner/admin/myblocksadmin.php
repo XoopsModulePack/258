@@ -87,7 +87,7 @@ $block_arr =& XoopsBlock::getByModule( $xoopsModule->mid() ) ;
 function list_blocks()
 {
     global $block_arr, $xoopsModule ;
-    
+
     // cachetime options
     $cachetimes = array('0' => _NOCACHE, '30' => sprintf(_SECONDS, 30), '60' => _MINUTE, '300' => sprintf(_MINUTES, 5), '1800' => sprintf(_MINUTES, 30), '3600' => _HOUR, '18000' => sprintf(_HOURS, 5), '86400' => _DAY, '259200' => sprintf(_DAYS, 3), '604800' => _WEEK, '2592000' => _MONTH);
 
@@ -97,16 +97,16 @@ function list_blocks()
     echo "<div id='toptable'>";
     echo "<span style=\"color: #567; margin: 3px 0 12px 0; font-size: small; display: block; \">" . _AM_RWBANNER_BLOCKSINFO . "</span>";
     echo "
-	<form action='admin.php' name='blockadmin' method='post'>
-		<table width='100%' class='outer' cellpadding='4' cellspacing='1'>
-		<tr valign='middle'>
-			<th>"._AM_TITLE."</th>
-			<th align='center' nowrap='nowrap'>"._AM_SIDE."</th>
-			<th align='center'>"._AM_WEIGHT."</th>
-			<th align='center'>"._AM_VISIBLEIN."</th>
-			<th align='center'>"._AM_BCACHETIME."</th>
-			<th align='right'>"._AM_RWBANNER_ACTION."</th>
-		</tr>\n" ;
+    <form action='admin.php' name='blockadmin' method='post'>
+        <table width='100%' class='outer' cellpadding='4' cellspacing='1'>
+        <tr valign='middle'>
+            <th>"._AM_TITLE."</th>
+            <th align='center' nowrap='nowrap'>"._AM_SIDE."</th>
+            <th align='center'>"._AM_WEIGHT."</th>
+            <th align='center'>"._AM_VISIBLEIN."</th>
+            <th align='center'>"._AM_BCACHETIME."</th>
+            <th align='right'>"._AM_RWBANNER_ACTION."</th>
+        </tr>\n" ;
 
     // blocks displaying loop
     $class = 'even' ;
@@ -221,17 +221,17 @@ function list_blocks()
 
         // displaying part
         echo "
-		<tr valign='middle'>
-			<td class='$class'>
-				$name
-				<br />
-				<input type='text' name='title[$bid]' value='$title' size='20' />
-			</td>
-			<td class='$class' align='center' nowrap='nowrap' width='125px'>
+        <tr valign='middle'>
+            <td class='$class'>
+                $name
+                <br />
+                <input type='text' name='title[$bid]' value='$title' size='20' />
+            </td>
+            <td class='$class' align='center' nowrap='nowrap' width='125px'>
 <!-- by luciorota - start -->
-			<table>
-			<tr>
-			<td>&nbsp;</td>
+            <table>
+            <tr>
+            <td>&nbsp;</td>
             <td>
                 <div style='float:left;background-color:$scol2;'>
                 <input type='radio' name='side[$bid]' value='".XOOPS_CENTERBLOCK_LEFT."' style='background-color:$scol2;' $ssel2 />
@@ -248,100 +248,100 @@ function list_blocks()
                 </div>
             </td>
             <td>&nbsp;</td>
-			</tr>
-			<tr>
-			<td>
+            </tr>
+            <tr>
+            <td>
                 <div style='float:left;background-color:$scol0;'>
-    			<input type='radio' name='side[$bid]' value='".XOOPS_SIDEBLOCK_LEFT."' style='background-color:$scol0;' $ssel0 />
-    			</div>
+                <input type='radio' name='side[$bid]' value='".XOOPS_SIDEBLOCK_LEFT."' style='background-color:$scol0;' $ssel0 />
+                </div>
             </td>
             <td>&nbsp;</td>
             <td>&nbsp;</td>
             <td>&nbsp;</td>
             <td>
-            	<div style='float:left;background-color:$scol1;'>
-    			<input type='radio' name='side[$bid]' value='".XOOPS_SIDEBLOCK_RIGHT."' style='background-color:$scol1;' $ssel1 />
-    			</div>
-		    </td>
-			</tr>
-			<tr>
-			<td>&nbsp;</td>
+                <div style='float:left;background-color:$scol1;'>
+                <input type='radio' name='side[$bid]' value='".XOOPS_SIDEBLOCK_RIGHT."' style='background-color:$scol1;' $ssel1 />
+                </div>
+            </td>
+            </tr>
+            <tr>
+            <td>&nbsp;</td>
             <td>
-            	<div style='float:left;background-color:$scol7;'>
-    			<input type='radio' name='side[$bid]' value='".XOOPS_CENTERBLOCK_BOTTOMLEFT."' style='background-color:$scol7;' $ssel7 />
-    			</div>
+                <div style='float:left;background-color:$scol7;'>
+                <input type='radio' name='side[$bid]' value='".XOOPS_CENTERBLOCK_BOTTOMLEFT."' style='background-color:$scol7;' $ssel7 />
+                </div>
             </td>
             <td>
-            	<div style='float:left;background-color:$scol9;'>
-    			<input type='radio' name='side[$bid]' value='".XOOPS_CENTERBLOCK_BOTTOM."' style='background-color:$scol9;' $ssel9 />
-    			</div>
+                <div style='float:left;background-color:$scol9;'>
+                <input type='radio' name='side[$bid]' value='".XOOPS_CENTERBLOCK_BOTTOM."' style='background-color:$scol9;' $ssel9 />
+                </div>
             </td>
             <td>
-            	<div style='float:left;background-color:$scol8;'>
-    			<input type='radio' name='side[$bid]' value='".XOOPS_CENTERBLOCK_BOTTOMRIGHT."' style='background-color:$scol8;' $ssel8 />
-    			</div>
+                <div style='float:left;background-color:$scol8;'>
+                <input type='radio' name='side[$bid]' value='".XOOPS_CENTERBLOCK_BOTTOMRIGHT."' style='background-color:$scol8;' $ssel8 />
+                </div>
             </td>
             <td>&nbsp;</td>
-			</tr>
-			</table>
+            </tr>
+            </table>
 <!--
-				<div style='float:left;background-color:$scol0;'>
-					<input type='radio' name='side[$bid]' value='".XOOPS_SIDEBLOCK_LEFT."' style='background-color:$scol0;' $ssel0 />
-				</div>
-				<div style='float:left;'>-</div>
-				<div style='float:left;background-color:$scol2;'>
-					<input type='radio' name='side[$bid]' value='".XOOPS_CENTERBLOCK_LEFT."' style='background-color:$scol2;' $ssel2 />
-				</div>
-				<div style='float:left;background-color:$scol3;'>
-					<input type='radio' name='side[$bid]' value='".XOOPS_CENTERBLOCK_CENTER."' style='background-color:$scol3;' $ssel3 />
-				</div>
-				<div style='float:left;background-color:$scol4;'>
-					<input type='radio' name='side[$bid]' value='".XOOPS_CENTERBLOCK_RIGHT."' style='background-color:$scol4;' $ssel4 />
-				</div>
-				<div style='float:left;'>-</div>
-				<div style='float:left;background-color:$scol1;'>
-					<input type='radio' name='side[$bid]' value='".XOOPS_SIDEBLOCK_RIGHT."' style='background-color:$scol1;' $ssel1 />
-				</div>
+                <div style='float:left;background-color:$scol0;'>
+                    <input type='radio' name='side[$bid]' value='".XOOPS_SIDEBLOCK_LEFT."' style='background-color:$scol0;' $ssel0 />
+                </div>
+                <div style='float:left;'>-</div>
+                <div style='float:left;background-color:$scol2;'>
+                    <input type='radio' name='side[$bid]' value='".XOOPS_CENTERBLOCK_LEFT."' style='background-color:$scol2;' $ssel2 />
+                </div>
+                <div style='float:left;background-color:$scol3;'>
+                    <input type='radio' name='side[$bid]' value='".XOOPS_CENTERBLOCK_CENTER."' style='background-color:$scol3;' $ssel3 />
+                </div>
+                <div style='float:left;background-color:$scol4;'>
+                    <input type='radio' name='side[$bid]' value='".XOOPS_CENTERBLOCK_RIGHT."' style='background-color:$scol4;' $ssel4 />
+                </div>
+                <div style='float:left;'>-</div>
+                <div style='float:left;background-color:$scol1;'>
+                    <input type='radio' name='side[$bid]' value='".XOOPS_SIDEBLOCK_RIGHT."' style='background-color:$scol1;' $ssel1 />
+                </div>
 -->
 <!-- by luciorota - end -->
-				<div style='float:left;width:40px;'>&nbsp;</div>
-				<div style='float:left;background-color:$scoln;'>
-					<input type='radio' name='side[$bid]' value='-1' style='background-color:$scoln;' $sseln />
-				</div>
-				<div style='float:left;'>"._NONE."</div>
-			</td>
-			<td class='$class' align='center'>
-				<input type='text' name=weight[$bid] value='$weight' size='3' maxlength='5' style='text-align:right;' />
-			</td>
-			<td class='$class' align='center'>
-				<select name='bmodule[$bid][]' size='5' multiple='multiple'>
-					$module_options
-				</select>
-			</td>
-			<td class='$class' align='center'>
-				<select name='bcachetime[$bid]' size='1'>
-					$cachetime_options
-				</select>
-			</td>
-			<td class='$class' align='right'>
-				<a href='admin.php?fct=blocksadmin&amp;op=edit&amp;bid=$bid'>"._EDIT."</a>{$delete_link}{$clone_link}
-				<input type='hidden' name='bid[$bid]' value='$bid' />
-			</td>
-		</tr>\n" ;
+                <div style='float:left;width:40px;'>&nbsp;</div>
+                <div style='float:left;background-color:$scoln;'>
+                    <input type='radio' name='side[$bid]' value='-1' style='background-color:$scoln;' $sseln />
+                </div>
+                <div style='float:left;'>"._NONE."</div>
+            </td>
+            <td class='$class' align='center'>
+                <input type='text' name=weight[$bid] value='$weight' size='3' maxlength='5' style='text-align:right;' />
+            </td>
+            <td class='$class' align='center'>
+                <select name='bmodule[$bid][]' size='5' multiple='multiple'>
+                    $module_options
+                </select>
+            </td>
+            <td class='$class' align='center'>
+                <select name='bcachetime[$bid]' size='1'>
+                    $cachetime_options
+                </select>
+            </td>
+            <td class='$class' align='right'>
+                <a href='admin.php?fct=blocksadmin&amp;op=edit&amp;bid=$bid'>"._EDIT."</a>{$delete_link}{$clone_link}
+                <input type='hidden' name='bid[$bid]' value='$bid' />
+            </td>
+        </tr>\n" ;
 
         $class = ( $class == 'even' ) ? 'odd' : 'even' ;
     }
 
     echo "
-		<tr>
-			<td class='foot' align='center' colspan='6'>
-				<input type='hidden' name='fct' value='blocksadmin' />
-				<input type='hidden' name='op' value='order' />
-      		    <input type='submit' name='submit' value='"._SUBMIT."' />
-			</td>
-		</tr>
-		</table>
-	</form>\n" ;
+        <tr>
+            <td class='foot' align='center' colspan='6'>
+                <input type='hidden' name='fct' value='blocksadmin' />
+                <input type='hidden' name='op' value='order' />
+                <input type='submit' name='submit' value='"._SUBMIT."' />
+            </td>
+        </tr>
+        </table>
+    </form>\n" ;
     echo "</div>";
 }
 
@@ -357,7 +357,7 @@ function get_block_configs()
 function list_groups()
 {
     global $target_mid , $target_mname , $block_arr, $xoopsModule ;
-    
+
     $myts = &MyTextSanitizer::getInstance();
 
     rwbanner_collapsableBar('bottomtable', 'bottomtableicon');

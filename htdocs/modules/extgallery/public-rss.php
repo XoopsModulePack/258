@@ -55,7 +55,7 @@ if (!$xoopsTpl->is_cached('db:extgallery_public-rss.html')) {
         $xoopsConfig['slogan'] = $myts->formatForML($xoopsConfig['slogan']);
         $channel_category = $myts->formatForML($channel_category);
     }
-    
+
     $xoopsTpl->assign('channel_charset', _CHARSET);
     $xoopsTpl->assign('channel_title', htmlspecialchars($xoopsConfig['sitename'], ENT_QUOTES));
     $xoopsTpl->assign('channel_link', PUBLISHER_URL);
@@ -76,7 +76,7 @@ if (!$xoopsTpl->is_cached('db:extgallery_public-rss.html')) {
     $xoopsTpl->assign('channel_language', _LANGCODE);
     $xoopsTpl->assign('image_url', XOOPS_URL . $xoopsModuleConfig['logo_rss']);
     $dimention = getimagesize(XOOPS_ROOT_PATH . $xoopsModuleConfig['logo_rss']);
-    
+
     if (empty($dimention[0])) {
         $width = 140;
         $height = 140;
@@ -85,7 +85,7 @@ if (!$xoopsTpl->is_cached('db:extgallery_public-rss.html')) {
         $dimention[1] = $dimention[1] * $width / $dimention[0];
         $height = ($dimention[1] > 140) ? $dimention[1] * $dimention[0] / 140 : $dimention[1];
     }
-    
+
     $xoopsTpl->assign('image_width', $width);
     $xoopsTpl->assign('image_height', $height);
 
@@ -93,7 +93,7 @@ if (!$xoopsTpl->is_cached('db:extgallery_public-rss.html')) {
         'limit' => $xoopsModuleConfig['perpage_rss'],
         'cat' => $categories
     );
-    
+
     $photos = $photoHandler->objectToArray($photoHandler->getLastPhoto($param));
     $xoopsTpl->assign('photos', $photos);
 }

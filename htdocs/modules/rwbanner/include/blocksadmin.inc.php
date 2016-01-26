@@ -619,7 +619,7 @@ if ($op == 'clone_ok') {
 
     }
 
-/*	if ($cblock->getVar('template') != '') {
+/*  if ($cblock->getVar('template') != '') {
 
         $tplfile_handler =& xoops_gethandler('tplfile');
 
@@ -651,7 +651,7 @@ if ($op == 'clone_ok') {
 
     }
 
-/*	global $xoopsUser;
+/*  global $xoopsUser;
 
     $groups =& $xoopsUser->getGroups();
 

@@ -46,7 +46,7 @@ if($photo->getVar('cat_id') == 0) {
 
 // If user is allowed to view this picture
 } elseif($permHandler->isAllowed($xoopsUser, 'public_access', $photo->getVar('cat_id'))) {
-    
+
  $photo = $photoHandler->objectToArray($photo);
     header ("Content-type: ".$type."");
     readfile(XOOPS_ROOT_PATH."/uploads/extgallery/public-photo/medium/".$photo['photo_name']);
@@ -56,5 +56,5 @@ if($photo->getVar('cat_id') == 0) {
 
     header ("Content-type: image/jpeg");
     readfile(XOOPS_ROOT_PATH."/modules/extgallery/images/not-allowed.jpg");
- 
+
 }

@@ -927,8 +927,8 @@ class SmartpartnerPartnerHandler extends SmartPersistableObjectHandler
 
         $ret = array();
         $sql = "SELECT title, id
-				   FROM " . $this->table . "
-				   ";
+                   FROM " . $this->table . "
+                   ";
         If ($queryarray) {
             $criteriaKeywords = new CriteriaCompo();
             for ($i = 0; $i < count($queryarray); $i++) {
@@ -1129,7 +1129,7 @@ class SmartpartnerPartnerHandler extends SmartPersistableObjectHandler
 
     }
 
-/*	function getFaqsFromSearch($queryarray = array(), $andor = 'AND', $limit = 0, $offset = 0, $userid = 0)
+/*  function getFaqsFromSearch($queryarray = array(), $andor = 'AND', $limit = 0, $offset = 0, $userid = 0)
     {
 
     Global $xoopsUser;

@@ -16,7 +16,7 @@
  * @copyright       Urbanspaceman (http://www.takeaweb.it)
  * @license         GPL
  * @package         xsitemap
- * @author 			Urbanspaceman (http://www.takeaweb.it)
+ * @author          Urbanspaceman (http://www.takeaweb.it)
  *
  * Version : 1.00:
  * ****************************************************************************
@@ -29,7 +29,7 @@ $module = $module_handler->getByDirname($dirname);
 $pathIcon32 = $module->getInfo('icons32');
 
 xoops_loadLanguage('admin', $dirname);
- 
+
 $adminmenu = array();
 $i = 1;
 $adminmenu[$i]["title"] = _MI_XSITEMAP_MANAGER_INDEX;

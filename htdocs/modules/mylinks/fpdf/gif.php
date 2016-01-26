@@ -785,10 +785,10 @@ class CGIF
 
     // READ FILE
     if(!($fh = @fOpen($lpszFileName, "rb"))) {
-    //	return false;
+    //  return false;
     }
 //for local Gif's
-//		$this->m_lpData = @fRead($fh, @fileSize($lpszFileName));
+//      $this->m_lpData = @fRead($fh, @fileSize($lpszFileName));
 //for remote Gif's
     while(!feof($fh)) {
       $this->m_lpData = $this->m_lpData . fread($fh, 1024);

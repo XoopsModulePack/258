@@ -15,7 +15,7 @@
  * @package     ExtGallery
  * @version     $Id: view.tag.php 8088 2011-11-06 09:38:12Z beckmi $
  */
- 
+
 //todo: check this file
 require '../../mainfile.php';
 include_once XOOPS_ROOT_PATH . '/modules/tag/view.tag.php';

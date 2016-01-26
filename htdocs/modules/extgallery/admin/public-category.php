@@ -114,8 +114,8 @@ switch($op) {
                 echo "<script type='text/JavaScript'>";
                 echo "function ChangeThumb() {
 
-							var formSelect;
-							var thumb = new Array();";
+                            var formSelect;
+                            var thumb = new Array();";
 
                 echo "thumb[0] = '../images/blank.gif';\n";
                 foreach($photoArray as $k => $v) {
@@ -124,8 +124,8 @@ switch($op) {
 
                 echo "formSelect = document.getElementById('photo_id');
 
-							document.getElementById('thumb').src = thumb[formSelect.options[formSelect.selectedIndex].value];
-						}";
+                            document.getElementById('thumb').src = thumb[formSelect.options[formSelect.selectedIndex].value];
+                        }";
                 echo "</script>";
 
                 $photoSelect = "\n".'<select size="1" name="photo_id" id="photo_id" onChange="ChangeThumb();" onkeydown="ChangeThumb();">'."\n";
@@ -190,7 +190,7 @@ switch($op) {
         $catHandler = xoops_getmodulehandler('publiccat', 'extgallery');
 
         xoops_cp_header();
-      
+
         $form = new XoopsThemeForm(_AM_EXTGALLERY_MODDELETE_PUBLICCAT, 'modify_cat', 'public-category.php?op=modify', 'post', true);
         $form->addElement(new XoopsFormLabel(_AM_EXTGALLERY_CATEGORY, $catHandler->getSelect('cat_id', false, false, 0, "", true)));
         $form->addElement(new XoopsFormButton("", "submit", _SUBMIT, "submit"));

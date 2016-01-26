@@ -57,8 +57,8 @@ function &gal_getWysiwygForm($caption, $name, $value, $rows, $cols, $width, $hei
     $editor_configs['width'] = $width;
     $editor_configs['height'] = $height;
     $editor_configs['editor'] = $editor_option;
-    
+
     $editor = new XoopsFormEditor($caption, $name, $editor_configs);
-    
+
     return $editor;
 }

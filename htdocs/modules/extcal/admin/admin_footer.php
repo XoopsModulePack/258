@@ -14,7 +14,7 @@
  * @package::    extCal
  * @subpackage:: admin
  * @since:       2.5.0
- * @author 	Mamba (www.xoops.org)
+ * @author  Mamba (www.xoops.org)
  * @version::     $Id $
  **/
 

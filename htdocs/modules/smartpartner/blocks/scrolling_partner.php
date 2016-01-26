@@ -28,7 +28,7 @@ function b_scrolling_partner_show($options)
         }
         $partnersObj = $newObjs;
     }
-    /*	$cat_id = array();
+    /*  $cat_id = array();
             foreach($partnersObj as $partnerObj){
                 $p_cats = $partnerObj->categoryid();
                 $p_cat_rand = array_rand($p_cats);

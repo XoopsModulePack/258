@@ -21,9 +21,9 @@ if (!defined("XOOPS_ROOT_PATH")) {
 }
 
 function extgallerySearch($queryarray, $andor, $limit, $offset, $userid) {
-    
+
     $photoHandler = xoops_getmodulehandler('publicphoto', 'extgallery');
-    
+
     return $photoHandler->getSearchedPhoto($queryarray, $andor, $limit, $offset, $userid);
 
 }

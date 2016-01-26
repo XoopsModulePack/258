@@ -1,9 +1,9 @@
 <?php
 // $Id: offer.php,v 1.2 2007/09/19 19:48:11 felix Exp $
 // ------------------------------------------------------------------------ //
-// 				 XOOPS - PHP Content Management System                      //
-//					 Copyright (c) 2000 XOOPS.org                           //
-// 						<http://www.xoops.org/>                             //
+//               XOOPS - PHP Content Management System                      //
+//                   Copyright (c) 2000 XOOPS.org                           //
+//                      <http://www.xoops.org/>                             //
 // ------------------------------------------------------------------------ //
 // This program is free software; you can redistribute it and/or modify     //
 // it under the terms of the GNU General Public License as published by     //
@@ -23,7 +23,7 @@
 // along with this program; if not, write to the Free Software              //
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307 USA //
 // ------------------------------------------------------------------------ //
-// URL: http://www.xoops.org/												//
+// URL: http://www.xoops.org/                                               //
 // Project: The XOOPS Project                                               //
 // -------------------------------------------------------------------------//
 

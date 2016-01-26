@@ -63,9 +63,9 @@ _AM_EXTGALLERY_PHOTO_TITLE
 - 5.3.0 Assigning the return value of new by reference is deprecated PHP 5.3 (davidenprossi)
 - Support XOOPS 2.5.x and PHP 5.3.x (davidenprossi)
 - Add Form Options - Eneabled both Description & Extra Field for html input In options HTML has to be enabled.
-	enable_rating, enable_info, enable_resolution, enable_download, enable_date
-	enable_ecards, enable_submitter_lnk, enable_photo_hits
-	(davidenprossi)
+    enable_rating, enable_info, enable_resolution, enable_download, enable_date
+    enable_ecards, enable_submitter_lnk, enable_photo_hits
+    (davidenprossi)
 - Add Preferences Options for xoopseditor selection and some info enable/disable view (davidenprossi)
 - Add new lang constants for added Preferences Options in languages/english/modinfo.php (davidenprossi)
 - Add new options for template display (davidenprossi)

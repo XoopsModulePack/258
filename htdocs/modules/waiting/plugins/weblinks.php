@@ -8,7 +8,7 @@ function b_waiting_weblinks()
     $block = array();
     $result = $xoopsDB->query("SELECT COUNT(*) FROM ".$xoopsDB->prefix("weblinks_modify")." WHERE mode=0");
     if ( $result ) {
-//		$block['adminlink'] = XOOPS_URL."/modules/weblinks/admin/index.php?op=listNewLinks";
+//      $block['adminlink'] = XOOPS_URL."/modules/weblinks/admin/index.php?op=listNewLinks";
         $block['adminlink'] = XOOPS_URL."/modules/weblinks/admin/link_manage.php?op=listNewLinks";
 
         list($block['pendingnum']) = $xoopsDB->fetchRow($result);
@@ -30,7 +30,7 @@ function b_waiting_weblinks()
     $block = array();
     $result = $xoopsDB->query("SELECT COUNT(*) FROM ".$xoopsDB->prefix("weblinks_modify")." WHERE mode=1");
     if ( $result ) {
-//		$block['adminlink'] = XOOPS_URL."/modules/weblinks/admin/index.php?op=listModReq";
+//      $block['adminlink'] = XOOPS_URL."/modules/weblinks/admin/index.php?op=listModReq";
         $block['adminlink'] = XOOPS_URL."/modules/weblinks/admin/link_manage.php?op=listModReq";
 
         list($block['pendingnum']) = $xoopsDB->fetchRow($result);

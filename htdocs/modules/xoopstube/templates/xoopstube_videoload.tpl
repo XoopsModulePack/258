@@ -4,17 +4,17 @@
 <{/if}>
 
 <div class="even" style="display: table; width: 99%;">
-	<span style="float: left;">
-		<a href="<{$xoops_url}>/modules/<{$video.module_dir}>/singlevideo.php?cid=<{$video.cid}>&amp;lid=<{$video.id}>"><{$video.title}></a><{$video.icons}>
+    <span style="float: left;">
+        <a href="<{$xoops_url}>/modules/<{$video.module_dir}>/singlevideo.php?cid=<{$video.cid}>&amp;lid=<{$video.id}>"><{$video.title}></a><{$video.icons}>
         &nbsp;<{if $xoops_isadmin}><{$video.adminvideo}><{/if}>
-	</span>
+    </span>
     <{if $video.published > 0 }>
         <span style="float: right; vertical-align: middle; padding-left: 10px;">
-			<a href="<{$xoops_url}>/modules/<{$video.module_dir}>/singlevideo.php?cid=<{$video.cid}>&amp;lid=<{$video.id}>">
+            <a href="<{$xoops_url}>/modules/<{$video.module_dir}>/singlevideo.php?cid=<{$video.cid}>&amp;lid=<{$video.id}>">
                 <img src="<{$xoops_url}>/modules/<{$video.module_dir}>/assets/images/icon/play.png"
                      alt="<{$smarty.const._MD_XOOPSTUBE_VIEWDETAILS}>" title="<{$smarty.const._MD_XOOPSTUBE_VIEWDETAILS}>"/>
             </a>
-		</span>
+        </span>
     <{/if}>
 </div>
 

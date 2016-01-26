@@ -410,13 +410,13 @@ switch ($op) {
                             <td class="odd" align="center">' . $sendto . '</td>
                             <td class="odd" align="center">';
                     if ($f->getVar('form_save_db') != 0) {
-                        echo '	<a href="report.php?op=show&form_id=' . $id . '">
+                        echo '  <a href="report.php?op=show&form_id=' . $id . '">
                                     <img src="' . $mypathIcon16 . '/rptsee.png" class="tooltip" title="' . _AM_XFORMS_SHOW_REPORT . '" alt="' . _AM_XFORMS_SHOW_REPORT . '">
                                 </a>&nbsp;&nbsp;';
-                        echo '	<a href="report.php?op=export&format=v&form_id=' . $id . '">
+                        echo '  <a href="report.php?op=export&format=v&form_id=' . $id . '">
                                     <img src="' . $mypathIcon16 . '/rptvert.png" class="tooltip" title="' . _AM_XFORMS_RPT_EXPORT_V . '" alt="' . _AM_XFORMS_RPT_EXPORT_V . '">
                                 </a>&nbsp;&nbsp;';
-                        echo '	<a href="report.php?op=export&format=h&form_id=' . $id . '">
+                        echo '  <a href="report.php?op=export&format=h&form_id=' . $id . '">
                                     <img src="' . $mypathIcon16 . '/rpthor.png" class="tooltip" title="' . _AM_XFORMS_RPT_EXPORT_H . '" alt="' . _AM_XFORMS_RPT_EXPORT_H . '">
                                 </a>';
                     } else {
@@ -432,7 +432,7 @@ switch ($op) {
             }
             if ($totalList > 0) {
                 $bshow = new XoopsFormButton('', (($showAll) ? 'shownormal' : 'showall'), (($showAll) ? _AM_XFORMS_SHOW_NORMAL_FORMS : _AM_XFORMS_SHOW_ALL_FORMS), 'submit');
-                echo '	<tr>
+                echo '  <tr>
                             <td class="foot">&nbsp;</td>
                             <td class="foot" colspan="5">' . $bshow->render() . '</td>
                         </tr>

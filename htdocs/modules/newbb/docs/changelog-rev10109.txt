@@ -50,7 +50,7 @@ date 2013-05-19
 1- add: poll_module: rewrite polls.php to accept xoopspoll 1.4 by zyspec and all old xoopspoll and umfrage versions and all clones.
 in newbb/class/topic.php and newbb/polls.php , newbb/votepolls.php , newbb/viewtopic.php ,  newbb/class/post.php , newbb/topicmanager.php
 and newbb/templates/newbb_poll_results.html , newbb/templates/newbb_poll_view.html
-and newbb/templates_fulldiv_opacity/newbb_poll_results.html , newbb/templates_fulldiv_opacity/newbb_poll_view.html 
+and newbb/templates_fulldiv_opacity/newbb_poll_results.html , newbb/templates_fulldiv_opacity/newbb_poll_view.html
 
 2- add: $xoopspoll in header for backward compatibility. in  newbb/header.php
 3- improve: priorities for default poll module : 1- xoopspoll 2- last element in array 3- if no poll module => 0 in newbb/xoops_version.php
@@ -152,7 +152,7 @@ newbb/list.topic.php,
 add: newbb/blocks/list_topic.php, newbb/templates/blocks/newbb_block_list_topic.html, newbb/templates/js/language/english/newbb_validation.js
      newbb/templates_fulldiv_opacity/blocks/newbb_block_list_topic.html, newbb/templates_fulldiv_opacity/js/language/english/newbb_validation.js
 
-8- fix: remove hardcoded items from topic_icon and topic_folder smarty and add sticky, digest, poll, lock, publish time and rating smarty 
+8- fix: remove hardcoded items from topic_icon and topic_folder smarty and add sticky, digest, poll, lock, publish time and rating smarty
 in newbb/templates_fulldiv_opacity/viewall.html, in newbb/templates/viewall.html
 
 9- bug fix: remove hardcoded access to database for creating forum selection box (multiple and single) in admin prune.
@@ -172,9 +172,9 @@ in newbb/xoops_version.php
 
 date 2012-12-26
 ===================================
-1- bug fix: Warning: xoopsOption[template_main] should be defined before including header.php in file /footer.php line 59 
+1- bug fix: Warning: xoopsOption[template_main] should be defined before including header.php in file /footer.php line 59
 in newbb/edit.php, newbb/header.php, newbb/index.php, newbb/list.topic.php, newbb/newtopic.php, newbb/post.php, newbb/reply.php,
-newbb/search.php, newbb/topicmanager.php, newbb/viewforum.php, newbb/viewpost.php, newbb/viewtopic.php  
+newbb/search.php, newbb/topicmanager.php, newbb/viewforum.php, newbb/viewpost.php, newbb/viewtopic.php
 
 2- improve: use addScript instead of xoops_module_header to add toggle script because some themes are not standard
 in newbb/header.php, newbb/footer.php
@@ -250,14 +250,14 @@ in newbb/viewtopic.php
 
 date 2012-10-22
 ===================================
-1- bug fix: viewpost.php?status=new AND viewforum.php?forum=FFF&status=unread and list.topic.php?status=unread when read_mode = 1 (cookie) 
+1- bug fix: viewpost.php?status=new AND viewforum.php?forum=FFF&status=unread and list.topic.php?status=unread when read_mode = 1 (cookie)
 in newbb/viewpost.php, newbb/class/forum.php, newbb/class/topic.renderer.php
 
 2- improve: change the read_mode = 2 (db) to read_mode = 1 (cookie) for anonymous users
 in newbb/include/functions.ini.php, newbb/include/plugin.php
 
 3- minor bug fix: <{$lastvisit}> smarty variable is added for all users (members and anons) it was wrongly only for members
-in newbb/index.php, newbb/templates/newbb_index.html, newbb/templates_fulldiv_opacity/newbb_index.html 
+in newbb/index.php, newbb/templates/newbb_index.html, newbb/templates_fulldiv_opacity/newbb_index.html
 
 date 2012-10-20
 ===================================
@@ -341,7 +341,7 @@ in newbb/class/topic.renderer.php, newbb/templates/newbb_viewall.html
 in newbb/templates/newbb_index.html, newbb/templates/newbb_viewall.html, newbb/templates/newbb_viewforum.html, newbb/templates/newbb_search.html
 
 8- bug fix: wrongly dont parse negative values (categories) when newbb_forumSelectBox is multiple. add a new getIdsByValues function to class/forum.php
-in newbb/class/forum.php, newbb/include/search.inc.php, newbb/include/topic.renderer.php, 
+in newbb/class/forum.php, newbb/include/search.inc.php, newbb/include/topic.renderer.php,
 
 9- bug fix: id="xo-pagenav" is hardcoded in the XOOPS Core 2.5.5 and 2.6 (mrphilong/irmtfan)
 in newbb/templates/newbb_viewall.html, newbb/templates/newbb_viewforum.html,
@@ -353,8 +353,8 @@ in newbb/class/topic.renderer.php, newbb/templates/newbb_viewall.html
 11- feature add: show search results: 1- post title 2- post text
 in newbb/search.php, newbb/templates/newbb_search.html, newbb/templates/newbb_searchresults.html, newbb/language/LANG/main.php, newbb/docs/lang_diff.txt
 
-12- feature add: add "select text" and "highlighter" to search keywords. add a new file include/functions.text.php to handle text 
-in newbb/include/functions.text.php, newbb/include/plugin.php, newbb/class/post.php, newbb/include/search.inc.php, newbb/search.php 
+12- feature add: add "select text" and "highlighter" to search keywords. add a new file include/functions.text.php to handle text
+in newbb/include/functions.text.php, newbb/include/plugin.php, newbb/class/post.php, newbb/include/search.inc.php, newbb/search.php
 newbb/templates/css/language/LANG/style.css
 
 13- bug fix: remove hardcode database access, solve order issues, reduce queries, permissions issues. file include/search.inc.php is completely rewritten (important)
@@ -393,7 +393,7 @@ newbb/class/forum.php
 in newbb/class/topic.renderer.php
 
 9- improve: some modification in persian translation.
-in newbb/language/persian/main.php, newbb/language/persian/modinfo.php, 
+in newbb/language/persian/main.php, newbb/language/persian/modinfo.php,
 
 date 2012-09-29
 ===================================
@@ -430,7 +430,7 @@ in newbb/viewtopic.php
 in newbb/viewtopic.php, newbb/templates/newbb_viewtopic.html
 
 7- bug fix: innerHTML change only if the TAG is not img.
- 
+
 date 2012-09-25
 ===================================
 1-  bug fix: change the method of adding stylesheet and scripts from overrighting xoops_module_header smarty variable to $xoTheme.
@@ -444,14 +444,14 @@ add:
 in newbb/footer.php
 
 2- improve: move js files from include/js to templates/js/language/LANG. all js files inside language directory will be added to header.
-move "style.css" file from templates/images/language/LANG to templates/css/language/LANG. 
+move "style.css" file from templates/images/language/LANG to templates/css/language/LANG.
 in newbb/class/icon.php, newbb/footer.php, newbb/templates/js/language/LANG/*.js, newbb/templates/css/language/LANG/style.css
 
 3- delete unneeded files:
 newbb/include/pngbehavior.htc, newbb/include/newbb.htc, newbb/include/js/*.*
 
 4- bug fix: days should be changed to seconds.
-in newbb/class/post.php, newbb/class/topic.php 
+in newbb/class/post.php, newbb/class/topic.php
 
 date 2012-09-19
 ===================================
@@ -563,7 +563,7 @@ date 2012-09-01
 newbb/viewtopic.php
 
 2- add alt and title to text links - change <button> html tag to <span> class="forum_icon forum_button" to support IE7&8
-newbb/class/icon.php, newbb/templates/images/language/english/style.css, newbb/include/display.php (juct change help comments) 
+newbb/class/icon.php, newbb/templates/images/language/english/style.css, newbb/include/display.php (juct change help comments)
 
 3- improve ToggleBlockCategory js to change icon.id and use innerHTML instead of textContent to support IE7&8
 newbb/include/js/newbb_toggle.js
@@ -573,7 +573,7 @@ newbb/templates/images/language/persian
 
 date 2012-08-30
 ================================================
-1- add more and less icons - add t_qr_expand.png image and add show see definitions 
+1- add more and less icons - add t_qr_expand.png image and add show see definitions
 newbb/include/display.php, newbb/include/images.php
 newbb/templates/images/language/english/t_qr_expand.png
 newbb/language/english/main.php, newbb/docs/lang_diff.txt

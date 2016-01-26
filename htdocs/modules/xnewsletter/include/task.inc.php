@@ -329,7 +329,7 @@ function xnewsletter_executeTasks($xn_send_in_packages, $letter_id = 0)
             $mail->CharSet = _CHARSET; //use xoops default character set
 
             if ($account_type == _XNEWSLETTER_ACCOUNTS_TYPE_VAL_PHP_SENDMAIL) {
-                //$mail->IsSendmail();	Fix Error
+                //$mail->IsSendmail();  Fix Error
             }
 
             $mail->Username = $account_username; // SMTP account username

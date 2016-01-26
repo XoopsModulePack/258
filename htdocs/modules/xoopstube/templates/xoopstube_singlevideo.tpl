@@ -11,10 +11,10 @@
     <{$video.title}>
     <{$video.icons}>
     <span>
-		<{if $xoops_isadmin}>
+        <{if $xoops_isadmin}>
             &nbsp;<{$video.adminvideo}>
         <{/if}>
-	</span>
+    </span>
 </div>
 <div>&nbsp;</div>
 
@@ -30,18 +30,18 @@
 <div style="clear: both;">&nbsp;</div>
 
 <fieldset class="xoopstube_description">
-	<span style="float: left; width: 48%;">
+    <span style="float: left; width: 48%;">
         <{if $video.showsubmitterx}>
             <span style="font-size: small;"><span style="font-weight: bold;"><{$smarty.const._MD_XOOPSTUBE_SUBMITTER}>:</span>&nbsp;<{$video.submitter}></span>
             <br/>
         <{/if}>
         <span style="font-size: small;"><span style="font-weight: bold;"><{$smarty.const._MD_XOOPSTUBE_PUBLISHER}>:</span>&nbsp;<{$video.publisher}></span><br/>
-		<span style="font-size: small;"><span style="font-weight: bold;"><{$lang_subdate}>:</span>&nbsp;<{$video.updated|wordwrap:50:"\n":true}></span>
-	</span>
+        <span style="font-size: small;"><span style="font-weight: bold;"><{$lang_subdate}>:</span>&nbsp;<{$video.updated|wordwrap:50:"\n":true}></span>
+    </span>
 
-	<span style="float: right; width: 48%;">
-		<span style="font-size: small;"><{$video.hits|wordwrap:50:"\n":true}></span><br/>
-		<span style="font-size: small;"><{$smarty.const._MD_XOOPSTUBE_TIMEB}>&nbsp;<{$video.time}></span>
+    <span style="float: right; width: 48%;">
+        <span style="font-size: small;"><{$video.hits|wordwrap:50:"\n":true}></span><br/>
+        <span style="font-size: small;"><{$smarty.const._MD_XOOPSTUBE_TIMEB}>&nbsp;<{$video.time}></span>
         <{if $video.showrating}>
             <br/>
             <span style="font-size: small;">
@@ -55,7 +55,7 @@
             <br/>
             <span style="font-size: small;"><{include file="db:tag_bar.tpl"}></span>
         <{/if}>
-	</span>
+    </span>
 
     <div style="clear: both; height: 25px;">&nbsp;</div>
     <span style="font-weight: bold;"><{$smarty.const._MD_XOOPSTUBE_DESCRIPTIONC}></span><br/>

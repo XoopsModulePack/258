@@ -93,7 +93,7 @@ class RWbanners {
           $this->larg = $this->setLargura();
           $this->alt = $this->setAltura();
           $this->obs = $row['obs'];
-          
+
         }elseif ($dados != null){
           $this->codigo = (isset($dados['codigo']))?$dados['codigo']:'';
           $this->categoria = (isset($dados['categoria']))?$dados['categoria']:'';
@@ -177,7 +177,7 @@ class RWbanners {
     {
         return $this->texto;
     }
-    
+
     function setUrl($url)
     {
         $this->url = $url;
@@ -195,7 +195,7 @@ class RWbanners {
     {
         return $this->grafico;
     }
-    
+
     function setUsarhtml($usarhtml)
     {
         $this->usarhtml = $usarhtml;
@@ -222,7 +222,7 @@ class RWbanners {
     {
         return $this->showimg;
     }
-    
+
     function setExibicoes($exibicoes)
     {
         $this->exibicoes = $exibicoes;
@@ -240,7 +240,7 @@ class RWbanners {
     {
         return $this->maxexib;
     }
-    
+
     function setClicks($clicks)
     {
         $this->clicks = $clicks;
@@ -258,7 +258,7 @@ class RWbanners {
     {
         return $this->maxclick;
     }
-    
+
     function setData($data)
     {
         $this->data = $data;
@@ -276,7 +276,7 @@ class RWbanners {
     {
         return $this->periodo;
     }
-    
+
     function setStatus($status)
     {
         $this->status = $status;
@@ -294,7 +294,7 @@ class RWbanners {
     {
         return $this->target;
     }
-    
+
     function setIdcliente($idcliente)
     {
         $this->idcliente = $idcliente;
@@ -322,11 +322,11 @@ class RWbanners {
         return $this->errormsg;
     }
     //fim métodos set e get dos atributos
-    
+
     function clearDb(){
          $this->db = null;
     }
-    
+
     //Insere um novo banner no banco de dados
     function grava($flag=null){
         $this->db = &XoopsDatabaseFactory::getDatabaseConnection();
@@ -408,7 +408,7 @@ class RWbanners {
 
         return $nome;
     }
-    
+
     //Retorna a quantidade de registros encontrados de acordo com os parâmetros
     function getRowNum($categ=null, $id=null){
         $this->db = &XoopsDatabaseFactory::getDatabaseConnection();
@@ -420,7 +420,7 @@ class RWbanners {
 
         return $total;
     }
-    
+
     //Recupera a largura e altura da categoria correspondente ao banner instanciado
     function setLargura(){
         $this->db = &XoopsDatabaseFactory::getDatabaseConnection();
@@ -433,7 +433,7 @@ class RWbanners {
     function getLargura(){
        return $this->larg;
     }
-    
+
     function setAltura(){
         $this->db = &XoopsDatabaseFactory::getDatabaseConnection();
         $sql = 'SELECT alt FROM '.$this->db->prefix('rw_categorias').' WHERE cod='.$this->getCategoria();
@@ -445,7 +445,7 @@ class RWbanners {
     function getAltura(){
        return $this->alt;
     }
-    
+
     function showBanner($categ=0,$qtde=1,$cols=1,$align='center'){
       $cat = ($categ != 0)?$categ:null;
       $arr = $this->getBanners(false, 'ORDER BY RAND()', $cat, $qtde);
@@ -503,7 +503,7 @@ class RWbanners {
 
       return $showban;
     }
-    
+
     function show1Banner($id=0, $align='center'){
       $ban = new RWbanners(null,$id);
       $showban = '<table border="0" cellpadding="0" cellspacing="5"><tr>';
@@ -546,7 +546,7 @@ class RWbanners {
 
         return $showban;
     }
-    
+
     //Incrementa o número de exibições do banner e caso o limite de exibições, cliques ou período seja atingido desativa o banner
     function incHits(){
         $hits = $this->getExibicoes();
@@ -564,7 +564,7 @@ class RWbanners {
           $this->setStatus(0);
         $this->edita();
     }
-    
+
     //Incrementa o número de clicks do banner
     function incClicks(){
         $clicks = $this->getClicks();
@@ -582,7 +582,7 @@ class RWbanners {
 
       return $this->edita();
     }
-    
+
     //Retorna todos os banners de um determinado cliente
     function getAllByClient($uid, $order = null, $categ = null, $limit = null, $start = 0){
         $this->db = &XoopsDatabaseFactory::getDatabaseConnection();

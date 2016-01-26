@@ -12,7 +12,7 @@
  * @copyright       XOOPS Project (http://xoops.org)
  * @license         http://www.gnu.org/licenses/gpl-2.0.html GNU Public License
  * @package         xlanguage
- * @author          trabis <lusopoemas@gmail.com> 
+ * @author          trabis <lusopoemas@gmail.com>
  */
 
 // defined('XOOPS_ROOT_PATH') || exit('XOOPS root path not defined');

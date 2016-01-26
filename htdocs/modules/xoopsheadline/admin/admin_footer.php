@@ -9,10 +9,10 @@
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  *
- * @copyright::	The XOOPS Project http://sourceforge.net/projects/xoops/
+ * @copyright:: The XOOPS Project http://sourceforge.net/projects/xoops/
  * @license::    {@link http://www.gnu.org/licenses/gpl-2.0.html GNU Public License}
  * @package::   xoopsheadline
- * @since::	    1.10
+ * @since::     1.10
  * @author::    XOOPS Development Team
  * @version:    $Id: $
 **/

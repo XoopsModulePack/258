@@ -67,7 +67,7 @@ switch($op) {
                   $tag_handler = xoops_getmodulehandler('tag', 'tag');
                   $tag_handler->updateByItem($_POST['tag'], $_POST['photo_id'], $xoopsModule->getVar('dirname'), 0);
               }
-              
+
                 // If the photo category change
                 if($photo->getVar('cat_id') != $_POST['cat_id']) {
                     $catHandler = xoops_getmodulehandler('publiccat', 'extgallery');
@@ -103,7 +103,7 @@ switch($op) {
                     $criteria->add(new Criteria('nright',$oldCat->getVar('nright'),'>='));
                     $catHandler->updateFieldValue('cat_nb_photo', 'cat_nb_photo - 1', $criteria);
 
-          
+
                     // If the old album don't contains other photo
                     if($photoHandler->nbPhoto($oldCat) == 0) {
                         $catHandler->modifyCat(array('cat_id'=>$photo->getVar('cat_id'),'cat_isalbum'=>0));
@@ -141,14 +141,14 @@ switch($op) {
                 if($xoopsModuleConfig['display_extra_field']){
                     $form->addElement(new XoopsFormTextArea(_MD_EXTGALLERY_EXTRA_INFO, "photo_extra", $photo->getVar('photo_extra')));
                 }
-                
+
                 // For xoops tag
                 if (($xoopsModuleConfig['usetag'] == 1) and (is_dir('../tag'))){
                     $tagId = $photo->isNew() ? 0 : $photo->getVar('photo_id');
                     require_once XOOPS_ROOT_PATH.'/modules/tag/include/formtag.php';
                 $form->addElement(new XoopsFormTag('tag', 60, 255, $tagId, 0));
             }
-            
+
                 $form->addElement(new XoopsFormHidden("photo_id", $_GET['id']));
                 $form->addElement(new XoopsFormHidden("step", 'enreg'));
                 $form->addElement(new XoopsFormButton("", "submit", _SUBMIT, "submit"));

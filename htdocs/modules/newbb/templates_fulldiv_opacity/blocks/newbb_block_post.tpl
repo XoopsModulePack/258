@@ -39,7 +39,7 @@
         <{foreachq item=topic from=$block.topics}>
             <div><strong><a href="<{$topic.seo_url}>"><{$topic.title}></a></strong></div>
             <div>
-                <a href="<{$topic.seo_forum_url}>"><{$topic.forum_name}></a> | 
+                <a href="<{$topic.seo_forum_url}>"><{$topic.forum_name}></a> |
                 <{$topic.topic_poster}> | <{$topic.time}>
             </div>
             <div class="post_text"><{$topic.post_text}></div>

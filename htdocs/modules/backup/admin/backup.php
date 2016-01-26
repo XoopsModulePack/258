@@ -169,12 +169,12 @@ foreach($files_backup as $fl => $names){
             $dump_buffer = gzencode($dump_buffer);
         }
     }
-    
+
     $fp = fopen($dirname.'/'. $filename . '.' . $ext,'w');
     //$dump_buffer=str_replace(' DEFAULT CHARSET=latin1','',$dump_buffer);
     fwrite($fp, $dump_buffer);
     fclose($fp);
-    
+
     if ($cfgBackupTarget == 'download') {
         if(!is_object($xoopsUser)||!$xoopsUser->isAdmin()){
             redirect_header("javascript:history.go(-1)", 1, _NOPERM );

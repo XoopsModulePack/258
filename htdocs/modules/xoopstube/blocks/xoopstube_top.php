@@ -141,7 +141,7 @@ function getThumbsTopVideoBlock($bvidid, $btitle, $bsource, $bpicurl, $size = ar
 
 /* Function: b_xoopstube_spotlight_show
  * Input   : $options[0] = date for the most recent videos
- * 			   hits for the most popular videos
+ *             hits for the most popular videos
  *           $block['content'] = The optional above content
  *           $options[1] = How many videos are displayes
  * Output  : Returns the most recent or most popular videos
@@ -228,7 +228,7 @@ function getSpotlightVideos($options)
 
 // Function: showTopVideoBlock
 // Input   : $options[0] = date for the most recent videos
-// 			   hits for the most popular videos
+//             hits for the most popular videos
 //           $block['content'] = The optional above content
 //           $options[1] = How many videos are displayes
 //           $options[2] = Length of title

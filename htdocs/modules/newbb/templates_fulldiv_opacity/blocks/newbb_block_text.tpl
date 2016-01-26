@@ -5,7 +5,7 @@
     </sdivong>
 </div>
 <div>
-    <a href="<{$xoops_url}>/modules/newbb/viewforum.php?forum=<{$topic.forum_id}>"><{$topic.forum_name}></a> 
+    <a href="<{$xoops_url}>/modules/newbb/viewforum.php?forum=<{$topic.forum_id}>"><{$topic.forum_name}></a>
     <{$topic.topic_poster}> <{$topic.time}>
 </div>
 <div class="post_text"><{$topic.post_text}></div>

@@ -16,7 +16,7 @@
  * @package     ExtGallery
  * @version     $Id: extension.php 8088 2011-11-06 09:38:12Z beckmi $
  */
- 
+
 include '../../../include/cp_header.php';
 include 'function.php';
 

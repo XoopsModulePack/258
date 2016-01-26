@@ -149,11 +149,11 @@ jQuery(document).ready(function($) {
         if (isNaN(height)) {
             height = '70%';
         } else {
-        	height = height + 50;
+            height = height + 50;
 
-        	if (!isNaN(thumb_height)) {
-        		height = height + thumb_height;
-        	}
+            if (!isNaN(thumb_height)) {
+                height = height + thumb_height;
+            }
         }
 
         return height;
@@ -171,15 +171,15 @@ jQuery(document).ready(function($) {
     }
 
     jQuery(".metaslider .ms-toggle .hndle, .metaslider .ms-toggle .handlediv").on('click', function() {
-    	$(this).parent().toggleClass('closed');
+        $(this).parent().toggleClass('closed');
     });
 
     jQuery('.metaslider').on('click', 'ul.tabs li', function() {
-    	var tab = $(this);
-    	tab.parent().parent().children('.tabs-content').children('div.tab').hide();
-    	tab.parent().parent().children('.tabs-content').children('div.'+tab.attr('rel')).show();
-    	tab.siblings().removeClass('selected');
-    	tab.addClass('selected');
+        var tab = $(this);
+        tab.parent().parent().children('.tabs-content').children('div.tab').hide();
+        tab.parent().parent().children('.tabs-content').children('div.'+tab.attr('rel')).show();
+        tab.siblings().removeClass('selected');
+        tab.addClass('selected');
     });
 
     // AJAX save & preview

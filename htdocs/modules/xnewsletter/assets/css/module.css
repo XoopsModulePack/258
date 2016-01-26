@@ -147,7 +147,7 @@ h4 {
 }
 
 .xnewsletter_head_catindexheader {
-    /*	text-align:	center;  do not uncomment (will stop index alignment option working)  */
+    /*  text-align: center;  do not uncomment (will stop index alignment option working)  */
 }
 
 .xnewsletter_head_catletters {
@@ -523,7 +523,7 @@ tr.xnewsletter_mirrors_end {
     text-align: left;
     width: 80%;
     background-color: #BEC8D1;
-    /*	border-right: 1px solid #000000; */
+    /*  border-right: 1px solid #000000; */
     border-bottom: 2px solid #000000;
 }
 

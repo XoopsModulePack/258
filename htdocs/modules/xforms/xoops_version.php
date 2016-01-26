@@ -78,7 +78,7 @@ $modversion['templates'][3]['description'] = _MI_XFORMS_TMPL_FORM_DESC;
 $modversion['templates'][4]['file']        = 'xforms_error.tpl';
 $modversion['templates'][4]['description'] = _MI_XFORMS_TMPL_ERROR_DESC;
 
-//	Module Configs
+//  Module Configs
 // $xoopsModuleConfig['t_width']
 $i = 0;
 $modversion['config'][$i]['name']        = 't_width';

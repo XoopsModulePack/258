@@ -9,7 +9,7 @@ in newbb/class/user.php
 in newbb/class/user.php
 
 3- some english/persian language definitions has been revised. All extra spaces/newlines have been removed.
-All changed to end method windows(CR+LF).See docs/lang_diff.txt for detail. 
+All changed to end method windows(CR+LF).See docs/lang_diff.txt for detail.
 in newbb/language/english/*.php, newbb/language/persian/*.php
 
 4- add lang_diff.txt
@@ -42,7 +42,7 @@ in docs/readme.txt
 
 5- a poll class misses in english style.css
 in newbb/templates/images/language/english/style.css
- 
+
 date: 2012-08-04
 ================================================
 1- bug fixed: error in newbb/polls.php when the strtotime is not defined in XoopsLocal class (irmtfan)
@@ -57,7 +57,7 @@ in newbb/polls.php
 
 2- customization&localization: newbb style.css is fully localized and customized and is not hard-coded anymore.
 in newbb/header.php
-file changes: 
+file changes:
 -- deleted newbb/templates/style.css
 -- added   newbb/templates/images/language/english/style.css
 -- added   newbb/templates/images/language/persian/style.css
@@ -69,7 +69,7 @@ else if exist in modules/newbb/templates/images/language/english/style.css take 
 else if exist in modules/newbb/templates/style.css take it (for backward compatibility)
 
 3- many hardcodes in newbb/templates and style.css has been removed
- 
+
 date: 2012-07-30
 ================================================
 1- bug fix: edit not displayed when the reason is not filled (irmtfan)

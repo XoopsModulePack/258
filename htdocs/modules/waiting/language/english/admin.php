@@ -1,8 +1,8 @@
 <?php
 // $Id: admin.php,v 1.2 2005/04/06 06:04:11 gij Exp $
-// FILE		::	admin.php
-// AUTHOR	::	Ryuji AMANO <info@ryus.co.jp>
-// WEB		::	Ryu's Planning <http://ryus.co.jp/>
+// FILE     ::  admin.php
+// AUTHOR   ::  Ryuji AMANO <info@ryus.co.jp>
+// WEB      ::  Ryu's Planning <http://ryus.co.jp/>
 //
 define('_AM_WAITING_MODNAME',"Modules");
 define('_AM_WAITING_DIRNAME',"Directory name");// dirname added by cesag

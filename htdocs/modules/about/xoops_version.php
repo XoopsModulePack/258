@@ -100,7 +100,7 @@ $modversion["blocks"][1] = array(
  * @param int $options[0] page id
  * @param int $options[1] text subStr number
  * @param int $options[2] if show page image
- * @param int $options[3] more link text 
+ * @param int $options[3] more link text
  */
 
 $modversion["blocks"][2] = array(

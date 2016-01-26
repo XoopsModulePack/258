@@ -135,27 +135,27 @@ switch ($op) {
 //================================================
 // include_once (XOOPS_ROOT_PATH . '/class/xoopsform/tc_calendar/formtccalendar.php');
 //
-// 		  // Call the calendar constructor - use the desired form and format, according to the instructions/samples provided on triconsole.com
-// 		  $dateBirthday = new XoopsTcCalendar("datez1", true, false);
-// 		  //$dateBirthday->setIcon("/images/iconCalendar.gif");
-// 		  $dateBirthday->setIcon("/class/xoopsform/tc_calendar/images/iconCalendar.gif");
-// 		  //$dateBirthday->rtl=false;
-// 		  $dateBirthday->setAutoHide(false);
+//        // Call the calendar constructor - use the desired form and format, according to the instructions/samples provided on triconsole.com
+//        $dateBirthday = new XoopsTcCalendar("datez1", true, false);
+//        //$dateBirthday->setIcon("/images/iconCalendar.gif");
+//        $dateBirthday->setIcon("/class/xoopsform/tc_calendar/images/iconCalendar.gif");
+//        //$dateBirthday->rtl=false;
+//        $dateBirthday->setAutoHide(false);
 //
 //       //$myCalendar->setDate(date('d'), date('m'), date('Y'));
 //       //$dateBirthday->setDate($p['date1_day'], $p['date1_month'], $p['date1_year']);
-// 		  $dateBirthday->setDate(date('d'), date('m'), date('Y'));
+//        $dateBirthday->setDate(date('d'), date('m'), date('Y'));
 //
-// 		  $dateBirthday->setPath(XOOPS_URL . "/class/xoopsform/tc_calendar/");
-// 		  $dateBirthday->zindex = 150; //default 1
-// 		  $dateBirthday->setYearInterval(1995, date('Y'));
-// 		  $dateBirthday->dateAllow('1960-03-01', date('Y-m-d'));
-// 		  //$dateBirthday->autoSubmit(true, "calendar");
-// 		  $dateBirthday->disabledDay("sat");
-// 		  $dateBirthday->disabledDay("sun");
-// 		  $dateBirthday->setSpecificDate(array("2011-04-14", "2010-12-25"), 0, 'month');
-// 		  $dateBirthday->setSpecificDate(array("2011-04-01"), 0, 'year');
-// 		  $dateBirthday->setAlignment('right', 'bottom'); //optional
+//        $dateBirthday->setPath(XOOPS_URL . "/class/xoopsform/tc_calendar/");
+//        $dateBirthday->zindex = 150; //default 1
+//        $dateBirthday->setYearInterval(1995, date('Y'));
+//        $dateBirthday->dateAllow('1960-03-01', date('Y-m-d'));
+//        //$dateBirthday->autoSubmit(true, "calendar");
+//        $dateBirthday->disabledDay("sat");
+//        $dateBirthday->disabledDay("sun");
+//        $dateBirthday->setSpecificDate(array("2011-04-14", "2010-12-25"), 0, 'month');
+//        $dateBirthday->setSpecificDate(array("2011-04-01"), 0, 'year');
+//        $dateBirthday->setAlignment('right', 'bottom'); //optional
 // echo "<table><tr><td>zzzzz</td><td></td><td>";
 // echo $dateBirthday->render();
 // echo "</td></tr></table>";

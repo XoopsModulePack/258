@@ -121,9 +121,9 @@ function DetectFlashVer(reqMajorVer, reqMinorVer, reqRevision) {
     } else if (versionStr != 0) {
         if (isIE && isWin && !isOpera) {
             // Given "WIN 2,0,0,11"
-            tempArray = versionStr.split(" "); 	// ["WIN", "2,0,0,11"]
-            tempString = tempArray[1];			// "2,0,0,11"
-            versionArray = tempString.split(",");	// ['2', '0', '0', '11']
+            tempArray = versionStr.split(" ");  // ["WIN", "2,0,0,11"]
+            tempString = tempArray[1];          // "2,0,0,11"
+            versionArray = tempString.split(",");   // ['2', '0', '0', '11']
         } else {
             versionArray = versionStr.split(".");
         }

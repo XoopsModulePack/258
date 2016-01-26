@@ -62,7 +62,7 @@ switch($op) {
            exit;
         }
        break;
-         
+
     case 'batchAdd':
 
         if(get_cfg_var('max_execution_time') == null) {
@@ -245,7 +245,7 @@ switch($op) {
                 $criteria->add(new Criteria('nright',$cat->getVar('nright'),'>='));
                 $catHandler->updateFieldValue('cat_nb_photo', 'cat_nb_photo + '.$v, $criteria);
             }
-            
+
             if($cat->getVar('cat_isalbum') == 0) {
                 $cat->setVar('cat_isalbum',1);
                 $catHandler->insert($cat);
@@ -265,20 +265,20 @@ switch($op) {
         }
 
         break;
-  
+
  case 'rebuildthumb':
- 
+
   $photoHandler = xoops_getmodulehandler('publicphoto', 'extgallery');
   $photoHandler->rebuildThumbnail($_GET['cat_id']);
-  
+
   redirect_header("photo.php", 3, _AM_EXTGALLERY_THUMB_REBUILDED);
-  
+
   break;
 
     case 'modify':
 
         switch($step) {
-         
+
 
             case 'enreg':
 
@@ -559,11 +559,11 @@ switch($op) {
         $photoHandler = xoops_getmodulehandler('publicphoto', 'extgallery');
 
         xoops_cp_header();
-      
+
       include_once '../include/functions.php';
-      
+
       echo '<fieldset><legend style="font-weight:bold; color:#990000;">'._AM_EXTGALLERY_ADD_PHOTO.'</legend>';
-      
+
       $form = new XoopsThemeForm(_AM_EXTGALLERY_UPLOAD, 'add_photo', 'photo.php?op=add_photo', 'post', true);
         //$form = new XoopsThemeForm($title, 'form', $action, 'post', true);
         $form->setExtra('enctype="multipart/form-data"');
@@ -584,9 +584,9 @@ switch($op) {
         $form->addElement(new XoopsFormHidden("op", 'add_photo'));
         $form->addElement(new XoopsFormButton("", "submit", _SUBMIT, "submit"));
         $form->display();
-        
+
         echo '</fieldset><br />';
-        
+
         $nbPhotos = 0;
 
         $rep = XOOPS_ROOT_PATH.'/modules/extgallery/batch/';
@@ -629,7 +629,7 @@ switch($op) {
         $form->display();
 
         echo '</fieldset><br />';
-  
+
         // Edit/delete photo
         echo '<fieldset><legend style="font-weight:bold; color:#990000;">'._AM_EXTGALLERY_EDITDELETE_PHOTO.'</legend>';
 

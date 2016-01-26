@@ -226,31 +226,31 @@ switch ($statussel) {
 /* -- Code to show selected terms -- */
 echo "<form name='pick' id='pick' action='" . $_SERVER['PHP_SELF'] . "' method='POST' style='margin: 0;'>";
 echo "
-	<table width='100%' cellspacing='1' cellpadding='2' border='0' style='border-left: 1px solid silver; border-top: 1px solid silver; border-right: 1px solid silver;'>
-		<tr>
-			<td><span style='font-weight: bold; font-variant: small-caps;'>" . _AM_SPARTNER_SHOWING . " " . $caption . "</span></td>
-			<td align='right'>" . _AM_SPARTNER_SELECT_SORT . "
-				<select name='sortsel' onchange='submit()'>
-					<option value='id' $sorttxtid>" . _AM_SPARTNER_ID . "</option>
-					<option value='title' $sorttxttitle>" . _AM_SPARTNER_TITLE . "</option>
-					<option value='weight' $sorttxtweight>" . _AM_SPARTNER_WEIGHT . "</option>
-				</select>
-				<select name='ordersel' onchange='submit()'>
-					<option value='ASC' $ordertxtasc>" . _AM_SPARTNER_ASC . "</option>
-					<option value='DESC' $ordertxtdesc>" . _AM_SPARTNER_DESC . "</option>
-				</select>
-			" . _AM_SPARTNER_SELECT_STATUS . " :
-				<select name='statussel' onchange='submit()'>
-					<option value='0' $selectedtxt0>" . _AM_SPARTNER_ALL . " [$totalpartners]</option>
-					<option value='1' $selectedtxt1>" . _AM_SPARTNER_SUBMITTED . " [$totalsubmitted]</option>
-					<option value='2' $selectedtxt2>" . _AM_SPARTNER_ACTIVE . " [$totalactive]</option>
-					<option value='3' $selectedtxt3>" . _AM_SPARTNER_REJECTED . " [$totalrejected]</option>
-					<option value='4' $selectedtxt4>" . _AM_SPARTNER_INACTIVE . " [$totalinactive]</option>
-				</select>
-			</td>
-		</tr>
-	</table>
-	</form>";
+    <table width='100%' cellspacing='1' cellpadding='2' border='0' style='border-left: 1px solid silver; border-top: 1px solid silver; border-right: 1px solid silver;'>
+        <tr>
+            <td><span style='font-weight: bold; font-variant: small-caps;'>" . _AM_SPARTNER_SHOWING . " " . $caption . "</span></td>
+            <td align='right'>" . _AM_SPARTNER_SELECT_SORT . "
+                <select name='sortsel' onchange='submit()'>
+                    <option value='id' $sorttxtid>" . _AM_SPARTNER_ID . "</option>
+                    <option value='title' $sorttxttitle>" . _AM_SPARTNER_TITLE . "</option>
+                    <option value='weight' $sorttxtweight>" . _AM_SPARTNER_WEIGHT . "</option>
+                </select>
+                <select name='ordersel' onchange='submit()'>
+                    <option value='ASC' $ordertxtasc>" . _AM_SPARTNER_ASC . "</option>
+                    <option value='DESC' $ordertxtdesc>" . _AM_SPARTNER_DESC . "</option>
+                </select>
+            " . _AM_SPARTNER_SELECT_STATUS . " :
+                <select name='statussel' onchange='submit()'>
+                    <option value='0' $selectedtxt0>" . _AM_SPARTNER_ALL . " [$totalpartners]</option>
+                    <option value='1' $selectedtxt1>" . _AM_SPARTNER_SUBMITTED . " [$totalsubmitted]</option>
+                    <option value='2' $selectedtxt2>" . _AM_SPARTNER_ACTIVE . " [$totalactive]</option>
+                    <option value='3' $selectedtxt3>" . _AM_SPARTNER_REJECTED . " [$totalrejected]</option>
+                    <option value='4' $selectedtxt4>" . _AM_SPARTNER_INACTIVE . " [$totalinactive]</option>
+                </select>
+            </td>
+        </tr>
+    </table>
+    </form>";
 
 // Get number of entries in the selected state
 $statusSelected = ($statussel == 0) ? _SPARTNER_STATUS_ALL : $statussel;

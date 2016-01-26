@@ -71,7 +71,7 @@ function sendMail2member($mode, $event_id, $member_uid, $subject, $tplMessage)
     //Recuperation des données du user createur de l'evennement
     $sql
         = <<<__sql__
-  SELECT if(tu.name='', tu.uname, tu.name) AS name, 	tu.uname, 	tu.email
+  SELECT if(tu.name='', tu.uname, tu.name) AS name,     tu.uname,   tu.email
   FROM {$tblUsers} tu
   WHERE tu.uid = {$submiter_uid};
 __sql__;
@@ -84,7 +84,7 @@ __sql__;
     //Recuperation des données du membre inscrit
     $sql
         = <<<__sql__
-  SELECT if(tu.name='', tu.uname, tu.name) AS name, 	tu.uname, 	tu.email
+  SELECT if(tu.name='', tu.uname, tu.name) AS name,     tu.uname,   tu.email
   FROM {$tblUsers} tu
   WHERE tu.uid = {$member_uid};
 __sql__;
@@ -97,7 +97,7 @@ __sql__;
     //Recuperation des données des membres présents
     $sql
         = <<<__sql__
-SELECT tu.uid, if(tu.name='', tu.uname, tu.name) AS name,	tu.uname,	tu.email,
+SELECT tu.uid, if(tu.name='', tu.uname, tu.name) AS name,   tu.uname,   tu.email,
         tm.status
 FROM {$tblMember} tm,
      {$tblUsers}  tu
@@ -116,7 +116,7 @@ __sql__;
     //Recuperation des données des membres absents
     $sql
         = <<<__sql__
-SELECT tu.uid, if(tu.name='', tu.uname, tu.name) AS name,	tu.uname,	tu.email,
+SELECT tu.uid, if(tu.name='', tu.uname, tu.name) AS name,   tu.uname,   tu.email,
         tm.status
 FROM {$tblNotMember} tm,
      {$tblUsers}  tu

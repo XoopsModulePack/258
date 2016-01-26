@@ -79,16 +79,16 @@ if($jquery == 1){
             $xoTheme->addScript("browse.php?modules/extgallery/include/galleryview/easing.js");
             $xoTheme->addStylesheet('browse.php?modules/extgallery/include/galleryview/galleryview.css');
         break;
-        
+
         case 'galleria':
             $xoTheme->addScript("browse.php?modules/extgallery/include/galleria/galleria.js");
         break;
-        
+
         case 'microgallery':
             $xoTheme->addScript("browse.php?modules/extgallery/include/microgallery/jquery.microgallery.js");
             $xoTheme->addStylesheet('browse.php?modules/extgallery/include/microgallery/style.css');
         break;
-        
+
         case 'galleriffic':
             $xoTheme->addScript("browse.php?modules/extgallery/include/galleriffic/jquery.galleriffic.js");
             $xoTheme->addScript("browse.php?modules/extgallery/include/galleriffic/jquery.history.js");

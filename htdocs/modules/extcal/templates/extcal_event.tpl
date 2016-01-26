@@ -77,9 +77,9 @@
                     <br/>
                 <{/if}>
                 <!--<span style="font-size:0.8em;"><{$smarty.const._MD_EXTCAL_POSTED_BY}> <a href="<{$xoops_url}>/userinfo.php?uid=<{$event.user.uid}>"><{$event.user.uname}></a> <{$smarty.const._MD_EXTCAL_ON}> <{$event.formated_event_submitdate}></span>
-			<p>
-				<{$event.event_desc}>
-			</p>-->
+            <p>
+                <{$event.event_desc}>
+            </p>-->
 
         </td>
     </tr>

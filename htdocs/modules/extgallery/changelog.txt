@@ -42,12 +42,12 @@ _AM_EXTGALLERY_PHOTO_TITLE
 - 5.3.0 Assigning the return value of new by reference is deprecated PHP 5.3 (davidenprossi)
 - Support XOOPS 2.5.x and PHP 5.3.x (davidenprossi)
 - Add Form Options - Eneabled both Description & Extra Field for html input In options HTML has to be enabled.
-	enable_rating, enable_info, enable_resolution, enable_download, enable_date
-	enable_ecards, enable_submitter_lnk, enable_photo_hits 
-	(davidenprossi)
+    enable_rating, enable_info, enable_resolution, enable_download, enable_date
+    enable_ecards, enable_submitter_lnk, enable_photo_hits
+    (davidenprossi)
 - Add Preferences Options for xoopseditor selection and some info enable/disable view (davidenprossi)
 - Add new lang constants for added Preferences Options in languages/english/modinfo.php (davidenprossi)
-- Add new options for template display (davidenprossi) 
+- Add new options for template display (davidenprossi)
 - Display ecards (davidenprossi)
 - changed all themes from using: title="<{$photo.photo_desc}>" to title="<{$photo.photo_title}>" (davidenprossi)
 - fixed no title no desc on standard UPLOAD now when title and desc are added they will be saved (davidenprossi)
@@ -193,9 +193,9 @@ _MD_EXTGALLERY_INFODATE (added)
 _MD_EXTGALLERY_GFIC_DOWNLOAD (added)
 _MD_EXTGALLERY_GFIC_PLAY (added)
 _MD_EXTGALLERY_GFIC_PAUSE (added)
-_MD_EXTGALLERY_GFIC_NEXT (added) 
+_MD_EXTGALLERY_GFIC_NEXT (added)
 _MD_EXTGALLERY_GFIC_PREVIOUS (added)
-_MD_EXTGALLERY_GFIC_NEXTP (added) 
+_MD_EXTGALLERY_GFIC_NEXTP (added)
 _MD_EXTGALLERY_GFIC_PREVIOUSP (added)
 _AM_EXTGALLERY_GVIEW_CONF (added)
 _AM_EXTGALLERY_GRIA_CONF (added)
@@ -350,7 +350,7 @@ _AM_EXTGALLERY_USE_AJAX_EFFECTS (added)
 _AM_EXTGALLERY_USE_AJAX_EFFECTS_DESC (added)
 _AM_EXTGALLERY_AJAX_NONE (added)
 _AM_EXTGALLERY_AJAX_LIGHTBOX (added)
-_AM_EXTGALLERY_AJAX_OVERLAY (added) 
+_AM_EXTGALLERY_AJAX_OVERLAY (added)
 _AM_EXTGALLERY_AJAX_TOOLTIP (added)
 _AM_EXTGALLERY_OVERLAY_BG (added)
 _AM_EXTGALLERY_OVERLAY_WIDTH (added)
@@ -470,7 +470,7 @@ _AM_EXTGALLERY_SS_THUMB (removed)
 _AM_EXTGALLERY_SS_CAPTION (removed)
 _AM_EXTGALLERY_SS_CONTROLLER (removed)
 
-============================ 
+============================
 2009/21/06: Version 1.0.8
 ============================
 

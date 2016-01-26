@@ -34,22 +34,22 @@ function rwbanner_adminMenu ($currentoption = 0, $breadcrumb = '')
 
     /* Nice buttons styles */
     echo "
-    	<style type='text/css'>
-    	#buttontop { float:left; width:100%; background: #e7e7e7; font-size:93%; line-height:normal; border-top: 1px solid black; border-left: 1px solid black; border-right: 1px solid black; margin: 0; }
-    	#buttonbar { float:left; width:100%; background: #e7e7e7 url('../images/bg.gif') repeat-x left bottom; font-size:93%; line-height:normal; border-left: 1px solid black; border-right: 1px solid black; margin-bottom: 12px; }
-    	#buttonbar ul { margin:0; margin-top: 15px; padding:10px 10px 0; list-style:none; }
-		#buttonbar li { display:inline; margin:0; padding:0; }
-		#buttonbar a { float:left; background:url('../images/left_both.gif') no-repeat left top; margin:0; padding:0 0 0 9px; border-bottom:1px solid #000; text-decoration:none; }
-		#buttonbar a span { float:left; display:block; background:url('../images/right_both.gif') no-repeat right top; padding:5px 15px 4px 6px; font-weight:bold; color:#765; }
-		/* Commented Backslash Hack hides rule from IE5-Mac \*/
-		#buttonbar a span {float:none;}
-		/* End IE5-Mac hack */
-		#buttonbar a:hover span { color:#333; }
-		#buttonbar #current a { background-position:0 -150px; border-width:0; }
-		#buttonbar #current a span { background-position:100% -150px; padding-bottom:5px; color:#333; }
-		#buttonbar a:hover { background-position:0% -150px; }
-		#buttonbar a:hover span { background-position:100% -150px; }
-		</style>
+        <style type='text/css'>
+        #buttontop { float:left; width:100%; background: #e7e7e7; font-size:93%; line-height:normal; border-top: 1px solid black; border-left: 1px solid black; border-right: 1px solid black; margin: 0; }
+        #buttonbar { float:left; width:100%; background: #e7e7e7 url('../images/bg.gif') repeat-x left bottom; font-size:93%; line-height:normal; border-left: 1px solid black; border-right: 1px solid black; margin-bottom: 12px; }
+        #buttonbar ul { margin:0; margin-top: 15px; padding:10px 10px 0; list-style:none; }
+        #buttonbar li { display:inline; margin:0; padding:0; }
+        #buttonbar a { float:left; background:url('../images/left_both.gif') no-repeat left top; margin:0; padding:0 0 0 9px; border-bottom:1px solid #000; text-decoration:none; }
+        #buttonbar a span { float:left; display:block; background:url('../images/right_both.gif') no-repeat right top; padding:5px 15px 4px 6px; font-weight:bold; color:#765; }
+        /* Commented Backslash Hack hides rule from IE5-Mac \*/
+        #buttonbar a span {float:none;}
+        /* End IE5-Mac hack */
+        #buttonbar a:hover span { color:#333; }
+        #buttonbar #current a { background-position:0 -150px; border-width:0; }
+        #buttonbar #current a span { background-position:100% -150px; padding-bottom:5px; color:#333; }
+        #buttonbar a:hover { background-position:0% -150px; }
+        #buttonbar a:hover span { background-position:100% -150px; }
+        </style>
     ";
 
     // global $xoopsDB, $xoopsModule, $xoopsConfig, $xoopsModuleConfig;
@@ -73,9 +73,9 @@ function rwbanner_adminMenu ($currentoption = 0, $breadcrumb = '')
     echo "<ul>";
     echo "<li id='" . $tblColors[0] . "'><a href=\"index.php\"><span>" . _AM_RWBANNER_INDEX . "</span></a></li>";
     echo "<li id='" . $tblColors[1] . "'><a href=\"myblocksadmin.php\"\"><span>" . _MI_RWBANNER_MENU_TITLE2 . "</span></a></li>";
-//	echo "<li id='" . $tblColors[2] . "'><a href=\"javascript:;\" onClick=\"javascript:window.open('inserecateg.php','cadastrar','width=450,height=250,toolbar=no');\"><span>" . _AM_RWBANNER_VALUE_BTN5 . "</span></a></li>";
+//  echo "<li id='" . $tblColors[2] . "'><a href=\"javascript:;\" onClick=\"javascript:window.open('inserecateg.php','cadastrar','width=450,height=250,toolbar=no');\"><span>" . _AM_RWBANNER_VALUE_BTN5 . "</span></a></li>";
     echo "<li id='" . $tblColors[2] . "'><a href=\"insercateg.php\"><span>" . _AM_RWBANNER_VALUE_BTN5 . "</span></a></li>";
-//	echo "<li id='" . $tblColors[3] . "'><a href=\"javascript:;\" onClick=\"javascript:window.open('insere.php','cadastrar','width=450,height=310,toolbar=no');\"><span>" . _AM_RWBANNER_VALUE_BTN1 . "</span></a></li>";
+//  echo "<li id='" . $tblColors[3] . "'><a href=\"javascript:;\" onClick=\"javascript:window.open('insere.php','cadastrar','width=450,height=310,toolbar=no');\"><span>" . _AM_RWBANNER_VALUE_BTN1 . "</span></a></li>";
     echo "<li id='" . $tblColors[3] . "'><a href=\"inser.php\"><span>" . _AM_RWBANNER_VALUE_BTN1 . "</span></a></li>";
     echo "<li id='" . $tblColors[4] . "'><a href=\"javascript:;\" onClick=\"window.open('".XOOPS_URL."/modules/system/admin.php?fct=users','cadastrar');\"><span>" . _AM_RWBANNER_VALUE_BTN8 . "</span></a></li>";
     echo "<li id='" . $tblColors[5] . "'><a href=\"insertag.php\"><span>" . _AM_RWBANNER_VALUE_BTN12 . "</span></a></li>";
@@ -86,45 +86,45 @@ function rwbanner_collapsableBar($tablename = '', $iconname = '')
 {
 
     ?>
-	<script type="text/javascript"><!--
-	function goto_URL(object)
-	{
-		window.location.href = object.options[object.selectedIndex].value;
-	}
+    <script type="text/javascript"><!--
+    function goto_URL(object)
+    {
+        window.location.href = object.options[object.selectedIndex].value;
+    }
 
-	function toggle(id)
-	{
-		if (document.getElementById) { obj = document.getElementById(id); }
-		if (document.all) { obj = document.all[id]; }
-		if (document.layers) { obj = document.layers[id]; }
-		if (obj) {
-			if (obj.style.display == "none") {
-				obj.style.display = "";
-			} else {
-				obj.style.display = "none";
-			}
-		}
-		return false;
-	}
+    function toggle(id)
+    {
+        if (document.getElementById) { obj = document.getElementById(id); }
+        if (document.all) { obj = document.all[id]; }
+        if (document.layers) { obj = document.layers[id]; }
+        if (obj) {
+            if (obj.style.display == "none") {
+                obj.style.display = "";
+            } else {
+                obj.style.display = "none";
+            }
+        }
+        return false;
+    }
 
-	var iconClose = new Image();
-	iconClose.src = '../images/icon/close12.gif';
-	var iconOpen = new Image();
-	iconOpen.src = '../images/icon/open12.gif';
+    var iconClose = new Image();
+    iconClose.src = '../images/icon/close12.gif';
+    var iconOpen = new Image();
+    iconOpen.src = '../images/icon/open12.gif';
 
-	function toggleIcon ( iconName )
-	{
-		if ( document.images[iconName].src == window.iconOpen.src ) {
-			document.images[iconName].src = window.iconClose.src;
-		} else if ( document.images[iconName].src == window.iconClose.src ) {
-			document.images[iconName].src = window.iconOpen.src;
-		}
-		return;
-	}
+    function toggleIcon ( iconName )
+    {
+        if ( document.images[iconName].src == window.iconOpen.src ) {
+            document.images[iconName].src = window.iconClose.src;
+        } else if ( document.images[iconName].src == window.iconClose.src ) {
+            document.images[iconName].src = window.iconOpen.src;
+        }
+        return;
+    }
 
-	//-->
-	</script>
-	<?php
+    //-->
+    </script>
+    <?php
     echo "<h3 style=\"color: #2F5376; font-weight: bold; font-size: 14px; margin: 6px 0 0 0; \"><a href='javascript:;' onclick=\"toggle('" . $tablename . "'); toggleIcon('" . $iconname . "')\";>";
 }
 
@@ -199,7 +199,7 @@ function converte ($data_ori,$tipo='BR',$hora='true'){
   else
     return $resul;
 }
-  
+
 function EmailStats($bid){
   global $xoopsDB, $xoopsConfig, $xoopsUser;
 
@@ -323,7 +323,7 @@ function rwTableExists($tablename){
 */
 function rwFieldExists($fieldname,$table){
   global $xoopsDB;
-  $result=$xoopsDB->queryF("SHOW COLUMNS FROM	$table LIKE '$fieldname'");
+  $result=$xoopsDB->queryF("SHOW COLUMNS FROM   $table LIKE '$fieldname'");
 
   return($xoopsDB->getRowsNum($result) > 0);
 }

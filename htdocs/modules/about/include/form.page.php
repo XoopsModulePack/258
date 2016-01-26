@@ -62,7 +62,7 @@ if ($pageType == 1) {
         $editorTray->addElement($pageEditor);
     }
     $form->addElement($editorTray);
-    
+
 
 
     // Template set

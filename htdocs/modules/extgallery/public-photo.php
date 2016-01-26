@@ -139,8 +139,8 @@ if($xoopsModuleConfig['enable_rating']) {
 }
 
 //DNPROSSI - added preferences option
-//	enable_info, enable_resolution, enable_download, enable_date
-//	enable_ecards, enable_submitter_lnk, enable_photo_hits
+//  enable_info, enable_resolution, enable_download, enable_date
+//  enable_ecards, enable_submitter_lnk, enable_photo_hits
 if ( $xoopsModuleConfig['info_view'] == "photo" || $xoopsModuleConfig['info_view'] == "both" )
 {
     if ( $xoopsModuleConfig['pubusr_info_view'] == "public" || $xoopsModuleConfig['pubusr_info_view'] == "both" )

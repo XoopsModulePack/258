@@ -286,10 +286,10 @@ function xtubeShowVideo($vidid, $source, $screenshot, $picurl)
         $viddler     = '';
     }
 
-//	$hquality = '';
-//	if ($hq == 1) {
-//		$hquality = '&ap=%2526fmt%3D18&';
-//	}
+//  $hquality = '';
+//  if ($hq == 1) {
+//      $hquality = '&ap=%2526fmt%3D18&';
+//  }
 
     switch ($source) {
 // YouTube

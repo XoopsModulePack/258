@@ -128,8 +128,8 @@ if($xoopsModuleConfig['enable_rating']) {
 }
 
 //DNPROSSI - added preferences option
-//	enable_info, enable_resolution, enable_download, enable_date
-//	enable_ecards, enable_submitter_lnk, enable_photo_hits
+//  enable_info, enable_resolution, enable_download, enable_date
+//  enable_ecards, enable_submitter_lnk, enable_photo_hits
 if ( $xoopsModuleConfig['info_view'] == "photo" || $xoopsModuleConfig['info_view'] == "both" )
 {
     if ( $xoopsModuleConfig['pubusr_info_view'] == "user" || $xoopsModuleConfig['pubusr_info_view'] == "both" )
@@ -166,6 +166,6 @@ $xoopsTpl->assign('show_rss', $xoopsModuleConfig['show_rss']);
     } else {
         $xoopsTpl->assign('tags', false);
     }
-    
+
 include XOOPS_ROOT_PATH.'/include/comment_view.php';
 include XOOPS_ROOT_PATH.'/footer.php';

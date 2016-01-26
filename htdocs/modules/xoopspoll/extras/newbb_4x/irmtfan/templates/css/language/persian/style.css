@@ -1,16 +1,16 @@
 /* -- style.css -- */
 .forum_header {
-  float		: center;
-  overflow	: hidden;
-    border		: 1px solid #aaaaaa;
-  width		: 100%;
+  float     : center;
+  overflow  : hidden;
+    border      : 1px solid #aaaaaa;
+  width     : 100%;
 }
 
 .forum_title {
-    float		: /*irmtfan left*/ right;
-    text-align	: /*irmtfan left*/ right;
-    padding		: 5px;
-  width		: 100%;
+    float       : /*irmtfan left*/ right;
+    text-align  : /*irmtfan left*/ right;
+    padding     : 5px;
+  width     : 100%;
 
 }
 

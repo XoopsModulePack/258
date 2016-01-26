@@ -63,7 +63,7 @@ class ExtgalleryPublicphotoHandler extends ExtgalleryPhotoHandler {
 
     function getUserAlbumPhotoPage($userId, $start, $sortby, $orderby) {
         $catHandler = xoops_getmodulehandler('publiccat', 'extgallery');
-        
+
         $criteria = new CriteriaCompo();
         $criteria->add($catHandler->getCatRestrictCriteria());
         $criteria->add(new Criteria('photo_approved',1));

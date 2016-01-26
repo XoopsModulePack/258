@@ -43,7 +43,7 @@ class XoopsGTicket {
     function issue( $salt = '' , $timeout = 1800 , $area = '' )
     {
         global $xoopsModule ;
-    
+
         // create a token
         list( $usec , $sec ) = explode( " " , microtime() ) ;
         $appendix_salt = empty( $_SERVER['PATH'] ) ? XOOPS_DB_NAME : $_SERVER['PATH'] ;

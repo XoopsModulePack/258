@@ -89,7 +89,7 @@ class FlashHeader{
         }
         @fclose($fp);
     }
-    
+
     /**
     * @method getimagesize
     * @type public
@@ -118,7 +118,7 @@ class FlashHeader{
                         "movieSize" => $this->rect
                     );
     }
-    
+
     /* read */
     function read($n){
         $ret = substr($this->data, $this->point, $this->point + $n);
@@ -126,14 +126,14 @@ class FlashHeader{
 
         return $ret;
     }
-    
+
     /* read short */
     function readshort(){
         $pack = unpack('vshort',$this->read(2));
 
         return $pack['short'];
     }
-    
+
     /* read byte */
     function readByte(){
         $ret = unpack("Cbyte",$this->read(1));
@@ -160,8 +160,8 @@ class FlashHeader{
             $this->cur = $this->readbyte();
         }
     }
-    
-    
+
+
     /* readbits */
     function readbits($nbits){
         $n = 0;
@@ -174,18 +174,18 @@ class FlashHeader{
 
         return $r;
     }
-    
+
     /* getbits */
     function getbits($n){
         return ($this->cur>>(8-$n))&1;
     }
-    
+
     /* begin */
     function begin(){
         $this->cur = $this->readbyte();
         $this->pos = 1;
     }
-    
+
 }
 
 /**

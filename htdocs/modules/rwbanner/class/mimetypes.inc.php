@@ -46,7 +46,7 @@ return array(
      "tiff"        => "image/tiff",
 
      "tif"        => "image/tif",
-     
+
      "swf"        => "application/x-shockwave-flash",
 
 );

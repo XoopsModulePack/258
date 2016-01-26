@@ -1065,7 +1065,7 @@ $modversion['blocks'][6]['edit_func'] = "extgalleryListEdit";
 $modversion['blocks'][6]['options'] = "10|1|1|1|RandomPhoto|0";
 $modversion['blocks'][6]['template'] = 'extgallery_block_list.html';
 
-    
+
 // Notifications
 $modversion['hasNotification'] = 1;
 //$modversion['notification']['lookup_file'] = 'include/notification.inc.php';

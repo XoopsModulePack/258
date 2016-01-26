@@ -21,22 +21,22 @@
  * Version : 1.00:
  * ****************************************************************************
  */
- 
+
  //show map
 function xsitemap_show_sitemap()
 
 {
     global $xoopsUser, $xoopsConfig, $xoopsModuleConfig;
-    
+
     $block = array();
-    
+
     // moduli da non visualizzare
     $invisible_dirnames = empty( $xoopsModuleConfig['invisible_dirnames'] ) ? '' : str_replace( ' ' , '' , $xoopsModuleConfig['invisible_dirnames'] ) . ',' ;
 
     $module_handler =& xoops_gethandler('module');
     $criteria = new CriteriaCompo(new Criteria('hasmain', 1));
     $criteria->add(new Criteria('isactive', 1));
-    
+
     $modules =& $module_handler->getObjects($criteria, true);
 
     $moduleperm_handler =& xoops_gethandler('groupperm');
@@ -44,7 +44,7 @@ function xsitemap_show_sitemap()
     $read_allowed = $moduleperm_handler->getItemIds('module_read', $groups);
     $pluginHandler =& xoops_getModuleHandler("xsitemap_plugin", "xsitemap");
     foreach (array_keys($modules) as $i) {
-        
+
         if (in_array($i, $read_allowed) && ! stristr( $invisible_dirnames , $modules[$i]->getVar('dirname').',' )) {
             if ($modules[$i]->getVar('dirname') == 'xsitemap') {
                 continue;
@@ -52,11 +52,11 @@ function xsitemap_show_sitemap()
             $block['modules'][$i]['id'] = $i;
             $block['modules'][$i]['name'] = $modules[$i]->getVar('name');
             $block['modules'][$i]['directory'] = $modules[$i]->getVar('dirname');
-            
+
             $old_error_reporting = error_reporting() ;
             error_reporting( $old_error_reporting & (~E_NOTICE) ) ;
             $sublinks =& $modules[$i]->subLink();
-            
+
             error_reporting( $old_error_reporting ) ;
             if (count($sublinks) > 0) {
                 foreach($sublinks as $sublink){
@@ -69,37 +69,37 @@ function xsitemap_show_sitemap()
             $criteria = new CriteriaCompo();
             $criteria->setSort("plugin_id");
             $criteria->setOrder("ASC");
-            
+
             $plugin_arr = $pluginHandler->getall($criteria);
-            
+
             foreach (array_keys($plugin_arr) as $x) {
                     if ( $plugin_arr[$x]->getVar("topic_pid") == 0 && in_array($plugin_arr[$x]->getVar("plugin_mod_table"), (array) $modules[$i]->getInfo('tables')))
                     {
                         $table = $plugin_arr[$x]->getVar("plugin_mod_table");
                         $id_name = $plugin_arr[$x]->getVar("plugin_cat_id");
                         $pid_name = $plugin_arr[$x]->getVar("plugin_cat_pid");
-                        
+
                         $title_name = $plugin_arr[$x]->getVar("plugin_cat_name");
                         $url = $plugin_arr[$x]->getVar("plugin_call");
                         $order= $plugin_arr[$x]->getVar("plugin_weight");
                         $online = $plugin_arr[$x]->getVar("plugin_online");
-                            
+
                         if( $online == 1 ) {
                                 $_tmp = xsitemap_get_map ($table, $id_name, $pid_name, $title_name, $url, $order);
                                 $block['modules'][$i]['parent'] = isset($_tmp['parent']) ? $_tmp['parent'] : null;
                             }
                         }
-                            
+
                     }
                 }
-                
+
     return $block;
 }
 
 //Get map
 function xsitemap_get_map($table, $id_name, $pid_name, $title_name, $url, $order = ""){
     global $xoopsModuleConfig;
-    
+
 
     $xoopsDB =& XoopsDatabaseFactory::getDatabaseConnection();
 
@@ -125,18 +125,18 @@ function xsitemap_get_map($table, $id_name, $pid_name, $title_name, $url, $order
     $result = $xoopsDB->query($sql);
 
     while (list($catid, $name) = $xoopsDB->fetchRow($result))
-    
+
     {
-        
+
         $xsitemap['parent'][$i]['id'] = $catid;
         $xsitemap['parent'][$i]['title'] = $myts->htmlSpecialChars( $name ) ;
         $xsitemap['parent'][$i]['url'] = $url.$catid;
 
         if($xoopsModuleConfig["show_subcategories"]){
             $j = 0;
-    
+
             $child_array = $mytree->getAllChild($catid);
-            
+
             foreach ($child_array as $child)
             {
                 $xsitemap['parent'][$i]['child'][$j]['id'] = $child->getVar($id_name);
@@ -157,19 +157,19 @@ function xsitemap_xml_public(){
         if ($xsitemap_show != 0) {
             //$file= fopen(XOOPS_ROOT_PATH."/modules/xsitemap/xsitemap.xml", "w");
             $file= fopen(XOOPS_ROOT_PATH."/xsitemap.xml", "w");
-            
+
             //intestazione xml
             $_xml ="<?xml version=\"1.0\" encoding=\"UTF-8\" ?>\r\n";
             $_xml .="<urlset xmlns=\"http://www.sitemaps.org/schemas/sitemap/0.9\">\r\n";
 
         foreach ($xsitemap_show['modules'] as $mod){
             if ($mod["directory"]) {
-            
-            //scrivo l'xml	del modulo
+
+            //scrivo l'xml  del modulo
                 $_xml .="<url>";
                 $_xml .="\t\t<loc>" . XOOPS_URL."/modules/".$mod["directory"]."/index.php</loc>\r\n";
                 $_xml .="</url>";
-                
+
                     if ($mod["parent"]) {
                         foreach ($mod["parent"] as $parent){
                             $_xml .="<url>";
@@ -195,9 +195,9 @@ function xsitemap_xml_public(){
         $_xml .="\t</page>\r\n";
         }
     }
-    
+
     $_xml .="</urlset>";
-    
+
     //scrivo il file xml
     fwrite($file, $_xml);
     fclose($file);
@@ -219,15 +219,15 @@ function xsitemap_xml_admin(){
             //$file= fopen("xsitemap.xml", "w");
             //$file= fopen(XOOPS_ROOT_PATH."/modules/xsitemap/xsitemap.xml", "w");
             $file= fopen(XOOPS_ROOT_PATH."/xsitemap.xml", "w");
-            
+
             //intestazione xml
             $_xml ="<?xml version=\"1.0\" encoding=\"UTF-8\" ?>\r\n";
             $_xml .="<urlset xmlns=\"http://www.sitemaps.org/schemas/sitemap/0.9\">\r\n";
 
         foreach ($xsitemap_show['modules'] as $mod){
             if ($mod["directory"]) {
-            
-            //scrivo l'xml	del modulo
+
+            //scrivo l'xml  del modulo
                 $_xml .="<url>";
                 $_xml .="\t\t<loc>" . XOOPS_URL."/modules/".$mod["directory"]."/index.php</loc>\r\n";
                 $_xml .="</url>";
@@ -259,9 +259,9 @@ function xsitemap_xml_admin(){
         $_xml .="\t</page>\r\n";
         }
     }
-    
+
     $_xml .="</urlset>";
-    
+
     //scrivo il file xml
     fwrite($file, $_xml);
     fclose($file);
@@ -281,19 +281,19 @@ function xsitemap_install(){
 
         if ($xsitemap_show != 0) {
             $file= fopen(XOOPS_ROOT_PATH."/xsitemap.xml", "w");
-            
+
             //intestazione xml
             $_xml ="<?xml version=\"1.0\" encoding=\"UTF-8\" ?>\r\n";
             $_xml .="<urlset xmlns=\"http://www.sitemaps.org/schemas/sitemap/0.9\">\r\n";
 
         foreach ($xsitemap_show['modules'] as $mod){
             if ($mod["directory"]) {
-            
-            //scrivo l'xml	del modulo
+
+            //scrivo l'xml  del modulo
                 $_xml .="<url>";
                 $_xml .="\t\t<loc>" . XOOPS_URL."/modules/".$mod["directory"]."/index.php</loc>\r\n";
                 $_xml .="</url>";
-                
+
                     if ($mod["parent"]) {
                         foreach ($mod["parent"] as $parent){
                             $_xml .="<url>";
@@ -319,9 +319,9 @@ function xsitemap_install(){
         $_xml .="\t</page>\r\n";
         }
     }
-    
+
     $_xml .="</urlset>";
-    
+
     //scrivo il file xml
     fwrite($file, $_xml);
     fclose($file);
@@ -333,7 +333,7 @@ function xsitemap_install(){
     $update = _AM_XSITEMAP_XML_ERROR_UPDATE;
 
     }
-    
+
 }
 //**********************************************************************************************************************
 // ModuleName_checkModuleAdmin

@@ -6,7 +6,7 @@
     <div id="<{$forum_post_prefix}>0"></div>
 <{/if}>
 <!-- END irmtfan assign forum_post_prefix smarty -->
-<!-- irmtfan removed  
+<!-- irmtfan removed
 <{*<{if $post_id == $topic_post.post_id}><div id="aktuell"></div><{/if}>*}>
 -->
 <table class="outer" cellpadding="0" cellspacing="0" border="0" width="100%" align="center" style="border-bottom-width: 0;">

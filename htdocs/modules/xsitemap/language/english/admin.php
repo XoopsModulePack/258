@@ -16,12 +16,12 @@
  * @copyright       Urbanspaceman (http://www.takeaweb.it)
  * @license         GPL
  * @package         xsitemap
- * @author 			Urbanspaceman (http://www.takeaweb.it)
+ * @author          Urbanspaceman (http://www.takeaweb.it)
  *
  * Version : 1.00:
  * ****************************************************************************
  */
-    
+
 //Menu
 define("_AM_XSITEMAP_MANAGER_INDEX","Index");
 

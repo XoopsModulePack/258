@@ -7,7 +7,7 @@
 <{foreach item=designer from=$block.designers}>
   <table>
   <tr class="<{cycle values="even,odd"}>" valign="middle">
-	<td align="center">
+    <td align="center">
       <a href="<{$xoops_url}>/modules/extgallery/public-useralbum.php?id=<{$designer.uid}>" title="<{$designer.uname}>"><{$designer.uname}></a>
     </td>
     <td align="center" style="width: 25px"><{$designer.countphoto}></td>

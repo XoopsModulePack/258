@@ -23,9 +23,9 @@ if($db=="" || $table=="") redirect_header('index.php', 3, _NOPERM);
              $nav_html = $nav->renderNav( 10 ) ;
         echo "<br /><div align=\"center\"><h2>$table</h2></div><br />";
         echo "<div style=\"overflow: auto;\">
-		<br /><div align=\"right\">$nav_html</div><br />
-		<table class='outer' cellpadding='4' cellspacing='1'>
-		<tr valign='middle'>";
+        <br /><div align=\"right\">$nav_html</div><br />
+        <table class='outer' cellpadding='4' cellspacing='1'>
+        <tr valign='middle'>";
         $result = mysql_query("SHOW COLUMNS FROM $db.$table");
         if (!$result) {
             echo 'Could not run query: ' . mysql_error();

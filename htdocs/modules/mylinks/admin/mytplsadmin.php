@@ -174,7 +174,7 @@ if (is_array(@$_POST['del_do'])) {
                     $tpl_id = intval($tpl_id);
                     $db->query("DELETE FROM " . $db->prefix("tplfile")   . " WHERE tpl_id=$tpl_id");
                     $db->query("DELETE FROM " . $db->prefix("tplsource") . " WHERE tpl_id=$tpl_id");
-        //			xoops_template_touch( $tpl_id ); // TODO
+        //          xoops_template_touch( $tpl_id ); // TODO
                 }
             }
             redirect_header('mytplsadmin.php?dirname='.$target_dirname, 1, _MD_MYLINKS_DBUPDATED);
@@ -288,7 +288,7 @@ echo "    <tr>\n"
     ."      <td class='head'>\n"
     ."         " . _CLONE . ": <br />\n"
     ."         <select name='clone_tplset_from'>{$tplset_options}</select>-&gt;<input type='text' name='clone_tplset_to' size='8' /><input type='submit' name='clone_tplset_do' value='" . _AM_MYLINKS_GENERATE . "' />\n"
-    ."		</td>\n"
+    ."      </td>\n"
     ."      <td class='head'></td>\n"
     ."      <td class='head'>\n"
     ."        <input name='copyf2db_do' type='submit' value='copy to-&gt;' /><br />\n"

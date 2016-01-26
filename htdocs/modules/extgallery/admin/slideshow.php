@@ -28,13 +28,13 @@ if(isset($_POST['op'])) {
 }
 
 switch($op) {
- 
+
     case 'galleryview':
     $configHandler =& xoops_gethandler('config');
     $moduleIdCriteria = new Criteria('conf_modid',$xoopsModule->getVar('mid'));
-    
+
       if(isset($_POST['galleryview_panelwidth'])) {
-    
+
        if($xoopsModuleConfig['galleryview_panelwidth'] != $_POST['galleryview_panelwidth']) {
         $criteria = new CriteriaCompo();
         $criteria->add($moduleIdCriteria);
@@ -52,11 +52,11 @@ switch($op) {
         $config->setVars($configValue);
         $configHandler->insertConfig($config);
        }
-       
+
       }
-      
+
       if(isset($_POST['galleryview_panelheight'])) {
-    
+
        if($xoopsModuleConfig['galleryview_panelheight'] != $_POST['galleryview_panelheight']) {
         $criteria = new CriteriaCompo();
         $criteria->add($moduleIdCriteria);
@@ -74,11 +74,11 @@ switch($op) {
         $config->setVars($configValue);
         $configHandler->insertConfig($config);
        }
-       
+
       }
-      
+
       if(isset($_POST['galleryview_framewidth'])) {
-    
+
        if($xoopsModuleConfig['galleryview_framewidth'] != $_POST['galleryview_framewidth']) {
         $criteria = new CriteriaCompo();
         $criteria->add($moduleIdCriteria);
@@ -96,11 +96,11 @@ switch($op) {
         $config->setVars($configValue);
         $configHandler->insertConfig($config);
        }
-       
+
       }
-      
+
       if(isset($_POST['galleryview_frameheight'])) {
-    
+
        if($xoopsModuleConfig['galleryview_frameheight'] != $_POST['galleryview_frameheight']) {
         $criteria = new CriteriaCompo();
         $criteria->add($moduleIdCriteria);
@@ -118,11 +118,11 @@ switch($op) {
         $config->setVars($configValue);
         $configHandler->insertConfig($config);
        }
-       
+
       }
-      
+
        if(isset($_POST['galleryview_tspeed'])) {
-    
+
        if($xoopsModuleConfig['galleryview_tspeed'] != $_POST['galleryview_tspeed']) {
         $criteria = new CriteriaCompo();
         $criteria->add($moduleIdCriteria);
@@ -140,11 +140,11 @@ switch($op) {
         $config->setVars($configValue);
         $configHandler->insertConfig($config);
        }
-       
+
       }
-      
+
       if(isset($_POST['galleryview_tterval'])) {
-    
+
        if($xoopsModuleConfig['galleryview_tterval'] != $_POST['galleryview_tterval']) {
         $criteria = new CriteriaCompo();
         $criteria->add($moduleIdCriteria);
@@ -162,11 +162,11 @@ switch($op) {
         $config->setVars($configValue);
         $configHandler->insertConfig($config);
        }
-       
+
       }
-      
+
       if(isset($_POST['galleryview_overlayheight'])) {
-    
+
        if($xoopsModuleConfig['galleryview_overlayheight'] != $_POST['galleryview_overlayheight']) {
         $criteria = new CriteriaCompo();
         $criteria->add($moduleIdCriteria);
@@ -184,11 +184,11 @@ switch($op) {
         $config->setVars($configValue);
         $configHandler->insertConfig($config);
        }
-       
+
       }
-      
+
       if(isset($_POST['galleryview_opacity'])) {
-    
+
        if($xoopsModuleConfig['galleryview_opacity'] != $_POST['galleryview_opacity']) {
         $criteria = new CriteriaCompo();
         $criteria->add($moduleIdCriteria);
@@ -206,11 +206,11 @@ switch($op) {
         $config->setVars($configValue);
         $configHandler->insertConfig($config);
        }
-       
+
       }
-      
+
       if(isset($_POST['galleryview_overlayfs'])) {
-    
+
        if($xoopsModuleConfig['galleryview_overlayfs'] != $_POST['galleryview_overlayfs']) {
         $criteria = new CriteriaCompo();
         $criteria->add($moduleIdCriteria);
@@ -228,11 +228,11 @@ switch($op) {
         $config->setVars($configValue);
         $configHandler->insertConfig($config);
        }
-       
+
       }
-      
+
         if(isset($_POST['galleryview_borderwidth'])) {
-    
+
        if($xoopsModuleConfig['galleryview_borderwidth'] != $_POST['galleryview_borderwidth']) {
         $criteria = new CriteriaCompo();
         $criteria->add($moduleIdCriteria);
@@ -250,11 +250,11 @@ switch($op) {
         $config->setVars($configValue);
         $configHandler->insertConfig($config);
        }
-       
+
       }
-      
+
       if(isset($_POST['galleryview_bordercolor'])) {
-    
+
        if($xoopsModuleConfig['galleryview_bordercolor'] != $_POST['galleryview_bordercolor']) {
         $criteria = new CriteriaCompo();
         $criteria->add($moduleIdCriteria);
@@ -272,11 +272,11 @@ switch($op) {
         $config->setVars($configValue);
         $configHandler->insertConfig($config);
        }
-       
+
       }
-      
+
       if(isset($_POST['galleryview_bgcolor'])) {
-    
+
        if($xoopsModuleConfig['galleryview_bgcolor'] != $_POST['galleryview_bgcolor']) {
         $criteria = new CriteriaCompo();
         $criteria->add($moduleIdCriteria);
@@ -294,11 +294,11 @@ switch($op) {
         $config->setVars($configValue);
         $configHandler->insertConfig($config);
        }
-       
+
       }
-      
+
       if(isset($_POST['galleryview_overlaycolor'])) {
-    
+
        if($xoopsModuleConfig['galleryview_overlaycolor'] != $_POST['galleryview_overlaycolor']) {
         $criteria = new CriteriaCompo();
         $criteria->add($moduleIdCriteria);
@@ -316,11 +316,11 @@ switch($op) {
         $config->setVars($configValue);
         $configHandler->insertConfig($config);
        }
-       
+
       }
-      
+
       if(isset($_POST['galleryview_overlaytc'])) {
-    
+
        if($xoopsModuleConfig['galleryview_overlaytc'] != $_POST['galleryview_overlaytc']) {
         $criteria = new CriteriaCompo();
         $criteria->add($moduleIdCriteria);
@@ -338,11 +338,11 @@ switch($op) {
         $config->setVars($configValue);
         $configHandler->insertConfig($config);
        }
-       
+
       }
-    
+
       if(isset($_POST['galleryview_captiontc'])) {
-    
+
        if($xoopsModuleConfig['galleryview_captiontc'] != $_POST['galleryview_captiontc']) {
         $criteria = new CriteriaCompo();
         $criteria->add($moduleIdCriteria);
@@ -360,11 +360,11 @@ switch($op) {
         $config->setVars($configValue);
         $configHandler->insertConfig($config);
        }
-       
+
       }
-      
+
       if(isset($_POST['galleryview_navtheme'])) {
-    
+
        if($xoopsModuleConfig['galleryview_navtheme'] != $_POST['galleryview_navtheme']) {
         $criteria = new CriteriaCompo();
         $criteria->add($moduleIdCriteria);
@@ -382,11 +382,11 @@ switch($op) {
         $config->setVars($configValue);
         $configHandler->insertConfig($config);
        }
-       
+
       }
-      
+
         if(isset($_POST['galleryview_position'])) {
-    
+
        if($xoopsModuleConfig['galleryview_position'] != $_POST['galleryview_position']) {
         $criteria = new CriteriaCompo();
         $criteria->add($moduleIdCriteria);
@@ -404,11 +404,11 @@ switch($op) {
         $config->setVars($configValue);
         $configHandler->insertConfig($config);
        }
-       
+
       }
-      
+
       if(isset($_POST['galleryview_easing'])) {
-    
+
        if($xoopsModuleConfig['galleryview_easing'] != $_POST['galleryview_easing']) {
         $criteria = new CriteriaCompo();
         $criteria->add($moduleIdCriteria);
@@ -426,17 +426,17 @@ switch($op) {
         $config->setVars($configValue);
         $configHandler->insertConfig($config);
        }
-       
+
       }
-  
+
     redirect_header("slideshow.php", 3, _AM_EXTGALLERY_CONFIGURATION_SAVED);
     break;
- 
+
     case 'galleria':
     $configHandler =& xoops_gethandler('config');
     $moduleIdCriteria = new Criteria('conf_modid',$xoopsModule->getVar('mid'));
         if(isset($_POST['galleria_height'])) {
-    
+
        if($xoopsModuleConfig['galleria_height'] != $_POST['galleria_height']) {
         $criteria = new CriteriaCompo();
         $criteria->add($moduleIdCriteria);
@@ -454,11 +454,11 @@ switch($op) {
         $config->setVars($configValue);
         $configHandler->insertConfig($config);
        }
-       
+
       }
-      
+
       if(isset($_POST['galleria_panelwidth'])) {
-    
+
        if($xoopsModuleConfig['galleria_panelwidth'] != $_POST['galleria_panelwidth']) {
         $criteria = new CriteriaCompo();
         $criteria->add($moduleIdCriteria);
@@ -476,11 +476,11 @@ switch($op) {
         $config->setVars($configValue);
         $configHandler->insertConfig($config);
        }
-       
+
       }
-      
+
       if(isset($_POST['galleria_bgcolor'])) {
-    
+
        if($xoopsModuleConfig['galleria_bgcolor'] != $_POST['galleria_bgcolor']) {
         $criteria = new CriteriaCompo();
         $criteria->add($moduleIdCriteria);
@@ -498,11 +498,11 @@ switch($op) {
         $config->setVars($configValue);
         $configHandler->insertConfig($config);
        }
-       
+
       }
-      
+
       if(isset($_POST['galleria_bcolor'])) {
-    
+
        if($xoopsModuleConfig['galleria_bcolor'] != $_POST['galleria_bcolor']) {
         $criteria = new CriteriaCompo();
         $criteria->add($moduleIdCriteria);
@@ -520,11 +520,11 @@ switch($op) {
         $config->setVars($configValue);
         $configHandler->insertConfig($config);
        }
-       
+
       }
-      
+
       if(isset($_POST['galleria_bgimg'])) {
-    
+
        if($xoopsModuleConfig['galleria_bgimg'] != $_POST['galleria_bgimg']) {
         $criteria = new CriteriaCompo();
         $criteria->add($moduleIdCriteria);
@@ -542,11 +542,11 @@ switch($op) {
         $config->setVars($configValue);
         $configHandler->insertConfig($config);
        }
-       
+
       }
-    
+
     if(isset($_POST['galleria_autoplay'])) {
-    
+
        if($xoopsModuleConfig['galleria_autoplay'] != $_POST['galleria_autoplay']) {
         $criteria = new CriteriaCompo();
         $criteria->add($moduleIdCriteria);
@@ -565,9 +565,9 @@ switch($op) {
         $configHandler->insertConfig($config);
        }
       }
-              
+
         if(isset($_POST['galleria_transition'])) {
-    
+
        if($xoopsModuleConfig['galleria_transition'] != $_POST['galleria_transition']) {
         $criteria = new CriteriaCompo();
         $criteria->add($moduleIdCriteria);
@@ -586,9 +586,9 @@ switch($op) {
         $configHandler->insertConfig($config);
        }
       }
-              
+
         if(isset($_POST['galleria_tspeed'])) {
-    
+
        if($xoopsModuleConfig['galleria_tspeed'] != $_POST['galleria_tspeed']) {
         $criteria = new CriteriaCompo();
         $criteria->add($moduleIdCriteria);
@@ -609,11 +609,11 @@ switch($op) {
       }
     redirect_header("slideshow.php", 3, _AM_EXTGALLERY_CONFIGURATION_SAVED);
     break;
-    
+
     case 'galleriffic':
     $configHandler =& xoops_gethandler('config');
     $moduleIdCriteria = new Criteria('conf_modid',$xoopsModule->getVar('mid'));
-    
+
         if(isset($_POST['galleriffic_height'])) {
        if($xoopsModuleConfig['galleriffic_height'] != $_POST['galleriffic_height']) {
         $criteria = new CriteriaCompo();
@@ -633,7 +633,7 @@ switch($op) {
         $configHandler->insertConfig($config);
        }
       }
-        
+
         if(isset($_POST['galleriffic_width'])) {
        if($xoopsModuleConfig['galleriffic_width'] != $_POST['galleriffic_width']) {
         $criteria = new CriteriaCompo();
@@ -673,7 +673,7 @@ switch($op) {
         $configHandler->insertConfig($config);
        }
       }
-        
+
         if(isset($_POST['galleriffic_bordercolor'])) {
        if($xoopsModuleConfig['galleriffic_bordercolor'] != $_POST['galleriffic_bordercolor']) {
         $criteria = new CriteriaCompo();
@@ -713,7 +713,7 @@ switch($op) {
         $configHandler->insertConfig($config);
        }
       }
-        
+
         if(isset($_POST['galleriffic_autoplay'])) {
        if($xoopsModuleConfig['galleriffic_autoplay'] != $_POST['galleriffic_autoplay']) {
         $criteria = new CriteriaCompo();
@@ -733,7 +733,7 @@ switch($op) {
         $configHandler->insertConfig($config);
        }
       }
-        
+
         if(isset($_POST['galleriffic_nb_thumbs'])) {
        if($xoopsModuleConfig['galleriffic_nb_thumbs'] != $_POST['galleriffic_nb_thumbs']) {
         $criteria = new CriteriaCompo();
@@ -753,7 +753,7 @@ switch($op) {
         $configHandler->insertConfig($config);
        }
       }
-        
+
         if(isset($_POST['galleriffic_nb_colthumbs'])) {
        if($xoopsModuleConfig['galleriffic_nb_colthumbs'] != $_POST['galleriffic_nb_colthumbs']) {
         $criteria = new CriteriaCompo();
@@ -773,7 +773,7 @@ switch($op) {
         $configHandler->insertConfig($config);
        }
       }
-        
+
         if(isset($_POST['galleriffic_nb_preload'])) {
        if($xoopsModuleConfig['galleriffic_nb_preload'] != $_POST['galleriffic_nb_preload']) {
         $criteria = new CriteriaCompo();
@@ -793,7 +793,7 @@ switch($op) {
         $configHandler->insertConfig($config);
        }
       }
-        
+
         if(isset($_POST['galleriffic_tdelay'])) {
        if($xoopsModuleConfig['galleriffic_tdelay'] != $_POST['galleriffic_tdelay']) {
         $criteria = new CriteriaCompo();
@@ -813,7 +813,7 @@ switch($op) {
         $configHandler->insertConfig($config);
        }
       }
-        
+
         if(isset($_POST['galleriffic_tspeed'])) {
        if($xoopsModuleConfig['galleriffic_tspeed'] != $_POST['galleriffic_tspeed']) {
         $criteria = new CriteriaCompo();
@@ -833,7 +833,7 @@ switch($op) {
         $configHandler->insertConfig($config);
        }
       }
-        
+
         if(isset($_POST['galleriffic_show_descr'])) {
        if($xoopsModuleConfig['galleriffic_show_descr'] != $_POST['galleriffic_show_descr']) {
         $criteria = new CriteriaCompo();
@@ -883,7 +883,7 @@ switch($op) {
 
        //echo "<pre>";print_r($xoopsModuleConfig);echo "</pre>";
        $xoopsTpl->assign('displayslideshow', $xoopsModuleConfig['display_type'] == 'slideshow');
-       
+
        $form = new XoopsThemeForm(_AM_EXTGALLERY_GVIEW_CONF, 'galleryview_conf', 'slideshow.php', 'post', true);
        $form->addElement(new XoopsFormText(_AM_EXTGALLERY_GVIEW_PANELWIDE, 'galleryview_panelwidth', '5', '5', $xoopsModuleConfig['galleryview_panelwidth']),false);
        $form->addElement(new XoopsFormText(_AM_EXTGALLERY_GVIEW_PANELHEIGHT, 'galleryview_panelheight', '5', '5', $xoopsModuleConfig['galleryview_panelheight']),false);
@@ -968,7 +968,7 @@ switch($op) {
        // Call template file
       $xoopsTpl->display(XOOPS_ROOT_PATH . '/modules/extgallery/templates/admin/extgallery_admin_slideshow.html');
         xoops_cp_footer();
-        
+
     break;
 
 }

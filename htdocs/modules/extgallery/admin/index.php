@@ -192,7 +192,7 @@ XOOPS_ROOT_PATH.'/uploads/extgallery/public-photo/thumb'
 
 if (extgalleryCheckModuleAdmin()){
     $index_admin = new ModuleAdmin();
-    
+
     $index_admin->addInfoBox(_AM_EXTGALLERY_SERVER_CONF);
         if($xoopsModuleConfig['graphic_lib'] == 'GD') {
             $gd = gd_info();
@@ -201,14 +201,14 @@ if (extgalleryCheckModuleAdmin()){
             ($gd['GIF Read Support'] && $gd['GIF Create Support']) ? $test2 = "<span style=\"color:#33CC33;\"><b>OK</b></span>" : $test2 = "<span style=\"color:#FF0000;\"><b>KO</b></span>" ;
             ($gd[''.$jpegsupport.'']) ? $test3 = "<span style=\"color:#33CC33;\"><b>OK</b></span>" : $test3 = "<span style=\"color:#FF0000;\"><b>KO</b></span>";
             ($gd['PNG Support']) ? $test4 = "<span style=\"color:#33CC33;\"><b>OK</b></span>" : $test4 = "<span style=\"color:#FF0000;\"><b>KO</b></span>";
-        
-        
+
+
     $index_admin->addInfoBoxLine(_AM_EXTGALLERY_SERVER_CONF, _AM_EXTGALLERY_GRAPH_GD_LIB_VERSION . ' '. $test1);
     $index_admin->addInfoBoxLine(_AM_EXTGALLERY_SERVER_CONF, _AM_EXTGALLERY_GIF_SUPPORT. ' '. $test2);
     $index_admin->addInfoBoxLine(_AM_EXTGALLERY_SERVER_CONF, _AM_EXTGALLERY_JPEG_SUPPORT. ' '. $test3);
     $index_admin->addInfoBoxLine(_AM_EXTGALLERY_SERVER_CONF, _AM_EXTGALLERY_PNG_SUPPORT. ' '. $test4);
         }
-    
+
     if($xoopsModuleConfig['graphic_lib'] == 'IM') {
     // ImageMagick graphic lib
     $cmd = $xoopsModuleConfig['graphic_lib_path'].'convert -version';
@@ -223,7 +223,7 @@ if (extgalleryCheckModuleAdmin()){
 
 $index_admin->addInfoBoxLine(_AM_EXTGALLERY_SERVER_CONF, _AM_EXTGALLERY_UPLOAD_MAX_FILESIZE. get_cfg_var('upload_max_filesize'));
     $index_admin->addInfoBoxLine(_AM_EXTGALLERY_SERVER_CONF, _AM_EXTGALLERY_POST_MAX_SIZE. get_cfg_var('post_max_size'));
-    
+
     foreach (array_keys( $folder) as $i) {
         $index_admin->addConfigBoxLine($folder[$i], 'folder');
         $index_admin->addConfigBoxLine(array($folder[$i], '777'), 'chmod');

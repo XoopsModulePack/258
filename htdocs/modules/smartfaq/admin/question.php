@@ -124,7 +124,7 @@ function editfaq($showmenu = false, $faqid = -1)
 
     $sform->addElement(new XoopsFormHidden('status', $faqObj->status()));
     // Setting the FAQ Status
-    /*	$status_select = new XoopsFormSelect('', 'status', $status);
+    /*  $status_select = new XoopsFormSelect('', 'status', $status);
     $status_select->addOptionArray(sf_getStatusArray());
     $status_tray = new XoopsFormElementTray(_AM_SF_STATUS_EXP , '&nbsp;');
     $status_tray->addElement($status_select);

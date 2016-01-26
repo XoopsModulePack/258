@@ -6,7 +6,7 @@ Below are language differences from a version to next version.
 Version 0.97
 
 waiting\language\english\admin.php
-	Line 8: define('_AM_WAITING_DIRNAME',"Directory name");
+    Line 8: define('_AM_WAITING_DIRNAME',"Directory name");
 
 --------------------------------------------------------------
 

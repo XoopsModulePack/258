@@ -67,17 +67,17 @@ class XFormsElementRenderer
                 }
                 $form_ele = new XoopsFormText
                 (
-                    $ele_caption, $form_ele_id, $ele_value[0], //	box width
-                    $ele_value[1], //	maxlenght
-                    $myts->htmlspecialchars($myts->stripSlashesGPC($ele_value[2])) //	default value
+                    $ele_caption, $form_ele_id, $ele_value[0], //   box width
+                    $ele_value[1], //   maxlenght
+                    $myts->htmlspecialchars($myts->stripSlashesGPC($ele_value[2])) //   default value
                 );
                 break;
 
             case 'textarea':
                 $form_ele = new XoopsFormTextArea(
-                    $ele_caption, $form_ele_id, $myts->htmlspecialchars($myts->stripSlashesGPC($ele_value[0])), //	default value
-                    $ele_value[1], //	rows
-                    $ele_value[2] //	cols
+                    $ele_caption, $form_ele_id, $myts->htmlspecialchars($myts->stripSlashesGPC($ele_value[0])), //  default value
+                    $ele_value[1], //   rows
+                    $ele_value[2] //    cols
                 );
                 break;
 
@@ -89,7 +89,7 @@ class XFormsElementRenderer
                     );
                 } else {
                     $form_ele              = new XoopsFormDhtmlTextArea (
-                        $ele_caption, $form_ele_id, $myts->htmlspecialchars($myts->stripSlashesGPC($ele_value[0])) //	default value
+                        $ele_caption, $form_ele_id, $myts->htmlspecialchars($myts->stripSlashesGPC($ele_value[0])) //   default value
                     );
                     $form_ele->skipPreview = true;
                     $check_req->setExtra('disabled="disabled"');
@@ -110,7 +110,7 @@ class XFormsElementRenderer
                     $ele_value = $post_val;
                 }
                 $form_ele = new XoopsFormSelectCountry(
-                    $ele_caption, $form_ele_id, $myts->htmlspecialchars($myts->stripSlashesGPC($ele_value[2]))    //	default value
+                    $ele_caption, $form_ele_id, $myts->htmlspecialchars($myts->stripSlashesGPC($ele_value[2]))    //    default value
                 );
                 break;
 
@@ -126,8 +126,8 @@ class XFormsElementRenderer
                     ++$opt_count;
                 }
                 $form_ele = new XoopsFormSelect (
-                    $ele_caption, $form_ele_id, $selected, $ele_value[0], //	size
-                    $ele_value[1] //	multiple
+                    $ele_caption, $form_ele_id, $selected, $ele_value[0], //    size
+                    $ele_value[1] //    multiple
                 );
                 if ($ele_value[1]) {
                     $this->ele->setVar('ele_req', 0);

@@ -120,7 +120,7 @@ $form->addElement($button_tray);
 
 /**
  *  checks browser compatibility with the control
- *  @return bool	true - can use spaw; false - cannot use spaw
+ *  @return bool    true - can use spaw; false - cannot use spaw
  */
 function check_browser_can_use_spaw()
 {

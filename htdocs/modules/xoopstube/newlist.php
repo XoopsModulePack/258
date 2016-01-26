@@ -63,7 +63,7 @@ if (isset($_GET['newvideoshowdays'])) {
     $xoopsTpl->assign('allmonthvideos', $allmonthvideos);
 
 // List Last VARIABLE Days of videos
-//	$newvideoshowdays = xtubeCleanRequestVars($_REQUEST, 'newvideoshowdays', 7 );
+//  $newvideoshowdays = xtubeCleanRequestVars($_REQUEST, 'newvideoshowdays', 7 );
     $newvideoshowdays = (!isset($_GET['newvideoshowdays'])) ? 7 : $_GET['newvideoshowdays'];
     $xoopsTpl->assign('newvideoshowdays', intval($newvideoshowdays));
 

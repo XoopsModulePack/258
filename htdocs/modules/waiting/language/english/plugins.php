@@ -1,8 +1,8 @@
 <?php
 // $Id: plugins.php,v 1.1 2005/04/20 03:27:04 gij Exp $
-// FILE		::	plugins.php
-// AUTHOR	::	Ryuji AMANO <info@ryus.co.jp>
-// WEB		::	Ryu's Planning <http://ryus.co.jp/>
+// FILE     ::  plugins.php
+// AUTHOR   ::  Ryuji AMANO <info@ryus.co.jp>
+// WEB      ::  Ryu's Planning <http://ryus.co.jp/>
 //
 define('_PI_WAITING_WAITINGS',"Waitings");
 define('_PI_WAITING_SUBMITTED',"Submitted");

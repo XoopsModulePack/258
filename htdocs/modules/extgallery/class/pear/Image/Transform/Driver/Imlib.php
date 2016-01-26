@@ -192,7 +192,7 @@ class Image_Transform_Driver_Imlib extends Image_Transform {
             $this->img_x = $new_x;
             $this->img_y = $new_y;
         }
-        
+
         return true;
     }
 
@@ -219,7 +219,7 @@ class Image_Transform_Driver_Imlib extends Image_Transform {
 
         return true;
     }
-    
+
     // }}}
     // {{{ save()
 

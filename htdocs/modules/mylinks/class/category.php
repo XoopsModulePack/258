@@ -15,7 +15,7 @@
  * @license::    {@link http://www.gnu.org/licenses/gpl-2.0.html GNU Public License}
  * @package::    mylinks
  * @subpackage:: class
- * @since::		 File available since version 3.11
+ * @since::      File available since version 3.11
  * @author::     zyspec (owner@zyspec.com)
  * @version::    $Id: category.php 11304 2013-03-25 14:40:45Z zyspec $
  */

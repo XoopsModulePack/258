@@ -16,7 +16,7 @@
     }
   };
   Drupal.behaviors.magnific_popup = {
-		attach: function (context, settings) {
+        attach: function (context, settings) {
       settings.magnific_popup = settings.magnific_popup || { common_options: {}, common_options_iframe: {}};
       var common_options = settings.magnific_popup.common_options || {};
       var common_options_iframe = settings.magnific_popup.common_options_iframe || {};

@@ -1,12 +1,12 @@
 .extmicrogallery {
-	 text-align: center;
+     text-align: center;
     margin: 70px 50px 50px 50px;
 }
 .extmicrogalleryblock {
-	margin: 30px 10px 10px 10px;
+    margin: 30px 10px 10px 10px;
 }
 .microGallery{
-	position:relative;
+    position:relative;
 }
 .microGallery img{
     margin-left:auto;

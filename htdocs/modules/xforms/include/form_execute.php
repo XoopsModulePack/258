@@ -234,7 +234,7 @@ if (count($err) == 0) {
                 if( preg_match('/\{UNAME\}/', $ele_value[2]) ){
                     $reply_name = $ele[$ele_id];
                 }
-        //		$msg[$ele_id] .= $myts->stripSlashesGPC($ele[$ele_id]);
+        //      $msg[$ele_id] .= $myts->stripSlashesGPC($ele[$ele_id]);
 
                 $msg[$ele_id] .= $countries[$myts->stripSlashesGPC($ele[$ele_id])];
                 $udata_value[0] = $countries[$myts->stripSlashesGPC($ele[$ele_id])];

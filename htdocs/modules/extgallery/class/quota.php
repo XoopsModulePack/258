@@ -32,32 +32,32 @@ class ExtgalleryQuota extends XoopsObject {
         $this->initVar('quota_name', XOBJ_DTYPE_TXTBOX, 0, false);
         $this->initVar('quota_value', XOBJ_DTYPE_INT, 0, false);
     }
-    
+
     function getExternalKey() {
         return $this->externalKey;
     }
-    
+
 }
 
 class ExtgalleryQuotaHandler extends ExtgalleryPersistableObjectHandler {
-    
+
     function ExtgalleryQuotaHandler(&$db) {
         $this->ExtgalleryPersistableObjectHandler($db, 'extgallery_quota', 'ExtgalleryQuota', 'quota_id');
     }
-    
+
     function createQuota($data) {
         $quota = $this->create();
         $quota->setVars($data);
 
         return $this->insert($quota, true);
     }
-    
+
     function deleteQuota() {
         $criteria = new Criteria('quota_name','private');
 
         return $this->deleteAll($criteria);
     }
-    
+
     function getQuota($groupid, $quotaName) {
         $criteria = new CriteriaCompo();
         $criteria->add(new Criteria('groupid',$groupid));
@@ -69,5 +69,5 @@ class ExtgalleryQuotaHandler extends ExtgalleryPersistableObjectHandler {
             return $ret[0];
         }
     }
-    
+
 }

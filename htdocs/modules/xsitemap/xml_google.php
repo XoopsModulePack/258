@@ -16,12 +16,12 @@
  * @copyright       Urbanspaceman (http://www.takeaweb.it)
  * @license         GPL
  * @package         xsitemap
- * @author 			Urbanspaceman (http://www.takeaweb.it)
+ * @author          Urbanspaceman (http://www.takeaweb.it)
  *
  * Version : 1.00:
  * ****************************************************************************
  */
- 
+
 include "../../mainfile.php";
 //template assign
 $xoopsOption['template_main'] = 'xsitemap_xml.html' ;
@@ -42,5 +42,5 @@ $last_mod = date("d-m-Y H:i:s",$stat['mtime']);
 
 $xoopsTpl->assign('lastmod', $last_mod);
 
-    
+
 include_once XOOPS_ROOT_PATH."/footer.php";

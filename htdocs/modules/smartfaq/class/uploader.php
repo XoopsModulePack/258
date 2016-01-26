@@ -2,12 +2,12 @@
 /**
  * CBB, XOOPS forum module
  *
- * @copyright	The XOOPS Project http://xoops.sf.net
- * @license		http://www.fsf.org/copyleft/gpl.html GNU public license
- * @author		Taiwen Jiang (phppp or D.J.) <phppp@users.sourceforge.net>
- * @since		4.00
- * @version		$Id $
- * @package		module::newbb
+ * @copyright   The XOOPS Project http://xoops.sf.net
+ * @license     http://www.fsf.org/copyleft/gpl.html GNU public license
+ * @author      Taiwen Jiang (phppp or D.J.) <phppp@users.sourceforge.net>
+ * @since       4.00
+ * @version     $Id $
+ * @package     module::newbb
  */
 
 // defined("XOOPS_ROOT_PATH") || exit("XOOPS root path not defined");

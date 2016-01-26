@@ -6,7 +6,7 @@
 */
 
 .sf_headertable {padding: 0; margin: 0; border-bottom: 1px solid;}
-.sf_modulename {font-size: 10px; text-align: left; font-weight: bold; padding-right: 0.3em;	line-height: 18px;}
+.sf_modulename {font-size: 10px; text-align: left; font-weight: bold; padding-right: 0.3em; line-height: 18px;}
 .sf_breadcrumb {font-size: 10px; line-height: 18px;}
 
 .sf_infotitle {margin-top: 8px; margin-bottom: 8px; font-size: 18px; line-height: 18px; font-weight: bold; display: block;}

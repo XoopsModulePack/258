@@ -39,7 +39,7 @@ function backup_export($configs=null)
     if(!is_array($configs) || count($configs)==0){
         return false;
     }
-    
+
     $export_file = XOOPS_CACHE_PATH.'/backup.php';
     if(!$fp = fopen($export_file,'w')) {
         echo "<br /> the update file can not be created";
@@ -47,7 +47,7 @@ function backup_export($configs=null)
         return false;
     }
     $file_content = "<?php";
-    $file_content .= "\n	return \$config = '".serialize($configs)."';\n";
+    $file_content .= "\n    return \$config = '".serialize($configs)."';\n";
     $file_content .= "?>";
     fputs($fp,$file_content);
     fclose($fp);
