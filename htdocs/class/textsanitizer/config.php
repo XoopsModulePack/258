@@ -9,15 +9,14 @@
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  *
- * @copyright       The XOOPS Project http://sourceforge.net/projects/xoops/
+ * @copyright       (c) 2000-2015 XOOPS Project (www.xoops.org)
  * @license         GNU GPL 2 (http://www.gnu.org/licenses/old-licenses/gpl-2.0.html)
  * @package         class
  * @subpackage      textsanitizer
  * @since           2.3.0
  * @author          Taiwen Jiang <phppp@users.sourceforge.net>
- * @version         $Id: config.php 8088 2011-11-06 09:38:12Z beckmi $
  */
-defined('XOOPS_ROOT_PATH') or die('Restricted access');
+defined('XOOPS_ROOT_PATH') || exit('Restricted access');
 
 return $config = array(
     "extensions" => array(
@@ -31,6 +30,7 @@ return $config = array(
         "wiki" => is_dir(XOOPS_ROOT_PATH . '/modules/mediawiki/'),
         "mms" => 0,
         "rtsp" => 0,
+        "soundcloud" => 0, //new in XOOPS 2.5.7
         "ul" => 1,
         "li" => 1,
         "gallery" => 1),
@@ -43,4 +43,3 @@ return $config = array(
     // Filters XSS scripts on display of text
     // There is considerable trade-off between security and performance
     "filterxss_on_display" => false);
-?>
