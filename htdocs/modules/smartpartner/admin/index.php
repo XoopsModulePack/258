@@ -29,7 +29,6 @@ switch ($op) {
                 smartpartner_copyr($source, $dest);
             }
             $msg = ($res) ? _AM_SPARTNER_DIRCREATED : _AM_SPARTNER_DIRNOTCREATED;
-
         } else {
             $msg = _AM_SPARTNER_DIRNOTCREATED;
         }
@@ -264,9 +263,7 @@ $totalPartnersOnPage = count($partnersObj);
 buildTable();
 
 if ($numrows > 0) {
-
     for ($i = 0; $i < $totalPartnersOnPage; $i++) {
-
         $approve = '';
         switch ($partnersObj[$i]->status()) {
 

@@ -20,7 +20,7 @@ class ExtcalTime
     /**
      * @return ExtcalTime
      */
-    static function &getHandler()
+    public static function &getHandler()
     {
         static $timeHandler;
         if (!isset($timeHandler)) {
@@ -35,7 +35,7 @@ class ExtcalTime
      *
      * @return mixed
      */
-    function _getUserTimeZone($user)
+    public function _getUserTimeZone($user)
     {
         global $xoopsConfig;
 
@@ -47,7 +47,7 @@ class ExtcalTime
      *
      * @return mixed
      */
-    function getMonthName($id)
+    public function getMonthName($id)
     {
         $monthName = array(
             '1'  => _CAL_JANUARY,
@@ -72,7 +72,7 @@ class ExtcalTime
      *
      * @return mixed
      */
-    function getDayName($id)
+    public function getDayName($id)
     {
         $dayName = array(
             _CAL_SUNDAY,
@@ -93,7 +93,7 @@ class ExtcalTime
      *
      * @return mixed
      */
-    function getFormatedDate($format, $timestamp)
+    public function getFormatedDate($format, $timestamp)
     {
         $patterns     = array(
             '/January/',
@@ -184,9 +184,8 @@ class ExtcalTime
      *
      * @return string
      */
-    function getFormatedReccurRule($event_recur_rules)
+    public function getFormatedReccurRule($event_recur_rules)
     {
-
         $eventOptions = explode('|', $event_recur_rules);
 
         switch ($eventOptions[0]) {
@@ -345,7 +344,5 @@ class ExtcalTime
                 break;
 
         }
-
     }
-
 }

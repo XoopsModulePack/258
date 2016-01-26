@@ -44,9 +44,9 @@ if (!class_exists("aboutTree")) {
         }
 
         /**
-         * @param string $prefix
-         * @param int    $key
-         * @param null   $tags
+         * @param  string $prefix
+         * @param  int    $key
+         * @param  null   $tags
          * @return array
          */
         public function &makeTree($prefix = '-', $key = 0, $tags = null)
@@ -58,11 +58,11 @@ if (!class_exists("aboutTree")) {
         }
 
         /**
-         * @param string $name
-         * @param string $prefix
-         * @param string $selected
-         * @param bool   $EmptyOption
-         * @param int    $key
+         * @param  string $name
+         * @param  string $prefix
+         * @param  string $selected
+         * @param  bool   $EmptyOption
+         * @param  int    $key
          * @return string
          */
         public function &makeSelBox($name, $prefix = '-', $selected = '', $EmptyOption = false, $key = 0)
@@ -107,9 +107,9 @@ if (!class_exists("aboutTree")) {
         }
 
         /**
-         * @param int  $key
-         * @param null $tags
-         * @param int  $depth
+         * @param  int   $key
+         * @param  null  $tags
+         * @param  int   $depth
          * @return array
          */
         public function &makeArrayTree($key = 0, $tags = null, $depth = 0)

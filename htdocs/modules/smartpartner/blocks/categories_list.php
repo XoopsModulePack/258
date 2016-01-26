@@ -23,12 +23,11 @@ function get_content($cat_id, $catsObj, $displaysubs)
     }
 
     return $content;
-
 }
 
 function b_categories_list_show($options)
 {
-    include_once (XOOPS_ROOT_PATH . "/modules/smartpartner/include/common.php");
+    include_once(XOOPS_ROOT_PATH . "/modules/smartpartner/include/common.php");
 
     $smartpartner_category_handler =& smartpartner_gethandler('category');
     $criteria = new CriteriaCompo();

@@ -9,7 +9,7 @@ require_once 'calendar_include.php';
  */
 class CalendarTabularTests extends GroupTest
 {
-    function CalendarTabularTests()
+    public function CalendarTabularTests()
     {
         $this->GroupTest('Calendar Tabular Tests');
         $this->addTestFile('month_weekdays_test.php');

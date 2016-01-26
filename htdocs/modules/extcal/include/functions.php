@@ -87,7 +87,6 @@ function extcal_loadImg(&$REQUEST, &$event_picture1, &$event_picture2)
     }
     //exit;
     ///////////////////////////////////////////////////////////////////////////////
-
 }
 
 /*******************************************************************
@@ -198,7 +197,6 @@ function getList($name, $caption, $defaut, $options, $sep = ';')
     }
 
     return $select;
-
 }
 
 /*******************************************************************
@@ -260,7 +258,6 @@ function echoDateArray($period)
     foreach ($period as $dt) {
         echo $dt->format("l Y-m-d H:i:s\n") . '<br>';
     }
-
 }
 
 /*****************************************************************/
@@ -337,7 +334,6 @@ function ext_convert_date($date, $sep = '-')
         }
 
         return strtotime($date);
-
     }
 }
 
@@ -445,6 +441,5 @@ function eclaircirCouleur($color, $plancher, $plafond)
     //$ct = new ColorTools();
     //return $ct->eclaircir($color,$plancher,$plafond);
     return ColorTools::eclaircir($color, $plancher, $plafond);
-
 }
 /**************************************************************************/

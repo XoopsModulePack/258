@@ -46,9 +46,7 @@ switch ($op) {
                 $uploader = new XoopsMediaUploader(smartpartner_getImageDir(), $allowed_mimetypes, $max_size, $max_imgwidth, $max_imgheight);
 
                 if ($uploader->fetchMedia($filename) && $uploader->upload()) {
-
                     $partnerObj->setVar('image', $uploader->getSavedFileName());
-
                 } else {
                     redirect_header('javascript:history.go(-1)', 2, _CO_SPARTNER_FILE_UPLOAD_ERROR . $uploader->getErrors());
                     exit;
@@ -80,7 +78,7 @@ switch ($op) {
         }
 
         // Storing the partner
-        If (!$partnerObj->store()) {
+        if (!$partnerObj->store()) {
             redirect_header("javascript:history.go(-1)", 3, _MD_SPARTNER_SUBMIT_ERROR . smartpartner_formatErrors($partnerObj->getErrors()));
             exit;
         }
@@ -98,7 +96,7 @@ switch ($op) {
 
     case "form" :
 
-        If (($xoopsModuleConfig['allowsubmit'] != 1) || (!$xoopsUser) && $xoopsModuleConfig['anonpost'] != 1) {
+        if (($xoopsModuleConfig['allowsubmit'] != 1) || (!$xoopsUser) && $xoopsModuleConfig['anonpost'] != 1) {
             redirect_header("index.php", 2, _NOPERM);
         }
 

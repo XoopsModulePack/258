@@ -11,8 +11,12 @@ include_once("admin_header.php");
 
 $op = 'none';
 
-if (isset($_GET['op'])) $op = $_GET['op'];
-if (isset($_POST['op'])) $op = $_POST['op'];
+if (isset($_GET['op'])) {
+    $op = $_GET['op'];
+}
+if (isset($_POST['op'])) {
+    $op = $_POST['op'];
+}
 
 global $xoopsDB, $xoopsModule;
 
@@ -59,12 +63,11 @@ switch ($op) {
         include_once XOOPS_ROOT_PATH . '/class/xoopsformloader.php';
 
         $module_handler =& xoops_gethandler('module');
-        If ($module_handler->getByDirname('xoopspartners')) {
+        if ($module_handler->getByDirname('xoopspartners')) {
             $importfile_select_array["xoopspartners"] = _AM_SPARTNER_IMPORT_XOOPSPARTNERS_110;
         }
 
-        If (isset($importfile_select_array) && count($importfile_select_array) > 0) {
-
+        if (isset($importfile_select_array) && count($importfile_select_array) > 0) {
             $sform = new XoopsThemeForm(_AM_SPARTNER_IMPORT_SELECTION, "op", xoops_getenv('PHP_SELF'));
             $sform->setExtra('enctype="multipart/form-data"');
 

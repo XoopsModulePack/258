@@ -73,7 +73,7 @@ function xnewsletter_plugin_getdata_xoopsuser($cat_id, $action_after_read, $limi
     $sql .= " GROUP BY `email`, `name`, `uname`";
 
     if (!$result_users = $xoopsDB->query($sql)) {
-        die ("MySQL-Error: " . mysql_error());
+        die("MySQL-Error: " . mysql_error());
     }
     while ($lineArray = mysql_fetch_array($result_users)) {
         ++$i;

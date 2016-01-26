@@ -9,28 +9,27 @@
 
 function b_random_partner_show($options)
 {
-    include_once (XOOPS_ROOT_PATH . "/modules/smartpartner/include/common.php");
+    include_once(XOOPS_ROOT_PATH . "/modules/smartpartner/include/common.php");
 
     // Creating the partner handler object
     $partner_handler =& smartpartner_gethandler('partner');
 
     // Randomize
     $partnersObj =& $partner_handler->getPartners(0, 0, _SPARTNER_STATUS_ACTIVE);
-    If (count($partnersObj) > 0) {
+    if (count($partnersObj) > 0) {
         $key_arr = array_keys($partnersObj);
         $key_rand = array_rand($key_arr, 1);
         $partnerObj = $partnersObj[$key_rand];
     }
 
     $block = array();
-    If ($partnerObj) {
-
+    if ($partnerObj) {
         $partner['id'] = $partnerObj->id();
         $partner['urllink'] = $partnerObj->getUrlLink('block');
-        If (($partnerObj->image()) && (($options[1] == 1) || ($options[1] == 3))) {
+        if (($partnerObj->image()) && (($options[1] == 1) || ($options[1] == 3))) {
             $partner['image'] = $partnerObj->getImageUrl();
         }
-        If (($partnerObj->image()) && (($options[1] == 2) || ($options[1] == 3))) {
+        if (($partnerObj->image()) && (($options[1] == 2) || ($options[1] == 3))) {
             $partner['title'] = $partnerObj->title();
         } else {
             $partner['title'] = '';
@@ -47,7 +46,6 @@ function b_random_partner_show($options)
         $block['see_all'] = $options[2];
         $block['lang_see_all'] = _MB_SPARTNER_LANG_SEE_ALL;
         $block['smartpartner_url'] = SMARTPARTNER_URL;
-
     }
 
     return $block;

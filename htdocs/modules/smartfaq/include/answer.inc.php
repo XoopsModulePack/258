@@ -25,17 +25,17 @@ $form->addElement(new XoopsFormLabel(_MD_SF_QUESTION, $faqObj->question()), fals
 
 $editorTray = new XoopsFormElementTray(_MD_SF_ANSWER_FAQ, '<br />');
    if (class_exists('XoopsFormEditor')) {
-           $options['name'] = 'answer';
-           $options['value'] = '';
-           $options['rows'] = 5;
-           $options['cols'] = '100%';
-           $options['width'] = '100%';
-           $options['height'] = '200px';
+       $options['name'] = 'answer';
+       $options['value'] = '';
+       $options['rows'] = 5;
+       $options['cols'] = '100%';
+       $options['width'] = '100%';
+       $options['height'] = '200px';
        $answerEditor  = new XoopsFormEditor('', $xoopsModuleConfig['form_editorOptionsUser'], $options, $nohtml = false, $onfailure = 'textarea');
-           $editorTray->addElement($answerEditor,true );
-       } else {
+       $editorTray->addElement($answerEditor, true);
+   } else {
        $answerEditor  = new XoopsFormDhtmlTextArea(_MD_SF_ANSWER_FAQ, 'answer', '', '100%', '100%');
-       $editorTray->addElement($answerEditor, true );
+       $editorTray->addElement($answerEditor, true);
    }
 $form->addElement($editorTray);
 
@@ -46,7 +46,7 @@ if (is_object($xoopsUser)) {
     $form->addElement($notify_checkbox);
 }
 
-if (($faqObj->status() == _SF_STATUS_PUBLISHED) || ($faqObj->status() == _SF_STATUS_NEW_ANSWER) ) {
+if (($faqObj->status() == _SF_STATUS_PUBLISHED) || ($faqObj->status() == _SF_STATUS_NEW_ANSWER)) {
     $answerObj =& $faqObj->answer();
     $form->addElement(new XoopsFormLabel(_MD_SF_ORIGINAL_ANSWER, $answerObj->answer()), false);
 }

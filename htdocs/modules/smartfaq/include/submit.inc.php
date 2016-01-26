@@ -38,15 +38,15 @@ $form->addElement(new XoopsFormTextArea(_MD_SF_QUESTION, 'question', $faqObj->qu
 
 $editorTray = new XoopsFormElementTray(_MD_SF_ANSWER_FAQ, '<br />');
    if (class_exists('XoopsFormEditor')) {
-           $options['name'] = 'answer';
-           $options['value'] = $answerObj->answer();
-           $options['rows'] = 5;
-           $options['cols'] = '100%';
-           $options['width'] = '100%';
-           $options['height'] = '200px';
+       $options['name'] = 'answer';
+       $options['value'] = $answerObj->answer();
+       $options['rows'] = 5;
+       $options['cols'] = '100%';
+       $options['width'] = '100%';
+       $options['height'] = '200px';
        $answerEditor  = new XoopsFormEditor('', $xoopsModuleConfig['form_editorOptionsUser'], $options, $nohtml = false, $onfailure = 'textarea');
-           $editorTray->addElement($answerEditor);
-       } else {
+       $editorTray->addElement($answerEditor);
+   } else {
        $answerEditor  = new XoopsFormDhtmlTextArea('', 'answer', $faqObj->question(), '100%', '100%');
        $answerEditor->setDescription(_MD_SF_ANSWER_FAQ_DSC);
        $editorTray->addElement($answerEditor);
@@ -72,10 +72,10 @@ $form->addElement($diduno_text);
     $upload_tray->addElement(new XoopsFormFile('', 'userfile', ($xoopsModuleConfig['max_image_size'] * 1024)));
     $upload_tray->addElement(new XoopsFormButton('', 'contents_upload', _MD_SF_UPLOAD, "submit"));
     $upload_tray->addElement(new XoopsFormLabel("<br /><br />" . _MD_SF_MAX_FILESIZE . ":", $xoopsModuleConfig['max_image_size'] . "Kb; "));
-    $extensions = trim(str_replace('|',' ',$xoopsModuleConfig['attach_ext']));
+    $extensions = trim(str_replace('|', ' ', $xoopsModuleConfig['attach_ext']));
     $extensions = (empty($extensions) || $extensions == "*") ? _ALL : $extensions;
     $upload_tray->addElement(new XoopsFormLabel(_MD_SF_ALLOWED_EXTENSIONS . ":", $extensions));
-    $upload_tray->addElement(new XoopsFormLabel("<br />".sprintf(_MD_SF_MAXPIC,$xoopsModuleConfig['max_img_height'],$xoopsModuleConfig['max_img_width'])));
+    $upload_tray->addElement(new XoopsFormLabel("<br />".sprintf(_MD_SF_MAXPIC, $xoopsModuleConfig['max_img_height'], $xoopsModuleConfig['max_img_width'])));
     $form->addElement($upload_tray);
 //}
 
@@ -100,8 +100,7 @@ if (!empty($attachments_tmp) && is_array($attachments_tmp) && count($attachments
     unset($delete_attach_checkbox);
     $attachments_tmp =  base64_encode(serialize($attachments_tmp));
     $form->addElement(new XoopsFormHidden('attachments_tmp', $attachments_tmp));
-
-    }
+}
 
 //************************************************
 

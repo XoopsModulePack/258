@@ -62,22 +62,17 @@ function cloneFileFolder($path)
 
         // check all files in dir, and process it
         if ($handle = opendir($path)) {
-            while ($file = readdir($handle))
-            {
+            while ($file = readdir($handle)) {
                 if ($file != '.' && $file != '..') {
                     cloneFileFolder("$path/$file");
                 }
             }
             closedir($handle);
         }
-    }
-    else
-    {
+    } else {
         if (preg_match('/(.jpg|.gif|.png|.zip)$/i', $path)) {
             copy($path, $newPath);
-        }
-        else
-        {
+        } else {
             // file, read it
             $content = file_get_contents($path);
             $content = str_replace($patKeys, $patValues, $content);

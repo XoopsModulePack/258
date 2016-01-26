@@ -66,21 +66,21 @@ class Calendar_Validator
      * @var object
      * @access private
      */
-    var $calendar;
+    public $calendar;
 
     /**
      * Instance of the Calendar_Engine
      * @var object
      * @access private
      */
-    var $cE;
+    public $cE;
 
     /**
      * Array of errors for validation failures
      * @var array
      * @access private
      */
-    var $errors = array();
+    public $errors = array();
 
     /**
      * Constructs Calendar_Validator
@@ -89,7 +89,7 @@ class Calendar_Validator
      *
      * @access public
      */
-    function Calendar_Validator(&$calendar)
+    public function Calendar_Validator(&$calendar)
     {
         $this->calendar = & $calendar;
         $this->cE       = & $calendar->getEngine();
@@ -101,7 +101,7 @@ class Calendar_Validator
      * @return boolean
      * @access public
      */
-    function isValid()
+    public function isValid()
     {
         $checks = array('isValidYear', 'isValidMonth', 'isValidDay',
             'isValidHour', 'isValidMinute', 'isValidSecond');
@@ -121,7 +121,7 @@ class Calendar_Validator
      * @return boolean
      * @access public
      */
-    function isValidYear()
+    public function isValidYear()
     {
         $y   = $this->calendar->thisYear();
         $min = $this->cE->getMinYears();
@@ -148,7 +148,7 @@ class Calendar_Validator
      * @return boolean
      * @access public
      */
-    function isValidMonth()
+    public function isValidMonth()
     {
         $m   = $this->calendar->thisMonth();
         $min = 1;
@@ -175,7 +175,7 @@ class Calendar_Validator
      * @return boolean
      * @access public
      */
-    function isValidDay()
+    public function isValidDay()
     {
         $d   = $this->calendar->thisDay();
         $min = 1;
@@ -205,7 +205,7 @@ class Calendar_Validator
      * @return boolean
      * @access public
      */
-    function isValidHour()
+    public function isValidHour()
     {
         $h   = $this->calendar->thisHour();
         $min = 0;
@@ -232,7 +232,7 @@ class Calendar_Validator
      * @return boolean
      * @access public
      */
-    function isValidMinute()
+    public function isValidMinute()
     {
         $i   = $this->calendar->thisMinute();
         $min = 0;
@@ -259,7 +259,7 @@ class Calendar_Validator
      * @return boolean
      * @access public
      */
-    function isValidSecond()
+    public function isValidSecond()
     {
         $s   = $this->calendar->thisSecond();
         $min = 0;
@@ -286,7 +286,7 @@ class Calendar_Validator
      * @return mixed either Calendar_Validation_Error or false
      * @access public
      */
-    function fetch()
+    public function fetch()
     {
         $error = each($this->errors);
         if ($error) {
@@ -318,21 +318,21 @@ class Calendar_Validation_Error
      * @var string
      * @access private
      */
-    var $unit;
+    public $unit;
 
     /**
      * Value of unit which failed test
      * @var int
      * @access private
      */
-    var $value;
+    public $value;
 
     /**
      * Validation error message
      * @var string
      * @access private
      */
-    var $message;
+    public $message;
 
     /**
      * Constructs Calendar_Validation_Error
@@ -343,7 +343,7 @@ class Calendar_Validation_Error
      *
      * @access protected
      */
-    function Calendar_Validation_Error($unit, $value, $message)
+    public function Calendar_Validation_Error($unit, $value, $message)
     {
         $this->unit    = $unit;
         $this->value   = $value;
@@ -356,7 +356,7 @@ class Calendar_Validation_Error
      * @return string
      * @access public
      */
-    function getUnit()
+    public function getUnit()
     {
         return $this->unit;
     }
@@ -367,7 +367,7 @@ class Calendar_Validation_Error
      * @return int
      * @access public
      */
-    function getValue()
+    public function getValue()
     {
         return $this->value;
     }
@@ -378,7 +378,7 @@ class Calendar_Validation_Error
      * @return string
      * @access public
      */
-    function getMessage()
+    public function getMessage()
     {
         return $this->message;
     }
@@ -389,7 +389,7 @@ class Calendar_Validation_Error
      * @return string
      * @access public
      */
-    function toString ()
+    public function toString()
     {
         return $this->unit.' = '.$this->value.' ['.$this->message.']';
     }

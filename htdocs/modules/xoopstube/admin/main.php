@@ -261,7 +261,7 @@ function edit($lid = 0)
     $result = $xoopsDB->query(
         "SELECT COUNT( * ) FROM " . $xoopsDB->prefix('xoopstube_broken') . " WHERE lid = " . $lid
     );
-    list ($broken_count) = $xoopsDB->fetchRow($result);
+    list($broken_count) = $xoopsDB->fetchRow($result);
     if ($broken_count > 0) {
         $video_updated_radio = new XoopsFormRadioYN(
             _AM_XOOPSTUBE_VIDEO_DELEDITMESS, 'delbroken', 1, ' ' . _YES . '', ' ' . _NO . ''
@@ -592,7 +592,6 @@ switch (strtolower($op)) {
 
 //TODO add table with categories
 
-
 //            $sql='SELECT * FROM ' . $xoopsDB->prefix('xoopstube_cat') . ' ORDER BY cid DESC';
 //            $published_array       = $xoopsDB->query($sql, $xoopsModuleConfig['admin_perpage'], $start);
 //            $published_array_count = $xoopsDB->getRowsNum($xoopsDB->query($sql));
@@ -607,8 +606,6 @@ switch (strtolower($op)) {
 //                xtubeRenderCategoryListFooter();
 //            }
 //            xtubeSetPageNavigationCategoryList($published_array_count, $start, 'art', '', 'right');
-
-
         }
 
         if ($totalvideos > 0) {

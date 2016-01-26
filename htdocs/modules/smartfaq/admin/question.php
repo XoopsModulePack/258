@@ -16,8 +16,12 @@ $faq_handler =& sf_gethandler('faq');
 $category_handler =& sf_gethandler('category');
 
 $op = '';
-if (isset($_GET['op'])) $op = $_GET['op'];
-if (isset($_POST['op'])) $op = $_POST['op'];
+if (isset($_GET['op'])) {
+    $op = $_GET['op'];
+}
+if (isset($_POST['op'])) {
+    $op = $_POST['op'];
+}
 
 // Where shall we start?
 $startfaq = isset($_GET['startfaq'])? intval($_GET['startfaq']) : 0;
@@ -95,7 +99,7 @@ function editfaq($showmenu = false, $faqid = -1)
     * Last one is not set as we do not have sub menus in Smartfaq
     */
 
-    $mytree = new XoopsTree($xoopsDB->prefix("smartfaq_categories"), "categoryid" , "parentid");
+    $mytree = new XoopsTree($xoopsDB->prefix("smartfaq_categories"), "categoryid", "parentid");
     ob_start();
     $mytree->makeMySelBox("name", "weight", $categoryObj->categoryid());
     $sform->addElement(new XoopsFormLabel(_AM_SF_CATEGORY_QUESTION, ob_get_contents()));
@@ -170,14 +174,14 @@ function editfaq($showmenu = false, $faqid = -1)
 switch ($op) {
     case "mod":
 
-    Global $xoopsUser, $xoopsUser, $xoopsConfig, $xoopsDB, $xoopsModuleConfig, $xoopsModule, $modify, $myts;
+    global $xoopsUser, $xoopsUser, $xoopsConfig, $xoopsDB, $xoopsModuleConfig, $xoopsModule, $modify, $myts;
     $faqid = (isset($_GET['faqid']))? $_GET['faqid'] : -1;
 
     if ($faqid == -1) {
         $totalcategories = $category_handler->getCategoriesCount(-1);
         if ($totalcategories == 0) {
             redirect_header("category.php?op=mod", 3, _AM_SF_NEED_CATEGORY_QUESTION);
-        exit();
+            exit();
         }
     }
 
@@ -201,7 +205,7 @@ switch ($op) {
             exit();
         }
     } else {
-          $uid = $xoopsUser->uid();
+        $uid = $xoopsUser->uid();
     }
 
     $faqid = (isset($_POST['faqid']))? intval($_POST['faqid']) : -1;
@@ -248,7 +252,7 @@ switch ($op) {
     $faqObj->setVar('status', $status);
 
     // Storing the FAQ
-    if ( !$faqObj->store() ) {
+    if (!$faqObj->store()) {
         redirect_header("javascript:history.go(-1)", 3, _AM_SF_ERROR . sf_formatErrors($faqObj->getErrors()));
         exit;
     }
@@ -278,7 +282,7 @@ switch ($op) {
     $question = (isset($_POST['question']))? $_POST['question'] : '';
 
     if ($confirm) {
-        if ( !$faq_handler->delete($faqObj)) {
+        if (!$faq_handler->delete($faqObj)) {
             redirect_header("question.php", 2, _AM_SF_FAQ_DELETE_ERROR);
             exit;
         }
@@ -337,7 +341,7 @@ switch ($op) {
     //var_dump( $faqsObj);
     if ($totalfaqs > 0) {
         global $pathIcon16;
-        foreach ( array_keys($faqsObj) as $i) {
+        foreach (array_keys($faqsObj) as $i) {
             $categoryObj =& $allcats[$faqsObj[$i]->categoryid()];
 
             $modify = "<a href='question.php?op=mod&amp;faqid=" . $faqsObj[$i]->faqid() . "'><img src='". $pathIcon16 .'/edit.png'."' title='" . _AM_SF_EDITART . "' alt='" . _AM_SF_EDITART . "'></a>";

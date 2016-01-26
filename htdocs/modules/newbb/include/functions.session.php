@@ -42,8 +42,8 @@ if (!defined('NEWBB_FUNCTIONS_SESSION')) {
     }
 
     /**
-     * @param      $name
-     * @param bool $isArray
+     * @param             $name
+     * @param  bool       $isArray
      * @return array|bool
      */
     function newbb_getsession($name, $isArray = false)
@@ -84,8 +84,8 @@ if (!defined('NEWBB_FUNCTIONS_SESSION')) {
     }
 
     /**
-     * @param      $name
-     * @param bool $isArray
+     * @param             $name
+     * @param  bool       $isArray
      * @return array|null
      */
     function newbb_getcookie($name, $isArray = false)

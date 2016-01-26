@@ -80,7 +80,7 @@ class Calendar_Hour extends Calendar
      *
      * @access public
      */
-    function Calendar_Hour($y, $m, $d, $h)
+    public function Calendar_Hour($y, $m, $d, $h)
     {
         parent::Calendar($y, $m, $d, $h);
     }
@@ -93,7 +93,7 @@ class Calendar_Hour extends Calendar
      * @return boolean
      * @access public
      */
-    function build($sDates = array())
+    public function build($sDates = array())
     {
         include_once CALENDAR_ROOT.'Minute.php';
         $mIH = $this->cE->getMinutesInHour($this->year, $this->month, $this->day,
@@ -118,14 +118,13 @@ class Calendar_Hour extends Calendar
      * @return void
      * @access private
      */
-    function setSelection($sDates)
+    public function setSelection($sDates)
     {
         foreach ($sDates as $sDate) {
             if ($this->year == $sDate->thisYear()
                 && $this->month == $sDate->thisMonth()
                 && $this->day == $sDate->thisDay()
-                && $this->hour == $sDate->thisHour())
-            {
+                && $this->hour == $sDate->thisHour()) {
                 $key = (int) $sDate->thisMinute();
                 if (isset($this->children[$key])) {
                     $sDate->setSelected();

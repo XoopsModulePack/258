@@ -160,7 +160,7 @@ class MetaSliderImageHelper
      *
      * @return string resized image URL
      */
-    function get_image_url()
+    public function get_image_url()
     {
         // Get the image file path
         if (!strlen($this->path)) {
@@ -302,14 +302,14 @@ class MetaSliderImageHelper
         }
 
         // Record the new size so that the file is correctly removed when the media file is deleted.
-        $backup_sizes = get_post_meta($this->id,'_wp_attachment_backup_sizes',true);
+        $backup_sizes = get_post_meta($this->id, '_wp_attachment_backup_sizes', true);
 
         if (!is_array($backup_sizes)) {
             $backup_sizes = array();
         }
 
         $backup_sizes["resized-{$dest_size['width']}x{$dest_size['height']}"] = $saved;
-        update_post_meta($this->id,'_wp_attachment_backup_sizes', $backup_sizes);
+        update_post_meta($this->id, '_wp_attachment_backup_sizes', $backup_sizes);
 
         $url = str_replace(basename($this->url), basename($saved['path']), $this->url);
 

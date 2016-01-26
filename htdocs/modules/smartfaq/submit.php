@@ -9,7 +9,7 @@
 
 include_once __DIR__ . '/header.php';
 
-Global $xoopsUser, $xoopsConfig, $xoopsModuleConfig, $xoopsModule;
+global $xoopsUser, $xoopsConfig, $xoopsModuleConfig, $xoopsModule;
 
 // Creating the category handler object
 $category_handler =& sf_gethandler('category');
@@ -49,7 +49,7 @@ if (isset($_POST['post'])) {
 switch ($op) {
     case 'preview':
 
-    Global $xoopsUser, $xoopsConfig, $xoopsModule, $xoopsModuleConfig, $xoopsDB;
+    global $xoopsUser, $xoopsConfig, $xoopsModule, $xoopsModuleConfig, $xoopsDB;
 
     $faqObj = $faq_handler->create();
     $answerObj = $answer_handler->create();
@@ -114,7 +114,7 @@ switch ($op) {
 
     case 'post':
 
-    Global $xoopsUser, $xoopsConfig, $xoopsModule, $xoopsModuleConfig, $xoopsDB;
+    global $xoopsUser, $xoopsConfig, $xoopsModule, $xoopsModuleConfig, $xoopsDB;
 
     $newFaqObj = $faq_handler->create();
     $newAnswerObj = $answer_handler->create();
@@ -155,7 +155,7 @@ switch ($op) {
     }
 
     // Storing the FAQ object in the database
-    if ( !$newFaqObj->store() ) {
+    if (!$newFaqObj->store()) {
         redirect_header("javascript:history.go(-1)", 2, _MD_SF_SUBMIT_ERROR);
         exit();
     }
@@ -187,7 +187,7 @@ switch ($op) {
         }
         $error_upload = '';
 
-        if (isset($_FILES['userfile']['name']) && $_FILES['userfile']['name'] != '' && $topic_handler->getPermission($forum_obj, $topic_status, 'attach') ) {
+        if (isset($_FILES['userfile']['name']) && $_FILES['userfile']['name'] != '' && $topic_handler->getPermission($forum_obj, $topic_status, 'attach')) {
             require_once XOOPS_ROOT_PATH . '/modules/' . $xoopsModule->getVar("dirname", "n") . '/class/uploader.php';
             $maxfilesize = $forum_obj->getVar('attach_maxkb') * 1024;
             $uploaddir = XOOPS_CACHE_PATH;
@@ -206,7 +206,7 @@ switch ($op) {
                         $error_message[] = _MD_NEWBB_MAXUPLOADFILEINI;
                         break;
                     case 2:
-                        $error_message[] = sprintf(_MD_NEWBB_MAXKB,$forum_obj->getVar('attach_maxkb'));
+                        $error_message[] = sprintf(_MD_NEWBB_MAXKB, $forum_obj->getVar('attach_maxkb'));
                         break;
                     default:
                         $error_message[] = _MD_NEWBB_UPLOAD_ERRNODEF;
@@ -215,13 +215,13 @@ switch ($op) {
             } else {
                 $uploader->setCheckMediaTypeByExt();
 
-                if ( $uploader->fetchMedia( $_POST['xoops_upload_file'][0]) ) {
+                if ($uploader->fetchMedia($_POST['xoops_upload_file'][0])) {
                     $prefix = is_object($xoopsUser) ? strval($xoopsUser->uid()) . '_' : 'newbb_';
                     $uploader->setPrefix($prefix);
-                    if ( !$uploader->upload() ) {
+                    if (!$uploader->upload()) {
                         $error_message[] = $error_upload = $uploader->getErrors();
                     } else {
-                        if ( is_file( $uploader->getSavedDestination() )) {
+                        if (is_file($uploader->getSavedDestination())) {
                             if (rename(XOOPS_CACHE_PATH . "/" . $uploader->getSavedFileName(), XOOPS_ROOT_PATH . "/" . $xoopsModuleConfig['dir_attachments'] . "/" . $uploader->getSavedFileName())) {
                                 $post_obj->setAttachment($uploader->getSavedFileName(), $uploader->getMediaName(), $uploader->getMediaType());
                             }
@@ -236,7 +236,7 @@ switch ($op) {
     //====================================================
 
     // Storing the answer object in the database
-    if ( !$newAnswerObj->store() ) {
+    if (!$newAnswerObj->store()) {
         redirect_header("javascript:history.go(-1)", 2, _MD_SF_SUBMIT_ERROR);
         exit();
     }

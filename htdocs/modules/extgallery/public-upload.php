@@ -21,19 +21,19 @@ include_once XOOPS_ROOT_PATH.'/modules/extgallery/class/publicPerm.php';
 include_once XOOPS_ROOT_PATH.'/class/xoopsformloader.php';
 include_once 'include/functions.php';
 
-if(isset($_POST['step'])) {
+if (isset($_POST['step'])) {
     $step = $_POST['step'];
 } else {
     $step = 'default';
 }
 
 $permHandler = ExtgalleryPublicPermHandler::getHandler();
-if(count($permHandler->getAuthorizedPublicCat($xoopsUser, 'public_upload')) < 1) {
+if (count($permHandler->getAuthorizedPublicCat($xoopsUser, 'public_upload')) < 1) {
     redirect_header("index.php", 3, _MD_EXTGALLERY_NOPERM);
     exit;
 }
 
-switch($step) {
+switch ($step) {
 
     case 'enreg':
 
@@ -41,14 +41,14 @@ switch($step) {
 
         $result = $photoHandler->postPhotoTraitement('photo_file', false);
 
-        if($result == 2) {
-           redirect_header("public-upload.php", 3, _MD_EXTGALLERY_NOT_AN_ALBUM);
-        } elseif($result == 4 || $result == 5) {
-           redirect_header("public-upload.php", 3, _MD_EXTGALLERY_UPLOAD_ERROR.' :<br />'.$photoHandler->photoUploader->getError());
-        } elseif($result == 0) {
-           redirect_header("public-upload.php", 3, _MD_EXTGALLERY_PHOTO_UPLOADED);
-        } elseif($result == 1) {
-           redirect_header("public-upload.php", 3, _MD_EXTGALLERY_PHOTO_PENDING);
+        if ($result == 2) {
+            redirect_header("public-upload.php", 3, _MD_EXTGALLERY_NOT_AN_ALBUM);
+        } elseif ($result == 4 || $result == 5) {
+            redirect_header("public-upload.php", 3, _MD_EXTGALLERY_UPLOAD_ERROR.' :<br />'.$photoHandler->photoUploader->getError());
+        } elseif ($result == 0) {
+            redirect_header("public-upload.php", 3, _MD_EXTGALLERY_PHOTO_UPLOADED);
+        } elseif ($result == 1) {
+            redirect_header("public-upload.php", 3, _MD_EXTGALLERY_PHOTO_PENDING);
         }
 
         break;
@@ -65,20 +65,20 @@ switch($step) {
         $form->addElement(new XoopsFormLabel(_MD_EXTGALLERY_ALBUMS, $catHandler->getLeafSelect('cat_id', false, 0, "", "public_upload")));
 
         //DNPROSSI - editors
-        $form->addElement(new XoopsFormText(_MD_EXTGALLERY_PHOTO_TITLE, 'photo_title', '50', '150'),false);
+        $form->addElement(new XoopsFormText(_MD_EXTGALLERY_PHOTO_TITLE, 'photo_title', '50', '150'), false);
         $editor = gal_getWysiwygForm(_MD_EXTGALLERY_DESC, 'photo_desc', '', 15, 60, '100%', '350px', 'hometext_hidden');
         $form->addElement($editor, false);
 
-        $form->addElement(new XoopsFormFile(_MD_EXTGALLERY_PHOTO, 'photo_file', $xoopsModuleConfig['max_photosize']),false);
-        if($xoopsModuleConfig['display_extra_field']) {
+        $form->addElement(new XoopsFormFile(_MD_EXTGALLERY_PHOTO, 'photo_file', $xoopsModuleConfig['max_photosize']), false);
+        if ($xoopsModuleConfig['display_extra_field']) {
             $form->addElement(new XoopsFormTextArea(_MD_EXTGALLERY_EXTRA_INFO, "photo_extra"));
         }
 
         // For xoops tag
-        if (($xoopsModuleConfig['usetag'] == 1) and (is_dir('../tag'))){
-          require_once XOOPS_ROOT_PATH.'/modules/tag/include/formtag.php';
-          $form->addElement(new XoopsFormTag('tag', 60, 255, '', 0));
-      }
+        if (($xoopsModuleConfig['usetag'] == 1) and (is_dir('../tag'))) {
+            require_once XOOPS_ROOT_PATH.'/modules/tag/include/formtag.php';
+            $form->addElement(new XoopsFormTag('tag', 60, 255, '', 0));
+        }
 
         $plugin = xoops_getmodulehandler('plugin', 'extgallery');
         $plugin->triggerEvent('photoForm', $form);

@@ -93,7 +93,7 @@ function xtubeSearch($queryarray, $andor, $limit, $offset, $userid)
     $i      = 0;
 
     while ($myrow = $xoopsDB->fetchArray($result)) {
-// Following is commented out because it can cause a conflict with View Account function (userinfo.php)
+        // Following is commented out because it can cause a conflict with View Account function (userinfo.php)
 //        if ( false == xtubeCheckSearchGroups( $myrow['cid'] ) ) {
 //            continue;
 //        }

@@ -18,5 +18,3 @@
  * @author         Susheng Yang <ezskyyoung@gmail.com>
  * @version        $Id: blocks.php 1 2010-2-9 ezsky$
  */
-
-

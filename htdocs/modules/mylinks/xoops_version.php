@@ -25,11 +25,13 @@
 //  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307 USA //
 //  ------------------------------------------------------------------------ //
 
-if (!defined('XOOPS_ROOT_PATH')) exit;
+if (!defined('XOOPS_ROOT_PATH')) {
+    exit;
+}
 $module_dirname = basename(dirname(__FILE__));
 global $xoopsUser, $xoopsDB, $xoopsModule, $xoopsModuleConfig;
 
-$modversion['dirname']     = basename( dirname( __FILE__ ) );
+$modversion['dirname']     = basename(dirname(__FILE__));
 $modversion['name']        = _MI_MYLINKS_NAME;
 $modversion['version']     = 3.11;
 $modversion['description'] = _MI_MYLINKS_DESC;

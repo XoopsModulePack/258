@@ -142,7 +142,7 @@ class XoopsMediaUploader
      * Fetch the uploaded file
      *
      * @param string $mediaName Name of the file field
-     * @param int    $index      Index of the file (if more than one uploaded under that name)
+     * @param int    $index     Index of the file (if more than one uploaded under that name)
      *
      * @global       $HTTP_POST_FILES
      * @return bool

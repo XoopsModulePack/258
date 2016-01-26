@@ -22,57 +22,57 @@
 //3.1
 $admin_mydirname = basename(dirname(dirname(dirname(__FILE__))));
 
-define('_AM_MYLINKS_ERROR_MODADMIN',"Error: Frameworks \"moduleadmin\" is not installed. Please install this Framework");
+define('_AM_MYLINKS_ERROR_MODADMIN', "Error: Frameworks \"moduleadmin\" is not installed. Please install this Framework");
 
 // About.php
-define("_AM_MYLINKS_ABOUT_AUTHOR","Auteur: ");
-define("_AM_MYLINKS_ABOUT_AUTHOR_INFO","Auteur Info");
-define("_AM_MYLINKS_ABOUT_AUTHOR_NAME","Auteur naam: ");
-define("_AM_MYLINKS_ABOUT_CHANGELOG","Wijzigingen Log");
-define("_AM_MYLINKS_ABOUT_CREDITS","Credits: ");
-define("_AM_MYLINKS_ABOUT_DESCRIPTION","Omschrijving: ");
-define("_AM_MYLINKS_ABOUT_LICENSE","Licentie: ");
-define("_AM_MYLINKS_ABOUT_MODULE_INFO","Module Info");
-define("_AM_MYLINKS_ABOUT_MODULE_STATUS","Status: ");
-define("_AM_MYLINKS_ABOUT_OFFICIAL","Officiele Module:");
-define("_AM_MYLINKS_ABOUT_VERSION","Versie:");
-define("_AM_MYLINKS_ABOUT_WEBSITE","Website: ");
-define("_AM_MYLINKS_ABOUT_RELEASEDATE","Gepubliceerd: ");
-define("_AM_MYLINKS_ABOUT_UPDATEDATE","Bijgewerkt: ");
+define("_AM_MYLINKS_ABOUT_AUTHOR", "Auteur: ");
+define("_AM_MYLINKS_ABOUT_AUTHOR_INFO", "Auteur Info");
+define("_AM_MYLINKS_ABOUT_AUTHOR_NAME", "Auteur naam: ");
+define("_AM_MYLINKS_ABOUT_CHANGELOG", "Wijzigingen Log");
+define("_AM_MYLINKS_ABOUT_CREDITS", "Credits: ");
+define("_AM_MYLINKS_ABOUT_DESCRIPTION", "Omschrijving: ");
+define("_AM_MYLINKS_ABOUT_LICENSE", "Licentie: ");
+define("_AM_MYLINKS_ABOUT_MODULE_INFO", "Module Info");
+define("_AM_MYLINKS_ABOUT_MODULE_STATUS", "Status: ");
+define("_AM_MYLINKS_ABOUT_OFFICIAL", "Officiele Module:");
+define("_AM_MYLINKS_ABOUT_VERSION", "Versie:");
+define("_AM_MYLINKS_ABOUT_WEBSITE", "Website: ");
+define("_AM_MYLINKS_ABOUT_RELEASEDATE", "Gepubliceerd: ");
+define("_AM_MYLINKS_ABOUT_UPDATEDATE", "Bijgewerkt: ");
 
 // admin.php
-define("_AM_MYLINKS_ADMIN_SYSTEM_CONFIG","Systeem Configuratie");
+define("_AM_MYLINKS_ADMIN_SYSTEM_CONFIG", "Systeem Configuratie");
 
 // index.php
-define("_AM_MYLINKS_ADMIN_INDEX","Index");
-define("_AM_MYLINKS_ADMIN_ABOUT","Over");
-define("_AM_MYLINKS_ADMIN_HELP","Help");
-define("_AM_MYLINKS_ADMIN_PAGES","Paginas");
-define("_AM_MYLINKS_ADMIN_UPDATE","Bijwerken");
-define("_AM_MYLINKS_ADMIN_PREFERENCES","Voorkeuren");
+define("_AM_MYLINKS_ADMIN_INDEX", "Index");
+define("_AM_MYLINKS_ADMIN_ABOUT", "Over");
+define("_AM_MYLINKS_ADMIN_HELP", "Help");
+define("_AM_MYLINKS_ADMIN_PAGES", "Paginas");
+define("_AM_MYLINKS_ADMIN_UPDATE", "Bijwerken");
+define("_AM_MYLINKS_ADMIN_PREFERENCES", "Voorkeuren");
 
 // main.php
-define("_AM_MYLINKS_IGNORE","Negeren");
+define("_AM_MYLINKS_IGNORE", "Negeren");
 
 // text in admin footer
-define("_AM_MYLINKS_ADMIN_FOOTER","<div class='right smallsmall italic pad5'><strong>{$xoopsModule->getVar('name')}</strong> wordt onderhouden door de <a class='tooltip' rel='external' href='http://xoops.org/' title='Visit XOOPS Community'>XOOPS Community</a></div>");
+define("_AM_MYLINKS_ADMIN_FOOTER", "<div class='right smallsmall italic pad5'><strong>{$xoopsModule->getVar('name')}</strong> wordt onderhouden door de <a class='tooltip' rel='external' href='http://xoops.org/' title='Visit XOOPS Community'>XOOPS Community</a></div>");
 
-define('_MYLINKS_ADMIN_'," "); //
+define('_MYLINKS_ADMIN_', " "); //
 
 //myblocksadmin
-define('_AM_MYLINKS_AGDS',"Beheer Groepen");
-define('_AM_MYLINKS_BADMIN',"Blokken Beheer");
-define('_AM_MYLINKS_TITLE',"Titel");
-define('_AM_MYLINKS_SIDE',"Omschrijving");
-define('_AM_MYLINKS_WEIGHT',"Belang");
+define('_AM_MYLINKS_AGDS', "Beheer Groepen");
+define('_AM_MYLINKS_BADMIN', "Blokken Beheer");
+define('_AM_MYLINKS_TITLE', "Titel");
+define('_AM_MYLINKS_SIDE', "Omschrijving");
+define('_AM_MYLINKS_WEIGHT', "Belang");
 
-define('_AM_MYLINKS_VISIBLEIN',"Zichtbaar in");
-define('_AM_MYLINKS_BCACHETIME',"Cache Tijd");
-define('_AM_MYLINKS_ACTION',"Aktie");
-define('_AM_MYLINKS_ACTIVERIGHTS',"Beheer Inzending");
-define('_AM_MYLINKS_ACCESSRIGHTS',"Rechten Toegang");
+define('_AM_MYLINKS_VISIBLEIN', "Zichtbaar in");
+define('_AM_MYLINKS_BCACHETIME', "Cache Tijd");
+define('_AM_MYLINKS_ACTION', "Aktie");
+define('_AM_MYLINKS_ACTIVERIGHTS', "Beheer Inzending");
+define('_AM_MYLINKS_ACCESSRIGHTS', "Rechten Toegang");
 
 //Template Admin
-define('_AM_MYLINKS_TPLSETS',"Sjabloon beheer");
-define('_AM_MYLINKS_GENERATE',"Genereren");
-define('_AM_MYLINKS_FILENAME',"Bestandsnaam");
+define('_AM_MYLINKS_TPLSETS', "Sjabloon beheer");
+define('_AM_MYLINKS_GENERATE', "Genereren");
+define('_AM_MYLINKS_FILENAME', "Bestandsnaam");

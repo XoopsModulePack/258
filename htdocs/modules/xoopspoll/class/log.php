@@ -162,7 +162,7 @@ class XoopspollLogHandler extends XoopsPersistableObjectHandler
     /**
      *
      * Delete all log entries by Option ID
-     * @param  int $option_id
+     * @param  int  $option_id
      * @return bool $success
      */
     public function deleteByOptionId($option_id)
@@ -177,7 +177,7 @@ class XoopspollLogHandler extends XoopsPersistableObjectHandler
      *
      * Delete all log entries by Poll ID
      * @uses CriteriaCompo
-     * @param  int $pid
+     * @param  int  $pid
      * @return bool $success
      */
     public function deleteByPollId($pid)

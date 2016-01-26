@@ -61,7 +61,6 @@ if (is_object($xoopspoll) && $xoopspoll->getVar('isactive')) {
     $xpPollHandler =& xoops_getmodulehandler('poll', 'xoopspoll');
 } else {
     redirect_header($_SERVER['HTTP_REFERER'], 2, _MD_POLLMODULE_ERROR);
-
 }
 
 $topic_handler =& xoops_getmodulehandler('topic', 'newbb');

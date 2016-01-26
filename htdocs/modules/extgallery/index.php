@@ -23,7 +23,7 @@ include XOOPS_ROOT_PATH.'/header.php';
 
 $catHandler = xoops_getmodulehandler('publiccat', 'extgallery');
 
-$cats = $catHandler->objectToArray($catHandler->getChildren(0),array('photo_id'));
+$cats = $catHandler->objectToArray($catHandler->getChildren(0), array('photo_id'));
 $xoopsTpl->assign('cats', $cats);
 
 $rel = "alternate";

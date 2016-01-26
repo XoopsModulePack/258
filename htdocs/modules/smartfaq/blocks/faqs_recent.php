@@ -10,7 +10,6 @@
 
 function b_faqs_recent_show($options)
 {
-
     include_once(XOOPS_ROOT_PATH."/modules/smartfaq/include/functions.php");
     $myts = &MyTextSanitizer::getInstance();
 
@@ -53,7 +52,7 @@ function b_faqs_recent_show($options)
 
         $member_handler = &xoops_gethandler('member');
         $users = $member_handler->getUsers(new Criteria('uid', "(".implode(',', array_keys($userids)).")", "IN"), true);
-        for ( $i = 0; $i < count($faqsObj); ++$i ) {
+        for ($i = 0; $i < count($faqsObj); ++$i) {
             $faqs['categoryid'] = $faqsObj[$i]->categoryid();
             $faqs['question'] = $faqsObj[$i]->question($maxQuestionLength);
             $faqs['faqid'] = $faqsObj[$i]->faqid();
@@ -75,7 +74,6 @@ function b_faqs_recent_show($options)
         $block['lang_date'] = _MB_SF_DATE;
         $modulename = $myts->htmlSpecialChars($smartModule->getVar('name'));
         $block['lang_visitfaq'] = _MB_SF_VISITFAQ . " " . $modulename;
-
     }
 
     return $block;

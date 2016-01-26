@@ -46,17 +46,17 @@ class MylinksPagepeeker implements MylinksThumbPlugin
     private $provider_name = "Pagepeeker";
     protected $_dirname    = null;
 
-    function __construct()
+    public function __construct()
     {
         global $xoopsModule;
-        $this->_dirname = basename( dirname ( dirname( dirname( __FILE__ ) ) ) );
+        $this->_dirname = basename(dirname(dirname(dirname(__FILE__))));
     }
     public function getProviderUrl()
     {
         $query_string = array('size' => $this->image_size,
                               'url'  => $this->site_url
         );
-        if(!empty($key)) {
+        if (!empty($key)) {
             $query_string['code'] = $this->key;
             $query_string['wait'] = 5;  // generate screenshot if it doesn't exist (waits xx sec)
             ksort($query_string);
@@ -103,7 +103,6 @@ class MylinksPagepeeker implements MylinksThumbPlugin
                 }
                 $this->image_size = $sizeMap[$i];
             }
-
         } elseif (is_numeric($sz)) { /* size is a number */
             $max_i = count($validX);
             for ($i=0; $i<$max_i; $i++) {
@@ -112,7 +111,6 @@ class MylinksPagepeeker implements MylinksThumbPlugin
                 }
             }
             $this->image_size = $sizeMap[$i];
-
         } else { /* size is relative - t|s|m|l|x */
             $sz = mb_strtolower($sz);
             if (array_key_exists($sz, $sizeMap)) {

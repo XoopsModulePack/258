@@ -29,5 +29,4 @@ if ($ref == '' || strpos($ref, XOOPS_URL . '/modules/system/admin.php') === 0) {
 
     // Keep the values of block's options when module is updated (by nobunobu)
     include __DIR__ . "/updateblock.inc.php";
-
 }

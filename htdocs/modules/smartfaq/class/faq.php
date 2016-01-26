@@ -41,38 +41,38 @@ class sfFaq extends XoopsObject
      * @var sfCategory
      * @access private
      */
-    var $_category= null;
+    public $_category= null;
 
     /**
      * @var sfAnswer
      * @access private
      */
-    var $_answer= null;
+    public $_answer= null;
 
     /**
      * @var array
      * @access private
      */
-    var $_notifications= null;
+    public $_notifications= null;
     // TODO : Create a seperated class for notifications
 
     /**
      * @var array
      * @access private
      */
-    var $_groups_read= null;
+    public $_groups_read= null;
 
     /**
      * @var object
      * @access private
      */
     // Is this still usefull??
-    var $_smartModule= null;
-    var $_smartModuleConfig;
+    public $_smartModule= null;
+    public $_smartModuleConfig;
     /**
     * constructor
     */
-    function __construct($id= null)
+    public function __construct($id= null)
     {
         $this->db= & XoopsDatabaseFactory::getDatabaseConnection();
         $this->initVar("faqid", XOBJ_DTYPE_INT, -1, false);
@@ -108,7 +108,7 @@ class sfFaq extends XoopsObject
         }
     }
 
-    function assignOtherProperties()
+    public function assignOtherProperties()
     {
         $smartModule= & sf_getModuleInfo();
         $module_id= $smartModule->getVar('mid');
@@ -119,7 +119,7 @@ class sfFaq extends XoopsObject
         $this->_groups_read= $gperm_handler->getGroupIds('item_read', $this->faqid(), $module_id);
     }
 
-    function checkPermission()
+    public function checkPermission()
     {
         include_once XOOPS_ROOT_PATH.'/modules/smartfaq/include/functions.php';
 
@@ -138,7 +138,7 @@ class sfFaq extends XoopsObject
         return $ret;
     }
 
-    function getGroups_read()
+    public function getGroups_read()
     {
         if (count($this->_groups_read) < 1) {
             $this->assignOtherProperties();
@@ -147,27 +147,27 @@ class sfFaq extends XoopsObject
         return $this->_groups_read;
     }
 
-    function setGroups_read($groups_read= array('0'))
+    public function setGroups_read($groups_read= array('0'))
     {
         $this->_groups_read= $groups_read;
     }
 
-    function faqid()
+    public function faqid()
     {
         return $this->getVar("faqid");
     }
 
-    function categoryid()
+    public function categoryid()
     {
         return $this->getVar("categoryid");
     }
 
-    function category()
+    public function category()
     {
         return $this->_category;
     }
 
-    function question($maxLength= 0, $format= "S")
+    public function question($maxLength= 0, $format= "S")
     {
         $ret= $this->getVar("question", $format);
         if (($format == 's') ||($format == 'S') ||($format == 'show')) {
@@ -177,7 +177,7 @@ class sfFaq extends XoopsObject
         if ($maxLength != 0) {
             if (!XOOPS_USE_MULTIBYTES) {
                 if (strlen($ret) >= $maxLength) {
-                    $ret= substr($ret, 0,($maxLength -1))."...";
+                    $ret= substr($ret, 0, ($maxLength -1))."...";
                 }
             }
         }
@@ -185,7 +185,7 @@ class sfFaq extends XoopsObject
         return $ret;
     }
 
-    function howdoi($format= "S")
+    public function howdoi($format= "S")
     {
         $ret= $this->getVar("howdoi", $format);
         if (($format == 's') ||($format == 'S') ||($format == 'show')) {
@@ -196,7 +196,7 @@ class sfFaq extends XoopsObject
         return $ret;
     }
 
-    function diduno($format= "S")
+    public function diduno($format= "S")
     {
         $ret= $this->getVar("diduno", $format);
         if (($format == 's') ||($format == 'S') ||($format == 'show')) {
@@ -207,12 +207,12 @@ class sfFaq extends XoopsObject
         return $ret;
     }
 
-    function uid()
+    public function uid()
     {
         return $this->getVar("uid");
     }
 
-    function datesub($dateFormat= 'none', $format= "S")
+    public function datesub($dateFormat= 'none', $format= "S")
     {
         if ($dateFormat == 'none') {
             $smartConfig= & sf_getModuleConfig();
@@ -222,72 +222,72 @@ class sfFaq extends XoopsObject
         return formatTimestamp($this->getVar('datesub', $format), $dateFormat);
     }
 
-    function status()
+    public function status()
     {
         return $this->getVar("status");
     }
 
-    function counter()
+    public function counter()
     {
         return $this->getVar("counter");
     }
 
-    function weight()
+    public function weight()
     {
         return $this->getVar("weight");
     }
 
-    function html()
+    public function html()
     {
         return $this->getVar("html");
     }
 
-    function smiley()
+    public function smiley()
     {
         return $this->getVar("smiley");
     }
 
-    function xcodes()
+    public function xcodes()
     {
         return $this->getVar("xcodes");
     }
 
-    function cancomment()
+    public function cancomment()
     {
         return $this->getVar("cancomment");
     }
 
-    function comments()
+    public function comments()
     {
         return $this->getVar("comments");
     }
 
-    function notifypub()
+    public function notifypub()
     {
         return $this->getVar("notifypub");
     }
 
-    function modulelink($format= "S")
+    public function modulelink($format= "S")
     {
         return $this->getVar("modulelink", $format);
     }
 
-    function contextpage($format= "S")
+    public function contextpage($format= "S")
     {
         return $this->getVar("contextpage", $format);
     }
 
-    function exacturl()
+    public function exacturl()
     {
         return $this->getVar("exacturl");
     }
 
-    function partialview()
+    public function partialview()
     {
         return $this->getVar("partialview");
     }
 
-    function posterName($realName= -1)
+    public function posterName($realName= -1)
     {
         if ($realName == -1) {
             $smartConfig= & sf_getModuleConfig();
@@ -297,7 +297,7 @@ class sfFaq extends XoopsObject
         return sf_getLinkedUnameFromId($this->uid(), $realName);
     }
 
-    function answer()
+    public function answer()
     {
         $answer_handler= new sfAnswerHandler($this->db);
         switch ($this->status()) {
@@ -340,28 +340,28 @@ class sfFaq extends XoopsObject
         return $this->_answer;
     }
 
-    function getAllAnswers()
+    public function getAllAnswers()
     {
         $answer_handler= new sfAnswerHandler($this->db);
 
         return $answer_handler->getAllAnswers($this->faqid());
     }
 
-    function updateCounter()
+    public function updateCounter()
     {
         $faq_handler= new sfFaqHandler($this->db);
 
         return $faq_handler->updateCounter($this->faqid());
     }
 
-    function store($force= true)
+    public function store($force= true)
     {
         $faq_handler= new sfFaqHandler($this->db);
 
         return $faq_handler->insert($this, $force);
     }
 
-    function getCategoryName()
+    public function getCategoryName()
     {
         if (!isset($this->_category)) {
             $this->_category= new sfCategory($this->getVar('categoryid'));
@@ -370,7 +370,7 @@ class sfFaq extends XoopsObject
         return $this->_category->name();
     }
 
-    function sendNotifications($notifications= array())
+    public function sendNotifications($notifications= array())
     {
         $smartModule= & sf_getModuleInfo();
 
@@ -458,9 +458,8 @@ class sfFaq extends XoopsObject
         }
     }
 
-    function setDefaultPermissions()
+    public function setDefaultPermissions()
     {
-
         $member_handler= & xoops_gethandler('member');
         $groups= & $member_handler->getGroupList();
 
@@ -473,7 +472,7 @@ class sfFaq extends XoopsObject
         $this->_groups_read= $group_ids;
     }
 
-    function setPermissions($group_ids)
+    public function setPermissions($group_ids)
     {
         if (!isset($group_ids)) {
             $member_handler= & xoops_gethandler('member');
@@ -486,15 +485,14 @@ class sfFaq extends XoopsObject
                 ++$j;
             }
         }
-
     }
 
-    function notLoaded()
+    public function notLoaded()
     {
         return($this->getVar('faqid') == -1);
     }
 
-    function getWhoAndWhen($answerObj= null, $users= array())
+    public function getWhoAndWhen($answerObj= null, $users= array())
     {
         $smartModuleConfig= sf_getModuleConfig();
 
@@ -512,7 +510,6 @@ class sfFaq extends XoopsObject
                 $submitter= sf_getLinkedUnameFromId($answerObj->uid(), $smartModuleConfig['userealname'], $users);
                 $result= sprintf(_MD_SF_REQUESTEDBYANDANSWEREDBY, $requester, $submitter, $submitdate);
             }
-
         } else {
             $result= sprintf(_MD_SF_REQUESTEDBY, $requester, $requestdate);
         }
@@ -520,7 +517,7 @@ class sfFaq extends XoopsObject
         return $result;
     }
 
-    function getComeFrom()
+    public function getComeFrom()
     {
         global $xoopsConfig;
         if (($this->status() == _SF_STATUS_PUBLISHED) || $this->status() == _SF_STATUS_NEW_ANSWER) {
@@ -532,9 +529,8 @@ class sfFaq extends XoopsObject
         return $text.$xoopsConfig['sitename']." : <a href=".XOOPS_URL."/modules/smartfaq/faq.php?faqid=".$this->faqid().">".XOOPS_URL."/modules/smartfaq/faq.php?faqid=".$this->faqid()."</a>";
     }
 
-    function toArray($faq= array(), $category= null, $linkInQuestion= true)
+    public function toArray($faq= array(), $category= null, $linkInQuestion= true)
     {
-
         global $xoopsModuleConfig;
         $lastfaqsize= intval($xoopsModuleConfig['lastfaqsize']);
 
@@ -579,7 +575,7 @@ class sfFaq extends XoopsObject
 
 class sfFaqHandler extends XoopsObjectHandler
 {
-    function & create($isNew= true)
+    public function & create($isNew= true)
     {
         $faq= new sfFaq();
         if ($isNew) {
@@ -596,7 +592,7 @@ class sfFaqHandler extends XoopsObjectHandler
     * @param int $id faqid of the user
     * @return mixed reference to the {@link sfFaq} object, FALSE if failed
     */
-    function & get($id)
+    public function & get($id)
     {
         if (intval($id) > 0) {
             $sql= 'SELECT * FROM '.$this->db->prefix('smartfaq_faq').' WHERE faqid='.$id;
@@ -623,9 +619,8 @@ class sfFaqHandler extends XoopsObjectHandler
     * @param bool $force
     * @return bool FALSE if failed, TRUE if already present and unchanged or successful
     */
-    function insert(& $faq, $force= false)
+    public function insert(& $faq, $force= false)
     {
-
         if (strtolower(get_class($faq)) != 'sffaq') {
             return false;
         }
@@ -644,7 +639,6 @@ class sfFaqHandler extends XoopsObjectHandler
 
         if ($faq->isNew()) {
             $sql= sprintf("INSERT INTO %s (faqid, categoryid, question, howdoi, diduno, uid, datesub, `status`, counter, weight, html, smiley, xcodes, cancomment, comments, notifypub, modulelink, contextpage, exacturl, partialview) VALUES (NULL, %u, %s, %s, %s, %u, %u, %u, %u, %u, %u, %u, %u, %u, %u, %u, %s, %s, %u, %u)", $this->db->prefix('smartfaq_faq'), $categoryid, $this->db->quoteString($question), $this->db->quoteString($howdoi), $this->db->quoteString($diduno), $uid, time(), $status, $counter, $weight, $html, $smiley, $xcodes, $cancomment, $comments, $notifypub, $this->db->quoteString($modulelink), $this->db->quoteString($contextpage), $exacturl, $partialview);
-
         } else {
             $sql= sprintf("UPDATE %s SET categoryid = %u, question = %s, howdoi = %s, diduno = %s, uid = %u, datesub = %u, `status` = %u, counter = %u, weight = %u, html = %u, smiley = %u, xcodes = %u, cancomment = %u, comments = %u, notifypub = %u, modulelink = %s, contextpage = %s, exacturl = %u, partialview = %u  WHERE faqid = %u", $this->db->prefix('smartfaq_faq'), $categoryid, $this->db->quoteString($question), $this->db->quoteString($howdoi), $this->db->quoteString($diduno), $uid, $datesub, $status, $counter, $weight, $html, $smiley, $xcodes, $cancomment, $comments, $notifypub, $this->db->quoteString($modulelink), $this->db->quoteString($contextpage), $exacturl, $partialview, $faqid);
         }
@@ -674,7 +668,7 @@ class sfFaqHandler extends XoopsObjectHandler
     * @param bool $force
     * @return bool FALSE if failed.
     */
-    function delete(& $faq, $force= false)
+    public function delete(& $faq, $force= false)
     {
         $smartModule= & sf_getModuleInfo();
         $module_id= $smartModule->getVar('mid');
@@ -713,7 +707,7 @@ class sfFaqHandler extends XoopsObjectHandler
     * @param bool $id_as_key use the faqid as key for the array?
     * @return array array of {@link sfFaq} objects
     */
-    function & getObjects($criteria= null, $id_as_key= false, $notNullFields= '')
+    public function & getObjects($criteria= null, $id_as_key= false, $notNullFields= '')
     {
         $ret= array();
         $limit= $start= 0;
@@ -764,7 +758,7 @@ class sfFaqHandler extends XoopsObjectHandler
         return $ret;
     }
 
-    function & getObjectsAdminSide($criteria= null, $id_as_key= false, $notNullFields= '')
+    public function & getObjectsAdminSide($criteria= null, $id_as_key= false, $notNullFields= '')
     {
         $ret= array();
         $limit= $start= 0;
@@ -856,7 +850,7 @@ class sfFaqHandler extends XoopsObjectHandler
     * @param object $criteria {@link CriteriaElement} to match
     * @return int count of FAQs
     */
-    function getCount($criteria= null, $notNullFields= '')
+    public function getCount($criteria= null, $notNullFields= '')
     {
         $sql= 'SELECT COUNT(*) FROM '.$this->db->prefix('smartfaq_faq');
         if (isset($criteria) && is_subclass_of($criteria, 'criteriaelement')) {
@@ -883,9 +877,8 @@ class sfFaqHandler extends XoopsObjectHandler
         return $count;
     }
 
-    function getFaqsCount($categoryid= -1, $status= '', $notNullFields= '')
+    public function getFaqsCount($categoryid= -1, $status= '', $notNullFields= '')
     {
-
         global $xoopsUser;
 
         //  if ( ($categoryid = -1) && (empty($status) || ($status == -1)) ) {
@@ -944,7 +937,7 @@ class sfFaqHandler extends XoopsObjectHandler
         return $this->getCount($criteria, $notNullFields);
     }
 
-    function getFaqsCountByStatus()
+    public function getFaqsCountByStatus()
     {
         $sql= 'SELECT status, COUNT(*) FROM '.$this->db->prefix('smartfaq_faq').' GROUP BY status';
         $result= $this->db->query($sql);
@@ -959,12 +952,12 @@ class sfFaqHandler extends XoopsObjectHandler
         return $ret;
     }
 
-    function getAllPublished($limit= 0, $start= 0, $categoryid= -1, $sort= 'datesub', $order= 'DESC', $asobject= true)
+    public function getAllPublished($limit= 0, $start= 0, $categoryid= -1, $sort= 'datesub', $order= 'DESC', $asobject= true)
     {
         return $this->getFaqs($limit, $start, array(_SF_STATUS_PUBLISHED, _SF_STATUS_NEW_ANSWER), $categoryid, $sort, $order, null, $asobject, null);
     }
 
-    function getFaqs($limit= 0, $start= 0, $status= '', $categoryid= -1, $sort= 'datesub', $order= 'DESC', $notNullFields= '', $asobject= true, $otherCriteria= null)
+    public function getFaqs($limit= 0, $start= 0, $status= '', $categoryid= -1, $sort= 'datesub', $order= 'DESC', $notNullFields= '', $asobject= true, $otherCriteria= null)
     {
         global $xoopsUser;
         include_once XOOPS_ROOT_PATH.'/modules/smartfaq/include/functions.php';
@@ -988,7 +981,6 @@ class sfFaqHandler extends XoopsObjectHandler
             if (!is_object($xoopsUser)) {
                 $grantedFaq->add(new Criteria('partialview', '1'), 'OR');
             }
-
         }
 
         if (isset($categoryid) &&($categoryid != -1)) {
@@ -1041,7 +1033,7 @@ class sfFaqHandler extends XoopsObjectHandler
         return $ret;
     }
 
-    function getFaqsAdminSide($limit= 0, $start= 0, $status= '', $categoryid= -1, $sort= 'datesub', $order= 'DESC', $asobject= true, $otherCriteria= null)
+    public function getFaqsAdminSide($limit= 0, $start= 0, $status= '', $categoryid= -1, $sort= 'datesub', $order= 'DESC', $asobject= true, $otherCriteria= null)
     {
         include_once XOOPS_ROOT_PATH.'/modules/smartfaq/include/functions.php';
 
@@ -1085,7 +1077,7 @@ class sfFaqHandler extends XoopsObjectHandler
         return $ret;
     }
 
-    function getRandomFaq($field= '', $status= '', $category= -1)
+    public function getRandomFaq($field= '', $status= '', $category= -1)
     {
         $ret= false;
 
@@ -1105,17 +1097,16 @@ class sfFaqHandler extends XoopsObjectHandler
         }
 
         return $ret;
-
     }
 
-    function getContextualFaqs($limit= 0)
+    public function getContextualFaqs($limit= 0)
     {
         $ret= false;
 
         $otherCriteria= new CriteriaCompo();
         $otherCriteria->add(new Criteria('modulelink', 'None', '<>'));
 
-        $faqsObj= & $this->getFaqs(0, 0, Array(_SF_STATUS_PUBLISHED, _SF_STATUS_NEW_ANSWER), -1, 'datesub', 'DESC', '', true, $otherCriteria);
+        $faqsObj= & $this->getFaqs(0, 0, array(_SF_STATUS_PUBLISHED, _SF_STATUS_NEW_ANSWER), -1, 'datesub', 'DESC', '', true, $otherCriteria);
 
         $totalfaqs= count($faqsObj);
         $randomFaqs= array();
@@ -1180,7 +1171,7 @@ class sfFaqHandler extends XoopsObjectHandler
         return $ret;
     }
 
-    function getLastPublishedByCat($status= array(_SF_STATUS_PUBLISHED, _SF_STATUS_NEW_ANSWER))
+    public function getLastPublishedByCat($status= array(_SF_STATUS_PUBLISHED, _SF_STATUS_NEW_ANSWER))
     {
         $ret= array();
         $faqclause= "";
@@ -1229,7 +1220,7 @@ class sfFaqHandler extends XoopsObjectHandler
     * @param object $criteria {@link CriteriaElement}
     * @return bool FALSE if deletion failed
     */
-    function deleteAll($criteria= null)
+    public function deleteAll($criteria= null)
     {
         $sql= 'DELETE FROM '.$this->db->prefix('smartfaq_faq');
         if (isset($criteria) && is_subclass_of($criteria, 'criteriaelement')) {
@@ -1252,7 +1243,7 @@ class sfFaqHandler extends XoopsObjectHandler
     *
     * @return  bool
     **/
-    function updateAll($fieldname, $fieldvalue, $criteria= null)
+    public function updateAll($fieldname, $fieldvalue, $criteria= null)
     {
         $set_clause= is_numeric($fieldvalue) ? $fieldname.' = '.$fieldvalue : $fieldname.' = '.$this->db->quoteString($fieldvalue);
         $sql= 'UPDATE '.$this->db->prefix('smartfaq_faq').' SET '.$set_clause;
@@ -1266,7 +1257,7 @@ class sfFaqHandler extends XoopsObjectHandler
         return true;
     }
 
-    function updateCounter($faqid)
+    public function updateCounter($faqid)
     {
         $sql= "UPDATE ".$this->db->prefix("smartfaq_faq")." SET counter=counter+1 WHERE faqid = ".$faqid;
         if ($this->db->queryF($sql)) {
@@ -1276,7 +1267,7 @@ class sfFaqHandler extends XoopsObjectHandler
         }
     }
 
-    function NotNullFieldClause($notNullFields= '', $withAnd= false)
+    public function NotNullFieldClause($notNullFields= '', $withAnd= false)
     {
         $ret= '';
         if ($withAnd) {
@@ -1293,7 +1284,7 @@ class sfFaqHandler extends XoopsObjectHandler
         return $ret;
     }
 
-    function getFaqsFromSearch($queryarray= array(), $andor= 'AND', $limit= 0, $offset= 0, $userid= 0)
+    public function getFaqsFromSearch($queryarray= array(), $andor= 'AND', $limit= 0, $offset= 0, $userid= 0)
     {
         global $xoopsUser;
 
@@ -1416,7 +1407,7 @@ class sfFaqHandler extends XoopsObjectHandler
         return $ret;
     }
 
-    function getCountsByCat($cat_id= 0, $status)
+    public function getCountsByCat($cat_id= 0, $status)
     {
         global $xoopsUser;
         $ret= array();

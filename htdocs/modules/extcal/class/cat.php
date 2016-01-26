@@ -12,9 +12,9 @@ include_once XOOPS_ROOT_PATH . '/modules/extcal/class/time.php';
 class ExtcalCat extends XoopsObject
 {
 
-    var $externalKey = array();
+    public $externalKey = array();
 
-    function ExtcalCat()
+    public function ExtcalCat()
     {
         $this->initVar('cat_id', XOBJ_DTYPE_INT, null, false);
         $this->initVar('cat_name', XOBJ_DTYPE_TXTBOX, null, true, 255);
@@ -23,7 +23,6 @@ class ExtcalCat extends XoopsObject
         $this->initVar('cat_weight', XOBJ_DTYPE_INT, 0, false);
         $this->initVar('cat_icone', XOBJ_DTYPE_TXTBOX, '', false, 50);
     }
-
 }
 
 /**
@@ -32,12 +31,12 @@ class ExtcalCat extends XoopsObject
 class ExtcalCatHandler extends ExtcalPersistableObjectHandler
 {
 
-    var $_extcalPerm;
+    public $_extcalPerm;
 
     /**
      * @param $db
      */
-    function __construct(&$db)
+    public function __construct(&$db)
     {
         $this->_extcalPerm = ExtcalPerm::getHandler();
         parent::__construct($db, 'extcal_cat', _EXTCAL_CLN_CAT, 'cat_id');
@@ -48,7 +47,7 @@ class ExtcalCatHandler extends ExtcalPersistableObjectHandler
      *
      * @return bool
      */
-    function createCat($data)
+    public function createCat($data)
     {
         $cat = $this->create();
         $cat->setVars($data);
@@ -100,7 +99,7 @@ class ExtcalCatHandler extends ExtcalPersistableObjectHandler
      *
      * @return bool
      */
-    function modifyCat($catId, $data)
+    public function modifyCat($catId, $data)
     {
         $cat = $this->get($catId);
         $cat->setVars($data);
@@ -111,7 +110,7 @@ class ExtcalCatHandler extends ExtcalPersistableObjectHandler
     /**
      * @param $catId
      */
-    function deleteCat($catId)
+    public function deleteCat($catId)
     {
         /* TODO :
            - Delete all event in this category
@@ -126,7 +125,7 @@ class ExtcalCatHandler extends ExtcalPersistableObjectHandler
      *
      * @return bool
      */
-    function getCat($catId, $skipPerm = false)
+    public function getCat($catId, $skipPerm = false)
     {
         $criteriaCompo = new CriteriaCompo();
         $criteriaCompo->add(new Criteria('cat_id', $catId));
@@ -147,7 +146,7 @@ class ExtcalCatHandler extends ExtcalPersistableObjectHandler
      *
      * @return array
      */
-    function getAllCat($user, $perm = 'extcal_cat_view')
+    public function getAllCat($user, $perm = 'extcal_cat_view')
     {
         $criteriaCompo = new CriteriaCompo();
         if ($perm != 'all') {
@@ -163,7 +162,7 @@ class ExtcalCatHandler extends ExtcalPersistableObjectHandler
      *
      * @return array
      */
-    function getAllCatById($user, $perm = 'all')
+    public function getAllCatById($user, $perm = 'all')
     {
         $criteriaCompo = new CriteriaCompo();
         if ($perm != 'all') {
@@ -184,7 +183,7 @@ class ExtcalCatHandler extends ExtcalPersistableObjectHandler
      * @param        $user
      * @param string $perm
      */
-    function _addCatPermCriteria(&$criteria, &$user, $perm = 'extcal_cat_view')
+    public function _addCatPermCriteria(&$criteria, &$user, $perm = 'extcal_cat_view')
     {
         $authorizedAccessCats = $this->_extcalPerm->getAuthorizedCat($user, 'extcal_cat_view');
         $count                = count($authorizedAccessCats);
@@ -208,9 +207,8 @@ class ExtcalCatHandler extends ExtcalPersistableObjectHandler
      *
      * @return bool
      */
-    function haveSubmitRight(&$xoopsUser)
+    public function haveSubmitRight(&$xoopsUser)
     {
         return count($this->_extcalPerm->getAuthorizedCat($xoopsUser, 'extcal_cat_submit')) > 0;
     }
-
 }

@@ -40,7 +40,7 @@ if (empty($_POST['submit'])) {
             require_once XOOPS_ROOT_PATH . '/header.php';
             if (($forms != false) && (count($forms) > 0)) {
                 foreach ($forms as $form) {
-                    $xoopsTpl->append('forms',array(
+                    $xoopsTpl->append('forms', array(
                             'title' => $form->getVar('form_title'),
                             'desc'  => $form->getVar('form_desc'),
                             'id'    => $form->getVar('form_id')

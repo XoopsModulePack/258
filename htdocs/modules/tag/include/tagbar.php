@@ -25,13 +25,13 @@
 /**
  * Display tag list
  *
- * @param array $tags array of tag string
- * OR
- * @param int     $itemid
- * @param int     $catid
- * @param int     $modid
+ * @param array $tags   array of tag string
+ *                      OR
+ * @param int   $itemid
+ * @param int   $catid
+ * @param int   $modid
  *
- * @return     array    (subject language, array of linked tags)
+ * @return array (subject language, array of linked tags)
  */
 function tagBar($tags, $catid = 0, $modid = 0)
 {
@@ -41,7 +41,7 @@ function tagBar($tags, $catid = 0, $modid = 0)
         return array();
     }
 
-    if (!isset($loaded)){
+    if (!isset($loaded)) {
         include $GLOBALS['xoops']->path("/modules/tag/include/vars.php");
         include_once $GLOBALS['xoops']->path("/modules/tag/include/functions.php");
         tag_define_url_delimiter();

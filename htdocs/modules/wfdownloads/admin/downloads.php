@@ -710,7 +710,7 @@ switch ($op) {
                 $submitter_select->addOption($submitter_uid, $submitter_uname);
             }
             $GLOBALS['xoopsTpl']->assign('filter_submitter_select', $submitter_select->render());
-            $date_select = new XoopsFormDateTime (null, 'filter_date', 15, time(), false);
+            $date_select = new XoopsFormDateTime(null, 'filter_date', 15, time(), false);
             $GLOBALS['xoopsTpl']->assign('filter_date_select', $date_select->render());
             $GLOBALS['xoopsTpl']->assign('filter_date_condition', $filter_date_condition);
 

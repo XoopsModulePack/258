@@ -11,7 +11,7 @@ class ExtcalConfig
     /**
      * @return ExtcalConfig
      */
-    static function &getHandler()
+    public static function &getHandler()
     {
         static $configHandler;
         if (!isset($configHandler[0])) {
@@ -21,7 +21,7 @@ class ExtcalConfig
         return $configHandler[0];
     }
 
-    function getModuleConfig()
+    public function getModuleConfig()
     {
         global $xoopsModule;
         static $moduleConfig;
@@ -39,5 +39,4 @@ class ExtcalConfig
 
         return $moduleConfig;
     }
-
 }

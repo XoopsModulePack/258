@@ -33,21 +33,20 @@ $lid   = mylinksUtility::mylinks_cleanVars($_GET, 'lid', 0, 'int', array('min'=>
 //$cid   = mylinksUtility::mylinks_cleanVars($_GET, 'cid', 0, 'int', array('min'=>0));
 
 //
-if ( empty($lid) ) {
+if (empty($lid)) {
     redirect_header('index.php', 3, _MD_MYLINKS_IDERROR);
 }
 
 $result = $xoopsDB->query("SELECT l.lid, l.cid, l.title, l.url, l.logourl, l.status, l.date, l.hits, l.rating, l.votes, l.comments, t.description FROM " . $xoopsDB->prefix("mylinks_links") . " l, " . $xoopsDB->prefix("mylinks_text") . " t WHERE l.lid={$lid} AND l.lid=t.lid AND status>0");
-if ( !$result ) {
+if (!$result) {
     redirect_header('index.php', 3, _MD_MYLINKS_NORECORDFOUND);
 }
 
 list($lid, $cid, $ltitle, $url, $logourl, $status, $time, $hits, $rating, $votes, $comments, $description) = $xoopsDB->fetchRow($result);
 
-switch ($mylinks_can_print)
-{
+switch ($mylinks_can_print) {
     case _MD_MYLINKS_MEMBERONLY:
-        $can_print = ( $xoopsUser ) ? _MD_MYLINKS_ALLOW : _MD_MYLINKS_DISALLOW;
+        $can_print = ($xoopsUser) ? _MD_MYLINKS_ALLOW : _MD_MYLINKS_DISALLOW;
     case _MD_MYLINKS_ALLOW:
         $can_print = _MD_MYLINKS_ALLOW;
         break;
@@ -57,7 +56,7 @@ switch ($mylinks_can_print)
         break;
 }
 
-if ( _MD_MYLINKS_DISALLOW == $can_print) {
+if (_MD_MYLINKS_DISALLOW == $can_print) {
     redirect_header('index.php', 3, _MD_MYLINKS_PRINTINGDISALLOWED);
 }
 

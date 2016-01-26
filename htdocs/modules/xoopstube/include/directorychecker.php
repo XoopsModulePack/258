@@ -27,7 +27,7 @@ require_once dirname(dirname(dirname(__DIR__))) . '/include/cp_header.php';
  * Class DirectoryChecker
  * check status of a directory
  */
-class DirectoryChecker
+class directorychecker
 {
     /**
      * @param       $path

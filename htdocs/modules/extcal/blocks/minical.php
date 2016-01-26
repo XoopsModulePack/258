@@ -88,7 +88,6 @@ function bExtcalMinicalShow($options)
     }
     //----------------------------------------------------
 
-
     // Saving display link preference
     $displayLink = $options[8];
 
@@ -185,7 +184,6 @@ function bExtcalMinicalShow($options)
     // Retriving weekdayNames
     //$loc_de = setlocale (LC_ALL, 'Fr');
 
-
     $weekdayNames = Calendar_Util_Textual::weekdayNames('one');
     //$weekdayNames=array('D','L','M','M','J','V','S');
 
@@ -224,7 +222,6 @@ function bExtcalMinicalShow($options)
 // $t = print_r($horloge,true);
 // echo "<pre>{$t}</pre>";
     return $ret;
-
 }
 
 //---------------------------------------------------------------------------
@@ -443,7 +440,6 @@ function _makeXMLSlideshowConf($options)
     $xml_string = $doc->save(
         XOOPS_ROOT_PATH . '/cache/extcalSlideShowParam.xml'
     );
-
 }
 
 /**************************************************************************/
@@ -463,7 +459,7 @@ function bExtcalMinicalAddEventToArray(
     $endMonth,
     $cats
 ) {
-// ext_echoArray($event);
+    // ext_echoArray($event);
 // exit;
 // $d1 = date("j, m, Y", $startMonth);
 // $d2 = date("j, m, Y", $endMonth);
@@ -482,7 +478,6 @@ function bExtcalMinicalAddEventToArray(
     $endEvent   = xoops_getUserTimestamp($event['event_end'], $extcalTimeHandler->_getUserTimeZone($GLOBALS['xoopsUser']));
 // ext_echoTSU($event['event_start'],"event['event_start']");
 // ext_echoTSU($event['event_end'],"event['event_end']");
-
 
     //---------------------------------------------------------------
     if ($startEvent < $startMonth) {
@@ -537,7 +532,6 @@ function bExtcalMinicalAddEventToArray(
 //
 // $t = print_r($eventsArray,true);
 // echo "event id = {$event['event_id']} - weight = {$weight}<br>color = {$color}<br><pre>{$t}</pre><hr>";
-
 }
 
 /**
@@ -545,7 +539,7 @@ function bExtcalMinicalAddEventToArray(
  */
 function extcal_getDefautminicalOption(&$options)
 {
-// 0|0|150|225|1|3|10|0|1|1,2|| |120|120
+    // 0|0|150|225|1|3|10|0|1|1,2|| |120|120
     for ($h = 0; $h <= 13; ++$h) {
         if (!isset($options[$h])) {
             switch ($h) {
@@ -593,7 +587,5 @@ function extcal_getDefautminicalOption(&$options)
                     break;
             }
         }
-
     }
-
 }

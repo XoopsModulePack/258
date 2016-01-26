@@ -27,28 +27,28 @@ class zipfile
      *
      * @var array $datasec
      */
-    var $datasec      = array();
+    public $datasec      = array();
 
     /**
      * Central directory
      *
      * @var array $ctrl_dir
      */
-    var $ctrl_dir     = array();
+    public $ctrl_dir     = array();
 
     /**
      * End of central directory record
      *
      * @var string $eof_ctrl_dir
      */
-    var $eof_ctrl_dir = "\x50\x4b\x05\x06\x00\x00\x00\x00";
+    public $eof_ctrl_dir = "\x50\x4b\x05\x06\x00\x00\x00\x00";
 
     /**
      * Last offset position
      *
      * @var integer $old_offset
      */
-    var $old_offset   = 0;
+    public $old_offset   = 0;
 
     /**
      * Converts an Unix timestamp to a four byte DOS date and time format (date
@@ -60,7 +60,8 @@ class zipfile
      *
      * @access private
      */
-    function unix2DosTime($unixtime = 0) {
+    public function unix2DosTime($unixtime = 0)
+    {
         $timearray = ($unixtime == 0) ? getdate() : getdate($unixtime);
 
         if ($timearray['year'] < 1980) {
@@ -76,7 +77,6 @@ class zipfile
                 ($timearray['hours'] << 11) | ($timearray['minutes'] << 5) | ($timearray['seconds'] >> 1);
     } // end of the 'unix2DosTime()' method
 
-
     /**
      * Adds "file" to archive
      *
@@ -86,7 +86,7 @@ class zipfile
      *
      * @access public
      */
-    function addFile($data, $name, $time = 0)
+    public function addFile($data, $name, $time = 0)
     {
         $name     = str_replace('\\', '/', $name);
 
@@ -139,14 +139,14 @@ class zipfile
         $cdrec .= pack('V', $crc);           // crc32
         $cdrec .= pack('V', $c_len);         // compressed filesize
         $cdrec .= pack('V', $unc_len);       // uncompressed filesize
-        $cdrec .= pack('v', strlen($name) ); // length of filename
-        $cdrec .= pack('v', 0 );             // extra field length
-        $cdrec .= pack('v', 0 );             // file comment length
-        $cdrec .= pack('v', 0 );             // disk number start
-        $cdrec .= pack('v', 0 );             // internal file attributes
-        $cdrec .= pack('V', 32 );            // external file attributes - 'archive' bit set
+        $cdrec .= pack('v', strlen($name)); // length of filename
+        $cdrec .= pack('v', 0);             // extra field length
+        $cdrec .= pack('v', 0);             // file comment length
+        $cdrec .= pack('v', 0);             // disk number start
+        $cdrec .= pack('v', 0);             // internal file attributes
+        $cdrec .= pack('V', 32);            // external file attributes - 'archive' bit set
 
-        $cdrec .= pack('V', $this -> old_offset ); // relative offset of local header
+        $cdrec .= pack('V', $this -> old_offset); // relative offset of local header
         $this -> old_offset = $new_offset;
 
         $cdrec .= $name;
@@ -156,7 +156,6 @@ class zipfile
         $this -> ctrl_dir[] = $cdrec;
     } // end of the 'addFile()' method
 
-
     /**
      * Dumps out file
      *
@@ -164,7 +163,7 @@ class zipfile
      *
      * @access public
      */
-    function file()
+    public function file()
     {
         $data    = implode('', $this -> datasec);
         $ctrldir = implode('', $this -> ctrl_dir);
@@ -179,6 +178,5 @@ class zipfile
             pack('V', strlen($data)) .              // offset to start of central dir
             "\x00\x00";                             // .zip file comment length
     } // end of the 'file()' method
-
 } // end of the 'zipfile' class
 ;

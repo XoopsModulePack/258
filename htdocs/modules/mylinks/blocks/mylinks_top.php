@@ -39,20 +39,20 @@ function b_mylinks_top_show($options)
     //ver2.5
     $modulename = basename(dirname(dirname(__FILE__)));
     $myts =& MyTextSanitizer::getInstance();
-    $result = $xoopsDB->query("SELECT lid, cid, title, date, hits FROM " . $xoopsDB->prefix("mylinks_links") . " WHERE status>0 ORDER BY " . $options[0] . " DESC",$options[1],0);
+    $result = $xoopsDB->query("SELECT lid, cid, title, date, hits FROM " . $xoopsDB->prefix("mylinks_links") . " WHERE status>0 ORDER BY " . $options[0] . " DESC", $options[1], 0);
     while ($myrow = $xoopsDB->fetchArray($result)) {
         $link = array();
         $title = $myts->htmlSpecialChars($myts->stripSlashesGPC($myrow['title']));
 //        if ( !XOOPS_USE_MULTIBYTES ) {
             if (mb_strlen($title) >= $options[2]) {
-                $title = mb_substr($title,0,($options[2] -1)) . "...";
+                $title = mb_substr($title, 0, ($options[2] -1)) . "...";
             }
 //        }
         $link['id']    = $myrow['lid'];
         $link['cid']   = $myrow['cid'];
         $link['title'] = $title;
         if ($options[0] == "date") {
-            $link['date'] = formatTimestamp($myrow['date'],'s');
+            $link['date'] = formatTimestamp($myrow['date'], 's');
         } elseif ($options[0] == "hits") {
             $link['hits'] = $myrow['hits'];
         }

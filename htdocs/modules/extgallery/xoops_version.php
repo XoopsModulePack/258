@@ -46,21 +46,20 @@ $modversion['adminmenu'] = "admin/menu.php";
 
 // Menu
 $modversion['hasMain'] = 1;
-if(isset($GLOBALS['xoopsModule']) && $GLOBALS['xoopsModule']->getVar('dirname') == "extgallery") {
-
-    if($GLOBALS['xoopsUser'] != null) {
+if (isset($GLOBALS['xoopsModule']) && $GLOBALS['xoopsModule']->getVar('dirname') == "extgallery") {
+    if ($GLOBALS['xoopsUser'] != null) {
         $modversion['sub'][0]['name'] = _MI_EXTGALLERY_USERALBUM;
         $modversion['sub'][0]['url'] = "public-useralbum.php?id=".$GLOBALS['xoopsUser']->uid();
     }
 
     include_once XOOPS_ROOT_PATH.'/modules/extgallery/class/publicPerm.php';
     $permHandler = ExtgalleryPublicPermHandler::getHandler();
-    if(count($permHandler->getAuthorizedPublicCat($GLOBALS['xoopsUser'], 'public_upload')) > 0) {
+    if (count($permHandler->getAuthorizedPublicCat($GLOBALS['xoopsUser'], 'public_upload')) > 0) {
         $modversion['sub'][1]['name'] = _MI_EXTGALLERY_PUBLIC_UPLOAD;
-        if($GLOBALS['xoopsModuleConfig']['use_extended_upload'] == 'html') {
-         $modversion['sub'][1]['url'] = "public-upload.php";
+        if ($GLOBALS['xoopsModuleConfig']['use_extended_upload'] == 'html') {
+            $modversion['sub'][1]['url'] = "public-upload.php";
         } else {
-         $modversion['sub'][1]['url'] = "public-upload-extended.php";
+            $modversion['sub'][1]['url'] = "public-upload-extended.php";
         }
     }
 }
@@ -1064,7 +1063,6 @@ $modversion['blocks'][6]['show_func'] = "extgalleryList";
 $modversion['blocks'][6]['edit_func'] = "extgalleryListEdit";
 $modversion['blocks'][6]['options'] = "10|1|1|1|RandomPhoto|0";
 $modversion['blocks'][6]['template'] = 'extgallery_block_list.html';
-
 
 // Notifications
 $modversion['hasNotification'] = 1;

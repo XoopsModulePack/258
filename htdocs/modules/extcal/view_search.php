@@ -140,7 +140,6 @@ for ($h = 0, $count = count($recurrents); $h < $count; ++$h) {
         $val['cat']['cat_light_color'] = eclaircirCouleur($categoryObject->vars['cat_color']['value'], _EXTCAL_INFOBULLE_RGB_MIN, _EXTCAL_INFOBULLE_RGB_MAX);
         $recurEventsArray[]            = $val;
     }
-
 }
 
 $eventsArray = array_merge((array)$eventsArray, (array)$recurEventsArray);

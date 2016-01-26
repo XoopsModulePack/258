@@ -31,7 +31,7 @@ $error_reporting_level = error_reporting(0);
 include_once "{$xoops_system_path}/constants.php";
 include_once "{$xoops_system_path}/language/$language/admin.php";
 include_once "{$xoops_system_path}/language/$language/admin/tplsets.php";
-error_reporting( $error_reporting_level );
+error_reporting($error_reporting_level);
 
 // check $xoopsModule
 if (!is_object($xoopsModule)) {
@@ -111,11 +111,11 @@ if (file_exists($basefilepath)) {
 // diff from DB-default to selected DB template
 $diff_from_default4disp = '';
 if ($tpl['tpl_tplset'] != 'default') {
-    list ($default_source) = $db->fetchRow($db->query( "SELECT tpl_source FROM " . $db->prefix("tplfile") . " NATURAL LEFT JOIN " . $db->prefix("tplsource") . " WHERE tpl_tplset='default' AND tpl_file='" . addslashes($tpl['tpl_file']) . "' AND tpl_module='".addslashes($tpl['tpl_module']) . "'"));
-    $diff =& new Text_Diff(explode("\n", $default_source) , explode("\n", $tpl['tpl_source']));
+    list($default_source) = $db->fetchRow($db->query("SELECT tpl_source FROM " . $db->prefix("tplfile") . " NATURAL LEFT JOIN " . $db->prefix("tplsource") . " WHERE tpl_tplset='default' AND tpl_file='" . addslashes($tpl['tpl_file']) . "' AND tpl_module='".addslashes($tpl['tpl_module']) . "'"));
+    $diff =& new Text_Diff(explode("\n", $default_source), explode("\n", $tpl['tpl_source']));
     $renderer =& new Text_Diff_Renderer_unified();
     $diff_str = htmlspecialchars($renderer->render($diff), ENT_QUOTES);
-    foreach (explode("\n" , $diff_str) as $line) {
+    foreach (explode("\n", $diff_str) as $line) {
         if (ord($line) == 0x2d) {
             $diff_from_default4disp .= "<span style='color:red;'>{$line}</span>\n";
         } elseif (ord($line) == 0x2b) {

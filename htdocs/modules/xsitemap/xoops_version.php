@@ -21,7 +21,6 @@
  * ****************************************************************************
  */
 
-
     $modversion["name"] = "xSiteMap";
     $modversion["version"] = 1.52;
     $modversion['description']    = _MI_XSITEMAP_DESC;
@@ -60,7 +59,6 @@
     $modversion["adminindex"] = "admin/index.php";
     $modversion["adminmenu"] = "admin/menu.php";
 
-
     // Mysql file
     $modversion["sqlfile"]["mysql"] = "sql/mysql.sql";
 
@@ -74,7 +72,6 @@
     // Menu
     $modversion["hasMain"] = 1;
     $modversion['system_menu'] = 1;
-
 
     //Templates
     $i = 1;

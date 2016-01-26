@@ -122,7 +122,7 @@ switch ($op) {
             $sql .= " SET `catsubscr_quited` = " . time();
             $sql .= " WHERE (((`subscr_email`)='{$bmh_email}'))";
             if (!$result = $xoopsDB->queryF($sql)) {
-                die ('MySQL-Error: ' . mysql_error());
+                die('MySQL-Error: ' . mysql_error());
             }
         }
         //set bmh_measure for all entries in bmh with this email
@@ -130,7 +130,7 @@ switch ($op) {
         $sql_upd .= " SET `bmh_measure` = '{$bmh_measure}', `bmh_submitter` = '{$xoopsUser->uid()}', `bmh_created` = '" . time() . "'";
         $sql_upd .= " WHERE ((`{$xoopsDB->prefix('xnewsletter_bmh')}`.`bmh_email` ='{$bmh_email}') AND (`{$xoopsDB->prefix('xnewsletter_bmh')}`.`bmh_measure` ='0'))";
         if (!$result = $xoopsDB->queryF($sql_upd)) {
-            die ('MySQL-Error: ' . mysql_error());
+            die('MySQL-Error: ' . mysql_error());
         }
 
         redirect_header("?op=list&filter={$filter}", 3, _AM_XNEWSLETTER_FORMOK);

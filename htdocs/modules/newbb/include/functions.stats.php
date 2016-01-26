@@ -30,9 +30,9 @@ if (!defined('NEWBB_FUNCTIONS_STATS')) {
     }
 
     /**
-     * @param     $id
-     * @param     $type
-     * @param int $increment
+     * @param        $id
+     * @param        $type
+     * @param  int   $increment
      * @return mixed
      */
     function newbb_update_stats($id, $type, $increment = 1)
@@ -46,7 +46,7 @@ if (!defined('NEWBB_FUNCTIONS_STATS')) {
     * Gets the total number of topics in a form
     */
     /**
-     * @param string $forum_id
+     * @param  string $forum_id
      * @return mixed
      */
     function getTotalTopics($forum_id = '')
@@ -65,8 +65,8 @@ if (!defined('NEWBB_FUNCTIONS_STATS')) {
     * Also can return the number of users on the system.
     */
     /**
-     * @param int    $id
-     * @param string $type
+     * @param  int    $id
+     * @param  string $type
      * @return mixed
      */
     function getTotalPosts($id = 0, $type = 'all')

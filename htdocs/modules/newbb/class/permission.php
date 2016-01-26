@@ -139,6 +139,7 @@ class NewbbPermissionHandler extends XoopsGroupPermHandler
         if (count(array_intersect($allowed_groups, $groups)) > 0) {
             $ret =  true;
         }
+
         return $ret;
     }
 

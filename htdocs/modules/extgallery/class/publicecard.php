@@ -26,9 +26,9 @@ include_once 'extgalleryMailer.php';
 class ExtgalleryPublicecard extends XoopsObject
 {
 
-    var $externalKey = array();
+    public $externalKey = array();
 
-    function ExtgalleryPublicecard()
+    public function ExtgalleryPublicecard()
     {
         $this->initVar('ecard_id', XOBJ_DTYPE_TXTBOX, null, false);
         $this->initVar('ecard_cardid', XOBJ_DTYPE_TXTBOX, null, false);
@@ -47,62 +47,62 @@ class ExtgalleryPublicecard extends XoopsObject
         $this->externalKey['uid'] = array('className'=>'user', 'getMethodeName'=>'get', 'keyName'=>'user', 'core'=>true);
     }
 
-    function getExternalKey($key) {
+    public function getExternalKey($key)
+    {
         return $this->externalKey[$key];
     }
-
 }
 
-class ExtgalleryPublicecardHandler extends ExtgalleryPersistableObjectHandler {
+class ExtgalleryPublicecardHandler extends ExtgalleryPersistableObjectHandler
+{
 
-    function ExtgalleryPublicecardHandler(&$db)
+    public function ExtgalleryPublicecardHandler(&$db)
     {
         $this->ExtgalleryPersistableObjectHandler($db, 'extgallery_publicecard', 'ExtgalleryPublicecard', 'ecard_id');
     }
 
-    function createEcard($data) {
-
+    public function createEcard($data)
+    {
         $ecard = $this->create();
         $ecard->setVars($data);
-        $ecard->setVar('ecard_date',time());
+        $ecard->setVar('ecard_date', time());
         $uid = is_a($GLOBALS['xoopsUser'], "XoopsUser") ? $GLOBALS['xoopsUser']->getVar('uid') : 0;
-        $ecard->setVar('uid',$uid);
-        $ecard->setVar('ecard_cardid',md5(uniqid(rand(), true)));
+        $ecard->setVar('uid', $uid);
+        $ecard->setVar('ecard_cardid', md5(uniqid(rand(), true)));
 
-        if(!$this->insert($ecard, true)) {
+        if (!$this->insert($ecard, true)) {
             return false;
         }
         $this->send($ecard);
-
     }
 
-    function send(&$ecard) {
-
+    public function send(&$ecard)
+    {
         $photoHandler = xoops_getmodulehandler('publicphoto', 'extgallery');
         $photo = $photoHandler->get($ecard->getVar('photo_id'));
 
         $mailer = new extgalleryMailer('included');
 
-        $mailer->setEcardId($ecard->getVar('ecard_cardid','p'));
-        $mailer->setSubject(sprintf(_MD_EXTGALLERY_ECARD_TITLE, $ecard->getVar('ecard_fromname','p')));
-        $mailer->setToEmail($ecard->getVar('ecard_toemail','p'));
-        $mailer->setToName($ecard->getVar('ecard_toname','p'));
-        $mailer->setFromEmail($ecard->getVar('ecard_fromemail','p'));
-        $mailer->setFromName($ecard->getVar('ecard_fromname','p'));
-        $mailer->setGreetings($ecard->getVar('ecard_greetings','p'));
-        $mailer->setDescription($ecard->getVar('ecard_desc','p'));
+        $mailer->setEcardId($ecard->getVar('ecard_cardid', 'p'));
+        $mailer->setSubject(sprintf(_MD_EXTGALLERY_ECARD_TITLE, $ecard->getVar('ecard_fromname', 'p')));
+        $mailer->setToEmail($ecard->getVar('ecard_toemail', 'p'));
+        $mailer->setToName($ecard->getVar('ecard_toname', 'p'));
+        $mailer->setFromEmail($ecard->getVar('ecard_fromemail', 'p'));
+        $mailer->setFromName($ecard->getVar('ecard_fromname', 'p'));
+        $mailer->setGreetings($ecard->getVar('ecard_greetings', 'p'));
+        $mailer->setDescription($ecard->getVar('ecard_desc', 'p'));
         $mailer->setPhoto($photo);
         $mailer->send();
     }
 
-    function getEcard($ecardId) {
-        $criteria = new Criteria('ecard_cardid',$ecardId);
+    public function getEcard($ecardId)
+    {
+        $criteria = new Criteria('ecard_cardid', $ecardId);
         $ecard = $this->getObjects($criteria);
-        if(count($ecard) != 1) {
+        if (count($ecard) != 1) {
             return false;
         }
 
         return $ecard[0];
     }
-
 }

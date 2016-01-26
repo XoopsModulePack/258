@@ -35,7 +35,7 @@ include_once XOOPS_ROOT_PATH . "/modules/smartobject/class/smartobjecthandler.ph
 class SmartpartnerPartner_cat_link extends SmartObject
 {
 
-    function SmartpartnerPartner_cat_link()
+    public function SmartpartnerPartner_cat_link()
     {
         $this->initVar('partner_cat_linkid', XOBJ_DTYPE_INT, '', true);
         $this->initVar('partnerid', XOBJ_DTYPE_INT, '', true);
@@ -45,13 +45,12 @@ class SmartpartnerPartner_cat_link extends SmartObject
 
 class SmartpartnerPartner_cat_linkHandler extends SmartPersistableObjectHandler
 {
-    function SmartpartnerPartner_cat_linkHandler($db)
+    public function SmartpartnerPartner_cat_linkHandler($db)
     {
-
         $this->SmartPersistableObjectHandler($db, 'partner_cat_link', array('partnerid', 'categoryid'), '', false, 'smartpartner');
     }
 
-    function getParentIds($partnerid)
+    public function getParentIds($partnerid)
     {
         $criteria = new CriteriaCompo();
         $criteria->add(new Criteria('partnerid', $partnerid));

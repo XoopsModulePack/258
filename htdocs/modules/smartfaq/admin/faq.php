@@ -19,8 +19,12 @@ $category_handler =& sf_gethandler('category');
 $answer_handler =& sf_gethandler('answer');
 
 $op = '';
-if (isset($_GET['op'])) $op = $_GET['op'];
-if (isset($_POST['op'])) $op = $_POST['op'];
+if (isset($_GET['op'])) {
+    $op = $_GET['op'];
+}
+if (isset($_POST['op'])) {
+    $op = $_POST['op'];
+}
 
 // Where shall we start?
 $startfaq = isset($_GET['startfaq'])? intval($_GET['startfaq']) : 0;
@@ -175,7 +179,7 @@ function editfaq($showmenu = false, $faqid = -1, $answerid = -1, $merge=false)
     * Last one is not set as we do not have sub menus in Smartfaq
     */
 
-    $mytree = new XoopsTree($xoopsDB->prefix("smartfaq_categories"), "categoryid" , "parentid");
+    $mytree = new XoopsTree($xoopsDB->prefix("smartfaq_categories"), "categoryid", "parentid");
     ob_start();
     $mytree->makeMySelBox("name", "weight", $categoryObj->categoryid());
     $sform->addElement(new XoopsFormLabel(_AM_SF_CATEGORY_FAQ, ob_get_contents()));
@@ -193,23 +197,22 @@ function editfaq($showmenu = false, $faqid = -1, $answerid = -1, $merge=false)
 
     //$sform->addElement(new XoopsFormDhtmlTextArea(_AM_SF_ANSWER_FAQ, 'answer', $theanswer, 15, 60), true);
 
-
 $editorTray = new XoopsFormElementTray(_AM_SF_ANSWER_FAQ, '<br />');
-   if (class_exists('XoopsFormEditor')) {
-           $options['name'] = 'answer';
-           $options['value'] = $theanswer;
-           $options['rows'] = 5;
-           $options['cols'] = '100%';
-           $options['width'] = '100%';
-           $options['height'] = '200px';
-       $answerEditor  = new XoopsFormEditor('', $xoopsModuleConfig['form_editorOptions'], $options, $nohtml = false, $onfailure = 'textarea');
-           $editorTray->addElement($answerEditor,true );
-       } else {
-       $answerEditor  = new XoopsFormDhtmlTextArea(_AM_SF_ANSWER_FAQ, 'answer', $theanswer, '100%', '100%');
-       $editorTray->addElement($answerEditor,true );
-   }
+    if (class_exists('XoopsFormEditor')) {
+        $options['name'] = 'answer';
+        $options['value'] = $theanswer;
+        $options['rows'] = 5;
+        $options['cols'] = '100%';
+        $options['width'] = '100%';
+        $options['height'] = '200px';
+        $answerEditor  = new XoopsFormEditor('', $xoopsModuleConfig['form_editorOptions'], $options, $nohtml = false, $onfailure = 'textarea');
+        $editorTray->addElement($answerEditor, true);
+    } else {
+        $answerEditor  = new XoopsFormDhtmlTextArea(_AM_SF_ANSWER_FAQ, 'answer', $theanswer, '100%', '100%');
+        $editorTray->addElement($answerEditor, true);
+    }
 
-$sform->addElement($editorTray);
+    $sform->addElement($editorTray);
 
     // HOW DO I
     $sform->addElement(new XoopsFormText(_AM_SF_HOWDOI_FAQ, 'howdoi', 50, 255, $faqObj->howdoi('e')), false);
@@ -227,7 +230,7 @@ $sform->addElement($editorTray);
 
     $modulelink_select = new XoopsFormSelect('', 'modulelink', $faqObj->modulelink());
     $modulelink_select->addOptionArray($modulelink_select_array);
-    $modulelink_tray = new XoopsFormElementTray(_AM_SF_CONTEXTMODULELINK_FAQ , '&nbsp;');
+    $modulelink_tray = new XoopsFormElementTray(_AM_SF_CONTEXTMODULELINK_FAQ, '&nbsp;');
     $modulelink_tray->addElement($modulelink_select);
     $sform->addElement($modulelink_tray);
 
@@ -277,7 +280,7 @@ $sform->addElement($editorTray);
     $sform->addElement($options_tray);
 
     // OFFLINE
-    if ( $faqObj->status() == _SF_STATUS_OFFLINE ) {
+    if ($faqObj->status() == _SF_STATUS_OFFLINE) {
         // Back OnLine
         $offline_radio = new XoopsFormRadioYN(_AM_SF_OFFLINE_FIELD, 'offline', 1, ' ' . _AM_SF_YES . '', ' ' . _AM_SF_NO . '');
         $sform->addElement($offline_radio);
@@ -349,7 +352,7 @@ switch ($op) {
         $totalcategories = $category_handler->getCategoriesCount(-1);
         if ($totalcategories == 0) {
             redirect_header("category.php?op=mod", 3, _AM_SF_NEED_CATEGORY_FAQ);
-        exit();
+            exit();
         }
     }
 
@@ -361,14 +364,14 @@ switch ($op) {
 
     case "mod":
 
-    Global $xoopsUser, $xoopsUser, $xoopsConfig, $xoopsDB, $xoopsModuleConfig, $xoopsModule, $modify, $myts;
+    global $xoopsUser, $xoopsUser, $xoopsConfig, $xoopsDB, $xoopsModuleConfig, $xoopsModule, $modify, $myts;
     $faqid = (isset($_GET['faqid']))? $_GET['faqid'] : -1;
     $answerid = (isset($_GET['answerid']))? $_GET['answerid'] : -1;
     if ($faqid == -1) {
         $totalcategories = $category_handler->getCategoriesCount(-1);
         if ($totalcategories == 0) {
             redirect_header("category.php?op=mod", 3, _AM_SF_NEED_CATEGORY_FAQ);
-        exit();
+            exit();
         }
     }
 
@@ -416,7 +419,7 @@ switch ($op) {
 
     // If this SmartFAQ is offline and the user set this option to No
     $offline = (isset($_POST['offline']))? $_POST['offline'] : 1;
-    if ( ($faqObj->status() == _SF_STATUS_OFFLINE) && ($offline == 0) ) {
+    if (($faqObj->status() == _SF_STATUS_OFFLINE) && ($offline == 0)) {
         $faqObj->setVar('status', _SF_STATUS_PUBLISHED);
     }
     $faqObj->setVar('weight', (isset($_POST['weight']))? intval($_POST['weight']) : $faqObj->weight());
@@ -506,14 +509,14 @@ switch ($op) {
     $answerObj->setVar('uid', $answerer_uid);
 
     // Storing the FAQ
-    if ( !$faqObj->store() ) {
+    if (!$faqObj->store()) {
         redirect_header("javascript:history.go(-1)", 3, $error_msg . sf_formatErrors($faqObj->getErrors()));
         exit;
     }
 
     // Storing the answer
     $answerObj->setVar('faqid', $faqObj->faqid());
-    if ( !$answerObj->store() ) {
+    if (!$answerObj->store()) {
         redirect_header("javascript:history.go(-1)", 3, $error_msg . sf_formatErrors($answerObj->getErrors()));
         exit;
     }
@@ -543,7 +546,7 @@ switch ($op) {
     $question = (isset($_POST['question']))? $_POST['question'] : '';
 
     if ($confirm) {
-        if ( !$faq_handler->delete($faqObj)) {
+        if (!$faq_handler->delete($faqObj)) {
             redirect_header("faq.php", 2, _AM_SF_FAQ_DELETE_ERROR . sf_formatErrors($faqObj->getErrors()));
             exit;
         }

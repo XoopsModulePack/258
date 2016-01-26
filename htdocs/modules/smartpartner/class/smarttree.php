@@ -29,18 +29,18 @@
 // Project: The XOOPS Project                                                //
 // ------------------------------------------------------------------------- //
 
-class SmartTree
+class smarttree
 {
-    var $table; //table with parent-child structure
-    var $id; //name of unique id for records in table $table
-    var $pid; // name of parent id used in table $table
-    var $order; //specifies the order of query results
-    var $title; // name of a field in table $table which will be used when  selection box and paths are generated
-    var $db;
+    public $table; //table with parent-child structure
+    public $id; //name of unique id for records in table $table
+    public $pid; // name of parent id used in table $table
+    public $order; //specifies the order of query results
+    public $title; // name of a field in table $table which will be used when  selection box and paths are generated
+    public $db;
 
     //constructor of class SmartTree
     //sets the names of table, unique id, and parend id
-    function SmartTree($table_name, $id_name, $pid_name)
+    public function SmartTree($table_name, $id_name, $pid_name)
     {
         $this->db =& Database::getInstance();
         $this->table = $table_name;
@@ -49,7 +49,7 @@ class SmartTree
     }
 
     // returns an array of first child objects for a given id($sel_id)
-    function getFirstChild($sel_id, $order = "")
+    public function getFirstChild($sel_id, $order = "")
     {
         $arr = array();
         $sql = "SELECT * FROM " . $this->table . " WHERE " . $this->pid . "=" . $sel_id . "";
@@ -69,7 +69,7 @@ class SmartTree
     }
 
     // returns an array of all FIRST child ids of a given id($sel_id)
-    function getFirstChildId($sel_id)
+    public function getFirstChildId($sel_id)
     {
         $idarray = array();
         $result = $this->db->query("SELECT " . $this->id . " FROM " . $this->table . " WHERE " . $this->pid . "=" . $sel_id . "");
@@ -85,7 +85,7 @@ class SmartTree
     }
 
     //returns an array of ALL child ids for a given id($sel_id)
-    function getAllChildId($sel_id, $order = "", $idarray = array())
+    public function getAllChildId($sel_id, $order = "", $idarray = array())
     {
         $sql = "SELECT " . $this->id . " FROM " . $this->table . " WHERE " . $this->pid . "=" . $sel_id . "";
         if ($order != "") {
@@ -105,7 +105,7 @@ class SmartTree
     }
 
     //returns an array of ALL parent ids for a given id($sel_id)
-    function getAllParentId($sel_id, $order = "", $idarray = array())
+    public function getAllParentId($sel_id, $order = "", $idarray = array())
     {
         $sql = "SELECT " . $this->pid . " FROM " . $this->table . " WHERE " . $this->id . "=" . $sel_id . "";
         if ($order != "") {
@@ -124,7 +124,7 @@ class SmartTree
 
     //generates path from the root id to a given id($sel_id)
     // the path is delimetered with "/"
-    function getPathFromId($sel_id, $title, $path = "")
+    public function getPathFromId($sel_id, $title, $path = "")
     {
         $result = $this->db->query("SELECT " . $this->pid . ", " . $title . " FROM " . $this->table . " WHERE " . $this->id . "=$sel_id");
         if ($this->db->getRowsNum($result) == 0) {
@@ -145,7 +145,7 @@ class SmartTree
     //makes a nicely ordered selection box
     //$preset_id is used to specify a preselected item
     //set $none to 1 to add a option with value 0
-    function makeMySelBox($title, $order = "", $preset_id = 0, $none = 0, $sel_name = "", $onchange = "", $multiple = false)
+    public function makeMySelBox($title, $order = "", $preset_id = 0, $none = 0, $sel_name = "", $onchange = "", $multiple = false)
     {
         global $myts;
         if ($sel_name == "") {
@@ -226,7 +226,7 @@ class SmartTree
     }
 
     //generates nicely formatted linked path from the root id to a given id
-    function getNicePathFromId($sel_id, $title, $funcURL, $path = "")
+    public function getNicePathFromId($sel_id, $title, $funcURL, $path = "")
     {
         $sql = "SELECT " . $this->pid . ", " . $title . " FROM " . $this->table . " WHERE " . $this->id . "=$sel_id";
         $result = $this->db->query($sql);
@@ -247,7 +247,7 @@ class SmartTree
 
     //generates id path from the root id to a given id
     // the path is delimetered with "/"
-    function getIdPathFromId($sel_id, $path = "")
+    public function getIdPathFromId($sel_id, $path = "")
     {
         $result = $this->db->query("SELECT " . $this->pid . " FROM " . $this->table . " WHERE " . $this->id . "=$sel_id");
         if ($this->db->getRowsNum($result) == 0) {
@@ -263,7 +263,7 @@ class SmartTree
         return $path;
     }
 
-    function getAllChild($sel_id = 0, $order = "", $parray = array())
+    public function getAllChild($sel_id = 0, $order = "", $parray = array())
     {
         $sql = "SELECT * FROM " . $this->table . " WHERE " . $this->pid . "=" . $sel_id . "";
         if ($order != "") {
@@ -282,7 +282,7 @@ class SmartTree
         return $parray;
     }
 
-    function getChildTreeArray($sel_id = 0, $order = "", $parray = array(), $r_prefix = "")
+    public function getChildTreeArray($sel_id = 0, $order = "", $parray = array(), $r_prefix = "")
     {
         $sql = "SELECT * FROM " . $this->table . " WHERE " . $this->pid . "=" . $sel_id . "";
         if ($order != "") {

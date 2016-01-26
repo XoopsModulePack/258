@@ -38,9 +38,8 @@ xsitemap_xml_public();
 $xmlfile = XOOPS_ROOT_PATH."/xsitemap.xml";
 
 $stat = stat($xmlfile);
-$last_mod = date("d-m-Y H:i:s",$stat['mtime']);
+$last_mod = date("d-m-Y H:i:s", $stat['mtime']);
 
 $xoopsTpl->assign('lastmod', $last_mod);
-
 
 include_once XOOPS_ROOT_PATH."/footer.php";

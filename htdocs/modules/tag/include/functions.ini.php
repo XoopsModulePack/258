@@ -38,8 +38,7 @@ function &tag_load_config()
     if (!isset($moduleConfig)) {
         if (isset($GLOBALS["xoopsModule"])
             && ($GLOBALS["xoopsModule"] instanceof XoopsModule)
-            && ('tag' == $GLOBALS["xoopsModule"]->getVar("dirname", "n")))
-        {
+            && ('tag' == $GLOBALS["xoopsModule"]->getVar("dirname", "n"))) {
             if (!empty($GLOBALS["xoopsModuleConfig"])) {
                 $moduleConfig = $GLOBALS["xoopsModuleConfig"];
             } else {
@@ -69,7 +68,7 @@ function &tag_load_config()
 function tag_define_url_delimiter()
 {
     if (defined("URL_DELIMITER")) {
-        if (!in_array(URL_DELIMITER, array("?","/"))){
+        if (!in_array(URL_DELIMITER, array("?", "/"))) {
             exit("Security Violation");
         }
     } else {

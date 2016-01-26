@@ -11,7 +11,7 @@ class ExtcalPerm
     /**
      * @return ExtcalPerm
      */
-    static function &getHandler()
+    public static function &getHandler()
     {
         static $permHandler;
         if (!isset($permHandler)) {
@@ -26,7 +26,7 @@ class ExtcalPerm
      *
      * @return string
      */
-    function _getUserGroup(&$user)
+    public function _getUserGroup(&$user)
     {
         if (is_a($user, 'XoopsUser')) {
             return $user->getGroups();
@@ -41,7 +41,7 @@ class ExtcalPerm
      *
      * @return bool
      */
-    function getAuthorizedCat(&$user, $perm)
+    public function getAuthorizedCat(&$user, $perm)
     {
         static $authorizedCat;
         $userId = ($user) ? $user->getVar('uid') : 0;
@@ -65,11 +65,10 @@ class ExtcalPerm
      *
      * @return bool
      */
-    function isAllowed(&$user, $perm, $catId)
+    public function isAllowed(&$user, $perm, $catId)
     {
         $autorizedCat = $this->getAuthorizedCat($user, $perm);
 
         return in_array($catId, $autorizedCat);
     }
-
 }

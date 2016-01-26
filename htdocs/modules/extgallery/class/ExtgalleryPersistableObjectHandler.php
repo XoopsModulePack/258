@@ -26,17 +26,18 @@
 * @package Kernel
 */
 
-class ExtgalleryPersistableObjectHandler extends XoopsObjectHandler {
+class ExtgalleryPersistableObjectHandler extends XoopsObjectHandler
+{
 
     /**#@+
     * Information about the class, the handler is managing
     *
     * @var string
     */
-    var $table;
-    var $keyName;
-    var $className;
-    var $identifierName;
+    public $table;
+    public $keyName;
+    public $className;
+    public $identifierName;
     /**#@-*/
 
     /**
@@ -48,7 +49,8 @@ class ExtgalleryPersistableObjectHandler extends XoopsObjectHandler {
     *
     * @return void
     */
-    function ExtgalleryPersistableObjectHandler(&$db, $tablename, $classname, $keyname, $idenfierName = false) {
+    public function ExtgalleryPersistableObjectHandler(&$db, $tablename, $classname, $keyname, $idenfierName = false)
+    {
         $this->XoopsObjectHandler($db);
         $this->table = $db->prefix($tablename);
         $this->keyName = $keyname;
@@ -82,7 +84,7 @@ class ExtgalleryPersistableObjectHandler extends XoopsObjectHandler {
         return $obj;
     } */
 
-    function &create($isNew = true)
+    public function &create($isNew = true)
     {
         $obj = new $this->className();
         if ($isNew === true) {
@@ -99,7 +101,8 @@ class ExtgalleryPersistableObjectHandler extends XoopsObjectHandler {
      * @param  bool  $as_object whether to return an object or an array
      * @return mixed reference to the object, FALSE if failed
      */
-    function &get($id, $as_object = true) {
+    public function &get($id, $as_object = true)
+    {
         if (is_array($this->keyName)) {
             $criteria = new CriteriaCompo();
             for ($i = 0; $i < count($this->keyName); $i++) {
@@ -126,7 +129,7 @@ class ExtgalleryPersistableObjectHandler extends XoopsObjectHandler {
      *
      * @return array
      */
-    function &getObjects($criteria = null, $id_as_key = false, $as_object = true)
+    public function &getObjects($criteria = null, $id_as_key = false, $as_object = true)
     {
         $ret = array();
         $limit = $start = 0;
@@ -158,7 +161,8 @@ class ExtgalleryPersistableObjectHandler extends XoopsObjectHandler {
      *
      * @return array
      */
-    function convertResultSet($result, $id_as_key = false, $as_object = true) {
+    public function convertResultSet($result, $id_as_key = false, $as_object = true)
+    {
         $ret = array();
         while ($myrow = $this->db->fetchArray($result)) {
             $obj =& $this->create(false);
@@ -166,8 +170,7 @@ class ExtgalleryPersistableObjectHandler extends XoopsObjectHandler {
             if (!$id_as_key) {
                 if ($as_object) {
                     $ret[] =& $obj;
-                }
-                else {
+                } else {
                     $row = array();
                     $vars = $obj->getVars();
                     foreach (array_keys($vars) as $i) {
@@ -178,8 +181,7 @@ class ExtgalleryPersistableObjectHandler extends XoopsObjectHandler {
             } else {
                 if ($as_object) {
                     $ret[$myrow[$this->keyName]] =& $obj;
-                }
-                else {
+                } else {
                     $row = array();
                     $vars = $obj->getVars();
                     foreach (array_keys($vars) as $i) {
@@ -203,7 +205,8 @@ class ExtgalleryPersistableObjectHandler extends XoopsObjectHandler {
     *
     * @return array
     */
-    function getList($criteria = null, $limit = 0, $start = 0) {
+    public function getList($criteria = null, $limit = 0, $start = 0)
+    {
         $ret = array();
         if ($criteria == null) {
             $criteria = new CriteriaCompo();
@@ -214,7 +217,7 @@ class ExtgalleryPersistableObjectHandler extends XoopsObjectHandler {
         }
 
         $sql = 'SELECT '.$this->keyName;
-        if(!empty($this->identifierName)){
+        if (!empty($this->identifierName)) {
             $sql .= ', '.$this->identifierName;
         }
         $sql .= ' FROM '.$this->table;
@@ -247,7 +250,7 @@ class ExtgalleryPersistableObjectHandler extends XoopsObjectHandler {
      * @param  object $criteria {@link CriteriaElement} to match
      * @return int    count of objects
      */
-    function getCount($criteria = null)
+    public function getCount($criteria = null)
     {
         $field = "";
         $groupby = false;
@@ -272,8 +275,7 @@ class ExtgalleryPersistableObjectHandler extends XoopsObjectHandler {
             list($count) = $this->db->fetchRow($result);
 
             return $count;
-        }
-        else {
+        } else {
             $ret = array();
             while (list($id, $count) = $this->db->fetchRow($result)) {
                 $ret[$id] = $count;
@@ -290,7 +292,7 @@ class ExtgalleryPersistableObjectHandler extends XoopsObjectHandler {
      * @param  bool  $force
      * @return bool  FALSE if failed.
      */
-    function delete($id, $force = false)
+    public function delete($id, $force = false)
     {
         if (is_array($this->keyName)) {
             $clause = array();
@@ -298,8 +300,7 @@ class ExtgalleryPersistableObjectHandler extends XoopsObjectHandler {
                 $clause[] = $this->keyName[$i]." = ".$id[$i];
             }
             $whereclause = implode(" AND ", $clause);
-        }
-        else {
+        } else {
             $whereclause = $this->keyName." = ".$id;
         }
         $sql = "DELETE FROM ".$this->table." WHERE ".$whereclause;
@@ -324,7 +325,7 @@ class ExtgalleryPersistableObjectHandler extends XoopsObjectHandler {
      * @return bool   FALSE if failed, TRUE if already present and unchanged or successful
      */
 
-    function insert(&$obj, $force = false, $checkObject = true)
+    public function insert(&$obj, $force = false, $checkObject = true)
     {
         if ($checkObject != false) {
             if (!is_object($obj)) {
@@ -348,8 +349,8 @@ class ExtgalleryPersistableObjectHandler extends XoopsObjectHandler {
         foreach ($obj->cleanVars as $k => $v) {
             if ($obj->vars[$k]['data_type'] == XOBJ_DTYPE_INT) {
                 $cleanvars[$k] = intval($v);
-            } elseif ( is_array( $v ) ) {
-                $cleanvars[ $k ] = $this->db->quoteString( implode( ',', $v ) );
+            } elseif (is_array($v)) {
+                $cleanvars[ $k ] = $this->db->quoteString(implode(',', $v));
             } else {
                 $cleanvars[$k] = $this->db->quoteString($v);
             }
@@ -367,7 +368,7 @@ class ExtgalleryPersistableObjectHandler extends XoopsObjectHandler {
                 if ((!is_array($this->keyName) && $key == $this->keyName) || (is_array($this->keyName) && in_array($key, $this->keyName))) {
                     continue;
                 }
-                if (isset($notfirst) ) {
+                if (isset($notfirst)) {
                     $sql .= ",";
                 }
                 $sql .= " ".$key." = ".$value;
@@ -381,8 +382,7 @@ class ExtgalleryPersistableObjectHandler extends XoopsObjectHandler {
                     }
                     $whereclause .= $this->keyName[$i]." = ".$obj->getVar($this->keyName[$i]);
                 }
-            }
-            else {
+            } else {
                 $whereclause = $this->keyName." = ".$obj->getVar($this->keyName);
             }
             $sql .= " WHERE ".$whereclause;
@@ -411,15 +411,15 @@ class ExtgalleryPersistableObjectHandler extends XoopsObjectHandler {
      *
      * @return bool
      **/
-    function updateAll($fieldname, $fieldvalue, $criteria = null, $force = false)
+    public function updateAll($fieldname, $fieldvalue, $criteria = null, $force = false)
     {
         $set_clause = $fieldname . ' = ';
-        if ( is_numeric( $fieldvalue ) ) {
+        if (is_numeric($fieldvalue)) {
             $set_clause .=  $fieldvalue;
-        } elseif ( is_array( $fieldvalue ) ) {
-            $set_clause .= $this->db->quoteString( implode( ',', $fieldvalue ) );
+        } elseif (is_array($fieldvalue)) {
+            $set_clause .= $this->db->quoteString(implode(',', $fieldvalue));
         } else {
-            $set_clause .= $this->db->quoteString( $fieldvalue );
+            $set_clause .= $this->db->quoteString($fieldvalue);
         }
         $sql = 'UPDATE '.$this->table.' SET '.$set_clause;
         if (isset($criteria) && is_subclass_of($criteria, 'criteriaelement')) {
@@ -437,7 +437,7 @@ class ExtgalleryPersistableObjectHandler extends XoopsObjectHandler {
         return true;
     }
 
-    function updateFieldValue($fieldname, $fieldvalue, $criteria = null, $force = true)
+    public function updateFieldValue($fieldname, $fieldvalue, $criteria = null, $force = true)
     {
         $sql = 'UPDATE '.$this->table.' SET '.$fieldname.' = '.$fieldvalue;
         if (isset($criteria) && is_subclass_of($criteria, 'criteriaelement')) {
@@ -462,7 +462,7 @@ class ExtgalleryPersistableObjectHandler extends XoopsObjectHandler {
      * @return bool
      */
 
-    function deleteAll($criteria = null)
+    public function deleteAll($criteria = null)
     {
         if (isset($criteria) && is_subclass_of($criteria, 'criteriaelement')) {
             $sql = 'DELETE FROM '.$this->table;
@@ -478,10 +478,11 @@ class ExtgalleryPersistableObjectHandler extends XoopsObjectHandler {
         return false;
     }
 
-    function _toObject($data) {
-        if(is_array($data)) {
+    public function _toObject($data)
+    {
+        if (is_array($data)) {
             $ret = array();
-            foreach($data as $v) {
+            foreach ($data as $v) {
                 $object = new $this->className();
                 $object->assignVars($v);
                 $ret[] = $object;
@@ -496,29 +497,30 @@ class ExtgalleryPersistableObjectHandler extends XoopsObjectHandler {
         }
     }
 
-    function objectToArray($objects, $externalKeys = array(), $format = 's') {
+    public function objectToArray($objects, $externalKeys = array(), $format = 's')
+    {
         static $cache;
 
         $ret = array();
-        if(is_array($objects)) {
+        if (is_array($objects)) {
             $i = 0;
-            foreach($objects as $object) {
+            foreach ($objects as $object) {
                 $vars = $object->getVars();
                 foreach ($vars as $k => $v) {
-                    $ret[$i][$k] = $object->getVar($k,$format);
+                    $ret[$i][$k] = $object->getVar($k, $format);
                 }
-                foreach($externalKeys as $key) {
+                foreach ($externalKeys as $key) {
                     // Replace external key by corresponding object
                     $externalKey = $object->getExternalKey($key);
-                    if($ret[$i][$key] != 0) {
+                    if ($ret[$i][$key] != 0) {
                         // Retriving data if isn't cached
-                        if(!isset($cached[$externalKey['keyName']][$ret[$i][$key]])) {
-                            if($externalKey['core']) {
+                        if (!isset($cached[$externalKey['keyName']][$ret[$i][$key]])) {
+                            if ($externalKey['core']) {
                                 $handler = xoops_gethandler($externalKey['className']);
                             } else {
                                 $handler = xoops_getmodulehandler($externalKey['className'], 'extgallery');
                             }
-                            $cached[$externalKey['keyName']][$ret[$i][$key]] = $this->objectToArrayWithoutExternalKey($handler->$externalKey['getMethodeName']($ret[$i][$key]),$format);
+                            $cached[$externalKey['keyName']][$ret[$i][$key]] = $this->objectToArrayWithoutExternalKey($handler->$externalKey['getMethodeName']($ret[$i][$key]), $format);
                         }
                         $ret[$i][$externalKey['keyName']] = $cached[$externalKey['keyName']][$ret[$i][$key]];
                     }
@@ -529,20 +531,20 @@ class ExtgalleryPersistableObjectHandler extends XoopsObjectHandler {
         } else {
             $vars = $objects->getVars();
             foreach ($vars as $k => $v) {
-                $ret[$k] = $objects->getVar($k,$format);
+                $ret[$k] = $objects->getVar($k, $format);
             }
-            foreach($externalKeys as $key) {
+            foreach ($externalKeys as $key) {
                 // Replace external key by corresponding object
                 $externalKey = $objects->getExternalKey($key);
-                if($ret[$key] != 0) {
+                if ($ret[$key] != 0) {
                     // Retriving data if isn't cached
-                    if(!isset($cached[$externalKey['keyName']][$ret[$key]])) {
-                        if($externalKey['core']) {
+                    if (!isset($cached[$externalKey['keyName']][$ret[$key]])) {
+                        if ($externalKey['core']) {
                             $handler = xoops_gethandler($externalKey['className']);
                         } else {
                             $handler = xoops_getmodulehandler($externalKey['className'], 'extgallery');
                         }
-                        $cached[$externalKey['keyName']][$ret[$key]] = $this->objectToArrayWithoutExternalKey($handler->$externalKey['getMethodeName']($ret[$key]),$format);
+                        $cached[$externalKey['keyName']][$ret[$key]] = $this->objectToArrayWithoutExternalKey($handler->$externalKey['getMethodeName']($ret[$key]), $format);
                     }
                     $ret[$externalKey['keyName']] = $cached[$externalKey['keyName']][$ret[$key]];
                 }
@@ -553,19 +555,21 @@ class ExtgalleryPersistableObjectHandler extends XoopsObjectHandler {
         return $ret;
     }
 
-    function objectToArrayWithoutExternalKey($object,$format = 's') {
+    public function objectToArrayWithoutExternalKey($object, $format = 's')
+    {
         $ret = array();
-        if($object != null) {
+        if ($object != null) {
             $vars = $object->getVars();
             foreach ($vars as $k => $v) {
-                $ret[$k] = $object->getVar($k,$format);
+                $ret[$k] = $object->getVar($k, $format);
             }
         }
 
         return $ret;
     }
 
-    function updateCounter($fieldname,$criteria,$op='+') {
+    public function updateCounter($fieldname, $criteria, $op='+')
+    {
         $sql = 'UPDATE '.$this->table.' SET '.$fieldname.' = '.$fieldname.$op.'1';
         $sql .= ' '.$criteria->renderWhere();
         $result = $this->db->queryF($sql);
@@ -576,7 +580,7 @@ class ExtgalleryPersistableObjectHandler extends XoopsObjectHandler {
         return true;
     }
 
-    function getSum($criteria = null,$sum = '*')
+    public function getSum($criteria = null, $sum = '*')
     {
         $field = "";
         $groupby = false;
@@ -601,8 +605,7 @@ class ExtgalleryPersistableObjectHandler extends XoopsObjectHandler {
             list($sum) = $this->db->fetchRow($result);
 
             return $sum;
-        }
-        else {
+        } else {
             $ret = array();
             while (list($id, $sum) = $this->db->fetchRow($result)) {
                 $ret[$id] = $sum;
@@ -612,7 +615,7 @@ class ExtgalleryPersistableObjectHandler extends XoopsObjectHandler {
         }
     }
 
-    function getMax($criteria = null,$max = '*')
+    public function getMax($criteria = null, $max = '*')
     {
         $field = "";
         $groupby = false;
@@ -647,7 +650,7 @@ class ExtgalleryPersistableObjectHandler extends XoopsObjectHandler {
         }
     }
 
-    function getAvg($criteria = null,$avg = '*')
+    public function getAvg($criteria = null, $avg = '*')
     {
         $field = "";
 
@@ -664,8 +667,8 @@ class ExtgalleryPersistableObjectHandler extends XoopsObjectHandler {
         return $sum;
     }
 
-    function getInsertId() {
+    public function getInsertId()
+    {
         return $this->db->getInsertId();
     }
-
 }

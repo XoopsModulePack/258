@@ -47,12 +47,12 @@ function sf_attachmentImage($source)
     $image_url = $img_url.'/'.$source;
 
     $imginfo = @getimagesize($image);
-    $img_info = ( count($imginfo)>0 ) ? $imginfo[0]."X".$imginfo[1].' px':"";
+    $img_info = (count($imginfo)>0) ? $imginfo[0]."X".$imginfo[1].' px':"";
 
     if ($xoopsModuleConfig['max_image_width'] > 0 && $xoopsModuleConfig['max_image_height'] > 0) {
         if ($imginfo[0] > $xoopsModuleConfig['max_image_width'] || $imginfo[1] > $xoopsModuleConfig['max_image_height']) {
             //if (!file_exists($thumb_path.'/'.$source) && $imginfo[0] > $xoopsModuleConfig['max_img_width']) {
-            if (!file_exists($thumb_path.'/'.$source) ) {
+            if (!file_exists($thumb_path.'/'.$source)) {
                 sf_createThumbnail($source, $xoopsModuleConfig['max_image_width']);
             }
         }
@@ -80,7 +80,9 @@ function sf_attachmentImage($source)
         $attachmentImage .= '</a>';
     } elseif (file_exists($image)) {
         $attachmentImage = '<img src="'.$image_url.'" alt="'.$source.' '.$img_info.'" />';
-    } else $attachmentImage = '';
+    } else {
+        $attachmentImage = '';
+    }
 
     return $attachmentImage;
 }
@@ -105,18 +107,18 @@ function sf_createThumbnail($source, $thumb_width)
 
     $imginfo = @getimagesize($src_file);
 
-    if (NULL == $imginfo) {
+    if (null == $imginfo) {
         return false;
     }
     if ($imginfo[0] < $thumb_width) {
         return false;
     }
 
-    $newWidth = (int) (min($imginfo[0],$thumb_width));
+    $newWidth = (int) (min($imginfo[0], $thumb_width));
     $newHeight = (int) ($imginfo[1] * $newWidth / $imginfo[0]);
 
     if ($xoopsModuleConfig['image_lib'] == 1 or $xoopsModuleConfig['image_lib'] == 0) {
-        if (preg_match("#[A-Z]:|\\\\#Ai",__FILE__)) {
+        if (preg_match("#[A-Z]:|\\\\#Ai", __FILE__)) {
             $cur_dir = __DIR__;
             $src_file_im = '"'.$cur_dir.'\\'.strtr($src_file, '/', '\\').'"';
             $new_file_im = '"'.$cur_dir.'\\'.strtr($new_file, '/', '\\').'"';
@@ -129,7 +131,7 @@ function sf_createThumbnail($source, $thumb_width)
 
         @passthru($magick_command);
         if (file_exists($new_file)) {
-                return true;
+            return true;
         }
     }
 
@@ -145,28 +147,38 @@ function sf_createThumbnail($source, $thumb_width)
 
         @exec($cmd, $output, $retval);
         if (file_exists($new_file)) {
-                return true;
+            return true;
         }
     }
 
     $type = $imginfo[2];
     $supported_types = array();
 
-    if (!extension_loaded('gd')) return false;
-    if (function_exists('imagegif')) $supported_types[] = 1;
-    if (function_exists('imagejpeg'))$supported_types[] = 2;
-    if (function_exists('imagepng')) $supported_types[] = 3;
+    if (!extension_loaded('gd')) {
+        return false;
+    }
+    if (function_exists('imagegif')) {
+        $supported_types[] = 1;
+    }
+    if (function_exists('imagejpeg')) {
+        $supported_types[] = 2;
+    }
+    if (function_exists('imagepng')) {
+        $supported_types[] = 3;
+    }
 
     $imageCreateFunction = (function_exists('imagecreatetruecolor'))? "imagecreatetruecolor" : "imagecreate";
 
-    if (in_array($type, $supported_types) ) {
+    if (in_array($type, $supported_types)) {
         switch ($type) {
             case 1 :
-                if (!function_exists('imagecreatefromgif')) return false;
-                $im = imagecreatefromgif ($src_file);
+                if (!function_exists('imagecreatefromgif')) {
+                    return false;
+                }
+                $im = imagecreatefromgif($src_file);
                 $new_im = imagecreate($newWidth, $newHeight);
                 imagecopyresized($new_im, $im, 0, 0, 0, 0, $newWidth, $newHeight, $imginfo[0], $imginfo[1]);
-                imagegif ($new_im, $new_file);
+                imagegif($new_im, $new_file);
                 imagedestroy($im);
                 imagedestroy($new_im);
                 break;
@@ -189,8 +201,11 @@ function sf_createThumbnail($source, $thumb_width)
         }
     }
 
-    if (file_exists($new_file))    return true;
-    else return false;
+    if (file_exists($new_file)) {
+        return true;
+    } else {
+        return false;
+    }
 }
 
 endif;

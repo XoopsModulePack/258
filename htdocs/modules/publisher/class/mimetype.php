@@ -285,7 +285,7 @@ class PublisherBaseObjectHandler extends XoopsPersistableObjectHandler
      *
      * @param string $fieldname
      * @param string $fieldvalue
-     * @param object $criteria {@link CriteriaElement}
+     * @param object $criteria   {@link CriteriaElement}
      *
      * @return bool FALSE if update failed
      * @access    public

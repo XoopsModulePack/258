@@ -46,7 +46,6 @@ function agenda_getCanevas(
     $formatDate,
     $formatJour = 'H:i'
 ) {
-
     global $xoopsModuleConfig;
     $jour = date('d', $ts);
     $mois = date('m', $ts);
@@ -74,7 +73,6 @@ function agenda_getCanevas(
         } else {
             $tj[$kj]['bg'] = "";
         }
-
     }
 
     //echo "{$hStart}-{$hEnd}-{$mPlage}<br />";
@@ -188,7 +186,6 @@ function test_getAgenda()
 
     $exp = print_r($t, true);
     echo "<pre>{$exp}</pre>";
-
 }
 
 /*******************************************************************
@@ -276,7 +273,7 @@ function getListMonths($month, $addNone = false, $name = 'month')
  */
 function getListDays($day, $addNone = false)
 {
-// Day selectbox
+    // Day selectbox
     $select = new XoopsFormSelect('', 'day', $day);
     if ($addNone) {
         $select->addOption(0, ' ');
@@ -442,7 +439,6 @@ function getNavBarTabs($currentTab = '')
                 'weight'  => 100
             );
         }
-
     }
     //----------------------------------------------------------------
     $ordre = array();
@@ -459,7 +455,6 @@ function getNavBarTabs($currentTab = '')
 //    ext_echoArray($tNavBar);
 //    ext_echoArray($ordre);
     return $tNavBar;
-
 }
 
 /*----------------------------------------------------------------------*/

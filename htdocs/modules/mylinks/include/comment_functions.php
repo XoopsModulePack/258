@@ -14,5 +14,5 @@ function mylinks_com_update($link_id, $total_num)
 
 function mylinks_com_approve(&$comment)
 {
-  // notification mail here
+    // notification mail here
 }

@@ -31,7 +31,7 @@ include_once './class/utility.php';
 
 $lid = mylinksUtility::mylinks_cleanVars($_GET, 'lid', 0, 'int', array('min'=>0));
 $cid = mylinksUtility::mylinks_cleanVars($_GET, 'cid', 0, 'int', array('min'=>0));
-if ( empty($lid) || empty($cid) ) {
+if (empty($lid) || empty($cid)) {
     redirect_header('index.php', 3, _MD_MYLINKS_IDERROR);
 }
 /*
@@ -90,7 +90,7 @@ else {
   $can_qrcode = 0;
 }
 */
-if ( _MD_MYLINKS_DISALLOW == $can_qrcode ) {
+if (_MD_MYLINKS_DISALLOW == $can_qrcode) {
     redirect_header('index.php', 3, _MD_MYLINKS_QRCODEDISALLOWED);
     exit();
 }

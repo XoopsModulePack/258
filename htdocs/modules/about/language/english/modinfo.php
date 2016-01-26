@@ -29,7 +29,6 @@ define('_MI_ABOUT_DESC', "Extended 'About Us' webpage module for XOOPS");
 define('_MI_ABOUT_PAGE', "Page");
 define('_MI_ABOUT_ABOUTUS', "About Us");
 
-
 define('_MI_ABOUT_CONFIG_LIST', "Display");
 define('_MI_ABOUT_CONFIG_LIST_CATEGORY', "Cateogry");
 define('_MI_ABOUT_CONFIG_LIST_PAGE', "Page");

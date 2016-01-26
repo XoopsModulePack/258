@@ -41,7 +41,6 @@ function xtubeShowBannerB($options)
     );
 
     while ($myrow = $xoopsDB->fetchArray($result)) {
-
         $impmade    = $myrow['impmade'];
         $clicks     = $myrow['clicks'];
         $imptotal   = $myrow['imptotal'];

@@ -7,21 +7,21 @@ class ExtcalFormRecurRules extends XoopsFormElement
 {
 
     // Initial value form reccur form
-    var $_rrule_freq = 'none';
-    var $_rrule_daily_interval = '';
-    var $_rrule_weekly_interval = '';
-    var $_rrule_weekly_bydays = '';
-    var $_rrule_monthly_interval = '';
-    var $_rrule_monthly_byday = '';
-    var $_rrule_bymonthday = '';
-    var $_rrule_yearly_interval = '';
-    var $_rrule_yearly_bymonths = '';
-    var $_rrule_yearly_byday = '';
+    public $_rrule_freq = 'none';
+    public $_rrule_daily_interval = '';
+    public $_rrule_weekly_interval = '';
+    public $_rrule_weekly_bydays = '';
+    public $_rrule_monthly_interval = '';
+    public $_rrule_monthly_byday = '';
+    public $_rrule_bymonthday = '';
+    public $_rrule_yearly_interval = '';
+    public $_rrule_yearly_bymonths = '';
+    public $_rrule_yearly_byday = '';
 
     /**
      * @param $values
      */
-    function ExtcalFormRecurRules($values)
+    public function ExtcalFormRecurRules($values)
     {
         if (isset($values['rrule_freq'])) {
             $this->_rrule_freq = $values['rrule_freq'];
@@ -60,7 +60,7 @@ class ExtcalFormRecurRules extends XoopsFormElement
      *
      * @return string
      */
-    function render()
+    public function render()
     {
         $ret = "";
 
@@ -218,5 +218,4 @@ class ExtcalFormRecurRules extends XoopsFormElement
 
         return $ret;
     }
-
 }

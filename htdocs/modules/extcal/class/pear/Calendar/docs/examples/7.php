@@ -15,21 +15,21 @@ if (!@include 'Calendar/Calendar.php') {
  */
 class Calendar_Server
 {
-    var $__dispatch_map = array();
-    var $__typedef      = array();
+    public $__dispatch_map = array();
+    public $__typedef      = array();
 
-    function Calendar_Server()
+    public function Calendar_Server()
     {
         $this->__dispatch_map['getMonth'] =
             array('in'  => array('year' => 'int', 'month'=>'int'),
                   'out' => array('month' => '{urn:PEAR_SOAP_Calendar}Month'),
                   );
-        $this->__typedef['Month'] = array (
+        $this->__typedef['Month'] = array(
                 'monthname' => 'string',
                 'days' => '{urn:PEAR_SOAP_Calendar}MonthDays'
             );
-        $this->__typedef['MonthDays'] = array (array ('{urn:PEAR_SOAP_Calendar}Day'));
-        $this->__typedef['Day'] = array (
+        $this->__typedef['MonthDays'] = array(array('{urn:PEAR_SOAP_Calendar}Day'));
+        $this->__typedef['Day'] = array(
                 'isFirst' => 'int',
                 'isLast'  => 'int',
                 'isEmpty' => 'int',
@@ -41,12 +41,13 @@ class Calendar_Server
      *
      * @return null
      */
-    function __dispatch($methodname)
+    public function __dispatch($methodname)
     {
-        if (isset($this->__dispatch_map[$methodname]))
+        if (isset($this->__dispatch_map[$methodname])) {
             return $this->__dispatch_map[$methodname];
+        }
 
-        return NULL;
+        return null;
     }
 
     /**
@@ -55,10 +56,10 @@ class Calendar_Server
      *
      * @return array
      */
-    function getMonth($year, $month)
+    public function getMonth($year, $month)
     {
         require_once(CALENDAR_ROOT.'Month/Weekdays.php');
-        $Month = new Calendar_Month_Weekdays($year,$month);
+        $Month = new Calendar_Month_Weekdays($year, $month);
         if (!$Month->isValid()) {
             $V = & $Month->getValidator();
             $errorMsg = '';

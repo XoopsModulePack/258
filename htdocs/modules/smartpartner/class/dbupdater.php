@@ -30,42 +30,42 @@ class SmartpartnerTable
     /**
      * @var string $_name name of the table
      */
-    var $_name;
+    public $_name;
 
     /**
      * @var string $_structure structure of the table
      */
-    var $_structure;
+    public $_structure;
 
     /**
      * @var array $_data containing valued of each records to be added
      */
-    var $_data;
+    public $_data;
 
     /**
      * @var array $_alteredFields containing fields to be altered
      */
-    var $_alteredFields;
+    public $_alteredFields;
 
     /**
      * @var array $_newFields containing new fields to be added
      */
-    var $_newFields;
+    public $_newFields;
 
     /**
      * @var array $_dropedFields containing fields to be droped
      */
-    var $_dropedFields;
+    public $_dropedFields;
 
     /**
      * @var array $_flagForDrop flag table to drop it
      */
-    var $_flagForDrop = false;
+    public $_flagForDrop = false;
 
     /**
      * @var array $_updatedFields containing fields which values will be updated
      */
-    var $_updatedFields;
+    public $_updatedFields;
 
     /**
      * Constructor
@@ -73,7 +73,7 @@ class SmartpartnerTable
      * @param string $name name of the table
      *
      */
-    function SmartpartnerTable($name)
+    public function SmartpartnerTable($name)
     {
         $this->_name = $name;
         $this->_data = array();
@@ -85,7 +85,7 @@ class SmartpartnerTable
      * @return string table name
      *
      */
-    function name()
+    public function name()
     {
         global $xoopsDB;
 
@@ -98,7 +98,7 @@ class SmartpartnerTable
      * @param string $structure table structure
      *
      */
-    function setStructure($structure)
+    public function setStructure($structure)
     {
         $this->_structure = $structure;
     }
@@ -109,7 +109,7 @@ class SmartpartnerTable
      * @return string table structure
      *
      */
-    function getStructure()
+    public function getStructure()
     {
         return sprintf($this->_structure, $this->name());
     }
@@ -120,7 +120,7 @@ class SmartpartnerTable
      * @param string $data values of a record
      *
      */
-    function setData($data)
+    public function setData($data)
     {
         $this->_data[] = $data;
     }
@@ -131,7 +131,7 @@ class SmartpartnerTable
      * @return array containing the records values to be added
      *
      */
-    function getData()
+    public function getData()
     {
         return $this->_data;
     }
@@ -142,7 +142,7 @@ class SmartpartnerTable
      * @return bool true if success, false if an error occured
      *
      */
-    function addData()
+    public function addData()
     {
         global $xoopsDB;
 
@@ -157,7 +157,6 @@ class SmartpartnerTable
         }
 
         return $ret;
-
     }
 
     /**
@@ -167,7 +166,7 @@ class SmartpartnerTable
      * @param string $properties properties of the field
      *
      */
-    function addAlteredField($name, $properties)
+    public function addAlteredField($name, $properties)
     {
         $field['name'] = $name;
         $field['properties'] = $properties;
@@ -181,7 +180,7 @@ class SmartpartnerTable
      * @param string $properties properties of the field
      *
      */
-    function addNewField($name, $properties)
+    public function addNewField($name, $properties)
     {
         $field['name'] = $name;
         $field['properties'] = $properties;
@@ -194,7 +193,7 @@ class SmartpartnerTable
      * @return array fields that need to be altered
      *
      */
-    function getAlteredFields()
+    public function getAlteredFields()
     {
         return $this->_alteredFields;
     }
@@ -206,7 +205,7 @@ class SmartpartnerTable
      * @param string $value value to be set
      *
      */
-    function addUpdatedField($name, $value)
+    public function addUpdatedField($name, $value)
     {
         $field['name'] = $name;
         $field['value'] = $value;
@@ -219,7 +218,7 @@ class SmartpartnerTable
      * @return array fields to be added
      *
      */
-    function getNewFields()
+    public function getNewFields()
     {
         return $this->_newFields;
     }
@@ -230,7 +229,7 @@ class SmartpartnerTable
      * @return array fields which values need to be updated
      *
      */
-    function getUpdatedFields()
+    public function getUpdatedFields()
     {
         return $this->_updatedFields;
     }
@@ -241,7 +240,7 @@ class SmartpartnerTable
      * @param string $name name of the field
      *
      */
-    function addDropedField($name)
+    public function addDropedField($name)
     {
         $this->_dropedFields[] = $name;
     }
@@ -252,7 +251,7 @@ class SmartpartnerTable
      * @return array fields that need to be droped
      *
      */
-    function getDropedFields()
+    public function getDropedFields()
     {
         return $this->_dropedFields;
     }
@@ -261,7 +260,7 @@ class SmartpartnerTable
      * Set the flag to drop the table
      *
      */
-    function setFlagForDrop()
+    public function setFlagForDrop()
     {
         $this->_flagForDrop = true;
     }
@@ -272,7 +271,7 @@ class SmartpartnerTable
      * @return bool true if success, false if an error occured
      *
      */
-    function createTable()
+    public function createTable()
     {
         global $xoopsDB;
 
@@ -294,7 +293,7 @@ class SmartpartnerTable
      * @return bool true if success, false if an error occured
      *
      */
-    function dropTable()
+    public function dropTable()
     {
         global $xoopsDB;
 
@@ -317,7 +316,7 @@ class SmartpartnerTable
      * @return bool true if success, false if an error occured
      *
      */
-    function alterTable()
+    public function alterTable()
     {
         global $xoopsDB;
 
@@ -343,7 +342,7 @@ class SmartpartnerTable
      * @return bool true if success, false if an error occured
      *
      */
-    function addNewFields()
+    public function addNewFields()
     {
         global $xoopsDB;
         $ret = true;
@@ -367,7 +366,7 @@ class SmartpartnerTable
      * @return bool true if success, false if an error occured
      *
      */
-    function updateFieldsValues()
+    public function updateFieldsValues()
     {
         global $xoopsDB;
 
@@ -392,7 +391,7 @@ class SmartpartnerTable
      * @return bool true if success, false if an error occured
      *
      */
-    function dropFields()
+    public function dropFields()
     {
         global $xoopsDB;
 
@@ -426,9 +425,8 @@ class SmartpartnerTable
 class SmartpartnerDbupdater
 {
 
-    function SmartpartnerDbupdater()
+    public function SmartpartnerDbupdater()
     {
-
     }
 
     /**
@@ -441,7 +439,7 @@ class SmartpartnerDbupdater
      * @return bool true if success, false if an error occured
      *
      */
-    function runQuery($query, $goodmsg, $badmsg)
+    public function runQuery($query, $goodmsg, $badmsg)
     {
         global $xoopsDB;
         $ret = $xoopsDB->query($query);
@@ -464,7 +462,7 @@ class SmartpartnerDbupdater
      *
      * @return bool true if success, false if an error occured
      */
-    function renameTable($from, $to)
+    public function renameTable($from, $to)
     {
         global $xoopsDB;
 
@@ -493,7 +491,7 @@ class SmartpartnerDbupdater
      *
      * @return bool true if success, false if an error occured
      */
-    function updateTable($table)
+    public function updateTable($table)
     {
         global $xoopsDB;
 

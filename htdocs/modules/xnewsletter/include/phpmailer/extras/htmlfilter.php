@@ -66,7 +66,7 @@ function tln_tagprint($tagname, $attary, $tagtype)
  *
  * @param string $val a value passed by-ref.
  *
- * @return        void since it modifies a by-ref value.
+ * @return void since it modifies a by-ref value.
  */
 function tln_casenormalize(&$val)
 {
@@ -81,8 +81,8 @@ function tln_casenormalize(&$val)
  * @param integer $offset the offset within the string where we should start
  *                        looking for the next non-whitespace character.
  *
- * @return integer          the location within the $body where the next
- *                   non-whitespace char is located.
+ * @return integer the location within the $body where the next
+ *                 non-whitespace char is located.
  */
 function tln_skipspace($body, $offset)
 {
@@ -104,8 +104,8 @@ function tln_skipspace($body, $offset)
  * @param integer $offset Start looking from this position.
  * @param string  $needle The character/string to look for.
  *
- * @return integer           location of the next occurrence of the needle, or
- *                   strlen($body) if needle wasn't found.
+ * @return integer location of the next occurrence of the needle, or
+ *                 strlen($body) if needle wasn't found.
  */
 function tln_findnxstr($body, $offset, $needle)
 {
@@ -125,11 +125,11 @@ function tln_findnxstr($body, $offset, $needle)
  * @param integer $offset Start looking from here.
  * @param string  $reg    A PCRE-style regex to match.
  *
- * @return array|boolean  Returns a false if no matches found, or an array
- *                   with the following members:
- *                   - integer with the location of the match within $body
- *                   - string with whatever content between offset and the match
- *                   - string with whatever it is we matched
+ * @return array|boolean Returns a false if no matches found, or an array
+ *                       with the following members:
+ *                       - integer with the location of the match within $body
+ *                       - string with whatever content between offset and the match
+ *                       - string with whatever it is we matched
  */
 function tln_findnxreg($body, $offset, $reg)
 {
@@ -155,13 +155,13 @@ function tln_findnxreg($body, $offset, $reg)
  * @param integer $offset Start looking from here.
  *
  * @return array|boolean false if no more tags exist in the body, or
- *                   an array with the following members:
- *                   - string with the name of the tag
- *                   - array with attributes and their values
- *                   - integer with tag type (1, 2, or 3)
- *                   - integer where the tag starts (starting "<")
- *                   - integer where the tag ends (ending ">")
- *                   first three members will be false, if the tag is invalid.
+ *                       an array with the following members:
+ *                       - string with the name of the tag
+ *                       - array with attributes and their values
+ *                       - integer with tag type (1, 2, or 3)
+ *                       - integer where the tag starts (starting "<")
+ *                       - integer where the tag ends (ending ">")
+ *                       first three members will be false, if the tag is invalid.
  */
 function tln_getnxtag($body, $offset)
 {
@@ -401,7 +401,8 @@ function tln_getnxtag($body, $offset)
                         }
                         list($pos, $attval, $match) = $regary;
                         $pos++;
-                        $attary{$attname} = '\'' . $attval . '\'';
+                        $attary{$attname}
+                        = '\'' . $attval . '\'';
                     } else {
                         if ($quot == '"') {
                             $regary = tln_findnxreg($body, $pos + 1, '\"');
@@ -410,7 +411,8 @@ function tln_getnxtag($body, $offset)
                             }
                             list($pos, $attval, $match) = $regary;
                             $pos++;
-                            $attary{$attname} = '"' . $attval . '"';
+                            $attary{$attname}
+                            = '"' . $attval . '"';
                         } else {
                             /**
                              * These are hateful. Look for \s, or >.
@@ -424,7 +426,8 @@ function tln_getnxtag($body, $offset)
                              * If it's ">" it will be caught at the top.
                              */
                             $attval           = preg_replace('/\"/s', '&quot;', $attval);
-                            $attary{$attname} = '"' . $attval . '"';
+                            $attary{$attname}
+                            = '"' . $attval . '"';
                         }
                     }
                 } else {
@@ -432,7 +435,8 @@ function tln_getnxtag($body, $offset)
                         /**
                          * That was attribute type 4.
                          */
-                        $attary{$attname} = '"yes"';
+                        $attary{$attname}
+                        = '"yes"';
                     } else {
                         /**
                          * An illegal character. Find next '>' and return.
@@ -459,7 +463,7 @@ function tln_getnxtag($body, $offset)
  * @param string  $regex    the regular expression to check against.
  * @param boolean $hex      whether the entites are hexadecimal.
  *
- * @return boolean            True or False depending on whether there were matches.
+ * @return boolean True or False depending on whether there were matches.
  */
 function tln_deent(&$attvalue, $regex, $hex = false)
 {
@@ -471,7 +475,8 @@ function tln_deent(&$attvalue, $regex, $hex = false)
             if ($hex) {
                 $numval = hexdec($numval);
             }
-            $repl{$matches[0][$i]} = chr($numval);
+            $repl{$matches[0][$i]}
+            = chr($numval);
         }
         $attvalue = strtr($attvalue, $repl);
 
@@ -488,7 +493,7 @@ function tln_deent(&$attvalue, $regex, $hex = false)
  *
  * @param string $attvalue A string to run entity check against.
  *
- * @return             Void, modifies a reference value.
+ * @return Void, modifies a reference value.
  */
 function tln_defang(&$attvalue)
 {
@@ -516,7 +521,7 @@ function tln_defang(&$attvalue)
  *
  * @param string $attvalue The attribute value before extraneous spaces removed.
  *
- * @return     Void, modifies a reference value.
+ * @return Void, modifies a reference value.
  */
 function tln_unspace(&$attvalue)
 {
@@ -538,7 +543,7 @@ function tln_unspace(&$attvalue)
  * @param array  $bad_attvals     See description for tln_sanitize
  * @param array  $add_attr_to_tag See description for tln_sanitize
  *
- * @return                    Array with modified attributes.
+ * @return Array with modified attributes.
  */
 function tln_fixatts(
     $tagname,
@@ -585,7 +590,8 @@ function tln_fixatts(
                         list($valmatch, $valrepl) = $valary;
                         $newvalue = preg_replace($valmatch, $valrepl, $attvalue);
                         if ($newvalue != $attvalue) {
-                            $attary{$attname} = $newvalue;
+                            $attary{$attname}
+                            = $newvalue;
                         }
                     }
                 }
@@ -615,7 +621,7 @@ function tln_fixatts(
  * @param array   $bad_attvals          see description above
  * @param array   $add_attr_to_tag      see description above
  *
- * @return string                       Sanitized html safe to show on your pages.
+ * @return string Sanitized html safe to show on your pages.
  */
 function tln_sanitize(
     $body,
@@ -668,7 +674,8 @@ function tln_sanitize(
                         if (isset($open_tags{$tagname})
                             && $open_tags{$tagname} > 0
                         ) {
-                            $open_tags{$tagname}--;
+                            $open_tags{$tagname}
+                            --;
                         } else {
                             $tagname = false;
                         }
@@ -707,9 +714,11 @@ function tln_sanitize(
                         } else {
                             if ($tagtype == 1) {
                                 if (isset($open_tags{$tagname})) {
-                                    $open_tags{$tagname}++;
+                                    $open_tags{$tagname}
+                                    ++;
                                 } else {
-                                    $open_tags{$tagname} = 1;
+                                    $open_tags{$tagname}
+                                    = 1;
                                 }
                             }
                             /**
@@ -755,7 +764,6 @@ function tln_sanitize(
 // Use the nifty htmlfilter library
 //
 
-
 /**
  * @param      $body
  * @param      $trans_image_path
@@ -765,7 +773,6 @@ function tln_sanitize(
  */
 function HTMLFilter($body, $trans_image_path, $block_external_images = false)
 {
-
     $tag_list = array(
         false,
         "object",

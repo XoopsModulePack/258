@@ -20,48 +20,46 @@
 //----------------------------------------------------
 class extcal_2_33
 {
-//----------------------------------------------------
+    //----------------------------------------------------
 
     /**
      * @param $module
      * @param $options
      */
-    function __construct(& $module, $options)
-{
-global $xoopsDB;
+    public function __construct(& $module, $options)
+    {
+        global $xoopsDB;
 
-  $this->alterTable_cat();
-  $this->alterTable_eventmember();
-
-}
+        $this->alterTable_cat();
+        $this->alterTable_eventmember();
+    }
 //----------------------------------------------------
-function alterTable_cat()
+public function alterTable_cat()
 {
-global $xoopsDB;
-  $tbl = $xoopsDB->prefix('extcal_cat');
+    global $xoopsDB;
+    $tbl = $xoopsDB->prefix('extcal_cat');
 
-$sql = <<<__sql__
+    $sql = <<<__sql__
 ALTER TABLE `{$tbl}`
   ADD `cat_weight` INT NOT NULL DEFAULT '0';
 __sql__;
 
-  $xoopsDB->queryF($sql);
-
+    $xoopsDB->queryF($sql);
 }
 //----------------------------------------------------
-function alterTable_eventmember()
+public function alterTable_eventmember()
 {
-global $xoopsDB;
-  $tbl = $xoopsDB->prefix('eventmember');
+    global $xoopsDB;
+    $tbl = $xoopsDB->prefix('eventmember');
 
-$sql = <<<__sql__
+    $sql = <<<__sql__
 ALTER TABLE `{$tbl}`
   ADD `status` INT NOT NULL DEFAULT '0';
 __sql__;
 
-  $xoopsDB->queryF($sql);
-
+    $xoopsDB->queryF($sql);
 }
 
 //-----------------------------------------------------------------
 }   // fin de la classe
+

@@ -8,7 +8,6 @@ include_once(XOOPS_ROOT_PATH . '/modules/extcal/include/constantes.php');
  */
 function bExtcalNewShow($options)
 {
-
     include_once XOOPS_ROOT_PATH . '/modules/extcal/class/config.php';
 
     // Retriving module config

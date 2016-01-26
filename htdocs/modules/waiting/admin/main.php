@@ -17,14 +17,14 @@ $plugins_path = XOOPS_ROOT_PATH . "/modules/waiting/plugins";
 $module_handler =& xoops_gethandler('module');
 $block = array();
 
-$mod_lists = $module_handler->getList(new Criteria(1,1),true);
+$mod_lists = $module_handler->getList(new Criteria(1, 1), true);
 echo "<h4>"._AM_WAITING_PLUGINLIST."</h4>";
 echo "<table class='outer'>";
 echo "<th>"._AM_WAITING_MODNAME."</th><th>"._AM_WAITING_DIRNAME."</th><th>"._AM_WAITING_STATUS."</th>";// dirname added by cesag
-foreach( $mod_lists as $dirname => $name ) {
-    $style = ( @$style == "odd" ) ? "even" : "odd" ;
-    $plugin_info = waiting_get_plugin_info( $dirname ) ;
-    printf( "<tr class='%s'><td>%s</td><td>%s</td><td>%s</td></tr>" , $style , htmlspecialchars( $name ) , htmlspecialchars( $dirname ) , @$plugin_info['type'] ) ;
+foreach ($mod_lists as $dirname => $name) {
+    $style = (@$style == "odd") ? "even" : "odd" ;
+    $plugin_info = waiting_get_plugin_info($dirname) ;
+    printf("<tr class='%s'><td>%s</td><td>%s</td><td>%s</td></tr>", $style, htmlspecialchars($name), htmlspecialchars($dirname), @$plugin_info['type']) ;
 }
 echo "</table>";
 echo _AM_WAITING_PLUGINLIST_DESC;

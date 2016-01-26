@@ -200,7 +200,7 @@ switch ($op) {
             xoops_confirm(
                 array('ok' => true, 'id' => $id, 'op' => 'delete'),
 //                $_SERVER['REQUEST_URI'],
-                XoopsRequest::getString('REQUEST_URI','', 'SERVER'),
+                XoopsRequest::getString('REQUEST_URI', '', 'SERVER'),
                 sprintf(_AM_MYMENUS_MENUS_SUREDEL, $menusObj->getVar('title'))
             );
             include_once __DIR__ . '/admin_footer.php';

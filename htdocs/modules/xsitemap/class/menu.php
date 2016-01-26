@@ -50,8 +50,11 @@ class xsitemapMenu
     public $TextAlign = "center";
     private $_items = array();
 
-    public function addItem($id, $link="", $icon="", $name="", $extra="", $alt=""){
-        if (isset($this->_items[$id])) return false;
+    public function addItem($id, $link="", $icon="", $name="", $extra="", $alt="")
+    {
+        if (isset($this->_items[$id])) {
+            return false;
+        }
         $rtn["link"] = $link;
         $rtn["icon"] = $icon;
         $rtn["name"] = $name;
@@ -62,8 +65,9 @@ class xsitemapMenu
         return true;
     }
 
-    public function setLink($id, $link){
-        if (isset($this->_items[$id])){
+    public function setLink($id, $link)
+    {
+        if (isset($this->_items[$id])) {
             $this->_items[$id]["link"] = $link;
 
             return true;
@@ -72,8 +76,9 @@ class xsitemapMenu
         }
     }
 
-    public function setIcon($id, $icon){
-        if (isset($this->_items[$id])){
+    public function setIcon($id, $icon)
+    {
+        if (isset($this->_items[$id])) {
             $this->_items[$id]["icon"] = $icon;
 
             return true;
@@ -82,8 +87,9 @@ class xsitemapMenu
         }
     }
 
-    public function setName($id, $name){
-        if (isset($this->_items[$id])){
+    public function setName($id, $name)
+    {
+        if (isset($this->_items[$id])) {
             $this->_items[$id]["name"] = $name;
 
             return true;
@@ -92,8 +98,9 @@ class xsitemapMenu
         }
     }
 
-    public function setExtra($id, $extra){
-        if (isset($this->_items[$id])){
+    public function setExtra($id, $extra)
+    {
+        if (isset($this->_items[$id])) {
             $this->_items[$id]["extra"] = $extra;
 
             return true;
@@ -102,8 +109,9 @@ class xsitemapMenu
         }
     }
 
-    public function setAlt($id, $alt){
-        if (isset($this->_items[$id])){
+    public function setAlt($id, $alt)
+    {
+        if (isset($this->_items[$id])) {
             $this->_items[$id]["alt"] = $alt;
 
             return true;
@@ -112,8 +120,11 @@ class xsitemapMenu
         }
     }
 
-    public function getCSS($ws = true){
-        if ($ws) $csscode = "<style type=\"text/css\">\n<!--";
+    public function getCSS($ws = true)
+    {
+        if ($ws) {
+            $csscode = "<style type=\"text/css\">\n<!--";
+        }
         $csscode .= "div.rmmenuicon{
                 margin: 3px;
                 font-family: $this->Font;
@@ -156,19 +167,27 @@ class xsitemapMenu
                 text-decoration: $this->OverFontExtraDeco;
                 color: $this->OverFontExtraColor;
             }";
-        if ($ws) $csscode .= "\n-->\n</style>";
+        if ($ws) {
+            $csscode .= "\n-->\n</style>";
+        }
 
         return $csscode;
     }
 
-    public function render(){
-
+    public function render()
+    {
         $ret = "<div class=\"rmmenuicon\">";
-        foreach ($this->_items as $k => $v){
+        foreach ($this->_items as $k => $v) {
             $ret .= "<a href=\"".$v["link"]."\" title=\"".($v["alt"]!="" ? $v["alt"] : $v["name"])."\">".($v["icon"]!="" ? "<img src=\"".$v["icon"]."\" alt=\"".$v["name"]."\" /> " : "");
-            if ($v["name"] != "") $ret .= "<span>".$v["name"]."</span>";
-            if ($v["extra"] != "") $ret .= "<span class=\"uno\">".$v["extra"]."</span>";
-            if ($v["extra"] != "") $ret .= "<span class=\"uno\">".$v["extra"]."</span>";
+            if ($v["name"] != "") {
+                $ret .= "<span>".$v["name"]."</span>";
+            }
+            if ($v["extra"] != "") {
+                $ret .= "<span class=\"uno\">".$v["extra"]."</span>";
+            }
+            if ($v["extra"] != "") {
+                $ret .= "<span class=\"uno\">".$v["extra"]."</span>";
+            }
             $ret .= "</a>";
         }
         $ret .= "</div><div style=\"clear: both;\"></div>";
@@ -176,7 +195,8 @@ class xsitemapMenu
         return $ret;
     }
 
-    public function display(){
+    public function display()
+    {
         echo $this->render();
     }
 }

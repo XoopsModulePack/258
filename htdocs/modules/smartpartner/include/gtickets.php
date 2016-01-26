@@ -3,45 +3,44 @@
 // nobunobu's suggestions are applied
 
 if (!class_exists('XoopsGTicket')) {
-
     class XoopsGTicket
     {
 
-        var $_errors = array();
-        var $_latest_token = '';
+        public $_errors = array();
+        public $_latest_token = '';
 
         // render form as plain html
-        function getTicketHtml($salt = '', $timeout = 1800, $area = '')
+        public function getTicketHtml($salt = '', $timeout = 1800, $area = '')
         {
             return '<input type="hidden" name="XOOPS_G_TICKET" value="' . $this->issue($salt, $timeout, $area) . '" />';
         }
 
         // returns an object of XoopsFormHidden including theh ticket
-        function getTicketXoopsForm($salt = '', $timeout = 1800, $area = '')
+        public function getTicketXoopsForm($salt = '', $timeout = 1800, $area = '')
         {
             return new XoopsFormHidden('XOOPS_G_TICKET', $this->issue($salt, $timeout, $area));
         }
 
         // add a ticket as Hidden Element into XoopsForm
-        function addTicketXoopsFormElement(&$form, $salt = '', $timeout = 1800, $area = '')
+        public function addTicketXoopsFormElement(&$form, $salt = '', $timeout = 1800, $area = '')
         {
             $form->addElement(new XoopsFormHidden('XOOPS_G_TICKET', $this->issue($salt, $timeout, $area)));
         }
 
         // returns an array for xoops_confirm() ;
-        function getTicketArray($salt = '', $timeout = 1800, $area = '')
+        public function getTicketArray($salt = '', $timeout = 1800, $area = '')
         {
             return array('XOOPS_G_TICKET' => $this->issue($salt, $timeout, $area));
         }
 
         // return GET parameter string.
-        function getTicketParamString($salt = '', $noamp = false, $timeout = 1800, $area = '')
+        public function getTicketParamString($salt = '', $noamp = false, $timeout = 1800, $area = '')
         {
             return ($noamp ? '' : '&amp;') . 'XOOPS_G_TICKET=' . $this->issue($salt, $timeout, $area);
         }
 
         // issue a ticket
-        function issue($salt = '', $timeout = 1800, $area = '')
+        public function issue($salt = '', $timeout = 1800, $area = '')
         {
             global $xoopsModule;
 
@@ -51,7 +50,9 @@ if (!class_exists('XoopsGTicket')) {
             $token = crypt($salt . $usec . $appendix_salt . $sec);
             $this->_latest_token = $token;
 
-            if (empty($_SESSION['XOOPS_G_STUBS'])) $_SESSION['XOOPS_G_STUBS'] = array();
+            if (empty($_SESSION['XOOPS_G_STUBS'])) {
+                $_SESSION['XOOPS_G_STUBS'] = array();
+            }
 
             // limit max stubs 10
             if (sizeof($_SESSION['XOOPS_G_STUBS']) > 10) {
@@ -79,7 +80,7 @@ if (!class_exists('XoopsGTicket')) {
         }
 
         // check a ticket
-        function check($post = true, $area = '')
+        public function check($post = true, $area = '')
         {
             global $xoopsModule;
 
@@ -131,8 +132,11 @@ if (!class_exists('XoopsGTicket')) {
             // CHECK: the right stub found or not
             if (empty($found_stub)) {
                 $this->clear();
-                if (empty($timeout_flag)) $this->_errors[] = 'Invalid Session';
-                else $this->_errors[] = 'Time out';
+                if (empty($timeout_flag)) {
+                    $this->_errors[] = 'Invalid Session';
+                } else {
+                    $this->_errors[] = 'Time out';
+                }
 
                 return false;
             }
@@ -144,8 +148,12 @@ if (!class_exists('XoopsGTicket')) {
             }
 
             // check area or referer
-            if (@$found_stub['area'] == $area) $area_check = true;
-            if (!empty($found_stub['referer']) && strstr(@$_SERVER['HTTP_REFERER'], $found_stub['referer'])) $referer_check = true;
+            if (@$found_stub['area'] == $area) {
+                $area_check = true;
+            }
+            if (!empty($found_stub['referer']) && strstr(@$_SERVER['HTTP_REFERER'], $found_stub['referer'])) {
+                $referer_check = true;
+            }
 
             // if( empty( $area_check ) || empty( $referer_check ) ) { // restrict
             if (empty($area_check) && empty($referer_check)) { // loose
@@ -160,13 +168,13 @@ if (!class_exists('XoopsGTicket')) {
         }
 
         // clear all stubs
-        function clear()
+        public function clear()
         {
             $_SESSION['XOOPS_G_STUBS'] = array();
         }
 
         // Ticket Using
-        function using()
+        public function using()
         {
             if (!empty($_SESSION['XOOPS_G_STUBS'])) {
                 return true;
@@ -176,7 +184,7 @@ if (!class_exists('XoopsGTicket')) {
         }
 
         // return errors
-        function getErrors($ashtml = true)
+        public function getErrors($ashtml = true)
         {
             if ($ashtml) {
                 $ret = '';
@@ -195,7 +203,6 @@ if (!class_exists('XoopsGTicket')) {
 
 // create a instance in global scope
     $GLOBALS['xoopsGTicket'] = new XoopsGTicket();
-
 }
 
 if (!function_exists('admin_refcheck')) {
@@ -218,5 +225,4 @@ if (!function_exists('admin_refcheck')) {
 
         return true;
     }
-
 }

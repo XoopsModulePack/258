@@ -53,7 +53,7 @@ function b_marquee_xoopspoll($limit, $dateformat, $itemssize)
             'author'   => $pollValues['user_id'],
             'title'    => $title,
             'link'     => "<a href='" . $GLOBALS['xoops']->url('modules/xoopspoll/index.php') . "?poll_id={$pollValues['poll_id']}'>{$title}</a>");
-        unset ($pollValues);
+        unset($pollValues);
     }
 
     return $block;

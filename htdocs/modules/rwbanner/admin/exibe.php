@@ -30,24 +30,28 @@
 // ------------------------------------------------------------------------- //
 
 include_once("admin_header.php");
-include_once ("../class/class.banner.php");
+include_once("../class/class.banner.php");
 
-if ($_GET['id'] == '') $id = $_POST['id']; else $id = $_GET['id'];
+if ($_GET['id'] == '') {
+    $id = $_POST['id'];
+} else {
+    $id = $_GET['id'];
+}
 
-$banner = new RWbanners(null,$id);
+$banner = new RWbanners(null, $id);
 
-if ($banner->getUsarhtml() == 1){
-  echo $banner->getHtmlcode();
-}else{
-  if (stristr($banner->getGrafico(), '.swf')) {
-    echo
+if ($banner->getUsarhtml() == 1) {
+    echo $banner->getHtmlcode();
+} else {
+    if (stristr($banner->getGrafico(), '.swf')) {
+        echo
     '<object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=6,0,40,0" width="'.$banner->getLargura().'" height="'.$banner->getAltura().'">'
     .'<param name=movie value="'.$banner->getGrafico().'">'
     .'<param name=quality value=high>'
     .'<embed src="'.$banner->getGrafico().'" quality=high pluginspage="http://www.macromedia.com/shockwave/download/index.cgi?P1_Prod_Version=ShockwaveFlash"; type="application/x-shockwave-flash" width="'.$banner->getLargura().'" height="'.$banner->getAltura().'">'
     .'</embed>'
     .'</object>';
-  }else{
-    echo '<div align="center" style="margin:0px; padding:0px"><img src="'.$banner->getGrafico().'" width="'.$banner->getLargura().'" height="'.$banner->getAltura().'" border="0"></div><br><br>';
-  }
+    } else {
+        echo '<div align="center" style="margin:0px; padding:0px"><img src="'.$banner->getGrafico().'" width="'.$banner->getLargura().'" height="'.$banner->getAltura().'" border="0"></div><br><br>';
+    }
 }

@@ -30,7 +30,8 @@ if ($xoopsUser->isAdmin($xoopsModule->mid())) {
             $bid = isset($_GET['bid']) ? intval($_GET['bid']) : 0;
         }
     }
-    function listar_blocos() {
+    function listar_blocos()
+    {
         global $xoopsUser, $xoopsConfig, $xoopsModule;
         include_once XOOPS_ROOT_PATH . '/class/xoopslists.php';
         $db =& XoopsDatabaseFactory::getDatabaseConnection();
@@ -177,7 +178,8 @@ if ($xoopsUser->isAdmin($xoopsModule->mid())) {
         <br /><br />";
     }
 
-    function clone_block($bid) {
+    function clone_block($bid)
+    {
         global $xoopsConfig;
         if (file_exists(
             XOOPS_ROOT_PATH . "/modules/system/language/" . $xoopsConfig['language'] . "/admin/blocksadmin.php"
@@ -201,7 +203,7 @@ if ($xoopsUser->isAdmin($xoopsModule->mid())) {
         while ($row = $db->fetchArray($result)) {
             $modules[] = intval($row['module_id']);
         }
-        $is_custom = ($myblock->getVar('block_type') == 'C' || $myblock->getVar('block_type') == 'E') ? TRUE : FALSE;
+        $is_custom = ($myblock->getVar('block_type') == 'C' || $myblock->getVar('block_type') == 'E') ? true : false;
         $block     = array(
             'title'      => $myblock->getVar('title') . ' Clone',
             'form_title' => _AM_CLONEBLOCK,
@@ -228,7 +230,8 @@ if ($xoopsUser->isAdmin($xoopsModule->mid())) {
         exit();
     }
 
-    function clone_block_ok($bid, $bside, $bweight, $bvisible, $bcachetime, $bmodule, $options) {
+    function clone_block_ok($bid, $bside, $bweight, $bvisible, $bcachetime, $bmodule, $options)
+    {
         global $xoopsUser, $xoopsConfig;
         if (file_exists(
             XOOPS_ROOT_PATH . "/modules/system/language/" . $xoopsConfig['language'] . "/admin/blocksadmin.php"
@@ -301,7 +304,8 @@ if ($xoopsUser->isAdmin($xoopsModule->mid())) {
         redirect_header('blocksadmin.php?op=listar', 1, _AM_DBUPDATED);
     }
 
-    function setar_ordem($bid, $title, $weight, $visible, $side) {
+    function setar_ordem($bid, $title, $weight, $visible, $side)
+    {
         $myblock = new XoopsBlock($bid);
         $myblock->setVar('title', $title);
         $myblock->setVar('weight', $weight);

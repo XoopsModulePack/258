@@ -5,10 +5,10 @@
  * Set of functions used to build dumps of tables
  */
 
-if (!defined('PMA_BUILD_DUMP_LIB_INCLUDED')){
+if (!defined('PMA_BUILD_DUMP_LIB_INCLUDED')) {
     define('PMA_BUILD_DUMP_LIB_INCLUDED', 1);
 
-    function PMA_sqlAddslashes($a_string = '', $is_like = FALSE)
+    function PMA_sqlAddslashes($a_string = '', $is_like = false)
     {
         if ($is_like) {
             $a_string = str_replace('\\', '\\\\\\\\', $a_string);
@@ -21,9 +21,8 @@ if (!defined('PMA_BUILD_DUMP_LIB_INCLUDED')){
     } // end of the 'PMA_sqlAddslashes()' function
 
     function PMA_mysqlDie($error_message = '', $the_query = '',
-                          $is_modify_link = TRUE, $back_url = '')
+                          $is_modify_link = true, $back_url = '')
     {
-
         include($xoopsConfig['root_path']."header.php");
         opentable();
 
@@ -68,7 +67,7 @@ if (!defined('PMA_BUILD_DUMP_LIB_INCLUDED')){
         exit();
     } // end of the 'PMA_mysqlDie()' function
 
-    function PMA_backquote($a_name, $do_it = TRUE)
+    function PMA_backquote($a_name, $do_it = true)
     {
         if ($do_it
             && PMA_MYSQL_INT_VERSION >= 32306
@@ -128,7 +127,7 @@ if (!defined('PMA_BUILD_DUMP_LIB_INCLUDED')){
                 mysql_query('SET SQL_QUOTE_SHOW_CREATE = 0');
             }
             $result = mysql_query('SHOW CREATE TABLE ' . PMA_backquote($db) . '.' . PMA_backquote($table));
-            if ($result != FALSE && mysql_num_rows($result) > 0) {
+            if ($result != false && mysql_num_rows($result) > 0) {
                 $tmpres        = mysql_fetch_array($result);
                 $schema_create .= str_replace("\n", $crlf, $tmpres[1]);
             }
@@ -160,8 +159,7 @@ if (!defined('PMA_BUILD_DUMP_LIB_INCLUDED')){
 
         $local_query = 'SHOW KEYS FROM ' . PMA_backquote($db) . '.' . PMA_backquote($table);
         $result      = mysql_query($local_query) or PMA_mysqlDie('', $local_query, '', $error_url);
-        while ($row = mysql_fetch_array($result))
-        {
+        while ($row = mysql_fetch_array($result)) {
             $kname    = $row['Key_name'];
             $comment  = (isset($row['Comment'])) ? $row['Comment'] : '';
             $sub_part = (isset($row['Sub_part'])) ? $row['Sub_part'] : '';
@@ -187,9 +185,9 @@ if (!defined('PMA_BUILD_DUMP_LIB_INCLUDED')){
             $schema_create     .= ',' . $crlf;
             if ($x == 'PRIMARY') {
                 $schema_create .= '   PRIMARY KEY (';
-            } else if (substr($x, 0, 6) == 'UNIQUE') {
+            } elseif (substr($x, 0, 6) == 'UNIQUE') {
                 $schema_create .= '   UNIQUE ' . substr($x, 7) . ' (';
-            } else if (substr($x, 0, 8) == 'FULLTEXT') {
+            } elseif (substr($x, 0, 8) == 'FULLTEXT') {
                 $schema_create .= '   FULLTEXT ' . substr($x, 9) . ' (';
             } else {
                 $schema_create .= '   KEY ' . $x . ' (';
@@ -201,7 +199,6 @@ if (!defined('PMA_BUILD_DUMP_LIB_INCLUDED')){
 
         return $schema_create;
     } // end of the 'PMA_getTableDef()' function
-
 
     /**
      * php >= 4.0.5 only : get the content of $table as a series of INSERT
@@ -240,7 +237,7 @@ if (!defined('PMA_BUILD_DUMP_LIB_INCLUDED')){
 
         $local_query = 'SELECT * FROM ' . PMA_backquote($db) . '.' . PMA_backquote($table) . $add_query;
         $result      = mysql_query($local_query) or PMA_mysqlDie('', $local_query, '', $error_url);
-        if ($result != FALSE) {
+        if ($result != false) {
             $fields_cnt = mysql_num_fields($result);
             $rows_cnt   = mysql_num_rows($result);
 
@@ -250,9 +247,9 @@ if (!defined('PMA_BUILD_DUMP_LIB_INCLUDED')){
                 $type          = mysql_field_type($result, $j);
                 if ($type == 'tinyint' || $type == 'smallint' || $type == 'mediumint' || $type == 'int' ||
                     $type == 'bigint') {
-                    $field_num[$j] = TRUE;
+                    $field_num[$j] = true;
                 } else {
-                    $field_num[$j] = FALSE;
+                    $field_num[$j] = false;
                 }
             } // end for
 
@@ -281,7 +278,7 @@ if (!defined('PMA_BUILD_DUMP_LIB_INCLUDED')){
                 for ($j = 0; $j < $fields_cnt; $j++) {
                     if (!isset($row[$j])) {
                         $values[]     = 'NULL';
-                    } else if ($row[$j] == '0' || $row[$j] != '') {
+                    } elseif ($row[$j] == '0' || $row[$j] != '') {
                         // a number
                         if ($field_num[$j]) {
                             $values[] = $row[$j];
@@ -325,9 +322,8 @@ if (!defined('PMA_BUILD_DUMP_LIB_INCLUDED')){
         } // end if ($result != FALSE)
         mysql_free_result($result);
 
-        return TRUE;
+        return true;
     } // end of the 'PMA_getTableContentFast()' function
-
 
     /**
      * php < 4.0.5 only: get the content of $table as a series of INSERT
@@ -393,13 +389,13 @@ if (!defined('PMA_BUILD_DUMP_LIB_INCLUDED')){
                     $schema_insert = 'INSERT INTO ' . PMA_backquote($table, $use_backquotes)
                                    . ' VALUES (';
                 }
-                $is_first_row      = FALSE;
+                $is_first_row      = false;
             }
 
             for ($j = 0; $j < $fields_cnt; $j++) {
                 if (!isset($row[$j])) {
                     $schema_insert .= ' NULL, ';
-                } else if ($row[$j] == '0' || $row[$j] != '') {
+                } elseif ($row[$j] == '0' || $row[$j] != '') {
                     $type          = mysql_field_type($result, $j);
                     // a number
                     if ($type == 'tinyint' || $type == 'smallint' || $type == 'mediumint' || $type == 'int' ||
@@ -412,16 +408,30 @@ if (!defined('PMA_BUILD_DUMP_LIB_INCLUDED')){
                         $srcstr = $row[$j];
                         for ($xx = 0; $xx < strlen($srcstr); $xx++) {
                             $yy = strlen($dummy);
-                            if ($srcstr[$xx] == '\\')   $dummy .= '\\\\';
-                            if ($srcstr[$xx] == '\'')   $dummy .= '\\\'';
+                            if ($srcstr[$xx] == '\\') {
+                                $dummy .= '\\\\';
+                            }
+                            if ($srcstr[$xx] == '\'') {
+                                $dummy .= '\\\'';
+                            }
 //                            if ($srcstr[$xx] == '"')    $dummy .= '\\"';
-                            if ($srcstr[$xx] == "\x00") $dummy .= '\0';
-                            if ($srcstr[$xx] == "\x0a") $dummy .= '\n';
-                            if ($srcstr[$xx] == "\x0d") $dummy .= '\r';
+                            if ($srcstr[$xx] == "\x00") {
+                                $dummy .= '\0';
+                            }
+                            if ($srcstr[$xx] == "\x0a") {
+                                $dummy .= '\n';
+                            }
+                            if ($srcstr[$xx] == "\x0d") {
+                                $dummy .= '\r';
+                            }
 //                            if ($srcstr[$xx] == "\x08") $dummy .= '\b';
 //                            if ($srcstr[$xx] == "\t")   $dummy .= '\t';
-                            if ($srcstr[$xx] == "\x1a") $dummy .= '\Z';
-                            if (strlen($dummy) == $yy)  $dummy .= $srcstr[$xx];
+                            if ($srcstr[$xx] == "\x1a") {
+                                $dummy .= '\Z';
+                            }
+                            if (strlen($dummy) == $yy) {
+                                $dummy .= $srcstr[$xx];
+                            }
                         }
                         $schema_insert .= "'" . $dummy . "', ";
                     }
@@ -445,9 +455,8 @@ if (!defined('PMA_BUILD_DUMP_LIB_INCLUDED')){
         } // end while
         mysql_free_result($result);
 
-        return TRUE;
+        return true;
     } // end of the 'PMA_getTableContentOld()' function
-
 
     /**
      * Dispatches between the versions of 'getTableContent' to use depending

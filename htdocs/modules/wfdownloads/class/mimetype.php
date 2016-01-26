@@ -70,7 +70,7 @@ class WfdownloadsMimetype extends XoopsObject
      *
      * @return XoopsThemeForm
      */
-    function getForm($action = false)
+    public function getForm($action = false)
     {
         include_once XOOPS_ROOT_PATH . '/class/xoopsformloader.php';
 
@@ -83,15 +83,15 @@ class WfdownloadsMimetype extends XoopsObject
         $form->setExtra('enctype="multipart/form-data"');
         // mime_ext
             $mime_ext_text = new XoopsFormText(_AM_WFDOWNLOADS_MIME_EXTF, 'mime_ext', 5, 60, $this->getVar('mime_ext', 'e'));
-            $mime_ext_text->setDescription(_AM_WFDOWNLOADS_MIME_EXTF_DESC);
+        $mime_ext_text->setDescription(_AM_WFDOWNLOADS_MIME_EXTF_DESC);
         $form->addElement($mime_ext_text, true);
         // mime_name
             $mime_name_text = new XoopsFormText(_AM_WFDOWNLOADS_MIME_NAMEF, 'mime_name', 50, 255, $this->getVar('mime_name', 'e'));
-            $mime_name_text->setDescription(_AM_WFDOWNLOADS_MIME_NAMEF_DESC);
+        $mime_name_text->setDescription(_AM_WFDOWNLOADS_MIME_NAMEF_DESC);
         $form->addElement($mime_name_text, true);
         // mime_type
             $mime_type_textarea = new XoopsFormTextArea(_AM_WFDOWNLOADS_MIME_TYPEF, 'mime_type', $this->getVar('mime_types', 'e'));
-            $mime_type_textarea->setDescription(_AM_WFDOWNLOADS_MIME_TYPEF_DESC);
+        $mime_type_textarea->setDescription(_AM_WFDOWNLOADS_MIME_TYPEF_DESC);
         $form->addElement($mime_type_textarea, 7, 60);
         // mime_admin
             $madmin_radio = new XoopsFormRadioYN(_AM_WFDOWNLOADS_MIME_ADMINF, 'mime_admin', $this->getVar('mime_admin', 'e'));
@@ -104,21 +104,21 @@ class WfdownloadsMimetype extends XoopsObject
         // buttons
             $button_tray = new XoopsFormElementTray('', '');
         if ($this->isNew()) {
-                $butt_create = new XoopsFormButton('', '', _AM_WFDOWNLOADS_MIME_CREATE, 'submit');
-                $butt_create->setExtra('onclick="this.form.elements.op.value=\'mimetype.save\'"');
+            $butt_create = new XoopsFormButton('', '', _AM_WFDOWNLOADS_MIME_CREATE, 'submit');
+            $butt_create->setExtra('onclick="this.form.elements.op.value=\'mimetype.save\'"');
             $button_tray->addElement($butt_create);
-                $butt_clear = new XoopsFormButton('', '', _AM_WFDOWNLOADS_MIME_CLEAR, 'reset');
+            $butt_clear = new XoopsFormButton('', '', _AM_WFDOWNLOADS_MIME_CLEAR, 'reset');
             $button_tray->addElement($butt_clear);
-                $butt_cancel = new XoopsFormButton('', '', _AM_WFDOWNLOADS_MIME_CANCEL, 'button');
-                $butt_cancel->setExtra('onclick="history.go(-1)"');
+            $butt_cancel = new XoopsFormButton('', '', _AM_WFDOWNLOADS_MIME_CANCEL, 'button');
+            $butt_cancel->setExtra('onclick="history.go(-1)"');
             $button_tray->addElement($butt_cancel);
         } else {
             $form->addElement(new XoopsFormHidden('mime_id', $this->getVar('mime_id')));
-                $butt_create = new XoopsFormButton('', '', _AM_WFDOWNLOADS_MIME_MODIFY, 'submit');
-                $butt_create->setExtra('onclick="this.form.elements.op.value=\'mimetype.save\'"');
+            $butt_create = new XoopsFormButton('', '', _AM_WFDOWNLOADS_MIME_MODIFY, 'submit');
+            $butt_create->setExtra('onclick="this.form.elements.op.value=\'mimetype.save\'"');
             $button_tray->addElement($butt_create);
-                $butt_cancel = new XoopsFormButton('', '', _AM_WFDOWNLOADS_MIME_CANCEL, 'button');
-                $butt_cancel->setExtra('onclick="history.go(-1)"');
+            $butt_cancel = new XoopsFormButton('', '', _AM_WFDOWNLOADS_MIME_CANCEL, 'button');
+            $butt_cancel->setExtra('onclick="history.go(-1)"');
             $button_tray->addElement($butt_cancel);
         }
         $form->addElement($button_tray);

@@ -99,7 +99,7 @@ switch ($op) {
                 $sql .= " FROM {$xoopsDB->prefix("xnewsletter_subscr")} INNER JOIN {$xoopsDB->prefix("xnewsletter_catsubscr")} ON `subscr_id` = `catsubscr_subscrid`";
                 $sql .= " WHERE (((`catsubscr_catid`)={$cat_id}) AND ((`catsubscr_quited`)=0)) ORDER BY `subscr_lastname`, `subscr_email`;";
                 if (!$subscrs = $xoopsDB->query($sql)) {
-                    die ("MySQL-Error: " . mysql_error());
+                    die("MySQL-Error: " . mysql_error());
                 }
                 while ($subscr_array = mysql_fetch_assoc($subscrs)) {
                     $subscr_array['counter'] = ++$counter;

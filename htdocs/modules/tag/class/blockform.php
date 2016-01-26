@@ -32,17 +32,17 @@ class TagBlockForm extends XoopsForm
      *
      * @return string HTML div containing element
      */
-    function render()
+    public function render()
     {
-//        $ele_name = $this->getName();
+        //        $ele_name = $this->getName();
         $ret = "<div>\n";
         $hidden = '';
-        foreach ( $this->getElements() as $ele ) {
+        foreach ($this->getElements() as $ele) {
             if (!is_object($ele)) {
                 $ret .= $ele;
             } elseif (!$ele->isHidden()) {
                 if (('' != $caption = $ele->getCaption())) {
-                    $ret .= "<div class='xoops-form-element-caption" . ($ele->isRequired() ? "-required" : "" ) . "'>\n"
+                    $ret .= "<div class='xoops-form-element-caption" . ($ele->isRequired() ? "-required" : "") . "'>\n"
                           . "  <span class='caption-text'>{$caption}</span>\n"
                           . "  <span class='caption-marker'>*</span>\n"
                           . "</div>\n";

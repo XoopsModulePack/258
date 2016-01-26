@@ -5,9 +5,9 @@ if (!defined("XOOPS_ROOT_PATH")) {
 }
 
 /**
- * @param      $dir
- * @param int  $mode
- * @param bool $recursive
+ * @param       $dir
+ * @param  int  $mode
+ * @param  bool $recursive
  * @return bool
  */
 function Aboutmkdirs($dir, $mode = 0777, $recursive = true)

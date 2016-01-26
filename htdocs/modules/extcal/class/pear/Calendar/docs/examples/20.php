@@ -8,7 +8,7 @@
 define('CALENDAR_ENGINE', 'PearDate');
 
 if (!@include 'Calendar/Calendar.php') {
-    define('CALENDAR_ROOT','../../');
+    define('CALENDAR_ROOT', '../../');
 }
 
 require_once CALENDAR_ROOT . 'Month/Weekdays.php';
@@ -21,12 +21,12 @@ require_once CALENDAR_ROOT . 'Decorator.php';
  */
 class DiaryEvent extends Calendar_Decorator
 {
-    var $entries = array();
+    public $entries = array();
 
     /**
      * @param $calendar
      */
-    function DiaryEvent($calendar)
+    public function DiaryEvent($calendar)
     {
         Calendar_Decorator::Calendar_Decorator($calendar);
     }
@@ -34,7 +34,7 @@ class DiaryEvent extends Calendar_Decorator
     /**
      * @param $entry
      */
-    function addEntry($entry)
+    public function addEntry($entry)
     {
         $this->entries[] = $entry;
     }
@@ -42,7 +42,7 @@ class DiaryEvent extends Calendar_Decorator
     /**
      * @return bool
      */
-    function getEntry()
+    public function getEntry()
     {
         $entry = each($this->entries);
         if ($entry) {
@@ -61,19 +61,19 @@ class DiaryEvent extends Calendar_Decorator
 class MonthPayload_Decorator extends Calendar_Decorator
 {
     //Calendar engine
-    var $cE;
-    var $tableHelper;
+    public $cE;
+    public $tableHelper;
 
-    var $year;
-    var $month;
-    var $firstDay = false;
+    public $year;
+    public $month;
+    public $firstDay = false;
 
     /**
      * @param array $events
      *
      * @return bool
      */
-    function build($events=array())
+    public function build($events=array())
     {
         require_once CALENDAR_ROOT . 'Day.php';
         require_once CALENDAR_ROOT .  'Table/Helper.php';
@@ -85,7 +85,7 @@ class MonthPayload_Decorator extends Calendar_Decorator
 
         $daysInMonth = $this->cE->getDaysInMonth($this->year, $this->month);
         for ($i=1; $i<=$daysInMonth; ++$i) {
-            $Day = new Calendar_Day(2000,1,1); // Create Day with dummy values
+            $Day = new Calendar_Day(2000, 1, 1); // Create Day with dummy values
             $Day->setTimeStamp($this->cE->dateToStamp($this->year, $this->month, $i));
             $this->children[$i] = new DiaryEvent($Day);
         }
@@ -103,7 +103,7 @@ class MonthPayload_Decorator extends Calendar_Decorator
     /**
      * @param $events
      */
-    function setSelection($events)
+    public function setSelection($events)
     {
         $daysInMonth = $this->cE->getDaysInMonth($this->year, $this->month);
         for ($i=1; $i<=$daysInMonth; ++$i) {
@@ -124,7 +124,7 @@ class MonthPayload_Decorator extends Calendar_Decorator
     /**
      * @return bool
      */
-    function fetch()
+    public function fetch()
     {
         $child = each($this->children);
         if ($child) {
@@ -234,7 +234,6 @@ ul {
 </tr>
 <?php
 while ($Day = $MonthDecorator->fetch()) {
-
     if ($Day->isFirst()) {
         echo "<tr>\n";
     }

@@ -68,7 +68,7 @@ class System
      * @static
      * @access private
      */
-    function _parseArgs($argv, $short_options, $long_options = null)
+    public function _parseArgs($argv, $short_options, $long_options = null)
     {
         if (!is_array($argv) && $argv !== null) {
             // Find all items, quoted or otherwise
@@ -94,7 +94,7 @@ class System
      * @static
      * @access private
      */
-    function raiseError($error)
+    public function raiseError($error)
     {
         if (PEAR::isError($error)) {
             $error = $error->getMessage();
@@ -129,7 +129,7 @@ class System
      * @static
      * @access   private
      */
-    function _dirToStruct($sPath, $maxinst, $aktinst = 0, $silent = false)
+    public function _dirToStruct($sPath, $maxinst, $aktinst = 0, $silent = false)
     {
         $struct = array('dirs' => array(), 'files' => array());
         if (($dir = @opendir($sPath)) === false) {
@@ -173,7 +173,7 @@ class System
      * @static
      * @see System::_dirToStruct()
      */
-    function _multipleToStruct($files)
+    public function _multipleToStruct($files)
     {
         $struct = array('dirs' => array(), 'files' => array());
         settype($files, 'array');
@@ -200,7 +200,7 @@ class System
      * @static
      * @access   public
      */
-    function rm($args)
+    public function rm($args)
     {
         $opts = System::_parseArgs($args, 'rf'); // "f" does nothing but I like it :-)
         if (PEAR::isError($opts)) {
@@ -247,7 +247,7 @@ class System
      * @static
      * @access   public
      */
-    function mkDir($args)
+    public function mkDir($args)
     {
         $opts = System::_parseArgs($args, 'pm:');
         if (PEAR::isError($opts)) {
@@ -293,7 +293,7 @@ class System
                 }
             }
         } else {
-            foreach($opts[1] as $dir) {
+            foreach ($opts[1] as $dir) {
                 if ((@file_exists($dir) || !is_dir($dir)) && !mkdir($dir, $mode)) {
                     $ret = false;
                 }
@@ -318,7 +318,7 @@ class System
      * @static
      * @access   public
      */
-    function &cat($args)
+    public function &cat($args)
     {
         $ret = null;
         $files = array();
@@ -394,7 +394,7 @@ class System
      * @static
      * @access  public
      */
-    function mktemp($args = null)
+    public function mktemp($args = null)
     {
         static $first_time = true;
         $opts = System::_parseArgs($args, 't:d');
@@ -447,7 +447,7 @@ class System
      * @static
      * @access private
      */
-    function _removeTmpFiles()
+    public function _removeTmpFiles()
     {
         if (count($GLOBALS['_System_temp_files'])) {
             $delete = $GLOBALS['_System_temp_files'];
@@ -466,7 +466,7 @@ class System
      * @static
      * @return string The temporary directory on the system
      */
-    function tmpdir()
+    public function tmpdir()
     {
         if (OS_WINDOWS) {
             if ($var = isset($_ENV['TMP']) ? $_ENV['TMP'] : getenv('TMP')) {
@@ -501,7 +501,7 @@ class System
      * @static
      * @author Stig Bakken <ssb@php.net>
      */
-    function which($program, $fallback = false)
+    public function which($program, $fallback = false)
     {
         // enforce API
         if (!is_string($program) || '' == $program) {
@@ -574,7 +574,7 @@ class System
      * @static
      *
      */
-    function find($args)
+    public function find($args)
     {
         if (!is_array($args)) {
             $args = preg_split('/\s+/', $args, -1, PREG_SPLIT_NO_EMPTY);

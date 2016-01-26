@@ -45,7 +45,7 @@ class MylinksNemui implements MylinksThumbPlugin
     private $provider_url    = "http://mozshot.nemui.org";
     private $provider_name   = "Nemui";
 
-    function __construct()
+    public function __construct()
     {
     }
     public function getProviderUrl()

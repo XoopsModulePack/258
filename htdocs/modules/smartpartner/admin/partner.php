@@ -30,8 +30,7 @@ function showfiles($partnerObj)
             $delete = "<a href='file.php?op=del&fileid=" . $filesObj[$i]->fileid() . "'><img src='" . XOOPS_URL . "/modules/" . $xoopsModule->dirname() . "/images/icon/delete.gif' title='" . _AM_SPARTNER_DELETEFILE . "' alt='" . _AM_SPARTNER_DELETEFILE . "'/></a>";
             if ($filesObj[$i]->status() == 0) {
                 $not_visible = "<img src='" . XOOPS_URL . "/modules/" . $xoopsModule->dirname() . "/images/no.gif'/>";
-            }
-            else {
+            } else {
                 $not_visible = '';
             }
             echo "<tr>";
@@ -116,7 +115,7 @@ function editpartner($showmenu = false, $id = 0)
                 break;
         }
 
-        If ($showmenu) {
+        if ($showmenu) {
             smartpartner_adminMenu(2, $breadcrumb_action1 . " > " . $breadcrumb_action2);
         }
 
@@ -129,7 +128,7 @@ function editpartner($showmenu = false, $id = 0)
         $breadcrumb_action2 = _AM_SPARTNER_CREATE;
         $button_caption = _AM_SPARTNER_CREATE;
         $new_status = _SPARTNER_STATUS_ACTIVE;
-        If ($showmenu) {
+        if ($showmenu) {
             smartpartner_adminMenu(2, $breadcrumb_action1 . " > " . $breadcrumb_action2);
         }
 
@@ -320,8 +319,12 @@ include("admin_header.php");
 include(XOOPS_ROOT_PATH . "/class/xoopstree.php");
 
 $op = '';
-if (isset($_GET['op'])) $op = $_GET['op'];
-if (isset($_POST['op'])) $op = $_POST['op'];
+if (isset($_GET['op'])) {
+    $op = $_GET['op'];
+}
+if (isset($_POST['op'])) {
+    $op = $_POST['op'];
+}
 
 // Where shall we start ?
 $startpartner = isset($_GET['startpartner']) ? intval($_GET['startpartner']) : 0;
@@ -341,7 +344,7 @@ switch ($op) {
 
     case "mod":
 
-        Global $xoopsUser, $xoopsConfig, $xoopsModuleConfig, $xoopsModule;
+        global $xoopsUser, $xoopsConfig, $xoopsModuleConfig, $xoopsModule;
         $id = (isset($_GET['id'])) ? $_GET['id'] : 0;
 
         xoops_cp_header();
@@ -367,7 +370,7 @@ switch ($op) {
         $id = (isset($_POST['id'])) ? intval($_POST['id']) : 0;
 
         // Creating the partner object
-        If ($id != 0) {
+        if ($id != 0) {
             $partnerObj = new SmartpartnerPartner($id);
         } else {
             $partnerObj = $smartpartner_partner_handler->create();
@@ -398,9 +401,7 @@ switch ($op) {
                 // $uploader->setTargetFileName($partnerObj->partnerid() . "_" . $_FILES['logo_file']['name']);
 
                 if ($uploader->fetchMedia($filename) && $uploader->upload()) {
-
                     $partnerObj->setVar('image', $uploader->getSavedFileName());
-
                 } else {
                     redirect_header('javascript:history.go(-1)', 2, _CO_SPARTNER_FILE_UPLOAD_ERROR . $uploader->getErrors());
                     exit;
@@ -432,12 +433,12 @@ switch ($op) {
         $redirect_msgs = $partnerObj->getRedirectMsg($_POST['original_status'], $_POST['status']);
 
         // Storing the partner
-        If (!$partnerObj->store()) {
+        if (!$partnerObj->store()) {
             redirect_header("javascript:history.go(-1)", 3, $redirect_msgs['error'] . smartpartner_formatErrors($partnerObj->getErrors()));
             exit;
         }
 
-        If (($_POST['original_status'] == _SPARTNER_STATUS_SUBMITTED) || ($_POST['status'] == _SPARTNER_STATUS_ACTIVE)) {
+        if (($_POST['original_status'] == _SPARTNER_STATUS_SUBMITTED) || ($_POST['status'] == _SPARTNER_STATUS_ACTIVE)) {
             $partnerObj->sendNotifications(array(_SPARTNER_NOT_PARTNER_APPROVED));
         }
         if ($partnerObj->isNew()) {
@@ -463,7 +464,7 @@ switch ($op) {
         $title = (isset($_POST['title'])) ? $_POST['title'] : '';
 
         if ($confirm) {
-            If (!$smartpartner_partner_handler->delete($partnerObj)) {
+            if (!$smartpartner_partner_handler->delete($partnerObj)) {
                 redirect_header("partner.php", 2, _AM_SPARTNER_PARTNER_DELETE_ERROR);
                 exit;
             }
@@ -515,7 +516,6 @@ switch ($op) {
         echo "</tr>";
         if ($totalpartners > 0) {
             for ($i = 0; $i < $totalPartnersOnPage; $i++) {
-
                 $modify = "<a href='partner.php?op=mod&id=" . $partnersObj[$i]->id() . "'><img src='" . XOOPS_URL . "/modules/" . $xoopsModule->dirname() . "/images/icon/edit.gif' title='" . _AM_SPARTNER_EDITPARTNER . "' alt='" . _AM_SPARTNER_EDITPARTNER . "' /></a>&nbsp;";
                 $delete = "<a href='partner.php?op=del&id=" . $partnersObj[$i]->id() . "'><img src='" . XOOPS_URL . "/modules/" . $xoopsModule->dirname() . "/images/icon/delete.gif' title='" . _AM_SPARTNER_DELETEPARTNER . "' alt='" . _AM_SPARTNER_DELETEPARTNER . "'/></a>&nbsp;";
 

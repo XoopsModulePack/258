@@ -45,7 +45,7 @@ switch ($op) {
             while ($myrow_view = $xoopsDB->fetcharray($result_view)) {
                 $item_list_view['cid'] = $myrow_view['categoryid'];
                 $item_list_view['title'] = $myrow_view['name'];
-                $form_view = new XoopsGroupPermForm("", $xoopsModule->getVar('mid'), "category_read", "<img id='toptableicon' src=" . XOOPS_URL . "/modules/" . $xoopsModule->dirname() . "/assets/images/icon/close12.gif alt='' /></a>&nbsp;" . _AM_SF_PERMISSIONSVIEWMAN . "</h3><div id='toptable'><span style=\"color: #567; margin: 3px 0 0 0; font-size: small; display: block; \">" . _AM_SF_VIEW_CATS . "</span>",'admin/permissions.php');
+                $form_view = new XoopsGroupPermForm("", $xoopsModule->getVar('mid'), "category_read", "<img id='toptableicon' src=" . XOOPS_URL . "/modules/" . $xoopsModule->dirname() . "/assets/images/icon/close12.gif alt='' /></a>&nbsp;" . _AM_SF_PERMISSIONSVIEWMAN . "</h3><div id='toptable'><span style=\"color: #567; margin: 3px 0 0 0; font-size: small; display: block; \">" . _AM_SF_VIEW_CATS . "</span>", 'admin/permissions.php');
                 $block_view[] = $item_list_view;
                 foreach ($block_view as $itemlists) {
                     $form_view->addItem($itemlists['cid'], $myts->displayTarea($itemlists['title']));
@@ -54,7 +54,6 @@ switch ($op) {
             echo $form_view->render();
         } else {
             echo "<img id='toptableicon' src=" . XOOPS_URL . "/modules/" . $xoopsModule->dirname() . "/assets/images/icon/close12.gif alt='' /></a>&nbsp;" . _AM_SF_PERMISSIONSVIEWMAN . "</h3><div id='toptable'><span style=\"color: #567; margin: 3px 0 0 0; font-size: small; display: block; \">" . _AM_SF_NOPERMSSET . "</span>";
-
         }
         echo "</div>";
 

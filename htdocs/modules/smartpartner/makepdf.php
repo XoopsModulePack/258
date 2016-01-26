@@ -38,7 +38,7 @@ require_once SMARTPARTNER_ROOT_PATH . 'fpdf/fpdf.inc.php';
 
 $id = isset($_GET['id']) ? intval($_GET['id']) : 0;
 
-If ($id == 0) {
+if ($id == 0) {
     redirect_header("javascript:history.go(-1)", 2, _MD_SPARTNER_NOPARTNERSELECTED);
     exit();
 }
@@ -47,13 +47,13 @@ If ($id == 0) {
 $partnerObj = new SmartpartnerPartner($id);
 
 // If the selected partner was not found, exit
-If ($partnerObj->notLoaded()) {
+if ($partnerObj->notLoaded()) {
     redirect_header("javascript:history.go(-1)", 2, _MD_SPARTNER_NOPARTNERSELECTED);
     exit();
 }
 
 // Chech the status
-If ($partnerObj->status() != _SPARTNER_STATUS_ACTIVE) {
+if ($partnerObj->status() != _SPARTNER_STATUS_ACTIVE) {
     redirect_header("javascript:history.go(-1)", 2, _NOPERM);
     exit();
 }

@@ -16,7 +16,7 @@ include_once XOOPS_ROOT_PATH . "/class/xoopsformloader.php";
 
 $form = new XoopsThemeForm(_MD_SF_REQUEST, "form", xoops_getenv('PHP_SELF'));
 // CATEGORY
-$mytree = new XoopsTree($xoopsDB->prefix("smartfaq_categories"), "categoryid" , "parentid");
+$mytree = new XoopsTree($xoopsDB->prefix("smartfaq_categories"), "categoryid", "parentid");
 ob_start();
 $form->addElement(new XoopsFormHidden('categoryid', ''));
 $mytree->makeMySelBox("name", "weight", '');

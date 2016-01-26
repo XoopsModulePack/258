@@ -18,12 +18,14 @@
  * @author          Xoops Development Team
  */
 
-if ( !defined('xforms_ROOT_PATH') ) { exit(); }
+if (!defined('xforms_ROOT_PATH')) {
+    exit();
+}
 
  if ($value[0] != "Y-m-d" && $value[0] != "") {
-         $date_value = strtotime($value[0]);
+     $date_value = strtotime($value[0]);
  } else {
-         $date_value = "";
+     $date_value = "";
  }
- $date = new XoopsFormTextDateSelect (_AM_XFORMS_ELE_DATE, 'ele_value',  $size = 15, $date_value);
+ $date = new XoopsFormTextDateSelect(_AM_XFORMS_ELE_DATE, 'ele_value',  $size = 15, $date_value);
  $output->addElement($date);

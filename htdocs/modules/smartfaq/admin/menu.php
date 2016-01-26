@@ -85,3 +85,4 @@ $adminmenu[$i]["icon"]  = $pathIcon32 . '/about.png';
 // Goto Module
 //$adminmenu[6]['title'] = _MI_SF_ADMENU7;
 //$adminmenu[6]['link'] = "index.php";
+

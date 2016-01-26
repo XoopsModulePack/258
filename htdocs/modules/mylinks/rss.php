@@ -26,7 +26,7 @@ if (function_exists('mb_http_output')) {
     mb_http_output('pass');
 }
 
-header ('Content-Type:text/xml; charset=utf-8');
+header('Content-Type:text/xml; charset=utf-8');
 $tpl = new XoopsTpl();
 
 if ($cache) {
@@ -64,7 +64,7 @@ if (!$tpl->is_cached('file:'.$template) || !$cache) {
             $title = wani_utf8_encode(wani_make_html_title($new['title']));
             $link    = $new['link'];
             $pubdate = '';
-            if ( isset($new['time']) ) {
+            if (isset($new['time'])) {
                 $pubdate = wani_utf8_encode(date("r", $new['time']));
             }
             $description = '';

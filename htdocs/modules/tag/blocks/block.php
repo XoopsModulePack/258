@@ -84,8 +84,7 @@ function tag_block_cloud_show($options, $dirname = "", $catid = 0)
         $modid = 0;
     } elseif (isset($GLOBALS["xoopsModule"])
               && ($GLOBALS["xoopsModule"] instanceof XoopsModule)
-              && ($GLOBALS["xoopsModule"]->getVar("dirname") == $dirname))
-    {
+              && ($GLOBALS["xoopsModule"]->getVar("dirname") == $dirname)) {
         $modid = $GLOBALS["xoopsModule"]->getVar("mid");
     } else {
         $module_handler =& xoops_gethandler("module");
@@ -216,8 +215,7 @@ function tag_block_top_show($options, $dirname = "", $catid = 0)
         $modid = 0;
     } elseif (isset($GLOBALS["xoopsModule"])
              && ($GLOBALS["xoopsModule"] instanceof XoopsModule)
-             && $GLOBALS["xoopsModule"]->getVar("dirname") == $dirname)
-    {
+             && $GLOBALS["xoopsModule"]->getVar("dirname") == $dirname) {
         $modid = $GLOBALS["xoopsModule"]->getVar("mid");
     } else {
         $module_handler =& xoops_gethandler("module");
@@ -352,7 +350,7 @@ function tag_block_top_edit($options)
  *      @type string -11 cumulus_flash_speed
  * }
  * @param null|string $dirname null for all modules, $dirname for specific module
- * @param int $catid category id (only used if $dirname is set)
+ * @param int         $catid   category id (only used if $dirname is set)
  */
 function tag_block_cumulus_show(array $options, $dirname = "", $catid = 0)
 {
@@ -360,8 +358,7 @@ function tag_block_cumulus_show(array $options, $dirname = "", $catid = 0)
         $modid = 0;
     } elseif (isset($GLOBALS["xoopsModule"])
                 && ($GLOBALS["xoopsModule"] instanceof XoopsModule)
-                && ($GLOBALS["xoopsModule"]->getVar("dirname") == $dirname))
-    {
+                && ($GLOBALS["xoopsModule"]->getVar("dirname") == $dirname)) {
         $modid = $GLOBALS["xoopsModule"]->getVar("mid");
     } else {
         $module_handler =& xoops_gethandler("module");
@@ -396,7 +393,7 @@ function tag_block_cumulus_show(array $options, $dirname = "", $catid = 0)
         $count_min   = min(0, $tags[$key]["count"], $count_min);
         $tags_term[] = mb_strtolower($tags[$key]["term"]);
     }
-        if (!empty($tags_term)) {
+    if (!empty($tags_term)) {
         array_multisort($tags_term, SORT_ASC, $tags);
     }
     $count_interval = $count_max - $count_min;
@@ -409,8 +406,8 @@ function tag_block_cumulus_show(array $options, $dirname = "", $catid = 0)
     $tags_data = array();
     foreach (array_keys($tags) as $key) {
         $tags_data[] = array("id" => $tags[$key]["id"],
-                           "font" => ($count_interval) ? floor( ($tags[$key]["count"] - $count_min) * $font_ratio + $font_min ) : 12,
-                          "level" => empty($count_max) ? 0 : floor( ($tags[$key]["count"] - $count_min) * $level_limit / $count_max ),
+                           "font" => ($count_interval) ? floor(($tags[$key]["count"] - $count_min) * $font_ratio + $font_min) : 12,
+                          "level" => empty($count_max) ? 0 : floor(($tags[$key]["count"] - $count_min) * $level_limit / $count_max),
                            "term" => $tags[$key]["term"],
                           "count" => $tags[$key]["count"]
         );
@@ -428,18 +425,18 @@ function tag_block_cumulus_show(array $options, $dirname = "", $catid = 0)
     $flash_params = array('flash_url' => $GLOBALS['xoops']->url("www/modules/tag/assets/cumulus.swf"),
                               'width' => (int) $options[4],
                              'height' => (int) $options[5],
-                         'background' => preg_replace('/(#)/ie','',$options[6]),
-                              'color' => "0x".preg_replace('/(#)/ie','',$options[8]),
-                            'hicolor' => "0x".preg_replace('/(#)/ie','',$options[9]),
-                             'tcolor' => "0x".preg_replace('/(#)/ie','',$options[8]),
-                            'tcolor2' => "0x".preg_replace('/(#)/ie','',$options[10]),
+                         'background' => preg_replace('/(#)/ie', '', $options[6]),
+                              'color' => "0x".preg_replace('/(#)/ie', '', $options[8]),
+                            'hicolor' => "0x".preg_replace('/(#)/ie', '', $options[9]),
+                             'tcolor' => "0x".preg_replace('/(#)/ie', '', $options[8]),
+                            'tcolor2' => "0x".preg_replace('/(#)/ie', '', $options[10]),
                               'speed' => (int) $options[11]
     );
 
     $output = '<tags>';
     $xoops_url = $GLOBALS['xoops']->url('www');
     foreach ($tags_data as $term) {
-    // assign font size
+        // assign font size
     $output .= <<<EOT
 <a href='{$xoops_url}/modules/tag/view.tag.php?{$term['id']}' style='{$term['font']}'>{$term['term']}</a>
 EOT;
@@ -464,14 +461,13 @@ EOT;
  */
 function tag_block_cumulus_edit($options)
 {
-
     include_once $GLOBALS['xoops']->path("/class/xoopsformloader.php");
     xoops_load('blockform', 'tag');
     xoops_load('formvalidatedinput', 'tag');
 
-    $form  = new TagBlockForm("","","");
+    $form  = new TagBlockForm("", "", "");
     $form->addElement(new TagFormValidatedInput(_MB_TAG_ITEMS, "options[0]", 25, 25, $options[0], 'number'));
-    $form->addElement(new TagFormValidatedInput(_MB_TAG_TIME_DURATION, "options[1]", 25, 25 ,$options[1], 'number'));
+    $form->addElement(new TagFormValidatedInput(_MB_TAG_TIME_DURATION, "options[1]", 25, 25, $options[1], 'number'));
     $form->addElement(new TagFormValidatedInput(_MB_TAG_FONTSIZE_MAX, "options[2]", 25, 25, $options[2], 'number'));
     $form->addElement(new TagFormValidatedInput(_MB_TAG_FONTSIZE_MIN, "options[3]", 25, 25, $options[3], 'number'));
     $form->addElement(new TagFormValidatedInput(_MB_TAG_FLASH_WIDTH, "options[4]", 25, 25, $options[4], 'number'));

@@ -29,7 +29,7 @@
 // Descrição: Sistema de gerenciamento de mídias publicitárias               //
 // ------------------------------------------------------------------------- //
 
-function rwbanner_adminMenu ($currentoption = 0, $breadcrumb = '')
+function rwbanner_adminMenu($currentoption = 0, $breadcrumb = '')
 {
 
     /* Nice buttons styles */
@@ -57,7 +57,7 @@ function rwbanner_adminMenu ($currentoption = 0, $breadcrumb = '')
 
     $myts =& MyTextSanitizer::getInstance();
 
-    $tblColors = Array();
+    $tblColors = array();
     $tblColors[0] = $tblColors[1] = $tblColors[2] = $tblColors[3] = $tblColors[4] = $tblColors[5] = $tblColors[6] = $tblColors[7] = $tblColors[8] = '';
     $tblColors[$currentoption] = 'current';
 
@@ -84,7 +84,6 @@ function rwbanner_adminMenu ($currentoption = 0, $breadcrumb = '')
 
 function rwbanner_collapsableBar($tablename = '', $iconname = '')
 {
-
     ?>
     <script type="text/javascript"><!--
     function goto_URL(object)
@@ -129,111 +128,119 @@ function rwbanner_collapsableBar($tablename = '', $iconname = '')
 }
 
 //Soma X dias em uma data
-function somaData ($data,$qDias) {
-   $data = explode(' ',$data);
-   $data = $data[0];
-   $dt = explode('-',$data);
-   $ano= $dt[0];
-   $mes= $dt[1];
-   $dia= $dt[2];
-   while ($qDias>0) {
-      $tira=0;
-      $diaAnt=$dia;
-      $maxDia=date('t',strtotime($ano.$mes.$dia));
-      $dia+=$qDias;
-      if ($dia>$maxDia) {
-         $dia=1;
-         $mes++;
-         $tira=1;
-         if ($mes>12) {
-            $mes=1;
-            $ano++;
-         }
-         $qDias=$qDias-($maxDia-$diaAnt)-$tira;
-      }
-      else {
-         $qDias=0;
-      }
-      if (strlen ($dia)<2) $dia="0".$dia;
-      if (strlen ($mes)<2) $mes="0".$mes;
-   }
+function somaData($data, $qDias)
+{
+    $data = explode(' ', $data);
+    $data = $data[0];
+    $dt = explode('-', $data);
+    $ano= $dt[0];
+    $mes= $dt[1];
+    $dia= $dt[2];
+    while ($qDias>0) {
+        $tira=0;
+        $diaAnt=$dia;
+        $maxDia=date('t', strtotime($ano.$mes.$dia));
+        $dia+=$qDias;
+        if ($dia>$maxDia) {
+            $dia=1;
+            $mes++;
+            $tira=1;
+            if ($mes>12) {
+                $mes=1;
+                $ano++;
+            }
+            $qDias=$qDias-($maxDia-$diaAnt)-$tira;
+        } else {
+            $qDias=0;
+        }
+        if (strlen($dia)<2) {
+            $dia="0".$dia;
+        }
+        if (strlen($mes)<2) {
+            $mes="0".$mes;
+        }
+    }
 
-   return ($ano."-".$mes."-".$dia);
+    return ($ano."-".$mes."-".$dia);
 }
 
 //Escreve a data por extenso. Parametro data deve ser passado no formato americano 'Y-m-d';
-function escreveData($data){
-  $vardia = substr($data, 8, 2);
-  $varmes = substr($data, 5, 1);
-  $varano = substr($data, 0, 4);
+function escreveData($data)
+{
+    $vardia = substr($data, 8, 2);
+    $varmes = substr($data, 5, 1);
+    $varano = substr($data, 0, 4);
 
-  $convertedia = date ("w", mktime (0,0,0,$varmes,$vardia,$varano));
+    $convertedia = date("w", mktime(0, 0, 0, $varmes, $vardia, $varano));
 
-  $diaSemana = array("Domingo", "Segunda-feira", "Terça-feira", "Quarta-feira", "Quinta-feira", "Sexta-feira", "Sábado");
+    $diaSemana = array("Domingo", "Segunda-feira", "Terça-feira", "Quarta-feira", "Quinta-feira", "Sexta-feira", "Sábado");
 
-  $mes = array("Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro");
+    $mes = array("Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro");
 
-  return $diaSemana[$convertedia] . ", " . $vardia  . " de " . $mes[$varmes] . " de " . $varano;
+    return $diaSemana[$convertedia] . ", " . $vardia  . " de " . $mes[$varmes] . " de " . $varano;
 }
 
 //Tipo = BR converte datas no formato americano para o formato brasileiro
 //Tipo = EN converte datas no formato brasileiro para o formato americano
-function converte ($data_ori,$tipo='BR',$hora='true'){
-    $data = explode(' ',$data_ori);
-    if ($tipo == 'BR'){
-      $resul = explode("-",$data[0]);
-      $resul = $resul[2].'/'.$resul[1].'/'.$resul[0];
-    }else{
-      if ($tipo == 'EN'){
-        $resul = explode("/",$data[0]);
-        $resul = $resul[2].'-'.$resul[1].'-'.$resul[0];
-      }else{
-        if ($tipo == 'FB'){
-          $resul = explode("/",$data[0]);
-          $resul = $resul[0].'.'.$resul[1].'.'.$resul[2];
+function converte($data_ori, $tipo='BR', $hora='true')
+{
+    $data = explode(' ', $data_ori);
+    if ($tipo == 'BR') {
+        $resul = explode("-", $data[0]);
+        $resul = $resul[2].'/'.$resul[1].'/'.$resul[0];
+    } else {
+        if ($tipo == 'EN') {
+            $resul = explode("/", $data[0]);
+            $resul = $resul[2].'-'.$resul[1].'-'.$resul[0];
+        } else {
+            if ($tipo == 'FB') {
+                $resul = explode("/", $data[0]);
+                $resul = $resul[0].'.'.$resul[1].'.'.$resul[2];
+            }
         }
-      }
     }
-  if ($hora)
-    return $resul.' '.$data[1];
-  else
-    return $resul;
+    if ($hora) {
+        return $resul.' '.$data[1];
+    } else {
+        return $resul;
+    }
 }
 
-function EmailStats($bid){
-  global $xoopsDB, $xoopsConfig, $xoopsUser;
+function EmailStats($bid)
+{
+    global $xoopsDB, $xoopsConfig, $xoopsUser;
 
-  $uid = $xoopsUser->getVar('uid');
-  $email = $xoopsUser->getVar('email');
-  $name = ($xoopsUser->getVar('name') == "")?$xoopsUser->getVar('uname'):$xoopsUser->getVar('name');
+    $uid = $xoopsUser->getVar('uid');
+    $email = $xoopsUser->getVar('email');
+    $name = ($xoopsUser->getVar('name') == "")?$xoopsUser->getVar('uname'):$xoopsUser->getVar('name');
 
-  $result = $xoopsDB->query("select * from ".$xoopsDB->prefix("rw_banner")." where codigo=$bid and idcliente=$uid");
-  $row = $xoopsDB->fetchArray($result);
+    $result = $xoopsDB->query("select * from ".$xoopsDB->prefix("rw_banner")." where codigo=$bid and idcliente=$uid");
+    $row = $xoopsDB->fetchArray($result);
 
-    if ( $row['exibicoes'] == 0 ) {
+    if ($row['exibicoes'] == 0) {
         $percent = 0;
     } else {
         $percent = substr(100 * $row['clicks'] / $row['exibicoes'], 0, 5);
     }
-    if ( $row['maxexib'] == 0 ) {
+    if ($row['maxexib'] == 0) {
         $left = _MD_RWBANNER_EXIBREST;
         $row['maxexib'] = _MD_RWBANNER_EXIBREST;
     } else {
         $left = $row['maxexib']-$row['exibicoes'];
     }
-    if ( $row['maxclick'] == 0 ) {
+    if ($row['maxclick'] == 0) {
         $left_clicks = _MD_RWBANNER_EXIBREST;
         $row['maxclick'] = _MD_RWBANNER_EXIBREST;
     } else {
         $left_clicks = $row['maxclick']-$row['clicks'];
     }
-    if ( $row['periodo'] == 0 ) {
+    if ($row['periodo'] == 0) {
         $left_periodo = _MD_RWBANNER_EXIBREST;
         $row['periodo'] = _MD_RWBANNER_EXIBREST;
     } else {
-        $left_periodo = converte(somaData($row['data'],$row['periodo']),'BR',0);
+        $left_periodo = converte(somaData($row['data'], $row['periodo']), 'BR', 0);
     }
-    $row['data'] = converte($row['data'],'BR',false);
+    $row['data'] = converte($row['data'], 'BR', false);
     $fecha = escreveData(date("Y-n-d"));
     $subject = _MD_RWBANNER_SUBJECT_EMAILSTATS." ".$xoopsConfig['sitename'];
     $message = _MD_RWBANNER_BODY1_EMAILSTATS." ". $xoopsConfig['sitename']." :\n\n\n"._MD_RWBANNER_BODY2_EMAILSTATS." $name\n"
@@ -259,10 +266,11 @@ function EmailStats($bid){
     $xoopsMailer->setSubject($subject);
     $xoopsMailer->setBody($message);
 
-    if ($xoopsMailer->send(true))
-      return true;
-    else
-      return false;
+    if ($xoopsMailer->send(true)) {
+        return true;
+    } else {
+        return false;
+    }
 }
 function &rwbanner_getModuleInfo()
 {
@@ -272,8 +280,7 @@ function &rwbanner_getModuleInfo()
         global $xoopsModule;
         if (isset($xoopsModule) && is_object($xoopsModule) && $xoopsModule->getVar('dirname') ==  $dirname) {
             $rwModule =& $xoopsModule;
-        }
-        else {
+        } else {
             $hModule = &xoops_gethandler('module');
             $rwModule = $hModule->getByDirname($dirname);
         }
@@ -290,8 +297,7 @@ function &rwbanner_getModuleConfig()
         if (isset($xoopsModule) && is_object($xoopsModule) && $xoopsModule->getVar('dirname') ==  basename(dirname(dirname(__FILE__)))) {
             global $xoopsModuleConfig;
             $rwConfig =& $xoopsModuleConfig;
-        }
-        else {
+        } else {
             $rwModule =& rwbanner_getModuleInfo();
             $hModConfig = &xoops_gethandler('config');
             $rwConfig = $hModConfig->getConfigsByCat(0, $rwModule->getVar('mid'));
@@ -308,11 +314,12 @@ function &rwbanner_getModuleConfig()
  * @author Hervé Thouzard (www.herve-thouzard.com)
  * @copyright (c) The Xoops Project - www.xoops.org
 */
-function rwTableExists($tablename){
-  global $xoopsDB;
-  $result=$xoopsDB->queryF("SHOW TABLES LIKE '$tablename'");
+function rwTableExists($tablename)
+{
+    global $xoopsDB;
+    $result=$xoopsDB->queryF("SHOW TABLES LIKE '$tablename'");
 
-  return($xoopsDB->getRowsNum($result) > 0);
+    return($xoopsDB->getRowsNum($result) > 0);
 }
 /**
  * Verify that a field exists inside a mysql table
@@ -321,11 +328,12 @@ function rwTableExists($tablename){
  * @author Hervé Thouzard (www.herve-thouzard.com)
  * @copyright (c) The Xoops Project - www.xoops.org
 */
-function rwFieldExists($fieldname,$table){
-  global $xoopsDB;
-  $result=$xoopsDB->queryF("SHOW COLUMNS FROM   $table LIKE '$fieldname'");
+function rwFieldExists($fieldname, $table)
+{
+    global $xoopsDB;
+    $result=$xoopsDB->queryF("SHOW COLUMNS FROM   $table LIKE '$fieldname'");
 
-  return($xoopsDB->getRowsNum($result) > 0);
+    return($xoopsDB->getRowsNum($result) > 0);
 }
 /**
  * Add a field to a mysql table
@@ -334,11 +342,12 @@ function rwFieldExists($fieldname,$table){
  * @author Hervé Thouzard (www.herve-thouzard.com)
  * @copyright (c) The Xoops Project - www.xoops.org
 */
-function rwAddField($field, $table){
-  global $xoopsDB;
-  $result=$xoopsDB->queryF("ALTER TABLE " . $table . " ADD $field;");
+function rwAddField($field, $table)
+{
+    global $xoopsDB;
+    $result=$xoopsDB->queryF("ALTER TABLE " . $table . " ADD $field;");
 
-  return $result;
+    return $result;
 }
 /**
  * Remove a field to a mysql table
@@ -346,10 +355,11 @@ function rwAddField($field, $table){
  * @package RW-Banner
  * @author Rodrigo Pereira Lima aka RpLima (http://www.brinfo.com.br)
 */
-function rwRemoveField($field, $table){
-  global $xoopsDB;
-  $result=$xoopsDB->queryF("ALTER TABLE " . $table . " DROP $field;");
+function rwRemoveField($field, $table)
+{
+    global $xoopsDB;
+    $result=$xoopsDB->queryF("ALTER TABLE " . $table . " DROP $field;");
 
-  return $result;
+    return $result;
 }
 ?>

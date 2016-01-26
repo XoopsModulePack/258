@@ -59,7 +59,9 @@ if (isset($_POST['previewblock'])) {
         redirect_header(XOOPS_URL . '/', 3, $xoopsGTicket->getErrors());
     }
 
-    if (empty($bid)) die('Invalid bid.');
+    if (empty($bid)) {
+        die('Invalid bid.');
+    }
 
     if (!empty($_POST['bside'])) {
         $bside = intval($_POST['bside']);
@@ -243,7 +245,6 @@ if ($op == 'order2') {
         foreach ($_POST['addblock'] as $bid => $val) {
             myblocksadmin_update_blockinstance(0, 0, 0, 0, '', null, null, 0, array(), array(), intval($bid));
         }
-
     } else {
 
         // else change order
@@ -271,7 +272,6 @@ if ($op == 'order2') {
             $bmodule = (isset($_POST['bmodule'][$i]) && is_array($_POST['bmodule'][$i])) ? $_POST['bmodule'][$i] : array(-1);
 
             myblocksadmin_update_blockinstance($i, $side[$i], $_POST['weight'][$i], $visible[$i], $_POST['title'][$i], null, null, $_POST['bcachetime'][$i], $bmodule, array());
-
         }
     }
 
@@ -374,7 +374,6 @@ if ($op == 'delete') {
 }
 
 if ($op == 'edit') {
-
     xoops_cp_header();
     // edit_block($bid); GIJ imported from blocksadmin.php
     $myblock = new XoopsBlock($bid);
@@ -433,9 +432,13 @@ if ($op == 'clone_ok') {
         redirect_header('myblocksadmin.php', 4, 'Invalid block');
     }
 
-    if (empty($_POST['options'])) $options = array();
-    else if (is_array($_POST['options'])) $options = $_POST['options'];
-    else $options = explode('|', $_POST['options']);
+    if (empty($_POST['options'])) {
+        $options = array();
+    } elseif (is_array($_POST['options'])) {
+        $options = $_POST['options'];
+    } else {
+        $options = explode('|', $_POST['options']);
+    }
 
     // for backward compatibility
     // $cblock =& $block->clone(); or $cblock =& $block->xoopsClone();
@@ -515,12 +518,18 @@ function myblocksadmin_update_block($bid, $bside, $bweight, $bvisible, $btitle, 
          } */
     $myblock = new XoopsBlock($bid);
     // $myblock->setVar('side', $bside); GIJ -
-    if ($bside >= 0) $myblock->setVar('side', $bside); // GIJ +
+    if ($bside >= 0) {
+        $myblock->setVar('side', $bside);
+    } // GIJ +
     $myblock->setVar('weight', $bweight);
     $myblock->setVar('visible', $bvisible);
     $myblock->setVar('title', $btitle);
-    if (isset($bcontent)) $myblock->setVar('content', $bcontent);
-    if (isset($bctype)) $myblock->setVar('c_type', $bctype);
+    if (isset($bcontent)) {
+        $myblock->setVar('content', $bcontent);
+    }
+    if (isset($bctype)) {
+        $myblock->setVar('c_type', $bctype);
+    }
     $myblock->setVar('bcachetime', $bcachetime);
     if (isset($options) && (count($options) > 0)) {
         $options = implode('|', $options);
@@ -586,8 +595,12 @@ function myblocksadmin_update_blockinstance($id, $bside, $bweight, $bvisible, $b
     if ($id > 0) {
         // update
         $instance =& $instance_handler->get($id);
-        if ($bside >= 0) $instance->setVar('side', $bside);
-        if (!empty($options)) $instance->setVar('options', $options);
+        if ($bside >= 0) {
+            $instance->setVar('side', $bside);
+        }
+        if (!empty($options)) {
+            $instance->setVar('options', $options);
+        }
     } else {
         // insert
         $instance =& $instance_handler->create();
@@ -595,7 +608,9 @@ function myblocksadmin_update_blockinstance($id, $bside, $bweight, $bvisible, $b
         $instance->setVar('side', $bside);
         $block = $block_handler->get($bid);
         $instance->setVar('options', $block->getVar("options"));
-        if (empty($btitle)) $btitle = $block->getVar("name");
+        if (empty($btitle)) {
+            $btitle = $block->getVar("name");
+        }
     }
     $instance->setVar('weight', $bweight);
     $instance->setVar('visible', $bvisible);

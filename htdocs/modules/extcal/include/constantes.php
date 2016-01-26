@@ -55,7 +55,6 @@ $module        = $moduleHandler->getByDirname('extcal');
 if ($name == 'extcal' || is_object($module)) {
     if (is_object($xoopsModuleConfig)) {
         $extcalConfig = $xoopsModuleConfig;
-
     } else {
         $configHandler =& xoops_gethandler('config');
         $extcalConfig  = $configHandler->getConfigList($module->getVar("mid"));

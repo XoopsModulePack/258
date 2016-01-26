@@ -30,7 +30,6 @@ $myts =& MyTextSanitizer::getInstance(); // MyTextSanitizer object
 include_once './class/utility.php';
 //xoops_load('utility', $xoopsModule->getVar('dirname'));
 
-
 if (!empty($_POST['submit'])) {
     global $xoopsDB;
 
@@ -64,7 +63,7 @@ if (!empty($_POST['submit'])) {
     // Check if Link POSTER is voting (UNLESS Anonymous users allowed to post)
     if ($ratinguser != 0) {
         $result=$xoopsDB->query("SELECT submitter FROM " . $xoopsDB->prefix('mylinks_links') . " WHERE lid={$lid}");
-        while(list($ratinguserDB) = $xoopsDB->fetchRow($result)) {
+        while (list($ratinguserDB) = $xoopsDB->fetchRow($result)) {
             if ($ratinguserDB == $ratinguser) {
                 redirect_header('index.php', 4, _MD_MYLINKS_CANTVOTEOWN);
                 exit();
@@ -73,13 +72,12 @@ if (!empty($_POST['submit'])) {
 
         // Check if REG user is trying to vote twice.
         $result=$xoopsDB->query("SELECT ratinguser FROM " . $xoopsDB->prefix("mylinks_votedata") . " WHERE lid={$lid}");
-        while(list($ratinguserDB) = $xoopsDB->fetchRow($result)) {
+        while (list($ratinguserDB) = $xoopsDB->fetchRow($result)) {
             if ($ratinguserDB == $ratinguser) {
                 redirect_header('index.php', 4, _MD_MYLINKS_VOTEONCE2);
                 exit();
             }
         }
-
     } else {
 
         // Check if ANONYMOUS user is trying to vote more than once per day.
@@ -111,9 +109,7 @@ if (!empty($_POST['submit'])) {
     $ratemessage = _MD_MYLINKS_VOTEAPPRE . "<br />" . sprintf(_MD_MYLINKS_THANKURATE, htmlspecialchars($xoopsConfig['sitename'], ENT_QUOTES));
     redirect_header('index.php', 2, $ratemessage);
     exit();
-
 } else {
-
     $xoopsOption['template_main'] = 'mylinks_ratelink.html';
     include XOOPS_ROOT_PATH . '/header.php';
 
@@ -152,9 +148,9 @@ if (!empty($_POST['submit'])) {
 
     //wanikoo search
     if (file_exists(XOOPS_ROOT_PATH.'/language/'.$xoopsConfig['language'].'/search.php')) {
-       include_once XOOPS_ROOT_PATH.'/language/'.$xoopsConfig['language'].'/search.php';
+        include_once XOOPS_ROOT_PATH.'/language/'.$xoopsConfig['language'].'/search.php';
     } else {
-       include_once XOOPS_ROOT_PATH.'/language/english/search.php';
+        include_once XOOPS_ROOT_PATH.'/language/english/search.php';
     }
     $xoopsTpl->assign('lang_all', _SR_ALL);
     $xoopsTpl->assign('lang_any', _SR_ANY);

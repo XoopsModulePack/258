@@ -21,7 +21,7 @@ require '../../mainfile.php';
 $GLOBALS['xoopsOption']['template_main'] = 'extgallery_public-categories.html';
 include XOOPS_ROOT_PATH.'/header.php';
 
-if(!isset($_GET['id'])) {
+if (!isset($_GET['id'])) {
     $catId = 0;
 } else {
     $catId = intval($_GET['id']);
@@ -31,7 +31,7 @@ $catHandler = xoops_getmodulehandler('publiccat', 'extgallery');
 
 $catObj = $catHandler->getCat($catId);
 
-if(is_null($catObj)) {
+if (is_null($catObj)) {
     include(XOOPS_ROOT_PATH."/footer.php");
     exit;
 }
@@ -42,12 +42,12 @@ $xoopsTpl->assign('cat', $cat);
 $catPath = $catHandler->objectToArray($catHandler->getPath($catId));
 $xoopsTpl->assign('catPath', $catPath);
 
-$catChild = $catHandler->objectToArray($catHandler->getChildren($catId),array('photo_id'));
+$catChild = $catHandler->objectToArray($catHandler->getChildren($catId), array('photo_id'));
 $xoopsTpl->assign('catChild', $catChild);
 
-if(isset($catObj)) {
+if (isset($catObj)) {
     $xoopsTpl->assign('xoops_pagetitle', $catObj->getVar('cat_name'));
-    $xoTheme->addMeta('meta','description',$catObj->getVar('cat_desc'));
+    $xoTheme->addMeta('meta', 'description', $catObj->getVar('cat_desc'));
 }
 
 $rel = "alternate";

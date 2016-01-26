@@ -22,13 +22,13 @@ if (!file_exists("{$xoops_system_path}/language/{$language}/admin/blocksadmin.ph
 }
 
 // to prevent from notice that constants already defined
-$error_reporting_level = error_reporting( 0 );
-include_once( "{$xoops_system_path}/constants.php" );
-include_once( "{$xoops_system_path}/language/{$language}/admin.php" );
-include_once( "{$xoops_system_path}/language/{$language}/admin/blocksadmin.php" );
-error_reporting( $error_reporting_level );
+$error_reporting_level = error_reporting(0);
+include_once("{$xoops_system_path}/constants.php");
+include_once("{$xoops_system_path}/language/{$language}/admin.php");
+include_once("{$xoops_system_path}/language/{$language}/admin/blocksadmin.php");
+error_reporting($error_reporting_level);
 
-$group_defs = file( "{$xoops_system_path}/language/{$language}/admin/groups.php" );
+$group_defs = file("{$xoops_system_path}/language/{$language}/admin/groups.php");
 foreach ($group_defs as $def) {
     if (strstr($def, '_AM_MYLINKS_ACCESSRIGHTS') || strstr($def, '_AM_MYLINKS_ACTIVERIGHTS')) {
         eval($def);
@@ -52,22 +52,22 @@ if (!empty($_GET['dirname'])) {
 if (!empty($target_module) && is_object($target_module)) {
     // specified by dirname
     $target_mid = $target_module->getVar('mid');
-    $target_mname = $target_module->getVar('name') . "&nbsp;" . sprintf( "(%2.2f)", $target_module->getVar('version') / 100.0);
+    $target_mname = $target_module->getVar('name') . "&nbsp;" . sprintf("(%2.2f)", $target_module->getVar('version') / 100.0);
     $query4redirect = '?dirname=' . urlencode(strip_tags($_GET['dirname']));
 } elseif (isset($_GET['mid']) && $_GET['mid'] == 0 || $xoopsModule->getVar('dirname') == 'blocksadmin') {
     $target_mid     = 0;
     $target_mname   = '';
     $query4redirect = '?mid=0';
 } else {
-    $target_mid     = $xoopsModule->getVar( 'mid' );
-    $target_mname   = $xoopsModule->getVar( 'name' );
+    $target_mid     = $xoopsModule->getVar('mid');
+    $target_mname   = $xoopsModule->getVar('name');
     $query4redirect = '';
 }
 
 // check access right (needs system_admin of BLOCK)
 $sysperm_handler =& xoops_gethandler('groupperm');
 if (!$sysperm_handler->checkRight('system_admin', XOOPS_SYSTEM_BLOCK, $xoopsUser->getGroups())) {
-    redirect_header( XOOPS_URL . '/user.php', 1, _NOPERM );
+    redirect_header(XOOPS_URL . '/user.php', 1, _NOPERM);
 }
 
 // get blocks owned by the module (Imported from xoopsblock.php then modified)
@@ -101,7 +101,7 @@ function list_groups()
 }
 
 if (!empty($_POST['submit'])) {
-    if (!$xoopsGTicket->check( true, 'myblocksadmin')) {
+    if (!$xoopsGTicket->check(true, 'myblocksadmin')) {
         redirect_header(XOOPS_URL.'/', 3, $xoopsGTicket->getErrors());
     }
 

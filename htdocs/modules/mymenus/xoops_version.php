@@ -119,7 +119,6 @@ $modversion['blocks'][] = array(
 
 // ------------------- Templates ------------------- //
 
-
 // ------------------- Config ------------------- //
 $modversion['config'][] = array(
     'name'        => "admin_perpage",

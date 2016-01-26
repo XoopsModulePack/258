@@ -47,28 +47,28 @@ if (!defined('XOOPS_ROOT_PATH')) {
 
 class RwbannerAbout
 {
-    var $_lang_aboutTitle;
-    var $_lang_author_info;
-    var $_lang_developer_lead;
-    var $_lang_developer_contributor;
-    var $_lang_developer_website;
-    var $_lang_developer_email;
-    var $_lang_developer_credits;
-    var $_lang_module_info;
-    var $_lang_module_status;
-    var $_lang_module_release_date;
-    var $_lang_module_demo;
-    var $_lang_module_support;
-    var $_lang_module_bug;
-    var $_lang_module_submit_bug;
-    var $_lang_module_feature;
-    var $_lang_module_submit_feature;
-    var $_lang_module_disclaimer;
-    var $_lang_author_word;
-    var $_lang_version_history;
-    var $_lang_by;
+    public $_lang_aboutTitle;
+    public $_lang_author_info;
+    public $_lang_developer_lead;
+    public $_lang_developer_contributor;
+    public $_lang_developer_website;
+    public $_lang_developer_email;
+    public $_lang_developer_credits;
+    public $_lang_module_info;
+    public $_lang_module_status;
+    public $_lang_module_release_date;
+    public $_lang_module_demo;
+    public $_lang_module_support;
+    public $_lang_module_bug;
+    public $_lang_module_submit_bug;
+    public $_lang_module_feature;
+    public $_lang_module_submit_feature;
+    public $_lang_module_disclaimer;
+    public $_lang_author_word;
+    public $_lang_version_history;
+    public $_lang_by;
 
-    function RwbannerAbout($aboutTitle='About')
+    public function RwbannerAbout($aboutTitle='About')
     {
         global $xoopsModule, $xoopsConfig;
         $fileName = XOOPS_ROOT_PATH . "/modules/" . $xoopsModule->getVar('dirname') . '/language/' . $xoopsConfig['language'] . '/modinfo.php';
@@ -99,12 +99,11 @@ class RwbannerAbout
         $this->_lang_by                    = _MI_RWBANNER_BY;
     }
 
-    function render()
+    public function render()
     {
-
         $myts = &MyTextSanitizer::getInstance();
 
-        Global $xoopsModule;
+        global $xoopsModule;
 
         xoops_cp_header();
         // rwbanner_adminMenu('',_AM_RWBANNER_ABOUT);
@@ -140,31 +139,30 @@ class RwbannerAbout
         echo "<td colspan='2' class='bg3' align='left'><b>" . $this->_lang_author_info . "</b></td>";
         echo "</tr>";
 
-        If ($versioninfo->getInfo('developer_lead') != '') {
+        if ($versioninfo->getInfo('developer_lead') != '') {
             echo "<tr>";
             echo "<td class='head' width = '150px' align='left'>" . $this->_lang_developer_lead . "</td>";
             echo "<td class='even' align='left'>" . $versioninfo->getInfo('developer_lead') . "</td>";
             echo "</tr>";
         }
-        If ($versioninfo->getInfo('developer_contributor') != '') {
+        if ($versioninfo->getInfo('developer_contributor') != '') {
             echo "<tr>";
             echo "<td class='head' width = '150px' align='left'>" . $this->_lang_developer_contributor . "</td>";
             echo "<td class='even' align='left'>" . $versioninfo->getInfo('developer_contributor') . "</td>";
             echo "</tr>";
         }
-        If ($versioninfo->getInfo('developer_website_url') != '') {
+        if ($versioninfo->getInfo('developer_website_url') != '') {
             echo "<tr>";
             echo "<td class='head' width = '150px' align='left'>" . $this->_lang_developer_website . "</td>";
             echo "<td class='even' align='left'><a href='" . $versioninfo->getInfo('developer_website_url') . "' target='blank'>" . $versioninfo->getInfo('developer_website_name') . "</a></td>";
             echo "</tr>";
         }
-        If ($versioninfo->getInfo('developer_email') != '') {
+        if ($versioninfo->getInfo('developer_email') != '') {
             echo "<tr>";
             echo "<td class='head' width = '150px' align='left'>" . $this->_lang_developer_email . "</td>";
             echo "<td class='even' align='left'><a href='mailto:" . $versioninfo->getInfo('developer_email') . "'>" . $versioninfo->getInfo('developer_email') . "</a></td>";
             echo "</tr>";
         }
-
 
         echo "</table>";
         echo "<br />\n";
@@ -174,42 +172,41 @@ class RwbannerAbout
         echo "<td colspan='2' class='bg3' align='left'><b>" . $this->_lang_module_info . "</b></td>";
         echo "</tr>";
 
-        If ($versioninfo->getInfo('date') != '') {
+        if ($versioninfo->getInfo('date') != '') {
             echo "<tr>";
             echo "<td class='head' width = '200' align='left'>" . $this->_lang_module_release_date . "</td>";
             echo "<td class='even' align='left'>" . $versioninfo->getInfo('date') . "</td>";
             echo "</tr>";
         }
 
-
-        If ($versioninfo->getInfo('status') != '') {
+        if ($versioninfo->getInfo('status') != '') {
             echo "<tr>";
             echo "<td class='head' width = '200' align='left'>" . $this->_lang_module_status . "</td>";
             echo "<td class='even' align='left'>" . $versioninfo->getInfo('status') . "</td>";
             echo "</tr>";
         }
 
-        If ($versioninfo->getInfo('demo_site_url') != '') {
+        if ($versioninfo->getInfo('demo_site_url') != '') {
             echo "<tr>";
             echo "<td class='head' align='left'>" . $this->_lang_module_demo . "</td>";
             echo "<td class='even' align='left'><a href='" . $versioninfo->getInfo('demo_site_url') . "' target='blank'>" . $versioninfo->getInfo('demo_site_name') . "</a></td>";
             echo "</tr>";
         }
 
-        If ($versioninfo->getInfo('support_site_url') != '') {
+        if ($versioninfo->getInfo('support_site_url') != '') {
             echo "<tr>";
             echo "<td class='head' align='left'>" . $this->_lang_module_support . "</td>";
             echo "<td class='even' align='left'><a href='" . $versioninfo->getInfo('support_site_url') . "' target='blank'>" . $versioninfo->getInfo('support_site_name') . "</a></td>";
             echo "</tr>";
         }
 
-        If ($versioninfo->getInfo('submit_bug') != '') {
+        if ($versioninfo->getInfo('submit_bug') != '') {
             echo "<tr>";
             echo "<td class='head' align='left'>" . $this->_lang_module_bug . "</td>";
             echo "<td class='even' align='left'><a href='" . $versioninfo->getInfo('submit_bug') . "' target='blank'>" . $this->_lang_module_submit_bug . "</a></td>";
             echo "</tr>";
         }
-        If ($versioninfo->getInfo('submit_feature') != '') {
+        if ($versioninfo->getInfo('submit_feature') != '') {
             echo "<tr>";
             echo "<td class='head' align='left'>" . $this->_lang_module_feature . "</td>";
             echo "<td class='even' align='left'><a href='" . $versioninfo->getInfo('submit_feature') . "' target='blank'>" . $this->_lang_module_submit_feature . "</a></td>";
@@ -218,7 +215,7 @@ class RwbannerAbout
 
         echo "</table>";
         // Warning
-        If ($versioninfo->getInfo('warning') != '') {
+        if ($versioninfo->getInfo('warning') != '') {
             echo "<br />\n";
             echo "<table width='100%' cellspacing=1 cellpadding=3 border=0 class = outer>";
             echo "<tr>";
@@ -232,7 +229,7 @@ class RwbannerAbout
             echo "</table>";
         }
         // Author's note
-        If ($versioninfo->getInfo('author_word') != '') {
+        if ($versioninfo->getInfo('author_word') != '') {
             echo "<br />\n";
             echo "<table width='100%' cellspacing=1 cellpadding=3 border=0 class = outer>";
             echo "<tr>";
@@ -247,7 +244,7 @@ class RwbannerAbout
         }
 
         // Version History
-        If ($versioninfo->getInfo('version_history') != '') {
+        if ($versioninfo->getInfo('version_history') != '') {
             echo "<br />\n";
             echo "<table width='100%' cellspacing=1 cellpadding=3 border=0 class = outer>";
             echo "<tr>";
@@ -274,5 +271,4 @@ class RwbannerAbout
 
         xoops_cp_footer();
     }
-
 }

@@ -47,7 +47,7 @@ if ($pageType == 1) {
     $menu->addElement(new XoopsFormLabel('', _AM_ABOUT_PAGE_LINK_MENU));
     $form->addElement($menu, true);
 
-    $editorTray =  new XoopsFormElementTray( _AM_ABOUT_PAGE_TEXT , '<br />' ) ;
+    $editorTray =  new XoopsFormElementTray(_AM_ABOUT_PAGE_TEXT, '<br />') ;
     if (class_exists('XoopsFormEditor')) {
         $options['name']      = 'page_text';
         $options['value']     = $page_obj->getVar('page_text');
@@ -62,8 +62,6 @@ if ($pageType == 1) {
         $editorTray->addElement($pageEditor);
     }
     $form->addElement($editorTray);
-
-
 
     // Template set
     $templates = about_getTemplateList("page");

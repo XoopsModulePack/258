@@ -19,10 +19,10 @@ if (!defined('NEWBB_FUNCTIONS_READ')) {
     define('NEWBB_FUNCTIONS_READ', 1);
 
     /**
-     * @param      $type
-     * @param      $item_id
-     * @param      $post_id
-     * @param null $uid
+     * @param        $type
+     * @param        $item_id
+     * @param        $post_id
+     * @param  null  $uid
      * @return mixed
      */
     function newbb_setRead($type, $item_id, $post_id, $uid = null)
@@ -33,9 +33,9 @@ if (!defined('NEWBB_FUNCTIONS_READ')) {
     }
 
     /**
-     * @param      $type
-     * @param      $item_id
-     * @param null $uid
+     * @param        $type
+     * @param        $item_id
+     * @param  null  $uid
      * @return mixed
      */
     function newbb_getRead($type, $item_id, $uid = null)
@@ -46,8 +46,8 @@ if (!defined('NEWBB_FUNCTIONS_READ')) {
     }
 
     /**
-     * @param int  $status
-     * @param null $uid
+     * @param  int   $status
+     * @param  null  $uid
      * @return mixed
      */
     function newbb_setRead_forum($status = 0, $uid = null)
@@ -58,9 +58,9 @@ if (!defined('NEWBB_FUNCTIONS_READ')) {
     }
 
     /**
-     * @param int  $status
-     * @param int  $forum_id
-     * @param null $uid
+     * @param  int   $status
+     * @param  int   $forum_id
+     * @param  null  $uid
      * @return mixed
      */
     function newbb_setRead_topic($status = 0, $forum_id = 0, $uid = null)
@@ -71,9 +71,9 @@ if (!defined('NEWBB_FUNCTIONS_READ')) {
     }
 
     /**
-     * @param      $type
-     * @param      $items
-     * @param null $uid
+     * @param        $type
+     * @param        $items
+     * @param  null  $uid
      * @return mixed
      */
     function newbb_isRead($type, &$items, $uid = null)

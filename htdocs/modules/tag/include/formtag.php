@@ -34,7 +34,7 @@ class XoopsFormTag extends TagFormTag
      * @param int        $catid     category id (applicable if $value is itemid)
      */
     public function __construct($name, $size, $maxlength, $value = null, $catid = 0)
-        {
+    {
         $GLOBALS['xoopsLogger']->addDeprecated(__CLASS__ . ' is deprecated use TagFormTag instead.');
         parent::__construct($name, $size, $maxlength, $value, $catid);
     }

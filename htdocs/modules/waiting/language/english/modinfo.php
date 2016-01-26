@@ -5,11 +5,11 @@
 // WEB      ::  Ryu's Planning <http://ryus.joetsu.info/>
 //
 // The name of this module
-define('_MI_WAITING_NAME',"Waiting Contents");
+define('_MI_WAITING_NAME', "Waiting Contents");
 // A brief description of this module
-define('_MI_WAITING_DESC',"Displays a block of waiting contents for 3rd party modules.");
+define('_MI_WAITING_DESC', "Displays a block of waiting contents for 3rd party modules.");
 // Names of blocks for this module (Not all module has blocks)
-define('_MI_WAITING_BNAME1',"Waiting");
-define('_MI_WAITING_MENU_HOME',"Home");
-define('_MI_WAITING_MENU_ABOUT',"About");
-define('_MI_WAITING_MENU_PLUGINS',"Plugins");
+define('_MI_WAITING_BNAME1', "Waiting");
+define('_MI_WAITING_MENU_HOME', "Home");
+define('_MI_WAITING_MENU_ABOUT', "About");
+define('_MI_WAITING_MENU_PLUGINS', "Plugins");

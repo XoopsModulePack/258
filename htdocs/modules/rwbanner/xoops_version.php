@@ -99,9 +99,9 @@ $modversion['system_menu'] = 1;
 $modversion['hasMain'] = 1;
 global $xoopsModuleConfig, $xoopsUser;
 $show = (isset($xoopsModuleConfig['show_cad_form']) && $xoopsModuleConfig['show_cad_form'] == 1)?1:0;
-if ($show && $xoopsUser){
-  $modversion['sub'][1]['name'] = _MI_RWBANNER_MENU_TITLE3;
-  $modversion['sub'][1]['url'] = 'inser.php';
+if ($show && $xoopsUser) {
+    $modversion['sub'][1]['name'] = _MI_RWBANNER_MENU_TITLE3;
+    $modversion['sub'][1]['url'] = 'inser.php';
 }
 
 //Blocks

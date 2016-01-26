@@ -8,7 +8,7 @@
  * @package xhelp
  */
 
-Class smartpartnerBaseObjectHandler extends XoopsObjectHandler
+class smartpartnerBaseObjectHandler extends XoopsObjectHandler
 {
     /**
      * Database connection
@@ -16,21 +16,21 @@ Class smartpartnerBaseObjectHandler extends XoopsObjectHandler
      * @var object
      * @access    private
      */
-    var $_db;
+    public $_db;
 
     /**
      * Autoincrementing DB fieldname
      * @var string
      * @access private
      */
-    var $_idfield = 'id';
+    public $_idfield = 'id';
 
     /**
      * Constructor
      *
      * @param object $db reference to a xoopsDB object
      */
-    function init(&$db)
+    public function init(&$db)
     {
         $this->_db = $db;
     }
@@ -40,7 +40,7 @@ Class smartpartnerBaseObjectHandler extends XoopsObjectHandler
      * @return object {@link smartpartnerBaseObject}
      * @access public
      */
-    function &create()
+    public function &create()
     {
         return new $this->classname();
     }
@@ -51,7 +51,7 @@ Class smartpartnerBaseObjectHandler extends XoopsObjectHandler
      * @return mixed object if id exists, false if not
      * @access public
      */
-    function &get($id)
+    public function &get($id)
     {
         $id = intval($id);
         if ($id > 0) {
@@ -78,7 +78,7 @@ Class smartpartnerBaseObjectHandler extends XoopsObjectHandler
      * @return array  array of objects
      * @access  public
      */
-    function &getObjects($criteria = null, $id_as_key = false)
+    public function &getObjects($criteria = null, $id_as_key = false)
     {
         $ret = array();
         $limit = $start = 0;
@@ -110,7 +110,7 @@ Class smartpartnerBaseObjectHandler extends XoopsObjectHandler
         return $ret;
     }
 
-    function insert(&$obj, $force = false)
+    public function insert(&$obj, $force = false)
     {
         // Make sure object is of correct type
         if (strcasecmp($this->classname, get_class($obj)) != 0) {
@@ -163,7 +163,7 @@ Class smartpartnerBaseObjectHandler extends XoopsObjectHandler
      * @return string SQL query
      * @access private
      */
-    function _selectQuery($criteria = null)
+    public function _selectQuery($criteria = null)
     {
         $sql = sprintf('SELECT * FROM %s', $this->_db->prefix($this->_dbtable));
         if (isset($criteria) && is_subclass_of($criteria, 'criteriaelement')) {
@@ -184,7 +184,7 @@ Class smartpartnerBaseObjectHandler extends XoopsObjectHandler
      * @return int    count of objects
      * @access public
      */
-    function getCount($criteria = null)
+    public function getCount($criteria = null)
     {
         $sql = 'SELECT COUNT(*) FROM ' . $this->_db->prefix($this->_dbtable);
         if (isset($criteria) && is_subclass_of($criteria, 'criteriaelement')) {
@@ -206,7 +206,7 @@ Class smartpartnerBaseObjectHandler extends XoopsObjectHandler
      * @return bool   deletion successful?
      * @access public
      */
-    function delete(&$obj, $force = false)
+    public function delete(&$obj, $force = false)
     {
         if (strcasecmp($this->classname, get_class($obj)) != 0) {
             return false;
@@ -233,7 +233,7 @@ Class smartpartnerBaseObjectHandler extends XoopsObjectHandler
      * @return bool   FALSE if deletion failed
      * @access    public
      */
-    function deleteAll($criteria = null)
+    public function deleteAll($criteria = null)
     {
         $sql = 'DELETE FROM ' . $this->_db->prefix($this->_dbtable);
         if (isset($criteria) && is_subclass_of($criteria, 'criteriaelement')) {
@@ -253,7 +253,7 @@ Class smartpartnerBaseObjectHandler extends XoopsObjectHandler
      * @return bool   FALSE if update failed
      * @access    public
      */
-    function updateAll($fieldname, $fieldvalue, $criteria = null)
+    public function updateAll($fieldname, $fieldvalue, $criteria = null)
     {
         $set_clause = is_numeric($fieldvalue) ? $fieldname . ' = ' . $fieldvalue : $fieldname . ' = ' . $this->_db->quoteString($fieldvalue);
         $sql = 'UPDATE ' . $this->_db->prefix($this->_dbtable) . ' SET ' . $set_clause;
@@ -267,18 +267,17 @@ Class smartpartnerBaseObjectHandler extends XoopsObjectHandler
         return true;
     }
 
-    function _insertQuery(&$obj)
+    public function _insertQuery(&$obj)
     {
         return false;
     }
 
-    function _updateQuery(&$obj)
+    public function _updateQuery(&$obj)
     {
         return false;
-
     }
 
-    function _deleteQuery(&$obj)
+    public function _deleteQuery(&$obj)
     {
         return false;
     }
@@ -290,7 +289,7 @@ Class smartpartnerBaseObjectHandler extends XoopsObjectHandler
      * @return object {@link pagesCategoryHandler}
      * @access public
      */
-    function &getInstance(&$db)
+    public function &getInstance(&$db)
     {
         static $instance;
         if (!isset($instance)) {

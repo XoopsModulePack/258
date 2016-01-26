@@ -35,10 +35,9 @@ $xoopsOption['template_main'] = 'xoopsheadline_index.html';
 include XOOPS_ROOT_PATH . '/header.php';
 
 $criteria = new CriteriaCompo();
-$criteria->add(new Criteria('headline_display',1, '='));
+$criteria->add(new Criteria('headline_display', 1, '='));
 $criteria->add(new Criteria('headline_xml', '', '!='));
-switch (intval($xoopsModuleConfig['sortby']))
-{
+switch (intval($xoopsModuleConfig['sortby'])) {
     case 1:
         $criteria->setSort('headline_name');
         $criteria->setOrder('DESC');
@@ -70,24 +69,24 @@ for ($i = 0; $i < $count; $i++) {
     $xoopsTpl->append('feed_sites', array('id' => $thisId, 'name' => $headlines[$i]->getVar('headline_name'), 'editurl' => $editUrl));
 }
 $xoopsTpl->assign('lang_headlines', _MD_HEADLINES_HEADLINES);
-if ( 0 == $hlid ) {
-  $hlid = $headlines[0]->getVar('headline_id');
+if (0 == $hlid) {
+    $hlid = $headlines[0]->getVar('headline_id');
 }
 if ($hlid > 0) {
-  $headline =& $hlman->get($hlid);
-  if (is_object($headline)) {
-    $renderer = XoopsheadlineUtility::xoopsheadline_getrenderer($headline);
-    if (!$renderer->renderFeed()) {
-      if (2 == $xoopsConfig['debug_mode']) {
-        $xoopsTpl->assign('headline', '<p>'
+    $headline =& $hlman->get($hlid);
+    if (is_object($headline)) {
+        $renderer = XoopsheadlineUtility::xoopsheadline_getrenderer($headline);
+        if (!$renderer->renderFeed()) {
+            if (2 == $xoopsConfig['debug_mode']) {
+                $xoopsTpl->assign('headline', '<p>'
                                         . sprintf(_MD_HEADLINES_FAILGET, $headline->getVar('headline_name'))
                                         .'<br />'
                                         .$renderer->getErrors()
                                         .'</p>');
-      }
-    } else {
-      $xoopsTpl->assign('headline', $renderer->getFeed());
+            }
+        } else {
+            $xoopsTpl->assign('headline', $renderer->getFeed());
+        }
     }
-  }
 }
 include XOOPS_ROOT_PATH . '/footer.php';

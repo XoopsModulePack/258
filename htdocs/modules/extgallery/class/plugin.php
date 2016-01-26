@@ -20,19 +20,19 @@ if (!defined("XOOPS_ROOT_PATH")) {
     die("XOOPS root path not defined");
 }
 
-class ExtgalleryPluginHandler {
+class ExtgalleryPluginHandler
+{
 
-    function ExtgalleryPluginHandler(&$db) {
-
+    public function ExtgalleryPluginHandler(&$db)
+    {
     }
 
-    function triggerEvent($event, &$param) {
-
+    public function triggerEvent($event, &$param)
+    {
         include XOOPS_ROOT_PATH."/modules/extgallery/plugin/plugin.php";
 
-        foreach($extgalleryPlugin as $plugin=>$status) {
-
-            if(!$status) {
+        foreach ($extgalleryPlugin as $plugin=>$status) {
+            if (!$status) {
                 continue;
             }
 
@@ -42,25 +42,19 @@ class ExtgalleryPluginHandler {
 
             $pluginObj = new $class();
             $pluginObj->$event($param);
-
         }
-
     }
 
-    function includeLangFile() {
-
+    public function includeLangFile()
+    {
         include XOOPS_ROOT_PATH."/modules/extgallery/plugin/plugin.php";
 
-        foreach($extgalleryPlugin as $plugin=>$status) {
-
-            if(!$status) {
+        foreach ($extgalleryPlugin as $plugin=>$status) {
+            if (!$status) {
                 continue;
             }
 
             include_once XOOPS_ROOT_PATH."/modules/extgallery/plugin/$plugin/language/english/main.php";
-
         }
-
     }
-
 }

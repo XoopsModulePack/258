@@ -27,7 +27,7 @@ function xoops_module_update_mylinks_base(&$xoopsModule, $prev_version)
     $ref = xoops_getenv('HTTP_REFERER');  //referer check
     if ($ref == '' || strpos($ref, XOOPS_URL.'/modules/system/admin.php') === 0) {
         /* module specific part */
-        $minValueArray = explode('.', $minUpgradeFrom );
+        $minValueArray = explode('.', $minUpgradeFrom);
         $installedVersion = intval($prev_version);
         $minSupportedVersion = ($minValueArray[0] * 100) + ($minValueArray[1] * 10) + $minValueArray[2];
         $modErrMsg = "<span style='color: red; font-weight: bold;'>This module cannot be upgraded from version {$installedVersion}.</span>";
@@ -46,8 +46,8 @@ function xoops_module_update_mylinks_base(&$xoopsModule, $prev_version)
 /**
  * eval functions to support module relocation (directory renaming)
  */
-eval( 'function xoops_module_update_' . $mylinksDir . '($module=NULL, $prev_version)
+eval('function xoops_module_update_' . $mylinksDir . '($module=NULL, $prev_version)
         {
         return xoops_module_update_mylinks_base($module, $prev_version);
         }
-    ' );
+    ');

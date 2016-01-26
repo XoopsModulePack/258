@@ -31,7 +31,7 @@
  * @package   xoopstubetree
  * @access    public
  */
-class XoopsTubeTree
+class xoopstubetree
 {
     public $table; //table with parent-child structure
     public $id; //name of unique id for records in table $table
@@ -49,7 +49,8 @@ class XoopsTubeTree
      */
     public function __construct($tableName, $idName, $pidName)
     {
-        $this->db = & XoopsDatabaseFactory::getDatabaseConnection();;
+        $this->db = & XoopsDatabaseFactory::getDatabaseConnection();
+        ;
         $this->table = $tableName;
         $this->id    = $idName;
         $this->pid   = $pidName;
@@ -99,7 +100,7 @@ class XoopsTubeTree
         if ($count == 0) {
             return $idarray;
         }
-        while (list ($id) = $this->db->fetchRow($result)) {
+        while (list($id) = $this->db->fetchRow($result)) {
             array_push($idarray, $id);
         }
 
@@ -126,7 +127,7 @@ class XoopsTubeTree
         if ($count == 0) {
             return $idarray;
         }
-        while (list ($r_id) = $this->db->fetchRow($result)) {
+        while (list($r_id) = $this->db->fetchRow($result)) {
             array_push($idarray, $r_id);
             $idarray = $this->getAllChildId($r_id, $order, $idarray);
         }
@@ -150,7 +151,7 @@ class XoopsTubeTree
             $sql .= " ORDER BY $order";
         }
         $result = $this->db->query($sql);
-        list ($r_id) = $this->db->fetchRow($result);
+        list($r_id) = $this->db->fetchRow($result);
         if ($r_id == 0) {
             return $idarray;
         }
@@ -178,7 +179,7 @@ class XoopsTubeTree
         if ($this->db->getRowsNum($result) == 0) {
             return $path;
         }
-        list ($parentid, $name) = $this->db->fetchRow($result);
+        list($parentid, $name) = $this->db->fetchRow($result);
         $myts = MyTextSanitizer::getInstance();
         $name = $myts->htmlspecialchars($name);
         $path = "/" . $name . $path . "";
@@ -220,7 +221,7 @@ class XoopsTubeTree
         if ($none) {
             echo "<option value='0'>----</option>\n";
         }
-        while (list ($catid, $name) = $this->db->fetchRow($result)) {
+        while (list($catid, $name) = $this->db->fetchRow($result)) {
             $sel = "";
             if ($catid == $preset_id) {
                 $sel = " selected='selected'";
@@ -259,7 +260,7 @@ class XoopsTubeTree
         if ($this->db->getRowsNum($result) == 0) {
             return $path;
         }
-        list ($parentid, $name) = $this->db->fetchRow($result);
+        list($parentid, $name) = $this->db->fetchRow($result);
         $myts = MyTextSanitizer::getInstance();
         $name = $myts->htmlspecialchars($name);
         $path = "<a href='" . $funcURL . "&amp;" . $this->id . "=" . $sel_id . "'>" . $name . "</a>" . $path . "";
@@ -288,7 +289,7 @@ class XoopsTubeTree
         if ($this->db->getRowsNum($result) == 0) {
             return $path;
         }
-        list ($parentid) = $this->db->fetchRow($result);
+        list($parentid) = $this->db->fetchRow($result);
         $path = "/" . $sel_id . $path . "";
         if ($parentid == 0) {
             return $path;

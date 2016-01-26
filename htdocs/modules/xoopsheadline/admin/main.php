@@ -61,10 +61,10 @@ if (isset($_GET['op']) && ($_GET['op'] == 'delete' || $_GET['op'] == 'edit' || $
  */
 //@TODO: Replace following routine by only importing known variables
  if (isset($_POST)) {
-    foreach ($_POST as $k => $v) {
-        ${$k} = $v;
-    }
-}
+     foreach ($_POST as $k => $v) {
+         ${$k} = $v;
+     }
+ }
 
 switch ($op) {
     case 'list':
@@ -106,14 +106,14 @@ switch ($op) {
 //               . "      <td class='{$tdclass}' style='vertical-align: middle; padding-left: 1em;'>" . $headlines[$i]->getVar('headline_name') . "</td>\n"
                . "      <td class='center {$tdclass}' style='vertical-align: middle;'><select name=\"headline_cachetime[]\">";
             foreach ($cachetime as $value => $name) {
-              $sel = ($value == $headlines[$i]->getVar('headline_cachetime')) ? " selected=\"selected\"" : "";
+                $sel = ($value == $headlines[$i]->getVar('headline_cachetime')) ? " selected=\"selected\"" : "";
                 echo "<option value=\"{$value}\"{$sel}>{$name}</option>";
             }
             echo "</select></td>\n"
                . "      <td class='center {$tdclass}' style='vertical-align: middle;'><select name=\"headline_encoding[]\">";
             foreach ($encodings as $value => $name) {
                 $sel = ($value == $headlines[$i]->getVar('headline_encoding')) ? " selected = \"selected\"" : "";
-              echo "<option value=\"{$value}\"{$sel}>{$name}</option>";
+                echo "<option value=\"{$value}\"{$sel}>{$name}</option>";
             }
             $chkd = (1 == $headlines[$i]->getVar('headline_display')) ? " checked=\"checked\"" : "";
             $chkb = (1 == $headlines[$i]->getVar('headline_asblock')) ? " checked=\"checked\"" : "";

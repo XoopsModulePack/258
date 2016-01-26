@@ -44,7 +44,7 @@ class TagFormTag extends XoopsFormText
         }
         $value = empty($value) ? "" : $value;
         // itemid
-        if (!empty($value) && is_numeric($value) && ($GLOBALS["xoopsModule"] instanceof XoopsModule) ) {
+        if (!empty($value) && is_numeric($value) && ($GLOBALS["xoopsModule"] instanceof XoopsModule)) {
             $modid = $GLOBALS["xoopsModule"]->getVar("mid");
             $tag_handler =& xoops_getmodulehandler("tag", "tag");
             if ($tags = $tag_handler->getByItem($value, $modid, $catid)) {
@@ -76,7 +76,7 @@ class TagFormTag extends XoopsFormText
      *
      * @return string HTML
      */
-    function render()
+    public function render()
     {
         $delimiters = tag_get_delimiter();
         foreach (array_keys($delimiters) as $key) {

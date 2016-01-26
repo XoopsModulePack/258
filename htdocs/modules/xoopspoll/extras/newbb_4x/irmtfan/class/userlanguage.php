@@ -21,7 +21,8 @@ class User_language extends User
      * User_language constructor.
      * @param $user
      */
-    public function __construct(&$user) {
+    public function __construct(&$user)
+    {
         $this->User($user);
     }
     /**
@@ -29,7 +30,7 @@ class User_language extends User
      */
     public function User_language(&$user)
     {
-       $this->__construct($user);
+        $this->__construct($user);
     }
 
     /**

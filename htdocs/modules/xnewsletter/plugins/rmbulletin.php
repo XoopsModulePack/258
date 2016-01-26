@@ -68,7 +68,7 @@ function xnewsletter_plugin_getdata_rmbulletin($cat_id, $action_after_read, $lim
     $sql = "SELECT `email`";
     $sql .= " FROM " . $xoopsDB->prefix("rmb_users");
     if (!$result_users = $xoopsDB->query($sql)) {
-        die ("MySQL-Error: " . mysql_error());
+        die("MySQL-Error: " . mysql_error());
     }
     while ($lineArray = mysql_fetch_array($result_users)) {
         ++$i;

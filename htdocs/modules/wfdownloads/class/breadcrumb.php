@@ -32,13 +32,13 @@ defined('XOOPS_ROOT_PATH') || die('XOOPS root path not defined');
  */
 class WfdownloadsBreadcrumb
 {
-    var $dirname;
-    var $_bread = array();
+    public $dirname;
+    public $_bread = array();
 
     /**
      *
      */
-    function __construct()
+    public function __construct()
     {
         $this->dirname =  basename(dirname(__DIR__));
     }
@@ -49,7 +49,7 @@ class WfdownloadsBreadcrumb
      * @param string $title
      * @param string $link
      */
-    function addLink( $title='', $link='' )
+    public function addLink($title='', $link='')
     {
         $this->_bread[] = array(
             'link'  => $link,
@@ -61,12 +61,12 @@ class WfdownloadsBreadcrumb
      * Render Wfdownloads BreadCrumb
      *
      */
-    function render()
+    public function render()
     {
         if (!isset($GLOBALS['xoTheme']) || !is_object($GLOBALS['xoTheme'])) {
             include_once $GLOBALS['xoops']->path('/class/theme.php');
             $GLOBALS['xoTheme'] = new xos_opal_Theme();
-            }
+        }
 
         require_once $GLOBALS['xoops']->path('class/template.php');
         $breadcrumbTpl = new XoopsTpl();

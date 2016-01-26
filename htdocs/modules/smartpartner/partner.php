@@ -16,7 +16,7 @@ global $xoopsUser, $xoopsConfig, $xoopsModuleConfig, $xoopsModule;
 
 $id = isset($_GET['id']) ? intval($_GET['id']) : 0;
 
-If ($id == 0) {
+if ($id == 0) {
     redirect_header("javascript:history.go(-1)", 2, _MD_SPARTNER_NOPARTNERSELECTED);
     exit();
 }
@@ -25,7 +25,7 @@ If ($id == 0) {
 $partnerObj = new SmartpartnerPartner($id);
 
 // If the selected partner was not found, exit
-If ($partnerObj->notLoaded()) {
+if ($partnerObj->notLoaded()) {
     redirect_header("javascript:history.go(-1)", 2, _MD_SPARTNER_NOPARTNERSELECTED);
     exit();
 }
@@ -35,7 +35,7 @@ $grantedItems = $smartpermissions_handler->getGrantedItems('full_view');
 $grantedItems = array_merge($grantedItems, $smartpermissions_handler->getGrantedItems('partial_view'));
 
 // Chech the status
-If ($partnerObj->status() != _SPARTNER_STATUS_ACTIVE || (!in_array($id, $grantedItems))) {
+if ($partnerObj->status() != _SPARTNER_STATUS_ACTIVE || (!in_array($id, $grantedItems))) {
     redirect_header("javascript:history.go(-1)", 2, _NOPERM);
     exit();
 }
@@ -51,8 +51,7 @@ $filesObj = $partnerObj->getFiles();
 $files = array();
 $embeded_files = array();
 
-foreach ($filesObj as $fileObj)
-{
+foreach ($filesObj as $fileObj) {
     if ($fileObj->mimetype() == 'application/x-shockwave-flash') {
         $file['content'] = $fileObj->displayFlash();
 
@@ -73,7 +72,6 @@ foreach ($filesObj as $fileObj)
         $files[] = $file;
         unset($file);
     }
-
 }
 $partner['files'] = $files;
 $partner['embeded_files'] = $embeded_files;

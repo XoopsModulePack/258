@@ -43,7 +43,7 @@ function bExtcalUpcomingByCategoryShow($options)
         $tCats[$t[$h]['cat_id']] = $t[$h];
     }
 
-    $te = Array();
+    $te = array();
 
     for ($h = 0, $count = count($events); $h < $count; ++$h) {
         $catId = $events[$h]['cat_id'];

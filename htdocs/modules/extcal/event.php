@@ -131,9 +131,7 @@ if ($extcalConfig['whos_going']) {
                 $eventmember['member']['disabled'] = ' disabled="disabled"';
             }
         }
-
     }
-
 }
 
 // ### For Who's not Going function ###
@@ -173,7 +171,6 @@ if ($extcalConfig['whosnot_going']) {
             $eventmember['notmember']['joinevent_mode'] = 'add';
         }
     }
-
 }
 
 // If who's going or not going function is enabled

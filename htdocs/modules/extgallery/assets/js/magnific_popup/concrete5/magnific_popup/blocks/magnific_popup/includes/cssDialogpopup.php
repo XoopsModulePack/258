@@ -4,7 +4,7 @@ $page   = Page::getCurrentPage();
 $custom = $customAnim;
 
 if ($dialogType == 'custom-anim') {
-  $dialogType = $custom;
+    $dialogType = $custom;
 }
 ?>
 <div id="dialogPopup-<?php echo $bID; ?>">

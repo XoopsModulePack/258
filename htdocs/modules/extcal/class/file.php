@@ -11,7 +11,7 @@ include_once XOOPS_ROOT_PATH . '/class/uploader.php';
 class ExtcalFile extends XoopsObject
 {
 
-    function ExtcalFile()
+    public function ExtcalFile()
     {
         $this->initVar('file_id', XOBJ_DTYPE_INT, null, false);
         $this->initVar('file_name', XOBJ_DTYPE_TXTBOX, null, false, 255);
@@ -24,7 +24,6 @@ class ExtcalFile extends XoopsObject
         $this->initVar('event_id', XOBJ_DTYPE_INT, null, false);
         $this->initVar('uid', XOBJ_DTYPE_INT, null, false);
     }
-
 }
 
 /**
@@ -36,7 +35,7 @@ class ExtcalFileHandler extends ExtcalPersistableObjectHandler
     /**
      * @param $db
      */
-    function __construct(&$db)
+    public function __construct(&$db)
     {
         parent::__construct($db, 'extcal_file', _EXTCAL_CLN_FILE, 'file_id');
     }
@@ -46,9 +45,8 @@ class ExtcalFileHandler extends ExtcalPersistableObjectHandler
      *
      * @return bool
      */
-    function createFile($eventId)
+    public function createFile($eventId)
     {
-
         $userId = ($GLOBALS['xoopsUser']) ? $GLOBALS['xoopsUser']->getVar('uid') : 0;
 
         $allowedMimeType = array();
@@ -91,7 +89,7 @@ class ExtcalFileHandler extends ExtcalPersistableObjectHandler
     /**
      * @param $file
      */
-    function deleteFile(&$file)
+    public function deleteFile(&$file)
     {
         $this->_deleteFile($file);
         $this->delete($file->getVar('file_id'));
@@ -102,7 +100,7 @@ class ExtcalFileHandler extends ExtcalPersistableObjectHandler
      *
      * @return array
      */
-    function getEventFiles($eventId)
+    public function getEventFiles($eventId)
     {
         $criteria = new CriteriaCompo();
         $criteria->add(new Criteria('file_approved', 1));
@@ -114,7 +112,7 @@ class ExtcalFileHandler extends ExtcalPersistableObjectHandler
     /**
      * @param $eventId
      */
-    function updateEventFile($eventId)
+    public function updateEventFile($eventId)
     {
         $criteria = new CriteriaCompo();
         $criteria->add(new Criteria('file_approved', 1));
@@ -150,7 +148,7 @@ class ExtcalFileHandler extends ExtcalPersistableObjectHandler
      *
      * @return mixed
      */
-    function getFile($fileId)
+    public function getFile($fileId)
     {
         return $this->get($fileId);
     }
@@ -158,7 +156,7 @@ class ExtcalFileHandler extends ExtcalPersistableObjectHandler
     /**
      * @param $files
      */
-    function formatFilesSize(&$files)
+    public function formatFilesSize(&$files)
     {
         for (
             $i = 0; $i < count($files); ++$i
@@ -170,7 +168,7 @@ class ExtcalFileHandler extends ExtcalPersistableObjectHandler
     /**
      * @param $file
      */
-    function formatFileSize(&$file)
+    public function formatFileSize(&$file)
     {
         if ($file['file_size'] > 1000) {
             $file['formated_file_size']
@@ -183,7 +181,7 @@ class ExtcalFileHandler extends ExtcalPersistableObjectHandler
     /**
      * @param $file
      */
-    function _deleteFile(&$file)
+    public function _deleteFile(&$file)
     {
         if (file_exists(
             XOOPS_ROOT_PATH . "/uploads/extcal/" . $file->getVar('file_name')
@@ -193,5 +191,4 @@ class ExtcalFileHandler extends ExtcalPersistableObjectHandler
             );
         }
     }
-
 }

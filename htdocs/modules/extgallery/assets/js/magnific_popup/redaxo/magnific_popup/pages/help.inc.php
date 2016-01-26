@@ -1,6 +1,6 @@
 <?php
 
-$mypage = rex_request('page','string');
+$mypage = rex_request('page', 'string');
 $subpage = rex_request('subpage', 'string');
 $chapter = rex_request('chapter', 'string');
 $func = rex_request('func', 'string');
@@ -11,7 +11,7 @@ if (!class_exists('Parsedown')) {
 }
 
 // chapters
-$chapterpages = array (
+$chapterpages = array(
     '' => array($I18N->msg('magnific_popup_help_chapter_readme'), 'pages/help/readme.inc.php'),
     'changelog' => array($I18N->msg('magnific_popup_help_chapter_changelog'), 'pages/help/changelog.inc.php'),
     'license' => array($I18N->msg('magnific_popup_help_chapter_license'), 'pages/help/license.inc.php'),

@@ -42,20 +42,20 @@ class Image_Transform_Driver_Imagick extends Image_Transform
      * Handler of the imagick image ressource
      * @var array
      */
-    var $imageHandle;
+    public $imageHandle;
 
     /**
      * Handler of the image ressource before
      * the last transformation
      * @var array
      */
-    var $oldImage;
+    public $oldImage;
 
     /**
      *
      *
      */
-    function Image_Transform_Driver_Imagick()
+    public function Image_Transform_Driver_Imagick()
     {
         if (!PEAR::loadExtension('imagick')) {
             return PEAR::raiseError('The imagick extension can not be found.', true);
@@ -73,14 +73,14 @@ class Image_Transform_Driver_Imagick extends Image_Transform
      * @return mixed none or a PEAR error object on error
      * @see PEAR::isError()
      */
-    function load($image)
+    public function load($image)
     {
         $this->imageHandle = imagick_create();
-        if ( !is_resource( $this->imageHandle ) ) {
+        if (!is_resource($this->imageHandle)) {
             return PEAR::raiseError('Cannot initialize imagick image.', true);
         }
 
-        if ( !imagick_read($this->imageHandle, $image) ){
+        if (!imagick_read($this->imageHandle, $image)) {
             return PEAR::raiseError('The image file ' . $image . ' does\'t exist', true);
         }
         $this->image = $image;
@@ -99,9 +99,9 @@ class Image_Transform_Driver_Imagick extends Image_Transform
      * @return none
      * @see PEAR::isError()
      */
-    function _resize($new_x, $new_y)
+    public function _resize($new_x, $new_y)
     {
-        if ($img2 = imagick_copy_resize($this->imageHandle, $new_x, $new_y, IMAGICK_FILTER_CUBIC, 1)){
+        if ($img2 = imagick_copy_resize($this->imageHandle, $new_x, $new_y, IMAGICK_FILTER_CUBIC, 1)) {
             $this->oldImage = $this->imageHandle;
             $this->imageHandle =$img2;
             $this->new_x = $new_x;
@@ -121,13 +121,13 @@ class Image_Transform_Driver_Imagick extends Image_Transform
      * @return none
      * @see PEAR::isError()
      */
-    function rotate($angle,$options=null)
+    public function rotate($angle, $options=null)
     {
-        if ($img2 = imagick_copy_rotate ($this->imageHandle, $angle)){
+        if ($img2 = imagick_copy_rotate($this->imageHandle, $angle)) {
             $this->oldImage     = $this->imageHandle;
             $this->imageHandle  = $img2;
-            $this->new_x = imagick_get_attribute($img2,'width');
-            $this->new_y = imagick_get_attribute($img2,'height');
+            $this->new_x = imagick_get_attribute($img2, 'width');
+            $this->new_y = imagick_get_attribute($img2, 'height');
         } else {
             return PEAR::raiseError("Cannot create a new imagick imagick image for the resize.", true);
         }
@@ -151,7 +151,7 @@ class Image_Transform_Driver_Imagick extends Image_Transform
      * @return none
      * @see PEAR::isError()
      */
-    function addText($params)
+    public function addText($params)
     {
         $default_params = array(
                                 'text'          => 'This is a Text',
@@ -167,7 +167,7 @@ class Image_Transform_Driver_Imagick extends Image_Transform
 
         $color = is_array($color)?$this->colorarray2colorhex($color):strtolower($color);
 
-        imagick_annotate($this->imageHandle,array(
+        imagick_annotate($this->imageHandle, array(
                     "primitive"     => "text $x,$y ".$text,
                     "pointsize"     => $size,
                     "antialias"     => 0,
@@ -183,7 +183,7 @@ class Image_Transform_Driver_Imagick extends Image_Transform
      *
      * @return none
      */
-    function save($filename, $type='', $quality = 75)
+    public function save($filename, $type='', $quality = 75)
     {
         if ($type == '') {
             $type = strtoupper($type);
@@ -202,7 +202,7 @@ class Image_Transform_Driver_Imagick extends Image_Transform
      *
      * @return none
      */
-    function display($type = '', $quality = 75)
+    public function display($type = '', $quality = 75)
     {
         if ($type == '') {
             header('Content-type: image/' . $this->type);
@@ -219,17 +219,16 @@ class Image_Transform_Driver_Imagick extends Image_Transform
      *
      * @return none
      */
-    function free()
+    public function free()
     {
-        if(is_resource($this->imageHandle)){
+        if (is_resource($this->imageHandle)) {
             imagick_free($this->imageHandle);
         }
-        if(is_resource($this->oldImage)){
+        if (is_resource($this->oldImage)) {
             imagick_free($this->oldImage);
         }
 
         return true;
     }
-
 } // End class ImageIM
 ;

@@ -32,9 +32,9 @@ defined('XOOPS_ROOT_PATH') || exit('Restricted access');
  * uname
  * tags
  *
- * @var        array    $items    associative array of items: [modid][catid][itemid]
+ * @var array $items    associative array of items: [modid][catid][itemid]
  *
- * @return    boolean
+ * @return boolean
  *
  */
 function myalbum0_tag_iteminfo(&$items)
@@ -65,7 +65,7 @@ function myalbum0_tag_iteminfo(&$items)
                                                "link" => "photo.php?lid={$item_id}&cid=".$item_obj->getVar("cid"),
                                                "time" => $item_obj->getVar("date"),
                                                "tags" => tag_parse_tag($item_obj->getVar("tags", "n")),
-                                            "content" => $GLOBALS['myts']->displayTarea($text->getVar('description'),1,1,1,1,1,1),
+                                            "content" => $GLOBALS['myts']->displayTarea($text->getVar('description'), 1, 1, 1, 1, 1, 1),
             );
         }
     }
@@ -77,7 +77,7 @@ function myalbum0_tag_iteminfo(&$items)
 /**
  * Remove orphan tag-item links
  *
- * @return    boolean
+ * @return boolean
  *
  */
 function myalbum0_tag_synchronization($mid)

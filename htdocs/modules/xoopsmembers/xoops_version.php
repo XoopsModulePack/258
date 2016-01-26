@@ -19,7 +19,7 @@
  * @author John Neill
  * @version $Id: xoops_version.php 11483 2013-04-30 08:14:19Z beckmi $
  */
-defined( 'XOOPS_ROOT_PATH' ) or die( 'Restricted access' );
+defined('XOOPS_ROOT_PATH') or die('Restricted access');
 
 $modversion = array( 'name' => _XO_MI_MEMBERS_NAME,
     'description' => _XO_MI_MEMBERS_DESC,
@@ -34,7 +34,7 @@ $modversion = array( 'name' => _XO_MI_MEMBERS_NAME,
 //  'releasedate' => 'Friday 10.4.2009',
     'official' => 1,
     'image' => 'images/slogo.png',
-    'dirname' => basename( dirname( __FILE__ ) ),
+    'dirname' => basename(dirname(__FILE__)),
     'dirmoduleadmin' => '/Frameworks/moduleclasses/moduleadmin',
     'icons16' =>  '../../Frameworks/moduleclasses/icons/16',
     'icons32' =>  '../../Frameworks/moduleclasses/icons/32',

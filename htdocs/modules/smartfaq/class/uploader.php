@@ -28,7 +28,7 @@ class sf_uploader extends XoopsMediaUploader
      * @param int    $maxWidth
      * @param int    $maxHeight
      */
-    function sf_uploader($uploadDir, $allowedMimeTypes = 0, $maxFileSize = 0, $maxWidth = 0, $maxHeight = 0)
+    public function sf_uploader($uploadDir, $allowedMimeTypes = 0, $maxFileSize = 0, $maxWidth = 0, $maxHeight = 0)
     {
         if (!is_array($allowedMimeTypes)) {
             if (empty($allowedMimeTypes) || $allowedMimeTypes == "*") {
@@ -55,7 +55,7 @@ class sf_uploader extends XoopsMediaUploader
      *
      * @param string $value
      */
-    function setCheckMediaTypeByExt($value = true)
+    public function setCheckMediaTypeByExt($value = true)
     {
     }
 
@@ -65,7 +65,7 @@ class sf_uploader extends XoopsMediaUploader
      *
      * @param string $value
      */
-    function setImageSizeCheck($value)
+    public function setImageSizeCheck($value)
     {
     }
 
@@ -75,7 +75,7 @@ class sf_uploader extends XoopsMediaUploader
      *
      * @param string $value
      */
-    function setFileSizeCheck($value)
+    public function setFileSizeCheck($value)
     {
     }
 
@@ -84,7 +84,7 @@ class sf_uploader extends XoopsMediaUploader
      *
      * @return string
      */
-    function getExt()
+    public function getExt()
     {
         $this->ext = strtolower(ltrim(strrchr($this->getMediaName(), '.'), '.'));
 

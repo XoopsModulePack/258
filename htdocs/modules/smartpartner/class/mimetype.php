@@ -29,12 +29,12 @@ require_once(SMARTPARTNER_ROOT_PATH . 'class/baseObjectHandler.php');
 
 class smartpartnerMimetype extends XoopsObject
 {
-    function smartpartnerMimetype($id = null)
+    public function smartpartnerMimetype($id = null)
     {
         $this->initVar('mime_id', XOBJ_DTYPE_INT, null, false);
         $this->initVar('mime_ext', XOBJ_DTYPE_TXTBOX, null, true, 60);
         $this->initVar('mime_types', XOBJ_DTYPE_TXTAREA, null, false, 1024);
-        $this->initVar('mime_name', XOBJ_DTYPE_TXTBOX, NULL, true, 255);
+        $this->initVar('mime_name', XOBJ_DTYPE_TXTBOX, null, true, 255);
         $this->initVar('mime_admin', XOBJ_DTYPE_INT, null, false);
         $this->initVar('mime_user', XOBJ_DTYPE_INT, null, false);
 
@@ -56,7 +56,7 @@ class smartpartnerMimetypeHandler extends smartpartnerBaseObjectHandler
      * @var string
      * @access    private
      */
-    var $classname = 'smartpartnermimetype';
+    public $classname = 'smartpartnermimetype';
 
     /**
      * DB Table Name
@@ -64,14 +64,14 @@ class smartpartnerMimetypeHandler extends smartpartnerBaseObjectHandler
      * @var string
      * @access private
      */
-    var $_dbtable = 'smartpartner_mimetypes';
+    public $_dbtable = 'smartpartner_mimetypes';
 
     /**
      * Constructor
      *
      * @param object $db reference to a xoopsDB object
      */
-    function smartpartnerMimetypeHandler(&$db)
+    public function smartpartnerMimetypeHandler(&$db)
     {
         parent::init($db);
     }
@@ -82,7 +82,7 @@ class smartpartnerMimetypeHandler extends smartpartnerBaseObjectHandler
      * @return object {@link smartpartnerMimetype}
      * @access    public
      */
-    function &get($id)
+    public function &get($id)
     {
         $id = intval($id);
         if ($id > 0) {
@@ -108,7 +108,7 @@ class smartpartnerMimetypeHandler extends smartpartnerBaseObjectHandler
      * @return array  array of {@link smartpartnerMimetype} objects
      * @access    public
      */
-    function &getObjects($criteria = null)
+    public function &getObjects($criteria = null)
     {
         $ret = array();
         $limit = $start = 0;
@@ -132,7 +132,6 @@ class smartpartnerMimetypeHandler extends smartpartnerBaseObjectHandler
         }
 
         return $ret;
-
     }
 
     /**
@@ -141,7 +140,7 @@ class smartpartnerMimetypeHandler extends smartpartnerBaseObjectHandler
      * @return array array of mime_types
      * @access public
      */
-    function getArray($mime_ext = null)
+    public function getArray($mime_ext = null)
     {
         /*global $smartpartner_isAdmin, $xoopsUser, $xoopsModule;
 
@@ -186,7 +185,7 @@ class smartpartnerMimetypeHandler extends smartpartnerBaseObjectHandler
      * @return false if no permission, return mimetype if has permission
      * @access public
      */
-    function checkMimeTypes($post_field)
+    public function checkMimeTypes($post_field)
     {
         $fname = $_FILES[$post_field]['name'];
         $farray = explode('.', $fname);
@@ -214,7 +213,7 @@ class smartpartnerMimetypeHandler extends smartpartnerBaseObjectHandler
      * @return string SQL query
      * @access    private
      */
-    function _selectQuery($criteria = null, $join = false)
+    public function _selectQuery($criteria = null, $join = false)
     {
         if (!$join) {
             $sql = sprintf('SELECT * FROM %s', $this->_db->prefix($this->_dbtable));
@@ -232,7 +231,7 @@ class smartpartnerMimetypeHandler extends smartpartnerBaseObjectHandler
         return $sql;
     }
 
-    function _insertQuery(&$obj)
+    public function _insertQuery(&$obj)
     {
         // Copy all object vars into local variables
         foreach ($obj->cleanVars as $k => $v) {
@@ -246,7 +245,7 @@ class smartpartnerMimetypeHandler extends smartpartnerBaseObjectHandler
         return $sql;
     }
 
-    function _updateQuery(&$obj)
+    public function _updateQuery(&$obj)
     {
         // Copy all object vars into local variables
         foreach ($obj->cleanVars as $k => $v) {
@@ -260,7 +259,7 @@ class smartpartnerMimetypeHandler extends smartpartnerBaseObjectHandler
         return $sql;
     }
 
-    function _deleteQuery(&$obj)
+    public function _deleteQuery(&$obj)
     {
         $sql = sprintf('DELETE FROM %s WHERE mime_id = %u', $this->_db->prefix($this->_dbtable), $obj->getVar('mime_id'));
 

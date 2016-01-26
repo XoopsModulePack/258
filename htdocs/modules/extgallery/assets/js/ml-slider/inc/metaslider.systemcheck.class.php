@@ -4,7 +4,7 @@
  */
 class MetaSliderSystemCheck
 {
-    var $options = array();
+    public $options = array();
 
     /**
      * Constructor
@@ -77,7 +77,7 @@ class MetaSliderSystemCheck
             return;
         }
 
-        if ((!extension_loaded('gd') || !function_exists('gd_info')) && (!extension_loaded( 'imagick' ) || !class_exists( 'Imagick' ) || !class_exists( 'ImagickPixel' ))) {
+        if ((!extension_loaded('gd') || !function_exists('gd_info')) && (!extension_loaded('imagick') || !class_exists('Imagick') || !class_exists('ImagickPixel'))) {
             $error = "Meta Slider requires the GD or ImageMagick PHP extension. Please contact your hosting provider";
             $this->printMessage($error, 'imageLibrary');
         } else {
@@ -95,7 +95,6 @@ class MetaSliderSystemCheck
         }
 
         if (function_exists('is_plugin_active') && is_plugin_active('role-scoper/role-scoper.php')) {
-
             $access_types = get_option('scoper_disabled_access_types');
 
             if (isset($access_types['front']) && !$access_types['front']) {
@@ -154,7 +153,7 @@ class MetaSliderSystemCheck
      */
     private function printMessage($message, $key)
     {
-        $nonce = wp_create_nonce( "metaslider-dismiss-{$key}" );
+        $nonce = wp_create_nonce("metaslider-dismiss-{$key}");
         echo "<div id='message' class='updated'><p><b>Warning:</b> {$message}<br /><br /><a class='button' href='?page=metaslider&dismissMessage={$key}&_wpnonce={$nonce}'>Hide</a></p></div>";
     }
 }

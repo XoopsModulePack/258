@@ -34,7 +34,7 @@ class xnewsletterBreadcrumb
     /**
      *
      */
-    function __construct()
+    public function __construct()
     {
         $this->dirname = basename(dirname(__DIR__));
     }
@@ -45,7 +45,7 @@ class xnewsletterBreadcrumb
      * @param string $title
      * @param string $link
      */
-    function addLink($title = '', $link = '')
+    public function addLink($title = '', $link = '')
     {
         $this->bread[] = array(
             'link'  => $link,
@@ -57,7 +57,7 @@ class xnewsletterBreadcrumb
      * Render xnewsletter BreadCrumb
      *
      */
-    function render()
+    public function render()
     {
         if (!isset($GLOBALS['xoTheme']) || !is_object($GLOBALS['xoTheme'])) {
             include_once $GLOBALS['xoops']->path('/class/theme.php');

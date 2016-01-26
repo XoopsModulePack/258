@@ -49,6 +49,6 @@ define("_MI_XFORMS_SHOWFORMS", "Forms available on Home?");
 define("_MI_XFORMS_SHOWFORMS_DESC", "Indicate whether you want to see the forms available to the user when no one indicated parameter. If you select No, the user will be sent to the home page of the site when not indicate a form parameter.");
 define("_MI_XFORMS_DEFAULT_TITLE_DESC", "Forms Page");
 
-define("_MI_xforms_ADMENU0","Home");
+define("_MI_xforms_ADMENU0", "Home");
 //1.22
-define("_MI_XFORMS_ELE_SELECT_CTRY_DEFAULT","Select Default Country");
+define("_MI_XFORMS_ELE_SELECT_CTRY_DEFAULT", "Select Default Country");

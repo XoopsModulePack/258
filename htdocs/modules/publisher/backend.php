@@ -43,7 +43,7 @@ $tpl->xoops_setCaching(2);
 $tpl->xoops_setCacheTime(0);
 $myts = MyTextSanitizer::getInstance();
 if (!$tpl->is_cached('db:publisher_rss.tpl')) {
-//    xoops_load('XoopsLocal');
+    //    xoops_load('XoopsLocal');
     $channel_category = $publisher->getModule()->name();
     // Check if ML Hack is installed, and if yes, parse the $content in formatForML
     if (method_exists($myts, 'formatForML')) {

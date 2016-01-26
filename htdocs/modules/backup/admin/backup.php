@@ -7,8 +7,8 @@ include_once '../../../include/cp_header.php';
 include 'admin_header.php';
 $module_handler =& xoops_gethandler('module');
 $xoopsModule =& $module_handler->getByDirname('backup');
-$config_handler = & xoops_gethandler( 'config' );
-$xoopsModuleConfig = & $config_handler->getConfigsByCat( 0, $xoopsModule->getVar( 'mid' ) );
+$config_handler = & xoops_gethandler('config');
+$xoopsModuleConfig = & $config_handler->getConfigsByCat(0, $xoopsModule->getVar('mid'));
 
 include_once(XOOPS_ROOT_PATH.'/modules/backup/include/defines.lib.php');
 include_once(XOOPS_ROOT_PATH.'/modules/backup/include/build_dump.lib.php');
@@ -26,10 +26,10 @@ $other_tables = (!isset($_POST['tables']))?false:$_POST['tables'];
 $db_name = (isset($_GET['db_name']))?$_GET['db_name']:XOOPS_DB_NAME;
 
 if ($db_name) {
-$db_selected = mysql_select_db($db_name);
+    $db_selected = mysql_select_db($db_name);
     if (!$db_selected) {
-    redirect_header('index.php', 3, 'Database not exist');
-    exit;
+        redirect_header('index.php', 3, 'Database not exist');
+        exit;
     }
 }
 
@@ -48,11 +48,9 @@ function PMA_whichCrlf()
     $the_crlf = "\n";
     if (PMA_USR_OS == 'Win') {
         $the_crlf = "\r\n";
-    }
-    else if (PMA_USR_OS == 'Mac') {
+    } elseif (PMA_USR_OS == 'Mac') {
         $the_crlf = "\r";
-    }
-    else {
+    } else {
         $the_crlf = "\n";
     }
 
@@ -67,10 +65,10 @@ $crlf        = PMA_whichCrlf();
 if (($cfgZipType == 'bzip') && (PMA_PHP_INT_VERSION >= 40004 && @function_exists('bzcompress'))) {
     $ext       = 'bz2';
     $mime_type = 'application/x-bzip';
-} else if (($cfgZipType == 'gzip') &&(PMA_PHP_INT_VERSION >= 40004 && @function_exists('gzencode'))) {
+} elseif (($cfgZipType == 'gzip') &&(PMA_PHP_INT_VERSION >= 40004 && @function_exists('gzencode'))) {
     $ext       = 'gz';
     $mime_type = 'application/x-gzip';
-} else if (($cfgZipType == 'zip') && (PMA_PHP_INT_VERSION >= 40000 && @function_exists('gzcompress'))) {
+} elseif (($cfgZipType == 'zip') && (PMA_PHP_INT_VERSION >= 40000 && @function_exists('gzcompress'))) {
     $ext       = 'zip';
     $mime_type = 'application/x-zip';
 } else {
@@ -90,38 +88,40 @@ $prefix = 'bkp';
 
 if ($num_tables == 0) {
     echo '# ' ._DB_NOTABLESFOUND;
-    if(isset($_GET['oldurl'])){
-        redirect_header($_GET['oldurl'], 3, _DB_BACKUP_READY );
-    }else{
-        redirect_header("javascript:history.go(-1)", 1, _DB_BACKUP_READY );
+    if (isset($_GET['oldurl'])) {
+        redirect_header($_GET['oldurl'], 3, _DB_BACKUP_READY);
+    } else {
+        redirect_header("javascript:history.go(-1)", 1, _DB_BACKUP_READY);
     }
     exit;
 }
 
 $filename_prefix = $prefix.'_'.$db.'-'.date('ymdHi');
 if (!$other_tables) {
-$split = (is_array($xoopsModuleConfig["dbfiles_split"])&&count($xoopsModuleConfig["dbfiles_split"])>0)?$xoopsModuleConfig["dbfiles_split"]:array("1");
+    $split = (is_array($xoopsModuleConfig["dbfiles_split"])&&count($xoopsModuleConfig["dbfiles_split"])>0)?$xoopsModuleConfig["dbfiles_split"]:array("1");
 } else {
-$split = (is_array($other_tables)&&count($other_tables)>0)?$other_tables:array("1");
+    $split = (is_array($other_tables)&&count($other_tables)>0)?$other_tables:array("1");
 }
 $files_backup=array();
-for($i=0; $i<$num_tables; $i++){
+for ($i=0; $i<$num_tables; $i++) {
     $name = mysql_tablename($tables, $i);
-    if(in_array("1",$split)||in_array($name, $split)){
+    if (in_array("1", $split)||in_array($name, $split)) {
         $files_backup[$name] = array($name);
-    }else{
-    if ($xoopsModuleConfig['split']==1) $files_backup["body"][] = $name;
+    } else {
+        if ($xoopsModuleConfig['split']==1) {
+            $files_backup["body"][] = $name;
+        }
     }
 }
 
 $formatted_db_name = (isset($use_backquotes))
                    ? PMA_backquote($db)
                    : '\'' . $db . '\'';
-foreach($files_backup as $fl => $names){
+foreach ($files_backup as $fl => $names) {
     if ($xoopsModuleConfig['split']==1) {
-    $filename = ($fl == "body")?$filename_prefix:$filename_prefix."_".$fl;
+        $filename = ($fl == "body")?$filename_prefix:$filename_prefix."_".$fl;
     } else {
-    $filename = $filename_prefix."_".$fl;
+        $filename = $filename_prefix."_".$fl;
     }
     $dump_buffer       = '# Backup for MySQL' . $crlf
                        .  '#' . $crlf;
@@ -157,29 +157,27 @@ foreach($files_backup as $fl => $names){
             $zipfile -> addFile($dump_buffer, $filename . $extbis);
             $dump_buffer = $zipfile -> file();
         }
-    }
-    else if ($cfgZipType == 'bzip') {
+    } elseif ($cfgZipType == 'bzip') {
         if (PMA_PHP_INT_VERSION >= 40004 && @function_exists('bzcompress')) {
             $dump_buffer = bzcompress($dump_buffer);
         }
-    }
-    else if ($cfgZipType == 'gzip') {
+    } elseif ($cfgZipType == 'gzip') {
         if (PMA_PHP_INT_VERSION >= 40004 && @function_exists('gzencode')) {
             // without the optional parameter level because it bug
             $dump_buffer = gzencode($dump_buffer);
         }
     }
 
-    $fp = fopen($dirname.'/'. $filename . '.' . $ext,'w');
+    $fp = fopen($dirname.'/'. $filename . '.' . $ext, 'w');
     //$dump_buffer=str_replace(' DEFAULT CHARSET=latin1','',$dump_buffer);
     fwrite($fp, $dump_buffer);
     fclose($fp);
 
     if ($cfgBackupTarget == 'download') {
-        if(!is_object($xoopsUser)||!$xoopsUser->isAdmin()){
-            redirect_header("javascript:history.go(-1)", 1, _NOPERM );
+        if (!is_object($xoopsUser)||!$xoopsUser->isAdmin()) {
+            redirect_header("javascript:history.go(-1)", 1, _NOPERM);
             exit;
-         }
+        }
         header('Content-Type: ' . $mime_type);
         if (PMA_USR_BROWSER_AGENT == 'IE') {
             header('Content-Disposition: inline; filename="' . $filename . '.' . $ext . '"');
@@ -201,14 +199,16 @@ foreach($files_backup as $fl => $names){
         $message .= $xoopsConfig['sitename']."\n".$xoopsConfig['xoops_url']."/";
         $xoopsMailer =& xoops_getMailer();
         $xoopsMailer->useMail();
-        $emails = explode(',',$xoopsModuleConfig['email_to']);
-        foreach ($emails as $key=>$value) { $emails[$key]=trim($value); }
+        $emails = explode(',', $xoopsModuleConfig['email_to']);
+        foreach ($emails as $key=>$value) {
+            $emails[$key]=trim($value);
+        }
         $xoopsMailer->setToEmails($emails);
         $xoopsMailer->setFromEmail($xoopsConfig['adminmail']);
         $xoopsMailer->setFromName($xoopsConfig['sitename']);
         $xoopsMailer->setSubject($subject);
         $xoopsMailer->setBody($message);
-        if($xoopsModuleConfig['email_attach']){
+        if ($xoopsModuleConfig['email_attach']) {
             $xoopsMailer->multimailer->AddAttachment($dirname.'/'.$filename.'.'.$ext);
         }
         $xoopsMailer->send();
@@ -218,8 +218,8 @@ foreach($files_backup as $fl => $names){
 $db_files =& XoopsLists::getFileListAsArray($dirname);
 $dbfiles = array();
 $dbprefix = array();
-foreach($db_files as $_file => $_filename){
-    if(preg_match("/(^".$prefix."[^_]*)(_.*)?\.(.*)/i", $_filename, $matches)){
+foreach ($db_files as $_file => $_filename) {
+    if (preg_match("/(^".$prefix."[^_]*)(_.*)?\.(.*)/i", $_filename, $matches)) {
         $dbprefix[$matches[1]] = 1;
         $dbfiles[]=$_filename;
     }
@@ -229,17 +229,17 @@ $dbpre = array_keys($dbprefix);
 arsort($dbpre);
 reset($dbpre);
 $dbpre_valid = array_slice($dbpre, 0, $xoopsModuleConfig['dbfiles_store']);
-foreach($dbfiles as $dbfile){
-    if(!preg_match("/^(".implode("|",$dbpre_valid).")(_.*)?\.(.*)/i", $dbfile, $matches)){
+foreach ($dbfiles as $dbfile) {
+    if (!preg_match("/^(".implode("|", $dbpre_valid).")(_.*)?\.(.*)/i", $dbfile, $matches)) {
         unlink($dirname.'/'.$dbfile);
     }
 }
 
 if ($cfgBackupTarget != 'download') {
-    if(isset($_GET['oldurl'])){
-        redirect_header($_GET['oldurl'], 3, _DB_BACKUP_READY );
-    }else{
-        redirect_header("javascript:history.go(-1)", 1, _DB_BACKUP_READY );
+    if (isset($_GET['oldurl'])) {
+        redirect_header($_GET['oldurl'], 3, _DB_BACKUP_READY);
+    } else {
+        redirect_header("javascript:history.go(-1)", 1, _DB_BACKUP_READY);
     }
 }
 include "admin_footer.php";

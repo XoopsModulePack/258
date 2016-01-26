@@ -18,7 +18,7 @@ class SmartfaqPermissionHandler extends XoopsObjectHandler
     *
     * @return array
     */
-    function getPermissions($type = "category", $id = null)
+    public function getPermissions($type = "category", $id = null)
     {
         global $xoopsUser;
         static $permissions;

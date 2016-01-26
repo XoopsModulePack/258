@@ -24,22 +24,20 @@ function smartpartner_xoops_cp_header()
 /**
  * Detemines if a table exists in the current db
  *
- * @param string $table the table name (without XOOPS prefix)
- * @return bool True if table exists, false if not
+ * @param  string $table the table name (without XOOPS prefix)
+ * @return bool   True if table exists, false if not
  *
  * @access public
  * @author xhelp development team
  */
 function smartpartner_TableExists($table)
 {
-
     $bRetVal = false;
     //Verifies that a MySQL table exists
     $xoopsDB =& Database::getInstance();
     $realname = $xoopsDB->prefix($table);
     $ret = mysql_list_tables(XOOPS_DB_NAME, $xoopsDB->conn);
     while (list($m_table) = $xoopsDB->fetchRow($ret)) {
-
         if ($m_table == $realname) {
             $bRetVal = true;
             break;
@@ -53,7 +51,7 @@ function smartpartner_TableExists($table)
 /**
  * Gets a value from a key in the xhelp_meta table
  *
- * @param string $key
+ * @param  string $key
  * @return string $value
  *
  * @access public
@@ -68,7 +66,6 @@ function smartpartner_GetMeta($key)
         $value = false;
     } else {
         list($value) = $xoopsDB->fetchRow($ret);
-
     }
 
     return $value;
@@ -77,9 +74,9 @@ function smartpartner_GetMeta($key)
 /**
  * Sets a value for a key in the xhelp_meta table
  *
- * @param string $key
- * @param string $value
- * @return bool TRUE if success, FALSE if failure
+ * @param  string $key
+ * @param  string $value
+ * @return bool   TRUE if success, FALSE if failure
  *
  * @access public
  * @author xhelp development team
@@ -122,9 +119,9 @@ function smartpartner_getAllowedImagesTypes()
  *
  * @author      Aidan Lister <aidan@php.net>
  * @version     1.0.0
- * @param       string   $source    The source
- * @param       string   $dest      The destination
- * @return      bool     Returns true on success, false on failure
+ * @param  string $source The source
+ * @param  string $dest   The destination
+ * @return bool   Returns true on success, false on failure
  */
 function smartpartner_copyr($source, $dest)
 {
@@ -163,8 +160,7 @@ function smartpartner_copyr($source, $dest)
 function smartpartner_getHelpPath()
 {
     $smartConfig =& smartpartner_getModuleConfig();
-    switch ($smartConfig['helppath_select'])
-    {
+    switch ($smartConfig['helppath_select']) {
         case 'docs.xoops.org' :
             return 'http://docs.xoops.org/help/spartnerh/index.htm';
             break;
@@ -186,8 +182,7 @@ function &smartpartner_getModuleInfo()
         global $xoopsModule;
         if (isset($xoopsModule) && is_object($xoopsModule) && $xoopsModule->getVar('dirname') == SMARTPARTNER_DIRNAME) {
             $smartModule =& $xoopsModule;
-        }
-        else {
+        } else {
             $hModule = &xoops_gethandler('module');
             $smartModule = $hModule->getByDirname(SMARTPARTNER_DIRNAME);
         }
@@ -204,8 +199,7 @@ function &smartpartner_getModuleConfig()
         if (isset($xoopsModule) && is_object($xoopsModule) && $xoopsModule->getVar('dirname') == SMARTPARTNER_DIRNAME) {
             global $xoopsModuleConfig;
             $smartConfig =& $xoopsModuleConfig;
-        }
-        else {
+        } else {
             $smartModule =& smartpartner_getModuleInfo();
             $hModConfig = &xoops_gethandler('config');
             $smartConfig = $hModConfig->getConfigsByCat(0, $smartModule->getVar('mid'));
@@ -224,13 +218,13 @@ function smartpartner_imageResize($src, $maxWidth, $maxHeight)
 
     if (file_exists($src)) {
         list($width, $height, $type, $attr) = getimagesize($src);
-        If ($width > $maxWidth) {
+        if ($width > $maxWidth) {
             $originalWidth = $width;
             $width = $maxWidth;
             $height = $width * $height / $originalWidth;
         }
 
-        If ($height > $maxHeight) {
+        if ($height > $maxHeight) {
             $originalHeight = $height;
             $height = $maxHeight;
             $width = $height * $width / $originalHeight;
@@ -312,7 +306,7 @@ function smartpartner_adminMenu($currentoption = 0, $breadcrumb = '')
     global $xoopsModule, $xoopsConfig;
     $myts = &MyTextSanitizer::getInstance();
 
-    $tblColors = Array();
+    $tblColors = array();
     $tblColors[0] = $tblColors[1] = $tblColors[2] = $tblColors[3] = $tblColors[4] = $tblColors[5] = $tblColors[6] = $tblColors[7] = $tblColors[8] = '';
     $tblColors[$currentoption] = 'current';
 
@@ -357,7 +351,6 @@ function smartpartner_adminMenu($currentoption = 0, $breadcrumb = '')
 
 function smartpartner_collapsableBar($tablename = '', $iconname = '', $tabletitle = '', $tabledsc = '')
 {
-
     global $xoopsModule;
     echo "<h3 style=\"color: #2F5376; font-weight: bold; font-size: 14px; margin: 6px 0 0 0; \"><a href='javascript:;' onclick=\"toggle('" . $tablename . "'); toggleIcon('" . $iconname . "')\";>";
     echo "<img id='$iconname' src=" . XOOPS_URL . "/modules/" . $xoopsModule->dirname() . "/images/icon/close12.gif alt='' /></a>&nbsp;" . $tabletitle . "</h3>";
@@ -417,7 +410,7 @@ function smartpartner_getCurrentUrls()
     $httphost = $_SERVER['HTTP_HOST'];
     $querystring = $_SERVER['QUERY_STRING'];
 
-    If ($querystring != '') {
+    if ($querystring != '') {
         $querystring = '?' . $querystring;
     }
 
@@ -467,7 +460,6 @@ function smartpartner_modFooter()
 <a href="http://inboxinternational.com/modules/smartcontent/page.php?pageid=10"><img src="http://inboxinternational.com/images/xoops_services_pro_english.gif" alt="Need XOOPS Professional Services?" title="Need XOOPS Professional Services?"></a>
 </div>';
     echo '</div>';
-
 }
 
 /**
@@ -483,7 +475,9 @@ function &smartpartner_admin_getPathStatus($item, $getStatus = false)
 
     $thePath = smartpartner_getUploadDir(true, $path);
 
-    if (empty($thePath)) return false;
+    if (empty($thePath)) {
+        return false;
+    }
     if (@is_writable($thePath)) {
         $pathCheckResult = 1;
         $path_status = _AM_SPARTNER_AVAILABLE;
@@ -509,10 +503,16 @@ function smartpartner_admin_mkdir($target)
     // http://www.php.net/manual/en/function.mkdir.php
     // saint at corenova.com
     // bart at cdasites dot com
-    if (is_dir($target) || empty($target)) return true; // best case check first
-    if (file_exists($target) && !is_dir($target)) return false;
+    if (is_dir($target) || empty($target)) {
+        return true;
+    } // best case check first
+    if (file_exists($target) && !is_dir($target)) {
+        return false;
+    }
     if (smartpartner_admin_mkdir(substr($target, 0, strrpos($target, '/')))) {
-        if (!file_exists($target)) return mkdir($target);
+        if (!file_exists($target)) {
+            return mkdir($target);
+        }
     } // crawl back up & create dir tree
     return true;
 }
@@ -537,7 +537,7 @@ function smartpartner_getUploadDir($local = true, $item = false)
         $item = '';
     }
 
-    If ($local) {
+    if ($local) {
         return XOOPS_ROOT_PATH . "/uploads/smartpartner/$item";
     } else {
         return XOOPS_URL . "/uploads/smartpartner/$item";
@@ -558,13 +558,11 @@ function smartpartner_getImageDir($item = '', $local = true)
 function smartpartner_formatErrors($errors = array())
 {
     $ret = '';
-    foreach ($errors as $key => $value)
-    {
+    foreach ($errors as $key => $value) {
         $ret .= "<br /> - " . $value;
     }
 
     return $ret;
-
 }
 
 function smartpartner_upload_file($another = false, $withRedirect = true, &$itemObj)

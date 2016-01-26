@@ -20,20 +20,20 @@
 //----------------------------------------------------
 class extcal_2_04
 {
-//----------------------------------------------------
+    //----------------------------------------------------
 
     /**
      * @param $module
      * @param $options
      */
-    function extcal_2_04(& $module, $options)
-{
-global $xoopsDB;
+    public function extcal_2_04(& $module, $options)
+    {
+        global $xoopsDB;
 
         $sql = "ALTER TABLE `".$xoopsDB->prefix('extcal_event')."` ADD `event_nbmember` tinyint(4) NOT NULL default '0' AFTER `event_submitdate` ;";
         $xoopsDB->query($sql);
-
-}
+    }
 
 //-----------------------------------------------------------------
 }   // fin de la classe
+

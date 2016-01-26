@@ -38,20 +38,20 @@
 // ------------------------------------------------------------------------- //
 // defined("XOOPS_ROOT_PATH") || exit("XOOPS root path not defined");
 
-if ( !is_object($xoopsUser) || !is_object($xoopsModule) || !$xoopsUser->isAdmin($xoopsModule->mid()) ) {
+if (!is_object($xoopsUser) || !is_object($xoopsModule) || !$xoopsUser->isAdmin($xoopsModule->mid())) {
     exit("Access Denied");
 }
 include_once XOOPS_ROOT_PATH.'/class/xoopsblock.php';
 include XOOPS_ROOT_PATH."/modules/system/admin/blocksadmin/blocksadmin.php";
 
 $op = "list";
-if ( isset($HTTP_POST_VARS) ) {
+if (isset($HTTP_POST_VARS)) {
     foreach ($HTTP_POST_VARS as $k => $v) {
         $$k = $v;
-      }
+    }
 }
 
-if ( isset($HTTP_GET_VARS['op']) ) {
+if (isset($HTTP_GET_VARS['op'])) {
     if ($HTTP_GET_VARS['op'] == "edit" || $HTTP_GET_VARS['op'] == "delete" || $HTTP_GET_VARS['op'] == "delete_ok" || $HTTP_GET_VARS['op'] == "clone" || $HTTP_GET_VARS['op'] == 'previewpopup') {
         $op = $HTTP_GET_VARS['op'];
         $bid = isset($HTTP_GET_VARS['bid'])? intval($HTTP_GET_VARS['bid']) : 0;
@@ -138,10 +138,9 @@ if ($op == "order") {
         $bmodule[$i] = (isset($bmodule[$i]) && is_array($bmodule[$i]))? $bmodule[$i] : array(-1) ;
 
         myblocksadmin_update_block($i, $side[$i], $weight[$i], $visible[$i], $title[$i], '', '', $bcachetime[$i], $bmodule[$i], array());
-
     }
 
-    redirect_header("myblocksadmin.php",1,_AM_DBUPDATED);
+    redirect_header("myblocksadmin.php", 1, _AM_DBUPDATED);
     exit();
 }
 
@@ -157,7 +156,7 @@ if ($op == "update") {
     $bctype = isset($bctype)? $bctype : '';
     $bmodule = (isset($bmodule) && is_array($bmodule))? $bmodule : array(-1) ; // GIJ +
     $msg = myblocksadmin_update_block($bid, $bside, $bweight, $bvisible, $btitle, $bcontent, $bctype, $bcachetime, $bmodule, $options); // GIJ c
-    redirect_header('myblocksadmin.php',1,$msg); // GIJ +
+    redirect_header('myblocksadmin.php', 1, $msg); // GIJ +
 }
 
 if ($op == "delete_ok") {
@@ -191,13 +190,15 @@ if ($op == "edit") {
         }
         $myblock = new XoopsBlock($bid);
         // $myblock->setVar('side', $bside); GIJ -
-        if ( $bside >= 0 ) $myblock->setVar('side', $bside); // GIJ +
+        if ($bside >= 0) {
+            $myblock->setVar('side', $bside);
+        } // GIJ +
         $myblock->setVar('weight', $bweight);
         $myblock->setVar('visible', $bvisible);
         $myblock->setVar('title', $btitle);
         $myblock->setVar('content', $bcontent);
         $myblock->setVar('bcachetime', $bcachetime);
-        if ( isset($options) && (count($options) > 0) ) {
+        if (isset($options) && (count($options) > 0)) {
             $options = implode('|', $options);
             $myblock->setVar('options', $options);
         }

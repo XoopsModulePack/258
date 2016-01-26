@@ -72,7 +72,7 @@ function xnewsletter_plugin_getdata_weblinks($cat_id, $action_after_read, $limit
     $sql = "SELECT `mail`, `name`";
     $sql .= " FROM " . $xoopsDB->prefix("weblinks_link");
     if (!$result_users = $xoopsDB->query($sql)) {
-        die ("MySQL-Error: " . mysql_error());
+        die("MySQL-Error: " . mysql_error());
     }
     while ($lineArray = mysql_fetch_array($result_users)) {
         ++$i;

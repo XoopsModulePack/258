@@ -121,3 +121,4 @@ $adminmenu[$i]["icon"]  = $pathIcon32 . '/about.png';
 //  $adminmenu[5]['title'] = _MI_XOOPSTUBE_BLOCKADMIN;
 //  $adminmenu[5]['link']  = 'admin/myblocksadmin.php';
 //  $adminmenu[5]['options']  = 'assets/images/icon/blocks.png';
+

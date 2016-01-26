@@ -41,9 +41,8 @@ $xoTheme->addScript('browse.php?' . mylinksGetStylePath('mylinks.js', 'include')
 //generates top 10 charts by rating and hits for each main category
 include_once './class/utility.php';
 //xoops_load('utility', $xoopsModule->getVar('dirname'));
-$sort = MylinksUtility::mylinks_cleanVars( $_GET, 'sort', 2, 'int', $limit=array(1,3));
-switch ($sort)
-{
+$sort = MylinksUtility::mylinks_cleanVars($_GET, 'sort', 2, 'int', $limit=array(1, 3));
+switch ($sort) {
     case '1':  // Popular
         $sort = _MD_MYLINKS_RATING;
         $sortDB = "rating";
@@ -101,13 +100,13 @@ foreach ($mainCatIdArray as $catKey) {
         $catTitle = $myts->htmlSpecialChars($mainCatTitleArray[$catKey]['title']);
         $rankings[$catKey]['title'] = sprintf(_MD_MYLINKS_TOP10, $catTitle);
         $rank = 1;
-        while (list($lid,$lcid,$ltitle,$hits,$rating,$votes)=$xoopsDB->fetchRow($result)) {
+        while (list($lid, $lcid, $ltitle, $hits, $rating, $votes)=$xoopsDB->fetchRow($result)) {
             $thisCatObj = $mylinksCatHandler->get($lcid);
             $homePath   = "<a href='" . XOOPSMYLINKURL . "/index.php'>" . _MD_MYLINKS_MAIN . "</a>&nbsp;:&nbsp;";
             $itemPath   = "<a href='" . XOOPSMYLINKURL . "/viewcat.php?cid={$lcid}'>" . $thisCatObj->getVar('title') . "</a>";
             $path       = '';
             $myParent = $thisCatObj->getVar('pid');
-            while ( $myParent != 0 ) {
+            while ($myParent != 0) {
                 $ancestorObj = $myCatTree->getByKey($myParent);
                 $path  = "<a href='" . XOOPSMYLINKURL . "/viewcat.php?cid=" . $ancestorObj->getVar('cid') . "'>" . $ancestorObj->getVar('title') . "</a>&nbsp;:&nbsp;{$path}";
                 $myParent = $ancestorObj->getVar('pid');
@@ -173,7 +172,7 @@ if ( $mylinks_show_letters ) {
   $catarray['letters'] = ml_wfd_letters();
 }
 */
-if ( $mylinks_show_toolbar ) {
+if ($mylinks_show_toolbar) {
     $catarray['toolbar'] = ml_wfd_toolbar();
 }
 $xoopsTpl->assign('catarray', $catarray);

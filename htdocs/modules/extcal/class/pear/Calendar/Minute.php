@@ -81,7 +81,7 @@ class Calendar_Minute extends Calendar
      *
      * @access public
      */
-    function Calendar_Minute($y, $m, $d, $h, $i)
+    public function Calendar_Minute($y, $m, $d, $h, $i)
     {
         parent::Calendar($y, $m, $d, $h, $i);
     }
@@ -94,7 +94,7 @@ class Calendar_Minute extends Calendar
      * @return boolean
      * @access public
      */
-    function build($sDates = array())
+    public function build($sDates = array())
     {
         include_once CALENDAR_ROOT.'Second.php';
         $sIM = $this->cE->getSecondsInMinute($this->year, $this->month,
@@ -118,15 +118,14 @@ class Calendar_Minute extends Calendar
      * @return void
      * @access private
      */
-    function setSelection($sDates)
+    public function setSelection($sDates)
     {
         foreach ($sDates as $sDate) {
             if ($this->year == $sDate->thisYear()
                 && $this->month == $sDate->thisMonth()
                 && $this->day == $sDate->thisDay()
                 && $this->hour == $sDate->thisHour()
-                && $this->minute == $sDate->thisMinute())
-            {
+                && $this->minute == $sDate->thisMinute()) {
                 $key = (int) $sDate->thisSecond();
                 if (isset($this->children[$key])) {
                     $sDate->setSelected();

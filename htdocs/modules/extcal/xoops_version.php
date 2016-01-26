@@ -70,7 +70,6 @@ if (isset($GLOBALS['xoopsModule'])
         $modversion['sub'][$i]['name'] = $v['name'];
         $modversion['sub'][$i]['url']  = $v['href'];
     }
-
 }
 
 ////////////////////////////////////////////////////////////////////////////

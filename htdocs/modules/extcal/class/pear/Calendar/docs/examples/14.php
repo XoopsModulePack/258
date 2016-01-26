@@ -5,7 +5,7 @@
 */
 function getmicrotime()
 {
-    list($usec, $sec) = explode(" ",microtime());
+    list($usec, $sec) = explode(" ", microtime());
 
     return ((float) $usec + (float) $sec);
 }
@@ -15,22 +15,28 @@ $start = getmicrotime();
 define('CALENDAR_ENGINE', 'PearDate');
 
 if (!@include 'Calendar/Calendar.php') {
-    define('CALENDAR_ROOT','../../');
+    define('CALENDAR_ROOT', '../../');
 }
 require_once CALENDAR_ROOT.'Month/Weekdays.php';
 require_once CALENDAR_ROOT.'Day.php';
 
 // Initialize GET variables if not set
-if (!isset($_GET['y'])) $_GET['y'] = date('Y');
-if (!isset($_GET['m'])) $_GET['m'] = date('m');
-if (!isset($_GET['d'])) $_GET['d'] = date('d');
+if (!isset($_GET['y'])) {
+    $_GET['y'] = date('Y');
+}
+if (!isset($_GET['m'])) {
+    $_GET['m'] = date('m');
+}
+if (!isset($_GET['d'])) {
+    $_GET['d'] = date('d');
+}
 
 // Build the month
 $month = new Calendar_Month_Weekdays($_GET['y'], $_GET['m']);
 
 // Create an array of days which are "selected"
 // Used for Week::build() below
-$selectedDays = array (
+$selectedDays = array(
     new Calendar_Day($_GET['y'], $_GET['m'], $_GET['d']),
     new Calendar_Day($_GET['y'], 12, 25),
     );
@@ -109,11 +115,12 @@ while ($day = $month->fetch()) {
                 '&d='.$day->thisDay();
 
     // isFirst() to find start of week
-    if ($day->isFirst())
+    if ($day->isFirst()) {
         echo "<tr>\n";
+    }
 
     if ($day->isSelected()) {
-       echo '<td class="selected">'.$day->thisDay().'</td>'."\n";
+        echo '<td class="selected">'.$day->thisDay().'</td>'."\n";
     } elseif ($day->isEmpty()) {
         echo '<td>&nbsp;</td>'."\n";
     } else {

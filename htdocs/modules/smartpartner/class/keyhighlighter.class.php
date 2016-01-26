@@ -25,21 +25,21 @@ class SmartpartnerKeyhighlighter
     /**
      * @access private
      */
-    var $preg_keywords = '';
+    public $preg_keywords = '';
     /**
      * @access private
      */
-    var $keywords = '';
+    public $keywords = '';
     /**
      * @access private
      */
-    var $singlewords = false;
+    public $singlewords = false;
     /**
      * @access private
      */
-    var $replace_callback = null;
+    public $replace_callback = null;
 
-    var $content;
+    public $content;
 
     /**
      * Main constructor
@@ -63,7 +63,7 @@ class SmartpartnerKeyhighlighter
      * </code>
      */
     // public function __construct ()
-    function SmartpartnerKeyhighlighter($keywords, $singlewords = false, $replace_callback = null)
+    public function SmartpartnerKeyhighlighter($keywords, $singlewords = false, $replace_callback = null)
     {
         $this->keywords = $keywords;
         $this->singlewords = $singlewords;
@@ -73,9 +73,8 @@ class SmartpartnerKeyhighlighter
     /**
      * @access private
      */
-    function replace($replace_matches)
+    public function replace($replace_matches)
     {
-
         $patterns = array();
         if ($this->singlewords) {
             $keywords = explode(' ', $this->preg_keywords);
@@ -102,7 +101,7 @@ class SmartpartnerKeyhighlighter
     /**
      * @access private
      */
-    function highlight($buffer)
+    public function highlight($buffer)
     {
         $buffer = '>' . $buffer . '<';
         $this->preg_keywords = preg_replace('/[^\w ]/si', '', $this->keywords);

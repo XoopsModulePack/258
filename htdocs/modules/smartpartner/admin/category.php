@@ -9,7 +9,7 @@
 
 function displayCategory($categoryObj, $level = 0)
 {
-    Global $xoopsModule, $smartpartner_category_handler;
+    global $xoopsModule, $smartpartner_category_handler;
     $description = $categoryObj->description();
     if (!XOOPS_USE_MULTIBYTES) {
         if (strlen($description) >= 100) {
@@ -41,7 +41,7 @@ function displayCategory($categoryObj, $level = 0)
 
 function editcat($showmenu = false, $categoryid = 0, $nb_subcats = 4, $categoryObj = null)
 {
-    Global $xoopsDB, $smartpartner_category_handler, $xoopsUser, $myts, $xoopsConfig, $xoopsModuleConfig, $xoopsModule;
+    global $xoopsDB, $smartpartner_category_handler, $xoopsUser, $myts, $xoopsConfig, $xoopsModuleConfig, $xoopsModule;
     include_once XOOPS_ROOT_PATH . '/class/xoopsformloader.php';
 
     // If there is a parameter, and the id exists, retrieve data: we're editing a category
@@ -61,7 +61,6 @@ function editcat($showmenu = false, $categoryid = 0, $nb_subcats = 4, $categoryO
         }
         smartpartner_collapsableBar('edittable', 'edittableicon', _AM_SPARTNER_CATEGORY_EDIT, _AM_SPARTNER_CATEGORY_EDIT_INFO);
     } else {
-
         if (!$categoryObj) {
             $categoryObj = $smartpartner_category_handler->create();
         }
@@ -128,12 +127,10 @@ function editcat($showmenu = false, $categoryid = 0, $nb_subcats = 4, $categoryO
     for ($i = 0; $i < $nb_subcats; $i++) {
         if ($i < (isset($_POST['scname']) ? sizeof($_POST['scname']) : 0)) {
             $subname = isset($_POST['scname']) ? $_POST['scname'][$i] : '';
-        }
-        else {
+        } else {
             $subname = '';
         }
         $cat_tray->addElement(new XoopsFormText('', 'scname[' . $i . ']', 50, 255, $subname), true);
-
     }
 
     $t = new XoopsFormText('', 'nb_subcats', 3, 2);
@@ -141,8 +138,7 @@ function editcat($showmenu = false, $categoryid = 0, $nb_subcats = 4, $categoryO
     $b = new XoopsFormButton('', 'submit', _AM_SPARTNER_ADD_OPT_SUBMIT, 'submit');
     if ($categoryid == 0) {
         $b->setExtra('onclick="this.form.elements.op.value=\'addsubcats\'"');
-    }
-    else {
+    } else {
         $b->setExtra('onclick="this.form.elements.op.value=\'mod\'"');
     }
     $r = new XoopsFormElementTray('');
@@ -152,7 +148,6 @@ function editcat($showmenu = false, $categoryid = 0, $nb_subcats = 4, $categoryO
 
     $sform->addElement($cat_tray);
     //End of fx2024 code
-
 
     /*$gperm_handler = &xoops_gethandler('groupperm');
      $mod_perms = $gperm_handler->getGroupIds('category_moderation', $categoryid, $module_id);
@@ -242,8 +237,12 @@ global $smartpartner_category_handler;
 
 $op = '';
 
-if (isset($_GET['op'])) $op = $_GET['op'];
-if (isset($_POST['op'])) $op = $_POST['op'];
+if (isset($_GET['op'])) {
+    $op = $_GET['op'];
+}
+if (isset($_POST['op'])) {
+    $op = $_POST['op'];
+}
 
 // Where do we start ?
 $startcategory = isset($_GET['startcategory']) ? intval($_GET['startcategory']) : 0;
@@ -273,7 +272,7 @@ switch ($op) {
         $categoryid = (isset($_POST['categoryid'])) ? intval($_POST['categoryid']) : 0;
         $parentid = (isset($_POST['parentid'])) ? intval($_POST['parentid']) : 0;
 
-        If ($categoryid != 0) {
+        if ($categoryid != 0) {
             $categoryObj = $smartpartner_category_handler->get($categoryid);
         } else {
             $categoryObj = $smartpartner_category_handler->create();
@@ -281,7 +280,7 @@ switch ($op) {
 
         // Uploading the image, if any
         // Retreive the filename to be uploaded
-        if (isset ($_FILES['image_file']['name']) && $_FILES['image_file']['name'] != "") {
+        if (isset($_FILES['image_file']['name']) && $_FILES['image_file']['name'] != "") {
             $filename = $_POST["xoops_upload_file"][0];
             if (!empty($filename) || $filename != "") {
                 global $xoopsModuleConfig;
@@ -303,9 +302,7 @@ switch ($op) {
                 $uploader = new XoopsMediaUploader(smartpartner_getImageDir('category'), $allowed_mimetypes, $max_size, $max_imgwidth, $max_imgheight);
 
                 if ($uploader->fetchMedia($filename) && $uploader->upload()) {
-
                     $categoryObj->setVar('image', $uploader->getSavedFileName());
-
                 } else {
                     redirect_header('javascript:history.go(-1)', 2, _AM_SPARTNER_FILEUPLOAD_ERROR . $uploader->getErrors());
                     exit;
@@ -333,7 +330,7 @@ switch ($op) {
             $redirect_to = 'category.php';
         }
 
-        If (!$categoryObj->store()) {
+        if (!$categoryObj->store()) {
             redirect_header("javascript:history.go(-1)", 3, _AM_SPARTNER_CATEGORY_SAVE_ERROR . smartpartner_formatErrors($categoryObj->getErrors()));
             exit;
         }
@@ -341,17 +338,15 @@ switch ($op) {
         $parentCat = $categoryObj->categoryid();
 
         for ($i = 0; $i < sizeof($_POST['scname']); $i++) {
-
             if ($_POST['scname'][$i] != '') {
                 $categoryObj = $smartpartner_category_handler->create();
                 $categoryObj->setVar('name', $_POST['scname'][$i]);
                 $categoryObj->setVar('parentid', $parentCat);
 
-                If (!$categoryObj->store()) {
+                if (!$categoryObj->store()) {
                     redirect_header("javascript:history.go(-1)", 3, _AM_SPARTNER_CATEGORY_SUBCAT_SAVE_ERROR . smartpartner_formatErrors($categoryObj->getErrors()));
                     exit;
                 }
-
             }
         }
 
@@ -384,7 +379,6 @@ switch ($op) {
         break;
     //end of fx2024 code
 
-
     case "del":
         global $xoopsUser, $xoopsUser, $xoopsConfig, $xoopsDB, $_GET;
 
@@ -401,7 +395,7 @@ switch ($op) {
         $name = (isset($_POST['name'])) ? $_POST['name'] : '';
 
         if ($confirm) {
-            If (!$smartpartner_category_handler->delete($categoryObj)) {
+            if (!$smartpartner_category_handler->delete($categoryObj)) {
                 redirect_header("category.php", 1, _AM_SPARTNER_CATEGORY_DELETE_ERROR);
                 exit;
             }

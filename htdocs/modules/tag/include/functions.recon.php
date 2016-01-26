@@ -22,9 +22,9 @@
 defined('XOOPS_ROOT_PATH') || exit('Restricted access');
 
 defined("TAG_FUNCTIONS_INI") || include __DIR__ . "/functions.ini.php";
-define("TAG_FUNCTIONS_RECON_LOADED", TRUE);
+define("TAG_FUNCTIONS_RECON_LOADED", true);
 
-IF (!defined("TAG_FUNCTIONS_RECON")):
+if (!defined("TAG_FUNCTIONS_RECON")):
 define("TAG_FUNCTIONS_RECON", 1);
 
 function tag_synchronization()
@@ -101,4 +101,4 @@ function tag_cleanOrphan()
     return $success;
 }
 
-ENDIF;
+endif;

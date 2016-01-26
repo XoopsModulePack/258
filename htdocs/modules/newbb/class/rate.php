@@ -69,7 +69,7 @@ class NewbbRateHandler extends ArtObjectHandler
 
     public function synchronization()
     {
-//        return;
+        //        return;
     }
 
     /**

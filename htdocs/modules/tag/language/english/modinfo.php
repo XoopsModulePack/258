@@ -59,7 +59,7 @@ define('_MI_TAG_INDEX_ADMINTPL_ABOUT_DESC', "");
 define('_MI_TAG_INDEX_ADMINTPL_HELP_DESC', "");
 
 //2.33
-define('_MI_TAG_BLOCK_CUMULUS',"Cumulus Tag Cloud");
+define('_MI_TAG_BLOCK_CUMULUS', "Cumulus Tag Cloud");
 define('_MI_TAG_BLOCK_CUMULUS_DESC', "Display terms in a moving cloud");
 define('_MI_TAG_LIMITPERLIST', "Limit number of items per list");
 define('_MI_TAG_LIMITPERLIST_DESC', "");

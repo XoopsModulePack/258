@@ -29,11 +29,13 @@
 // Descrição: Sistema de gerenciamento de mídias publicitárias               //
 // ------------------------------------------------------------------------- //
 
-$admin_mydirname = basename( dirname( dirname( __FILE__ ) ) ) ;
+$admin_mydirname = basename(dirname(dirname(__FILE__))) ;
 
-$fct = empty( $_POST['fct'] ) ? '' : trim( $_POST['fct'] ) ;
-$fct = empty( $_GET['fct'] ) ? $fct : trim( $_GET['fct'] ) ;
-if( empty( $fct ) ) $fct = 'preferences' ;
+$fct = empty($_POST['fct']) ? '' : trim($_POST['fct']) ;
+$fct = empty($_GET['fct']) ? $fct : trim($_GET['fct']) ;
+if (empty($fct)) {
+    $fct = 'preferences' ;
+}
 
 include "../../../mainfile.php";
 include XOOPS_ROOT_PATH."/include/cp_functions.php";
@@ -44,13 +46,13 @@ $admintest = 0;
 
 if (is_object($xoopsUser)) {
     $xoopsModule =& XoopsModule::getByDirname("system");
-    if ( !$xoopsUser->isAdmin($xoopsModule->mid()) ) {
-        redirect_header(XOOPS_URL.'/user.php',3,_MD_RWBANNER_NOPERM);
+    if (!$xoopsUser->isAdmin($xoopsModule->mid())) {
+        redirect_header(XOOPS_URL.'/user.php', 3, _MD_RWBANNER_NOPERM);
         exit();
     }
     $admintest=1;
 } else {
-    redirect_header(XOOPS_URL.'/user.php',3,_MD_RWBANNER_NOPERM);
+    redirect_header(XOOPS_URL.'/user.php', 3, _MD_RWBANNER_NOPERM);
     exit();
 }
 
@@ -61,7 +63,7 @@ $error = false;
 if ($admintest != 0) {
     if (isset($fct) && $fct != '') {
         if (file_exists(XOOPS_ROOT_PATH."/modules/system/admin/".$fct."/xoops_version.php")) {
-            if ( file_exists(XOOPS_ROOT_PATH."/modules/system/language/".$xoopsConfig['language']."/admin.php") ) {
+            if (file_exists(XOOPS_ROOT_PATH."/modules/system/language/".$xoopsConfig['language']."/admin.php")) {
                 include XOOPS_ROOT_PATH."/modules/system/language/".$xoopsConfig['language']."/admin.php";
             } else {
                 include XOOPS_ROOT_PATH."/modules/system/language/english/admin.php";
@@ -77,8 +79,8 @@ if ($admintest != 0) {
             unset($modversion);
             if ($category > 0) {
                 $groups =& $xoopsUser->getGroups();
-                if (in_array(XOOPS_GROUP_ADMIN, $groups) || false != $sysperm_handler->checkRight('system_admin', $category, $groups, $xoopsModule->getVar('mid'))){
-//                  if (file_exists(XOOPS_ROOT_PATH."/modules/system/admin/".$fct."/main.php")) {
+                if (in_array(XOOPS_GROUP_ADMIN, $groups) || false != $sysperm_handler->checkRight('system_admin', $category, $groups, $xoopsModule->getVar('mid'))) {
+                    //                  if (file_exists(XOOPS_ROOT_PATH."/modules/system/admin/".$fct."/main.php")) {
 //                      include_once XOOPS_ROOT_PATH."/modules/system/admin/".$fct."/main.php"; GIJ
                     if (file_exists("../include/{$fct}.inc.php")) {
                         include_once "../include/{$fct}.inc.php" ;
@@ -134,7 +136,7 @@ if (false != $error) {
                     $counter++;
                     $class = ($class == 'even') ? 'odd' : 'even';
                 }
-                if ( $counter > 4 ) {
+                if ($counter > 4) {
                     $counter = 0;
                     echo "</tr>";
                     echo "<tr>";

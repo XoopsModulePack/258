@@ -43,7 +43,7 @@ class MylinksThumbshots implements MylinksThumbPlugin
     private $provider_url    = "http://images.thumbshots.com/image.aspx";
     private $provider_name   = "Thumbshots";
 
-    function __construct()
+    public function __construct()
     {
     }
     public function getProviderUrl()

@@ -45,7 +45,7 @@ if (empty($modid) && ($GLOBALS["xoopsModule"] instanceof XoopsModule) && "tag" !
     $modid = $GLOBALS["xoopsModule"]->getVar("mid");
 }
 
-if (empty($tag_id) && empty($tag_term) ) {
+if (empty($tag_id) && empty($tag_term)) {
     redirect_header($GLOBALS['xoops']->url("www/modules/" . $GLOBALS["xoopsModule"]->getVar("dirname") . "/index.php"), 2, _MD_TAG_INVALID);
 }
 $tag_handler =& xoops_getmodulehandler("tag", "tag");
@@ -102,7 +102,7 @@ if (!empty($items)) {
     $modules_obj = $module_handler->getObjects(new Criteria("mid", "(" . implode(", ", array_keys($items_module)) . ")", "IN"), true);
     foreach (array_keys($modules_obj) as $mid) {
         $dirname = $modules_obj[$mid]->getVar("dirname", "n");
-        if  (file_exists($GLOBALS['xoops']->path("/modules/{$dirname}/class/plugins/plugin.tag.php"))) {
+        if (file_exists($GLOBALS['xoops']->path("/modules/{$dirname}/class/plugins/plugin.tag.php"))) {
             include_once $GLOBALS['xoops']->path("/modules/{$dirname}/class/plugins/plugin.tag.php");
         } elseif (file_exists($GLOBALS['xoops']->path("/modules/{$dirname}/include/plugin.tag.php"))) {
             include_once $GLOBALS['xoops']->path("/modules/{$dirname}/include/plugin.tag.php");
@@ -139,7 +139,9 @@ foreach (array_keys($items) as $key) {
      * uid
      * tags
      */
-    if (!$item = @$items_module[$items[$key]["modid"]][$items[$key]["catid"]][$items[$key]["itemid"]]) continue;
+    if (!$item = @$items_module[$items[$key]["modid"]][$items[$key]["catid"]][$items[$key]["itemid"]]) {
+        continue;
+    }
     $item["module"]     = $modules_obj[$items[$key]["modid"]]->getVar("name");
     $item["dirname"]    = $modules_obj[$items[$key]["modid"]]->getVar("dirname", "n");
     $time               = empty($item["time"]) ? $items[$key]["time"] : $item["time"];
@@ -156,7 +158,7 @@ foreach (array_keys($items_data) as $key) {
     $items_data[$key]["uname"] = $users[$items_data[$key]["uid"]];
 }
 
-if ( !empty($start) || count($items_data) >= $limit) {
+if (!empty($start) || count($items_data) >= $limit) {
     $count_item = $tag_handler->getItemCount($tag_id, $modid, $catid); // Tag, modid, catid
 
     include_once $GLOBALS['xoops']->path("/class/pagenav.php");

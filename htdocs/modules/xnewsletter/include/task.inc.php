@@ -450,14 +450,13 @@ function xnewsletter_executeTasks($xn_send_in_packages, $letter_id = 0)
             }
 
             unset($mail);
-
         } catch (phpmailerException $e) {
-// IN PROGRESS
+            // IN PROGRESS
             $protocol_status = _AM_XNEWSLETTER_SEND_ERROR_PHPMAILER . $e->errorMessage(); //error messages from PHPMailer
             ++$count_err;
             $protocol_success = false;
         } catch (Exception $e) {
-// IN PROGRESS
+            // IN PROGRESS
             $protocol_status = _AM_XNEWSLETTER_SEND_ERROR_PHPMAILER . $e->getMessage(); //error messages from anything else!
             ++$count_err;
             $protocol_success = false;
@@ -466,16 +465,16 @@ function xnewsletter_executeTasks($xn_send_in_packages, $letter_id = 0)
 
     //create final protocol item
     if ($count_err > 0) {
-// IN PROGRESS
+        // IN PROGRESS
         $protocol_status  = xnewsletter_sprintf(_AM_XNEWSLETTER_SEND_ERROR_NUMBER, array('%e' => $count_err, '%t' => $count_total));
         $protocol_success = false;
     } else {
         $protocol_success = true;
         if ($count_total > 0) {
-// IN PROGRESS
+            // IN PROGRESS
             $protocol_status = xnewsletter_sprintf(_AM_XNEWSLETTER_SEND_SUCCESS_NUMBER, array('%t' => $count_total));
         } else {
-// IN PROGRESS
+            // IN PROGRESS
             $protocol_status = '';
         }
     }

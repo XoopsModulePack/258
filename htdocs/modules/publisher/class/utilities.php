@@ -56,7 +56,7 @@ class PublisherUtilities
      */
     public static function copyFile($file, $folder)
     {
-                return copy($file, $folder);
+        return copy($file, $folder);
 //        try {
 //            if (!is_dir($folder)) {
 //                throw new \RuntimeException(sprintf('Unable to copy file as: %s ', $folder));
@@ -68,7 +68,6 @@ class PublisherUtilities
 //        }
 //        return false;
     }
-
 
     /**
      * @param $src

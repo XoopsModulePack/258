@@ -170,11 +170,11 @@ define("_AM_XFORMS_NO_FORMS", "No forms registered. Press on menu - Create a new
 define("_AM_XFORMS_NO_FORMS_TOREPORT", "There are no forms to generate report. (Check inactive forms)");
 define("_AM_XFORMS_STATUS_INFORMATION", "Information about form status:");
 //xForms 1.21 Defaults
-define("_AM_XFORMS_ELE_YOUR_NAME",'Your Name');
-define("_AM_XFORMS_ELE_YOUR_EMAIL",'Email address');
-define("_AM_XFORMS_ELE_YOUR_COMMENTS",'Your comments');
+define("_AM_XFORMS_ELE_YOUR_NAME", 'Your Name');
+define("_AM_XFORMS_ELE_YOUR_EMAIL", 'Email address');
+define("_AM_XFORMS_ELE_YOUR_COMMENTS", 'Your comments');
 
 //2.00
 
-define('_AM_XFORMS_ELE_DATE',"Date Selection");
-define('_AM_XFORMS_ELE_SELECT_CTRY',"Country Selection");
+define('_AM_XFORMS_ELE_DATE', "Date Selection");
+define('_AM_XFORMS_ELE_SELECT_CTRY', "Country Selection");

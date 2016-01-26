@@ -121,7 +121,6 @@ function xlanguage_detectLang()
     $xoops_lang = '';
     // 1. try to findout user's language by checking its HTTP_ACCEPT_LANGUAGE variable
 
-
 //    if (empty($lang) && !empty($HTTP_ACCEPT_LANGUAGE)) {
 //        $accepted    = explode(',', $HTTP_ACCEPT_LANGUAGE);
 //        $acceptedCnt = count($accepted);
@@ -134,11 +133,8 @@ function xlanguage_detectLang()
 //        }
 //    }
 
-
-
 //This returns the most preferred langauage "q=1"
  $lang = getPreferredLanguage();
-
 
     // 2. if not found in HTTP_ACCEPT_LANGUAGE, try to find user's language by checking its HTTP_USER_AGENT variable
     if (empty($lang) && !empty($HTTP_USER_AGENT)) {
@@ -290,13 +286,11 @@ function xlanguage_select_show($options = null)
     return true;
 }
 
-
-
 function getPreferredLanguage()
 {
     $langs = array();
     if (isset($_SERVER['HTTP_ACCEPT_LANGUAGE'])) {
-// break up string into pieces (languages and q factors)
+        // break up string into pieces (languages and q factors)
         preg_match_all(
             '/([a-z]{1,8}(-[a-z]{1,8})?)\s*(;\s*q\s*=\s*(1|0\.[0-9]+))?/i',
             $_SERVER['HTTP_ACCEPT_LANGUAGE'],
@@ -324,5 +318,6 @@ function getPreferredLanguage()
         $tmp  = explode("-", $lang);
         $lang = $tmp[0];
     }
+
     return $lang;
 }

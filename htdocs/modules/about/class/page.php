@@ -72,9 +72,9 @@ class AboutPageHandler extends XoopsPersistableObjectHandler
     }
 
     /**
-     * @param int    $pid
-     * @param string $prefix
-     * @param array  $tags
+     * @param  int    $pid
+     * @param  string $prefix
+     * @param  array  $tags
      * @return array
      */
     public function &getTrees($pid = 0, $prefix = "--", $tags = array())
@@ -95,9 +95,9 @@ class AboutPageHandler extends XoopsPersistableObjectHandler
     }
 
     /**
-     * @param array $pages
-     * @param int   $key
-     * @param int   $level
+     * @param  array      $pages
+     * @param  int        $key
+     * @param  int        $level
      * @return array|bool
      */
     public function &MenuTree($pages = array(), $key = 0, $level = 1)
@@ -122,8 +122,8 @@ class AboutPageHandler extends XoopsPersistableObjectHandler
     }
 
     /**
-     * @param array $pages
-     * @param int   $key
+     * @param  array      $pages
+     * @param  int        $key
      * @return array|bool
      */
     public function getBread($pages = array(), $key = 0)

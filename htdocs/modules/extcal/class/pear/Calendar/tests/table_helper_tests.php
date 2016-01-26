@@ -9,7 +9,7 @@ require_once 'calendar_include.php';
  */
 class TableHelperTests extends GroupTest
 {
-    function TableHelperTests()
+    public function TableHelperTests()
     {
         $this->GroupTest('Table Helper Tests');
         $this->addTestFile('helper_test.php');

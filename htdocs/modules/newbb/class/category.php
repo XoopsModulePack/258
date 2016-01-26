@@ -86,7 +86,7 @@ class NewbbCategoryHandler extends XoopsPersistableObjectHandler
     }
 
     /**
-     * @param  Category     $category
+     * @param  Category   $category
      * @return bool|mixed
      */
     public function delete(Category $category)

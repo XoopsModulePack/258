@@ -3,12 +3,12 @@
 /**
  * Class ColorTools
  */
-class ColorTools
+class colorTools
 {
     /**
      *
      */
-    function __construct()
+    public function __construct()
     {
     }
 
@@ -30,7 +30,7 @@ class ColorTools
      *
      * @return string
      */
-    Function modifierCouleur(
+    public function modifierCouleur(
         $colorHexa,
         $incrementRouge,
         $incrementVert,
@@ -42,7 +42,6 @@ class ColorTools
         $plancherBleu = 0,
         $plafondBleu = 255
     ) {
-
         $t10 = ColorTools::hexa2rgbA($colorHexa);
 
         $t10[1] = ColorTools::bornerValeur($t10[1] + $incrementRouge, $plancherRouge, $plafondRouge);
@@ -52,7 +51,6 @@ class ColorTools
         $newColorHexa = ColorTools::getHexaColorFromA($t10);
 
         return $newColorHexa;
-
     }
 
     /**************************************************************
@@ -65,18 +63,17 @@ class ColorTools
      * @param int $plafond
      * @return string
 */
-    Function eclaircir($colorHexa, $plancher = 0, $plafond = 255)
+    public function eclaircir($colorHexa, $plancher = 0, $plafond = 255)
     {
-
-        $tMin = Array('', $plancher, $plancher, $plancher);
-        $tMax = Array('', $plafond, $plafond, $plafond);
+        $tMin = array('', $plancher, $plancher, $plancher);
+        $tMax = array('', $plafond, $plafond, $plafond);
 
         $t10 = ColorTools::hexa2rgbA($colorHexa);
 // echo "<hr>";
 // ext_echoArray($t10);
         $max = $plancher;
-        For ($h = 1; $h <= 3; ++$h) {
-            If ($max < $t10[$h]) {
+        for ($h = 1; $h <= 3; ++$h) {
+            if ($max < $t10[$h]) {
                 $max = $t10[$h];
             }
         }
@@ -88,9 +85,9 @@ class ColorTools
 //     $t10[3] = $t10[3] + $increment;
 
         $min = 0;
-        For ($h = 1; $h <= 3; ++$h) {
+        for ($h = 1; $h <= 3; ++$h) {
             $t10[$h] = $t10[$h] + $increment;
-            If ($t10[$h] < $tMin[$h] && $min < ($tMin[$h] - $t10[$h])) {
+            if ($t10[$h] < $tMin[$h] && $min < ($tMin[$h] - $t10[$h])) {
                 $min = ($tMin[$h] - $t10[$h]);
             }
         }
@@ -119,17 +116,16 @@ class ColorTools
      * @param int $plafond
      * @return string
 */
-    Function foncer($colorHexa, $plancher = 0, $plafond = 255)
+    public function foncer($colorHexa, $plancher = 0, $plafond = 255)
     {
-
-        $tMin = Array('', $plancher, $plancher, $plancher);
-        $tMax = Array('', $plafond, $plafond, $plafond);
+        $tMin = array('', $plancher, $plancher, $plancher);
+        $tMax = array('', $plafond, $plafond, $plafond);
 
         $t10 = ColorTools::hexa2rgbA($colorHexa);
         $max = 255;
 
-        For ($h = 1; $h <= 3; ++$h) {
-            If ($max > $t10[$h]) {
+        for ($h = 1; $h <= 3; ++$h) {
+            if ($max > $t10[$h]) {
                 $max = $t10[$h];
             }
         }
@@ -141,9 +137,9 @@ class ColorTools
 //     $t10[3] = $t10[3] + $increment;
 
         $min = 0;
-        For ($h = 1; $h <= 3; ++$h) {
+        for ($h = 1; $h <= 3; ++$h) {
             $t10[$h] = $t10[$h] + $increment;
-            If ($t10[$h] > $tMax[$h] && $min < ($t10[$h] - $tMax[$h])) {
+            if ($t10[$h] > $tMax[$h] && $min < ($t10[$h] - $tMax[$h])) {
                 $min = ($t10[$h] - $tMax[$h]);
             }
         }
@@ -155,7 +151,6 @@ class ColorTools
         $colorHexa = ColorTools::getHexaColorFromA($t10);
 
         return $colorHexa;
-
     }
 
     /**************************************************************
@@ -169,9 +164,8 @@ class ColorTools
      * @param $aColors
      * @return string
 */
-    Function getHexaColorFromA($aColors)
+    public function getHexaColorFromA($aColors)
     {
-
         $tHex = array("", "", "", "");
 
         $tHex[0] = $aColors[0];
@@ -194,13 +188,11 @@ class ColorTools
      * @param string $prefixe
      * @return string
 */
-    Function rgb2hexa($r, $g, $b, $prefixe = '')
+    public function rgb2hexa($r, $g, $b, $prefixe = '')
     {
-
-        $colorHexa = ColorTools::getHexaColorFromA(Array($prefixe, $r, $g, $b));
+        $colorHexa = ColorTools::getHexaColorFromA(array($prefixe, $r, $g, $b));
 
         return $colorHexa;
-
     }
 
     /**************************************************************
@@ -214,12 +206,11 @@ class ColorTools
      * @param $colorHexa
      * @return array
 */
-    Function hexa2rgbA($colorHexa)
+    public function hexa2rgbA($colorHexa)
     {
-
         $t = array("", "", "", "");
 
-        If (substr($colorHexa, 0, 1) == '#') {
+        if (substr($colorHexa, 0, 1) == '#') {
             $t[0]      = '#';
             $offsetCar = 1;
         } else {
@@ -244,9 +235,8 @@ class ColorTools
      * @param $diese
      * @return bool
 */
-    Function hexa2rgb($colorHexa, &$r, &$v, &$b, &$diese)
+    public function hexa2rgb($colorHexa, &$r, &$v, &$b, &$diese)
     {
-
         $t     = ColorTools::hexa2rgbA($colorHexa);
         $r     = $t[1];
         $v     = $t[2];
@@ -264,19 +254,18 @@ class ColorTools
      * @param $max
      * @return
 */
-    Function bornerValeur($val, $min, $max)
+    public function bornerValeur($val, $min, $max)
     {
-
-        If ($val < $min) {
+        if ($val < $min) {
             $val = $min;
         } elseif ($val > $max) {
             $val = $max;
         }
 
         return $val;
-
     }
 
 //--------------------------------------------------------
 } // --- fin de la classe colors
 //--------------------------------------------------------
+

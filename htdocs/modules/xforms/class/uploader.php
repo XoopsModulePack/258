@@ -154,7 +154,7 @@ class XFormsMediaUploader
      * @param string $media_name Name of the file field
      * @param int    $index      Index of the file (if more than one uploaded under that name)
      *
-     * @param       $ele
+     * @param   $ele
      * @global        $HTTP_POST_FILES
      * @return bool
      */

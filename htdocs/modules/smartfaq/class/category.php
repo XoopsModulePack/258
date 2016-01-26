@@ -15,18 +15,18 @@ class sfCategory extends XoopsObject
      * @var array
      * @access private
      */
-    var $_groups_read = null;
+    public $_groups_read = null;
 
     /**
      * @var array
      * @access private
      */
-    var $_groups_admin = null;
+    public $_groups_admin = null;
 
     /**
     * constructor
     */
-    function __construct($id = null)
+    public function __construct($id = null)
     {
         $this->db =& XoopsDatabaseFactory::getDatabaseConnection();
         $this->initVar("categoryid", XOBJ_DTYPE_INT, null, false);
@@ -57,12 +57,12 @@ class sfCategory extends XoopsObject
         }
     }
 
-    function notLoaded()
+    public function notLoaded()
     {
-       return ($this->getVar('categoryid')== -1);
+        return ($this->getVar('categoryid')== -1);
     }
 
-    function assignOtherProperties()
+    public function assignOtherProperties()
     {
         global $xoopsUser;
         $smartModule =& sf_getModuleInfo();
@@ -73,7 +73,7 @@ class sfCategory extends XoopsObject
         $this->_groups_read = $gperm_handler->getGroupIds('category_read', $this->categoryid(), $module_id);
     }
 
-    function checkPermission()
+    public function checkPermission()
     {
         include_once XOOPS_ROOT_PATH.'/modules/smartfaq/include/functions.php';
 
@@ -85,24 +85,24 @@ class sfCategory extends XoopsObject
         $smartPermHandler =& xoops_getmodulehandler('permission', 'smartfaq');
 
         $categoriesGranted = $smartPermHandler->getPermissions('category');
-        if ( in_array($this->categoryid(), $categoriesGranted) ) {
+        if (in_array($this->categoryid(), $categoriesGranted)) {
             $ret = true;
         }
 
         return $ret;
     }
 
-    function categoryid()
+    public function categoryid()
     {
         return $this->getVar("categoryid");
     }
 
-    function parentid()
+    public function parentid()
     {
         return $this->getVar("parentid");
     }
 
-    function name($format="S")
+    public function name($format="S")
     {
         $ret = $this->getVar("name", $format);
         if (($format=='s') || ($format=='S') || ($format=='show')) {
@@ -113,17 +113,17 @@ class sfCategory extends XoopsObject
         return $ret;
     }
 
-    function description($format="S")
+    public function description($format="S")
     {
         return $this->getVar("description", $format);
     }
 
-    function weight()
+    public function weight()
     {
         return $this->getVar("weight");
     }
 
-    function getCategoryPath($withAllLink = false, $open = false)
+    public function getCategoryPath($withAllLink = false, $open = false)
     {
         if ($open != false) {
             $filename = "open_category.php";
@@ -149,7 +149,7 @@ class sfCategory extends XoopsObject
         return $ret;
     }
 
-    function getGroups_read()
+    public function getGroups_read()
     {
         if (count($this->_groups_read) < 1) {
             $this->assignOtherProperties();
@@ -158,17 +158,17 @@ class sfCategory extends XoopsObject
         return $this->_groups_read;
     }
 
-    function setGroups_read($groups_read = array('0'))
+    public function setGroups_read($groups_read = array('0'))
     {
-      $this->_groups_read = $groups_read;
+        $this->_groups_read = $groups_read;
     }
 
-    function store($sendNotifications = true, $force = true )
+    public function store($sendNotifications = true, $force = true)
     {
         $category_handler = new sfCategoryHandler($this->db);
 
         $ret = $category_handler->insert($this, $force);
-        if ( $sendNotifications && $ret && ($this->isNew()) ) {
+        if ($sendNotifications && $ret && ($this->isNew())) {
             $this->sendNotifications();
         }
         $this->unsetNew();
@@ -176,7 +176,7 @@ class sfCategory extends XoopsObject
         return $ret;
     }
 
-    function sendNotifications()
+    public function sendNotifications()
     {
         $smartModule =& sf_getModuleInfo();
 
@@ -192,7 +192,7 @@ class sfCategory extends XoopsObject
         $notification_handler->triggerEvent('global_faq', 0, 'category_created', $tags);
     }
 
-    function toArray($category = array(), $open = false)
+    public function toArray($category = array(), $open = false)
     {
         $category['categoryid'] = $this->categoryid();
         $category['name'] = $this->name();
@@ -230,7 +230,7 @@ class sfCategoryHandler extends XoopsObjectHandler
     * @param bool $isNew flag the new objects as "new"?
     * @return object sfCategory
     */
-    function &create($isNew = true)
+    public function &create($isNew = true)
     {
         $category = new sfCategory();
         if ($isNew) {
@@ -246,7 +246,7 @@ class sfCategoryHandler extends XoopsObjectHandler
     * @param int $id categoryid of the category
     * @return mixed reference to the {@link sfCategory} object, FALSE if failed
     */
-    function &get($id)
+    public function &get($id)
     {
         $false = false;
         if (intval($id) > 0) {
@@ -274,7 +274,7 @@ class sfCategoryHandler extends XoopsObjectHandler
     * @param bool $force
     * @return bool FALSE if failed, TRUE if already present and unchanged or successful
     */
-    function insert(&$category, $force = false)
+    public function insert(&$category, $force = false)
     {
         if (strtolower(get_class($category)) != 'sfcategory') {
             return false;
@@ -319,9 +319,8 @@ class sfCategoryHandler extends XoopsObjectHandler
     * @param bool $force
     * @return bool FALSE if failed.
     */
-    function delete(&$category, $force = false)
+    public function delete(&$category, $force = false)
     {
-
         if (strtolower(get_class($category)) != 'sfcategory') {
             return false;
         }
@@ -349,7 +348,7 @@ class sfCategoryHandler extends XoopsObjectHandler
             $result = $this->db->query($sql);
         }
 
-        xoops_groupperm_deletebymoditem ($module_id, "category_read", $category->categoryid());
+        xoops_groupperm_deletebymoditem($module_id, "category_read", $category->categoryid());
         //xoops_groupperm_deletebymoditem ($module_id, "category_admin", $categoryObj->categoryid());
 
         if (!$result) {
@@ -366,7 +365,7 @@ class sfCategoryHandler extends XoopsObjectHandler
     * @param bool $id_as_key use the categoryid as key for the array?
     * @return array array of {@link XoopsFaq} objects
     */
-    function &getObjects($criteria = null, $id_as_key = false)
+    public function &getObjects($criteria = null, $id_as_key = false)
     {
         $ret = array();
         $limit = $start = 0;
@@ -399,7 +398,7 @@ class sfCategoryHandler extends XoopsObjectHandler
         return $ret;
     }
 
-    function &getCategories($limit=0, $start=0, $parentid=0, $sort='weight', $order='ASC', $id_as_key = true)
+    public function &getCategories($limit=0, $start=0, $parentid=0, $sort='weight', $order='ASC', $id_as_key = true)
     {
         include_once XOOPS_ROOT_PATH.'/modules/smartfaq/include/functions.php';
 
@@ -424,7 +423,7 @@ class sfCategoryHandler extends XoopsObjectHandler
         return $ret;
     }
 
-    function &getCategoriesWithOpenQuestion($limit=0, $start=0, $parentid=0, $sort='weight', $order='ASC')
+    public function &getCategoriesWithOpenQuestion($limit=0, $start=0, $parentid=0, $sort='weight', $order='ASC')
     {
         include_once XOOPS_ROOT_PATH.'/modules/smartfaq/include/functions.php';
 
@@ -472,7 +471,6 @@ class sfCategoryHandler extends XoopsObjectHandler
         }
 
         return $ret;
-
     }
 
     /**
@@ -481,7 +479,7 @@ class sfCategoryHandler extends XoopsObjectHandler
     * @param object $criteria {@link CriteriaElement} to match
     * @return int count of categories
     */
-    function getCount($criteria = null)
+    public function getCount($criteria = null)
     {
         $sql = 'SELECT COUNT(*) FROM '.$this->db->prefix('smartfaq_categories');
         if (isset($criteria) && is_subclass_of($criteria, 'criteriaelement')) {
@@ -496,9 +494,8 @@ class sfCategoryHandler extends XoopsObjectHandler
         return $count;
     }
 
-    function getCategoriesCount($parentid=0)
+    public function getCategoriesCount($parentid=0)
     {
-
         if ($parentid == -1) {
             return $this->getCount();
         }
@@ -516,9 +513,8 @@ class sfCategoryHandler extends XoopsObjectHandler
         return $this->getCount($criteria);
     }
 
-    function getCategoriesWithOpenQuestionsCount($parentid=0)
+    public function getCategoriesWithOpenQuestionsCount($parentid=0)
     {
-
         if ($parentid == -1) {
             return $this->getCount();
         }
@@ -550,7 +546,7 @@ class sfCategoryHandler extends XoopsObjectHandler
         return $count;
     }
 
-    function getSubCats(&$categories)
+    public function getSubCats(&$categories)
     {
         $criteria = new CriteriaCompo('parentid', "(".implode(',', array_keys($categories)).")", 'IN');
         $ret = array();
@@ -574,7 +570,7 @@ class sfCategoryHandler extends XoopsObjectHandler
     * @param object $criteria {@link CriteriaElement}
     * @return bool FALSE if deletion failed
     */
-    function deleteAll($criteria = null)
+    public function deleteAll($criteria = null)
     {
         $sql = 'DELETE FROM '.$this->db->prefix('smartfaq_categories');
         if (isset($criteria) && is_subclass_of($criteria, 'criteriaelement')) {
@@ -598,7 +594,7 @@ class sfCategoryHandler extends XoopsObjectHandler
     *
     * @return  bool
     **/
-    function updateAll($fieldname, $fieldvalue, $criteria = null)
+    public function updateAll($fieldname, $fieldvalue, $criteria = null)
     {
         $set_clause = is_numeric($fieldvalue)? $fieldname.' = '.$fieldvalue : $fieldname.' = '.$this->db->quoteString($fieldvalue);
         $sql = 'UPDATE '.$this->db->prefix('smartfaq_categories').' SET '.$set_clause;
@@ -612,15 +608,14 @@ class sfCategoryHandler extends XoopsObjectHandler
         return true;
     }
 
-    function publishedFaqsCount($cat_id = 0)
+    public function publishedFaqsCount($cat_id = 0)
     {
         return $this->faqsCount($cat_id, $status=array(_SF_STATUS_PUBLISHED, _SF_STATUS_NEW_ANSWER));
     }
 
-    function faqsCount($cat_id = 0, $status='')
+    public function faqsCount($cat_id = 0, $status='')
     {
-
-        Global $xoopsUser;
+        global $xoopsUser;
         include_once XOOPS_ROOT_PATH.'/modules/smartfaq/include/functions.php';
 
         $faq_handler =& sf_gethandler('faq');

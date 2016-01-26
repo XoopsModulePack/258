@@ -48,7 +48,6 @@ global $xoopsModule;
     echo $index_admin->addNavigation('index.php');
     echo $index_admin->renderIndex();
 
-
 // include_once XOOPS_ROOT_PATH."/modules/xsitemap/class/menu.php";
 
     // $menu = new xsitemapMenu();
@@ -59,11 +58,7 @@ global $xoopsModule;
                                                 // "&amp;&confcat_id=1", "../images/deco/pref.png", _AM_XSITEMAP_MANAGER_PREFERENCES);
     // $menu->addItem("update", "../../system/admin.php?fct=modulesadmin&op=update&module=xsitemap", "../images/deco/update.png",  _AM_XSITEMAP_MANAGER_UPDATE);
 
-
-
-
 //  echo $menu->getCSS();
-
 
 // echo "<div class=\"CPbigTitle\" style=\"background-image: url(../images/deco/index.png); background-repeat: no-repeat; background-position: left; padding-left: 50px;\"><strong>"._AM_XSITEMAP_MANAGER_INDEX."</strong></div><br />
         // <table width=\"100%\" border=\"0\" cellspacing=\"10\" cellpadding=\"4\">

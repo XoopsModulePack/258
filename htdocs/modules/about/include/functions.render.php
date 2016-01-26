@@ -56,8 +56,8 @@ function about_getTemplate($page = "index", $style = null)
 /**
  * Function to get a list of template files of a page, indexed by file name
  *
- * @var string        $page page name
- * @param bool|boolen $refresh
+ * @var    string      $page page name
+ * @param  bool|boolen $refresh
  * @return array
  * @internal param boolen $refresh recreate the data
  *
@@ -112,7 +112,7 @@ function about_getModuleHeader($style = "default")
  *
  * @var string $page page name
  *
- * @param bool $refresh
+ * @param  bool  $refresh
  * @return array
  */
 function &about_getTplPageList($page = "", $refresh = true)
@@ -139,7 +139,7 @@ function &about_getTplPageList($page = "", $refresh = true)
 }
 
 /**
- * @param bool $index_by_page
+ * @param  bool  $index_by_page
  * @return array
  */
 function &about_template_lookup($index_by_page = false)

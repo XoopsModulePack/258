@@ -22,14 +22,14 @@
 
 defined('XOOPS_ROOT_PATH') or die('Restricted access');
 
-$mylinksDir = basename( dirname( dirname( __FILE__ ) ) );
+$mylinksDir = basename(dirname(dirname(__FILE__)));
 
 class mylinksCategory_base extends XoopsObject
 {
     /**
      * constructor
      */
-    function __construct()
+    public function __construct()
     {
         parent::__construct();
         //definitions of the table field names from the database
@@ -43,7 +43,7 @@ class mylinksCategory_base extends XoopsObject
      * Returns category title using PHP5
      * @return string
      */
-    function __toString()
+    public function __toString()
     {
         return $this->title;
     }
@@ -54,7 +54,7 @@ class mylinksCategory_base extends XoopsObject
      * @param  string $path
      * @return string
      */
-    function getPathFromId($id = NULL, $path = '')
+    public function getPathFromId($id = null, $path = '')
     {
         $id = isset($id) ? intval($id) : $this->cid;
         $myts =& MyTextSanitizer::getInstance();
@@ -70,14 +70,14 @@ class mylinksCategory_base extends XoopsObject
 
 class mylinksCategoryHandler_base extends XoopsPersistableObjectHandler
 {
-    function mylinksCategoryHandler(&$db)
+    public function mylinksCategoryHandler(&$db)
     {
         $this->__construct($db);
     }
 
-    function __construct(&$db)
+    public function __construct(&$db)
     {
-        $mylinksDir = basename( dirname( dirname( __FILE__ ) ) );
+        $mylinksDir = basename(dirname(dirname(__FILE__)));
         parent::__construct($db, 'mylinks_cat', strtolower($mylinksDir) . 'Category', 'cid');
     }
 
@@ -89,7 +89,7 @@ class mylinksCategoryHandler_base extends XoopsPersistableObjectHandler
      *                       NULL return all category names
      * @return array   return category titles with category ID as key
      */
-    function getCatTitles ( $cats = NULL )
+    public function getCatTitles($cats = null)
     {
         $catTitles = array();
         $criteria = new CriteriaCompo();
@@ -102,7 +102,7 @@ class mylinksCategoryHandler_base extends XoopsPersistableObjectHandler
             $criteria->add(new Criteria('cid', intval($cats), '='));
         }
         $catFields = array('title');
-        $catArray = $this->getAll($criteria, $catFields, FALSE);
+        $catArray = $this->getAll($criteria, $catFields, false);
         $catTitles = array();
         if (is_array($catArray) && count($catArray)) {
             foreach ($catArray as $catItem) {
@@ -113,11 +113,11 @@ class mylinksCategoryHandler_base extends XoopsPersistableObjectHandler
         return $catTitles;
     }
 }
-eval( 'class ' . $mylinksDir . 'Category extends mylinksCategory_base
+eval('class ' . $mylinksDir . 'Category extends mylinksCategory_base
         {
         }
 
         class ' . $mylinksDir . 'CategoryHandler extends mylinksCategoryHandler_base
         {
         }
-    ' );
+    ');

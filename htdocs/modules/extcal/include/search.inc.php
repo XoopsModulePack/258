@@ -18,5 +18,4 @@ function extcal_search($queryarray, $andor, $limit, $offset, $userid)
     $eventHandler = xoops_getmodulehandler(_EXTCAL_CLS_EVENT, _EXTCAL_MODULE);
 
     return $eventHandler->getSearchEvent3($queryarray, $andor, $limit, $offset, $userid, $xoopsUser);
-
 }

@@ -3,17 +3,17 @@ defined('C5_EXECUTE') || die('Access denied.');
 
 $page     = Page::getCurrentPage();
 $v        = View::GetInstance();
-$ih       = Loader::helper( 'image' );
+$ih       = Loader::helper('image');
 
 $json     = Loader::helper('json');
 $loading  = $json->encode(t('Loading image %s...', '#%curr%'));
 $errortxt = $json->encode(t('The image %s could not be loaded.', '#%curr%</a>'));
 
 ?>
-<?php if ( $images !== false ): ?>
+<?php if ($images !== false): ?>
 <ul id="<?php echo $magnific_type . '-'.$bID ?>" class="<?php echo $magnific_type. '-gallery'. ' '. $cssFrameworkClass; ?>">
     <?php foreach ($images as $image): ?>
-    <?php $thumbnail       = $ih->getThumbnail($image,intval($controller->thumbnailWidth), intval($controller->thumbnailHeight)); ?>
+    <?php $thumbnail       = $ih->getThumbnail($image, intval($controller->thumbnailWidth), intval($controller->thumbnailHeight)); ?>
     <?php $fileName        = $image->getFileName(); ?>
     <?php $fileDescription = $image->getDescription();?>
     <li>

@@ -172,7 +172,6 @@ class XformsTable
         }
 
         return $ret;
-
     }
 
     /**
@@ -500,7 +499,6 @@ class XformsDbupdater
      */
     public function __construct()
     {
-
     }
 
     /**

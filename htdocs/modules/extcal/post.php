@@ -22,7 +22,6 @@ if (!$permHandler->isAllowed($xoopsUser, 'extcal_cat_submit', intval($_POST['cat
 $eventHandler = xoops_getmodulehandler(_EXTCAL_CLS_EVENT, _EXTCAL_MODULE);
 
 if (isset($_POST['form_preview'])) {
-
     include XOOPS_ROOT_PATH . '/header.php';
 
     // Title of the page
@@ -77,7 +76,6 @@ if (isset($_POST['form_preview'])) {
     $xoopsTpl->assign('formBody', $formBody);
 
     include XOOPS_ROOT_PATH . '/footer.php';
-
 } elseif (isset($_POST['form_submit'])) {
     if (!isset($_POST['rrule_weekly_interval'])) {
         $_POST['rrule_weekly_interval'] = 0;
@@ -131,15 +129,12 @@ if (isset($_POST['form_preview'])) {
     );
 
     if (isset($_POST['event_id'])) {
-
         $eventHandler->modifyEvent(intval($_POST['event_id']), $data);
         $fileHandler->updateEventFile(intval($_POST['event_id']));
         $fileHandler->createFile(intval($_POST['event_id']));
 
         redirect_header('event.php?event=' . $_POST['event_id'], 3, _MD_EXTCAL_EVENT_UPDATED, false);
-
     } else {
-
         $data['event_submitter']  = ($xoopsUser) ? $xoopsUser->getVar('uid') : 0;
         $data['event_submitdate'] = time();
 
@@ -159,7 +154,6 @@ if (isset($_POST['form_preview'])) {
             $cat        = $catHandler->getCat(intval($_POST['cat_id']), $xoopsUser, 'all');
             $notificationHandler->triggerEvent('cat', intval($_POST['cat_id']), 'new_event_cat', array('EVENT_TITLE' => $_POST['event_title'], 'CAT_NAME' => $cat->getVar('cat_name')));
         }
-
     }
 
     if ($approve) {
@@ -167,5 +161,4 @@ if (isset($_POST['form_preview'])) {
     } else {
         redirect_header(_EXTCAL_FILE_CALMONTH, 3, _MD_EXTCAL_EVENT_PENDING, false);
     }
-
 }

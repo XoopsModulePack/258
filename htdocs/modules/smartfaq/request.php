@@ -10,7 +10,7 @@
 include_once __DIR__ . '/header.php';
 include_once(XOOPS_ROOT_PATH . "/header.php");
 
-Global $xoopsUser, $xoopsConfig, $xoopsModuleConfig, $xoopsModule;
+global $xoopsUser, $xoopsConfig, $xoopsModuleConfig, $xoopsModule;
 
 // Creating the category handler object
 $category_handler =& sf_gethandler('category');
@@ -36,13 +36,17 @@ if (!($isAdmin || (isset($xoopsModuleConfig['allowrequest']) && $xoopsModuleConf
 
 $op = '';
 
-if (isset($_GET['op'])) $op = $_GET['op'];
-if (isset($_POST['op'])) $op = $_POST['op'];
+if (isset($_GET['op'])) {
+    $op = $_GET['op'];
+}
+if (isset($_POST['op'])) {
+    $op = $_POST['op'];
+}
 
 switch ($op) {
     case 'post':
 
-    Global $xoopsUser, $xoopsConfig, $xoopsModule, $xoopsModuleConfig, $xoopsDB;
+    global $xoopsUser, $xoopsConfig, $xoopsModule, $xoopsModuleConfig, $xoopsDB;
 
     $newFaqObj = $faq_handler->create();
 
@@ -72,7 +76,7 @@ switch ($op) {
     }
 
     // Storing the FAQ object in the database
-    if ( !$newFaqObj->store() ) {
+    if (!$newFaqObj->store()) {
         redirect_header("javascript:history.go(-1)", 3, _MD_SF_REQUEST_ERROR . sf_formatErrors($newFaqObj->getErrors()));
         exit();
     }

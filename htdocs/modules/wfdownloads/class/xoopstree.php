@@ -31,12 +31,12 @@ defined('XOOPS_ROOT_PATH') || die('XOOPS root path not defined');
  */
 class WfdownloadsXoopsTree
 {
-    var $table; //table with parent-child structure
-    var $id; //name of unique id for records in table $table
-    var $pid; // name of parent id used in table $table
-    var $order; //specifies the order of query results
-    var $title; // name of a field in table $table which will be used when  selection box and paths are generated
-    var $db;
+    public $table; //table with parent-child structure
+    public $id; //name of unique id for records in table $table
+    public $pid; // name of parent id used in table $table
+    public $order; //specifies the order of query results
+    public $title; // name of a field in table $table which will be used when  selection box and paths are generated
+    public $db;
 
     //constructor of class XoopsTree
     //sets the names of table, unique id, and parend id
@@ -45,10 +45,11 @@ class WfdownloadsXoopsTree
      * @param $id_name
      * @param $pid_name
      */
-    function __construct($table_name, $id_name, $pid_name)
+    public function __construct($table_name, $id_name, $pid_name)
     {
-//        $GLOBALS['xoopsLogger']->addDeprecated("Class '" . __CLASS__ . "' is deprecated, check 'XoopsObjectTree' in tree.php");
-        $this->db = & XoopsDatabaseFactory::getDatabaseConnection();;
+        //        $GLOBALS['xoopsLogger']->addDeprecated("Class '" . __CLASS__ . "' is deprecated, check 'XoopsObjectTree' in tree.php");
+        $this->db = & XoopsDatabaseFactory::getDatabaseConnection();
+        ;
         $this->table = $table_name;
         $this->id    = $id_name;
         $this->pid   = $pid_name;
@@ -61,7 +62,7 @@ class WfdownloadsXoopsTree
      *
      * @return array
      */
-    function getFirstChild($sel_id, $order = "")
+    public function getFirstChild($sel_id, $order = "")
     {
         $sel_id = (int) $sel_id;
         $arr    = array();
@@ -87,7 +88,7 @@ class WfdownloadsXoopsTree
      *
      * @return array
      */
-    function getFirstChildId($sel_id)
+    public function getFirstChildId($sel_id)
     {
         $sel_id  = (int) $sel_id;
         $idarray = array();
@@ -96,7 +97,7 @@ class WfdownloadsXoopsTree
         if ($count == 0) {
             return $idarray;
         }
-        while (list ($id) = $this->db->fetchRow($result)) {
+        while (list($id) = $this->db->fetchRow($result)) {
             array_push($idarray, $id);
         }
 
@@ -111,7 +112,7 @@ class WfdownloadsXoopsTree
      *
      * @return array
      */
-    function getAllChildId($sel_id, $order = "", $idarray = array())
+    public function getAllChildId($sel_id, $order = "", $idarray = array())
     {
         $sel_id = (int) $sel_id;
         $sql    = "SELECT " . $this->id . " FROM " . $this->table . " WHERE " . $this->pid . "=" . $sel_id . "";
@@ -123,7 +124,7 @@ class WfdownloadsXoopsTree
         if ($count == 0) {
             return $idarray;
         }
-        while (list ($r_id) = $this->db->fetchRow($result)) {
+        while (list($r_id) = $this->db->fetchRow($result)) {
             array_push($idarray, $r_id);
             $idarray = $this->getAllChildId($r_id, $order, $idarray);
         }
@@ -139,7 +140,7 @@ class WfdownloadsXoopsTree
      *
      * @return array
      */
-    function getAllParentId($sel_id, $order = "", $idarray = array())
+    public function getAllParentId($sel_id, $order = "", $idarray = array())
     {
         $sel_id = (int) $sel_id;
         $sql    = "SELECT " . $this->pid . " FROM " . $this->table . " WHERE " . $this->id . "=" . $sel_id . "";
@@ -147,7 +148,7 @@ class WfdownloadsXoopsTree
             $sql .= " ORDER BY $order";
         }
         $result = $this->db->query($sql);
-        list ($r_id) = $this->db->fetchRow($result);
+        list($r_id) = $this->db->fetchRow($result);
         if ($r_id == 0) {
             return $idarray;
         }
@@ -166,14 +167,14 @@ class WfdownloadsXoopsTree
      *
      * @return string
      */
-    function getPathFromId($sel_id, $title, $path = "")
+    public function getPathFromId($sel_id, $title, $path = "")
     {
         $sel_id = (int) $sel_id;
         $result = $this->db->query("SELECT " . $this->pid . ", " . $title . " FROM " . $this->table . " WHERE " . $this->id . "=$sel_id");
         if ($this->db->getRowsNum($result) == 0) {
             return $path;
         }
-        list ($parentid, $name) = $this->db->fetchRow($result);
+        list($parentid, $name) = $this->db->fetchRow($result);
         $myts = MyTextSanitizer::getInstance();
         $name = $myts->htmlspecialchars($name);
         $path = '/' . $name . $path . "";
@@ -196,7 +197,7 @@ class WfdownloadsXoopsTree
      * @param string $sel_name
      * @param string $onchange
      */
-    function makeMySelBox($title, $order = "", $preset_id = 0, $none = 0, $sel_name = "", $onchange = "")
+    public function makeMySelBox($title, $order = "", $preset_id = 0, $none = 0, $sel_name = "", $onchange = "")
     {
         if ($sel_name == "") {
             $sel_name = $this->id;
@@ -215,7 +216,7 @@ class WfdownloadsXoopsTree
         if ($none) {
             echo "<option value='0'>----</option>\n";
         }
-        while (list ($catid, $name) = $this->db->fetchRow($result)) {
+        while (list($catid, $name) = $this->db->fetchRow($result)) {
             $sel = "";
             if ($catid == $preset_id) {
                 $sel = " selected='selected'";
@@ -245,7 +246,7 @@ class WfdownloadsXoopsTree
      *
      * @return string
      */
-    function getNicePathFromId($sel_id, $title, $funcURL, $path = "")
+    public function getNicePathFromId($sel_id, $title, $funcURL, $path = "")
     {
         $path   = !empty($path) ? "&nbsp;:&nbsp;" . $path : $path;
         $sel_id = (int) $sel_id;
@@ -254,7 +255,7 @@ class WfdownloadsXoopsTree
         if ($this->db->getRowsNum($result) == 0) {
             return $path;
         }
-        list ($parentid, $name) = $this->db->fetchRow($result);
+        list($parentid, $name) = $this->db->fetchRow($result);
         $myts = MyTextSanitizer::getInstance();
         $name = $myts->htmlspecialchars($name);
         $path = "<a href='" . $funcURL . "&amp;" . $this->id . "=" . $sel_id . "'>" . $name . "</a>" . $path . "";
@@ -274,14 +275,14 @@ class WfdownloadsXoopsTree
      *
      * @return string
      */
-    function getIdPathFromId($sel_id, $path = "")
+    public function getIdPathFromId($sel_id, $path = "")
     {
         $sel_id = (int) $sel_id;
         $result = $this->db->query("SELECT " . $this->pid . " FROM " . $this->table . " WHERE " . $this->id . "=$sel_id");
         if ($this->db->getRowsNum($result) == 0) {
             return $path;
         }
-        list ($parentid) = $this->db->fetchRow($result);
+        list($parentid) = $this->db->fetchRow($result);
         $path = '/' . $sel_id . $path . "";
         if ($parentid == 0) {
             return $path;
@@ -300,7 +301,7 @@ class WfdownloadsXoopsTree
      *
      * @return unknown
      */
-    function getAllChild($sel_id = 0, $order = "", $parray = array())
+    public function getAllChild($sel_id = 0, $order = "", $parray = array())
     {
         $sel_id = (int) $sel_id;
         $sql    = "SELECT * FROM " . $this->table . " WHERE " . $this->pid . "=" . $sel_id . "";
@@ -330,7 +331,7 @@ class WfdownloadsXoopsTree
      *
      * @return unknown
      */
-    function getChildTreeArray($sel_id = 0, $order = "", $parray = array(), $r_prefix = "")
+    public function getChildTreeArray($sel_id = 0, $order = "", $parray = array(), $r_prefix = "")
     {
         $sel_id = (int) $sel_id;
         $sql    = "SELECT * FROM " . $this->table . " WHERE " . $this->pid . "=" . $sel_id . "";

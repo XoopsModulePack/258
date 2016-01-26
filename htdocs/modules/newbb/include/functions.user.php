@@ -220,3 +220,4 @@ function newbb_isForumModerators(array $uid = array(), $mid = 0)
     return array_unique($forum_moderators);
 }
 //ENDIF;
+

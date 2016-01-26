@@ -24,3 +24,4 @@ $skinVersion['js']       = array('simpletreemenu.js');
 
 //$skinVersion['header'] = '';
 //$skinVersion['prefix'] = 'sf';
+

@@ -30,3 +30,4 @@ $xoTheme->addScript('modules/extcal/include/ToolTips.js');
 $xoTheme->addStylesheet('modules/extcal/assets/css/infobulle.css');
 
 //////////////////////////////////////////////////////////////
+

@@ -20,7 +20,8 @@ if (!defined("XOOPS_ROOT_PATH")) {
     die("XOOPS root path not defined");
 }
 
-function extgalleryComUpdate($photoId, $nbCom) {
+function extgalleryComUpdate($photoId, $nbCom)
+{
     $photoHandler = xoops_getmodulehandler('publicphoto', 'extgallery');
-    $photoHandler->modifyPhoto($photoId,array('photo_comment'=>$nbCom));
+    $photoHandler->modifyPhoto($photoId, array('photo_comment'=>$nbCom));
 }

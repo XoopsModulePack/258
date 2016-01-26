@@ -25,7 +25,7 @@ if (function_exists('mb_http_output')) {
     mb_http_output('pass');
 }
 
-header ('Content-Type:text/xml; charset=utf-8');
+header('Content-Type:text/xml; charset=utf-8');
 $tpl = new XoopsTpl();
 
 if ($cache) {
@@ -49,16 +49,15 @@ if (!$tpl->is_cached('file:'.$template) || !$cache) {
         $tpl->assign('feed_updated', wani_utf8_encode($updated));
         $tpl->assign('feed_generator', XOOPS_VERSION);
         $tpl->assign('feed_generator_uri', 'http://www.xoops.org/');
-        $tpl->assign('feed_link_alt', wani_utf8_encode( $link_alt ));
-        $tpl->assign('feed_link_self', wani_utf8_encode( $link_self ));
-        $tpl->assign('feed_author_uri', wani_utf8_encode( $link_alt ));
+        $tpl->assign('feed_link_alt', wani_utf8_encode($link_alt));
+        $tpl->assign('feed_link_self', wani_utf8_encode($link_self));
+        $tpl->assign('feed_author_uri', wani_utf8_encode($link_alt));
         $tpl->assign('feed_author_name', $site_author);
         $tpl->assign('feed_title', wani_utf8_encode(htmlspecialchars($xoopsConfig['sitename'], ENT_QUOTES)));
         $tpl->assign('feed_rights', $copyright);
         $tpl->assign('feed_id', $feed_id);
 
         foreach ($new_array as $new) {
-
             $updated   = wani_iso8601_date(time());
             $published = wani_iso8601_date(time());
             $created   = '';
@@ -92,8 +91,8 @@ if (!$tpl->is_cached('file:'.$template) || !$cache) {
                 $atom_id  = "tag:{$site_tag},{$year}://1.{$mid}.{$aid}";
             }
             $tpl->append('entrys', array('author_name'  => $site_author,
-                                       'updated'      => wani_utf8_encode( $updated ),
-                                       'published'    => wani_utf8_encode( $published ),
+                                       'updated'      => wani_utf8_encode($updated),
+                                       'published'    => wani_utf8_encode($published),
                                        'author_uri'   => '',
                                        'author_email' => '',
                                        'title'        => $title,

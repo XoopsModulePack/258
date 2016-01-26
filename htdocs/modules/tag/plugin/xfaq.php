@@ -59,5 +59,5 @@ function xfaq_tag_iteminfo(&$items)
 
 function xfaq_tag_synchronization($mid)
 {
-   // Optional
+    // Optional
 }

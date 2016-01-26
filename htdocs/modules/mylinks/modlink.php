@@ -44,11 +44,11 @@ if (!empty($_POST['submit'])) {
 
     $msg = "";
     switch (true) {
-        case ( '' == $_POST['title'] ):
+        case ('' == $_POST['title']):
             $msg .= _MD_MYLINKS_ERRORTITLE;
-        case ( '' == $_POST['url'] ):
+        case ('' == $_POST['url']):
             $msg .= _MD_MYLINKS_ERRORURL;
-        case ( '' == $_POST['description'] ):
+        case ('' == $_POST['description']):
             $msg .= _MD_MYLINKS_ERRORDESC;
     }
     if ('' !== $msg) {
@@ -146,9 +146,9 @@ if (!empty($_POST['submit'])) {
 
     //wanikoo search
     if (file_exists(XOOPS_ROOT_PATH."/language/".$xoopsConfig['language']."/search.php")) {
-       include_once XOOPS_ROOT_PATH."/language/".$xoopsConfig['language']."/search.php";
+        include_once XOOPS_ROOT_PATH."/language/".$xoopsConfig['language']."/search.php";
     } else {
-       include_once XOOPS_ROOT_PATH."/language/english/search.php";
+        include_once XOOPS_ROOT_PATH."/language/english/search.php";
     }
     $xoopsTpl->assign('lang_all', _SR_ALL);
     $xoopsTpl->assign('lang_any', _SR_ANY);

@@ -12,7 +12,7 @@ if (!defined("XOOPS_ROOT_PATH")) {
 
 function b_recent_partners_show($options)
 {
-    include_once (XOOPS_ROOT_PATH . "/modules/smartpartner/include/common.php");
+    include_once(XOOPS_ROOT_PATH . "/modules/smartpartner/include/common.php");
 
     // Creating the partner handler object
     $smartpartner_partner_handler =& smartpartner_gethandler('partner');

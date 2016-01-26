@@ -177,7 +177,6 @@ $xoopsTpl->assign('show_categort_title', true);
 $orderby = (isset($_REQUEST['orderby']) && !empty($_REQUEST['orderby'])) ? xtubeConvertOrderByIn(htmlspecialchars($_REQUEST['orderby'])) : xtubeConvertOrderByIn($xoopsModuleConfig['linkxorder']);
 
 if ($selectdate) {
-
     $d = date('j', $selectdate);
     $m = date('m', $selectdate);
     $y = date('Y', $selectdate);
@@ -195,9 +194,7 @@ if ($selectdate) {
     list($count) = $xoopsDB->fetchRow($xoopsDB->query($sql));
 
     $list_by = 'selectdate=' . $selectdate;
-
 } elseif ($list) {
-
     $query
         = " WHERE title LIKE '$list%' AND (published>0 AND published<=" . time() . ") AND (expired=0 OR expired>" . time() . ") AND offline=0 AND cid>0";
 
@@ -207,9 +204,7 @@ if ($selectdate) {
     $sql = 'SELECT COUNT(*) FROM ' . $xoopsDB->prefix('xoopstube_videos') . $query;
     list($count) = $xoopsDB->fetchRow($xoopsDB->query($sql));
     $list_by = "list=$list";
-
 } else {
-
     $query = 'WHERE a.published>0 AND a.published<=' . time() . ' AND (a.expired=0 OR a.expired>' . time() . ') AND a.offline=0' . ' AND (b.cid=a.cid OR (a.cid=' . $cid . ' OR b.cid=' . $cid . '))';
 
     $sql    = 'SELECT DISTINCT a.* FROM ' . $xoopsDB->prefix('xoopstube_videos') . ' a LEFT JOIN ' . $xoopsDB->prefix(
@@ -224,7 +219,6 @@ if ($selectdate) {
     $order   = xtubeConvertOrderByOut($orderby);
     $list_by = 'cid=' . $cid . '&orderby=' . $order;
     $xoopsTpl->assign('show_categort_title', false);
-
 }
 $pagenav = new XoopsPageNav($count, $xoopsModuleConfig['perpage'], $start, 'start', $list_by);
 

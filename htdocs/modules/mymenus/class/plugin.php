@@ -33,7 +33,7 @@ class MymenusPlugin
     protected $registry;
     protected $plugins;
     protected $events;
-    public    $mymenus;
+    public $mymenus;
 
     /**
      *
@@ -130,6 +130,7 @@ class MymenusPluginItem
 
         $path2     = "{$mymenus->dirname}/plugins/{$name}/{$language}/";
         xoops_loadLanguage($name, $path2);
+
         return true;
     }
 }

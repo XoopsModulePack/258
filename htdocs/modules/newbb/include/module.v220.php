@@ -30,7 +30,7 @@
 //  ------------------------------------------------------------------------ //
 
 /**
- * @param XoopsModule $module
+ * @param  XoopsModule $module
  * @return bool
  */
 function xoops_module_update_newbb_v220(XoopsModule $module)

@@ -131,7 +131,6 @@ if (isset($_POST['submit'])) {
         $restoretopic_id = $topic_obj->getVar('topic_id');
         // irmtfan / missing in URL
         echo $action[$mode]['msg'] . "<p><a href='" . XOOPS_URL . '/modules/' . $xoopsModule->getVar('dirname') . "/viewtopic.php?topic_id=$restoretopic_id'>" . _MD_VIEWTHETOPIC . '</a></p>' . "<p><a href='" . XOOPS_URL . '/modules/' . $xoopsModule->getVar('dirname') . "/viewforum.php?forum=$forum'>" . _MD_RETURNTOTHEFORUM . '</a></p>' . "<p><a href='index.php'>" . _MD_RETURNFORUMINDEX . '</a></p>';
-
     } elseif ('merge' === $mode) {
         $pollmodul      = null;
         $module_handler =& xoops_gethandler('module');
@@ -180,7 +179,6 @@ if (isset($_POST['submit'])) {
                         $xpLogHandler->deleteByPollId($poll_id);
                         xoops_comment_delete($xoopsModule->getVar('mid'), $poll_id);
                     }
-
                 } elseif ('umfrage' === $pollmodul) {
                     include_once $GLOBALS['xoops']->path('modules/umfrage/class/umfrage.php');
                     include_once $GLOBALS['xoops']->path('modules/umfrage/class/umfrageoption.php');
@@ -207,7 +205,6 @@ if (isset($_POST['submit'])) {
 
             $topic_obj->loadFilters('delete');
             $newtopic_obj->loadFilters('update');
-
         }
         // irmtfan full URL
         echo $action[$mode]['msg'] . "<p><a href='" . XOOPS_URL . '/modules/' . $xoopsModule->getVar('dirname') . "/viewtopic.php?topic_id={$newtopic}'>" . _MD_VIEWTHETOPIC . '</a></p>' . "<p><a href='" . XOOPS_URL . '/modules/' . $xoopsModule->getVar('dirname') . "/viewforum.php?forum={$forum}'>" . _MD_RETURNTOTHEFORUM . '</a></p>' . "<p><a href='" . XOOPS_URL . '/modules/' . $xoopsModule->getVar('dirname') . "/index.php'>" . _MD_RETURNFORUMINDEX . '</a></p>';

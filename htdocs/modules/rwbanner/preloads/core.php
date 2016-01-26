@@ -29,7 +29,7 @@ defined('XOOPS_ROOT_PATH') or die('Restricted access');
 class RwbannerCorePreload extends XoopsPreloadItem
 {
 
-    function eventCoreHeaderEnd($args)
+    public function eventCoreHeaderEnd($args)
     {
         if (RwbannerCorePreload::isActive()) {
             if (file_exists($filename = dirname(dirname(__FILE__)) .'/include/maketags.php')) {
@@ -37,7 +37,7 @@ class RwbannerCorePreload extends XoopsPreloadItem
             }
         }
     }
-    function isActive()
+    public function isActive()
     {
         $module_handler =& xoops_getHandler('module');
         $module = $module_handler->getByDirname('rw_banner');

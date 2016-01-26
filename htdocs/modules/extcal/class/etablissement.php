@@ -14,7 +14,7 @@ class ExtcalEtablissement extends XoopsObject
     /**
      *
      */
-    function __construct()
+    public function __construct()
     {
         //Toutes les attributs de la table
         $this->initVar("id", XOBJ_DTYPE_INT, null, false, 5);
@@ -36,7 +36,7 @@ class ExtcalEtablissement extends XoopsObject
         $this->initVar("map", XOBJ_DTYPE_URL, false);
     }
 
-    function ExtcalEtablissement()
+    public function ExtcalEtablissement()
     {
         $this->__construct();
     }
@@ -46,7 +46,7 @@ class ExtcalEtablissement extends XoopsObject
      *
      * @return XoopsThemeForm
      */
-    function getForm($action = false)
+    public function getForm($action = false)
     {
         global $xoopsDB, $extcalConfig;
 
@@ -108,7 +108,6 @@ class ExtcalEtablissement extends XoopsObject
 
         return $form;
     }
-
 }
 
 /**************************************************************************/
@@ -121,7 +120,7 @@ class ExtcalEtablissementHandler extends ExtcalPersistableObjectHandler
     /**
      * @param $db
      */
-    function __construct(&$db)
+    public function __construct(&$db)
     {
         parent::__construct($db, "extcal_etablissement", _EXTCAL_CLN_ETABLISSEMENT, "id", 'nom');
     }
@@ -132,9 +131,8 @@ class ExtcalEtablissementHandler extends ExtcalPersistableObjectHandler
      *
      * @return bool
      */
-    function getEtablissement($etablissementId, $skipPerm = false)
+    public function getEtablissement($etablissementId, $skipPerm = false)
     {
-
         $user = $GLOBALS['xoopsUser'];
 
         $criteriaCompo = new CriteriaCompo();
@@ -157,9 +155,8 @@ class ExtcalEtablissementHandler extends ExtcalPersistableObjectHandler
      *
      * @return array
      */
-    function getAll($criteria = null, $asObject = false)
+    public function getAll($criteria = null, $asObject = false)
     {
-
         $rst = $this->getObjects($criteria, $asObject);
         if ($asObject) {
             return $rst;
@@ -167,5 +164,4 @@ class ExtcalEtablissementHandler extends ExtcalPersistableObjectHandler
             return $this->objectToArray($rst);
         }
     }
-
 }

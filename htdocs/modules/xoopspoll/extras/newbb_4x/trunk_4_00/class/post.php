@@ -173,7 +173,7 @@ class Post extends XoopsObject
 
     /**
      * TODO: refactor
-     * @param  bool $asSource
+     * @param  bool   $asSource
      * @return string
      */
     public function displayAttachment($asSource = false)
@@ -351,7 +351,7 @@ class Post extends XoopsObject
     }
 
     /**
-     * @param  int $uid
+     * @param  int  $uid
      * @return bool
      */
     public function checkIdentity($uid = -1)
@@ -477,9 +477,7 @@ class Post extends XoopsObject
                 $thread_buttons['quote']['link']  = "reply.php?{$page_query}&amp;quotedac=1";
                 $thread_buttons['quote']['name']  = _MD_QUOTE;
             }
-
         } else {
-
             $thread_buttons['edit']['image'] = newbb_displayImage('p_edit', _EDIT);
             $thread_buttons['edit']['link']  = "edit.php?{$page_query}";
             $thread_buttons['edit']['name']  = _EDIT;
@@ -491,7 +489,6 @@ class Post extends XoopsObject
             $thread_buttons['reply']['image'] = newbb_displayImage('p_reply', _MD_REPLY);
             $thread_buttons['reply']['link']  = "reply.php?{$page_query}";
             $thread_buttons['reply']['name']  = _MD_REPLY;
-
         }
 
         if (!$isadmin && $xoopsModuleConfig['reportmod_enabled']) {
@@ -523,7 +520,6 @@ class Post extends XoopsObject
 
         return $post;
     }
-
 }
 
 /**
@@ -540,7 +536,7 @@ class NewbbPostHandler extends XoopsPersistableObjectHandler
     }
 
     /**
-     * @param  mixed|null $id
+     * @param  mixed|null  $id
      * @return null|object
      */
     public function &get($id)
@@ -557,9 +553,9 @@ class NewbbPostHandler extends XoopsPersistableObjectHandler
     }
 
     /**
-     * @param  int $topic_id
-     * @param  int $limit
-     * @param  int $approved
+     * @param  int   $topic_id
+     * @param  int   $limit
+     * @param  int   $approved
      * @return array
      */
     public function &getByLimit($topic_id, $limit, $approved = 1)
@@ -932,10 +928,10 @@ class NewbbPostHandler extends XoopsPersistableObjectHandler
      * TODO: combining viewtopic.php
      */
     /**
-     * @param  null $criteria
-     * @param  int  $limit
-     * @param  int  $start
-     * @param  null $join
+     * @param  null  $criteria
+     * @param  int   $limit
+     * @param  int   $start
+     * @param  null  $join
      * @return array
      */
     public function &getPostsByLimit($criteria = null, $limit = 1, $start = 0, $join = null)
@@ -979,8 +975,7 @@ class NewbbPostHandler extends XoopsPersistableObjectHandler
 
         /* for MySQL 4.1+ */
         if (version_compare(mysql_get_server_info(), "4.1.0", "ge")):
-            $sql = "DELETE FROM " . $this->db->prefix("bb_posts_text") . " WHERE (post_id NOT IN ( SELECT DISTINCT post_id FROM {$this->table}) )";
-        else:
+            $sql = "DELETE FROM " . $this->db->prefix("bb_posts_text") . " WHERE (post_id NOT IN ( SELECT DISTINCT post_id FROM {$this->table}) )"; else:
             // for 4.0+
             /* */
             $sql = "DELETE " . $this->db->prefix("bb_posts_text") . " FROM " . $this->db->prefix("bb_posts_text") . " LEFT JOIN {$this->table} AS aa ON " . $this->db->prefix("bb_posts_text") . ".post_id = aa.post_id " . " WHERE (aa.post_id IS NULL)";
@@ -1003,7 +998,7 @@ class NewbbPostHandler extends XoopsPersistableObjectHandler
     /**
      * clean expired objects from database
      *
-     * @param  int $expire time limit for expiration
+     * @param  int  $expire time limit for expiration
      * @return bool true on success
      */
     public function cleanExpires($expire = 0)

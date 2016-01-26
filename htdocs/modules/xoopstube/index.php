@@ -178,7 +178,6 @@ $sql        = $xoopsDB->query('SELECT lastvideosyn, lastvideostotal FROM ' . $xo
 $lastvideos = $xoopsDB->fetchArray($sql);
 
 if ($lastvideos['lastvideosyn'] == 1 && $lastvideos['lastvideostotal'] > 0) {
-
     $result = $xoopsDB->query(
         'SELECT COUNT(*) FROM ' . $xoopsDB->prefix('xoopstube_videos') . ' WHERE published > 0
                                 AND published <= ' . $time . '

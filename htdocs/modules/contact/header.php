@@ -24,4 +24,4 @@ include '../../mainfile.php';
 include XOOPS_ROOT_PATH."/modules/contact/class/contact.php";
 include_once XOOPS_ROOT_PATH."/class/xoopsformloader.php";
 
-$contact_handler = & xoops_getModuleHandler ( 'contact', 'contact' );
+$contact_handler = & xoops_getModuleHandler('contact', 'contact');

@@ -126,7 +126,7 @@ class WfdownloadsModificationHandler extends XoopsPersistableObjectHandler
      *
      * @return bool
      */
-    function approveModification($requestid)
+    public function approveModification($requestid)
     {
         $sql = "UPDATE {$this->table} m, {$this->wfdownloads->getHandler('download')->table} d";
         $sql

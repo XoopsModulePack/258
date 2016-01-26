@@ -19,8 +19,8 @@ if (!defined('NEWBB_FUNCTIONS_CONFIG')) {
     define('NEWBB_FUNCTIONS_CONFIG', 1);
 
     /**
-     * @param string $category
-     * @param string $dirname
+     * @param  string $category
+     * @param  string $dirname
      * @return bool
      */
     function newbbLoadConfig($category = '', $dirname = 'newbb')

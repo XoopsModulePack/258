@@ -1,11 +1,11 @@
 <?php
 
-include( "admin_header.php" );
+include("admin_header.php");
 xoops_cp_header();
 
 $op = (isset($_POST['op']))?$_POST['op']:'show';
 
-switch ($op){
+switch ($op) {
     case 'show':
          BannersAdmin();
          break;
@@ -22,7 +22,7 @@ function BannersAdmin()
 //    xoops_cp_header();
     $indexAdmin = new ModuleAdmin();
     echo $indexAdmin->addNavigation('import.php');
-    include_once ("../class/class.categoria.php");
+    include_once("../class/class.categoria.php");
     $impmade = $imptotal = 0;
     $categ = new Categoria();
     $lista_categs = $categ->getCategorias('ORDER BY cod ASC');
@@ -70,33 +70,34 @@ function BannersAdmin()
     $result = $xoopsDB->query("SELECT bid, cid FROM ".$xoopsDB->prefix("banner")." ORDER BY bid");
     $myts = MyTextSanitizer::getInstance();
     $class = "";
-    while(list($bid, $cid) = $xoopsDB->fetchRow($result)) {
-        if ($class == "even")
-          $class = "odd";
-        else
-          $class = "even";
+    while (list($bid, $cid) = $xoopsDB->fetchRow($result)) {
+        if ($class == "even") {
+            $class = "odd";
+        } else {
+            $class = "even";
+        }
         $result2 = $xoopsDB->query("SELECT cid, name FROM ".$xoopsDB->prefix("bannerclient")." WHERE cid=$cid");
         list($cid, $name) = $xoopsDB->fetchRow($result2);
         $name = $myts->htmlSpecialChars($name);
-        if ( $impmade == 0 ) {
+        if ($impmade == 0) {
             $percent = 0;
         } else {
             $percent = substr(100 * $clicks / $impmade, 0, 5);
         }
-        if ( $imptotal == 0 ) {
+        if ($imptotal == 0) {
             $left = ""._AM_RWBANNER_UNLIMIT."";
         } else {
             $left = $imptotal-$impmade;
         }
         $categs = '<select name="categ'.$bid.'" id="categ'.$bid.'">';
-        for ($i = 0; $i <= count($lista_categs)-1; $i++){
-          $categs .= '<option value="'.$lista_categs[$i]->getCod().'">'.$lista_categs[$i]->getTitulo().'</option>';
+        for ($i = 0; $i <= count($lista_categs)-1; $i++) {
+            $categs .= '<option value="'.$lista_categs[$i]->getCod().'">'.$lista_categs[$i]->getTitulo().'</option>';
         }
         $categs .= '</select>';
         $rwuid = '<select name="rwuid'.$bid.'" id="rwuid'.$bid.'">';
         $query = $xoopsDB->queryF("SELECT uid,uname FROM ".$xoopsDB->prefix("users").' ORDER BY uname ASC');
-        while(list($uid,$uname) = $xoopsDB->fetchRow($query)){
-          $rwuid .= '<option value="'.$uid.'">'.$uname.'</option>';
+        while (list($uid, $uname) = $xoopsDB->fetchRow($query)) {
+            $rwuid .= '<option value="'.$uid.'">'.$uname.'</option>';
         }
         $rwuid .= '</select>';
         echo '<tr align="center" class="'.$class.'">';
@@ -114,42 +115,45 @@ function BannersAdmin()
     include_once 'admin_footer.php';
 }
 
-function import($dados){
-  global $xoopsDB;
-  include_once ("../class/class.banner.php");
+function import($dados)
+{
+    global $xoopsDB;
+    include_once("../class/class.banner.php");
 
-  $banners = array();
-  for ($i = 0; $i <= count($dados)-1; $i++){
-    $ban = explode("|", $dados[$i]);
-    $query = $xoopsDB->query("SELECT * FROM ".$xoopsDB->prefix("banner")." WHERE bid=".$ban[0]);
-    $row = $xoopsDB->fetchArray($query);
-    $banners[$i]['categoria'] = $ban[1];
-    $banners[$i]['titulo'] = '';
-    $banners[$i]['texto'] = '';
-    $banners[$i]['url'] = $row['clickurl'];
-    $banners[$i]['grafico'] = $row['imageurl'];
-    $banners[$i]['usarhtml'] = $row['htmlbanner'];
-    $banners[$i]['htmlcode'] = $row['htmlcode'];
-    $banners[$i]['showimg'] = 1;
-    $banners[$i]['exibicoes'] = $row['impmade'];
-    $banners[$i]['maxebib'] = $row['imptotal'];
-    $banners[$i]['clicks'] = $row['clicks'];
-    $banners[$i]['maxclick'] = 0;
-    $banners[$i]['data'] = date('Y-m-d',$row['date']);
-    $banners[$i]['periodo'] = 0;
-    $banners[$i]['status'] = 1;
-    $banners[$i]['target'] = '_blank';
-    $banners[$i]['idcliente'] = $ban[2];
-    $banners[$i]['obs'] = '';
-  }
-  $errors = 0;
-  for ($i = 0; $i <= count($banners)-1; $i++){
-    $banner = new RWbanners($banners[$i]);
-    if (!$banner->grava())
-      $errors++;
-  }
-  if($errors)
-    redirect_header('index.php',2,_AM_RWBANNER_FAIL_IMPORT);
-  else
-    redirect_header('index.php',2,_AM_RWBANNER_SUCCESS_IMPORT);
+    $banners = array();
+    for ($i = 0; $i <= count($dados)-1; $i++) {
+        $ban = explode("|", $dados[$i]);
+        $query = $xoopsDB->query("SELECT * FROM ".$xoopsDB->prefix("banner")." WHERE bid=".$ban[0]);
+        $row = $xoopsDB->fetchArray($query);
+        $banners[$i]['categoria'] = $ban[1];
+        $banners[$i]['titulo'] = '';
+        $banners[$i]['texto'] = '';
+        $banners[$i]['url'] = $row['clickurl'];
+        $banners[$i]['grafico'] = $row['imageurl'];
+        $banners[$i]['usarhtml'] = $row['htmlbanner'];
+        $banners[$i]['htmlcode'] = $row['htmlcode'];
+        $banners[$i]['showimg'] = 1;
+        $banners[$i]['exibicoes'] = $row['impmade'];
+        $banners[$i]['maxebib'] = $row['imptotal'];
+        $banners[$i]['clicks'] = $row['clicks'];
+        $banners[$i]['maxclick'] = 0;
+        $banners[$i]['data'] = date('Y-m-d', $row['date']);
+        $banners[$i]['periodo'] = 0;
+        $banners[$i]['status'] = 1;
+        $banners[$i]['target'] = '_blank';
+        $banners[$i]['idcliente'] = $ban[2];
+        $banners[$i]['obs'] = '';
+    }
+    $errors = 0;
+    for ($i = 0; $i <= count($banners)-1; $i++) {
+        $banner = new RWbanners($banners[$i]);
+        if (!$banner->grava()) {
+            $errors++;
+        }
+    }
+    if ($errors) {
+        redirect_header('index.php', 2, _AM_RWBANNER_FAIL_IMPORT);
+    } else {
+        redirect_header('index.php', 2, _AM_RWBANNER_SUCCESS_IMPORT);
+    }
 }

@@ -23,7 +23,7 @@ include XOOPS_ROOT_PATH.'/header.php';
 
 $myts = MyTextSanitizer::getInstance();
 
-if(isset($_GET['id'])) {
+if (isset($_GET['id'])) {
     $ecardId = $myts->addSlashes($_GET['id']);
 } else {
     $ecardId = 0;
@@ -34,14 +34,14 @@ $ecardHandler = xoops_getmodulehandler('publicecard', 'extgallery');
 $ecardObj = $ecardHandler->getEcard($ecardId);
 
 // Check is the photo exist
-if(!$ecardObj) {
+if (!$ecardObj) {
     redirect_header("index.php", 3, _NOPERM);
     exit;
 }
 
-$ecard = $ecardHandler->objectToArray($ecardObj,array('photo_id'));
+$ecard = $ecardHandler->objectToArray($ecardObj, array('photo_id'));
 
-if($ecard['photo']['photo_serveur'] == "") {
+if ($ecard['photo']['photo_serveur'] == "") {
     $ecard['photoUrl'] = XOOPS_URL.'/uploads/extgallery/public-photo/medium/'.$ecard['photo']['photo_name'];
 } else {
     $ecard['photoUrl'] = $ecard['photo']['photo_serveur'].$ecard['photo']['photo_name'];

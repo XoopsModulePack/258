@@ -21,23 +21,23 @@ include '../../../include/cp_header.php';
 include '../../../class/xoopsformloader.php';
 include 'function.php';
 
-if(isset($_GET['op'])) {
+if (isset($_GET['op'])) {
     $op = $_GET['op'];
 } else {
     $op = 'default';
 }
 
-if(isset($_POST['step'])) {
+if (isset($_POST['step'])) {
     $step = $_POST['step'];
 } else {
     $step = 'default';
 }
 
-switch($op) {
+switch ($op) {
 
     case 'create':
 
-        switch($step) {
+        switch ($step) {
 
             case 'enreg':
 
@@ -62,19 +62,19 @@ switch($op) {
 
     case 'modify':
 
-        switch($step) {
+        switch ($step) {
 
             case 'enreg':
 
-                if(isset($_POST['submit'])) {
+                if (isset($_POST['submit'])) {
                     $catHandler = xoops_getmodulehandler('publiccat', 'extgallery');
                     $catHandler->modifyCat($_POST);
 
                     redirect_header("public-category.php", 3, _AM_EXTGALLERY_CAT_MODIFIED);
-                } elseif($_POST['delete']) {
+                } elseif ($_POST['delete']) {
                     xoops_cp_header();
 
-                    xoops_confirm(array("cat_id"=>$_POST['cat_id'],"step"=>'enreg'), 'public-category.php?op=delete', _AM_EXTGALLERY_DELETE_CAT_CONFIRM);
+                    xoops_confirm(array("cat_id"=>$_POST['cat_id'], "step"=>'enreg'), 'public-category.php?op=delete', _AM_EXTGALLERY_DELETE_CAT_CONFIRM);
                     xoops_cp_footer();
                 }
 
@@ -84,8 +84,8 @@ switch($op) {
             default:
 
                 // Check if they are selected category
-                if(!isset($_POST['cat_id'])) {
-                    redirect_header("photo.php",3,_AM_EXTGALLERY_NO_CATEGORY_SELECTED);
+                if (!isset($_POST['cat_id'])) {
+                    redirect_header("photo.php", 3, _AM_EXTGALLERY_NO_CATEGORY_SELECTED);
                     exit;
                 }
 
@@ -99,13 +99,13 @@ switch($op) {
 
                 $selectedPhoto = '../images/blank.gif';
                 $photoArray = array();
-                foreach($photosCat as $photo) {
-                    if($photo->getVar('photo_serveur') != "") {
+                foreach ($photosCat as $photo) {
+                    if ($photo->getVar('photo_serveur') != "") {
                         $url = $photo->getVar('photo_serveur')."thumb_".$photo->getVar('photo_name');
                     } else {
                         $url = XOOPS_URL."/uploads/extgallery/public-photo/thumb/thumb_".$photo->getVar('photo_name');
                     }
-                    if($photo->getVar('photo_id') == $cat->getVar('photo_id')) {
+                    if ($photo->getVar('photo_id') == $cat->getVar('photo_id')) {
                         $selectedPhoto = $url;
                     }
                     $photoArray[$photo->getVar('photo_id')] = $url;
@@ -118,7 +118,7 @@ switch($op) {
                             var thumb = new Array();";
 
                 echo "thumb[0] = '../images/blank.gif';\n";
-                foreach($photoArray as $k => $v) {
+                foreach ($photoArray as $k => $v) {
                     echo "thumb[".$k."] = '".$v."';\n";
                 }
 
@@ -130,8 +130,8 @@ switch($op) {
 
                 $photoSelect = "\n".'<select size="1" name="photo_id" id="photo_id" onChange="ChangeThumb();" onkeydown="ChangeThumb();">'."\n";
                 $photoSelect .= '<option value="0">&nbsp;</option>'."\n";
-                foreach($photosCat as $photo) {
-                    if($photo->getVar("photo_id") == $cat->getVar('photo_id')) {
+                foreach ($photosCat as $photo) {
+                    if ($photo->getVar("photo_id") == $cat->getVar('photo_id')) {
                         $photoSelect .= '<option value="'.$photo->getVar("photo_id").'" selected="selected">'.$photo->getVar("photo_title").' ('.$photo->getVar("photo_name").')</option>'."\n";
                     } else {
                         $photoSelect .= '<option value="'.$photo->getVar("photo_id").'">'.$photo->getVar("photo_title").' ('.$photo->getVar("photo_name").')</option>'."\n";
@@ -141,12 +141,12 @@ switch($op) {
 
                 $form = new XoopsThemeForm(_AM_EXTGALLERY_MOD_PUBLIC_CAT, 'create_cat', 'public-category.php?op=modify', 'post', true);
                 $form->addElement(new XoopsFormLabel(_AM_EXTGALLERY_PARENT_CAT, $catHandler->getSelect('cat_pid', 'leaf', true, $cat->getVar('cat_pid'))));
-                $form->addElement(new XoopsFormText(_AM_EXTGALLERY_NAME, 'cat_name', '70', '255', $cat->getVar('cat_name','e')),false);
-                $form->addElement(new XoopsFormText(_AM_EXTGALLERY_WEIGHT, 'cat_weight', '4', '4', $cat->getVar('cat_weight')),false);
-                $form->addElement(new XoopsFormDhtmlTextArea(_AM_EXTGALLERY_DESC, 'cat_desc', $cat->getVar('cat_desc','e')), false);
+                $form->addElement(new XoopsFormText(_AM_EXTGALLERY_NAME, 'cat_name', '70', '255', $cat->getVar('cat_name', 'e')), false);
+                $form->addElement(new XoopsFormText(_AM_EXTGALLERY_WEIGHT, 'cat_weight', '4', '4', $cat->getVar('cat_weight')), false);
+                $form->addElement(new XoopsFormDhtmlTextArea(_AM_EXTGALLERY_DESC, 'cat_desc', $cat->getVar('cat_desc', 'e')), false);
                 $elementTrayThumb = new XoopsFormElementTray(_AM_EXTGALLERY_THUMB);
                 $elementTrayThumb->addElement(new XoopsFormLabel("", $photoSelect."<img style=\"float:left; margin-top:5px;\" id=\"thumb\" src=\"$selectedPhoto\" />"));
-                $form->addElement(new XoopsFormText(_AM_EXTGALLERY_CAT_IMG, 'cat_imgurl', '70', '150', $cat->getVar('cat_imgurl','e')),false);
+                $form->addElement(new XoopsFormText(_AM_EXTGALLERY_CAT_IMG, 'cat_imgurl', '70', '150', $cat->getVar('cat_imgurl', 'e')), false);
                 $form->addElement($elementTrayThumb);
                 $elementTrayButton = new XoopsFormElementTray("");
                 $elementTrayButton->addElement(new XoopsFormButton("", "submit", _SUBMIT, "submit"));
@@ -168,7 +168,7 @@ switch($op) {
 
     case 'delete':
 
-        switch($step) {
+        switch ($step) {
 
             case 'enreg':
 
@@ -198,8 +198,8 @@ switch($op) {
 
         $form = new XoopsThemeForm(_AM_EXTGALLERY_ADD_PUBLIC_CAT, 'create_cat', 'public-category.php?op=create', 'post', true);
         $form->addElement(new XoopsFormLabel(_AM_EXTGALLERY_PARENT_CAT, $catHandler->getSelect('cat_pid', 'leaf', true)));
-        $form->addElement(new XoopsFormText(_AM_EXTGALLERY_NAME, 'cat_name', '70', '255'),true);
-        $form->addElement(new XoopsFormText(_AM_EXTGALLERY_WEIGHT, 'cat_weight', '4', '4'),false);
+        $form->addElement(new XoopsFormText(_AM_EXTGALLERY_NAME, 'cat_name', '70', '255'), true);
+        $form->addElement(new XoopsFormText(_AM_EXTGALLERY_WEIGHT, 'cat_weight', '4', '4'), false);
         $form->addElement(new XoopsFormDhtmlTextArea(_AM_EXTGALLERY_DESC, 'cat_desc', ''), false);
         $form->addElement(new XoopsFormText(_AM_EXTGALLERY_CAT_IMG, 'cat_imgurl', '70', '150'), false);
         $form->addElement(new XoopsFormHidden("step", 'enreg'));

@@ -129,7 +129,7 @@ class WfdownloadsDownload extends XoopsObject
         return $this->_category;
     }
 
-    function getDownloadInfo()
+    public function getDownloadInfo()
     {
         xoops_load('XoopsUserUtility');
 
@@ -428,7 +428,7 @@ class WfdownloadsDownload extends XoopsObject
      *
      * @return XoopsThemeForm
      */
-    function getForm($customArray = array()) // $custom array added April 22, 2006 by jwe)
+    public function getForm($customArray = array()) // $custom array added April 22, 2006 by jwe)
     {
         include_once XOOPS_ROOT_PATH . '/class/xoopsformloader.php';
         include_once XOOPS_ROOT_PATH . '/class/tree.php';
@@ -593,7 +593,7 @@ class WfdownloadsDownload extends XoopsObject
             if (wfdownloads_checkModule('formulize')) {
                 include_once XOOPS_ROOT_PATH . '/modules/formulize/include/formdisplay.php';
                 include_once XOOPS_ROOT_PATH . '/modules/formulize/include/functions.php';
-                $sform = compileElements( // is a Formulize function
+                $sform = compileElements(// is a Formulize function
                     $customArray['fid'],
                     $sform,
                     $customArray['formulize_mgr'],
@@ -678,7 +678,7 @@ class WfdownloadsDownload extends XoopsObject
      *
      * @return XoopsThemeForm
      */
-    function getAdminForm($title, $customArray = array()) // $custom array added April 22, 2006 by jwe
+    public function getAdminForm($title, $customArray = array()) // $custom array added April 22, 2006 by jwe
     {
         include_once XOOPS_ROOT_PATH . '/class/xoopsformloader.php';
         include_once WFDOWNLOADS_ROOT_PATH . '/class/wfdownloads_lists.php';
@@ -706,7 +706,7 @@ class WfdownloadsDownload extends XoopsObject
         // download: submitter
         if (!$this->isNew()) {
             //$sform -> addElement(new XoopsFormText(_AM_WFDOWNLOADS_FILE_SUBMITTERID, 'submitter', 10, 10, $this->getVar('submitter', 'e')), true);
-            $submitter_select = new XoopsFormSelectUser (
+            $submitter_select = new XoopsFormSelectUser(
                 _AM_WFDOWNLOADS_FILE_SUBMITTER, 'submitter', false, $this->getVar(
                     'submitter',
                     'e'
@@ -887,7 +887,7 @@ class WfdownloadsDownload extends XoopsObject
             if (wfdownloads_checkModule('formulize')) {
                 include_once XOOPS_ROOT_PATH . '/modules/formulize/include/formdisplay.php';
                 include_once XOOPS_ROOT_PATH . '/modules/formulize/include/functions.php';
-                $sform = compileElements( // is a Formulize function
+                $sform = compileElements(// is a Formulize function
                     $customArray['fid'],
                     $sform,
                     $customArray['formulize_mgr'],
@@ -1079,7 +1079,7 @@ class WfdownloadsDownload extends XoopsObject
      *
      * @return XoopsThemeForm
      */
-    function getCategoryForm($title)
+    public function getCategoryForm($title)
     {
         include_once XOOPS_ROOT_PATH . '/class/xoopsformloader.php';
         include_once XOOPS_ROOT_PATH . '/class/tree.php';
@@ -1108,7 +1108,7 @@ class WfdownloadsDownload extends XoopsObject
      *
      * @return array
      */
-    function toArray()
+    public function toArray()
     {
         $ret  = array();
         $vars = $this->getVars();

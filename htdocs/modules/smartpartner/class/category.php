@@ -33,7 +33,7 @@ if (!class_exists("smartpartner_PersistableObjectHandler")) {
 class SmartpartnerCategory extends XoopsObject
 {
 
-    function SmartpartnerCategory()
+    public function SmartpartnerCategory()
     {
         $this->initVar("categoryid", XOBJ_DTYPE_INT, null, false);
         $this->initVar("parentid", XOBJ_DTYPE_INT, null, false);
@@ -45,20 +45,20 @@ class SmartpartnerCategory extends XoopsObject
         $this->initVar("created", XOBJ_DTYPE_INT, null, false);
     }
 
-    function categoryid()
+    public function categoryid()
     {
         return $this->getVar("categoryid");
     }
 
-    function parentid()
+    public function parentid()
     {
         return $this->getVar("parentid");
     }
 
-    function name($format = "S")
+    public function name($format = "S")
     {
         $ret = $this->getVar("name", $format);
-        If (($format == 's') || ($format == 'S') || ($format == 'show')) {
+        if (($format == 's') || ($format == 'S') || ($format == 'show')) {
             $myts = &MyTextSanitizer::getInstance();
             $ret = $myts->displayTarea($ret);
         }
@@ -66,12 +66,12 @@ class SmartpartnerCategory extends XoopsObject
         return $ret;
     }
 
-    function description($format = "S")
+    public function description($format = "S")
     {
         return $this->getVar("description", $format);
     }
 
-    function image($format = "S")
+    public function image($format = "S")
     {
         if ($this->getVar('image') != '') {
             return $this->getVar('image', $format);
@@ -80,12 +80,11 @@ class SmartpartnerCategory extends XoopsObject
         }
     }
 
-    function getImageUrl($falseIfNoImage = false)
+    public function getImageUrl($falseIfNoImage = false)
     {
         if (($this->getVar('image') != '') && ($this->getVar('image') != 'blank.png') && ($this->getVar('image') != '-1')) {
             return smartpartner_getImageDir('category', false) . $this->image();
         } elseif ($falseIfNoImage) {
-
             return false;
         } elseif (!$this->getVar('image_url')) {
             return smartpartner_getImageDir('category', false) . 'blank.png';
@@ -94,20 +93,20 @@ class SmartpartnerCategory extends XoopsObject
         }
     }
 
-    function weight()
+    public function weight()
     {
         return $this->getVar("weight");
     }
 
-    function notLoaded()
+    public function notLoaded()
     {
         return ($this->getVar('categoryid') == -1);
     }
 
-    function getCategoryPath($withAllLink = true)
+    public function getCategoryPath($withAllLink = true)
     {
         $filename = "category.php";
-        If ($withAllLink) {
+        if ($withAllLink) {
             $ret = $this->getCategoryLink();
         } else {
             $ret = $this->name();
@@ -126,12 +125,12 @@ class SmartpartnerCategory extends XoopsObject
         return $ret;
     }
 
-    function getCategoryUrl()
+    public function getCategoryUrl()
     {
         return smartpartner_seo_genUrl('category', $this->categoryid(), $this->name());
     }
 
-    function getCategoryLink($class = false)
+    public function getCategoryLink($class = false)
     {
         if ($class) {
             return "<a class='$class' href='" . $this->getCategoryUrl() . "'>" . $this->name() . "</a>";
@@ -140,11 +139,11 @@ class SmartpartnerCategory extends XoopsObject
         }
     }
 
-    function store($sendNotifications = true, $force = true)
+    public function store($sendNotifications = true, $force = true)
     {
         global $smartpartner_category_handler;
         $ret = $smartpartner_category_handler->insert($this, $force);
-        If ($sendNotifications && $ret && ($this->isNew())) {
+        if ($sendNotifications && $ret && ($this->isNew())) {
             $this->sendNotifications();
         }
         $this->unsetNew();
@@ -152,7 +151,7 @@ class SmartpartnerCategory extends XoopsObject
         return $ret;
     }
 
-    function sendNotifications()
+    public function sendNotifications()
     {
         $hModule =& xoops_gethandler('module');
         $smartModule =& $hModule->getByDirname('smartpartner');
@@ -170,7 +169,7 @@ class SmartpartnerCategory extends XoopsObject
         $notification_handler->triggerEvent('global_item', 0, 'category_created', $tags);
     }
 
-    function toArray($category = array())
+    public function toArray($category = array())
     {
         $category['categoryid'] = $this->categoryid();
         $category['name'] = $this->name();
@@ -180,7 +179,6 @@ class SmartpartnerCategory extends XoopsObject
 
         if ($this->image() != 'blank.png') {
             $category['image_path'] = smartpartner_getImageDir('category', false) . $this->image();
-
         } else {
             $category['image_path'] = '';
         }
@@ -191,12 +189,12 @@ class SmartpartnerCategory extends XoopsObject
 
 class SmartpartnerCategoryHandler extends smartpartner_PersistableObjectHandler
 {
-    function SmartpartnerCategoryHandler($db)
+    public function SmartpartnerCategoryHandler($db)
     {
         $this->smartpartner_PersistableObjectHandler($db, 'smartpartner_categories', 'SmartpartnerCategory', 'categoryid', 'name');
     }
 
-    function delete($category, $force = false)
+    public function delete($category, $force = false)
     {
         /*if (parent::delete($object, $force)) {
             global $xoopsModule;
@@ -218,7 +216,7 @@ class SmartpartnerCategoryHandler extends smartpartner_PersistableObjectHandler
         }
         $criteria = new Criteria('category', $category->categoryid());
         $partners =& $smartpartner_partner_handler->getObjects($criteria);
-        If ($partners) {
+        if ($partners) {
             foreach ($partners as $partner) {
                 $smartpartner_partner_handler->delete($partner);
             }
@@ -245,14 +243,14 @@ class SmartpartnerCategoryHandler extends smartpartner_PersistableObjectHandler
         return true;
     }
 
-    function &getCategories($limit = 0, $start = 0, $parentid = 0, $sort = 'weight', $order = 'ASC', $id_as_key = true)
+    public function &getCategories($limit = 0, $start = 0, $parentid = 0, $sort = 'weight', $order = 'ASC', $id_as_key = true)
     {
         $criteria = new CriteriaCompo();
 
         $criteria->setSort($sort);
         $criteria->setOrder($order);
 
-        If ($parentid != -1) {
+        if ($parentid != -1) {
             $criteria->add(new Criteria('parentid', $parentid));
         }
 
@@ -263,13 +261,13 @@ class SmartpartnerCategoryHandler extends smartpartner_PersistableObjectHandler
         return $ret;
     }
 
-    function getCategoriesCount($parentid = 0)
+    public function getCategoriesCount($parentid = 0)
     {
-        If ($parentid == -1) {
+        if ($parentid == -1) {
             return $this->getCount();
         }
         $criteria = new CriteriaCompo();
-        If (isset($parentid) && ($parentid != -1)) {
+        if (isset($parentid) && ($parentid != -1)) {
             $criteria->add(new criteria('parentid', $parentid));
         }
 

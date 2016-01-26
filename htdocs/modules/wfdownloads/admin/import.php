@@ -380,7 +380,6 @@ function import_wfd_to_wfdownloads()
 // IN PROGRESS IMPORT AND UPDATE SCREENSHOTS
 // IN PROGRESS
 
-
     //Import data into mirrors table
     $sql = "INSERT INTO {$destination['mirrors']} (";
     $sql .= " `lid`, `title`, `homeurl`, `location`, `continent`, `downurl`, `submit`, `date`, `uid`";
@@ -596,7 +595,6 @@ function import_wmpdownloads_to_wfdownloads()
     $GLOBALS['xoopsDB']->query("ALTER TABLE ." . $destination['cat'] . " DROP `old_pid`");
     $GLOBALS['xoopsDB']->query("ALTER TABLE ." . $destination['downloads'] . " DROP `old_cid`");
     $GLOBALS['xoopsDB']->query("ALTER TABLE ." . $destination['downloads'] . " DROP `old_lid`");
-
 }
 
 // =========================================================================================
@@ -713,7 +711,6 @@ function import_pddownloads_to_wfdownloads()
     $GLOBALS['xoopsDB']->query("ALTER TABLE ." . $destination['cat'] . " DROP `old_pid`");
     $GLOBALS['xoopsDB']->query("ALTER TABLE ." . $destination['downloads'] . " DROP `old_cid`");
     $GLOBALS['xoopsDB']->query("ALTER TABLE ." . $destination['downloads'] . " DROP `old_lid`");
-
 }
 
 // =========================================================================================
@@ -832,7 +829,6 @@ function import_mydownloads_to_wfdownloads()
     $GLOBALS['xoopsDB']->query("ALTER TABLE ." . $destination['cat'] . " DROP `old_pid`");
     $GLOBALS['xoopsDB']->query("ALTER TABLE ." . $destination['downloads'] . " DROP `old_cid`");
     $GLOBALS['xoopsDB']->query("ALTER TABLE ." . $destination['downloads'] . " DROP `old_lid`");
-
 }
 
 // =========================================================================================

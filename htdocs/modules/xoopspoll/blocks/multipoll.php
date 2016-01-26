@@ -54,7 +54,7 @@ xoops_load('constants', 'xoopspoll');
  * @global mixed $GLOBALS ['xoopsUser']
  * @uses   CriteriaCompo
  * @uses   Criteria
- * @param array  $options block options array
+ * @param  array $options block options array
  * @return array block keys and values to be used by block template
  */
 function xoopspollBlockMultiShow($options)

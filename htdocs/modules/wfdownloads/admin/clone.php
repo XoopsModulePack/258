@@ -73,7 +73,6 @@ if (@$_POST['op'] == 'submit') {
     echo $message;
     include_once __DIR__ . '/admin_footer.php';
     exit();
-
 } else {
     wfdownloads_xoops_cp_header();
     $indexAdmin = new ModuleAdmin();

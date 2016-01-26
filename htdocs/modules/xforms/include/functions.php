@@ -66,11 +66,11 @@ function xforms_cleanVars(&$global, $key, $default = '', $type = 'int')
 /**
  * This function transforms a numerical size (like 2048) to a letteral size (like 2MB)
  *
- * @param   integer $bytes numerical size
+ * @param integer $bytes numerical size
  *
- * @param int       $precision
+ * @param int $precision
  *
- * @return  string     $size     letteral size
+ * @return string $size     letteral size
  */
 function xforms_bytesToSize1000($bytes, $precision = 2)
 {
@@ -103,9 +103,9 @@ function xforms_bytesToSize1024($bytes, $precision = 2)
 /**
  * This function transforms the php.ini notation for numbers (like '2M') to an integer (2*1024*1024 in this case)
  *
- * @param   string $size letteral size
+ * @param string $size letteral size
  *
- * @return  integer    $ret     numerical size
+ * @return integer $ret     numerical size
  **/
 function xforms_sizeToBytes1024($size)
 {
@@ -144,10 +144,10 @@ function xforms_sizeToBytes1024($size)
  * It's recursive because it doesn't stop with the one directory,
  * it just keeps going through all of the directories in the folder you specify.
  *
- * @param   string $path path to the directory to make
- * @param   int    $level
+ * @param string $path  path to the directory to make
+ * @param int    $level
  *
- * @return  array
+ * @return array
  */
 function xforms_getDir($path = '.', $level = 0)
 {
@@ -182,11 +182,11 @@ function xforms_getDir($path = '.', $level = 0)
 /**
  * Create a new directory that contains the file index.html
  *
- * @param   string $dir          path to the directory to make
- * @param   int    $perm         mode
- * @param   bool   $create_index if true create index.html
+ * @param string $dir          path to the directory to make
+ * @param int    $perm         mode
+ * @param bool   $create_index if true create index.html
  *
- * @return  bool                    Returns true on success or false on failure
+ * @return bool Returns true on success or false on failure
  */
 function xforms_makeDir($dir, $perm = 0777, $create_index = true)
 {
@@ -211,10 +211,10 @@ function xforms_makeDir($dir, $perm = 0777, $create_index = true)
 /**
  * Copy a file
  *
- * @param   string $source      is the original directory
- * @param   string $destination is the destination directory
+ * @param string $source      is the original directory
+ * @param string $destination is the destination directory
  *
- * @return  bool                    Returns true on success or false on failure
+ * @return bool Returns true on success or false on failure
  *
  */
 function xforms_copyFile($source, $destination)
@@ -230,10 +230,10 @@ function xforms_copyFile($source, $destination)
 /**
  * Copy a directory and its contents
  *
- * @param   string $source      is the original directory
- * @param   string $destination is the destination directory
+ * @param string $source      is the original directory
+ * @param string $destination is the destination directory
  *
- * @return  bool                    Returns true on success or false on failure
+ * @return bool Returns true on success or false on failure
  *
  */
 function xforms_copyDir($source, $destination)
@@ -263,10 +263,10 @@ function xforms_copyDir($source, $destination)
 /**
  * Delete a empty/not empty directory
  *
- * @param   string $dir          path to the directory to delete
- * @param   bool   $if_not_empty if false it delete directory only if false
+ * @param string $dir          path to the directory to delete
+ * @param bool   $if_not_empty if false it delete directory only if false
  *
- * @return  bool                    Returns true on success or false on failure
+ * @return bool Returns true on success or false on failure
  */
 function xforms_delDir($dir, $if_not_empty = true)
 {
@@ -301,9 +301,9 @@ function xforms_delDir($dir, $if_not_empty = true)
 /**
  * Check if a module exist and return module verision
  *
- * @param   string $dirname
+ * @param string $dirname
  *
- * @return  boolean, integer   false if module not installed or not active, module version if installed
+ * @return boolean, integer   false if module not installed or not active, module version if installed
  *
  * @access  public
  * @author  luciorota
@@ -322,10 +322,10 @@ function xforms_checkModule($dirname)
 /**
  * Recursively sort categories by level and weight
  *
- * @param   integer $pid
- * @param   integer $level
+ * @param integer $pid
+ * @param integer $level
  *
- * @return  array   array of arrays: 'pid', 'cid', 'level', 'category' as array
+ * @return array array of arrays: 'pid', 'cid', 'level', 'category' as array
  *
  * @access  public
  * @author  luciorota
@@ -359,7 +359,7 @@ function xforms_sortCategories($pid = 0, $level = 0)
  * Create download by letter choice bar/menu
  * updated starting from this idea http://xoops.org/modules/news/article.php?storyid=6497
  *
- * @return  string   html
+ * @return string html
  *
  * @access  public
  * @author  luciorota
@@ -500,7 +500,6 @@ function xforms_getMeta($key)
         $value = false;
     } else {
         list($value) = $xoopsDB->fetchRow($ret);
-
     }
 
     return $value;
@@ -794,9 +793,9 @@ function xforms_serverStats()
 /**
  * displayicons()
  *
- * @param           $time
- * @param   integer $status
- * @param   integer $counter
+ * @param         $time
+ * @param integer $status
+ * @param integer $counter
  *
  * @return string
  */
@@ -966,7 +965,7 @@ if (!function_exists('convertorderbyout')) {
  *
  * @param   $lid
  *
- * @return  updates rating data in itemtable for a given item
+ * @return updates rating data in itemtable for a given item
  **/
 function xforms_updateRating($lid)
 {
@@ -1010,7 +1009,7 @@ function xforms_categoriesCount()
  * @param int $cids
  * @internal param \OR $integer array of integer $cids
  *
- * @return  the total number of items in items table that are accociated with a given table $table id
+ * @return the total number of items in items table that are accociated with a given table $table id
  */
 function xforms_getTotalDownloads($cids = 0)
 {
@@ -1095,14 +1094,14 @@ function xforms_displayImage($image = '', $href = '', $imgSource = '', $altText 
 /**
  * xforms_createThumb()
  *
- * @param           $imgName
- * @param           $imgPath
- * @param           $imgSavePath
- * @param   integer $width
- * @param   integer $height
- * @param   integer $quality
- * @param   integer $update
- * @param   integer $aspect
+ * @param         $imgName
+ * @param         $imgPath
+ * @param         $imgSavePath
+ * @param integer $width
+ * @param integer $height
+ * @param integer $quality
+ * @param integer $update
+ * @param integer $aspect
  *
  * @internal param $img_name
  * @internal param $img_path
@@ -1331,16 +1330,16 @@ function xforms_allowedMimetypes($fileName, $isAdmin = true)
 /**
  * xforms_uploading()
  *
- * @param   string  $filename
- * @param   string  $uploadDirectory
- * @param   array   $allowedMimetypes
- * @param   string  $redirectURL
- * @param   integer $num
- * @param   bool    $redirect
- * @param   bool    $isAdmin
- * @param   bool    $onlyImages
+ * @param string  $filename
+ * @param string  $uploadDirectory
+ * @param array   $allowedMimetypes
+ * @param string  $redirectURL
+ * @param integer $num
+ * @param bool    $redirect
+ * @param bool    $isAdmin
+ * @param bool    $onlyImages
  *
- * @return  array
+ * @return array
  **/
 function xforms_uploading($filename, $uploadDirectory = 'uploads', $allowedMimetypes = array(), $redirectURL = 'index.php', $num = 0, $redirect = false, $isAdmin = true, $onlyImages = false)
 {
@@ -1377,7 +1376,7 @@ function xforms_uploading($filename, $uploadDirectory = 'uploads', $allowedMimet
                 redirect_header($redirectURL, 1, _AM_XFORMS_UPLOADFILE);
             } else {
                 if (is_file($uploader->savedDestination)) {
-//                    $file['url'] = XOOPS_URL . '/' . $uploadDirectory . '/';
+                    //                    $file['url'] = XOOPS_URL . '/' . $uploadDirectory . '/';
                     $file['filename'] = strtolower($uploader->savedFileName);
                     $file['filetype'] = $_FILES['userfile']['type'];
                     $file['size']     = filesize($uploadDirectory . strtolower($uploader->savedFileName));
@@ -1723,7 +1722,7 @@ function xforms_swishe_search($search_query)
                 $line[1] = preg_replace("/[[:blank:]]/", "%%", $line[1]); // replace every space with %% for the phrase in quotation marks
                 $line    = implode('"', $line); // collapse the array into a string
                 $line    = preg_replace("/[[:blank:]]/", "\t", $line); // replace every space with a tab
-                list ($relevance, $result_url, $result_title, $file_size) = explode("\t", $line); // split the line into an array by tabs; assign variable names to each column
+                list($relevance, $result_url, $result_title, $file_size) = explode("\t", $line); // split the line into an array by tabs; assign variable names to each column
                 $relevance = $relevance / 10; // format relevance as a percentage for search results
 
                 $full_path_and_file = $result_url;

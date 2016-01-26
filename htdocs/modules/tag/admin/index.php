@@ -52,13 +52,12 @@ if (false === ($result = $GLOBALS['xoopsDB']->query($sql))) {
         $module_handler =& xoops_gethandler("module");
         $module_list = $module_handler->getList(new Criteria("mid", "(" . implode(", ", array_keys($counts_module)) . ")", "IN"));
     } else {
-
     }
 }
 
 $indexAdmin->addInfoBox(_AM_TAG_STATS) ;
-$indexAdmin->addInfoBoxLine(_AM_TAG_STATS, "<infolabel>" . _AM_TAG_COUNT_TAG . "</infolabel>" , $count_tag) ;
-$indexAdmin->addInfoBoxLine(_AM_TAG_STATS, "<infolabel>" . _AM_TAG_COUNT_ITEM . "</infolabel>" , $count_item ."<br /><br />") ;
+$indexAdmin->addInfoBoxLine(_AM_TAG_STATS, "<infolabel>" . _AM_TAG_COUNT_TAG . "</infolabel>", $count_tag) ;
+$indexAdmin->addInfoBoxLine(_AM_TAG_STATS, "<infolabel>" . _AM_TAG_COUNT_ITEM . "</infolabel>", $count_item ."<br /><br />") ;
 $indexAdmin->addInfoBoxLine(_AM_TAG_STATS, "<infolabel>" . _AM_TAG_COUNT_MODULE . "</infolabel>" . "<infotext>" . _AM_TAG_COUNT_MODULE_TITLE . "</infotext>") ;
 
 foreach ($counts_module as $module => $count) {
@@ -67,12 +66,12 @@ foreach ($counts_module as $module => $count) {
                 . "  [<a href='" . $GLOBALS['xoops']->url("www/modules/tag/admin/admin.tag.php?modid={$module}") . "'>" . _AM_TAG_EDIT . "</a>]\n"
                 . "  [<a href='" . $GLOBALS['xoops']->url("www/modules/tag/admin/syn.tag.php?modid={$module}") . "'>" . _AM_TAG_SYNCHRONIZATION . "</a>]\n"
                 . "</infotext> \n";
-    $indexAdmin->addInfoBoxLine( _AM_TAG_STATS, $moduleStat);
+    $indexAdmin->addInfoBoxLine(_AM_TAG_STATS, $moduleStat);
 }
 
 if (empty($counts_module)) {  // there aren't any so just display "none"
     $moduleStat = "<infolabel>%s</infolabel><infotext>0 / 0</infotext> \n";
-    $indexAdmin->addInfoBoxLine( _AM_TAG_STATS, $moduleStat, _NONE);
+    $indexAdmin->addInfoBoxLine(_AM_TAG_STATS, $moduleStat, _NONE);
 }
 
 echo $indexAdmin->addNavigation('index.php');
@@ -80,3 +79,4 @@ echo $indexAdmin->renderIndex();
 
 include __DIR__ . '/admin_footer.php';
 //xoops_cp_footer();
+

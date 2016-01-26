@@ -126,7 +126,7 @@ class NewbbReportHandler extends ArtObjectHandler
 
     public function synchronization()
     {
-//        return;
+        //        return;
     }
 
     /**

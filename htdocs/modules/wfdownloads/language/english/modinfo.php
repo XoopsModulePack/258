@@ -271,7 +271,6 @@ define('_MI_WFDOWNLOADS_MIRROR_ALLOWSUBMISSDSC', "Allow users to submit new mirr
 define('_MI_WFDOWNLOADS_MIRROR_MIRRORIMAGES', "[mirrors] Mirror logo upload directory"); // not implemented yet
 define('_MI_WFDOWNLOADS_MIRROR_MIRRORIMAGESDSC', "Mirror logo upload directory."); // not implemented yet
 
-
 // 3.21
 define('_MI_WFDOWNLOADS_DB_IMPORT', "Import");
 define('_MI_WFDOWNLOADS_HELP', "Help");

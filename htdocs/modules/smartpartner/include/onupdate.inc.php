@@ -15,13 +15,11 @@ if (!empty($_POST['fct']) && !empty($_POST['op']) && $_POST['fct'] == 'modulesad
 
         // Keep the values of block's options when module is updated (by nobunobu)
         include dirname(__FILE__) . "/updateblock.inc.php";
-
     }
 }
 
 function xoops_module_update_smartpartner($module)
 {
-
     include_once(XOOPS_ROOT_PATH . "/modules/" . $module->getVar('dirname') . "/include/functions.php");
     include_once(XOOPS_ROOT_PATH . "/modules/smartobject/class/smartdbupdater.php");
 
@@ -197,7 +195,6 @@ function xoops_module_update_smartpartner($module)
 
 function xoops_module_install_smartpartner($module)
 {
-
     ob_start();
 
     include_once(XOOPS_ROOT_PATH . "/modules/" . $module->getVar('dirname') . "/include/functions.php");
@@ -207,8 +204,7 @@ function xoops_module_install_smartpartner($module)
     $feedback = ob_get_clean();
     if (method_exists($module, "setMessage")) {
         $module->setMessage($feedback);
-    }
-    else {
+    } else {
         echo $feedback;
     }
 

@@ -19,7 +19,7 @@ if (!defined('NEWBB_FUNCTIONS_RECON')) {
     define('NEWBB_FUNCTIONS_RECON', 1);
 
     /**
-     * @param null $type
+     * @param  null $type
      * @return bool
      */
     function newbb_synchronization($type = null)

@@ -24,12 +24,14 @@ xoops_cp_header();
 $indexadmin = new ModuleAdmin();
 $tot_file=0;
    if ($handle = opendir(XOOPS_ROOT_PATH.'/uploads/backup/')) {
-   while (false !== ($file = readdir($handle))) {
-       if ( $file == ".." || $file == "." || substr($file,0,1)=='.' || $file=="convert") continue;
-   $tot_file++;
+       while (false !== ($file = readdir($handle))) {
+           if ($file == ".." || $file == "." || substr($file, 0, 1)=='.' || $file=="convert") {
+               continue;
+           }
+           $tot_file++;
+       }
+       closedir($handle);
    }
-   closedir($handle);
-}
 
 $val=mysql_query("SHOW VARIABLES LIKE 'character%'");
 $val2=mysql_query("SHOW VARIABLES LIKE 'collation%'");
@@ -37,32 +39,32 @@ $val2=mysql_query("SHOW VARIABLES LIKE 'collation%'");
  $result = mysql_query($sql);
  $tot_tables = mysql_num_rows($result);
     $indexadmin->addInfoBox(_DB_BACKUP_BOX1);
-    if ( 0 < $tot_file ) {
+    if (0 < $tot_file) {
         $indexadmin->addInfoBoxLine(_DB_BACKUP_BOX1, _MD_BACKUP_TOTALFILES, $tot_file, 'Red');
     } else {
         $indexadmin->addInfoBoxLine(_DB_BACKUP_BOX1, _MD_BACKUP_TOTALFILES, $tot_file, 'Green');
     }
     $indexadmin->addInfoBox(_DB_BACKUP_BOX2);
-    if ( 0 == $tot_tables ) {
+    if (0 == $tot_tables) {
         $indexadmin->addInfoBoxLine(_DB_BACKUP_BOX2, _MD_BACKUP_TOTALDB_TABLES, $tot_tables, 'Red');
     } else {
         $indexadmin->addInfoBoxLine(_DB_BACKUP_BOX2, _MD_BACKUP_TOTALDB_TABLES, $tot_tables, 'Green');
     }
     $a=0;
-    while($re=mysql_fetch_array($val)) {
-    $value[]=$re['Value'];
-    $var_name[]=$re['Variable_name'];
-    $indexadmin->addInfoBoxLine(_DB_BACKUP_BOX2, $var_name[$a]." %s", $value[$a], 'Green');
-    $a++;
+    while ($re=mysql_fetch_array($val)) {
+        $value[]=$re['Value'];
+        $var_name[]=$re['Variable_name'];
+        $indexadmin->addInfoBoxLine(_DB_BACKUP_BOX2, $var_name[$a]." %s", $value[$a], 'Green');
+        $a++;
     }
     $a=0;
     unset($value);
     unset($var_name);
-    while($re=mysql_fetch_array($val2)) {
-    $value[]=$re['Value'];
-    $var_name[]=$re['Variable_name'];
-    $indexadmin->addInfoBoxLine(_DB_BACKUP_BOX2, $var_name[$a]." %s", $value[$a], 'Green');
-    $a++;
+    while ($re=mysql_fetch_array($val2)) {
+        $value[]=$re['Value'];
+        $var_name[]=$re['Variable_name'];
+        $indexadmin->addInfoBoxLine(_DB_BACKUP_BOX2, $var_name[$a]." %s", $value[$a], 'Green');
+        $a++;
     }
     echo $indexadmin->addNavigation('index.php') ;
         echo $indexadmin->renderIndex();

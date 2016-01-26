@@ -12,36 +12,36 @@ $module_id = 0;
 $module_name = "";
 
 foreach ($gm->getArray() as $module) {
-  $module_id = $module["id"];
-  $module_name = $module["name"];
+    $module_id = $module["id"];
+    $module_name = $module["name"];
 }
 
 if (isset($_REQUEST["install"]) && $_REQUEST["install"] == 1) {
-  $module_name = $I18N->msg('magnific_popup_module_name_image');
+    $module_name = $I18N->msg('magnific_popup_module_name_image');
 
-  $mi = rex_sql::factory();
+    $mi = rex_sql::factory();
   // $mi->debugsql = 1;
   $mi->setTable("rex_module");
-  $mi->setValue("eingabe", addslashes($moduleInput));
-  $mi->setValue("ausgabe", addslashes($moduleOutput));
+    $mi->setValue("eingabe", addslashes($moduleInput));
+    $mi->setValue("ausgabe", addslashes($moduleOutput));
 
-  if (isset($_REQUEST["module_id"]) && $module_id == $_REQUEST["module_id"]) {
-    // altes Module aktualisieren
+    if (isset($_REQUEST["module_id"]) && $module_id == $_REQUEST["module_id"]) {
+        // altes Module aktualisieren
     $mi->setWhere('id="' . $module_id . '"');
-    $mi->update();
+        $mi->update();
 
     // article updaten
     rex_generateAll();
 
-    echo rex_info($I18N->msg('module_updated').' | '.$I18N->msg('delete_cache_message'));
-  } else {
-    // neues Modul einf&uuml;gen
+        echo rex_info($I18N->msg('module_updated').' | '.$I18N->msg('delete_cache_message'));
+    } else {
+        // neues Modul einf&uuml;gen
     $mi->setValue("name", $module_name);
-    $mi->insert();
-    $module_id = (int) $mi->getLastId();
+        $mi->insert();
+        $module_id = (int) $mi->getLastId();
 
-    echo rex_info($I18N->msg('magnific_popup_module_added', $module_name));
-  }
+        echo rex_info($I18N->msg('magnific_popup_module_added', $module_name));
+    }
 }
 ?>
 

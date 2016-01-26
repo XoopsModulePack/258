@@ -62,7 +62,7 @@ class XoopstubeLists
      *
      * @return string
      */
-    function &getarray($this_array)
+    public function &getarray($this_array)
     {
         $ret = "<select size='" . $this->size() . "' name='$this->value()'>";
         if ($this->emptyselect) {
@@ -88,7 +88,7 @@ class XoopstubeLists
      *
      * @return array
      */
-    function &getDirListAsArray($dirname)
+    public function &getDirListAsArray($dirname)
     {
         $dirlist = array();
         if (is_dir($dirname) && $handle = opendir($dirname)) {
@@ -115,7 +115,7 @@ class XoopstubeLists
      *
      * @return array
      */
-    static function &getListTypeAsArray($dirname, $type = '', $prefix = '', $noselection = 1)
+    public static function &getListTypeAsArray($dirname, $type = '', $prefix = '', $noselection = 1)
     {
         $filelist = array();
         switch (trim($type)) {

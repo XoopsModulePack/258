@@ -11,7 +11,7 @@ class ExtcalFormRRuleCheckBox extends XoopsFormCheckBox
      * @param      $name
      * @param null $value
      */
-    function ExtcalFormRRuleCheckBox($caption, $name, $value = null)
+    public function ExtcalFormRRuleCheckBox($caption, $name, $value = null)
     {
         $this->XoopsFormCheckBox($caption, $name, $value);
     }
@@ -21,7 +21,7 @@ class ExtcalFormRRuleCheckBox extends XoopsFormCheckBox
      *
      * @return string
      */
-    function render()
+    public function render()
     {
         $ret = "<table><tr>";
         $i   = 0;
@@ -49,5 +49,4 @@ class ExtcalFormRRuleCheckBox extends XoopsFormCheckBox
 
         return $ret;
     }
-
 }

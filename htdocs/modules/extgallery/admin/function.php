@@ -19,11 +19,11 @@
 
 function extgalleryCheckModuleAdmin()
 {
-    if ( file_exists($GLOBALS['xoops']->path('/Frameworks/moduleclasses/moduleadmin/moduleadmin.php'))){
+    if (file_exists($GLOBALS['xoops']->path('/Frameworks/moduleclasses/moduleadmin/moduleadmin.php'))) {
         include_once $GLOBALS['xoops']->path('/Frameworks/moduleclasses/moduleadmin/moduleadmin.php');
 
         return true;
-    }else{
+    } else {
         echo xoops_error("Error: You don't use the Frameworks \"admin module\". Please install this Frameworks");
 
         return false;

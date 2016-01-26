@@ -109,7 +109,6 @@ function xoops_module_uninstall_xforms(&$xoopsModule)
  */
 function update_tables_to_130($module)
 {
-
     $migrate = new Migrate;
 //    $migrate->copyTable('demomvc_log', 'demomvc_log2', true);
 //    $migrate->addColumn('demomvc_log2', 'log_xint', 'log_start_time','int(10) not null default \'0\'' );
@@ -122,7 +121,6 @@ function update_tables_to_130($module)
 //    $migrate->addColumn('zzztest', 'log_xint2', '','int(10) not null default \'0\'' );
 //    $migrate->update('zzztest', array('log_xint2' => time()), '');
     $migrate->queueExecute(true);
-
 }
 
 /*

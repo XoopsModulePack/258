@@ -42,9 +42,9 @@
 //                          GIJOE <http://www.peak.ne.jp/>                   //
 // ------------------------------------------------------------------------- //
 
-include_once( '../../../include/cp_header.php' ) ;
-include_once( 'mygrouppermform.php' ) ;
-include_once( XOOPS_ROOT_PATH.'/class/xoopsblock.php' ) ;
+include_once('../../../include/cp_header.php') ;
+include_once('mygrouppermform.php') ;
+include_once(XOOPS_ROOT_PATH.'/class/xoopsblock.php') ;
 //include_once "../include/gtickets.php" ;// GIJ
 include_once XOOPS_ROOT_PATH."/modules/".$xoopsModule->dirname()."/include/functions.php";
 
@@ -52,37 +52,45 @@ $xoops_system_path = XOOPS_ROOT_PATH . '/modules/system' ;
 
 // language files
 $language = $xoopsConfig['language'] ;
-if( ! file_exists( "$xoops_system_path/language/$language/admin/blocksadmin.php") ) $language = 'english' ;
+if (! file_exists("$xoops_system_path/language/$language/admin/blocksadmin.php")) {
+    $language = 'english' ;
+}
 
 // to prevent from notice that constants already defined
-$error_reporting_level = error_reporting( 0 ) ;
-include_once( "$xoops_system_path/constants.php" ) ;
-include_once( "$xoops_system_path/language/$language/admin.php" ) ;
-include_once( "$xoops_system_path/language/$language/admin/blocksadmin.php" ) ;
+$error_reporting_level = error_reporting(0) ;
+include_once("$xoops_system_path/constants.php") ;
+include_once("$xoops_system_path/language/$language/admin.php") ;
+include_once("$xoops_system_path/language/$language/admin/blocksadmin.php") ;
 $dirname         = basename(dirname(dirname(__FILE__)));
 include_once dirname(dirname(__FILE__)) ."/language/$language/modinfo.php"  ;
 
-error_reporting( $error_reporting_level ) ;
+error_reporting($error_reporting_level) ;
 
-$group_defs = file( "$xoops_system_path/language/$language/admin/groups.php" ) ;
-foreach( $group_defs as $def ) {
-    if( strstr( $def , '_AM_RWBANNER_ACCESSRIGHTS' ) || strstr( $def , '_AM_RWBANNER_ACTIVERIGHTS' ) ) eval( $def ) ;
+$group_defs = file("$xoops_system_path/language/$language/admin/groups.php") ;
+foreach ($group_defs as $def) {
+    if (strstr($def, '_AM_RWBANNER_ACCESSRIGHTS') || strstr($def, '_AM_RWBANNER_ACTIVERIGHTS')) {
+        eval($def) ;
+    }
 }
 
 // check $xoopsModule
-if( ! is_object( $xoopsModule ) ) redirect_header( XOOPS_URL.'/user.php' , 1 , _MD_RWBANNER_NOPERM ) ;
+if (! is_object($xoopsModule)) {
+    redirect_header(XOOPS_URL.'/user.php', 1, _MD_RWBANNER_NOPERM) ;
+}
 
 // set target_module if specified by $_GET['dirname']
 $module_handler =& xoops_gethandler('module');
-if( ! empty( $_GET['dirname'] ) ) {
+if (! empty($_GET['dirname'])) {
     $target_module =& $module_handler->getByDirname($_GET['dirname']);
 }
 // check access right (needs system_admin of BLOCK)
 $sysperm_handler =& xoops_gethandler('groupperm');
-if (!$sysperm_handler->checkRight('system_admin', XOOPS_SYSTEM_BLOCK, $xoopsUser->getGroups())) redirect_header( XOOPS_URL.'/user.php' , 1 , _MD_RWBANNER_NOPERM ) ;
+if (!$sysperm_handler->checkRight('system_admin', XOOPS_SYSTEM_BLOCK, $xoopsUser->getGroups())) {
+    redirect_header(XOOPS_URL.'/user.php', 1, _MD_RWBANNER_NOPERM) ;
+}
 
 // get blocks owned by the module (Imported from xoopsblock.php then modified)
-$block_arr =& XoopsBlock::getByModule( $xoopsModule->mid() ) ;
+$block_arr =& XoopsBlock::getByModule($xoopsModule->mid()) ;
 
 function list_blocks()
 {
@@ -111,7 +119,7 @@ function list_blocks()
     // blocks displaying loop
     $class = 'even' ;
     $block_configs = get_block_configs() ;
-    foreach( array_keys( $block_arr ) as $i ) {
+    foreach (array_keys($block_arr) as $i) {
         $sseln = $ssel0 = $ssel1 = $ssel2 = $ssel3 = $ssel4 = $ssel7 = $ssel8 = $ssel9 = "";
         $scoln = $scol0 = $scol1 = $scol2 = $scol3 = $scol4 = $scol7 = $scol8 = $scol9 = "#FFFFFF";
 
@@ -122,10 +130,11 @@ function list_blocks()
         $bid = $block_arr[$i]->getVar("bid") ;
 
         // visible and side
-        if ( $block_arr[$i]->getVar("visible") != 1 ) {
+        if ($block_arr[$i]->getVar("visible") != 1) {
             $sseln = " checked='checked'";
             $scoln = "#FF0000";
-        } else switch( $block_arr[$i]->getVar("side") ) {
+        } else {
+            switch ($block_arr[$i]->getVar("side")) {
             default :
             case XOOPS_SIDEBLOCK_LEFT :
                 $ssel0 = " checked='checked'";
@@ -160,11 +169,12 @@ function list_blocks()
                 $scol9 = "#00FF00";
                 break ;
         }
+        }
 
         // bcachetime
         $cachetime_options = '' ;
-        foreach( $cachetimes as $cachetime => $cachetime_name ) {
-            if( $bcachetime == $cachetime ) {
+        foreach ($cachetimes as $cachetime => $cachetime_name) {
+            if ($bcachetime == $cachetime) {
                 $cachetime_options .= "<option value='$cachetime' selected='selected'>$cachetime_name</option>\n" ;
             } else {
                 $cachetime_options .= "<option value='$cachetime'>$cachetime_name</option>\n" ;
@@ -173,10 +183,10 @@ function list_blocks()
 
         // target modules
         $db =& XoopsDatabaseFactory::getDatabaseConnection();
-        $result = $db->query( "SELECT module_id FROM ".$db->prefix('block_module_link')." WHERE block_id='$bid'" ) ;
+        $result = $db->query("SELECT module_id FROM ".$db->prefix('block_module_link')." WHERE block_id='$bid'") ;
         $selected_mids = array();
-        while ( list( $selected_mid ) = $db->fetchRow( $result ) ) {
-            $selected_mids[] = intval( $selected_mid ) ;
+        while (list($selected_mid) = $db->fetchRow($result)) {
+            $selected_mids[] = intval($selected_mid) ;
         }
         $module_handler =& xoops_gethandler('module');
         $criteria = new CriteriaCompo(new Criteria('hasmain', 1));
@@ -186,8 +196,8 @@ function list_blocks()
         $module_list[0] = _AM_RWBANNER_ALLPAGES;
         ksort($module_list);
         $module_options = '' ;
-        foreach( $module_list as $mid => $mname ) {
-            if( in_array( $mid , $selected_mids ) ) {
+        foreach ($module_list as $mid => $mname) {
+            if (in_array($mid, $selected_mids)) {
                 $module_options .= "<option value='$mid' selected='selected'>$mname</option>\n" ;
             } else {
                 $module_options .= "<option value='$mid'>$mname</option>\n" ;
@@ -195,7 +205,7 @@ function list_blocks()
         }
 
         // delete link if it is cloned block
-        if( $block_arr[$i]->getVar("block_type") == 'D' || $block_arr[$i]->getVar("block_type") == 'C' ) {
+        if ($block_arr[$i]->getVar("block_type") == 'D' || $block_arr[$i]->getVar("block_type") == 'C') {
             $delete_link = "<br /><a href='admin.php?fct=blocksadmin&amp;op=delete&amp;bid=$bid'>"._DELETE."</a>" ;
         } else {
             $delete_link = '' ;
@@ -203,17 +213,19 @@ function list_blocks()
 
         // clone link if it is marked as cloneable block
         // $modversion['blocks'][n]['can_clone']
-        if( $block_arr[$i]->getVar("block_type") == 'D' || $block_arr[$i]->getVar("block_type") == 'C' ) {
+        if ($block_arr[$i]->getVar("block_type") == 'D' || $block_arr[$i]->getVar("block_type") == 'C') {
             $can_clone = true ;
         } else {
             $can_clone = false ;
-            foreach( $block_configs as $bconf ) {
-                if( $block_arr[$i]->getVar("show_func") == $bconf['show_func'] && $block_arr[$i]->getVar("func_file") == $bconf['file'] && ( empty( $bconf['template'] ) || $block_arr[$i]->getVar("template") == $bconf['template'] ) ) {
-                    if( ! empty( $bconf['can_clone'] ) ) $can_clone = true ;
+            foreach ($block_configs as $bconf) {
+                if ($block_arr[$i]->getVar("show_func") == $bconf['show_func'] && $block_arr[$i]->getVar("func_file") == $bconf['file'] && (empty($bconf['template']) || $block_arr[$i]->getVar("template") == $bconf['template'])) {
+                    if (! empty($bconf['can_clone'])) {
+                        $can_clone = true ;
+                    }
                 }
             }
         }
-        if( $can_clone ) {
+        if ($can_clone) {
             $clone_link = "<br /><a href='admin.php?fct=blocksadmin&amp;op=clone&amp;bid=$bid'>"._CLONE."</a>" ;
         } else {
             $clone_link = '' ;
@@ -329,7 +341,7 @@ function list_blocks()
             </td>
         </tr>\n" ;
 
-        $class = ( $class == 'even' ) ? 'odd' : 'even' ;
+        $class = ($class == 'even') ? 'odd' : 'even' ;
     }
 
     echo "
@@ -347,11 +359,14 @@ function list_blocks()
 
 function get_block_configs()
 {
-    $error_reporting_level = error_reporting( 0 ) ;
+    $error_reporting_level = error_reporting(0) ;
     include '../xoops_version.php' ;
-    error_reporting( $error_reporting_level ) ;
-    if( empty( $modversion['blocks'] ) ) return array() ;
-    else return $modversion['blocks'] ;
+    error_reporting($error_reporting_level) ;
+    if (empty($modversion['blocks'])) {
+        return array() ;
+    } else {
+        return $modversion['blocks'] ;
+    }
 }
 
 function list_groups()
@@ -362,28 +377,29 @@ function list_groups()
 
     rwbanner_collapsableBar('bottomtable', 'bottomtableicon');
 
-    foreach( array_keys( $block_arr ) as $i ) {
+    foreach (array_keys($block_arr) as $i) {
         $item_list[ $block_arr[$i]->getVar("bid") ] = $block_arr[$i]->getVar("title") ;
     }
 
-    $form = new MyXoopsGroupPermForm('' , 1 , 'block_read' , "<img id='bottomtableicon' src=" . XOOPS_URL . "/modules/" . $xoopsModule->dirname() . "/images/icon/close12.gif alt='' /></a>&nbsp;" . _AM_RWBANNER_GROUPS . "</h3><div id='bottomtable'><span style=\"color: #567; margin: 3px 0 0 0; font-size: small; display: block; \">" . _AM_RWBANNER_GROUPSINFO . "</span>") ;
-    $form->addAppendix('module_admin',$xoopsModule->mid(),$myts->displayTarea($xoopsModule->name()).' '._AM_RWBANNER_ACTIVERIGHTS);
-    $form->addAppendix('module_read',$xoopsModule->mid(),$myts->displayTarea($xoopsModule->name()).' '._AM_RWBANNER_ACCESSRIGHTS);
-    foreach( $item_list as $item_id => $item_name) {
-        $form->addItem( $item_id , $myts->displayTarea($item_name) ) ;
+    $form = new MyXoopsGroupPermForm('', 1, 'block_read', "<img id='bottomtableicon' src=" . XOOPS_URL . "/modules/" . $xoopsModule->dirname() . "/images/icon/close12.gif alt='' /></a>&nbsp;" . _AM_RWBANNER_GROUPS . "</h3><div id='bottomtable'><span style=\"color: #567; margin: 3px 0 0 0; font-size: small; display: block; \">" . _AM_RWBANNER_GROUPSINFO . "</span>") ;
+    $form->addAppendix('module_admin', $xoopsModule->mid(), $myts->displayTarea($xoopsModule->name()).' '._AM_RWBANNER_ACTIVERIGHTS);
+    $form->addAppendix('module_read', $xoopsModule->mid(), $myts->displayTarea($xoopsModule->name()).' '._AM_RWBANNER_ACCESSRIGHTS);
+    foreach ($item_list as $item_id => $item_name) {
+        $form->addItem($item_id, $myts->displayTarea($item_name)) ;
     }
     echo $form->render() ;
     echo "</div>";
 }
 
-if( ! empty( $_POST['submit'] ) ) {
-
-    include( "mygroupperm.php" ) ;
-    redirect_header( XOOPS_URL."/modules/".$xoopsModule->dirname()."/admin/myblocksadmin.php$query4redirect" , 1 , _MD_AM_DBUPDATED );
+if (! empty($_POST['submit'])) {
+    include("mygroupperm.php") ;
+    redirect_header(XOOPS_URL."/modules/".$xoopsModule->dirname()."/admin/myblocksadmin.php$query4redirect", 1, _MD_AM_DBUPDATED);
 }
 
 xoops_cp_header() ;
-if(file_exists('./mymenu.php')) include('./mymenu.php');
+if (file_exists('./mymenu.php')) {
+    include('./mymenu.php');
+}
 
 // rwbanner_adminMenu(1, _MI_RWBANNER_MENU_TITLE3);
 echo '<br><br><br><br><br><br>';

@@ -398,7 +398,6 @@ switch ($op) {
                 }
             }
             redirect_header($currentFile, 3, sprintf(_AM_XNEWSLETTER_MAINTENANCE_DELETE_INVALID_ML_OK, $number_ids));
-
         } else {
             xoops_confirm(array('ok' => true, 'op' => 'del_invalid_ml'), $currentFile, _AM_XNEWSLETTER_MAINTENANCE_DELETE_INVALID_ML);
         }

@@ -46,7 +46,7 @@ if (empty($url)) {
     header('Location: '.XOOPS_URL.'/');
     exit();
 }
-$url = htmlspecialchars(preg_replace( '/javascript:/si' , 'java script:', $url ), ENT_QUOTES);
+$url = htmlspecialchars(preg_replace('/javascript:/si', 'java script:', $url), ENT_QUOTES);
 if ('' != $xoopsModuleConfig['frame']) {
     header('Content-Type:text/html; charset='._CHARSET);
     header('Expires: Mon, 26 Jul 1997 05:00:00 GMT');

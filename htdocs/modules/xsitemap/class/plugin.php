@@ -22,7 +22,6 @@
  * ****************************************************************************
  */
 
-
     if (!defined("XOOPS_ROOT_PATH")) {
         die("XOOPS root path not defined");
     }
@@ -34,33 +33,32 @@
     class xsitemap_plugin extends XoopsObject
     {
         //Constructor
-        function __construct()
+        public function __construct()
         {
             parent::__construct();
-            $this->initVar("plugin_id",XOBJ_DTYPE_INT,null,false,8);
-            $this->initVar("plugin_name",XOBJ_DTYPE_TXTBOX,null,false);
-            $this->initVar("plugin_mod_version",XOBJ_DTYPE_TXTBOX,null,false);
-            $this->initVar("plugin_mod_table",XOBJ_DTYPE_TXTBOX,null,false);
-            $this->initVar("plugin_cat_id",XOBJ_DTYPE_TXTBOX,null,false);
-            $this->initVar("plugin_cat_pid",XOBJ_DTYPE_TXTBOX,null,false);
-            $this->initVar("plugin_cat_name",XOBJ_DTYPE_TXTBOX,null,false);
-            $this->initVar("plugin_weight",XOBJ_DTYPE_TXTBOX,null,false);
-            $this->initVar("plugin_call",XOBJ_DTYPE_TXTBOX,null,false);
-            $this->initVar("plugin_submitter",XOBJ_DTYPE_INT,null,false,10);
-            $this->initVar("plugin_date_created",XOBJ_DTYPE_INT,null,false,10);
-            $this->initVar("plugin_online",XOBJ_DTYPE_INT,null,false,1);
+            $this->initVar("plugin_id", XOBJ_DTYPE_INT, null, false, 8);
+            $this->initVar("plugin_name", XOBJ_DTYPE_TXTBOX, null, false);
+            $this->initVar("plugin_mod_version", XOBJ_DTYPE_TXTBOX, null, false);
+            $this->initVar("plugin_mod_table", XOBJ_DTYPE_TXTBOX, null, false);
+            $this->initVar("plugin_cat_id", XOBJ_DTYPE_TXTBOX, null, false);
+            $this->initVar("plugin_cat_pid", XOBJ_DTYPE_TXTBOX, null, false);
+            $this->initVar("plugin_cat_name", XOBJ_DTYPE_TXTBOX, null, false);
+            $this->initVar("plugin_weight", XOBJ_DTYPE_TXTBOX, null, false);
+            $this->initVar("plugin_call", XOBJ_DTYPE_TXTBOX, null, false);
+            $this->initVar("plugin_submitter", XOBJ_DTYPE_INT, null, false, 10);
+            $this->initVar("plugin_date_created", XOBJ_DTYPE_INT, null, false, 10);
+            $this->initVar("plugin_online", XOBJ_DTYPE_INT, null, false, 1);
 
             // Pour autoriser le html
             $this->initVar("dohtml", XOBJ_DTYPE_INT, 1, false);
-
         }
 
-        function xsitemap_plugin()
+        public function xsitemap_plugin()
         {
             $this->__construct();
         }
 
-        function getForm($action = false)
+        public function getForm($action = false)
         {
             global $xoopsDB, $xoopsModuleConfig;
 
@@ -85,7 +83,7 @@
             $form->addElement(new XoopsFormText(_AM_XSITEMAP_PLUGIN_CALL, "plugin_call", 50, 255, $this->getVar("plugin_call")), true);
             $form->addElement(new XoopsFormSelectUser(_AM_XSITEMAP_PLUGIN_SUBMITTER, "plugin_submitter", false, $this->getVar("plugin_submitter"), 1, false), true);
             $form->addElement(new XoopsFormTextDateSelect(_AM_XSITEMAP_PLUGIN_DATE_CREATED, "plugin_date_created", "", $this->getVar("plugin_date_created")));
-             $plugin_online = $this->isNew() ? 1 : $this->getVar("plugin_online");
+            $plugin_online = $this->isNew() ? 1 : $this->getVar("plugin_online");
             $check_plugin_online = new XoopsFormCheckBox(_AM_XSITEMAP_PLUGIN_ONLINE, "plugin_online", $plugin_online);
             $check_plugin_online->addOption(1, " ");
             $form->addElement($check_plugin_online);
@@ -100,9 +98,8 @@
     class xsitemapxsitemap_pluginHandler extends XoopsPersistableObjectHandler
     {
 
-        function __construct(&$db)
+        public function __construct(&$db)
         {
             parent::__construct($db, "xsitemap_plugin", "xsitemap_plugin", "plugin_id", "plugin_name");
         }
-
     }

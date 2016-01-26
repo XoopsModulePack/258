@@ -15,12 +15,24 @@ if (!@include 'Calendar/Calendar.php') {
 }
 require_once CALENDAR_ROOT.'Second.php';
 
-if (!isset($_GET['y'])) $_GET['y'] = date('Y');
-if (!isset($_GET['m'])) $_GET['m'] = date('n');
-if (!isset($_GET['d'])) $_GET['d'] = date('j');
-if (!isset($_GET['h'])) $_GET['h'] = date('H');
-if (!isset($_GET['i'])) $_GET['i'] = date('i');
-if (!isset($_GET['s'])) $_GET['s'] = date('s');
+if (!isset($_GET['y'])) {
+    $_GET['y'] = date('Y');
+}
+if (!isset($_GET['m'])) {
+    $_GET['m'] = date('n');
+}
+if (!isset($_GET['d'])) {
+    $_GET['d'] = date('j');
+}
+if (!isset($_GET['h'])) {
+    $_GET['h'] = date('H');
+}
+if (!isset($_GET['i'])) {
+    $_GET['i'] = date('i');
+}
+if (!isset($_GET['s'])) {
+    $_GET['s'] = date('s');
+}
 
 $Unit = new Calendar_Second($_GET['y'], $_GET['m'], $_GET['d'], $_GET['h'], $_GET['i'], $_GET['s']);
 

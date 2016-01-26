@@ -15,7 +15,7 @@ class SmartpartnerSession
      * session_start() does nothing
      * @access public
      */
-    function SmartpartnerSession()
+    public function SmartpartnerSession()
     {
         @session_start();
     }
@@ -27,7 +27,7 @@ class SmartpartnerSession
      * @return void
      * @access public
      */
-    function set($name, $value)
+    public function set($name, $value)
     {
         $_SESSION[$name] = $value;
     }
@@ -38,7 +38,7 @@ class SmartpartnerSession
      * @return mixed value of session variable
      * @access public
      */
-    function get($name)
+    public function get($name)
     {
         if (isset($_SESSION[$name])) {
             return $_SESSION[$name];
@@ -53,7 +53,7 @@ class SmartpartnerSession
      * @return void
      * @access public
      */
-    function del($name)
+    public function del($name)
     {
         unset($_SESSION[$name]);
     }
@@ -63,13 +63,13 @@ class SmartpartnerSession
      * @return void
      * @access public
      */
-    function destroy()
+    public function destroy()
     {
         $_SESSION = array();
         session_destroy();
     }
 
-    function singleton()
+    public function singleton()
     {
         static $_sess;
 

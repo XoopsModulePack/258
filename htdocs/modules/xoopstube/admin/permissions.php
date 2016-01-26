@@ -76,7 +76,7 @@ if ($xoopsDB->getRowsNum($result)) {
 } else {
     echo '<div><b>' . _AM_XOOPSTUBE_PERM_CNOCATEGORY . '</b></div>';
 }
-unset ($permform);
+unset($permform);
 
 echo _AM_XOOPSTUBE_PERM_PERMSNOTE . '<br />';
 

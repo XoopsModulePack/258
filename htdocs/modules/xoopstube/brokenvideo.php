@@ -41,7 +41,7 @@ switch (strtolower($op)) {
         $result = $xoopsDB->query(
             'SELECT COUNT(*) FROM ' . $xoopsDB->prefix('xoopstube_broken') . ' WHERE lid=' . intval($lid)
         );
-        list ($count) = $xoopsDB->fetchRow($result);
+        list($count) = $xoopsDB->fetchRow($result);
         if ($count > 0) {
             $ratemessage = _MD_XOOPSTUBE_ALREADYREPORTED;
             redirect_header('singlevideo.php?cid=' . intval($cid) . '&amp;lid=' . intval($lid), 2, $ratemessage);

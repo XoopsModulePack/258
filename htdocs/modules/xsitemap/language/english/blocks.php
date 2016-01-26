@@ -22,15 +22,15 @@
  * ****************************************************************************
  */
 
-define("_MB_XSITEMAP_PLUGIN_ID","Id");
-define("_MB_XSITEMAP_PLUGIN_NAME","Name");
-define("_MB_XSITEMAP_PLUGIN_MOD_VERSION","Mod_version");
-define("_MB_XSITEMAP_PLUGIN_MOD_TABLE","Mod_table");
-define("_MB_XSITEMAP_PLUGIN_CAT_ID","Cat_id");
-define("_MB_XSITEMAP_PLUGIN_CAT_PID","Cat_pid");
-define("_MB_XSITEMAP_PLUGIN_CAT_NAME","Cat_name");
-define("_MB_XSITEMAP_PLUGIN_WEIGHT","Weight");
-define("_MB_XSITEMAP_PLUGIN_CALL","Call");
-define("_MB_XSITEMAP_PLUGIN_SUBMITTER","Submitter");
-define("_MB_XSITEMAP_PLUGIN_DATE_CREATED","Date_created");
-define("_MB_XSITEMAP_PLUGIN_ONLINE","Online");
+define("_MB_XSITEMAP_PLUGIN_ID", "Id");
+define("_MB_XSITEMAP_PLUGIN_NAME", "Name");
+define("_MB_XSITEMAP_PLUGIN_MOD_VERSION", "Mod_version");
+define("_MB_XSITEMAP_PLUGIN_MOD_TABLE", "Mod_table");
+define("_MB_XSITEMAP_PLUGIN_CAT_ID", "Cat_id");
+define("_MB_XSITEMAP_PLUGIN_CAT_PID", "Cat_pid");
+define("_MB_XSITEMAP_PLUGIN_CAT_NAME", "Cat_name");
+define("_MB_XSITEMAP_PLUGIN_WEIGHT", "Weight");
+define("_MB_XSITEMAP_PLUGIN_CALL", "Call");
+define("_MB_XSITEMAP_PLUGIN_SUBMITTER", "Submitter");
+define("_MB_XSITEMAP_PLUGIN_DATE_CREATED", "Date_created");
+define("_MB_XSITEMAP_PLUGIN_ONLINE", "Online");

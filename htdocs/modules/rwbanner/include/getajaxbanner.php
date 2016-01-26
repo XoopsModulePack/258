@@ -30,7 +30,7 @@
 // ------------------------------------------------------------------------- //
 
   include "../../../mainfile.php";
-  include_once (dirname(dirname(__FILE__)) .'/class/class.banner.php');
+  include_once(dirname(dirname(__FILE__)) .'/class/class.banner.php');
 
   //Desabilitando a exibição do debug dentro do bloco
   error_reporting(0);
@@ -42,4 +42,4 @@
   $cols  = $_GET['cols'];
 
   $banner = new RWbanners();
-  echo $banner->showBanner($categ,$qtde,$cols);
+  echo $banner->showBanner($categ, $qtde, $cols);

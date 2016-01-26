@@ -87,7 +87,6 @@ foreach ($categoriesObj as $cat_id => $category) {
         $categories[$cat_id] = $category->toArray($categories[$cat_id], true);
         $categories[$cat_id]['categoryPath'] = $category->getCategoryPath();
     }
-
 }
 $xoopsTpl->assign('categories', $categories);
 

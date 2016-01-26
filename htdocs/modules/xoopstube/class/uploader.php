@@ -419,7 +419,7 @@ class XoopsMediaUploader
      *
      * @return array |string    Array of array messages OR HTML string
      */
-    function &getErrors($ashtml = true)
+    public function &getErrors($ashtml = true)
     {
         if (!$ashtml) {
             return $this->errors;

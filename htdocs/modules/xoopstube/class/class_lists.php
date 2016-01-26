@@ -121,7 +121,7 @@ class FileList
      *
      * @return string
      */
-    function &showSelection()
+    public function &showSelection()
     {
         $ret = "<select size='" . $this->size() . "' name='$this->value()'>";
         if ($this->emptySelect) {
@@ -145,7 +145,7 @@ class FileList
      *
      * @return array
      */
-    function &getListTypeAsArray()
+    public function &getListTypeAsArray()
     {
         $filelist = array();
         switch (trim($this->type)) {

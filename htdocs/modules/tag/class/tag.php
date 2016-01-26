@@ -30,7 +30,7 @@ class TagTag extends XoopsObject
      *
      * @param int $id ID of the tag, deprecated
      */
-    function __construct()
+    public function __construct()
     {
         $this->initVar("tag_id",     XOBJ_DTYPE_INT,    null, false);
         $this->initVar("tag_term",   XOBJ_DTYPE_TXTBOX,    "", true);
@@ -60,15 +60,15 @@ class TagTag extends XoopsObject
  */
 class TagTagHandler extends XoopsPersistableObjectHandler
 {
-    var $table_link;
-    var $table_stats;
+    public $table_link;
+    public $table_stats;
 
     /**
      * Constructor
      *
      * @param object $db reference to the {@link XoopsDatabase} object
      **/
-    function __construct(&$db)
+    public function __construct(&$db)
     {
         parent::__construct($db, "tag_tag", "TagTag", "tag_id", "tag_term");
         $this->table_link  = $this->db->prefix("tag_link");
@@ -99,14 +99,16 @@ class TagTagHandler extends XoopsPersistableObjectHandler
         $ret = array();
 
         $itemid    = intval($itemid);
-        $modid = (empty($modid) && is_object($GLOBALS["xoopsModule"]) && "tag" != $GLOBALS["xoopsModule"]->getVar("dirname") ) ? $GLOBALS["xoopsModule"]->getVar("mid") : intval($modid);
-        if (empty($itemid) || empty($modid)) return $ret;
+        $modid = (empty($modid) && is_object($GLOBALS["xoopsModule"]) && "tag" != $GLOBALS["xoopsModule"]->getVar("dirname")) ? $GLOBALS["xoopsModule"]->getVar("mid") : intval($modid);
+        if (empty($itemid) || empty($modid)) {
+            return $ret;
+        }
 
         $sql =  "SELECT o.tag_id, o.tag_term" .
                 " FROM {$this->table_link} AS l " .
                 " LEFT JOIN {$this->table} AS o ON o.{$this->keyName} = l.{$this->keyName} " .
                 " WHERE  l.tag_itemid = {$itemid} AND l.tag_modid = {$modid}" .
-                    (empty($catid) ? "" : ( " AND l.tag_catid=" . intval($catid))) .
+                    (empty($catid) ? "" : (" AND l.tag_catid=" . intval($catid))) .
                 " ORDER BY o.tag_count DESC"
                 ;
         if (false == ($result = $this->db->query($sql))) {
@@ -211,7 +213,7 @@ class TagTagHandler extends XoopsPersistableObjectHandler
             $sql =  "INSERT INTO {$this->table_link}" .
                     " (tag_id, tag_itemid, tag_catid, tag_modid, tag_time) " .
                     " VALUES " . implode(", ", $tag_link);
-            if ( ($result = $this->db->queryF($sql)) == false) {
+            if (($result = $this->db->queryF($sql)) == false) {
                 //xoops_error($this->db->error());
             }
             if (!empty($tag_count)) {
@@ -280,7 +282,6 @@ class TagTagHandler extends XoopsPersistableObjectHandler
                 if ((false == $result = $this->db->queryF($sql))) {
                     //xoops_error($this->db->error());
                 }
-
             } else {
                 $ts_id = null;
                 $sql =  "SELECT ts_id, tag_count "
@@ -416,7 +417,7 @@ class TagTagHandler extends XoopsPersistableObjectHandler
 
         $sql =     $sql_select . " " . $sql_from . " " . $sql_where;
         */
-        if ( ($result = $this->db->query($sql)) == false) {
+        if (($result = $this->db->query($sql)) == false) {
             //xoops_error($this->db->error());
             $ret = 0;
         } else {
@@ -517,7 +518,7 @@ class TagTagHandler extends XoopsPersistableObjectHandler
             }
 
             $sql = $sql_select . " " . $sql_from . " " . $sql_where;
-            if ( ($result = $this->db->query($sql)) == false) {
+            if (($result = $this->db->query($sql)) == false) {
                 //xoops_error($this->db->error());
                 $ret = 0;
             } else {
@@ -538,7 +539,7 @@ class TagTagHandler extends XoopsPersistableObjectHandler
      */
     public function delete(TagTag $object, $force = true)
     {
-/* {@internal - this isn't needed if we type hint TagTag}
+        /* {@internal - this isn't needed if we type hint TagTag}
         if (!is_object($object) || !$object->getVar($this->keyName)) {
             return false;
         }

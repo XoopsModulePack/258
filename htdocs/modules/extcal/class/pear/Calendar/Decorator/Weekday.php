@@ -79,7 +79,7 @@ class Calendar_Decorator_Weekday extends Calendar_Decorator
      * @var int (default = 1 for Monday)
      * @access private
      */
-    var $firstDay = 1;
+    public $firstDay = 1;
 
     /**
      * Constructs Calendar_Decorator_Weekday
@@ -88,7 +88,7 @@ class Calendar_Decorator_Weekday extends Calendar_Decorator
      *
      * @access public
      */
-    function Calendar_Decorator_Weekday(&$Calendar)
+    public function Calendar_Decorator_Weekday(&$Calendar)
     {
         parent::Calendar_Decorator($Calendar);
     }
@@ -101,7 +101,7 @@ class Calendar_Decorator_Weekday extends Calendar_Decorator
      * @return void
      * @access public
      */
-    function setFirstDay($firstDay)
+    public function setFirstDay($firstDay)
     {
         $this->firstDay = (int) $firstDay;
     }
@@ -114,7 +114,7 @@ class Calendar_Decorator_Weekday extends Calendar_Decorator
      * @return int $format numeric day of week or timestamp
      * @access public
      */
-    function prevWeekDay($format = 'int')
+    public function prevWeekDay($format = 'int')
     {
         $ts  = $this->calendar->prevDay('timestamp');
         $Day = new Calendar_Day(2000, 1, 1);
@@ -137,7 +137,7 @@ class Calendar_Decorator_Weekday extends Calendar_Decorator
      * @return int numeric day of week or timestamp
      * @access public
      */
-    function thisWeekDay($format = 'int')
+    public function thisWeekDay($format = 'int')
     {
         $ts  = $this->calendar->thisDay('timestamp');
         $day = $this->calendar->cE->getDayOfWeek(
@@ -158,7 +158,7 @@ class Calendar_Decorator_Weekday extends Calendar_Decorator
      * @return int numeric day of week or timestamp
      * @access public
      */
-    function nextWeekDay($format = 'int')
+    public function nextWeekDay($format = 'int')
     {
         $ts  = $this->calendar->nextDay('timestamp');
         $Day = new Calendar_Day(2000, 1, 1);
@@ -181,7 +181,7 @@ class Calendar_Decorator_Weekday extends Calendar_Decorator
      * @return int day of week adjusted to first day
      * @access private
      */
-    function adjustWeekScale($dayOfWeek)
+    public function adjustWeekScale($dayOfWeek)
     {
         $dayOfWeek = $dayOfWeek - $this->firstDay;
         if ($dayOfWeek >= 0) {

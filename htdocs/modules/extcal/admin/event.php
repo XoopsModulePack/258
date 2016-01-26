@@ -98,7 +98,6 @@ switch ($op) {
 
         // Event edited
         if (isset($_POST['event_id'])) {
-
             if (!$eventHandler->modifyEvent($_POST['event_id'], $data)) {
                 redirect_header("event.php", 3, _AM_EXTCAL_EVENT_EDIT_FAILED, false);
             } else {
@@ -115,7 +114,6 @@ switch ($op) {
             $data['event_submitdate'] = time();
 
             if ($eventHandler->createEvent($data, $_POST)) {
-
                 $fileHandler->createFile($eventHandler->getInsertId());
                 $cat = $catHandler->getCat($_POST['cat_id'], $xoopsUser, 'all');
                 $notificationHandler->triggerEvent('global', 0, 'new_event', array('EVENT_TITLE' => $_POST['event_title']));
@@ -124,7 +122,6 @@ switch ($op) {
             } else {
                 redirect_header("event.php", 3, _AM_EXTCAL_EVENT_CREATE_FAILED, false);
             }
-
         }
         break;
 
@@ -223,7 +220,6 @@ switch ($op) {
 //             $eventHandler->deleteEvent($_POST['event_id']);
             deleteEvents($_POST['event_id']);
             redirect_header("event.php", 3, _AM_EXTCAL_EVENT_DELETED, false);
-
         } else {
             xoops_cp_header();
             // @author      Gregory Mage (Aka Mage)
@@ -253,11 +249,9 @@ switch ($op) {
         if (isset($_POST['deleteSelection'][0])) {
             $msg = _AM_EXTCAL_CONFIRM_DELETE_ALL;
             $ids = array_keys($_POST['deleteAllEvents']);
-
         } else {
             $msg = _AM_EXTCAL_CONFIRM_DELETE_SELECTION;
             $ids = array_keys($_POST['deleteEvents']);
-
         }
 
 //           $msg = ((isset($_POST['deleteSelection'][0])) ? _AM_EXTCAL_CONFIRM_DELETE_ALL : _AM_EXTCAL_CONFIRM_DELETE_SELECTION);
@@ -283,7 +277,6 @@ switch ($op) {
 //-----------------------------------------
 
         if (isset($_POST['deleteSelection'][0])) {
-
         } else {
             if (!$GLOBALS['xoopsSecurity']->check()) {
                 redirect_header(
@@ -297,7 +290,6 @@ switch ($op) {
             deleteEvents($_POST['event_ids']);
 
             redirect_header("event.php", 3, _AM_EXTCAL_EVENTS_DELETED, false);
-
         }
 
         break;
@@ -374,7 +366,6 @@ switch ($op) {
 //                 } else {
 //                     echo '<td>' . $event['formated_event_start'] . '</td>';
 //                 }
-
 
                 echo "<td align = 'center' width='10%'>" . $event['formated_event_start'] . '</td>';
                 echo "<td align = 'center' width='10%'>" . $event['formated_event_end'] . '</td>';

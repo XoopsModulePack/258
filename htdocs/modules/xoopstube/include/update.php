@@ -196,3 +196,4 @@ $query[$i] = sprintf(
 $ret[$i]   = $ret[$i] && $xoopsDB->query($query[$i]);
 
 //TODO delete xoopstube.sql
+

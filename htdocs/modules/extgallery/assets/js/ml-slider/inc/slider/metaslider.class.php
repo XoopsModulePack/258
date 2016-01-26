@@ -45,8 +45,7 @@ class MetaSlider
 
         if (is_array($settings) &&
             isset($settings['type']) &&
-            in_array($settings['type'], array('flex', 'coin', 'nivo', 'responsive')))
-        {
+            in_array($settings['type'], array('flex', 'coin', 'nivo', 'responsive'))) {
             return $settings;
         } else {
             return $this->get_default_parameters();

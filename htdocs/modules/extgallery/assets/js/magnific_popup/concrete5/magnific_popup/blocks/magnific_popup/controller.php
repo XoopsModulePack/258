@@ -18,21 +18,20 @@ class MagnificPopupBlockController extends BlockController
 
     public function getBlockTypeDescription()
     {
-        return t( 'Magnific Popup is a responsive jQuery lightbox & dialog plugin that is focused on performance and providing best experience for user with any device (Zepto.js compatible).' );
+        return t('Magnific Popup is a responsive jQuery lightbox & dialog plugin that is focused on performance and providing best experience for user with any device (Zepto.js compatible).');
     }
 
     public function getBlockTypeName()
     {
-        return t( 'Magnific Popup' );
+        return t('Magnific Popup');
     }
     // on page view insert magnific javascript and vimeo thumb javascript into footer (these are minified)
     public function on_page_view()
     {
-        $html = Loader::helper( 'html' );
+        $html = Loader::helper('html');
         $bv   = new BlockView();
-        $bv->setBlockObject( $this->getBlockObject() );
-        $this->addFooterItem( $html->javascript( $bv->getBlockURL() . '/magnific/magnific-combined-1.0.0.min.js', array( 'minify' => true ) ) );
-
+        $bv->setBlockObject($this->getBlockObject());
+        $this->addFooterItem($html->javascript($bv->getBlockURL() . '/magnific/magnific-combined-1.0.0.min.js', array( 'minify' => true )));
     }
 
     // JavaScript form validation strings
@@ -42,16 +41,16 @@ class MagnificPopupBlockController extends BlockController
     public function getJavaScriptStrings()
     {
         return array(
-            'selection-required'           => t( 'Please Select a Magnific Type.' ),
-            'image-required'               => t( 'Please Select an Image.' ),
-            'single-option-required'       => t( 'Please Select a Single Image Option.' ),
-            'gallery-required'             => t( 'Please Select a Gallery' ),
-            'url-requried'                 => t( 'Please Enter a Video or Map URL' ),
-            'link-text-required'           => t( 'Please Enter Link Text' ),
-            'video-map-selection-required' => t( 'Please Make a Video or Map Selection' ),
-            'dialog-type-required'         => t( 'Please Choose a Dialog Type' ),
-            'dialog-text-required'         => t( 'Please Enter the Dialog Text' ),
-            'dialog-link-text-required'    => t( 'Pleaes Enter the Dialog Link Text' )
+            'selection-required'           => t('Please Select a Magnific Type.'),
+            'image-required'               => t('Please Select an Image.'),
+            'single-option-required'       => t('Please Select a Single Image Option.'),
+            'gallery-required'             => t('Please Select a Gallery'),
+            'url-requried'                 => t('Please Enter a Video or Map URL'),
+            'link-text-required'           => t('Please Enter Link Text'),
+            'video-map-selection-required' => t('Please Make a Video or Map Selection'),
+            'dialog-type-required'         => t('Please Choose a Dialog Type'),
+            'dialog-text-required'         => t('Please Enter the Dialog Text'),
+            'dialog-link-text-required'    => t('Pleaes Enter the Dialog Link Text')
         );
     }
     // getting a picture for the file picker
@@ -59,9 +58,9 @@ class MagnificPopupBlockController extends BlockController
     {
         return $this->fIDpicture;
     }
-    function getPictureObject()
+    public function getPictureObject()
     {
-        return File::getByID( $this->fIDpicture );
+        return File::getByID($this->fIDpicture);
     }
 
     public function add()
@@ -84,20 +83,20 @@ class MagnificPopupBlockController extends BlockController
             $options[$fs->fsID] = $fs->fsName;
         }
 
-        $this->set( 'sets', $options );
+        $this->set('sets', $options);
     }
 
     public function view()
     {
-        $fs = FileSet::getByID( $this->fsID );
+        $fs = FileSet::getByID($this->fsID);
         $fileList = new FileList();
-        $fileList->filterBySet( $fs );
-        $fileList->filterByType( FileType::T_IMAGE );
+        $fileList->filterBySet($fs);
+        $fileList->filterByType(FileType::T_IMAGE);
         $fileList->sortByFileSetDisplayOrder();
 
-        $images = $fileList->get( 1000, 0 );
+        $images = $fileList->get(1000, 0);
 
-        $this->set( 'images', $images );
-        $this->set( 'picture', $this->getPicture() );
+        $this->set('images', $images);
+        $this->set('picture', $this->getPicture());
     }
 }

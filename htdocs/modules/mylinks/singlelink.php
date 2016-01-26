@@ -55,7 +55,7 @@ $itemPath       = $thisCatObj->getVar('title');
 $nicePathFromId = '';
 $pathFromId     = '';
 $myParent = $thisCatObj->getVar('pid');
-while ( $myParent != 0 ) {
+while ($myParent != 0) {
     $ancestorObj = $myCatTree->getByKey($myParent);
     $nicePathFromId  = "<a href='" . XOOPSMYLINKURL . "/viewcat.php?cid=" . $ancestorObj->getVar('cid') . "'>" . $ancestorObj->getVar('title') . "</a>&nbsp;:&nbsp;{$nicePathFromId}";
     $pathFromId  = $ancestorObj->getVar('title') . "/{$pathFromId}";
@@ -190,9 +190,9 @@ $xoopsTpl->assign("mylinksthemeoption", $mylinkstheme_select);
 
 //wanikoo search
 if (file_exists(XOOPS_ROOT_PATH."/language/".$xoopsConfig['language']."/search.php")) {
-   include_once XOOPS_ROOT_PATH."/language/".$xoopsConfig['language']."/search.php";
+    include_once XOOPS_ROOT_PATH."/language/".$xoopsConfig['language']."/search.php";
 } else {
-   include_once XOOPS_ROOT_PATH."/language/english/search.php";
+    include_once XOOPS_ROOT_PATH."/language/english/search.php";
 }
 $xoopsTpl->assign('lang_all', _SR_ALL);
 $xoopsTpl->assign('lang_any', _SR_ANY);

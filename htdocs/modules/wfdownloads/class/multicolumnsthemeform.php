@@ -35,7 +35,7 @@ class WfdownloadsMulticolumnsThemeForm extends XoopsForm
      *
      * @var int
      */
-    var $_rows = 0;
+    public $_rows = 0;
 
     /**
      * return number of rows
@@ -52,7 +52,7 @@ class WfdownloadsMulticolumnsThemeForm extends XoopsForm
      *
      * @var int
      */
-    var $_columns = 0;
+    public $_columns = 0;
 
     /**
      * return number of columns
@@ -69,14 +69,14 @@ class WfdownloadsMulticolumnsThemeForm extends XoopsForm
      *
      * @var array
      */
-    var $_elements = array();
+    public $_elements = array();
 
     /**
      * mono-dimensional array of column titles
      *
      * @var array
      */
-    var $_titles = array();
+    public $_titles = array();
 
     /**
      * Add an element to the form
@@ -184,7 +184,7 @@ class WfdownloadsMulticolumnsThemeForm extends XoopsForm
      *
      * @return string
      */
-    function render()
+    public function render()
     {
         $ele_name = $this->getName();
         $ret      = "";

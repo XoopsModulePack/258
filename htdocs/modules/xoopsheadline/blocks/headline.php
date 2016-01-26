@@ -30,19 +30,18 @@ xoops_load('XoopsheadlineUtility', 'xoopsheadline');
 function b_xoopsheadline_show($options)
 {
     global $xoopsConfig;
-    $hlDir = basename( dirname( dirname( __FILE__ ) ) );
+    $hlDir = basename(dirname(dirname(__FILE__)));
 
-  $module_handler =& xoops_gethandler('module');
-  $module =& $module_handler->getByDirname($hlDir);
-  $config_handler =& xoops_gethandler('config');
+    $module_handler =& xoops_gethandler('module');
+    $module =& $module_handler->getByDirname($hlDir);
+    $config_handler =& xoops_gethandler('config');
     $moduleConfig =& $config_handler->getConfigsByCat(0, $module->getVar('mid'));
 
     $block = array();
     $hlman =& xoops_getmodulehandler('headline', 'xoopsheadline');
     $criteria = new CriteriaCompo();
-    $criteria->add(new Criteria('headline_asblock',1, '='));
-    switch ($moduleConfig['sortby'])
-    {
+    $criteria->add(new Criteria('headline_asblock', 1, '='));
+    switch ($moduleConfig['sortby']) {
         case 1:
             $criteria->setSort('headline_name');
             $criteria->setOrder('DESC');

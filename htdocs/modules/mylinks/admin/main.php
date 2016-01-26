@@ -69,7 +69,7 @@ function listNewLinks()
     //@TODO: change to use XoopsForm
     echo "<table  class='outer' style='width: 100%; border-width: 0px; margin: 1px;'>\n"
         ."  <tr><th colspan='7'>" . sprintf(_MD_MYLINKS_LINKSWAITING, $numrows) . "<br /></th></tr>\n";
-    if ( $numrows > 0 ) {
+    if ($numrows > 0) {
         while (list($lid, $cid, $title, $url, $logourl, $submitterid) = $xoopsDB->fetchRow($result)) {
             $result2 = $xoopsDB->query("SELECT description FROM " . $xoopsDB->prefix("mylinks_text") . " WHERE lid='{$lid}'");
             list($description) = $xoopsDB->fetchRow($result2);
@@ -102,7 +102,7 @@ function listNewLinks()
               ."        </tr>\n"
               ."        <tr><td style='text-align: right; nowrap='nowrap'>" . _MD_MYLINKS_SHOTIMAGE . "</td>\n"
               ."            <td><select size='1' name='logourl'><option value=' '>------</option>";
-            foreach ($linkimg_array as $image){
+            foreach ($linkimg_array as $image) {
                 echo "<option value='{$image}'>{$image}</option>";
             }
             $shotdir = "<strong>" . XOOPS_URL . "/modules/" . $xoopsModule->getVar('dirname') . "/images/shots/</strong>";
@@ -121,7 +121,7 @@ function listNewLinks()
     } else {
         echo "  <tr><td colspan='7' class='odd bold italic'>" . _MD_MYLINKS_NOSUBMITTED . "</td></tr>\n";
     }
-        echo "</table>\n";
+    echo "</table>\n";
 
     include 'admin_footer.php';
 }
@@ -192,7 +192,7 @@ function linksConfigMenu()
         // Modify Link
         $result2 = $xoopsDB->query("SELECT COUNT(*) FROM " . $xoopsDB->prefix("mylinks_links") . "");
         list($numLinks) = $xoopsDB->fetchRow($result2);
-        if ( $numLinks ) {
+        if ($numLinks) {
             echo "<table class='outer' style='width: 100%; border-width: 0px; margin: 1px;'>\n"
                 ."  <tr><th style='font-size: larger;'>" . _MD_MYLINKS_MODLINK . "</th></tr>\n"
                 ."  <tr class='odd'><td style='text-align: center;'>\n"
@@ -319,7 +319,7 @@ function modLink()
         ."<select size='1' name='logourl'>"
         ."<option value=' '>------</option>";
     foreach ($linkimg_array as $image) {
-        $opt_selected = ( $image == $logourl ) ? " selected='selected'" : '';
+        $opt_selected = ($image == $logourl) ? " selected='selected'" : '';
         echo "<option value='{$image}'{$opt_selected}>{$image}</option>";
     }
     echo "</select>"
@@ -340,7 +340,7 @@ function modLink()
     $result5=$xoopsDB->query("SELECT COUNT(*) FROM ".$xoopsDB->prefix("mylinks_votedata")." WHERE lid='{$lid}'");
     list($totalvotes) = $xoopsDB->fetchRow($result5);
     echo "      <table style='width: 100%;'>\n"
-        ."        <tr><td colspan='7' style='font-weight: bold;'>" . sprintf(_MD_MYLINKS_TOTALVOTES , $totalvotes) . "<br /><br /></td></tr>\n";
+        ."        <tr><td colspan='7' style='font-weight: bold;'>" . sprintf(_MD_MYLINKS_TOTALVOTES, $totalvotes) . "<br /><br /></td></tr>\n";
     // Show Registered Users Votes
     $result5=$xoopsDB->query("SELECT ratingid, ratinguser, rating, ratinghostname, ratingtimestamp FROM " . $xoopsDB->prefix("mylinks_votedata") . " WHERE lid='{$lid}' AND ratinguser >0 ORDER BY ratingtimestamp DESC");
     $votes = $xoopsDB->getRowsNum($result5);
@@ -354,7 +354,7 @@ function modLink()
         ."          <th>" . _MD_MYLINKS_DATE . "  </th>\n"
         ."          <th>" . _DELETE . "</td>\n"
         ."        </tr>\n";
-    if ( 0 == $votes ) {
+    if (0 == $votes) {
         echo "        <tr><td style='text-align: center;' colspan='7'>" . _MD_MYLINKS_NOREGVOTES . "<br /></td></tr>\n";
     }
 
@@ -390,24 +390,24 @@ function modLink()
             ."          </td>\n"
             ."        </tr>\n";
         $x++;
-        $colorswitch = ( $colorswitch == "#DDDDDD" ) ? "#FFFFFF" : "#DDDDDD";
+        $colorswitch = ($colorswitch == "#DDDDDD") ? "#FFFFFF" : "#DDDDDD";
     }
     // Show Unregistered Users Votes
     $result5=$xoopsDB->query("SELECT ratingid, rating, ratinghostname, ratingtimestamp FROM ".$xoopsDB->prefix("mylinks_votedata")." WHERE lid ='{$lid}' AND ratinguser='0' ORDER BY ratingtimestamp DESC");
     $votes = $xoopsDB->getRowsNum($result5);
-    echo "        <tr><td colspan='7' style='font-weight: bold;'><br /><br />" . sprintf(_MD_MYLINKS_ANONTOTALVOTES , $votes) . "<br /><br /></td></tr>\n"
+    echo "        <tr><td colspan='7' style='font-weight: bold;'><br /><br />" . sprintf(_MD_MYLINKS_ANONTOTALVOTES, $votes) . "<br /><br /></td></tr>\n"
         ."        <tr>\n"
         ."          <th colspan='2'>" . _MD_MYLINKS_IP . "  </th>\n"
         ."          <th colspan='3' style='font-weight: bold;'>" . _MD_MYLINKS_RATING . "  </th>\n"
         ."          <th style='font-weight: bold;'>" . _MD_MYLINKS_DATE . "  </th>\n"
         ."          <th style='text-align: center; font-weight: bold;'>" . _DELETE . "<br /></th>\n"
         ."        </tr>\n";
-    if ( 0 == $votes ) {
+    if (0 == $votes) {
         echo "        <tr><td colspan='7' style='text-align: center;'>" . _MD_MYLINKS_NOUNREGVOTES . "<br /></td></tr>\n";
     }
     $x = 0;
     $colorswitch = "#DDDDDD";
-    while ( list($ratingid, $rating, $ratinghostname, $ratingtimestamp)=$xoopsDB->fetchRow($result5) ) {
+    while (list($ratingid, $rating, $ratinghostname, $ratingtimestamp)=$xoopsDB->fetchRow($result5)) {
         $formatted_date = formatTimestamp($ratingtimestamp);
         echo "        <tr>\n"
           ."          <td colspan='2' style='background-color: {$colorswitch}'>{$ratinghostname}</td>\n"
@@ -418,7 +418,7 @@ function modLink()
           ."          </td>"
           ."        </tr>";
         $x++;
-        $colorswitch = ( $colorswitch == "#DDDDDD" ) ? "#FFFFFF" : "#DDDDDD";
+        $colorswitch = ($colorswitch == "#DDDDDD") ? "#FFFFFF" : "#DDDDDD";
     }
     echo "        <tr><td colspan='7'>&nbsp;<br /></td></tr>\n"
         ."      </table>\n"
@@ -462,7 +462,7 @@ function listBrokenLinks()
        . "  <tr><th>" . sprintf(_MD_MYLINKS_BROKENREPORTS, $totalBrokenLinks) . "<br /></th></tr>\n"
        . "  <tr class='odd'><td>\n";
 
-    if ( 0 == $totalBrokenLinks ) {
+    if (0 == $totalBrokenLinks) {
         echo "    <span class='italic bold'>" . _MD_MYLINKS_NOBROKEN . "</span>";
     } else {
         $colorswitch = "#DDDDDD";
@@ -480,9 +480,9 @@ function listBrokenLinks()
 
         $formToken = $GLOBALS['xoopsSecurity']->getTokenHTML();
 
-        while ( list($reportid, $lid, $sender, $ip)=$xoopsDB->fetchRow($result) ) {
+        while (list($reportid, $lid, $sender, $ip)=$xoopsDB->fetchRow($result)) {
             $result2 = $xoopsDB->query("SELECT title, url, submitter FROM " . $xoopsDB->prefix("mylinks_links") . " WHERE lid={$lid}");
-            if ( 0 != $sender ) {
+            if (0 != $sender) {
                 $result3 = $xoopsDB->query("SELECT uname, email FROM " . $xoopsDB->prefix("users") . " WHERE uid={$sender}");
                 list($uname, $email) = $xoopsDB->fetchRow($result3);
             }
@@ -493,13 +493,13 @@ function listBrokenLinks()
             list($owner, $owneremail) = $xoopsDB->fetchRow($result4);
             echo "      <tr>\n"
                 ."        <td style='background-color: {$colorswitch}'><a href=$url target='_blank'>{$title}</a></td>\n";
-            if ( $email=='' ) {
+            if ($email=='') {
                 echo "        <td style='background-color: {$colorswitch};'>{$sender} ({$ip})";
             } else {
                 echo "        <td style='background-color: {$colorswitch};'><a href='mailto:{$email}'>{$uname}</a> ({$ip})";
             }
             echo "        </td>\n";
-            if ( '' == $owneremail ) {
+            if ('' == $owneremail) {
                 echo "        <td style='background-color: {$colorswitch};'>{$owner}";
             } else {
                 echo "        <td style='background-color: {$colorswitch};'><a href='mailto:{$owneremail}'>{$owner}</a>\n";
@@ -529,7 +529,7 @@ function listBrokenLinks()
                . "        </td>\n"
                . "      </tr>\n";
 
-            $colorswitch = ( $colorswitch == "#DDDDDD" ) ? "#FFFFFF" : "#DDDDDD";
+            $colorswitch = ($colorswitch == "#DDDDDD") ? "#FFFFFF" : "#DDDDDD";
         }
         echo "    </table>\n";
     }
@@ -593,12 +593,12 @@ function listModReq()
       ."  <tr class='even'><th>" . sprintf(_MD_MYLINKS_MODREQUESTS, $totalModRequests) . "</th></tr>\n"
       ."  <tr class='odd'>\n"
       ."    <td>\n";
-    if ( $totalModRequests > 0 ) {
+    if ($totalModRequests > 0) {
         echo "  <table style='width: 95%;'>\n"
             ."    <tr>\n"
             ."      <td>\n";
         $lookup_lid = array();
-        while ( list($requestid, $lid, $cid, $title, $url, $logourl, $description, $submitterid)=$xoopsDB->fetchRow($result) ) {
+        while (list($requestid, $lid, $cid, $title, $url, $logourl, $description, $submitterid)=$xoopsDB->fetchRow($result)) {
             $catObj = $mylinksCatHandler->get($cid);
             $lookup_lid[$requestid] = $lid;
             $result2 = $xoopsDB->query("SELECT cid, title, url, logourl, submitter FROM " . $xoopsDB->prefix("mylinks_links") . " WHERE lid='{$lid}'");
@@ -632,7 +632,7 @@ function listModReq()
             //$origurl     = urldecode($origurl);
             //$origlogourl = urldecode($origlogourl);
             $origdescription = $myts->displayTarea($myts->stripSlashesGPC($origdescription), 0);
-            $owner = ( '' == $owner ) ? 'administration' : $owner;
+            $owner = ('' == $owner) ? 'administration' : $owner;
             echo "        <table style='border-width: 1px; border-color: black; padding: 5px; margin: auto; text-align: center; width: 800px;'>\n"
                 ."          <tr><td>\n"
                 ."            <table style='width: 100%; background-color: #DDDDDD'>\n"
@@ -644,7 +644,7 @@ function listModReq()
                 ."              <tr><td style='vertical-align: top; width: 45%; font-size: small;'>" . _MD_MYLINKS_SITEURL . "{$origurl}</td></tr>\n"
                 ."              <tr><td style='vertical-align= top; width: 45%; font-size: small;'>" . _MD_MYLINKS_CATEGORYC . "{$origcidtitle}</td></tr>\n"
                 ."              <tr><td style='vertical-align: top; width: 45%; font-size: small;'>" . _MD_MYLINKS_SHOTIMAGE . "";
-            if ( $xoopsModuleConfig['useshots'] && !empty($origlogourl) ) {
+            if ($xoopsModuleConfig['useshots'] && !empty($origlogourl)) {
                 echo "<img src='" . XOOPS_URL . "/modules/" . $xoopsModule->getVar('dirname') . "/images/shots/{$origlogourl}' style='width: " . $xoopsModuleConfig['shotwidth'] . ";' />";
             } else {
                 echo "&nbsp;";
@@ -662,7 +662,7 @@ function listModReq()
                 ."          <tr><td style='vertical-align: top; width: 45%; font-size: small;'>" . _MD_MYLINKS_SITEURL . "{$url}</td></tr>\n"
                 ."          <tr><td style='vertical-align: top; width: 45%; font-size: small;'>" . _MD_MYLINKS_CATEGORYC . "{$cidtitle}</td></tr>\n"
                 ."          <tr><td style='vertical-align: top; width: 45%; font-size: small;'>" . _MD_MYLINKS_SHOTIMAGE . "";
-            if ( $xoopsModuleConfig['useshots'] == 1 && !empty($logourl) ) {
+            if ($xoopsModuleConfig['useshots'] == 1 && !empty($logourl)) {
                 echo "<img src='" . XOOPS_URL . "/modules/" . $xoopsModule->getVar('dirname') . "/images/shots/{$logourl}' style='width: " . $xoopsModuleConfig['shotwidth'] . ";' alt='' />";
             } else {
                 echo "&nbsp;";
@@ -673,12 +673,12 @@ function listModReq()
               ."    </table>\n"
               ."    <table style='text-align: center; width: 800px; margin: auto;'>\n"
               ."      <tr>\n";
-            if ( '' == $submitteremail ) {
+            if ('' == $submitteremail) {
                 echo "      <td style='text-align: center; font-weight: bold;'>" . _MD_MYLINKS_SUBMITTER . "{$submitter}</td>\n";
             } else {
                 echo "      <td style='text-align: center; font-size: small;'>" . _MD_MYLINKS_SUBMITTER . "<a href='mailto:{$submitteremail}'>{$submitter}</a></td>\n";
             }
-            if ( '' == $owneremail ) {
+            if ('' == $owneremail) {
                 echo "      <td style='text-align: center; font-size: small;'>" . _MD_MYLINKS_OWNER . "{$owner}</td>\n";
             } else {
                 echo "      <td style='text-align: center; font-size: small;'>" . _MD_MYLINKS_OWNER . "<a href='mailto:{$owneremail}'>{$owner}</a></td>\n";
@@ -722,8 +722,7 @@ function changeModReq()
     $requestid   = mylinksUtility::mylinks_cleanVars($_POST, 'requestid', 0, 'int', array('min'=>0));
     $query = "SELECT lid, cid, title, url, logourl, description FROM " . $xoopsDB->prefix("mylinks_mod") . " WHERE requestid='{$requestid}'";
     $result = $xoopsDB->query($query);
-    while ( list($lid, $cid, $title, $url, $logourl, $description) = $xoopsDB->fetchRow($result) ) {
-
+    while (list($lid, $cid, $title, $url, $logourl, $description) = $xoopsDB->fetchRow($result)) {
         $url         = addslashes($url);
         $logourl     = addslashes($logourl);
         $title       = addslashes($title);
@@ -849,13 +848,13 @@ function modCat()
         $catListTree = new XoopsObjectTree($catListObjs, 'cid', 'pid');
 
         $title  = $myts->htmlSpecialChars($catObj->getVar('title'));
-        $imgurl = $myts->htmlSpecialChars($catObj->getVar('imgurl'),'n');
+        $imgurl = $myts->htmlSpecialChars($catObj->getVar('imgurl'), 'n');
         $pid    = $catObj->getVar('pid');
         echo "      <form action='main.php' method='post'>" . _MD_MYLINKS_TITLEC . "\n"
             ."        <input type='text' name='title' value='{$title}' size='51' maxlength='50' />\n"
             ."        <br /><br />\n";
-        if ( 0 == $catObj->getVar('pid') ) {
-                echo "        " . _MD_MYLINKS_IMGURLMAIN . "<br />\n"
+        if (0 == $catObj->getVar('pid')) {
+            echo "        " . _MD_MYLINKS_IMGURLMAIN . "<br />\n"
                     ."        <input type='text' name='imgurl' value='{$imgurl}' size='100' maxlength='150' />\n"
                     ."        <br /><br />\n";
         }
@@ -891,7 +890,7 @@ function modCatS()
     }
 
 //    $imgurl = $myts->addSlashes($imgurl);
-    $updateInfo = array (
+    $updateInfo = array(
                         'pid'    =>  intval($_POST['pid']),
 //                        'title'  =>  $myts->addSlashes($_POST['title']),
                         'title'  =>  $title,
@@ -923,7 +922,7 @@ function delCat()
     $cid = mylinksUtility::mylinks_cleanVars($_REQUEST, 'cid', 0, 'int', array('min'=>0));
     $ok  = mylinksUtility::mylinks_cleanVars($_POST, 'ok', 0, 'int', array('min'=>0, 'max'=>1));
 
-    if ( 1 == $ok ) {
+    if (1 == $ok) {
         /**
          * nickname code:
          *
@@ -959,7 +958,7 @@ function delCat()
         $lidArray = $xoopsDB->fetchArray($result);
 
         // delete any links, link notifications and link comments from the database tables
-        if ( $lidArray ) {
+        if ($lidArray) {
             $linkIDs = '(' . implode(',', $lidArray) . ')';
             $dbTables = array( 'links', 'text', 'votedata', 'broken', 'mod' );
             foreach ($dbTables as $thisTable) {
@@ -983,7 +982,7 @@ function delCat()
         }
 
         // delete the notification settings for each (sub)category
-        foreach( $cidArray as $key=>$id) {
+        foreach ($cidArray as $key=>$id) {
             xoops_notification_deletebyitem($xoopsModule->getVar('mid'), 'category', $id);
         }
 
@@ -1053,7 +1052,6 @@ function addCat()
         $notification_handler  =& xoops_gethandler('notification');
         $notification_handler->triggerEvent('global', 0, 'new_category', $tags);
         redirect_header('index.php', 2, _MD_MYLINKS_NEWCATADDED);
-
     } else {
         redirect_header('index.php', 2, _MD_MYLINKS_DBNOTUPDATED);
     }
@@ -1063,24 +1061,23 @@ function importCats()
     global $xoopsDB, $xoopsModule, $xoopsConfig, $myts;
 
     $ok  = mylinksUtility::mylinks_cleanVars($_POST, 'ok', 0, 'int', array('min'=>0, 'max'=>1));
-    if ( 1 == $ok ) {
-
-        if ( file_exists(XOOPS_ROOT_PATH . "/modules/" . $xoopsModule->getVar('dirname') . "/language/".$xoopsConfig['language']."/sql/mylinks_cat.dat") ) {
-           $importFile = XOOPS_ROOT_PATH . "/modules/" . $xoopsModule->getVar('dirname') . "/language/" . $xoopsConfig['language'] . "/sql/mylinks_cat.dat";
+    if (1 == $ok) {
+        if (file_exists(XOOPS_ROOT_PATH . "/modules/" . $xoopsModule->getVar('dirname') . "/language/".$xoopsConfig['language']."/sql/mylinks_cat.dat")) {
+            $importFile = XOOPS_ROOT_PATH . "/modules/" . $xoopsModule->getVar('dirname') . "/language/" . $xoopsConfig['language'] . "/sql/mylinks_cat.dat";
         } else {
-           $importFile =  XOOPS_ROOT_PATH . "/modules/" . $xoopsModule->getVar('dirname') . "/language/english/sql/mylinks_cat.dat";
+            $importFile =  XOOPS_ROOT_PATH . "/modules/" . $xoopsModule->getVar('dirname') . "/language/english/sql/mylinks_cat.dat";
         }
 
-        if ( file_exists($importFile) ) {
+        if (file_exists($importFile)) {
             /* the following will not work on some shared servers even though it's the most efficient
             $sql = "LOAD DATA INFILE '{$importFile}' INTO TABLE " . $xoopsDB->prefix('mylinks_cat') . " FIELDS TERMINATED BY ',' IGNORE 1 LINES";
             $result = $xoopsDB->query($sql);
             */
 
-            if (($handle = fopen($importFile, "r")) !== FALSE) {
+            if (($handle = fopen($importFile, "r")) !== false) {
                 // set 1000 to 0 in the following line if input line is truncated
-                while (($data = fgetcsv($handle, 1000, ",")) !== FALSE) {
-                    $sql = sprintf("INSERT INTO %s (cid, pid, title, imgurl) VALUES (%u, %u, '%s', '%s')", $xoopsDB->prefix('mylinks_cat'), intval($data[0]), intval($data[1]), $myts->addSlashes($data[2]) , $myts->addSlashes($data[3]));
+                while (($data = fgetcsv($handle, 1000, ",")) !== false) {
+                    $sql = sprintf("INSERT INTO %s (cid, pid, title, imgurl) VALUES (%u, %u, '%s', '%s')", $xoopsDB->prefix('mylinks_cat'), intval($data[0]), intval($data[1]), $myts->addSlashes($data[2]), $myts->addSlashes($data[3]));
                     $result = $xoopsDB->query($sql);
                     if (!$result) {
                         mylinksUtility::show_message(_MD_MYLINKS_NORECORDFOUND);
@@ -1088,7 +1085,7 @@ function importCats()
                     }
                 }
                 fclose($handle);
-                redirect_header('index.php' , 2 , _MD_MYLINKS_CATSIMPORTED);
+                redirect_header('index.php', 2, _MD_MYLINKS_CATSIMPORTED);
             } else {
                 // problem importing categories
                 $mylinksCatHandler =& xoops_getmodulehandler('category', $xoopsModule->getVar('dirname'));
@@ -1096,7 +1093,7 @@ function importCats()
                 if (count($result)) {
                     $result = $mylinksCatHandler->deleteAll();  // empty the dB table from partial import
                 }
-                redirect_header('index.php' , 2, _MD_MYLINKS_CATSNOTIMPORTED);
+                redirect_header('index.php', 2, _MD_MYLINKS_CATSNOTIMPORTED);
             }
         } else {  //exit somewhat gracefully if import file not found
             redirect_header('index.php', 2, sprintf(_MD_MYLINKS_IMPORTFILENOTFOUND, $importFile));
@@ -1129,23 +1126,23 @@ function addLink()
     list($numrows) = $xoopsDB->fetchRow($result);
     $errormsg      = array();
     $error         = false;
-    if ( $numrows > 0 ) {
+    if ($numrows > 0) {
         $errormsg[] = "<h4 style='color: #FF0000'>" . _MD_MYLINKS_ERROREXIST . "</h4>";
         $error = true;
     }
-    if ( $title == "" ) {  // check if title exists
+    if ($title == "") {  // check if title exists
         $errormsg[] = "<h4 style='color: #FF0000'>" . _MD_MYLINKS_ERRORTITLE . "</h4>";
         $error = true;
     }
-    if ( $url == "" ) {  // check if url exists
+    if ($url == "") {  // check if url exists
         $errormsg[] = "<h4 style='color: #FF0000'>" . _MD_MYLINKS_ERRORURL . "</h4>";
         $error = true;
     }
-    if ( $description == "" ) { // check if description exists
+    if ($description == "") { // check if description exists
         $errormsg[] = "<h4 style='color: #FF0000'>" . _MD_MYLINKS_ERRORDESC . "</h4>";
         $error = true;
     }
-    if ( $error ) {
+    if ($error) {
         xoops_cp_header();
         $displayMsg = implode('<br />', $errormsg);
         echo "<div style='text-align: center;'><fieldset>{$displayMsg}</fieldset></div>\n";
@@ -1160,7 +1157,7 @@ function addLink()
         mylinksUtility::show_message(_MD_MYLINKS_NORECORDFOUND);
         exit();
     }
-    if ( 0 == $newid ) {
+    if (0 == $newid) {
         $newid = $xoopsDB->getInsertId();
     }
     $sql = sprintf("INSERT INTO %s (lid, description) VALUES (%u, '%s')", $xoopsDB->prefix("mylinks_text"), $newid, $description);
@@ -1173,7 +1170,7 @@ function addLink()
     $tags['LINK_NAME'] = $title;
     $tags['LINK_URL']  = XOOPS_URL . "/modules/" . $xoopsModule->getVar('dirname') . "/singlelink.php?cid={$cid}&amp;lid={$newid}";
 
-    $mylinksCatHandler =& xoops_getmodulehandler('category' , $xoopsModule->getVar('dirname'));
+    $mylinksCatHandler =& xoops_getmodulehandler('category', $xoopsModule->getVar('dirname'));
     $catObj = $mylinksCatHandler->get($cid);
     $tags['CATEGORY_NAME'] = $catObj->getVar('title');
     unset($catObj, $mylinksCatHandler);
@@ -1217,7 +1214,7 @@ function approve()
     $tags = array();
     $tags['LINK_NAME'] = $title;
     $tags['LINK_URL'] = XOOPS_URL . "/modules/" . $xoopsModule->getVar('dirname') . "/singlelink.php?cid={$cid}&amp;lid={$lid}";
-    $mylinksCatHandler =& xoops_getmodulehandler('category' , $xoopsModule->getVar('dirname'));
+    $mylinksCatHandler =& xoops_getmodulehandler('category', $xoopsModule->getVar('dirname'));
     $catObj = $mylinksCatHandler->get($cid);
     /*
     $sql = "SELECT title FROM " . $xoopsDB->prefix("mylinks_cat") . " WHERE cid=" . $cid;
@@ -1240,8 +1237,7 @@ function approve()
 
 $op = mylinksUtility::mylinks_cleanVars($_REQUEST, 'op', 'main', 'string');
 
-switch ($op)
-{
+switch ($op) {
     case 'delNewLink':
         delNewLink();
         break;

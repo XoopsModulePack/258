@@ -79,7 +79,7 @@ class Calendar_Month extends Calendar
      *
      * @access public
      */
-    function Calendar_Month($y, $m, $firstDay=null)
+    public function Calendar_Month($y, $m, $firstDay=null)
     {
         parent::Calendar($y, $m);
         $this->firstDay = $this->defineFirstDayOfWeek($firstDay);
@@ -94,7 +94,7 @@ class Calendar_Month extends Calendar
      * @return boolean
      * @access public
      */
-    function build($sDates = array())
+    public function build($sDates = array())
     {
         include_once CALENDAR_ROOT.'Day.php';
         $daysInMonth = $this->cE->getDaysInMonth($this->year, $this->month);
@@ -116,7 +116,7 @@ class Calendar_Month extends Calendar
      * @return void
      * @access private
      */
-    function setSelection($sDates)
+    public function setSelection($sDates)
     {
         foreach ($sDates as $sDate) {
             if ($this->year == $sDate->thisYear()

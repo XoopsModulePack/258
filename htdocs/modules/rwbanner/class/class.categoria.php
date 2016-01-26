@@ -39,134 +39,139 @@ class Categoria
     public $errormsg;
 
     //Construtor
-    function __construct($dados=null, $id = null)
+    public function __construct($dados=null, $id = null)
     {
-        if ($dados == null && $id != null){
-          $this->db = &XoopsDatabaseFactory::getDatabaseConnection();
-          $sql = 'SELECT * FROM '.$this->db->prefix('rw_categorias').' WHERE cod='.$id;
-          $query = $this->db->query($sql);
-          $row = $this->db->fetchArray($query);
+        if ($dados == null && $id != null) {
+            $this->db = &XoopsDatabaseFactory::getDatabaseConnection();
+            $sql = 'SELECT * FROM '.$this->db->prefix('rw_categorias').' WHERE cod='.$id;
+            $query = $this->db->query($sql);
+            $row = $this->db->fetchArray($query);
 
-          $this->cod = $row['cod'];
-          $this->titulo = $row['titulo'];
-          $this->larg = $row['larg'];
-          $this->alt = $row['alt'];
-        }elseif ($dados != null){
-          $this->cod = (!empty($dados['cod']))?$dados['cod']:'';
-          $this->titulo = (!empty($dados['titulo']))?$dados['titulo']:'';
-          $this->larg = (!empty($dados['larg']))?$dados['larg']:'';
-          $this->alt = (!empty($dados['alt']))?$dados['alt']:'';
-        }else{
-          $this->cod = '';
-          $this->titulo = '';
-          $this->larg = '';
-          $this->alt = '';
+            $this->cod = $row['cod'];
+            $this->titulo = $row['titulo'];
+            $this->larg = $row['larg'];
+            $this->alt = $row['alt'];
+        } elseif ($dados != null) {
+            $this->cod = (!empty($dados['cod']))?$dados['cod']:'';
+            $this->titulo = (!empty($dados['titulo']))?$dados['titulo']:'';
+            $this->larg = (!empty($dados['larg']))?$dados['larg']:'';
+            $this->alt = (!empty($dados['alt']))?$dados['alt']:'';
+        } else {
+            $this->cod = '';
+            $this->titulo = '';
+            $this->larg = '';
+            $this->alt = '';
         }
     }
     // Métodos get e set de todos os atributos
-    function setCod($cod)
+    public function setCod($cod)
     {
         $this->cod = $cod;
     }
-    function getCod()
+    public function getCod()
     {
         return $this->cod;
     }
 
-    function setTitulo($titulo)
+    public function setTitulo($titulo)
     {
         $this->titulo = $titulo;
     }
-    function getTitulo()
+    public function getTitulo()
     {
         return $this->titulo;
     }
 
-    function setLarg($larg)
+    public function setLarg($larg)
     {
         $this->larg = $larg;
     }
-    function getLarg()
+    public function getLarg()
     {
         return $this->larg;
     }
 
-    function setAlt($alt)
+    public function setAlt($alt)
     {
         $this->alt = $alt;
     }
-    function getAlt()
+    public function getAlt()
     {
         return $this->alt;
     }
 
-    function setError($error)
+    public function setError($error)
     {
         $this->errormsg = $error;
     }
-    function getError()
+    public function getError()
     {
         return $this->errormsg;
     }
     //fim métodos set e get dos atributos
 
-    function clearDb(){
-         $this->db = null;
+    public function clearDb()
+    {
+        $this->db = null;
     }
 
     //Insere uma nova categoria no banco de dados
-    function grava(){
+    public function grava()
+    {
         $this->db = &XoopsDatabaseFactory::getDatabaseConnection();
         $sql = 'INSERT INTO '.$this->db->prefix('rw_categorias').' (titulo, larg, alt) VALUES ("'.$this->titulo.'", "'.$this->larg.'", "'.$this->alt.'")';
-        if ($query = $this->db->queryF($sql))
-          return true;
-        else{
-          $this->setError($this->db->error());
+        if ($query = $this->db->queryF($sql)) {
+            return true;
+        } else {
+            $this->setError($this->db->error());
 
-          return false;
+            return false;
         }
     }
 
     //Edita a categoria instanciada e salva as alterações no banco de dados
-    function edita(){
+    public function edita()
+    {
         $this->db = &XoopsDatabaseFactory::getDatabaseConnection();
         $sql = 'UPDATE '.$this->db->prefix('rw_categorias').' SET titulo="'.$this->titulo.'", larg="'.$this->larg.'", alt="'.$this->alt.'" WHERE cod= '.$this->cod;
-        if ($query = $this->db->queryF($sql))
-          return true;
-        else{
-          $this->setError($this->db->error());
+        if ($query = $this->db->queryF($sql)) {
+            return true;
+        } else {
+            $this->setError($this->db->error());
 
-          return false;
+            return false;
         }
     }
 
     //Exclui a categoria instanciada do banco de dados e exclui também os banners dessa categoria.
-    function exclui(){
+    public function exclui()
+    {
         $this->db = &XoopsDatabaseFactory::getDatabaseConnection();
         $sql = 'SELECT codigo FROM '.$this->db->prefix('rw_banner').' WHERE categoria='.$this->cod;
         $query = $this->db->query($sql);
-        while(list($idbanner) = $this->db->fetchRow($query)){
-          $this->db->queryF('DELETE FROM '.$this->db->prefix('rw_banner').' WHERE codigo= '.$idbanner);
+        while (list($idbanner) = $this->db->fetchRow($query)) {
+            $this->db->queryF('DELETE FROM '.$this->db->prefix('rw_banner').' WHERE codigo= '.$idbanner);
         }
         $sql = 'DELETE FROM '.$this->db->prefix('rw_categorias').' WHERE cod= '.$this->cod;
-        if ($query = $this->db->queryF($sql))
-          return true;
-        else{
-          $this->setError($this->db->error());
+        if ($query = $this->db->queryF($sql)) {
+            return true;
+        } else {
+            $this->setError($this->db->error());
 
-          return false;
+            return false;
         }
     }
 
     //Retorna um array associativo de todas as categorias encontradas.
-    function getCategorias($order){
+    public function getCategorias($order)
+    {
         $this->db = &XoopsDatabaseFactory::getDatabaseConnection();
         $extra = ($order != null)?' '.$order:'';
         $sql = 'SELECT cod FROM '.$this->db->prefix('rw_categorias').$extra;
         $query = $this->db->query($sql);
         $categs = array();
-        while(list($id) = $this->db->fetchRow($query)){
-          $categ = new Categoria(null,$id);
+        while (list($id) = $this->db->fetchRow($query)) {
+            $categ = new Categoria(null, $id);
             unset($categ->db);
             unset($categ->errormsg);
             $categs[] =& $categ;

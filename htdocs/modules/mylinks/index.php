@@ -50,8 +50,8 @@ $subcatLimit = 5;
 $count = 1;
 foreach ($catObjs as $catObj) {
     $catImgUrl = '';
-    if ( $catObj->getVar('imgurl') && (($catObj->getVar('imgurl') != "http://") && ($catObj->getVar('imgurl') != '')) ) {
-//    if ( $catObj->getVar('imgurl') && ($catObj->getVar('imgurl') != "http://") ) {
+    if ($catObj->getVar('imgurl') && (($catObj->getVar('imgurl') != "http://") && ($catObj->getVar('imgurl') != ''))) {
+        //    if ( $catObj->getVar('imgurl') && ($catObj->getVar('imgurl') != "http://") ) {
         $catImgUrl = $myts->htmlSpecialChars($catObj->getVar('imgurl', 'n'));
     }
     // get the total number of subcats for this category
@@ -64,7 +64,7 @@ foreach ($catObjs as $catObj) {
     $criteria->setSort('title');
     $childFields = array('pid', 'title');
     $childTitleArray = $mylinksCatHandler->getAll($criteria, $childFields, false, false);
-    $lpLimit = min(array($subcatLimit , count($childTitleArray)));
+    $lpLimit = min(array($subcatLimit, count($childTitleArray)));
     $subcategories = '';
     for ($i=0; $i<$lpLimit; $i++) {
         $chtitle = $myts->htmlSpecialChars($childTitleArray[$i]['title']);
@@ -133,7 +133,7 @@ while (list($lid, $cid, $ltitle, $url, $logourl, $status, $time, $hits, $rating,
     $itemPath    = "<a href='" . XOOPSMYLINKURL . "/viewcat.php?cid={$cid}'>" . $thisCatObj->getVar('title') . "</a>";
     $path       = '';
     $myParentID = $thisCatObj->getVar('pid');
-    while ( $myParentID != 0 ) {
+    while ($myParentID != 0) {
         $ancestorObj = $myCatTree->getByKey($myParentID);
         $path  = "<a href='" . XOOPSMYLINKURL . "/viewcat.php?cid=" . $ancestorObj->getVar('cid') . "'>" . $ancestorObj->getVar('title') . "</a>&nbsp;:&nbsp;{$path}";
         $myParentID = $ancestorObj->getVar('pid');
@@ -215,9 +215,9 @@ $xoopsTpl->assign("mylinksthemeoption", $mylinkstheme_select);
 
 //wanikoo search
 if (file_exists(XOOPS_ROOT_PATH . "/language/{$xoopsConfig['language']}/search.php")) {
-   include_once XOOPS_ROOT_PATH . "/language/{$xoopsConfig['language']}/search.php";
+    include_once XOOPS_ROOT_PATH . "/language/{$xoopsConfig['language']}/search.php";
 } else {
-   include_once XOOPS_ROOT_PATH . "/language/english/search.php";
+    include_once XOOPS_ROOT_PATH . "/language/english/search.php";
 }
 $xoopsTpl->assign('lang_all', _SR_ALL);
 $xoopsTpl->assign('lang_any', _SR_ANY);

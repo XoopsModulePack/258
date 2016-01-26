@@ -178,7 +178,6 @@ function xtubeGetVideoThumb($vidid, $title, $source, $picurl, $screenshot, $widt
  */
 function xtubeGetVideoPublisher($vidid, $publisher, $source = 0)
 {
-
     switch ($source) {
         // Determine if video source YouTube for publisher
         case 0:

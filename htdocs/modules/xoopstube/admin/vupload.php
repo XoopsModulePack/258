@@ -106,7 +106,6 @@ switch (strtolower($op)) {
         ob_end_clean();
 
         if ($rootpath > 0) {
-
             $file_array       = & XoopstubeLists :: getListTypeAsArray(
                 XOOPS_ROOT_PATH . '/' . $dirarray[$rootpath],
                 $type = 'media'

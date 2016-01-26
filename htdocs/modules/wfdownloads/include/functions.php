@@ -30,10 +30,10 @@ include_once __DIR__ . '/common.php';
 /**
  * This function transforms a numerical size (like 2048) to a letteral size (like 2MB)
  *
- * @param   integer $bytes numerical size
- * @param   integer $precision
+ * @param integer $bytes     numerical size
+ * @param integer $precision
  *
- * @return  string              letteral size
+ * @return string letteral size
  **/
 function wfdownloads_bytesToSize1000($bytes, $precision = 2)
 {
@@ -66,9 +66,9 @@ function wfdownloads_bytesToSize1024($bytes, $precision = 2)
 /**
  * This function transforms the php.ini notation for numbers (like '2M') to an integer (2*1024*1024 in this case)
  *
- * @param   string $size letteral size
+ * @param string $size letteral size
  *
- * @return  integer         numerical size
+ * @return integer numerical size
  **/
 function wfdownloads_sizeToBytes1024($size)
 {
@@ -111,10 +111,10 @@ function wfdownloads_sizeToBytes1024($size)
  * It's recursive because it doesn't stop with the one directory,
  * it just keeps going through all of the directories in the folder you specify.
  *
- * @param   string $path path to the directory to make
- * @param   int    $level
+ * @param string $path  path to the directory to make
+ * @param int    $level
  *
- * @return  array
+ * @return array
  */
 function wfdownloads_getDir($path = '.', $level = 0)
 {
@@ -149,11 +149,11 @@ function wfdownloads_getDir($path = '.', $level = 0)
 /**
  * Create a new directory that contains the file index.html
  *
- * @param   string $dir          path to the directory to make
- * @param   int    $perm         mode
- * @param   bool   $create_index if true create index.html
+ * @param string $dir          path to the directory to make
+ * @param int    $perm         mode
+ * @param bool   $create_index if true create index.html
  *
- * @return  bool                    Returns true on success or false on failure
+ * @return bool Returns true on success or false on failure
  */
 function wfdownloads_makeDir($dir, $perm = 0777, $create_index = true)
 {
@@ -198,10 +198,10 @@ function wfdownloads_getFiles($path = '.')
 /**
  * Copy a file
  *
- * @param   string $source      is the original directory
- * @param   string $destination is the destination directory
+ * @param string $source      is the original directory
+ * @param string $destination is the destination directory
  *
- * @return  bool                    Returns true on success or false on failure
+ * @return bool Returns true on success or false on failure
  *
  */
 function wfdownloads_copyFile($source, $destination)
@@ -217,10 +217,10 @@ function wfdownloads_copyFile($source, $destination)
 /**
  * Copy a directory and its contents
  *
- * @param   string $source      is the original directory
- * @param   string $destination is the destination directory
+ * @param string $source      is the original directory
+ * @param string $destination is the destination directory
  *
- * @return  bool                    Returns true on success or false on failure
+ * @return bool Returns true on success or false on failure
  *
  */
 function wfdownloads_copyDir($source, $destination)
@@ -250,9 +250,9 @@ function wfdownloads_copyDir($source, $destination)
 /**
  * Delete a file
  *
- * @param   string $path is the file absolute path
+ * @param string $path is the file absolute path
  *
- * @return  bool              Returns true on success or false on failure
+ * @return bool Returns true on success or false on failure
  *
  */
 function wfdownloads_delFile($path)
@@ -264,16 +264,15 @@ function wfdownloads_delFile($path)
     } else {
         return fasle;
     }
-
 }
 
 /**
  * Delete a empty/not empty directory
  *
- * @param   string $dir          path to the directory to delete
- * @param   bool   $if_not_empty if false it delete directory only if false
+ * @param string $dir          path to the directory to delete
+ * @param bool   $if_not_empty if false it delete directory only if false
  *
- * @return  bool                    Returns true on success or false on failure
+ * @return bool Returns true on success or false on failure
  */
 function wfdownloads_delDir($dir, $if_not_empty = true)
 {
@@ -308,9 +307,9 @@ function wfdownloads_delDir($dir, $if_not_empty = true)
 /**
  * Check if a module exist and return module verision
  *
- * @param   string $dirname
+ * @param string $dirname
  *
- * @return  boolean, integer   false if module not installed or not active, module version if installed
+ * @return boolean, integer   false if module not installed or not active, module version if installed
  *
  * @access  public
  * @author  luciorota
@@ -329,10 +328,10 @@ function wfdownloads_checkModule($dirname)
 /**
  * Recursively sort categories by level and weight
  *
- * @param   integer $pid
- * @param   integer $level
+ * @param integer $pid
+ * @param integer $level
  *
- * @return  array   array of arrays: 'pid', 'cid', 'level', 'category' as array
+ * @return array array of arrays: 'pid', 'cid', 'level', 'category' as array
  *
  * @access  public
  * @author  luciorota
@@ -366,7 +365,7 @@ function wfdownloads_sortCategories($pid = 0, $level = 0)
  * Create download by letter choice bar/menu
  * updated starting from this idea http://xoops.org/modules/news/article.php?storyid=6497
  *
- * @return  string   html
+ * @return string html
  *
  * @access  public
  * @author  luciorota
@@ -580,7 +579,7 @@ function wfdownloads_getCurrentUrls()
     $httpHost    = $_SERVER['HTTP_HOST'];
     $queryString = $_SERVER['QUERY_STRING'];
 
-    If ($queryString != '') {
+    if ($queryString != '') {
         $queryString = '?' . $queryString;
     }
     $currentURL          = $http . $httpHost . $phpSelf . $queryString;
@@ -730,7 +729,7 @@ function wfdownloads_toolbar()
  */
 function wfdownloads_serverStats()
 {
-//mb    $wfdownloads = WfdownloadsWfdownloads::getInstance();
+    //mb    $wfdownloads = WfdownloadsWfdownloads::getInstance();
     $html = "";
     $sql  = "SELECT metavalue";
     $sql .= " FROM " . $GLOBALS['xoopsDB']->prefix('wfdownloads_meta');
@@ -780,9 +779,9 @@ function wfdownloads_serverStats()
 /**
  * displayicons()
  *
- * @param           $time
- * @param int       $status
- * @param   integer $counter
+ * @param         $time
+ * @param int     $status
+ * @param integer $counter
  *
  * @return string
  */
@@ -971,7 +970,7 @@ if (!function_exists('convertorderbyout')) {
  *
  * @param   $lid
  *
- * @return  updates rating data in itemtable for a given item
+ * @return updates rating data in itemtable for a given item
  **/
 function wfdownloads_updateRating($lid)
 {
@@ -1013,7 +1012,7 @@ function wfdownloads_categoriesCount()
  *
  * @internal param \OR $integer array of integer $cids
  *
- * @return  the total number of items in items table that are accociated with a given table $table id
+ * @return the total number of items in items table that are accociated with a given table $table id
  */
 function wfdownloads_getTotalDownloads($cids = 0)
 {
@@ -1095,14 +1094,14 @@ function wfdownloads_displayImage($image = '', $href = '', $imgSource = '', $alt
 /**
  * wfdownloads_createThumb()
  *
- * @param           $imgName
- * @param           $imgPath
- * @param           $imgSavePath
- * @param   integer $width
- * @param   integer $height
- * @param   integer $quality
- * @param bool|int  $update
- * @param   integer $aspect
+ * @param          $imgName
+ * @param          $imgPath
+ * @param          $imgSavePath
+ * @param integer  $width
+ * @param integer  $height
+ * @param integer  $quality
+ * @param bool|int $update
+ * @param integer  $aspect
  *
  * @internal param $img_name
  * @internal param $img_path
@@ -1197,9 +1196,9 @@ function wfdownloads_createThumb($imgName, $imgPath, $imgSavePath, $width = 100,
 /**
  * wfdownloads_isNewImage()
  *
- * @param   integer $published date
+ * @param integer $published date
  *
- * @return  array   'image', 'alttext', 'days'  number of days between $published and now
+ * @return array 'image', 'alttext', 'days'  number of days between $published and now
  **/
 function wfdownloads_isNewImage($published)
 {
@@ -1370,16 +1369,16 @@ function wfdownloads_return_bytes($size_str)
 /**
  * wfdownloads_uploading()
  *
- * @param   string  $filename
- * @param   string  $uploadDirectory
- * @param   array   $allowedMimetypes
- * @param   string  $redirectURL
- * @param   integer $num
- * @param   bool    $redirect
- * @param   bool    $isAdmin
- * @param   bool    $onlyImages
+ * @param string  $filename
+ * @param string  $uploadDirectory
+ * @param array   $allowedMimetypes
+ * @param string  $redirectURL
+ * @param integer $num
+ * @param bool    $redirect
+ * @param bool    $isAdmin
+ * @param bool    $onlyImages
  *
- * @return  array
+ * @return array
  **/
 function wfdownloads_uploading(
     $filename,
@@ -1431,7 +1430,7 @@ function wfdownloads_uploading(
                 redirect_header($redirectURL, 4, _AM_WFDOWNLOADS_UPLOADFILE);
             } else {
                 if (is_file($uploader->savedDestination)) {
-//                    $file['url'] = XOOPS_URL . '/' . $uploadDirectory . '/';
+                    //                    $file['url'] = XOOPS_URL . '/' . $uploadDirectory . '/';
                     $file['filename'] = strtolower($uploader->savedFileName);
                     $file['filetype'] = $_FILES['userfile']['type'];
                     $file['size']     = filesize($uploadDirectory . strtolower($uploader->savedFileName));
@@ -1891,7 +1890,7 @@ function wfdownloads_swishe_search($swisheQueryWords)
                 $line    = implode('"', $line); // collapse the array into a string
                 $line    = preg_replace("/[[:blank:]]/", "\t", $line); // replace every space with a tab
 
-                list ($relevance, $result_url, $result_title, $file_size) = explode("\t", $line); // split the line into an array by tabs; assign variable names to each column
+                list($relevance, $result_url, $result_title, $file_size) = explode("\t", $line); // split the line into an array by tabs; assign variable names to each column
                 $relevance          = $relevance / 10; // format relevance as a percentage for search results
                 $full_path_and_file = $result_url;
                 $result_url         = trim(substr($result_url, ($swisheDocPath_strlen - 1), strlen($result_url)));
@@ -1912,3 +1911,4 @@ function wfdownloads_swishe_search($swisheQueryWords)
     return $ret;
 }
 // Swish-e support EXPERIMENTAL
+

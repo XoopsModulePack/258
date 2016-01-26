@@ -50,7 +50,8 @@
 * -------------------------------------
 *
 */
-class FlashHeader{
+class FlashHeader
+{
     public $version;
     public $filetype;
     public $bitpos;
@@ -67,21 +68,22 @@ class FlashHeader{
     * @type constructor
     * @param string file
     */
-    function FlashHeader($buffer){
+    public function FlashHeader($buffer)
+    {
         $this->buffer = $buffer;
-        $fp = @fopen($this->buffer,"rb");
+        $fp = @fopen($this->buffer, "rb");
         $head = @fread($fp, 3);
-        if($head == "CWS"){
+        if ($head == "CWS") {
             /* zlib */
-            fseek($fp,0);
-            $data = fread($fp,8);
+            fseek($fp, 0);
+            $data = fread($fp, 8);
             $_data = gzuncompress(fread($fp, filesize($buffer)));
             $data = $data . $_data;
             $this->data = $data;
             $this->compression = 1;
             $this->isValid = 1;
-        } else if ($head == "FWS"){
-            fseek($fp,0);
+        } elseif ($head == "FWS") {
+            fseek($fp, 0);
             $this->data = fread($fp, filesize($buffer));
             $this->isValid = 1;
         } else {
@@ -95,8 +97,9 @@ class FlashHeader{
     * @type public
     * @description read the file informations
     */
-    function getimagesize(){
-        if(!$this->isValid){
+    public function getimagesize()
+    {
+        if (!$this->isValid) {
             return false;
         }
         $this->filetype = $this->read(3);
@@ -104,7 +107,7 @@ class FlashHeader{
         $l = $this->read(4);
         $this->filelength = filesize($this->buffer);
         $this->rect = $this->readRect();
-        $this->framerate = unpack('vrate',$this->read(2));
+        $this->framerate = unpack('vrate', $this->read(2));
         $this->framerate = $this->framerate['rate']/256;
         $this->framecount = $this->readshort();
 
@@ -120,7 +123,8 @@ class FlashHeader{
     }
 
     /* read */
-    function read($n){
+    public function read($n)
+    {
         $ret = substr($this->data, $this->point, $this->point + $n);
         $this->point += $n;
 
@@ -128,20 +132,23 @@ class FlashHeader{
     }
 
     /* read short */
-    function readshort(){
-        $pack = unpack('vshort',$this->read(2));
+    public function readshort()
+    {
+        $pack = unpack('vshort', $this->read(2));
 
         return $pack['short'];
     }
 
     /* read byte */
-    function readByte(){
-        $ret = unpack("Cbyte",$this->read(1));
+    public function readByte()
+    {
+        $ret = unpack("Cbyte", $this->read(1));
 
         return $ret['byte'];
     }
     /* read Rect */
-    function readRect(){
+    public function readRect()
+    {
         $this->begin();
         $l = $this->readbits(5);
         $xmin = $this->readbits($l)/20;
@@ -153,20 +160,21 @@ class FlashHeader{
         return $rect->__str__();
     }
     /* incpos */
-    function incpos(){
+    public function incpos()
+    {
         $this->pos += 1;
-        if($this->pos>8){
+        if ($this->pos>8) {
             $this->pos = 1;
             $this->cur = $this->readbyte();
         }
     }
 
-
     /* readbits */
-    function readbits($nbits){
+    public function readbits($nbits)
+    {
         $n = 0;
         $r = 0;
-        while($n < $nbits){
+        while ($n < $nbits) {
             $r = ($r<<1) + $this->getbits($this->pos);
             $this->incpos();
             $n += 1;
@@ -176,29 +184,33 @@ class FlashHeader{
     }
 
     /* getbits */
-    function getbits($n){
+    public function getbits($n)
+    {
         return ($this->cur>>(8-$n))&1;
     }
 
     /* begin */
-    function begin(){
+    public function begin()
+    {
         $this->cur = $this->readbyte();
         $this->pos = 1;
     }
-
 }
 
 /**
 * class Rect
 * store the size values into an associative array
 */
-class Rect{
-    function Rect($x2,$y2){
+class Rect
+{
+    public function Rect($x2, $y2)
+    {
         $this->xmax = $x2;
         $this->ymax = $y2;
         $this->value = $this->__str__();
     }
-    function __str__(){
+    public function __str__()
+    {
         $ret = array($this->xmax, $this->ymax);
         $ret["width"] = $this->xmax;
         $ret["height"] = $this->ymax;

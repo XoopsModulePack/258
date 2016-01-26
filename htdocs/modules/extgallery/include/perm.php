@@ -16,11 +16,11 @@
  * @version     $Id: perm.php 8088 2011-11-06 09:38:12Z beckmi $
  */
 
-return $config = array (
+return $config = array(
   'modulePerm' =>
-  array (
+  array(
     1 =>
-    array (
+    array(
       'maskId' => 1,
       'name' => 'public_access',
       'maskTitle' => '_AM_EXTGALLERY_CAN_ACCESS',
@@ -29,7 +29,7 @@ return $config = array (
       'info' => '_AM_EXTGALLERY_ACCESS_PERM_INFO',
     ),
     2 =>
-    array (
+    array(
       'maskId' => 2,
       'name' => 'public_rate',
       'maskTitle' => '_AM_EXTGALLERY_CAN_RATE',
@@ -38,7 +38,7 @@ return $config = array (
       'info' => '_AM_EXTGALLERY_RATE_PERM_INFO',
     ),
     3 =>
-    array (
+    array(
       'maskId' => 4,
       'name' => 'public_ecard',
       'maskTitle' => '_AM_EXTGALLERY_CAN_SEND_ECARD',
@@ -47,7 +47,7 @@ return $config = array (
       'info' => '_AM_EXTGALLERY_PUBLIC_ECARD_INFO',
     ),
     4 =>
-    array (
+    array(
       'maskId' => 8,
       'name' => 'public_download',
       'maskTitle' => '_AM_EXTGALLERY_CAN_DOWNLOAD',
@@ -56,7 +56,7 @@ return $config = array (
       'info' => '_AM_EXTGALLERY_PUBLIC_DOWNLOAD_INFO',
     ),
     5 =>
-    array (
+    array(
       'maskId' => 16,
       'name' => 'public_download_original',
       'maskTitle' => '_AM_EXTGALLERY_CAN_DOWNLOAD_ORIG',
@@ -65,7 +65,7 @@ return $config = array (
       'info' => '_AM_EXTGALLERY_PUBLIC_DOWNLOAD_ORIG_INFO',
     ),
     6 =>
-    array (
+    array(
       'maskId' => 32,
       'name' => 'public_upload',
       'maskTitle' => '_AM_EXTGALLERY_CAN_UPLOAD',
@@ -74,7 +74,7 @@ return $config = array (
       'info' => '_AM_EXTGALLERY_PUBLIC_UPLOAD_INFO',
     ),
     7 =>
-    array (
+    array(
       'maskId' => 64,
       'name' => 'public_autoapprove',
       'maskTitle' => '_AM_EXTGALLERY_AUTOAPPROVE',
@@ -83,7 +83,7 @@ return $config = array (
       'info' => '_AM_EXTGALLERY_PUBLIC_AUTOAPROVE_INFO',
     ),
     8 =>
-    array (
+    array(
       'maskId' => 128,
       'name' => 'public_displayed',
       'maskTitle' => '_AM_EXTGALLERY_DISPLAYED',
@@ -93,6 +93,6 @@ return $config = array (
     ),
   ),
   'pluginPerm' =>
-  array (
+  array(
   ),
 );

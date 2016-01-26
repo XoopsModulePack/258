@@ -65,7 +65,6 @@ class contact extends XoopsObject
                 $contact_url      = $xoopsUser->getVar('url');
                 $contact_icq      = $xoopsUser->getVar('user_icq');
                 $contact_location = $xoopsUser->getVar('user_from');
-
             } else {
                 $contact_uid      = 0;
                 $contact_name     = '';
@@ -85,29 +84,29 @@ class contact extends XoopsObject
 
         $form = new XoopsThemeForm(_MD_CONTACT_FORM, 'save', 'index.php', 'post', true);
         $form->setExtra('enctype="multipart/form-data"');
-        $form->addElement(new XoopsFormHidden ('op', 'save'));
-        $form->addElement(new XoopsFormHidden ('contact_id', $this->getVar('contact_id', 'e')));
-        $form->addElement(new XoopsFormHidden ('contact_uid', $contact_uid));
-        $form->addElement(new XoopsFormText (_MD_CONTACT_NAME, 'contact_name', 50, 255, $contact_name), true);
-        $form->addElement(new XoopsFormText (_MD_CONTACT_MAIL, 'contact_mail', 50, 255, $contact_mail), true);
+        $form->addElement(new XoopsFormHidden('op', 'save'));
+        $form->addElement(new XoopsFormHidden('contact_id', $this->getVar('contact_id', 'e')));
+        $form->addElement(new XoopsFormHidden('contact_uid', $contact_uid));
+        $form->addElement(new XoopsFormText(_MD_CONTACT_NAME, 'contact_name', 50, 255, $contact_name), true);
+        $form->addElement(new XoopsFormText(_MD_CONTACT_MAIL, 'contact_mail', 50, 255, $contact_mail), true);
 
         if (xoops_getModuleOption('form_url', 'contact')) {
-            $form->addElement(new XoopsFormText (_MD_CONTACT_URL, 'contact_url', 50, 255, $contact_url), false);
+            $form->addElement(new XoopsFormText(_MD_CONTACT_URL, 'contact_url', 50, 255, $contact_url), false);
         }
         if (xoops_getModuleOption('form_icq', 'contact')) {
-            $form->addElement(new XoopsFormText (_MD_CONTACT_ICQ, 'contact_icq', 50, 255, $contact_icq), false);
+            $form->addElement(new XoopsFormText(_MD_CONTACT_ICQ, 'contact_icq', 50, 255, $contact_icq), false);
         }
         if (xoops_getModuleOption('form_company', 'contact')) {
-            $form->addElement(new XoopsFormText (_MD_CONTACT_COMPANY, 'contact_company', 50, 255, $this->getVar('contact_company')), false);
+            $form->addElement(new XoopsFormText(_MD_CONTACT_COMPANY, 'contact_company', 50, 255, $this->getVar('contact_company')), false);
         }
         if (xoops_getModuleOption('form_location', 'contact')) {
-            $form->addElement(new XoopsFormText (_MD_CONTACT_LOCATION, 'contact_location', 50, 255, $contact_location), false);
+            $form->addElement(new XoopsFormText(_MD_CONTACT_LOCATION, 'contact_location', 50, 255, $contact_location), false);
         }
         if (xoops_getModuleOption('form_phone', 'contact')) {
-            $form->addElement(new XoopsFormText (_MD_CONTACT_PHONE, 'contact_phone', 50, 255, $this->getVar('contact_phone')), false);
+            $form->addElement(new XoopsFormText(_MD_CONTACT_PHONE, 'contact_phone', 50, 255, $this->getVar('contact_phone')), false);
         }
         if (xoops_getModuleOption('form_address', 'contact')) {
-            $form->addElement(new XoopsFormTextArea (_MD_CONTACT_ADDRESS, 'contact_address', $this->getVar('contact_address', 'e'), 3, 60), false);
+            $form->addElement(new XoopsFormTextArea(_MD_CONTACT_ADDRESS, 'contact_address', $this->getVar('contact_address', 'e'), 3, 60), false);
         }
         if (xoops_getModuleOption('form_dept', 'contact')) {
             // show a drop down with the correct departments listed
@@ -120,16 +119,15 @@ class contact extends XoopsObject
             $form->addElement($departmentlist);
         }
 
-        $form->addElement(new XoopsFormText (_MD_CONTACT_SUBJECT, 'contact_subject', 50, 255, $this->getVar('contact_subject')), true);
-        $form->addElement(new XoopsFormTextArea (_MD_CONTACT_MESSAGE, 'contact_message', $this->getVar('contact_message', 'e'), 5, 60), true);
-
+        $form->addElement(new XoopsFormText(_MD_CONTACT_SUBJECT, 'contact_subject', 50, 255, $this->getVar('contact_subject')), true);
+        $form->addElement(new XoopsFormTextArea(_MD_CONTACT_MESSAGE, 'contact_message', $this->getVar('contact_message', 'e'), 5, 60), true);
 
             // check captcha
             if ((!$xoopsUser && $xoopsModuleConfig['captchaAnonymous'])
                 || ($xoopsUser && !$xoopsUserIsAdmin && $xoopsModuleConfig['captchaRegistered'])
             ) {
                 xoops_load('XoopsFormCaptcha');
-                $form->addElement(new XoopsFormCaptcha('','',false), true);
+                $form->addElement(new XoopsFormCaptcha('', '', false), true);
             }
 
         $form->addElement(new XoopsFormButton('', 'submit', _SUBMIT, 'submit'));
@@ -142,20 +140,20 @@ class contact extends XoopsObject
         global $xoopsConfig;
         $form = new XoopsThemeForm(_AM_CONTACT_REPLY, 'doreply', 'contact.php', 'post', true);
         $form->setExtra('enctype="multipart/form-data"');
-        $form->addElement(new XoopsFormHidden ('op', 'doreply'));
-        $form->addElement(new XoopsFormHidden ('contact_id', $this->getVar('contact_id', 'e')));
-        $form->addElement(new XoopsFormHidden ('contact_uid', $this->getVar('contact_uid', 'e')));
+        $form->addElement(new XoopsFormHidden('op', 'doreply'));
+        $form->addElement(new XoopsFormHidden('contact_id', $this->getVar('contact_id', 'e')));
+        $form->addElement(new XoopsFormHidden('contact_uid', $this->getVar('contact_uid', 'e')));
         $form->addElement(new XoopsFormLabel(_AM_CONTACT_FROM, '', ''));
         $form->addElement(
-            new XoopsFormText (_AM_CONTACT_NAMEFROM, 'contact_name', 50, 255, XoopsUser::getUnameFromId($this->getVar('contact_uid'))),
+            new XoopsFormText(_AM_CONTACT_NAMEFROM, 'contact_name', 50, 255, XoopsUser::getUnameFromId($this->getVar('contact_uid'))),
             true
         );
-        $form->addElement(new XoopsFormText (_AM_CONTACT_MAILFROM, 'contact_mail', 50, 255, $xoopsConfig['adminmail']), true);
+        $form->addElement(new XoopsFormText(_AM_CONTACT_MAILFROM, 'contact_mail', 50, 255, $xoopsConfig['adminmail']), true);
         $form->addElement(new XoopsFormLabel(_AM_CONTACT_TO, '', ''));
-        $form->addElement(new XoopsFormText (_AM_CONTACT_NAMETO, 'contact_nameto', 50, 255, $this->getVar('contact_name')), true);
-        $form->addElement(new XoopsFormText (_AM_CONTACT_MAILTO, 'contact_mailto', 50, 255, $this->getVar('contact_mail')), true);
-        $form->addElement(new XoopsFormText (_AM_CONTACT_SUBJECT, 'contact_subject', 50, 255, _RE . $this->getVar('contact_subject')), true);
-        $form->addElement(new XoopsFormTextArea (_AM_CONTACT_MESSAGE, 'contact_message', '', 5, 60), true);
+        $form->addElement(new XoopsFormText(_AM_CONTACT_NAMETO, 'contact_nameto', 50, 255, $this->getVar('contact_name')), true);
+        $form->addElement(new XoopsFormText(_AM_CONTACT_MAILTO, 'contact_mailto', 50, 255, $this->getVar('contact_mail')), true);
+        $form->addElement(new XoopsFormText(_AM_CONTACT_SUBJECT, 'contact_subject', 50, 255, _RE . $this->getVar('contact_subject')), true);
+        $form->addElement(new XoopsFormTextArea(_AM_CONTACT_MESSAGE, 'contact_message', '', 5, 60), true);
         $form->addElement(new XoopsFormButton('', 'submit', _SUBMIT, 'submit'));
 
         return $form;
@@ -191,7 +189,6 @@ class ContactContactHandler extends XoopsPersistableObjectHandler
      */
     public function Contact_CleanVars(&$global, $key, $default = '', $type = 'int')
     {
-
         switch ($type) {
             case 'array':
                 $ret = (isset($global[$key]) && is_array($global[$key])) ? $global[$key] : $default;
@@ -328,10 +325,9 @@ class ContactContactHandler extends XoopsPersistableObjectHandler
 
     public function Contact_GetReply($contact_id)
     {
-
-        $criteria = new CriteriaCompo ();
-        $criteria->add(new Criteria ('contact_cid', $contact_id));
-        $criteria->add(new Criteria ('contact_type', 'Contact'));
+        $criteria = new CriteriaCompo();
+        $criteria->add(new Criteria('contact_cid', $contact_id));
+        $criteria->add(new Criteria('contact_type', 'Contact'));
         $contacts = $this->getObjects($criteria, false);
         if ($contacts) {
             $ret = array();
@@ -352,9 +348,9 @@ class ContactContactHandler extends XoopsPersistableObjectHandler
     public function Contact_GetAdminList($contact, $id)
     {
         $ret      = array();
-        $criteria = new CriteriaCompo ();
-        $criteria->add(new Criteria ($id, '0'));
-        $criteria->add(new Criteria ('contact_type', 'Contact'));
+        $criteria = new CriteriaCompo();
+        $criteria->add(new Criteria($id, '0'));
+        $criteria->add(new Criteria('contact_type', 'Contact'));
         $criteria->setSort($contact['sort']);
         $criteria->setOrder($contact['order']);
         $criteria->setStart($contact['start']);
@@ -378,9 +374,9 @@ class ContactContactHandler extends XoopsPersistableObjectHandler
      */
     public function Contact_GetCount($id)
     {
-        $criteria = new CriteriaCompo ();
-        $criteria->add(new Criteria ($id, '0'));
-        $criteria->add(new Criteria ('contact_type', 'Contact'));
+        $criteria = new CriteriaCompo();
+        $criteria->add(new Criteria($id, '0'));
+        $criteria->add(new Criteria('contact_type', 'Contact'));
 
         return $this->getCount($criteria);
     }
@@ -398,10 +394,10 @@ class ContactContactHandler extends XoopsPersistableObjectHandler
      */
     public function Contact_PruneCount($timestamp, $onlyreply)
     {
-        $criteria = new CriteriaCompo ();
-        $criteria->add(new Criteria ('contact_create', $timestamp, '<='));
+        $criteria = new CriteriaCompo();
+        $criteria->add(new Criteria('contact_create', $timestamp, '<='));
         if ($onlyreply) {
-            $criteria->add(new Criteria ('contact_reply', 1));
+            $criteria->add(new Criteria('contact_reply', 1));
         }
 
         return $this->getCount($criteria);
@@ -412,10 +408,10 @@ class ContactContactHandler extends XoopsPersistableObjectHandler
      */
     public function Contact_DeleteBeforeDate($timestamp, $onlyreply)
     {
-        $criteria = new CriteriaCompo ();
-        $criteria->add(new Criteria ('contact_create', $timestamp, '<='));
+        $criteria = new CriteriaCompo();
+        $criteria->add(new Criteria('contact_create', $timestamp, '<='));
         if ($onlyreply) {
-            $criteria->add(new Criteria ('contact_reply', 1));
+            $criteria->add(new Criteria('contact_reply', 1));
         }
         $this->deleteAll($criteria);
     }

@@ -48,47 +48,47 @@ class WfdownloadsTable
     /**
      * @var string $_name name of the table
      */
-    var $_name;
+    public $_name;
 
     /**
      * @var string $_structure structure of the table
      */
-    var $_structure;
+    public $_structure;
 
     /**
      * @var array $_data containing valued of each records to be added
      */
-    var $_data;
+    public $_data;
 
     /**
      * @var array $_alteredFields containing fields to be altered
      */
-    var $_alteredFields;
+    public $_alteredFields;
 
     /**
      * @var array $_newFields containing new fields to be added
      */
-    var $_newFields;
+    public $_newFields;
 
     /**
      * @var array $_dropedFields containing fields to be droped
      */
-    var $_dropedFields;
+    public $_dropedFields;
 
     /**
      * @var array $_flagForDrop flag table to drop it
      */
-    var $_flagForDrop = false;
+    public $_flagForDrop = false;
 
     /**
      * @var array $_updatedFields containing fields which values will be updated
      */
-    var $_updatedFields;
+    public $_updatedFields;
 
     /**
      * @var array $_updatedFields containing fields which values will be updated
      */ //felix
-    var $_updatedWhere;
+    public $_updatedWhere;
 
     /**
      * Constructor
@@ -96,7 +96,7 @@ class WfdownloadsTable
      * @param string $name name of the table
      *
      */
-    function __construct($name)
+    public function __construct($name)
     {
         $this->_name = $name;
         $this->_data = array();
@@ -108,7 +108,7 @@ class WfdownloadsTable
      * @return string table name
      *
      */
-    function name()
+    public function name()
     {
         return $GLOBALS['xoopsDB']->prefix($this->_name);
     }
@@ -119,7 +119,7 @@ class WfdownloadsTable
      * @param string $structure table structure
      *
      */
-    function setStructure($structure)
+    public function setStructure($structure)
     {
         $this->_structure = $structure;
     }
@@ -130,7 +130,7 @@ class WfdownloadsTable
      * @return string table structure
      *
      */
-    function getStructure()
+    public function getStructure()
     {
         return sprintf($this->_structure, $this->name());
     }
@@ -141,7 +141,7 @@ class WfdownloadsTable
      * @param string $data values of a record
      *
      */
-    function setData($data)
+    public function setData($data)
     {
         $this->_data[] = $data;
     }
@@ -152,7 +152,7 @@ class WfdownloadsTable
      * @return array containing the records values to be added
      *
      */
-    function getData()
+    public function getData()
     {
         return $this->_data;
     }
@@ -163,7 +163,7 @@ class WfdownloadsTable
      * @return bool true if success, false if an error occured
      *
      */
-    function addData()
+    public function addData()
     {
         $ret = null;
         foreach ($this->getData() as $data) {
@@ -177,7 +177,6 @@ class WfdownloadsTable
         }
 
         return $ret;
-
     }
 
     /**
@@ -187,7 +186,7 @@ class WfdownloadsTable
      * @param string $properties properties of the field
      *
      */
-    function addAlteredField($name, $properties)
+    public function addAlteredField($name, $properties)
     {
         $field                  = array();
         $field['name']          = $name;
@@ -205,7 +204,7 @@ class WfdownloadsTable
      * @internal param string $old old propertie
      * @internal param string $new new propertie
      */ //felix
-    function addUpdatedWhere($name, $newValue, $oldValue)
+    public function addUpdatedWhere($name, $newValue, $oldValue)
     {
         $field                 = array();
         $field['name']         = $name;
@@ -221,7 +220,7 @@ class WfdownloadsTable
      * @param string $properties properties of the field
      *
      */
-    function addNewField($name, $properties)
+    public function addNewField($name, $properties)
     {
         $field               = array();
         $field['name']       = $name;
@@ -235,7 +234,7 @@ class WfdownloadsTable
      * @return array fields that need to be altered
      *
      */
-    function getAlteredFields()
+    public function getAlteredFields()
     {
         return $this->_alteredFields;
     }
@@ -247,7 +246,7 @@ class WfdownloadsTable
      * @param string $value value to be set
      *
      */
-    function addUpdatedField($name, $value)
+    public function addUpdatedField($name, $value)
     {
         $field                  = array();
         $field['name']          = $name;
@@ -261,7 +260,7 @@ class WfdownloadsTable
      * @return array fields to be added
      *
      */
-    function getNewFields()
+    public function getNewFields()
     {
         return $this->_newFields;
     }
@@ -272,7 +271,7 @@ class WfdownloadsTable
      * @return array fields which values need to be updated
      *
      */
-    function getUpdatedFields()
+    public function getUpdatedFields()
     {
         return $this->_updatedFields;
     }
@@ -283,7 +282,7 @@ class WfdownloadsTable
      * @return array fields which values need to be updated
      *
      */ //felix
-    function getUpdatedWhere()
+    public function getUpdatedWhere()
     {
         return $this->_updatedWhere;
     }
@@ -294,7 +293,7 @@ class WfdownloadsTable
      * @param string $name name of the field
      *
      */
-    function addDropedField($name)
+    public function addDropedField($name)
     {
         $this->_dropedFields[] = $name;
     }
@@ -305,7 +304,7 @@ class WfdownloadsTable
      * @return array fields that need to be droped
      *
      */
-    function getDropedFields()
+    public function getDropedFields()
     {
         return $this->_dropedFields;
     }
@@ -314,7 +313,7 @@ class WfdownloadsTable
      * Set the flag to drop the table
      *
      */
-    function setFlagForDrop()
+    public function setFlagForDrop()
     {
         $this->_flagForDrop = true;
     }
@@ -325,7 +324,7 @@ class WfdownloadsTable
      * @return bool true if success, false if an error occured
      *
      */
-    function createTable()
+    public function createTable()
     {
         $query = $this->getStructure();
 
@@ -345,7 +344,7 @@ class WfdownloadsTable
      * @return bool true if success, false if an error occured
      *
      */
-    function dropTable()
+    public function dropTable()
     {
         $query = sprintf("DROP TABLE %s", $this->name());
         $ret   = $GLOBALS['xoopsDB']->query($query);
@@ -366,7 +365,7 @@ class WfdownloadsTable
      * @return bool true if success, false if an error occured
      *
      */
-    function alterTable()
+    public function alterTable()
     {
         $ret = true;
 
@@ -390,7 +389,7 @@ class WfdownloadsTable
      * @return bool true if success, false if an error occured
      *
      */
-    function addNewFields()
+    public function addNewFields()
     {
         $ret = true;
         foreach ($this->getNewFields() as $newField) {
@@ -413,7 +412,7 @@ class WfdownloadsTable
      * @return bool true if success, false if an error occured
      *
      */
-    function updateFieldsValues()
+    public function updateFieldsValues()
     {
         $ret = true;
 
@@ -436,7 +435,7 @@ class WfdownloadsTable
      * @return bool true if success, false if an error occured
      *
      */ //felix
-    function updateWhereValues()
+    public function updateWhereValues()
     {
         $ret = true;
 
@@ -467,7 +466,7 @@ class WfdownloadsTable
      * @return bool true if success, false if an error occured
      *
      */
-    function dropFields()
+    public function dropFields()
     {
         $ret = true;
 
@@ -500,9 +499,8 @@ class WfdownloadsDbupdater
     /**
      *
      */
-    function __construct()
+    public function __construct()
     {
-
     }
 
     /**
@@ -515,7 +513,7 @@ class WfdownloadsDbupdater
      * @return bool true if success, false if an error occured
      *
      */
-    function runQuery($query, $goodmsg, $badmsg)
+    public function runQuery($query, $goodmsg, $badmsg)
     {
         $ret = $GLOBALS['xoopsDB']->query($query);
         if (!$ret) {
@@ -537,7 +535,7 @@ class WfdownloadsDbupdater
      *
      * @return bool true if success, false if an error occured
      */
-    function renameTable($from, $to)
+    public function renameTable($from, $to)
     {
         $from = $GLOBALS['xoopsDB']->prefix($from);
         $to   = $GLOBALS['xoopsDB']->prefix($to);
@@ -564,7 +562,7 @@ class WfdownloadsDbupdater
      *
      * @return bool true if success, false if an error occured
      */
-    function updateTable($table)
+    public function updateTable($table)
     {
         $ret = true;
         echo "<ul>";

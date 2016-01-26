@@ -214,7 +214,6 @@ function update_tables_to_323($module)
         echo "Modified Downloads table updated <br />";
     }
     unset($fields);
-
 }
 
 // =========================================================================================

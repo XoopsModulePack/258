@@ -7,7 +7,7 @@
 * format the month while the days are accessed via the normal Month object
 */
 if (!@include 'Calendar/Calendar.php') {
-    define('CALENDAR_ROOT','../../');
+    define('CALENDAR_ROOT', '../../');
 }
 require_once CALENDAR_ROOT.'Month/Weekdays.php';
 require_once CALENDAR_ROOT.'Decorator.php';
@@ -21,46 +21,50 @@ class MonthDecorator extends Calendar_Decorator
     /**
     * @param Calendar_Month
     */
-    function MonthDecorator(& $Month)
+    public function MonthDecorator(& $Month)
     {
         parent::Calendar_Decorator($Month);
     }
     /**
     * Override the prevMonth method to format the output
     */
-    function prevMonth()
+    public function prevMonth()
     {
-        $prevStamp = parent::prevMonth(TRUE);
+        $prevStamp = parent::prevMonth(true);
         // Build the URL for the previous month
-        return $_SERVER['PHP_SELF'].'?y='.date('Y',$prevStamp).
-            '&m='.date('n',$prevStamp).'&d='.date('j',$prevStamp);
+        return $_SERVER['PHP_SELF'].'?y='.date('Y', $prevStamp).
+            '&m='.date('n', $prevStamp).'&d='.date('j', $prevStamp);
     }
     /**
     * Override the thisMonth method to format the output
     */
-    function thisMonth()
+    public function thisMonth()
     {
-        $thisStamp = parent::thisMonth(TRUE);
+        $thisStamp = parent::thisMonth(true);
         // A human readable string from this month
-        return date('F Y',$thisStamp);
+        return date('F Y', $thisStamp);
     }
     /**
     * Override the nextMonth method to format the output
     */
-    function nextMonth()
+    public function nextMonth()
     {
-        $nextStamp = parent::nextMonth(TRUE);
+        $nextStamp = parent::nextMonth(true);
         // Build the URL for next month
-        return $_SERVER['PHP_SELF'].'?y='.date('Y',$nextStamp).
-            '&m='.date('n',$nextStamp).'&d='.date('j',$nextStamp);
+        return $_SERVER['PHP_SELF'].'?y='.date('Y', $nextStamp).
+            '&m='.date('n', $nextStamp).'&d='.date('j', $nextStamp);
     }
 }
 
-if (!isset($_GET['y'])) $_GET['y'] = date('Y');
-if (!isset($_GET['m'])) $_GET['m'] = date('n');
+if (!isset($_GET['y'])) {
+    $_GET['y'] = date('Y');
+}
+if (!isset($_GET['m'])) {
+    $_GET['m'] = date('n');
+}
 
 // Creata a month as usual
-$Month = new Calendar_Month_Weekdays($_GET['y'],$_GET['m']);
+$Month = new Calendar_Month_Weekdays($_GET['y'], $_GET['m']);
 
 // Pass it to the decorator and use the decorator from now on...
 $MonthDecorator = new MonthDecorator($Month);
@@ -75,26 +79,26 @@ $MonthDecorator->build();
 <body>
 <h1>A Simple Decorator</h1>
 <table>
-<caption><?php echo ( $MonthDecorator->thisMonth() ); ?></caption>
+<caption><?php echo($MonthDecorator->thisMonth()); ?></caption>
 <?php
-while ( $Day = $MonthDecorator->fetch() ) {
-    if ( $Day->isFirst() ) {
-        echo ( "\n<tr>\n" );
+while ($Day = $MonthDecorator->fetch()) {
+    if ($Day->isFirst()) {
+        echo("\n<tr>\n");
     }
-    if ( $Day->isEmpty() ) {
-        echo ( "<td>&nbsp;</td>" );
+    if ($Day->isEmpty()) {
+        echo("<td>&nbsp;</td>");
     } else {
-        echo ( "<td>".$Day->thisDay()."</td>" );
+        echo("<td>".$Day->thisDay()."</td>");
     }
-    if ( $Day->isLast() ) {
-        echo ( "\n</tr>\n" );
+    if ($Day->isLast()) {
+        echo("\n</tr>\n");
     }
 }
 ?>
 <tr>
-<td><a href="<?php echo ($MonthDecorator->prevMonth()); ?>">Prev</a></td>
+<td><a href="<?php echo($MonthDecorator->prevMonth()); ?>">Prev</a></td>
 <td colspan="5">&nbsp;</td>
-<td><a href="<?php echo ($MonthDecorator->nextMonth()); ?>">Next</a></td>
+<td><a href="<?php echo($MonthDecorator->nextMonth()); ?>">Next</a></td>
 </tr>
 </table>
 </body>

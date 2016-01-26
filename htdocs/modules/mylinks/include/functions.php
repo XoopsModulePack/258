@@ -34,7 +34,7 @@ function newlinkgraphic($time, $status)
     $startdate = (time()-(86400 * $count));
 
     if ($startdate < $time) {
-        if (1 == $status){
+        if (1 == $status) {
             $new = "&nbsp;<img src='" . mylinksGetIconURL('newred.gif') . "' alt='" . _MD_MYLINKS_NEWTHISWEEK . "' />";
         } elseif (2 == $status) {
             $new = "&nbsp;<img src='" . mylinksGetIconURL('update.gif') . "' alt='" . _MD_MYLINKS_UPTHISWEEK . "' />";
@@ -65,8 +65,7 @@ function popgraphic($hits)
 function convertorderbyin($orderby)
 {
     $orderby = ((isset($orderby)) && ('' != trim($orderby))) ? trim($orderby) : '';
-    switch ( $orderby )
-    {
+    switch ($orderby) {
         case "titleA":
             $orderby = "title ASC";
             break;
@@ -100,8 +99,7 @@ function convertorderbyin($orderby)
 function convertorderbytrans($orderby)
 {
     $orderby = (isset($orderby) && ('' != trim($orderby))) ? trim($orderby) : '';
-    switch ($orderby)
-    {
+    switch ($orderby) {
         case "title ASC":
             $orderbyTrans = "" . _MD_MYLINKS_TITLEATOZ . "";
             break;
@@ -135,8 +133,7 @@ function convertorderbytrans($orderby)
 function convertorderbyout($orderby)
 {
     $orderby = (isset($orderby) && ('' != trim($orderby))) ? trim($orderby) : '';
-    switch ($orderby)
-    {
+    switch ($orderby) {
         case "title ASC":
             $orderby = "titleA";
             break;
@@ -197,7 +194,7 @@ function updaterating($sel_id)
 }
 
 //returns the total number of items in items table that are accociated with a given table $table id
-function getTotalItems($sel_id=NULL, $status='', $oper='>')
+function getTotalItems($sel_id=null, $status='', $oper='>')
 {
     $sel_id = filter_var($sel_id, FILTER_VALIDATE_INT, array( 'options' => array( 'default' => 0, 'min_range' => 0)));
     $count = 0;
@@ -223,7 +220,7 @@ function getTotalItems($sel_id=NULL, $status='', $oper='>')
     $query = "SELECT COUNT(*) FROM " . $GLOBALS['xoopsDB']->prefix("mylinks_links") . " WHERE {$whereClause}";
     if ('' !== $status) {
         $status = intval($status);
-        if (preg_match('/^[!]*[<=>]{1}[=>]*$/', $oper, $match) ) {
+        if (preg_match('/^[!]*[<=>]{1}[=>]*$/', $oper, $match)) {
             $oper = $match[0];
         } else {
             $oper = '>';
@@ -279,7 +276,7 @@ function mylinksGetStyleURL($aFile)
     global $mylinks_theme;
     $StyleURL = XOOPSMYLINKINCURL . "/{$mylinks_theme}/icons/{$aFile}";
 
-    if ( file_exists(XOOPSMYLINKINCPATH . "/{$mylinks_theme}/icons/{$aFile}")) {
+    if (file_exists(XOOPSMYLINKINCPATH . "/{$mylinks_theme}/icons/{$aFile}")) {
         return $StyleURL;
     } else {
         return XOOPSMYLINKINCURL . "/icons/{$aFile}";
@@ -353,7 +350,7 @@ function ml_wfd_toolbar()
 {
     global $xoopsModuleConfig, $xoopsUser;
     $toolbar = "[ <a href='index.php' class='toolbar'>" ._MD_MYLINKS_MAIN. "</a> | ";
-    if ( (is_object($xoopsUser)) || (!is_object($xoopsUser) && $xoopsModuleConfig['anonpost']) ) {
+    if ((is_object($xoopsUser)) || (!is_object($xoopsUser) && $xoopsModuleConfig['anonpost'])) {
         $toolbar .= "<a href='submit.php' class='toolbar'>" . _MI_MYLINKS_SMNAME1 . "</a> | ";
     }
     $toolbar .= "<a href='topten.php?sort=2' class='toolbar'>" . _MI_MYLINKS_SMNAME2 . "</a> | <a href='topten.php?sort=1' class='toolbar'>" . _MI_MYLINKS_SMNAME3 . "</a> | <a href='topten.php?sort=3' class='toolbar'>" . _MI_MYLINKS_SMNAME4 . "</a> ]";

@@ -19,14 +19,14 @@
 function gal_getmoduleoption($option)
 {
     global $xoopsModuleConfig, $xoopsModule;
-    static $tbloptions= Array();
-    if(is_array($tbloptions) && array_key_exists($option, $tbloptions)) {
+    static $tbloptions= array();
+    if (is_array($tbloptions) && array_key_exists($option, $tbloptions)) {
         return $tbloptions[$option];
     }
 
     $retval = false;
     if (isset($xoopsModuleConfig) && (is_object($xoopsModule) && $xoopsModule->getVar('dirname') == 'extgallery' && $xoopsModule->getVar('isactive'))) {
-        if(isset($xoopsModuleConfig[$option])) {
+        if (isset($xoopsModuleConfig[$option])) {
             $retval= $xoopsModuleConfig[$option];
         }
     } else {
@@ -35,7 +35,7 @@ function gal_getmoduleoption($option)
         $config_handler =& xoops_gethandler('config');
         if ($module) {
             $moduleConfig =& $config_handler->getConfigsByCat(0, $module->getVar('mid'));
-            if(isset($moduleConfig[$option])) {
+            if (isset($moduleConfig[$option])) {
                 $retval= $moduleConfig[$option];
             }
         }

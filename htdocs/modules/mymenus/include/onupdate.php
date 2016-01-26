@@ -29,9 +29,9 @@ $mymenus = MymenusMymenus::getInstance($debug);
 xoops_loadLanguage('admin', $mymenus->dirname);
 
 /**
- * @param object $xoopsModule
- * @param int $previousVersion
- * @return bool             FALSE if failed
+ * @param  object $xoopsModule
+ * @param  int    $previousVersion
+ * @return bool   FALSE if failed
  */
 function xoops_module_update_mymenus(XoopsObject &$xoopsModule, $previousVersion)
 {
@@ -52,7 +52,7 @@ function xoops_module_update_mymenus(XoopsObject &$xoopsModule, $previousVersion
 class MymenusUpdater
 {
 
-// =========================================================================================
+    // =========================================================================================
 // This function updates any existing table of a < 1.50 version to the format used
 // in the release of Mymenus 1.51
 // =========================================================================================
@@ -80,7 +80,7 @@ class MymenusUpdater
      */
     public static function checkInfoTable(XoopsObject $module)
     {
-//    global $xoopsDB;
+        //    global $xoopsDB;
         $err = true;
 
         $tables_menus = array(
@@ -214,14 +214,12 @@ class MymenusUpdater
 
                     return false;
                 }
-
             } else {
                 if ('_menu' == $tablename) {
                     $sql    = "INSERT INTO " . $GLOBALS['xoopsDB']->prefix($module->getInfo("dirname")) . $tablename . " (id,title) VALUES (1,'Default')";
                     $result = $GLOBALS['xoopsDB']->queryF($sql);
                 }
             }
-
         } else {
             foreach ($table as $s => $w) {
                 if (!InfoColumnExists($GLOBALS['xoopsDB']->prefix($module->getInfo("dirname")) . $tablename, $s)) {
@@ -236,7 +234,6 @@ class MymenusUpdater
 
         return null;
     }
-
 }
 
 if (!function_exists("InfoColumnExists")) {

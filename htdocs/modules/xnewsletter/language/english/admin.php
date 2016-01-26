@@ -482,3 +482,4 @@ define('_AM_XNEWSLETTER_PROTOCOL_STATUS_OK_SEND_TEST', 'Newsletter sent for test
 define('_AM_XNEWSLETTER_PROTOCOL_STATUS_OK_SEND', 'Newsletter sent');
 define('_AM_XNEWSLETTER_PROTOCOL_STATUS_ERROR_SEND', 'Newsletter send failed -> %error');
 // IN PROGRESS
+

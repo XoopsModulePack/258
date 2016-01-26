@@ -12,8 +12,7 @@ if (!defined("XOOPS_ROOT_PATH")) {
 
 function b_recent_offers_show($options)
 {
-
-    include_once (XOOPS_ROOT_PATH . "/modules/smartpartner/include/common.php");
+    include_once(XOOPS_ROOT_PATH . "/modules/smartpartner/include/common.php");
 
     // Creating the partner handler object
     $offer_handler =& smartpartner_gethandler('offer');
@@ -36,13 +35,11 @@ function b_recent_offers_show($options)
         $offersObj =& $offer_handler->getObjects($criteria);
         $block = array();
         if ($offersObj) {
-
             foreach ($offersObj as $offerObj) {
                 $block['offers'][] = $offerObj->toArray('e');
             }
             $smartConfig =& smartpartner_getModuleConfig();
             //$image_info = smartpartner_imageResize($partnerObj->getImagePath(), $smartConfig['img_max_width'], $smartConfig['img_max_height']);
-
 
             if ($options[0] == 1) {
                 $block['fadeImage'] = 'style="filter:alpha(opacity=20);" onmouseover="nereidFade(this,100,30,5)" onmouseout="nereidFade(this,50,30,5)"';
@@ -51,7 +48,6 @@ function b_recent_offers_show($options)
             $block['see_all'] = 1;
             $block['lang_see_all'] = _MB_SPARTNER_LANG_SEE_ALL_OFFERS;
             $block['smartpartner_url'] = SMARTPARTNER_URL;
-
         }
     }
 

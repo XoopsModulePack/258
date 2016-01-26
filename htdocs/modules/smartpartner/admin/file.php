@@ -12,8 +12,12 @@ include_once("admin_header.php");
 global $smartpartner_file_handler;
 
 $op = '';
-if (isset($_GET['op'])) $op = $_GET['op'];
-if (isset($_POST['op'])) $op = $_POST['op'];
+if (isset($_GET['op'])) {
+    $op = $_GET['op'];
+}
+if (isset($_POST['op'])) {
+    $op = $_POST['op'];
+}
 
 function editfile($showmenu = false, $fileid = 0, $id = 0)
 {
@@ -116,7 +120,6 @@ function editfile($showmenu = false, $fileid = 0, $id = 0)
     } else {
         smartpartner_close_collapsable('addfile', 'addfileicon');
     }
-
 }
 
 $false = false;
@@ -134,7 +137,7 @@ switch ($op) {
 
     case "mod":
 
-        Global $smartpartner_file_handler;
+        global $smartpartner_file_handler;
         $fileid = (isset($_GET['fileid'])) ? $_GET['fileid'] : 0;
         $id = (isset($_GET['id'])) ? $_GET['id'] : 0;
         if (($fileid == 0) && ($id == 0)) {

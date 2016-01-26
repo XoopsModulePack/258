@@ -74,7 +74,7 @@ class Calendar_Second extends Calendar
      * @param int $i minute e.g. 31
      * @param int $s second e.g. 45
      */
-    function Calendar_Second($y, $m, $d, $h, $i, $s)
+    public function Calendar_Second($y, $m, $d, $h, $i, $s)
     {
         parent::Calendar($y, $m, $d, $h, $i, $s);
     }
@@ -84,7 +84,7 @@ class Calendar_Second extends Calendar
      *
      * @return NULL
      */
-    function build()
+    public function build()
     {
         return null;
     }
@@ -94,7 +94,7 @@ class Calendar_Second extends Calendar
      *
      * @return NULL
      */
-    function fetch()
+    public function fetch()
     {
         return null;
     }
@@ -104,7 +104,7 @@ class Calendar_Second extends Calendar
      *
      * @return NULL
      */
-    function fetchAll()
+    public function fetchAll()
     {
         return null;
     }
@@ -114,7 +114,7 @@ class Calendar_Second extends Calendar
      *
      * @return NULL
      */
-    function size()
+    public function size()
     {
         return null;
     }

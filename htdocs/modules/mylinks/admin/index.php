@@ -44,17 +44,17 @@ $indexAdmin = new ModuleAdmin();
 // Temporarily 'homeless' links (to be revised in admin.php breakup)
 $result = $xoopsDB->query("SELECT COUNT(*) FROM " . $xoopsDB->prefix("mylinks_broken") . "");
 list($totalBrokenLinks) = $xoopsDB->fetchRow($result);
-if ( $totalBrokenLinks > 0 ) {
+if ($totalBrokenLinks > 0) {
     $totalBrokenLinks = "<span style='color: #ff0000; font-weight: bold'>{$totalBrokenLinks}</span>";
 }
 $result = $xoopsDB->query("SELECT COUNT(*) FROM " . $xoopsDB->prefix("mylinks_mod") . "");
 list($totalModRequests) = $xoopsDB->fetchRow($result);
-if ( $totalModRequests > 0 ) {
+if ($totalModRequests > 0) {
     $totalModRequests = "<span style='color: #ff0000; font-weight: bold'>{$totalModRequests}</span>";
 }
 $result = $xoopsDB->query("SELECT COUNT(*) FROM " . $xoopsDB->prefix("mylinks_links") . " WHERE status='0'");
 list($totalNewLinks) = $xoopsDB->fetchRow($result);
-if ( $totalNewLinks > 0 ) {
+if ($totalNewLinks > 0) {
     $totalNewLinks = "<span style='color: #ff0000; font-weight: bold'>{$totalNewLinks}</span>";
 }
 $result=$xoopsDB->query("SELECT COUNT(*) FROM " . $xoopsDB->prefix("mylinks_links") . " WHERE status>0");
@@ -62,20 +62,20 @@ list($activeLinks) = $xoopsDB->fetchRow($result);
 
 $indexAdmin->addInfoBox(_MD_MYLINKS_WEBLINKSCONF);
 
-if ( 0 == $totalNewLinks ) {
+if (0 == $totalNewLinks) {
     //$indexAdmin->addLineLabel(_MD_MYLINKS_WEBLINKSCONF, _MD_MYLINKS_LINKSWAITING, $totalNewLinks, 'Green');
     $indexAdmin->addInfoBoxLine(_MD_MYLINKS_WEBLINKSCONF,  _MD_MYLINKS_LINKSWAITING, $totalNewLinks, 'Green');
 } else {
     $indexAdmin->addInfoBoxLine(_MD_MYLINKS_WEBLINKSCONF, _MD_MYLINKS_LINKSWAITING, $totalNewLinks, 'Red');
 }
 
-if ( 0 == $totalBrokenLinks ) {
+if (0 == $totalBrokenLinks) {
     $indexAdmin->addInfoBoxLine(_MD_MYLINKS_WEBLINKSCONF, _MD_MYLINKS_BROKENREPORTS, $totalBrokenLinks, 'Green');
 } else {
     $indexAdmin->addInfoBoxLine(_MD_MYLINKS_WEBLINKSCONF, _MD_MYLINKS_BROKENREPORTS, $totalBrokenLinks, 'Red');
 }
 
-if ( 0 == $totalModRequests ) {
+if (0 == $totalModRequests) {
     $indexAdmin->addInfoBoxLine(_MD_MYLINKS_WEBLINKSCONF, _MD_MYLINKS_MODREQUESTS, $totalModRequests, 'Green');
 } else {
     $indexAdmin->addInfoBoxLine(_MD_MYLINKS_WEBLINKSCONF, _MD_MYLINKS_MODREQUESTS, $totalModRequests, 'Red');

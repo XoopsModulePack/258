@@ -36,7 +36,9 @@ if (isset($HTTP_POST_VARS['fct'])) {
 if (isset($HTTP_GET_VARS['fct'])) {
     $fct = trim($HTTP_GET_VARS['fct']);
 }
-if (empty($fct)) $fct = 'preferences' ;
+if (empty($fct)) {
+    $fct = 'preferences' ;
+}
 include dirname(dirname(dirname(__DIR__))) . '/mainfile.php';
 include XOOPS_ROOT_PATH."/include/cp_functions.php";
 
@@ -46,13 +48,13 @@ $admintest = 0;
 
 if (is_object($xoopsUser)) {
     $xoopsModule =& XoopsModule::getByDirname("system");
-    if ( !$xoopsUser->isAdmin($xoopsModule->mid()) ) {
-        redirect_header(XOOPS_URL.'/user.php',3,_NOPERM);
+    if (!$xoopsUser->isAdmin($xoopsModule->mid())) {
+        redirect_header(XOOPS_URL.'/user.php', 3, _NOPERM);
         exit();
     }
     $admintest=1;
 } else {
-    redirect_header(XOOPS_URL.'/user.php',3,_NOPERM);
+    redirect_header(XOOPS_URL.'/user.php', 3, _NOPERM);
     exit();
 }
 
@@ -62,8 +64,7 @@ $error = false;
 if ($admintest != 0) {
     if (isset($fct) && $fct != '') {
         if (file_exists(XOOPS_ROOT_PATH."/modules/system/admin/".$fct."/xoops_version.php")) {
-
-            include_once( XOOPS_ROOT_PATH."/modules/system/language/" . $xoopsConfig['language'] . "/admin.php" ) ;
+            include_once(XOOPS_ROOT_PATH."/modules/system/language/" . $xoopsConfig['language'] . "/admin.php") ;
 
             if (file_exists(XOOPS_ROOT_PATH."/modules/system/language/".$xoopsConfig['language']."/admin/".$fct.".php")) {
                 include XOOPS_ROOT_PATH."/modules/system/language/".$xoopsConfig['language']."/admin/".$fct.".php";

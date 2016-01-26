@@ -39,9 +39,8 @@ echo $index_admin->addNavigation('xml.php');
 
 $xmlfile = XOOPS_ROOT_PATH."/xsitemap.xml";
 $stat = stat($xmlfile);
-$last_mod = date("d-m-Y H:i:s",$stat['mtime']);
+$last_mod = date("d-m-Y H:i:s", $stat['mtime']);
 //if ( is_readable( $xmlfile ) ){
-
 
 echo "<div style=\"padding: 8px;\">";
 
@@ -54,7 +53,7 @@ echo "<div style=\"padding: 8px;\">";
                 echo "<form action=xml.php method=post>
                         <input type=submit name=update value="._AM_XSITEMAP_MANAGER_UPDATE.">
                     </form><br/>";
-                if(isset($_POST['update'])) {
+                if (isset($_POST['update'])) {
                     xsitemap_xml_admin();
                 }
             echo "</div>

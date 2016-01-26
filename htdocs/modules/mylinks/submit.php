@@ -32,8 +32,8 @@ include_once './class/utility.php';
 //xoops_load('utility', $xoopsModule->getVar('dirname'));
 
 if (empty($xoopsUser) and !$xoopsModuleConfig['anonpost']) {
-  redirect_header(XOOPS_URL . '/user.php', 2, _MD_MYLINKS_MUSTREGFIRST);
-  exit();
+    redirect_header(XOOPS_URL . '/user.php', 2, _MD_MYLINKS_MUSTREGFIRST);
+    exit();
 }
 
 if (!empty($_POST['submit'])) {
@@ -43,15 +43,15 @@ if (!empty($_POST['submit'])) {
     $submitter = !empty($xoopsUser) ? $xoopsUser->getVar('uid') : 0;
 
     $msg = "";
-    switch ( true ) {
-        case ( empty( $_POST['title'] ) ):
+    switch (true) {
+        case (empty($_POST['title'])):
             $msg .= _MD_MYLINKS_ERRORTITLE;
-        case ( empty( $_POST['url'] ) ):
+        case (empty($_POST['url'])):
             $msg .= _MD_MYLINKS_ERRORURL;
-        case ( empty( $_POST['message'] ) ):
+        case (empty($_POST['message'])):
             $msg .= _MD_MYLINKS_ERRORDESC;
     }
-    if ( '' !== $msg ) {
+    if ('' !== $msg) {
         mylinksUtility::show_message($msg);
         exit();
     }
@@ -63,21 +63,21 @@ if (!empty($_POST['submit'])) {
     $description  = $myts->addSlashes($_POST['message']);
     $date         = time();
     $newid        = $xoopsDB->genId($xoopsDB->prefix('mylinks_links').'_lid_seq');
-    $mylinksAdmin = ( is_object($xoopsUser) && $xoopsUser->isAdmin($xoopsModule->mid()) ) ? true : false;
-    $status       = ( ( 1 == $xoopsModuleConfig['autoapprove'] ) || $mylinksAdmin ) ? 1 : 0;
+    $mylinksAdmin = (is_object($xoopsUser) && $xoopsUser->isAdmin($xoopsModule->mid())) ? true : false;
+    $status       = ((1 == $xoopsModuleConfig['autoapprove']) || $mylinksAdmin) ? 1 : 0;
 
     $sql = sprintf("INSERT INTO %s (lid, cid, title, url, logourl, submitter, status, date, hits, rating, votes, comments) VALUES (%u, %u, '%s', '%s', '%s', %u, %u, %u, %u, %u, %u, %u)", $xoopsDB->prefix("mylinks_links"), $newid, $cid, $title, $url, ' ', $submitter, $status, $date, 0, 0, 0, 0);
     $result = $xoopsDB->query($sql);
-    if ( !$result ) {
+    if (!$result) {
         mylinksUtility::show_message(_MD_MYLINKS_DBNOTUPDATED);
         exit();
     }
-    if ( 0 == $newid ) {
+    if (0 == $newid) {
         $newid = $xoopsDB->getInsertId();
     }
     $sql = sprintf("INSERT INTO %s (lid, description) VALUES (%u, '%s')", $xoopsDB->prefix("mylinks_text"), $newid, $description);
     $result = $xoopsDB->query($sql);
-    if ( !$result ) {
+    if (!$result) {
         mylinksUtility::show_message(_MD_MYLINKS_DBNOTUPDATED);
         exit();
     }
@@ -91,7 +91,7 @@ if (!empty($_POST['submit'])) {
     $row = $xoopsDB->fetchArray($result);
     $tags['CATEGORY_NAME'] = $row['title'];
     $tags['CATEGORY_URL'] = XOOPS_URL . "/modules/" . $xoopsModule->getVar('dirname') . "/viewcat.php?cid={$cid}";
-    if ( 1 == $xoopsModuleConfig['autoapprove'] ) {
+    if (1 == $xoopsModuleConfig['autoapprove']) {
         $notification_handler->triggerEvent('global', 0, 'new_link', $tags);
         $notification_handler->triggerEvent('category', $cid, 'new_link', $tags);
         redirect_header('index.php', 2, _MD_MYLINKS_RECEIVED . "<br />" . _MD_MYLINKS_ISAPPROVED . "");
@@ -107,7 +107,6 @@ if (!empty($_POST['submit'])) {
     }
     exit();
 } else {
-
     include_once XOOPS_ROOT_PATH . '/class/tree.php';
     $mylinksCatHandler =& xoops_getmodulehandler('category', $xoopsModule->getVar('dirname'));
     $catObjs           = $mylinksCatHandler->getAll();
@@ -120,7 +119,7 @@ if (!empty($_POST['submit'])) {
     $xoTheme->addScript('browse.php?' . mylinksGetStylePath('mylinks.js', 'include'));
     //
     ob_start();
-    xoopsCodeTarea('message',37,8);
+    xoopsCodeTarea('message', 37, 8);
     $xoopsTpl->assign('xoops_codes', ob_get_contents());
     ob_end_clean();
     ob_start();
@@ -162,9 +161,9 @@ if (!empty($_POST['submit'])) {
 
     //wanikoo search
     if (file_exists(XOOPS_ROOT_PATH."/language/".$xoopsConfig['language']."/search.php")) {
-       include_once XOOPS_ROOT_PATH."/language/".$xoopsConfig['language']."/search.php";
+        include_once XOOPS_ROOT_PATH."/language/".$xoopsConfig['language']."/search.php";
     } else {
-       include_once XOOPS_ROOT_PATH . '/language/english/search.php';
+        include_once XOOPS_ROOT_PATH . '/language/english/search.php';
     }
     $xoopsTpl->assign('lang_all', _SR_ALL);
     $xoopsTpl->assign('lang_any', _SR_ANY);

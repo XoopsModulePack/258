@@ -54,7 +54,6 @@ switch ($op) {
             $mimetypeObj = $wfdownloads->getHandler('mimetype')->get($_REQUEST['mime_id']);
         } else {
             $mimetypeObj = $wfdownloads->getHandler('mimetype')->create();
-
         }
         $form = $mimetypeObj->getForm();
         $form->display();

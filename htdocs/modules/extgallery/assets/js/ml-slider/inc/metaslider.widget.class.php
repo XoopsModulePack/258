@@ -4,7 +4,9 @@
  */
 
 // disable direct access
-if (!defined('ABSPATH')) exit;
+if (!defined('ABSPATH')) {
+    exit;
+}
 
 class MetaSlider_Widget extends WP_Widget
 {
@@ -16,7 +18,7 @@ class MetaSlider_Widget extends WP_Widget
         parent::__construct(
             'metaslider_widget', // Base ID
             'Meta Slider', // Name
-            array( 'description' => __( 'Meta Slider', 'metaslider' ), ) // Args
+            array( 'description' => __('Meta Slider', 'metaslider'), ) // Args
         );
     }
 
@@ -28,18 +30,19 @@ class MetaSlider_Widget extends WP_Widget
      * @param array $args     Widget arguments.
      * @param array $instance Saved values from database.
      */
-    public function widget( $args, $instance )
+    public function widget($args, $instance)
     {
         extract($args);
 
         if (isset($instance['slider_id'])) {
             $slider_id = $instance['slider_id'];
 
-            $title = apply_filters( 'widget_title', $instance['title'] );
+            $title = apply_filters('widget_title', $instance['title']);
 
             echo $before_widget;
-            if ( ! empty( $title ) )
+            if (! empty($title)) {
                 echo $before_title . $title . $after_title;
+            }
 
             echo do_shortcode("[metaslider id={$slider_id}]");
             echo $after_widget;
@@ -56,11 +59,11 @@ class MetaSlider_Widget extends WP_Widget
      *
      * @return array Updated safe values to be saved.
      */
-    public function update( $new_instance, $old_instance )
+    public function update($new_instance, $old_instance)
     {
         $instance = array();
-        $instance['slider_id'] = strip_tags( $new_instance['slider_id'] );
-        $instance['title'] = strip_tags( $new_instance['title'] );
+        $instance['slider_id'] = strip_tags($new_instance['slider_id']);
+        $instance['title'] = strip_tags($new_instance['title']);
 
         return $instance;
     }
@@ -72,7 +75,7 @@ class MetaSlider_Widget extends WP_Widget
      *
      * @param array $instance Previously saved values from database.
      */
-    public function form( $instance )
+    public function form($instance)
     {
         $selected_slider = 0;
         $title = "";
@@ -106,25 +109,38 @@ class MetaSlider_Widget extends WP_Widget
 
         ?>
         <p>
-            <?php if ($sliders) { ?>
+            <?php if ($sliders) {
+    ?>
                 <p>
-                    <label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php _e( 'Title:' ); ?></label>
-                    <input class="widefat" id="<?php echo $this->get_field_id( 'title' ); ?>" name="<?php echo $this->get_field_name( 'title' ); ?>" type="text" value="<?php echo esc_attr( $title ); ?>" />
+                    <label for="<?php echo $this->get_field_id('title');
+    ?>"><?php _e('Title:');
+    ?></label>
+                    <input class="widefat" id="<?php echo $this->get_field_id('title');
+    ?>" name="<?php echo $this->get_field_name('title');
+    ?>" type="text" value="<?php echo esc_attr($title);
+    ?>" />
                 </p>
-                <label for="<?php echo $this->get_field_id('slider_id'); ?>"><?php _e('Select Slider:', 'metaslider'); ?></label>
-                <select id="<?php echo $this->get_field_id('slider_id'); ?>" name="<?php echo $this->get_field_name('slider_id'); ?>">
+                <label for="<?php echo $this->get_field_id('slider_id');
+    ?>"><?php _e('Select Slider:', 'metaslider');
+    ?></label>
+                <select id="<?php echo $this->get_field_id('slider_id');
+    ?>" name="<?php echo $this->get_field_name('slider_id');
+    ?>">
                     <?php
                         foreach ($sliders as $slider) {
                             $selected = $slider['active'] ? 'selected=selected' : '';
                             echo "<option value='{$slider['id']}' {$selected}>{$slider['title']}</option>";
                         }
-                    ?>
+    ?>
                 </select>
-            <?php } else {
-                _e('No slideshows found', 'metaslider');
-            } ?>
+            <?php 
+} else {
+    _e('No slideshows found', 'metaslider');
+}
+        ?>
         </p>
         <?php
+
     }
 }
 

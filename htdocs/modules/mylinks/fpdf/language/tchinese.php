@@ -29,7 +29,7 @@
 // Project: The XOOPS Project                                                //
 // ------------------------------------------------------------------------- //
 if (!defined('XOOPS_ROOT_PATH')) {
-  die("XOOPS root path not defined");
+    die("XOOPS root path not defined");
 }
 
 require NEWS_FPDF_PATH.'/chinese.php';
@@ -103,7 +103,7 @@ $pdf_config['action_on_error'] = 0; // 0 - continue; 1 - die
 $pdf_config['creator'] = 'NEWS BASED ON FPDF v1.53';
 $pdf_config['url'] = XOOPS_URL;
 $pdf_config['mail'] = 'mailto:'.$xoopsConfig['adminmail'];
-$pdf_config['slogan']=xoops_substr($myts->htmlspecialchars( $xoopsConfig['sitename'] ),0,30);
+$pdf_config['slogan']=xoops_substr($myts->htmlspecialchars($xoopsConfig['sitename']), 0, 30);
 $pdf_config['scale'] = '0.8';
 $pdf_config['dateformat'] = _DATESTRING;
 $pdf_config['footerpage'] = _MD_PDF_PAGE;
@@ -118,50 +118,54 @@ define('NEWS_PDF_DATE', _MD_POSTEDON);
 // For more details, refer to: http://fpdf.org
 class PDF_language extends PDF_Chinese
 {
-  function PDF_language($orientation='P',$unit='mm',$format='A4')
-  {
-      //Call parent constructor
-      $this->FPDF($orientation,$unit,$format);
+    public function PDF_language($orientation='P', $unit='mm', $format='A4')
+    {
+        //Call parent constructor
+      $this->FPDF($orientation, $unit, $format);
       //Initialization
     $this->AddBig5hwFont();
-  }
+    }
 
-  function Error($msg)
-  {
-    global $pdf_config;
-    if($pdf_config['action_on_error']){
-      //Fatal error
+    public function Error($msg)
+    {
+        global $pdf_config;
+        if ($pdf_config['action_on_error']) {
+            //Fatal error
       die('<B>FPDF error: </B>'.$msg);
-    }
-  }
-
-  function encoding(&$text, $in_charset)
-  {
-    $out_charset = $GLOBALS["valid_pfd_charset"];
-      if (empty($in_charset) || empty($out_charset) || !strcasecmp($out_charset, $in_charset)) return;
-
-      if(is_array($text) && count($text)>0){
-        foreach($text as $key=>$val){
-          $this->_encoding($text[$key], $in_charset, $out_charset);
         }
-      }else{
-        $this->_encoding($text, $in_charset, $out_charset);
-      }
-  }
-
-  function _encoding(&$text, $in_charset, $out_charset)
-  {
-    $xconv_handler = @xoops_getmodulehandler('xconv', 'xconv', true);
-    if($xconv_handler &&
-      $converted_text = @$xconv_handler->convert_encoding($text, $out_charset, $in_charset)
-    ){
-      $text = $converted_text;
-
-      return;
     }
-    if(XOOPS_USE_MULTIBYTES && function_exists('mb_convert_encoding')) $converted_text = @mb_convert_encoding($text, $out_charset, $in_charset);
-    else
-    if(function_exists('iconv')) $converted_text = @iconv($in_charset, $out_charset . "//TRANSLIT", $text);
-    $text = empty($converted_text)?$text:$converted_text;
-  }
+
+    public function encoding(&$text, $in_charset)
+    {
+        $out_charset = $GLOBALS["valid_pfd_charset"];
+        if (empty($in_charset) || empty($out_charset) || !strcasecmp($out_charset, $in_charset)) {
+            return;
+        }
+
+        if (is_array($text) && count($text)>0) {
+            foreach ($text as $key=>$val) {
+                $this->_encoding($text[$key], $in_charset, $out_charset);
+            }
+        } else {
+            $this->_encoding($text, $in_charset, $out_charset);
+        }
+    }
+
+    public function _encoding(&$text, $in_charset, $out_charset)
+    {
+        $xconv_handler = @xoops_getmodulehandler('xconv', 'xconv', true);
+        if ($xconv_handler &&
+      $converted_text = @$xconv_handler->convert_encoding($text, $out_charset, $in_charset)
+    ) {
+            $text = $converted_text;
+
+            return;
+        }
+        if (XOOPS_USE_MULTIBYTES && function_exists('mb_convert_encoding')) {
+            $converted_text = @mb_convert_encoding($text, $out_charset, $in_charset);
+        } elseif (function_exists('iconv')) {
+            $converted_text = @iconv($in_charset, $out_charset . "//TRANSLIT", $text);
+        }
+        $text = empty($converted_text)?$text:$converted_text;
+    }
 }

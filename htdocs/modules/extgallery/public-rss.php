@@ -25,7 +25,7 @@ $GLOBALS['xoopsLogger']->activated = false;
 
 include_once XOOPS_ROOT_PATH . '/class/template.php';
 if (function_exists('mb_http_output')) {
-mb_http_output('pass');
+    mb_http_output('pass');
 }
 
 $catId = isset($_GET['id']) ? $_GET['id'] : 0;
@@ -36,7 +36,7 @@ $catObj = $catHandler->getCat($catId);
 
 if ($catId != 0) {
     $permHandler = ExtgalleryPublicPermHandler::getHandler();
-    if($permHandler->isAllowed($xoopsUser, 'public_access', $catId)) {
+    if ($permHandler->isAllowed($xoopsUser, 'public_access', $catId)) {
         $catObj = $catHandler->getCat($catId);
         $cat = $catHandler->objectToArray($catObj);
     }

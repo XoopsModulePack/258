@@ -145,7 +145,7 @@ switch ($op) {
                 $customArray['fid']           = $fid;
                 $customArray['formulize_mgr'] = xoops_getmodulehandler('elements', 'formulize');
                 $customArray['groups']        = $GLOBALS['xoopsUser'] ? $GLOBALS['xoopsUser']->getGroups() : array(0 => XOOPS_GROUP_ANONYMOUS);
-                $customArray['prevEntry']     = getEntryValues( // is a Formulize function
+                $customArray['prevEntry']     = getEntryValues(// is a Formulize function
                     $downloadObj->getVar('formulize_idreq'),
                     $customArray['formulize_mgr'],
                     $customArray['groups'],
@@ -356,7 +356,7 @@ switch ($op) {
                 $owner_groups =& $member_handler->getGroupsByUser($owner, false);
                 $uid          = is_object($GLOBALS['xoopsUser']) ? (int)$GLOBALS['xoopsUser']->getVar('uid') : 0;
                 $groups       = is_object($GLOBALS['xoopsUser']) ? $GLOBALS['xoopsUser']->getGroups() : array(0 => XOOPS_GROUP_ANONYMOUS);
-                $entries      = handleSubmission( // is a Formulize function
+                $entries      = handleSubmission(// is a Formulize function
                     $formulizeElements_handler,
                     $entries,
                     $uid,
@@ -527,7 +527,6 @@ switch ($op) {
                 $notification_handler->triggerEvent('global', 0, 'file_modify', $tags);
                 redirect_header('index.php', 2, _MD_WFDOWNLOADS_THANKSFORINFO);
             }
-
         }
         break;
 }

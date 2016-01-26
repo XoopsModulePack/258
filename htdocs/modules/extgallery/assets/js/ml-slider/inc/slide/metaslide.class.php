@@ -220,7 +220,7 @@ class MetaSlide
      */
     public function get_thumb()
     {
-        $imageHelper = new MetaSliderImageHelper($this->slide->ID, 150,150,'false');
+        $imageHelper = new MetaSliderImageHelper($this->slide->ID, 150, 150, 'false');
 
         return $imageHelper->get_image_url();
     }

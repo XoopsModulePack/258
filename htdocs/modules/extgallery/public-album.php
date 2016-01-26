@@ -23,12 +23,12 @@ include_once XOOPS_ROOT_PATH.'/modules/extgallery/class/publicPerm.php';
 $GLOBALS['xoopsOption']['template_main'] = 'extgallery_public-album.html';
 include XOOPS_ROOT_PATH.'/header.php';
 
-if(!isset($_GET['id'])) {
+if (!isset($_GET['id'])) {
     $catId = 0;
 } else {
     $catId = intval($_GET['id']);
 }
-if(!isset($_GET['start'])) {
+if (!isset($_GET['start'])) {
     $start = 0;
 } else {
     $start = intval($_GET['start']);
@@ -36,40 +36,61 @@ if(!isset($_GET['start'])) {
 
 // HACK BLUETEEN TO SORT PHOTO BY USERS
 //photo_date - photo_title - photo_hits - photo_rating
-if((isset($_GET['sortby']) && ($_GET['sortby']=="photo_date" || $_GET['sortby']=="photo_title" || $_GET['sortby']=="photo_hits" || $_GET['sortby']=="photo_rating")  )) {
-        $sortby = $_GET['sortby'];
+if ((isset($_GET['sortby']) && ($_GET['sortby']=="photo_date" || $_GET['sortby']=="photo_title" || $_GET['sortby']=="photo_hits" || $_GET['sortby']=="photo_rating"))) {
+    $sortby = $_GET['sortby'];
 } else {
-        $sortby = "photo_date";
+    $sortby = "photo_date";
 }
 
 //ASC ou DESC
-if((isset($_GET['orderby']) && ($_GET['orderby']=="DESC" || $_GET['orderby']=="ASC")  )) {
-        $orderby = $_GET['orderby'];
+if ((isset($_GET['orderby']) && ($_GET['orderby']=="DESC" || $_GET['orderby']=="ASC"))) {
+    $orderby = $_GET['orderby'];
 } else {
-        $orderby = $GLOBALS['xoopsModuleConfig']['display_set_order'];
+    $orderby = $GLOBALS['xoopsModuleConfig']['display_set_order'];
 }
 
 $SortbyOrderby = $sortby." ".$orderby;
 
-function convertorderbytrans($SortbyOrderby) {
-             $orderbyTrans = array();
-            if ($SortbyOrderby == "photo_date DESC")   $orderbyTrans = _MD_EXTGALLERY_ORDERBY_DATEASC;
-            if ($SortbyOrderby == "photo_date ASC")    $orderbyTrans = _MD_EXTGALLERY_ORDERBY_DATEDESC;
-            if ($SortbyOrderby == "photo_title ASC")    $orderbyTrans = _MD_EXTGALLERY_ORDERBY_TITREASC;
-            if ($SortbyOrderby == "photo_title DESC")   $orderbyTrans = _MD_EXTGALLERY_ORDERBY_TITREDESC;
-            if ($SortbyOrderby == "uid ASC")    $orderbyTrans = _MD_EXTGALLERY_ORDERBY_DESIGNERASC;
-            if ($SortbyOrderby == "uid DESC")   $orderbyTrans = _MD_EXTGALLERY_ORDERBY_DESIGNERDESC;
-            if ($SortbyOrderby == "photo_hits DESC") $orderbyTrans = _MD_EXTGALLERY_ORDERBY_HITSASC;
-            if ($SortbyOrderby == "photo_hits ASC")   $orderbyTrans = _MD_EXTGALLERY_ORDERBY_HITSDESC;
-            if ($SortbyOrderby == "photo_rating DESC")  $orderbyTrans = _MD_EXTGALLERY_ORDERBY_NOTEASC;
-            if ($SortbyOrderby == "photo_rating ASC") $orderbyTrans = _MD_EXTGALLERY_ORDERBY_NOTEDESC;
+function convertorderbytrans($SortbyOrderby)
+{
+    $orderbyTrans = array();
+    if ($SortbyOrderby == "photo_date DESC") {
+        $orderbyTrans = _MD_EXTGALLERY_ORDERBY_DATEASC;
+    }
+    if ($SortbyOrderby == "photo_date ASC") {
+        $orderbyTrans = _MD_EXTGALLERY_ORDERBY_DATEDESC;
+    }
+    if ($SortbyOrderby == "photo_title ASC") {
+        $orderbyTrans = _MD_EXTGALLERY_ORDERBY_TITREASC;
+    }
+    if ($SortbyOrderby == "photo_title DESC") {
+        $orderbyTrans = _MD_EXTGALLERY_ORDERBY_TITREDESC;
+    }
+    if ($SortbyOrderby == "uid ASC") {
+        $orderbyTrans = _MD_EXTGALLERY_ORDERBY_DESIGNERASC;
+    }
+    if ($SortbyOrderby == "uid DESC") {
+        $orderbyTrans = _MD_EXTGALLERY_ORDERBY_DESIGNERDESC;
+    }
+    if ($SortbyOrderby == "photo_hits DESC") {
+        $orderbyTrans = _MD_EXTGALLERY_ORDERBY_HITSASC;
+    }
+    if ($SortbyOrderby == "photo_hits ASC") {
+        $orderbyTrans = _MD_EXTGALLERY_ORDERBY_HITSDESC;
+    }
+    if ($SortbyOrderby == "photo_rating DESC") {
+        $orderbyTrans = _MD_EXTGALLERY_ORDERBY_NOTEASC;
+    }
+    if ($SortbyOrderby == "photo_rating ASC") {
+        $orderbyTrans = _MD_EXTGALLERY_ORDERBY_NOTEDESC;
+    }
 
-            return $orderbyTrans;
+    return $orderbyTrans;
 }
 
 // Check the access permission
 $permHandler = ExtgalleryPublicPermHandler::getHandler();
-if(!$permHandler->isAllowed($xoopsUser, 'public_access', $catId)) {
+if (!$permHandler->isAllowed($xoopsUser, 'public_access', $catId)) {
     redirect_header("index.php", 3, _NOPERM);
     exit;
 }
@@ -79,7 +100,7 @@ $photoHandler = xoops_getmodulehandler('publicphoto', 'extgallery');
 
 $catObj = $catHandler->getCat($catId);
 
-if(is_null($catObj)) {
+if (is_null($catObj)) {
     include(XOOPS_ROOT_PATH."/footer.php");
     exit;
 }
@@ -93,27 +114,27 @@ $xoopsTpl->assign('cat', $cat);
 $catPath = $photoHandler->objectToArray($catHandler->getPath($catId));
 $xoopsTpl->assign('catPath', $catPath);
 
-$photos = $photoHandler->objectToArray($photoHandler->getAlbumPhotoPage($catId, $start, $sortby, $orderby),array('uid')); //xoops - blueteen - tri de l'affichage
+$photos = $photoHandler->objectToArray($photoHandler->getAlbumPhotoPage($catId, $start, $sortby, $orderby), array('uid')); //xoops - blueteen - tri de l'affichage
 
 // Plugin traitement
 $plugin = xoops_getmodulehandler('plugin', 'extgallery');
 $nbPhoto = count($photos);
-for($i=0;$i<$nbPhoto;$i++) {
+for ($i=0;$i<$nbPhoto;$i++) {
     $params = array('catId'=>$catId, 'photoId'=>$photos[$i]['photo_id'], 'link'=>array());
     $plugin->triggerEvent('photoAlbumLink', $params);
     $photos[$i]['link'] = $params['link'];
 }
 
 $k = $xoopsModuleConfig['nb_column'] - (count($photos)%$xoopsModuleConfig['nb_column']);
-if($k != $xoopsModuleConfig['nb_column']) {
-    for($i=0;$i<$k;$i++) {
+if ($k != $xoopsModuleConfig['nb_column']) {
+    for ($i=0;$i<$k;$i++) {
         $photos[] = array();
     }
 }
 
 // HACK DATE BY MAGE : DISPLAY PUBLICATION DATE
 foreach (array_keys($photos) as $i) {
-    if(isset($photos[$i]['photo_date'])){
+    if (isset($photos[$i]['photo_date'])) {
         $photos[$i]['photo_date'] = date(_SHORTDATESTRING, $photos[$i]['photo_date']);
     }
 }
@@ -124,16 +145,16 @@ $xoopsTpl->assign('photos', $photos);
 $pageNav = new XoopsPageNav($photoHandler->getAlbumCount($catId), $xoopsModuleConfig['nb_column']*$xoopsModuleConfig['nb_line'], $start, "start", "id=".$catId."&orderby=".$orderby."&sortby=".$sortby); //xoops - blueteen - tri de l'affichage
 $xoopsTpl->assign('pageNav', $pageNav->renderNav());
 
-if(isset($catObj)) {
+if (isset($catObj)) {
     $xoopsTpl->assign('xoops_pagetitle', $catObj->getVar('cat_name'));
-    $xoTheme->addMeta('meta','description',$catObj->getVar('cat_desc'));
+    $xoTheme->addMeta('meta', 'description', $catObj->getVar('cat_desc'));
 }
 
 $jquery = $xoopsModuleConfig['enable_jquery'];
 $xoopsTpl->assign('jquery', $jquery);
-if($jquery == 1 && $ajaxeffect != 'none'){
+if ($jquery == 1 && $ajaxeffect != 'none') {
     $xoTheme->addScript("browse.php?Frameworks/jquery/jquery.js");
-    switch($ajaxeffect) {
+    switch ($ajaxeffect) {
         case 'lightbox':
             $xoTheme->addScript("browse.php?Frameworks/jquery/plugins/jquery.lightbox.js");
             $xoTheme->addStylesheet('browse.php?modules/system/css/lightbox.css');
@@ -185,17 +206,19 @@ $xoopsTpl->assign('extgallerySortbyOrderby', _MD_EXTGALLERY_ORDERBY.convertorder
 
 //DNPROSSI - VOLTAN - added preferences option
 //  enable_info, enable_submitter_lnk, enable_photo_hits
-if ( $xoopsModuleConfig['info_view'] == "album" || $xoopsModuleConfig['info_view'] == "both" )
-{
-    if ( $xoopsModuleConfig['pubusr_info_view'] == "public" || $xoopsModuleConfig['pubusr_info_view'] == "both" )
-    {
-        if ( $xoopsModuleConfig['enable_info'] == 0 )
-        {
+if ($xoopsModuleConfig['info_view'] == "album" || $xoopsModuleConfig['info_view'] == "both") {
+    if ($xoopsModuleConfig['pubusr_info_view'] == "public" || $xoopsModuleConfig['pubusr_info_view'] == "both") {
+        if ($xoopsModuleConfig['enable_info'] == 0) {
             $enable_info = $xoopsModuleConfig['enable_info'];
+        } else {
+            $enable_info = 1;
         }
-        else { $enable_info = 1; }
-    } else { $enable_info = 1; }
-} else { $enable_info = 1; }
+    } else {
+        $enable_info = 1;
+    }
+} else {
+    $enable_info = 1;
+}
 $xoopsTpl->assign('enable_info', $enable_info);
 $xoopsTpl->assign('enable_photo_hits', $xoopsModuleConfig['enable_photo_hits']);
 $xoopsTpl->assign('enable_submitter_lnk', $xoopsModuleConfig['enable_submitter_lnk']);

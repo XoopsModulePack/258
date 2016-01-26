@@ -158,7 +158,7 @@ function publisherGetAllowedImagesTypes()
 }
 
 /**
- * @param  bool $withLink
+ * @param  bool   $withLink
  * @return string
  */
 function publisherModuleHome($withLink = true)
@@ -221,8 +221,8 @@ function publisherCopyr($source, $dest)
 
 /**
  * .* @credits Thanks to the NewBB2 Development Team
- * @param  string $item
- * @param  bool   $getStatus
+ * @param  string          $item
+ * @param  bool            $getStatus
  * @return bool|int|string
  */
 function &publisherGetPathStatus($item, $getStatus = false)
@@ -298,8 +298,8 @@ function publisherChmod($target, $mode = 0777)
 }
 
 /**
- * @param  bool $hasPath
- * @param  bool $item
+ * @param  bool   $hasPath
+ * @param  bool   $item
  * @return string
  */
 function publisherGetUploadDir($hasPath = true, $item = false)
@@ -338,7 +338,7 @@ function publisherGetImageDir($item = '', $hasPath = true)
 }
 
 /**
- * @param  array $errors
+ * @param  array  $errors
  * @return string
  */
 function publisherFormatErrors($errors = array())
@@ -619,9 +619,9 @@ function publisherCreateCategorySelect($selectedid = 0, $parentcategory = 0, $al
 }
 
 /**
- * @param  int  $selectedid
- * @param  int  $parentcategory
- * @param  bool $allCatOption
+ * @param  int    $selectedid
+ * @param  int    $parentcategory
+ * @param  bool   $allCatOption
  * @return string
  */
 function publisherCreateCategoryOptions($selectedid = 0, $parentcategory = 0, $allCatOption = true)
@@ -886,7 +886,7 @@ function publisherCloseTags($string)
 }
 
 /**
- * @param  int $itemId
+ * @param  int    $itemId
  * @return string
  */
 function publisherRatingBar($itemId)

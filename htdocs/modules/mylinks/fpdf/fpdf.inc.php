@@ -29,20 +29,20 @@
 // Project: The XOOPS Project                                                //
 // ------------------------------------------------------------------------- //
 if (!defined('XOOPS_ROOT_PATH')) {
-  die("XOOPS root path not defined");
+    die("XOOPS root path not defined");
 }
 
-define('NEWS_FPDF_PATH',XOOPS_ROOT_PATH.'/modules/'.$xoopsModule->getVar('dirname').'/fpdf');
-define('FPDF_FONTPATH',NEWS_FPDF_PATH.'/font/');
+define('NEWS_FPDF_PATH', XOOPS_ROOT_PATH.'/modules/'.$xoopsModule->getVar('dirname').'/fpdf');
+define('FPDF_FONTPATH', NEWS_FPDF_PATH.'/font/');
 
 require NEWS_FPDF_PATH.'/gif.php';
 require NEWS_FPDF_PATH.'/fpdf.php';
 
-if(is_readable(NEWS_FPDF_PATH.'/language/'.$xoopsConfig['language'].'.php')){
-  include_once(NEWS_FPDF_PATH.'/language/'.$xoopsConfig['language'].'.php');
-}elseif(is_readable(NEWS_FPDF_PATH.'/language/english.php')){
-  include_once(NEWS_FPDF_PATH.'/language/english.php');
-}else{
-  die('No Language File Readable!');
+if (is_readable(NEWS_FPDF_PATH.'/language/'.$xoopsConfig['language'].'.php')) {
+    include_once(NEWS_FPDF_PATH.'/language/'.$xoopsConfig['language'].'.php');
+} elseif (is_readable(NEWS_FPDF_PATH.'/language/english.php')) {
+    include_once(NEWS_FPDF_PATH.'/language/english.php');
+} else {
+    die('No Language File Readable!');
 }
 include NEWS_FPDF_PATH.'/makepdf_class.php';

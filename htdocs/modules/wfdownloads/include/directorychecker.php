@@ -29,7 +29,7 @@ xoops_loadLanguage('directorychecker', $mydirname);
  * Class DirectoryChecker
  * check status of a directory
  */
-class DirectoryChecker
+class directorychecker
 {
     /**
      * @param     $path

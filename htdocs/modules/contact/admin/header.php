@@ -41,12 +41,12 @@ $pathIcon32 = '../'.$xoopsModule->getInfo('icons32');
 $pathModuleAdmin = $xoopsModule->getInfo('dirmoduleadmin');
 
 // Contact Handler
-$contact_handler = & xoops_getModuleHandler ( 'contact', 'contact' );
+$contact_handler = & xoops_getModuleHandler('contact', 'contact');
 
 // Locad admin menu class
-if ( file_exists($GLOBALS['xoops']->path($pathModuleAdmin.'/moduleadmin.php'))){
+if (file_exists($GLOBALS['xoops']->path($pathModuleAdmin.'/moduleadmin.php'))) {
     include_once $GLOBALS['xoops']->path($pathModuleAdmin.'/moduleadmin.php');
-}else{
+} else {
     redirect_header("../../../admin.php", 5, _AM_MODULEADMIN_MISSING, false);
 }
 

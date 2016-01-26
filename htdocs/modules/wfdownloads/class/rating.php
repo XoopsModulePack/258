@@ -82,7 +82,7 @@ class WfdownloadsRatingHandler extends XoopsPersistableObjectHandler
      *
      * @return array/int
      */
-    function getUserAverage($criteria = null)
+    public function getUserAverage($criteria = null)
     {
         $groupby = false;
         $field   = '';

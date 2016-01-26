@@ -28,7 +28,7 @@ class TagLink extends XoopsObject
     /**
      * Constructor
      */
-    function __construct()
+    public function __construct()
     {
         $this->initVar("tl_id",         XOBJ_DTYPE_INT,     null, false);
         $this->initVar("tag_id",        XOBJ_DTYPE_INT,     0);
@@ -40,11 +40,10 @@ class TagLink extends XoopsObject
     /**
      * Constructor
      */
-    function TagLink()
+    public function TagLink()
     {
         self::__construct();
     }
-
 }
 
 /**
@@ -60,14 +59,14 @@ class TagLink extends XoopsObject
 
 class TagLinkHandler extends XoopsPersistableObjectHandler
 {
-    var $table_stats;
+    public $table_stats;
 
     /**
      * Constructor
      *
      * @param object $db reference to the {@link XoopsDatabase} object
      **/
-    function __construct(&$db)
+    public function __construct(&$db)
     {
         parent::__construct($db, "tag_link", "TagLink", "tl_id", "tag_itemid");
         $this->table_stats = $this->db->prefix("tag_stats");
@@ -78,7 +77,7 @@ class TagLinkHandler extends XoopsPersistableObjectHandler
      *
      * @param object $db reference to the {@link XoopsDatabase} object
      **/
-    function TagLinkHandler(&$db)
+    public function TagLinkHandler(&$db)
     {
         self::__construct($db);
     }
@@ -88,7 +87,7 @@ class TagLinkHandler extends XoopsPersistableObjectHandler
      *
      * @return bool true on success
      */
-    function cleanOrphan()
+    public function cleanOrphan()
     {
         return parent::cleanOrphan($this->db->prefix("tag_tag"), "tag_id");
     }

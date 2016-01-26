@@ -320,5 +320,4 @@ class xFormsElementsHandler
 
         return false;
     }
-
 }

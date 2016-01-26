@@ -29,56 +29,56 @@
 // Project: The XOOPS Project                                                //
 // ------------------------------------------------------------------------- //
 if (!defined('XOOPS_ROOT_PATH')) {
-  die("XOOPS root path not defined");
+    die("XOOPS root path not defined");
 }
 
 class XoopsheadlineHeadline extends XoopsObject
 {
 
-    function __construct()
+    public function __construct()
     {
-    parent::__construct();
-    $this->initVar('headline_id', XOBJ_DTYPE_INT, null, false);
-    $this->initVar('headline_name', XOBJ_DTYPE_TXTBOX, null, true, 255);
-    $this->initVar('headline_url', XOBJ_DTYPE_TXTBOX, null, true, 255);
-    $this->initVar('headline_rssurl', XOBJ_DTYPE_TXTBOX, null, true, 255);
-    $this->initVar('headline_cachetime', XOBJ_DTYPE_INT, 600, false);
-    $this->initVar('headline_asblock', XOBJ_DTYPE_INT, 0, false);
-    $this->initVar('headline_display', XOBJ_DTYPE_INT, 0, false);
-    $this->initVar('headline_encoding', XOBJ_DTYPE_OTHER, null, false);
-    $this->initVar('headline_weight', XOBJ_DTYPE_INT, 0, false);
-    $this->initVar('headline_mainimg', XOBJ_DTYPE_INT, 1, false);
-    $this->initVar('headline_mainfull', XOBJ_DTYPE_INT, 1, false);
-    $this->initVar('headline_mainmax', XOBJ_DTYPE_INT, 10, false);
-    $this->initVar('headline_blockimg', XOBJ_DTYPE_INT, 0, false);
-    $this->initVar('headline_blockmax', XOBJ_DTYPE_INT, 10, false);
-    $this->initVar('headline_xml', XOBJ_DTYPE_SOURCE, null, false);
-    $this->initVar('headline_updated', XOBJ_DTYPE_INT, 0, false);
+        parent::__construct();
+        $this->initVar('headline_id', XOBJ_DTYPE_INT, null, false);
+        $this->initVar('headline_name', XOBJ_DTYPE_TXTBOX, null, true, 255);
+        $this->initVar('headline_url', XOBJ_DTYPE_TXTBOX, null, true, 255);
+        $this->initVar('headline_rssurl', XOBJ_DTYPE_TXTBOX, null, true, 255);
+        $this->initVar('headline_cachetime', XOBJ_DTYPE_INT, 600, false);
+        $this->initVar('headline_asblock', XOBJ_DTYPE_INT, 0, false);
+        $this->initVar('headline_display', XOBJ_DTYPE_INT, 0, false);
+        $this->initVar('headline_encoding', XOBJ_DTYPE_OTHER, null, false);
+        $this->initVar('headline_weight', XOBJ_DTYPE_INT, 0, false);
+        $this->initVar('headline_mainimg', XOBJ_DTYPE_INT, 1, false);
+        $this->initVar('headline_mainfull', XOBJ_DTYPE_INT, 1, false);
+        $this->initVar('headline_mainmax', XOBJ_DTYPE_INT, 10, false);
+        $this->initVar('headline_blockimg', XOBJ_DTYPE_INT, 0, false);
+        $this->initVar('headline_blockmax', XOBJ_DTYPE_INT, 10, false);
+        $this->initVar('headline_xml', XOBJ_DTYPE_SOURCE, null, false);
+        $this->initVar('headline_updated', XOBJ_DTYPE_INT, 0, false);
     }
 
-  function XoopsheadlineHeadline()
-  {
-      $this->__construct();
-  }
-
-  function cacheExpired()
-  {
-    if (time() - $this->getVar('headline_updated') > $this->getVar('headline_cachetime')) {
-      return true;
+    public function XoopsheadlineHeadline()
+    {
+        $this->__construct();
     }
 
-    return false;
-  }
+    public function cacheExpired()
+    {
+        if (time() - $this->getVar('headline_updated') > $this->getVar('headline_cachetime')) {
+            return true;
+        }
+
+        return false;
+    }
 }
 
 class xoopsheadlineHeadlineHandler extends XoopsPersistableObjectHandler
 {
-    function xoopsheadlineHeadlineHandler(&$db)
+    public function xoopsheadlineHeadlineHandler(&$db)
     {
         $this->__construct($db);
     }
 
-    function __construct(&$db)
+    public function __construct(&$db)
     {
         parent::__construct($db, 'xoopsheadline', 'xoopsheadline' . 'Headline', 'headline_id');
     }

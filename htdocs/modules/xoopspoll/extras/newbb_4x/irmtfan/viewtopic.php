@@ -415,7 +415,6 @@ if ($topic_obj->getVar('approved') > 0) { // if the topic is active
             'image' => $ad_undigest,
             'name'  => _MD_UNDIGESTTOPIC);
     }
-
 } else { // if the topic is pending/deleted then restore/approve
     $admin_actions['restore'] = array(
         'link'  => XOOPS_URL . '/modules/' . $xoopsModule->getVar('dirname', 'n') . '/topicmanager.php?mode=restore&amp;topic_id=' . $topic_id,
@@ -462,7 +461,6 @@ if ($pollmodules) {
         $GLOBALS['xoopsTpl']->assign('pollmodules', $pollmodules);
         $uid = ($GLOBALS['xoopsUser'] instanceof XoopsUser) ? $GLOBALS['xoopsUser']->getVar('uid') : 0;
         if ('xoopspoll' === $pollmodules) {
-
             $xpollHandler =& xoops_getmodulehandler('poll', 'xoopspoll');
             $poll_obj     = $xpollHandler->get($topic_obj->getVar('poll_id'));
             if (!empty($poll_obj) && $poll_obj instanceof XoopspollPoll) {
@@ -506,7 +504,6 @@ if ($pollmodules) {
                     $GLOBALS['xoopsTpl']->assign('topic_pollresult', $renderer->renderResults());
                 }
             }
-
         } else { //Umfrage
             $poll_obj = new Umfrage($topic_obj->getVar('poll_id'));
             $hasEnded = $poll_obj->getVar('end_time') < time() ? true : false;
@@ -565,7 +562,6 @@ if ($pollmodules) {
                 $xoopsTpl->assign('forum_addpoll', "<a href=\"" . XOOPS_URL . '/modules/' . $xoopsModule->getVar('dirname', 'n') . "/polls.php?op=add&amp;topic_id={$topic_id}\">{$t_poll}</a>");
             }
         } elseif ($isadmin || (is_object($poll) && ($xoopsUser instanceof XoopsUser) && $xoopsUser->getVar('uid') === $poll_obj->getVar('user_id'))) {
-
             $poll_edit    = '';
             $poll_delete  = '';
             $poll_restart = '';

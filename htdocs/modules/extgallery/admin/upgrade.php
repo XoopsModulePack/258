@@ -17,7 +17,7 @@
  * @version     $Id: upgrade.php 8088 2011-11-06 09:38:12Z beckmi $
  */
 
-if(isset($_POST['step'])) {
+if (isset($_POST['step'])) {
     $step = $_POST['step'];
 } else {
     $step = 'default';
@@ -37,20 +37,19 @@ $lastVersionString = getLastModuleVersion();
 $moduleFileName = $moduleName.'-'.$lastVersionString.'.tar.gz';
 $langFileName = $moduleName.'-lang-'.$lastVersionString.'_'.$xoopsConfig['language'].'.tar.gz';
 
-switch($step) {
+switch ($step) {
 
     case 'download':
 
         xoops_cp_header();
 
-        if(isModuleUpToDate()) {
-
+        if (isModuleUpToDate()) {
             echo _AM_EXTGALLERY_UPDATE_OK;
             xoops_cp_footer();
             break;
         }
 
-        if(!$handle = @fopen($downloadServer.$moduleFileName, 'r')) {
+        if (!$handle = @fopen($downloadServer.$moduleFileName, 'r')) {
             printf(_AM_EXTGALLERY_MD_FILE_DONT_EXIST, $downloadServer, $moduleFileName);
             xoops_cp_footer();
             break;
@@ -68,8 +67,8 @@ switch($step) {
         }
 
         // English file are included on module package
-        if($xoopsConfig['language'] != "english") {
-            if(!$handle = @fopen($downloadServer.$langFileName, 'r')) {
+        if ($xoopsConfig['language'] != "english") {
+            if (!$handle = @fopen($downloadServer.$langFileName, 'r')) {
                 printf(_AM_EXTGALLERY_LG_FILE_DONT_EXIST, $downloadServer, $langFileName);
             } else {
                 $localHandle = @fopen(XOOPS_ROOT_PATH.'/uploads/'.$langFileName, 'w+');
@@ -95,8 +94,7 @@ switch($step) {
 
         xoops_cp_header();
 
-        if(!file_exists(XOOPS_ROOT_PATH."/uploads/".$moduleFileName)) {
-
+        if (!file_exists(XOOPS_ROOT_PATH."/uploads/".$moduleFileName)) {
             echo _AM_EXTGALLERY_MD_FILE_DONT_EXIST_SHORT;
             xoops_cp_footer();
 
@@ -109,32 +107,31 @@ switch($step) {
         //TrOn(5);
 
         // Extract module files
-        PclTarExtract(XOOPS_ROOT_PATH."/uploads/".$moduleFileName,XOOPS_ROOT_PATH."/modules/".$localModuleDir."/","modules/".$moduleName."/");
+        PclTarExtract(XOOPS_ROOT_PATH."/uploads/".$moduleFileName, XOOPS_ROOT_PATH."/modules/".$localModuleDir."/", "modules/".$moduleName."/");
         // Delete downloaded module's files
         unlink(XOOPS_ROOT_PATH."/uploads/".$moduleFileName);
 
-        if(file_exists(XOOPS_ROOT_PATH."/uploads/".$langFileName)) {
+        if (file_exists(XOOPS_ROOT_PATH."/uploads/".$langFileName)) {
             // Extract language files
-            PclTarExtract(XOOPS_ROOT_PATH."/uploads/".$langFileName,XOOPS_ROOT_PATH."/modules/".$localModuleDir."/","modules/".$moduleName."/");
+            PclTarExtract(XOOPS_ROOT_PATH."/uploads/".$langFileName, XOOPS_ROOT_PATH."/modules/".$localModuleDir."/", "modules/".$moduleName."/");
             // Delete downloaded module's files
             unlink(XOOPS_ROOT_PATH."/uploads/".$langFileName);
         }
 
   // Delete folder created by a small issu in PclTar lib
-  if(is_dir(XOOPS_ROOT_PATH."/modules/".$localModuleDir."/modules")) {
-   rmdir(XOOPS_ROOT_PATH."/modules/".$localModuleDir."/modules");
+  if (is_dir(XOOPS_ROOT_PATH."/modules/".$localModuleDir."/modules")) {
+      rmdir(XOOPS_ROOT_PATH."/modules/".$localModuleDir."/modules");
   }
 
         // Delete template_c file
         if ($handle = opendir(XOOPS_ROOT_PATH.'/templates_c')) {
+            while (false !== ($file = readdir($handle))) {
+                if ($file != '.' && $file != '..' && $file != 'index.html') {
+                    unlink(XOOPS_ROOT_PATH.'/templates_c/'.$file);
+                }
+            }
 
-   while (false !== ($file = readdir($handle))) {
-    if($file != '.' && $file != '..' && $file != 'index.html') {
-     unlink(XOOPS_ROOT_PATH.'/templates_c/'.$file);
-    }
-   }
-
-   closedir($handle);
+            closedir($handle);
         }
         //TrDisplay();
 

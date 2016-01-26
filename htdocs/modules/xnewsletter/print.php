@@ -114,7 +114,9 @@ function xnewsletter_printPage($content)
     $myts =& MyTextSanitizer::getInstance();
     ?>
     <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-    <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="<?php echo _LANGCODE; ?>" lang="<?php echo _LANGCODE; ?>">
+    <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="<?php echo _LANGCODE;
+    ?>" lang="<?php echo _LANGCODE;
+    ?>">
     <?php
     echo "<head>\n";
     echo "<title>{$xoopsConfig['sitename']}</title>\n";
@@ -151,7 +153,8 @@ function xnewsletter_printPage($content)
             var target = document.getElementById(targetID);
             var h2 = document.createElement('h2');
             addClass.apply(h2, ['printOnly']);
-            var h2_txt = document.createTextNode('<?php echo "_MA_NW_LINKS"; ?>');
+            var h2_txt = document.createTextNode('<?php echo "_MA_NW_LINKS";
+    ?>');
             h2.appendChild(h2_txt);
             var coll = container.getElementsByTagName('*');
             var ol = document.createElement('ol');
@@ -286,4 +289,5 @@ function xnewsletter_printPage($content)
     </body>
     </html>
 <?php
+
 }

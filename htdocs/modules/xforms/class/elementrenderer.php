@@ -65,8 +65,7 @@ class XFormsElementRenderer
                         $ele_value[2] = str_replace('{P_' . $k . '}', $xpr->getVar($k, 'e'), $ele_value[2]);
                     }
                 }
-                $form_ele = new XoopsFormText
-                (
+                $form_ele = new XoopsFormText(
                     $ele_caption, $form_ele_id, $ele_value[0], //   box width
                     $ele_value[1], //   maxlenght
                     $myts->htmlspecialchars($myts->stripSlashesGPC($ele_value[2])) //   default value
@@ -88,7 +87,7 @@ class XFormsElementRenderer
                         $ele_caption, $myts->displayTarea($myts->stripSlashesGPC($ele_value[0]), 1), $form_ele_id
                     );
                 } else {
-                    $form_ele              = new XoopsFormDhtmlTextArea (
+                    $form_ele              = new XoopsFormDhtmlTextArea(
                         $ele_caption, $form_ele_id, $myts->htmlspecialchars($myts->stripSlashesGPC($ele_value[0])) //   default value
                     );
                     $form_ele->skipPreview = true;
@@ -125,7 +124,7 @@ class XFormsElementRenderer
                     }
                     ++$opt_count;
                 }
-                $form_ele = new XoopsFormSelect (
+                $form_ele = new XoopsFormSelect(
                     $ele_caption, $form_ele_id, $selected, $ele_value[0], //    size
                     $ele_value[1] //    multiple
                 );

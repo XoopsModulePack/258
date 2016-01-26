@@ -45,7 +45,7 @@ class xnewsletterRequest
      *
      * @return string
      */
-    static function getMethod()
+    public static function getMethod()
     {
         $method = strtoupper($_SERVER['REQUEST_METHOD']);
 
@@ -78,7 +78,7 @@ class xnewsletterRequest
      *
      * @return mixed Requested variable
      */
-    static function getVar($name, $default = null, $hash = 'default', $type = 'none', $mask = 0)
+    public static function getVar($name, $default = null, $hash = 'default', $type = 'none', $mask = 0)
     {
         // Ensure hash and type are uppercase
         $hash = strtoupper($hash);
@@ -142,7 +142,7 @@ class xnewsletterRequest
      *
      * @return integer Requested variable
      */
-    static function getInt($name, $default = 0, $hash = 'default')
+    public static function getInt($name, $default = 0, $hash = 'default')
     {
         return xnewsletterRequest::getVar($name, $default, $hash, 'int');
     }
@@ -161,7 +161,7 @@ class xnewsletterRequest
      *
      * @return float Requested variable
      */
-    static function getFloat($name, $default = 0.0, $hash = 'default')
+    public static function getFloat($name, $default = 0.0, $hash = 'default')
     {
         return xnewsletterRequest::getVar($name, $default, $hash, 'float');
     }
@@ -180,7 +180,7 @@ class xnewsletterRequest
      *
      * @return bool Requested variable
      */
-    static function getBool($name, $default = false, $hash = 'default')
+    public static function getBool($name, $default = false, $hash = 'default')
     {
         return xnewsletterRequest::getVar($name, $default, $hash, 'bool');
     }
@@ -199,7 +199,7 @@ class xnewsletterRequest
      *
      * @return string Requested variable
      */
-    static function getWord($name, $default = '', $hash = 'default')
+    public static function getWord($name, $default = '', $hash = 'default')
     {
         return xnewsletterRequest::getVar($name, $default, $hash, 'word');
     }
@@ -218,7 +218,7 @@ class xnewsletterRequest
      *
      * @return string Requested variable
      */
-    static function getCmd($name, $default = '', $hash = 'default')
+    public static function getCmd($name, $default = '', $hash = 'default')
     {
         return xnewsletterRequest::getVar($name, $default, $hash, 'cmd');
     }
@@ -238,7 +238,7 @@ class xnewsletterRequest
      *
      * @return string Requested variable
      */
-    static function getString($name, $default = '', $hash = 'default', $mask = 0)
+    public static function getString($name, $default = '', $hash = 'default', $mask = 0)
     {
         // Cast to string, in case JREQUEST_ALLOWRAW was specified for mask
         return (string)xnewsletterRequest::getVar($name, $default, $hash, 'string', $mask);
@@ -251,7 +251,7 @@ class xnewsletterRequest
      *
      * @return mixed
      */
-    static function getArray($name, $default = array(), $hash = 'default')
+    public static function getArray($name, $default = array(), $hash = 'default')
     {
         return xnewsletterRequest::getVar($name, $default, $hash, 'array');
     }
@@ -263,7 +263,7 @@ class xnewsletterRequest
      *
      * @return string
      */
-    static function getText($name, $default = '', $hash = 'default')
+    public static function getText($name, $default = '', $hash = 'default')
     {
         return (string)xnewsletterRequest::getVar($name, $default, $hash, 'string', PUBLISHER_REQUEST_ALLOWRAW);
     }
@@ -280,7 +280,7 @@ class xnewsletterRequest
      *
      * @return string Previous value
      */
-    static function setVar($name, $value = null, $hash = 'method', $overwrite = true)
+    public static function setVar($name, $value = null, $hash = 'method', $overwrite = true)
     {
         //If overwrite is true, makes sure the variable hasn't been set yet
         if (!$overwrite && array_key_exists($name, $_REQUEST)) {
@@ -341,7 +341,7 @@ class xnewsletterRequest
      *
      * @return mixed Request hash
      */
-    static function get($hash = 'default', $mask = 0)
+    public static function get($hash = 'default', $mask = 0)
     {
         $hash = strtoupper($hash);
         if ($hash === 'METHOD') {
@@ -386,7 +386,7 @@ class xnewsletterRequest
      * @param string  $hash      The request variable to set (POST, GET, FILES, METHOD)
      * @param boolean $overwrite If true and an existing key is found, the value is overwritten, otherwise it is ingored
      */
-    static function set($array, $hash = 'default', $overwrite = true)
+    public static function set($array, $hash = 'default', $overwrite = true)
     {
         foreach ($array as $key => $value) {
             xnewsletterRequest::setVar($key, $value, $hash, $overwrite);
@@ -399,7 +399,7 @@ class xnewsletterRequest
      * @static
      * @return void
      */
-    static function clean()
+    public static function clean()
     {
         xnewsletterRequest::_cleanArray($_FILES);
         xnewsletterRequest::_cleanArray($_ENV);
@@ -417,7 +417,7 @@ class xnewsletterRequest
         $FILES   = $_FILES;
         $ENV     = $_ENV;
         $SERVER  = $_SERVER;
-        if (isset ($_SESSION)) {
+        if (isset($_SESSION)) {
             $SESSION = $_SESSION;
         }
         foreach ($GLOBALS as $key => $value) {
@@ -445,7 +445,7 @@ class xnewsletterRequest
      * @param array   $array     Array to clean
      * @param boolean $globalise True if the array is to be added to the GLOBALS
      */
-    static function _cleanArray(&$array, $globalise = false)
+    public static function _cleanArray(&$array, $globalise = false)
     {
         static $banned = array('_files', '_env', '_get', '_post', '_cookie', '_server', '_session', 'globals');
         foreach ($array as $key => $value) {
@@ -476,7 +476,7 @@ class xnewsletterRequest
      *
      * @return string
      */
-    static function _cleanVar($var, $mask = 0, $type = null)
+    public static function _cleanVar($var, $mask = 0, $type = null)
     {
         // Static input filters for specific settings
         static $noHtmlFilter = null;
@@ -497,7 +497,7 @@ class xnewsletterRequest
         } else {
             // Since no allow flags were set, we will apply the most strict filter to the variable
             if (is_null($noHtmlFilter)) {
-                $noHtmlFilter = xnewsletterFilterInput::getInstance( /* $tags, $attr, $tag_method, $attr_method, $xss_auto */);
+                $noHtmlFilter = xnewsletterFilterInput::getInstance(/* $tags, $attr, $tag_method, $attr_method, $xss_auto */);
             }
             $var = $noHtmlFilter->clean($var, $type);
         }
@@ -531,12 +531,12 @@ class xnewsletterRequest
  */
 class xnewsletterFilterInput
 {
-    var $tagsArray; // default = empty array
-    var $attrArray; // default = empty array
-    var $tagsMethod; // default = 0
-    var $attrMethod; // default = 0
-    var $xssAuto; // default = 1
-    var $tagBlacklist
+    public $tagsArray; // default = empty array
+    public $attrArray; // default = empty array
+    public $tagsMethod; // default = 0
+    public $attrMethod; // default = 0
+    public $xssAuto; // default = 1
+    public $tagBlacklist
         = array(
             'applet',
             'body',
@@ -561,7 +561,7 @@ class xnewsletterFilterInput
             'title',
             'xml'
         );
-    var $attrBlacklist = array('action', 'background', 'codebase', 'dynsrc', 'lowsrc'); // also will strip ALL event handlers
+    public $attrBlacklist = array('action', 'background', 'codebase', 'dynsrc', 'lowsrc'); // also will strip ALL event handlers
 
     /**
      * Constructor for inputFilter class. Only first parameter is required.
@@ -607,10 +607,10 @@ class xnewsletterFilterInput
     {
         static $instances;
         $sig = md5(serialize(array($tagsArray, $attrArray, $tagsMethod, $attrMethod, $xssAuto)));
-        if (!isset ($instances)) {
+        if (!isset($instances)) {
             $instances = array();
         }
-        if (empty ($instances[$sig])) {
+        if (empty($instances[$sig])) {
             $instances[$sig] = new xnewsletterFilterInput($tagsArray, $attrArray, $tagsMethod, $attrMethod, $xssAuto);
         }
 
@@ -701,7 +701,7 @@ class xnewsletterFilterInput
                     $result = $source;
                 } else {
                     // Or a string?
-                    if (is_string($source) && !empty ($source)) {
+                    if (is_string($source) && !empty($source)) {
                         // filter source for XSS and other 'bad' code etc.
                         $result = $filter->_remove($filter->_decode($source));
                     } else {
@@ -806,12 +806,12 @@ class xnewsletterFilterInput
             if (substr($currentTag, 0, 1) == '/') {
                 // Close Tag
                 $isCloseTag = true;
-                list ($tagName) = explode(' ', $currentTag);
+                list($tagName) = explode(' ', $currentTag);
                 $tagName = substr($tagName, 1);
             } else {
                 // Open Tag
                 $isCloseTag = false;
-                list ($tagName) = explode(' ', $currentTag);
+                list($tagName) = explode(' ', $currentTag);
             }
             /*
              * Exclude all "non-regular" tagnames
@@ -924,7 +924,7 @@ class xnewsletterFilterInput
             }
             // Split into name/value pairs
             $attrSubSet = explode('=', trim($attrSet[$i]), 2);
-            list ($attrSubSet[0]) = explode(' ', $attrSubSet[0]);
+            list($attrSubSet[0]) = explode(' ', $attrSubSet[0]);
             /*
              * Remove all "non-regular" attribute names
              * AND blacklisted attributes

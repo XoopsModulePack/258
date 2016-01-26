@@ -33,11 +33,11 @@ $lid = mylinksUtility::mylinks_cleanVars($_REQUEST, 'lid', 0, 'int', array('min'
 if (!empty($_POST['submit'])) {
     $sender = (empty($xoopsUser)) ?  0 : $xoopsUser->getVar('uid');
     $ip = getenv("REMOTE_ADDR");
-    if ( $sender != 0 ) {
+    if ($sender != 0) {
         // Check if REG user is trying to report twice.
         $result = $xoopsDB->query("SELECT COUNT(*) FROM " . $xoopsDB->prefix("mylinks_broken") . " WHERE lid='{$lid}' AND sender='{$sender}'");
         list($count) = $xoopsDB->fetchRow($result);
-        if ( $count > 0 ) {
+        if ($count > 0) {
             redirect_header('index.php', 2, _MD_MYLINKS_ALREADYREPORTED);
             exit();
         }
@@ -86,9 +86,9 @@ if (!empty($_POST['submit'])) {
 
     //wanikoo search
     if (file_exists(XOOPS_ROOT_PATH."/language/".$xoopsConfig['language']."/search.php")) {
-       include_once XOOPS_ROOT_PATH."/language/".$xoopsConfig['language']."/search.php";
+        include_once XOOPS_ROOT_PATH."/language/".$xoopsConfig['language']."/search.php";
     } else {
-       include_once XOOPS_ROOT_PATH."/language/english/search.php";
+        include_once XOOPS_ROOT_PATH."/language/english/search.php";
     }
 
     $xoopsTpl->assign('lang_all', _SR_ALL);

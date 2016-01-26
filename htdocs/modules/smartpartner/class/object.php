@@ -47,10 +47,10 @@ class smartpartner_PersistableObjectHandler extends XoopsObjectHandler
      *
      * @var string
      */
-    var $table;
-    var $keyName;
-    var $className;
-    var $identifierName;
+    public $table;
+    public $keyName;
+    public $className;
+    public $identifierName;
 
     /**#@-*/
 
@@ -63,7 +63,7 @@ class smartpartner_PersistableObjectHandler extends XoopsObjectHandler
      *
      * @return void
      */
-    function smartpartner_PersistableObjectHandler(&$db, $tablename, $classname, $keyname, $idenfierName = false)
+    public function smartpartner_PersistableObjectHandler(&$db, $tablename, $classname, $keyname, $idenfierName = false)
     {
         $this->XoopsObjectHandler($db);
         $this->table = $db->prefix($tablename);
@@ -81,7 +81,7 @@ class smartpartner_PersistableObjectHandler extends XoopsObjectHandler
      *
      * @return object
      */
-    function &create($isNew = true)
+    public function &create($isNew = true)
     {
         $obj = new $this->className();
         if ($isNew === true) {
@@ -98,15 +98,14 @@ class smartpartner_PersistableObjectHandler extends XoopsObjectHandler
      * @param  bool  $as_object whether to return an object or an array
      * @return mixed reference to the object, FALSE if failed
      */
-    function &get($id, $as_object = true)
+    public function &get($id, $as_object = true)
     {
         if (is_array($this->keyName)) {
             $criteria = new CriteriaCompo();
             for ($i = 0; $i < count($this->keyName); $i++) {
                 $criteria->add(new Criteria($this->keyName[$i], intval($id[$i])));
             }
-        }
-        else {
+        } else {
             $criteria = new Criteria($this->keyName, intval($id));
         }
         $criteria->setLimit(1);
@@ -129,7 +128,7 @@ class smartpartner_PersistableObjectHandler extends XoopsObjectHandler
      *
      * @return array
      */
-    function getObjects($criteria = null, $id_as_key = false, $as_object = true)
+    public function getObjects($criteria = null, $id_as_key = false, $as_object = true)
     {
         $ret = array();
         $limit = $start = 0;
@@ -159,7 +158,7 @@ class smartpartner_PersistableObjectHandler extends XoopsObjectHandler
      *
      * @return array
      */
-    function convertResultSet($result, $id_as_key = false, $as_object = true)
+    public function convertResultSet($result, $id_as_key = false, $as_object = true)
     {
         $ret = array();
         while ($myrow = $this->db->fetchArray($result)) {
@@ -168,8 +167,7 @@ class smartpartner_PersistableObjectHandler extends XoopsObjectHandler
             if (!$id_as_key) {
                 if ($as_object) {
                     $ret[] =& $obj;
-                }
-                else {
+                } else {
                     $row = array();
                     $vars = $obj->getVars();
                     foreach (array_keys($vars) as $i) {
@@ -180,8 +178,7 @@ class smartpartner_PersistableObjectHandler extends XoopsObjectHandler
             } else {
                 if ($as_object) {
                     $ret[$myrow[$this->keyName]] =& $obj;
-                }
-                else {
+                } else {
                     $row = array();
                     $vars = $obj->getVars();
                     foreach (array_keys($vars) as $i) {
@@ -205,7 +202,7 @@ class smartpartner_PersistableObjectHandler extends XoopsObjectHandler
      *
      * @return array
      */
-    function getList($criteria = null, $limit = 0, $start = 0)
+    public function getList($criteria = null, $limit = 0, $start = 0)
     {
         $ret = array();
         if ($criteria == null) {
@@ -250,7 +247,7 @@ class smartpartner_PersistableObjectHandler extends XoopsObjectHandler
      * @param  object $criteria {@link CriteriaElement} to match
      * @return int    count of objects
      */
-    function getCount($criteria = null)
+    public function getCount($criteria = null)
     {
         $field = "";
         $groupby = false;
@@ -275,8 +272,7 @@ class smartpartner_PersistableObjectHandler extends XoopsObjectHandler
             list($count) = $this->db->fetchRow($result);
 
             return $count;
-        }
-        else {
+        } else {
             $ret = array();
             while (list($id, $count) = $this->db->fetchRow($result)) {
                 $ret[$id] = $count;
@@ -293,7 +289,7 @@ class smartpartner_PersistableObjectHandler extends XoopsObjectHandler
      * @param  bool   $force
      * @return bool   FALSE if failed.
      */
-    function delete(&$obj, $force = false)
+    public function delete(&$obj, $force = false)
     {
         if (is_array($this->keyName)) {
             $clause = array();
@@ -301,8 +297,7 @@ class smartpartner_PersistableObjectHandler extends XoopsObjectHandler
                 $clause[] = $this->keyName[$i] . " = " . $obj->getVar($this->keyName[$i]);
             }
             $whereclause = implode(" AND ", $clause);
-        }
-        else {
+        } else {
             $whereclause = $this->keyName . " = " . $obj->getVar($this->keyName);
         }
         $sql = "DELETE FROM " . $this->table . " WHERE " . $whereclause;
@@ -327,7 +322,7 @@ class smartpartner_PersistableObjectHandler extends XoopsObjectHandler
      * @return bool   FALSE if failed, TRUE if already present and unchanged or successful
      */
 
-    function insert(&$obj, $force = false, $checkObject = true)
+    public function insert(&$obj, $force = false, $checkObject = true)
     {
         if ($checkObject != false) {
             if (!is_object($obj)) {
@@ -386,8 +381,7 @@ class smartpartner_PersistableObjectHandler extends XoopsObjectHandler
                     }
                     $whereclause .= $this->keyName[$i] . " = " . $obj->getVar($this->keyName[$i]);
                 }
-            }
-            else {
+            } else {
                 $whereclause = $this->keyName . " = " . $obj->getVar($this->keyName);
             }
             $sql .= " WHERE " . $whereclause;
@@ -416,7 +410,7 @@ class smartpartner_PersistableObjectHandler extends XoopsObjectHandler
      *
      * @return bool
      **/
-    function updateAll($fieldname, $fieldvalue, $criteria = null, $force = false)
+    public function updateAll($fieldname, $fieldvalue, $criteria = null, $force = false)
     {
         $set_clause = $fieldname . ' = ';
         if (is_numeric($fieldvalue)) {
@@ -449,7 +443,7 @@ class smartpartner_PersistableObjectHandler extends XoopsObjectHandler
      * @return bool
      */
 
-    function deleteAll($criteria = null)
+    public function deleteAll($criteria = null)
     {
         if (isset($criteria) && is_subclass_of($criteria, 'criteriaelement')) {
             $sql = 'DELETE FROM ' . $this->table;

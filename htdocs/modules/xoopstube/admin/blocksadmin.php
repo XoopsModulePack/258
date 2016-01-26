@@ -578,7 +578,6 @@ if ($xoopsUser->isAdmin($xoopsModule->mid())) {
 
     if ($op == 'edit_ok') {
         xtubeUpdateBlock($bid, $btitle, $bside, $bweight, $bvisible, $bcachetime, $bmodule, $options, $groups);
-
     }
 
     if ($op == 'clone_ok') {

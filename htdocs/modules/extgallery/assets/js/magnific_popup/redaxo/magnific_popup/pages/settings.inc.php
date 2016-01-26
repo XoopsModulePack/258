@@ -59,7 +59,9 @@ if ($sql->getRows() == 1) {
                     <div class="rex-form-row rex-form-element-v1">
                         <p class="rex-form-text">
                             <label for="include_jquery"><?php echo $I18N->msg('magnific_popup_settings_include_jquery'); ?></label>
-                            <input type="checkbox" name="include_jquery" id="include_jquery" value="1" <?php if ($REX['ADDON']['magnific_popup']['settings']['include_jquery'] == 1) { echo 'checked="checked"'; } ?>>
+                            <input type="checkbox" name="include_jquery" id="include_jquery" value="1" <?php if ($REX['ADDON']['magnific_popup']['settings']['include_jquery'] == 1) {
+    echo 'checked="checked"';
+} ?>>
                         </p>
                     </div>
 

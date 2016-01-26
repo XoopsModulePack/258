@@ -43,7 +43,7 @@ class MylinksThumbalizr implements MylinksThumbPlugin
     private $provider_url    = "http://api.thumbalizr.com";
     private $provider_name   = "Thumbalizr";
 
-    function __construct()
+    public function __construct()
     {
     }
     public function getProviderUrl()

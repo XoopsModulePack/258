@@ -114,7 +114,6 @@ $modversion['onUpdate'] = "include/onupdate.inc.php";
 global $xoopsModule;
 
 if (isset($xoopsModule) && is_object($xoopsModule) && $xoopsModule->getVar('dirname') == $modversion['dirname']) {
-
     global $xoopsModuleConfig, $xoopsUser;
 
     $isAdmin = false;
@@ -145,7 +144,6 @@ if (isset($xoopsModule) && is_object($xoopsModule) && $xoopsModule->getVar('dirn
             $modversion['sub'][3]['url'] = "open_index.php";
         }
     }
-
 }
 
 $modversion['blocks'][1]['file'] = "faqs_new.php";

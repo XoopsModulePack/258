@@ -62,9 +62,9 @@ function xforum_tag_iteminfo(&$items)
                 $items[$cat_id][$item_id] = array("title" => $item_obj->getVar("subject"),
                                                     "uid" => $item_obj->getVar("uid"),
                                                    "link" => "viewpost.php?post_id={$item_id}",
-                                                   "time" => strtotime(date(_DATESTRING,$item_obj->getVar("post_time"))),
+                                                   "time" => strtotime(date(_DATESTRING, $item_obj->getVar("post_time"))),
                                                    "tags" => tag_parse_tag($item_obj->getVar("tags", "n")),
-                                                "content" => $myts->displayTarea($item_obj->getVar("post_text"),true,true,true,true,true,true)
+                                                "content" => $myts->displayTarea($item_obj->getVar("post_text"), true, true, true, true, true, true)
                 );
             }
         }

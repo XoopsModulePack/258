@@ -44,7 +44,9 @@ if (!empty($postTags)) {
     $msgDBUpdated='';
     foreach ($postTags as $tag => $tag_status) {
         $tag_obj =& $tag_handler->get($tag);
-        if (!($tag_obj instanceof TagTag) || !$tag_obj->getVar("tag_id")) continue;
+        if (!($tag_obj instanceof TagTag) || !$tag_obj->getVar("tag_id")) {
+            continue;
+        }
         if ($tag_status < TagConstants::STATUS_ACTIVE) {
             $tag_handler->delete($tag_obj);
         } elseif ($tag_status != $tag_obj->getVar("tag_status")) {
@@ -123,8 +125,8 @@ if (empty($tags)) {
     foreach (array_keys($tags) as $key) {
         $form_tags .= "  <tr class='{$class_tr}'>\n"
                     . "    <td>" . $tags[$key]["term"] . "</td>\n"
-                    . "    <td  class='txtcenter'><input type='radio' name='tags[{$key}]' value='" . TagConstants::STATUS_INACTIVE . "'" . ( $tags[$key]["status"] ? " checked" : " '' ") . "></td>\n"
-                    . "    <td  class='txtcenter'><input type='radio' name='tags[{$key}]' value='" . TagConstants::STATUS_ACTIVE . "'" . ( $tags[$key]["status"] ? " '' " : " checked") . "></td>\n"
+                    . "    <td  class='txtcenter'><input type='radio' name='tags[{$key}]' value='" . TagConstants::STATUS_INACTIVE . "'" . ($tags[$key]["status"] ? " checked" : " '' ") . "></td>\n"
+                    . "    <td  class='txtcenter'><input type='radio' name='tags[{$key}]' value='" . TagConstants::STATUS_ACTIVE . "'" . ($tags[$key]["status"] ? " '' " : " checked") . "></td>\n"
                     . "    <td  class='txtcenter'><input type='radio' name='tags[{$key}]' value='" . TagConstants::STATUS_DELETE . "'></td>\n"
                     . "  </tr>\n";
         $class_tr = ('even' == $class_tr) ? 'odd' : 'even';

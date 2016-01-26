@@ -13,7 +13,7 @@
 // defined('XOOPS_ROOT_PATH') || die('XOOPS Root Path not defined');
 
 defined("NEWBB_FUNCTIONS_INI") || include __DIR__."/functions.ini.php";
-define("NEWBB_FUNCTIONS_RENDER_LOADED", TRUE);
+define("NEWBB_FUNCTIONS_RENDER_LOADED", true);
 
 if (!defined("NEWBB_FUNCTIONS_RENDER")):
 define("NEWBB_FUNCTIONS_RENDER", 1);
@@ -68,11 +68,11 @@ function sf_html2text($document)
 /**
  * Display forrum button
  *
- * @param   string  $image      image/button name, without extension
- * @param   string  $alt        alt message
- * @param   boolean $asImage    true for image mode; false for text mode
- * @param   string  $extra      extra attribute for the button
- * @return  mixed
+ * @param  string  $image   image/button name, without extension
+ * @param  string  $alt     alt message
+ * @param  boolean $asImage true for image mode; false for text mode
+ * @param  string  $extra   extra attribute for the button
+ * @return mixed
  */
 function sf_getButton($link, $button, $alt = "", $asImage = true, $extra = "class='forum_button'")
 {
@@ -88,11 +88,11 @@ function sf_getButton($link, $button, $alt = "", $asImage = true, $extra = "clas
 /**
  * Display forrum images
  *
- * @param   string  $image      image name, without extension
- * @param   string  $alt        alt message
- * @param   boolean $display    true for return image anchor; faulse for assign to $xoopsTpl
- * @param   string  $extra      extra attribute for the image
- * @return  mixed
+ * @param  string  $image   image name, without extension
+ * @param  string  $alt     alt message
+ * @param  boolean $display true for return image anchor; faulse for assign to $xoopsTpl
+ * @param  string  $extra   extra attribute for the image
+ * @return mixed
  */
 function sf_displayImage($image, $alt = "", $display = true, $extra = "class='forum_icon'")
 {
@@ -102,7 +102,7 @@ function sf_displayImage($image, $alt = "", $display = true, $extra = "class='fo
     global $xoopsModuleConfig;
     if (func_num_args()== 2) {
         // overall setting
-        if ( !empty($xoopsModuleConfig['display_text_links']) ) {
+        if (!empty($xoopsModuleConfig['display_text_links'])) {
             $display=false;
         }
         // if set for each link => overwrite $display
@@ -123,7 +123,9 @@ function sf_getIconHandler()
     global $xoTheme, $xoopsConfig;
     static $icon_handler;
 
-    if (isset($icon_handler)) return $icon_handler;
+    if (isset($icon_handler)) {
+        return $icon_handler;
+    }
 
     if (!class_exists("NewbbIconHandler")) {
         require_once dirname(__DIR__)."/class/icon.php";
@@ -136,4 +138,4 @@ function sf_getIconHandler()
     return $icon_handler;
 }
 
-ENDIF;
+endif;

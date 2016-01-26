@@ -9,7 +9,7 @@ require_once 'calendar_include.php';
  */
 class CalendarEngineTests extends GroupTest
 {
-    function CalendarEngineTests()
+    public function CalendarEngineTests()
     {
         $this->GroupTest('Calendar Engine Tests');
         $this->addTestFile('peardate_engine_test.php');

@@ -33,7 +33,7 @@ include_once(XOOPS_ROOT_PATH . '/class/template.php');
  */
 function sendMail2member($mode, $event_id, $member_uid, $subject, $tplMessage)
 {
-//mode = 0 pas d'entete
+    //mode = 0 pas d'entete
 //mode = 1 format text
 //mode = 2: format html
 
@@ -195,9 +195,7 @@ __sql__;
 
     //Prépartion de l'envoi
 
-
     //--------------------------------------------------------------
-
 }
 
 /*****************************************************************
@@ -252,7 +250,6 @@ function extcal_SendMail(
         //$xoopsMailer->setToUsers($destinataires[$i]);
         $xoopsMailer->setToEmails($v);
         //echo "setToUsers : {$destinataires[$i]}<br>";
-
     }
 
     $xoopsMailer->multimailer->IsHTML(true);
@@ -264,7 +261,6 @@ function extcal_SendMail(
     $xoopsMailer->setBody($myts->oopsStripSlashesGPC($mail_body));
     //$xoopsMailer->encodeBody($mail_body);
 
-
     $xoopsMailer->useMail();
 
 //function $xoopsMailer->sendMail($email, $subject, $body, $headers)
@@ -273,7 +269,6 @@ function extcal_SendMail(
     if ($bEcho) {
         ext_echo($xoopsMailer->getSuccess());
         ext_echo($xoopsMailer->getErrors());
-
     }
     /*
 
@@ -302,7 +297,7 @@ function extcal_SendMail(
  */
 function extcal_getHeader($mode, $emailSender)
 {
-//mode = 0 pas d'entete
+    //mode = 0 pas d'entete
 //mode = 1 format text
 //mode = 2: format html
 
@@ -321,7 +316,6 @@ function extcal_getHeader($mode, $emailSender)
         } else {
             $emailSender = $xoopsConfig['adminmail'];
         }
-
     }
     //-----------------------------------------------------------
     $header   = array();
@@ -341,5 +335,4 @@ function extcal_getHeader($mode, $emailSender)
     $sHeader = implode("\r\n", $header);
 
     return $sHeader;
-
 }

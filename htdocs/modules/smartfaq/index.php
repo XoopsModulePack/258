@@ -26,7 +26,7 @@ $totalCategories = $category_handler->getCategoriesCount(0);
 $totalFaqs = $faq_handler->getFaqsCount(-1, array(_SF_STATUS_PUBLISHED, _SF_STATUS_NEW_ANSWER));
 
 if ($totalFaqs  == 0) {
-    if ( ($totalCategories > 0) && ($xoopsModuleConfig['allowrequest'] && ($xoopsModuleConfig['anonpost']) || is_object($xoopsUser))) {
+    if (($totalCategories > 0) && ($xoopsModuleConfig['allowrequest'] && ($xoopsModuleConfig['anonpost']) || is_object($xoopsUser))) {
         redirect_header("request.php", 2, _AM_SF_NO_TOP_PERMISSIONS);
     } else {
         redirect_header("../../index.php", 2, _AM_SF_NO_TOP_PERMISSIONS);
@@ -100,7 +100,6 @@ foreach ($categoriesObj as $cat_id => $category) {
     $categories[$cat_id] = $category->toArray(@$categories[$cat_id]);
     $categories[$cat_id]['categoryPath'] = $category->getCategoryPath();
     //}replac� ligne 97
-
 }
 /*echo sizeof($categories);
 echo "<br>";

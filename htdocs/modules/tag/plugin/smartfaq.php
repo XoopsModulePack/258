@@ -32,9 +32,9 @@ defined('XOOPS_ROOT_PATH') || exit('Restricted access');
  * uname
  * tags
  *
- * @var        array    $items    associative array of items: [modid][catid][itemid]
+ * @var array $items    associative array of items: [modid][catid][itemid]
  *
- * @return    boolean
+ * @return boolean
  *
  */
 
@@ -80,7 +80,7 @@ function smartfaq_tag_iteminfo(&$items)
 /**
  * Remove orphan tag-item links
  *
- * @return    boolean
+ * @return boolean
  *
  */
 function smartfaq_tag_synchronization($mid)

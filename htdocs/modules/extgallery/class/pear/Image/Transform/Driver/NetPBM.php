@@ -47,21 +47,20 @@ class Image_Transform_Driver_NetPBM extends Image_Transform
      * associative array commands to be executed
      * @var array
      */
-    var $command = array();
+    public $command = array();
 
     /**
      * Class Constructor
      */
-    function Image_Transform_Driver_NetPBM()
+    public function Image_Transform_Driver_NetPBM()
     {
         $this->__construct();
-
     } // End function Image_NetPBM
 
     /**
      * Class Constructor
      */
-    function __construct()
+    public function __construct()
     {
         require_once XOOPS_ROOT_PATH.'/modules/extgallery/class/pear/System.php';
         if (!defined('IMAGE_TRANSFORM_NETPBM_PATH')) {
@@ -83,7 +82,7 @@ class Image_Transform_Driver_NetPBM extends Image_Transform
      * @return bool|PEAR_Error TRUE or a PEAR_Error object on error
      * @access public
      */
-    function load($image)
+    public function load($image)
     {
         $this->image = $image;
         $result = $this->_get_image_details($image);
@@ -92,7 +91,6 @@ class Image_Transform_Driver_NetPBM extends Image_Transform
         }
 
         return true;
-
     } // End load
 
     /**
@@ -107,7 +105,7 @@ class Image_Transform_Driver_NetPBM extends Image_Transform
      * @return true on success or PEAR Error object on error
      * @see PEAR::isError()
      */
-    function _resize($new_x, $new_y, $options = null)
+    public function _resize($new_x, $new_y, $options = null)
     {
         // there's no technical reason why resize can't be called multiple
         // times...it's just silly to do so
@@ -165,7 +163,6 @@ class Image_Transform_Driver_NetPBM extends Image_Transform
         $this->_set_new_y($new_y);
 
         return true;
-
     } // End resize
 
     /**
@@ -175,7 +172,7 @@ class Image_Transform_Driver_NetPBM extends Image_Transform
      * @param  array           $options
      * @return bool|PEAR_Error TRUE on success, PEAR_Error object on error
      */
-    function rotate($angle, $options = null)
+    public function rotate($angle, $options = null)
     {
         if (!($angle == $this->_rotation_angle($angle))) {
             // No rotation needed
@@ -242,7 +239,7 @@ class Image_Transform_Driver_NetPBM extends Image_Transform
      *
      * @return mixed TRUE or a PEAR error object on error
      **/
-    function crop($width, $height, $x = 0, $y = 0)
+    public function crop($width, $height, $x = 0, $y = 0)
     {
         if ($x != 0 || $y != 0
             || $width != $this->img_x
@@ -272,7 +269,8 @@ class Image_Transform_Driver_NetPBM extends Image_Transform
      *
      * @return mixed TRUE or a PEAR error object on error
      */
-    function gamma($outputgamma = 1.0) {
+    public function gamma($outputgamma = 1.0)
+    {
         if ($outputgamme != 1.0) {
             if (!System::which(IMAGE_TRANSFORM_NETPBM_PATH .
                                    'pnmgamma' . ((OS_WINDOWS) ? '.exe' : ''))) {
@@ -294,7 +292,7 @@ class Image_Transform_Driver_NetPBM extends Image_Transform
      * @see mirror()
      * @return TRUE or PEAR Error object on error
      **/
-    function flip()
+    public function flip()
     {
         if (!System::which(IMAGE_TRANSFORM_NETPBM_PATH .
                                'pamflip' . ((OS_WINDOWS) ? '.exe' : ''))) {
@@ -315,7 +313,7 @@ class Image_Transform_Driver_NetPBM extends Image_Transform
      * @see flip()
      * @return TRUE or PEAR Error object on error
      **/
-    function mirror()
+    public function mirror()
     {
         if (!System::which(IMAGE_TRANSFORM_NETPBM_PATH .
                                'pamflip' . ((OS_WINDOWS) ? '.exe' : ''))) {
@@ -336,7 +334,7 @@ class Image_Transform_Driver_NetPBM extends Image_Transform
      * @access public
      * @return mixed TRUE or a PEAR error object on error
      **/
-    function greyscale()
+    public function greyscale()
     {
         if (!System::which(IMAGE_TRANSFORM_NETPBM_PATH .
                                'ppmtopgm' . ((OS_WINDOWS) ? '.exe' : ''))) {
@@ -367,7 +365,7 @@ class Image_Transform_Driver_NetPBM extends Image_Transform
      *
      * @return void
      */
-    function addText($params)
+    public function addText($params)
     {
         if (!System::which(IMAGE_TRANSFORM_NETPBM_PATH .
                                'ppmlabel' . ((OS_WINDOWS) ? '.exe' : ''))) {
@@ -392,7 +390,6 @@ class Image_Transform_Driver_NetPBM extends Image_Transform
                 . ' -x ' . ((int) $x)
                 . ' -y ' . ((int) ($y + $size))
                 . ' -text ' . escapeshellarg($text));
-
     } // End addText
 
     /**
@@ -403,7 +400,7 @@ class Image_Transform_Driver_NetPBM extends Image_Transform
      * @return string A chain of shell command
      * @link http://netpbm.sourceforge.net/doc/directory.html
      */
-    function _postProcess($type, $quality)
+    public function _postProcess($type, $quality)
     {
         array_unshift($this->command, $this->_prepare_cmd(
             IMAGE_TRANSFORM_NETPBM_PATH,
@@ -547,7 +544,7 @@ class Image_Transform_Driver_NetPBM extends Image_Transform
      * @param  int    $quality 75
      * @return TRUE   or PEAR Error object on error
      */
-    function save($filename, $type = null, $quality = null)
+    public function save($filename, $type = null, $quality = null)
     {
         $type    = (is_null($type)) ? $this->type : $type;
         $options = array();
@@ -575,7 +572,7 @@ class Image_Transform_Driver_NetPBM extends Image_Transform
      * @param  int    $quality 75
      * @return TRUE   or PEAR Error object on error
      */
-    function display($type = null, $quality = null)
+    public function display($type = null, $quality = null)
     {
         $type    = (is_null($type)) ? $this->type : $type;
         $options = array();
@@ -599,10 +596,9 @@ class Image_Transform_Driver_NetPBM extends Image_Transform
      *
      * @return void
      */
-    function free()
+    public function free()
     {
         $this->command = array();
     }
-
 } // End class ImageIM
 ;

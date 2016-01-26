@@ -33,7 +33,9 @@ $admin_mydirname = basename(dirname(dirname(__FILE__)));
 
 $fct = empty($_POST['fct']) ? '' : trim($_POST['fct']);
 $fct = empty($_GET['fct']) ? $fct : trim($_GET['fct']);
-if (empty($fct)) $fct = 'preferences';
+if (empty($fct)) {
+    $fct = 'preferences';
+}
 //if (isset($fct) && $fct == "users") {
 //  $xoopsOption['pagetype'] = "user";
 //}
@@ -64,7 +66,6 @@ $error = false;
 if ($admintest != 0) {
     if (isset($fct) && $fct != '') {
         if (file_exists(XOOPS_ROOT_PATH . "/modules/system/admin/" . $fct . "/xoops_version.php")) {
-
             if (file_exists(XOOPS_ROOT_PATH . "/modules/system/language/" . $xoopsConfig['language'] . "/admin.php")) {
                 include XOOPS_ROOT_PATH . "/modules/system/language/" . $xoopsConfig['language'] . "/admin.php";
             } else {

@@ -24,13 +24,13 @@
 
 //Add by urbanspaceman 26/08/2009
 //home
-define("_MA_XSITEMAP","Sitemap");
-define("_MA_XSITEMAP_XML","Sitemap XML");
-define("_MA_XSITEMAP_HOME","HOME");
-define("_MA_XSITEMAP_REGISTER","Register");
-define("_MA_XSITEMAP_LOGIN","Login");
-define("_MA_XSITEMAP_SITEMAP","Sitemap");
-define("_MA_XSITEMAP_LAST_MOD","Last update of file xsitemap.xml");
-define("_MA_XSITEMAP_XML_UPDATE","XML file update with success");
-define("_MA_XSITEMAP_XML_VIEW_XML","View XML file");
-define("_MA_XSITEMAP_XML_ERROR_UPDATE","Error during the update of XML file");
+define("_MA_XSITEMAP", "Sitemap");
+define("_MA_XSITEMAP_XML", "Sitemap XML");
+define("_MA_XSITEMAP_HOME", "HOME");
+define("_MA_XSITEMAP_REGISTER", "Register");
+define("_MA_XSITEMAP_LOGIN", "Login");
+define("_MA_XSITEMAP_SITEMAP", "Sitemap");
+define("_MA_XSITEMAP_LAST_MOD", "Last update of file xsitemap.xml");
+define("_MA_XSITEMAP_XML_UPDATE", "XML file update with success");
+define("_MA_XSITEMAP_XML_VIEW_XML", "View XML file");
+define("_MA_XSITEMAP_XML_ERROR_UPDATE", "Error during the update of XML file");

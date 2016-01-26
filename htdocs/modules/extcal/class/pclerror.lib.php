@@ -63,7 +63,6 @@ if (!defined("PCLERROR_LIB")) {
 
         $g_pcl_error_code   = $p_error_code;
         $g_pcl_error_string = $p_error_string;
-
     }
 
     // --------------------------------------------------------------------------------

@@ -18,10 +18,10 @@ if (isset($HTTP_POST_VARS['op']) && ($HTTP_POST_VARS['op'] == 'go')) {
 if ($op == 'start') {
     include_once XOOPS_ROOT_PATH.'/class/xoopsformloader.php';
 
-    xoops_cp_header ();
+    xoops_cp_header();
 
-    xoops_cp_footer ();
-    exit ();
+    xoops_cp_footer();
+    exit();
 }
 
 if ($op == 'go') {
@@ -45,48 +45,48 @@ if ($op == 'go') {
 
     echo "  <title>{module title}</title>\r\n";
 
-    $resultC = $xoopsDB->query ("select * from ".$xoopsDB->prefix("smartfaq_categories"));
-    while ($arrC = $xoopsDB->fetchArray ($resultC)) {
-        extract ($arrC, EXTR_PREFIX_ALL, 'c');
+    $resultC = $xoopsDB->query("select * from ".$xoopsDB->prefix("smartfaq_categories"));
+    while ($arrC = $xoopsDB->fetchArray($resultC)) {
+        extract($arrC, EXTR_PREFIX_ALL, 'c');
 
         echo "  <qandadiv ID=\"c$c_categoryid\" Revision=\"$c_created\">\r\n";
-        echo "    <title>".encodeText ($c_name)."</title>\r\n";
-        echo "    <para>".encodeText ($c_description)."</para>\r\n";
+        echo "    <title>".encodeText($c_name)."</title>\r\n";
+        echo "    <para>".encodeText($c_description)."</para>\r\n";
 
-        $resultQ = $xoopsDB->query ("select * from ".$xoopsDB->prefix("smartfaq_faq")." where categoryid=$c_categoryid");
-        while ($arrQ = $xoopsDB->fetchArray ($resultQ)) {
-            extract ($arrQ, EXTR_PREFIX_ALL, 'q');
+        $resultQ = $xoopsDB->query("select * from ".$xoopsDB->prefix("smartfaq_faq")." where categoryid=$c_categoryid");
+        while ($arrQ = $xoopsDB->fetchArray($resultQ)) {
+            extract($arrQ, EXTR_PREFIX_ALL, 'q');
 
-            echo "    <qandaentry ID=\"q$q_faqid\" Revision=\"$q_datesub\" Condition=\"$q_html $q_smiley $q_xcodes\" XrefLabel=\"$q_modulelink $q_contextpage\" Vendor=\"".getUserFullName ($q_uid)."\">\r\n";
+            echo "    <qandaentry ID=\"q$q_faqid\" Revision=\"$q_datesub\" Condition=\"$q_html $q_smiley $q_xcodes\" XrefLabel=\"$q_modulelink $q_contextpage\" Vendor=\"".getUserFullName($q_uid)."\">\r\n";
             echo "      <question>\r\n";
-            echo "        <para>".encodeText ($q_question)."</para>\r\n";
-            if (!empty ($q_howdoi)) {
+            echo "        <para>".encodeText($q_question)."</para>\r\n";
+            if (!empty($q_howdoi)) {
                 echo "        <note Conformance=\"howdoi\">\r\n";
                 echo "          <title>{'How do I' from language file}</title>\r\n";
-                echo "          <para>".encodeText ($q_howdoi)."</para>\r\n";
+                echo "          <para>".encodeText($q_howdoi)."</para>\r\n";
                 echo "        </note>\r\n";
             }
-            if (!empty ($q_diduno)) {
+            if (!empty($q_diduno)) {
                 echo "        <note Conformance=\"diduno\">\r\n";
                 echo "          <title>{'Did you know' from language file}</title>\r\n";
-                echo "          <para>".encodeText ($q_diduno)."</para>\r\n";
+                echo "          <para>".encodeText($q_diduno)."</para>\r\n";
                 echo "        </note>\r\n";
             }
             echo "      </question>\r\n";
 
-            $resultA = $xoopsDB->query ("select * from ".$xoopsDB->prefix("smartfaq_answers")." where answerid=$q_answerid");
-            while ($arrA = $xoopsDB->fetchArray ($resultA)) {
-                extract ($arrA, EXTR_PREFIX_ALL, 'a');
+            $resultA = $xoopsDB->query("select * from ".$xoopsDB->prefix("smartfaq_answers")." where answerid=$q_answerid");
+            while ($arrA = $xoopsDB->fetchArray($resultA)) {
+                extract($arrA, EXTR_PREFIX_ALL, 'a');
 
-                echo "      <answer ID=\"a$a_answerid\" Revision=\"$a_datesub\" Vendor=\"".getUserFullName ($a_uid)."\">\r\n";
-                echo "        <para>".encodeText ($a_answer)."</para>\r\n";
+                echo "      <answer ID=\"a$a_answerid\" Revision=\"$a_datesub\" Vendor=\"".getUserFullName($a_uid)."\">\r\n";
+                echo "        <para>".encodeText($a_answer)."</para>\r\n";
                 echo "      </answer>\r\n";
             }
-            mysql_free_result ($resultA);
+            mysql_free_result($resultA);
 
             echo "    </qandaentry>\r\n";
         }
-        mysql_free_result ($resultQ);
+        mysql_free_result($resultQ);
 
         echo "  </qandadiv>\r\n";
     }
@@ -96,12 +96,12 @@ if ($op == 'go') {
     exit();
 }
 
-function encodeText ( $text )
+function encodeText($text)
 {
-    return utf8_encode (htmlspecialchars ($text));
+    return utf8_encode(htmlspecialchars($text));
 }
 
-function getUserFullName ( $uid )
+function getUserFullName($uid)
 {
     global $xoopsDB;
 

@@ -59,7 +59,7 @@ class WfdownloadsReview extends XoopsObject
     /**
      * @return XoopsThemeForm
      */
-    function getForm()
+    public function getForm()
     {
         include_once XOOPS_ROOT_PATH . '/class/xoopsformloader.php';
         $uid = !empty($GLOBALS['xoopsUser']) ? (int)($GLOBALS['xoopsUser']->getVar('uid')) : 0;

@@ -136,8 +136,8 @@ if (count($err) == 0) {
             if ($ele_caption != '') {
                 $msg[$ele_id] = "<br />- " . $myts->displayTarea($myts->stripSlashesGPC($ele_caption), 1) . "<br />";
             }
-        include_once XOOPS_ROOT_PATH . '/class/xoopslists.php';
-        $countries = XoopsLists::getCountryList();
+            include_once XOOPS_ROOT_PATH . '/class/xoopslists.php';
+            $countries = XoopsLists::getCountryList();
             switch ($ele_type) {
                 case 'upload':
                 case 'uploadimg':
@@ -224,14 +224,14 @@ if (count($err) == 0) {
                     break;
             case 'select2':
                 $ele[$ele_id] = trim($ele[$ele_id]);
-                if( preg_match('/\{EMAIL\}/', $ele_value[2]) ){
-                    if( !checkEmail($ele[$ele_id]) ){
+                if (preg_match('/\{EMAIL\}/', $ele_value[2])) {
+                    if (!checkEmail($ele[$ele_id])) {
                         $err[] = _LIAISE_ERR_INVALIDMAIL;
-                    }else{
+                    } else {
                         $reply_mail = $ele[$ele_id];
                     }
                 }
-                if( preg_match('/\{UNAME\}/', $ele_value[2]) ){
+                if (preg_match('/\{UNAME\}/', $ele_value[2])) {
                     $reply_name = $ele[$ele_id];
                 }
         //      $msg[$ele_id] .= $myts->stripSlashesGPC($ele[$ele_id]);
@@ -242,14 +242,14 @@ if (count($err) == 0) {
             break;
             case 'date':
                 $ele[$ele_id] = trim($ele[$ele_id]);
-                if( preg_match('/\{EMAIL\}/', $ele_value) ){
-                    if( !checkEmail($ele[$ele_id]) ){
+                if (preg_match('/\{EMAIL\}/', $ele_value)) {
+                    if (!checkEmail($ele[$ele_id])) {
                         $err[] = _LIAISE_ERR_INVALIDMAIL;
-                    }else{
+                    } else {
                         $reply_mail = $ele[$ele_id];
                     }
                 }
-                if( preg_match('/\{UNAME\}/', $ele_value) ){
+                if (preg_match('/\{UNAME\}/', $ele_value)) {
                     $reply_name = $ele[$ele_id];
                 }
                 $msg[$ele_id] .= $myts->stripSlashesGPC($ele[$ele_id]);

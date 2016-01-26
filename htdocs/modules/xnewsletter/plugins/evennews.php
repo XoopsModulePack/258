@@ -69,7 +69,7 @@ function xnewsletter_plugin_getdata_evennews($cat_id, $action_after_read, $limit
     $sql .= " FROM {$xoopsDB->prefix("evennews_members")}";
     $sql .= " WHERE (`user_email` is not null and not(`user_email`=''))";
     if (!$result_users = $xoopsDB->query($sql)) {
-        die ("MySQL-Error: " . mysql_error());
+        die("MySQL-Error: " . mysql_error());
     }
     while ($lineArray = mysql_fetch_array($result_users)) {
         ++$i;

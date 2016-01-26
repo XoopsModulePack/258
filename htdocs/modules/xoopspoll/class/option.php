@@ -111,7 +111,7 @@ class XoopspollOption extends XoopsObject
      *
      * Delete all the poll options for a specific poll
      * @uses XoopsPersistableObjectHandler::deleteAll
-     * @param  int $pid is used to delete all options by this id
+     * @param  int   $pid is used to delete all options by this id
      * @return mixed results of deleting objects from database
      */
     public function deleteByPollId(&$pid)
@@ -142,9 +142,9 @@ class XoopspollOption extends XoopsObject
     /**
      *
      * Reset the poll's options vote count
-     * @param  unknown_type $pid
+     * @param unknown_type $pid
      * @uses XoopsPersistableObjectHandler::updateAll
-     * @return mixed        results of the object(s) update
+     * @return mixed results of the object(s) update
      */
     public function resetCountByPollId(&$pid)
     {
@@ -258,7 +258,7 @@ class XoopspollOptionHandler extends XoopsPersistableObjectHandler
      *
      * Deletes the option for selected poll
      *
-     * @param  int $pid
+     * @param int $pid
      * @uses Criteria
      * @uses XoopsPersistableObjectHandler::deleteAll
      * @return bool $success
@@ -274,7 +274,7 @@ class XoopspollOptionHandler extends XoopsPersistableObjectHandler
      *
      * Reset the vote counts for the options for selected poll
      *
-     * @param  int $pid
+     * @param int $pid
      * @uses Criteria
      * @uses XoopsPersistableObjectHandler::updateAll
      * @return bool $success
@@ -289,7 +289,7 @@ class XoopspollOptionHandler extends XoopsPersistableObjectHandler
     /**
      *
      * Generates an html select box with options
-     * @param  mixed $pid the select box is created for this poll id
+     * @param  mixed  $pid the select box is created for this poll id
      * @return string html select box
      */
     public function renderOptionFormTray($pid = 0)

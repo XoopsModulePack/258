@@ -11,7 +11,7 @@ class ExtcalFormFileCheckBox extends XoopsFormCheckBox
      * @param      $name
      * @param null $value
      */
-    function ExtcalFormFileCheckBox($caption, $name, $value = null)
+    public function ExtcalFormFileCheckBox($caption, $name, $value = null)
     {
         $this->XoopsFormCheckBox($caption, $name, $value);
     }
@@ -21,7 +21,7 @@ class ExtcalFormFileCheckBox extends XoopsFormCheckBox
      *
      * @return string
      */
-    function render()
+    public function render()
     {
         $ret = "";
         if (count($this->getOptions()) > 1
@@ -41,5 +41,4 @@ class ExtcalFormFileCheckBox extends XoopsFormCheckBox
 
         return $ret;
     }
-
 }

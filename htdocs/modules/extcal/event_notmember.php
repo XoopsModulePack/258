@@ -34,7 +34,6 @@ if ($xoopsUser && $xoopsModuleConfig['whosnot_going']) {
     if (($_POST['mode'] == 'add' || $_POST['mode'] == 'remove')
         && intval($_POST['event']) > 0
     ) {
-
         $eventHandler          = xoops_getmodulehandler(_EXTCAL_CLS_EVENT, _EXTCAL_MODULE);
         $eventNotMemberHandler = xoops_getmodulehandler(_EXTCAL_CLS_NOT_MEMBER, _EXTCAL_MODULE);
 

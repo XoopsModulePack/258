@@ -41,19 +41,19 @@ function mylinks_get_new($param)
     return $new_array;
 }
 
-function wani_make_html_title( $title )
+function wani_make_html_title($title)
 {
-    if ( !isset($title) or empty($title) ) {
+    if (!isset($title) or empty($title)) {
         return '';
     }
     $title = strip_tags($title);
-    $title = ( mb_strlen($title) > 100) ? mb_strimwidth( $title, 0, 100, " ..." ) : $title;
-    $title = wani_html_special_chars( $title );
+    $title = (mb_strlen($title) > 100) ? mb_strimwidth($title, 0, 100, " ...") : $title;
+    $title = wani_html_special_chars($title);
 
     return $title;
 }
 
-function wani_make_html_summary( $sum, $max )
+function wani_make_html_summary($sum, $max)
 {
     $FLAG_STRIP_CONTROL = 1;
     $FLAG_STRIP_CRLF    = 1;
@@ -120,7 +120,7 @@ function wani_strip_space($text)
 {
     global $xoopsConfig;
 
-    if ( ($xoopsConfig['language'] == 'japanese') && function_exists('mb_convert_kana') ) {
+    if (($xoopsConfig['language'] == 'japanese') && function_exists('mb_convert_kana')) {
         // zenkaku to hankaku
         $text = mb_convert_kana($text, "s");
     }
@@ -200,7 +200,7 @@ function wani_strip_control_code($text)
 {
     $text = preg_replace('/[\x00-\x09]/', ' ', $text);
     $text = preg_replace('/[\x0B-\x0C]/', ' ', $text);
-    $text = preg_replace('/[\x0E-\x1F]/',' ',$text);
+    $text = preg_replace('/[\x0E-\x1F]/', ' ', $text);
     $text = preg_replace('/[\x7F]/', ' ', $text);
 
     return $text;
@@ -216,7 +216,7 @@ function wani_strip_control_code($text)
 function wani_iso8601_date($time)
 {
     $tzd  = date('O', $time);
-    $tzd  = substr(chunk_split( $tzd, 3, ':' ), 0, 6);
+    $tzd  = substr(chunk_split($tzd, 3, ':'), 0, 6);
     $date = date('Y-m-d\TH:i:s', $time) . $tzd;
 
     return $date;

@@ -20,12 +20,12 @@ $sform->addElement($searchtype, true);
 
 if ($xoopsModuleConfig['multicats'] == 1) {
     $searchcat = new XoopsFormSelect(_MD_WB_CATEGORY, 'categoryID', $categoryID);
-    $searchcat->addOption ("0", _MD_WB_ALLOFTHEM);
+    $searchcat->addOption("0", _MD_WB_ALLOFTHEM);
 
-    $resultcat = $xoopsDB->query ("SELECT categoryID, name FROM " . $xoopsDB->prefix ("wbcategories") . " ORDER BY categoryID");
+    $resultcat = $xoopsDB->query("SELECT categoryID, name FROM " . $xoopsDB->prefix("wbcategories") . " ORDER BY categoryID");
 
     while (list($categoryID, $name) = $xoopsDB->fetchRow($resultcat)) {
-        $searchcat->addOption ("categoryID", "$categoryID : $name");
+        $searchcat->addOption("categoryID", "$categoryID : $name");
     }
     $sform->addElement($searchcat, true);
 }

@@ -324,10 +324,10 @@ define('_MI_PUBLISHER_ORDERBY_COMMENTS', 'Comments DESC');
 define('_MI_PUBLISHER_ORDERBY_HITS', 'Hits DESC');
 
 // The name of this module
-define('_MI_PUBLISHER_NAME','Publisher');
+define('_MI_PUBLISHER_NAME', 'Publisher');
 define('_MI_PUBLISHER_DIRNAME', basename(dirname(dirname(__DIR__))));
 define('_MI_PUBLISHER_HELP_HEADER', __DIR__.'/help/helpheader.html');
-define('_MI_PUBLISHER_BACK_2_ADMIN','Back to Administration of ');
+define('_MI_PUBLISHER_BACK_2_ADMIN', 'Back to Administration of ');
 
 //help
-define('_MI_PUBLISHER_HELP_OVERVIEW','Overview');
+define('_MI_PUBLISHER_HELP_OVERVIEW', 'Overview');

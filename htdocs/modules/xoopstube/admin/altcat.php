@@ -72,7 +72,6 @@ function makeTreeCheckTable($xt, $itemid, $title, $checks, $order = '')
          </td>
         </tr>';
         }
-
     }
     echo '<tr>
            <td width="30%"></td>

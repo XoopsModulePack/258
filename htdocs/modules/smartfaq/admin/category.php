@@ -14,15 +14,19 @@ $category_handler =& sf_gethandler('category');
 
 $op = '';
 
-if (isset($_GET['op'])) $op = $_GET['op'];
-if (isset($_POST['op'])) $op = $_POST['op'];
+if (isset($_GET['op'])) {
+    $op = $_GET['op'];
+}
+if (isset($_POST['op'])) {
+    $op = $_POST['op'];
+}
 
 // Where do we start?
 $startcategory = isset($_GET['startcategory'])? intval($_GET['startcategory']) : 0;
 
 function displayCategory($categoryObj, $level = 0)
 {
-    Global $xoopsModule, $category_handler, $pathIcon16;
+    global $xoopsModule, $category_handler, $pathIcon16;
     $description = $categoryObj->description();
     if (!XOOPS_USE_MULTIBYTES) {
         if (strlen($description) >= 100) {
@@ -58,7 +62,7 @@ function editcat($showmenu = false, $categoryid = 0)
     //$moderators = array(); // just to define the variable
     //$allmods = array();
     $startfaq = isset($_GET['startfaq'])? intval($_GET['startfaq']) : 0;
-    Global $category_handler, $xoopsUser, $xoopsUser, $myts, $xoopsConfig, $xoopsDB, $modify, $xoopsModuleConfig, $xoopsModule, $_GET;
+    global $category_handler, $xoopsUser, $xoopsUser, $myts, $xoopsConfig, $xoopsDB, $modify, $xoopsModuleConfig, $xoopsModule, $_GET;
     include_once XOOPS_ROOT_PATH . '/class/xoopsformloader.php';
 
     // Creating the faq handler object
@@ -105,12 +109,12 @@ function editcat($showmenu = false, $categoryid = 0)
     $sform->addElement(new XoopsFormText(_AM_SF_CATEGORY, 'name', 50, 255, $categoryObj->name('e')), true);
 
     // Parent Category
-    $mytree = new XoopsTree( $xoopsDB -> prefix( "smartfaq_categories" ), "categoryid", "parentid" );
+    $mytree = new XoopsTree($xoopsDB -> prefix("smartfaq_categories"), "categoryid", "parentid");
     ob_start();
-    $mytree -> makeMySelBox( "name", "weight", $categoryObj->parentid(), 1, 'parentid' );
+    $mytree -> makeMySelBox("name", "weight", $categoryObj->parentid(), 1, 'parentid');
 
     //makeMySelBox($title,$order="",$preset_id=0, $none=0, $sel_name="", $onchange="")
-    $sform -> addElement( new XoopsFormLabel( _AM_SF_PARENT_CATEGORY_EXP, ob_get_contents() ) );
+    $sform -> addElement(new XoopsFormLabel(_AM_SF_PARENT_CATEGORY_EXP, ob_get_contents()));
     ob_end_clean();
 
 /*  $mytree = new XoopsTree($xoopsDB->prefix("smartfaq_categories"), "categoryid" , "parentid");
@@ -162,7 +166,7 @@ function editcat($showmenu = false, $categoryid = 0)
 
     $sform->addElement($moderators_tray);
     */
-    $sform -> addElement( new XoopsFormHidden( 'categoryid', $categoryid ) );
+    $sform -> addElement(new XoopsFormHidden('categoryid', $categoryid));
 
     // Action buttons tray
     $button_tray = new XoopsFormElementTray('', '');
@@ -259,7 +263,7 @@ switch ($op) {
         $redirect_to = 'category.php';
     }
 
-    if ( !$categoryObj->store() ) {
+    if (!$categoryObj->store()) {
         redirect_header("javascript:history.go(-1)", 3, _AM_SF_CATEGORY_SAVE_ERROR . sf_formatErrors($categoryObj->getErrors()));
         exit;
     }
@@ -292,7 +296,7 @@ switch ($op) {
     $name = (isset($_POST['name']))? $_POST['name'] : '';
 
     if ($confirm) {
-        if ( !$category_handler->delete($categoryObj)) {
+        if (!$category_handler->delete($categoryObj)) {
             redirect_header("category.php", 1, _AM_SF_DELETE_CAT_ERROR);
             exit;
         }
@@ -343,7 +347,6 @@ switch ($op) {
     if (count($categoriesObj) > 0) {
         foreach ($categoriesObj as $key => $thiscat) {
             displayCategory($thiscat);
-
         }
     } else {
         echo "<tr>";

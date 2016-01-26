@@ -133,7 +133,7 @@ class XoopspollPoll extends XoopsObject
      * @uses   XoopspollPollHandler::getAll()
      * @uses   XoopspollLogHandler
      * @param  int    $optionId
-     * @param  string $ip ip address of voter
+     * @param  string $ip       ip address of voter
      * @param         $time
      * @return bool   true vote entered, false voting failed
      * @internal param int $uid
@@ -392,8 +392,8 @@ class XoopspollPoll extends XoopsObject
     /**
      * Send copy of vote to the user at time of vote (if selected)
      *
-     * @param XoopsUser $user the Xoops user object for this user
-     * @return bool send status
+     * @param  XoopsUser $user the Xoops user object for this user
+     * @return bool      send status
      */
     public function notifyVoter($user = null)
     {
@@ -545,7 +545,7 @@ class XoopspollPollHandler extends XoopsPersistableObjectHandler
      *
      * Update the Vote count from the log and polls
      * @access public
-     * @param  obj $pollObj
+     * @param  obj  $pollObj
      * @return bool $success
      */
     public function updateCount(&$pollObj)

@@ -75,7 +75,6 @@ if ($totalfaqs > 0) {
             $answerSubmitterID = $answerObj->vars['uid']['value'];
 
             $answerSubmitter = sf_getLinkedUnameFromId($answerSubmitterID, $smartModuleConfig['userealname']);
-
         } else {
             $answerSubmitter = '--------';
         }

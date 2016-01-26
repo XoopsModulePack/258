@@ -22,29 +22,33 @@ include 'function.php';
 
 xoops_cp_header();
 
-function extensionInstalled() {
- return file_exists(XOOPS_ROOT_PATH.'/class/textsanitizer/gallery/gallery.php');
+function extensionInstalled()
+{
+    return file_exists(XOOPS_ROOT_PATH.'/class/textsanitizer/gallery/gallery.php');
 }
 
-function extensionActivated() {
- $conf = include XOOPS_ROOT_PATH.'/class/textsanitizer/config.custom.php';
+function extensionActivated()
+{
+    $conf = include XOOPS_ROOT_PATH.'/class/textsanitizer/config.custom.php';
 
- return $conf['extensions']['gallery'];
+    return $conf['extensions']['gallery'];
 }
 
-function activateExtension() {
- $conf = include XOOPS_ROOT_PATH.'/class/textsanitizer/config.custom.php';
- $conf['extensions']['gallery'] = 1;
- file_put_contents(XOOPS_ROOT_PATH.'/class/textsanitizer/config.custom.php', "<?php\rreturn \$config = ".var_export($conf,true)."\r?>");
+function activateExtension()
+{
+    $conf = include XOOPS_ROOT_PATH.'/class/textsanitizer/config.custom.php';
+    $conf['extensions']['gallery'] = 1;
+    file_put_contents(XOOPS_ROOT_PATH.'/class/textsanitizer/config.custom.php', "<?php\rreturn \$config = ".var_export($conf, true)."\r?>");
 }
 
-function desactivateExtension() {
- $conf = include XOOPS_ROOT_PATH.'/class/textsanitizer/config.custom.php';
- $conf['extensions']['gallery'] = 0;
- file_put_contents(XOOPS_ROOT_PATH.'/class/textsanitizer/config.custom.php', "<?php\rreturn \$config = ".var_export($conf,true)."\r?>");
+function desactivateExtension()
+{
+    $conf = include XOOPS_ROOT_PATH.'/class/textsanitizer/config.custom.php';
+    $conf['extensions']['gallery'] = 0;
+    file_put_contents(XOOPS_ROOT_PATH.'/class/textsanitizer/config.custom.php', "<?php\rreturn \$config = ".var_export($conf, true)."\r?>");
 }
 
-if(file_exists(XOOPS_ROOT_PATH.'/class/textsanitizer/gallery/gallery.php')){
+if (file_exists(XOOPS_ROOT_PATH.'/class/textsanitizer/gallery/gallery.php')) {
     $xoopsTpl->assign('extensioninstalled', true);
 } else {
     $xoopsTpl->assign('extensioninstalled', false);

@@ -63,7 +63,7 @@ if (!isset($_GET['list'])) {
     $imgurl = '';
     if (is_object($catObj) && !empty($catObj)) {
         $thisCatTitle = $myts->htmlSpecialChars($catObj->getVar('title'));
-        if ( $catObj->getVar('imgurl') && (($catObj->getVar('imgurl') != "http://") && ($catObj->getVar('imgurl') != '')) ) {
+        if ($catObj->getVar('imgurl') && (($catObj->getVar('imgurl') != "http://") && ($catObj->getVar('imgurl') != ''))) {
             $imgurl = $myts->htmlSpecialChars($catObj->getVar('imgurl'));
         }
     } else {
@@ -94,7 +94,7 @@ if (!isset($_GET['list'])) {
     $itemPath   = $catObj->getVar('title');
     $path       = '';
     $myParent = $catObj->getVar('pid');
-    while ( $myParent != 0 ) {
+    while ($myParent != 0) {
         $ancestorObj = $myCatTree->getByKey($myParent);
         $path  = "<a href='" . XOOPSMYLINKURL . "/viewcat.php?cid=" . $ancestorObj->getVar('cid') . "'>" . $ancestorObj->getVar('title') . "</a>&nbsp;:&nbsp;{$path}";
         $myParent = $ancestorObj->getVar('pid');
@@ -117,7 +117,7 @@ if (!isset($_GET['list'])) {
         $gchildCatObjs = $myCatTree->getFirstChild($subCatObj->getVar('cid'));
         $gchildCategories = '';
         $subCatCount = count($gchildCatObjs);
-        $lpLimit = min( array( $subCatLimit , $subCatCount ) );
+        $lpLimit = min(array( $subCatLimit, $subCatCount ));
         $i = 0;
         foreach ($gchildCatObjs as $gchildCatObj) {
             $gchtitle = $myts->htmlSpecialChars($gchildCatObj->getVar('title'));
@@ -150,7 +150,7 @@ if (!isset($_GET['list'])) {
     //TODO:  need to filter $_GET['list'] input var
     $categoryPath = sprintf(_MD_MYLINKS_LINKS_LIST, $myts->htmlSpecialChars($list));
     $thisPageTitle = $categoryPath;
-    $xoopsTpl->assign('category_path', $categoryPath );
+    $xoopsTpl->assign('category_path', $categoryPath);
 
     $LinkCountResult=$xoopsDB->query("SELECT COUNT(*) FROM " . $xoopsDB->prefix("mylinks_links") . " WHERE title LIKE '" . $myts->addSlashes($_GET['list']) . "%' AND status>0");
 }
@@ -171,23 +171,23 @@ $xoopsTpl->assign('anontellafriend', $GLOBALS['xoopsModuleConfig']['anontellafri
 $page_nav = '';
 list($numrows) = $xoopsDB->fetchRow($LinkCountResult);
 
-if ( $numrows > 0 ) {
+if ($numrows > 0) {
     $xoopsTpl->assign(array('lang_description'  => _MD_MYLINKS_DESCRIPTIONC,
-                            'lang_lastupdate'   => _MD_MYLINKS_LASTUPDATEC ,
-                            'lang_hits'         => _MD_MYLINKS_HITSC ,
-                            'lang_rating'       => _MD_MYLINKS_RATINGC ,
-                            'lang_ratethissite' => _MD_MYLINKS_RATETHISSITE ,
-                            'lang_reportbroken' => _MD_MYLINKS_REPORTBROKEN ,
-                            'lang_tellafriend'  => _MD_MYLINKS_TELLAFRIEND ,
-                            'lang_modify'       => _MD_MYLINKS_MODIFY ,
-                            'lang_category'     => _MD_MYLINKS_CATEGORYC ,
-                            'lang_visit'        => _MD_MYLINKS_VISIT ,
-                            'show_links'        => true ,
+                            'lang_lastupdate'   => _MD_MYLINKS_LASTUPDATEC,
+                            'lang_hits'         => _MD_MYLINKS_HITSC,
+                            'lang_rating'       => _MD_MYLINKS_RATINGC,
+                            'lang_ratethissite' => _MD_MYLINKS_RATETHISSITE,
+                            'lang_reportbroken' => _MD_MYLINKS_REPORTBROKEN,
+                            'lang_tellafriend'  => _MD_MYLINKS_TELLAFRIEND,
+                            'lang_modify'       => _MD_MYLINKS_MODIFY,
+                            'lang_category'     => _MD_MYLINKS_CATEGORYC,
+                            'lang_visit'        => _MD_MYLINKS_VISIT,
+                            'show_links'        => true,
                             'lang_comments'     => _COMMENTS)
     );
 
     //if 2 or more items in result, show the sort menu
-    if ( $numrows > 1 ) {
+    if ($numrows > 1) {
         $xoopsTpl->assign(array('show_nav'         => true,
                               'lang_sortby'      => _MD_MYLINKS_SORTBY,
                                 'lang_title'       => _MD_MYLINKS_TITLE,
@@ -227,7 +227,7 @@ if ( $numrows > 0 ) {
         $itemPath   = $thisCatObj->getVar('title');
         $path       = '';
         $myParent = $thisCatObj->getVar('pid');
-        while ( $myParent != 0 ) {
+        while ($myParent != 0) {
             $ancestorObj = $myCatTree->getByKey($myParent);
             $path  = "<a href='" . XOOPSMYLINKURL . "/viewcat.php?cid=" . $ancestorObj->getVar('cid') . "'>" . $ancestorObj->getVar('title') . "</a>&nbsp;:&nbsp;{$path}";
             $myParent = $ancestorObj->getVar('pid');
@@ -325,10 +325,10 @@ $xoopsTpl->assign('mylinksthemeoption', $mylinkstheme_select);
 //wanikoo end
 
 //wanikoo search
-if ( file_exists(XOOPS_ROOT_PATH."/language/".$xoopsConfig['language']."/search.php") ) {
-   include_once XOOPS_ROOT_PATH."/language/".$xoopsConfig['language']."/search.php";
+if (file_exists(XOOPS_ROOT_PATH."/language/".$xoopsConfig['language']."/search.php")) {
+    include_once XOOPS_ROOT_PATH."/language/".$xoopsConfig['language']."/search.php";
 } else {
-   include_once XOOPS_ROOT_PATH."/language/english/search.php";
+    include_once XOOPS_ROOT_PATH."/language/english/search.php";
 }
 $xoopsTpl->assign('lang_all', _SR_ALL);
 $xoopsTpl->assign('lang_any', _SR_ANY);
@@ -337,10 +337,10 @@ $xoopsTpl->assign('lang_search', _SR_SEARCH);
 $xoopsTpl->assign('module_id', $xoopsModule->getVar('mid'));
 //category head
 $catarray = array();
-if ( $mylinks_show_letters ) {
+if ($mylinks_show_letters) {
     $catarray['letters'] = ml_wfd_letters();
 }
-if ( $mylinks_show_toolbar ) {
+if ($mylinks_show_toolbar) {
     $catarray['toolbar'] = ml_wfd_toolbar();
 }
 $xoopsTpl->assign('catarray', $catarray);

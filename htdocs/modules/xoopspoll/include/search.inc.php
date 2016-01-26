@@ -25,11 +25,11 @@
 /**
  * xoopspoll_search()
  *
- * @param       $queryArray
- * @param mixed $andor
- * @param mixed $limit
- * @param mixed $offset
- * @param       $uid
+ * @param        $queryArray
+ * @param  mixed $andor
+ * @param  mixed $limit
+ * @param  mixed $offset
+ * @param        $uid
  * @return array
  * @internal param mixed $queryarray
  * @internal param mixed $userid

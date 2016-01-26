@@ -5,7 +5,7 @@ define('WP_USE_THEMES', false);
 require(dirname(dirname(dirname(__DIR__))) . '/wp-blog-header.php');
 
 if (isset($_GET['slider_id']) && (int) $_GET['slider_id'] > 0) {
-    add_filter( 'show_admin_bar', '__return_false' );
+    add_filter('show_admin_bar', '__return_false');
     remove_action('init', 'wp_admin_bar_init');
 
     $id = intval($_GET['slider_id']);

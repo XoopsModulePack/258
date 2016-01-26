@@ -31,7 +31,7 @@ defined('XOOPS_ROOT_PATH') or die('Restricted access');
 
 interface TagConstants
 {
-/**#@+
+    /**#@+
  * Constant definition
  */
     /**

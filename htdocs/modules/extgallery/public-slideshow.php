@@ -22,7 +22,7 @@ include_once XOOPS_ROOT_PATH.'/modules/extgallery/class/publicPerm.php';
 $GLOBALS['xoopsOption']['template_main'] = 'extgallery_public-slideshow.html';
 include XOOPS_ROOT_PATH.'/header.php';
 
-if(!isset($_GET['id'])) {
+if (!isset($_GET['id'])) {
     $catId = 0;
 } else {
     $catId = intval($_GET['id']);
@@ -30,7 +30,7 @@ if(!isset($_GET['id'])) {
 
 // Check the access permission
 $permHandler = ExtgalleryPublicPermHandler::getHandler();
-if(!$permHandler->isAllowed($xoopsUser, 'public_access', $catId)) {
+if (!$permHandler->isAllowed($xoopsUser, 'public_access', $catId)) {
     redirect_header("index.php", 3, _NOPERM);
     exit;
 }
@@ -40,7 +40,7 @@ $photoHandler = xoops_getmodulehandler('publicphoto', 'extgallery');
 
 $catObj = $catHandler->getCat($catId);
 
-if(is_null($catObj)) {
+if (is_null($catObj)) {
     include(XOOPS_ROOT_PATH."/footer.php");
     exit;
 }
@@ -56,7 +56,7 @@ $xoopsTpl->assign('catPath', $catPath);
 $photos = $photoHandler->getSlideshowAlbumPhoto($catId);
 $xoopsTpl->assign('photos', $photos);
 $xoopsTpl->assign('xoops_pagetitle', $catObj->getVar('cat_name'));
-$xoTheme->addMeta('meta','description',$catObj->getVar('cat_desc'));
+$xoTheme->addMeta('meta', 'description', $catObj->getVar('cat_desc'));
 
 $xoopsTpl->assign('extgalleryName', $xoopsModule->getVar('name'));
 
@@ -70,9 +70,9 @@ $xoTheme->addStylesheet('modules/extgallery/include/style.css');
 
 $jquery = $xoopsModuleConfig['enable_jquery'];
 $xoopsTpl->assign('jquery', $jquery);
-if($jquery == 1){
+if ($jquery == 1) {
     $xoTheme->addScript("browse.php?Frameworks/jquery/jquery.js");
-    switch($ajaxeffect) {
+    switch ($ajaxeffect) {
         case 'galleryview':
             $xoTheme->addScript("browse.php?modules/extgallery/include/galleryview/galleryview.js");
             $xoTheme->addScript("browse.php?modules/extgallery/include/galleryview/timers.js");
@@ -127,9 +127,9 @@ $xoopsTpl->assign('galleria_bgcolor', $xoopsModuleConfig['galleria_bgcolor']);
 $xoopsTpl->assign('galleria_bcolor', $xoopsModuleConfig['galleria_bcolor']);
 $xoopsTpl->assign('galleria_bgimg', $xoopsModuleConfig['galleria_bgimg']);
 if ($xoopsModuleConfig['galleria_autoplay']==1) {
-  $xoopsTpl->assign('galleria_autoplay', 'true');
-}else{
-  $xoopsTpl->assign('galleria_autoplay', 'false');
+    $xoopsTpl->assign('galleria_autoplay', 'true');
+} else {
+    $xoopsTpl->assign('galleria_autoplay', 'false');
 }
 $xoopsTpl->assign('galleria_transition', $xoopsModuleConfig['galleria_transition']);
 $xoopsTpl->assign('galleria_tspeed', $xoopsModuleConfig['galleria_tspeed']);
@@ -139,9 +139,9 @@ $xoopsTpl->assign('galleriffic_nb_thumbs', $xoopsModuleConfig['galleriffic_nb_th
 $xoopsTpl->assign('galleriffic_nb_colthumbs', $xoopsModuleConfig['galleriffic_nb_colthumbs']);
 $xoopsTpl->assign('galleriffic_nb_preload', $xoopsModuleConfig['galleriffic_nb_preload']);
 if ($xoopsModuleConfig['galleriffic_autoplay']==1) {
-  $xoopsTpl->assign('galleriffic_autoplay', 'true');
-}else{
-  $xoopsTpl->assign('galleriffic_autoplay', 'false');
+    $xoopsTpl->assign('galleriffic_autoplay', 'true');
+} else {
+    $xoopsTpl->assign('galleriffic_autoplay', 'false');
 }
 $xoopsTpl->assign('galleriffic_tdelay', $xoopsModuleConfig['galleriffic_tdelay']);
 $xoopsTpl->assign('galleriffic_tspeed', $xoopsModuleConfig['galleriffic_tspeed']);
@@ -149,7 +149,7 @@ $xoopsTpl->assign('galleriffic_tspeed', $xoopsModuleConfig['galleriffic_tspeed']
 $var_nav_width=0;
 $var_nav_visible='hidden';
 
-switch ($xoopsModuleConfig['galleriffic_nb_colthumbs']){
+switch ($xoopsModuleConfig['galleriffic_nb_colthumbs']) {
     case 1;
         $var_nav_width=130;
         $var_nav_visible='visible';

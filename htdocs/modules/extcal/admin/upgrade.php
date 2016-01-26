@@ -31,7 +31,6 @@ switch ($step) {
         adminMenu();
 
         if ($GLOBALS['xoopsModule']->getVar('version') >= $lastVersion) {
-
             echo _AM_EXTCAL_UPDATE_OK;
             xoops_cp_footer();
             break;
@@ -90,7 +89,6 @@ switch ($step) {
         adminMenu();
 
         if (!file_exists(XOOPS_ROOT_PATH . "/uploads/" . $moduleFileName)) {
-
             echo _AM_EXTCAL_MD_FILE_DONT_EXIST_SHORT;
             xoops_cp_footer();
 
@@ -124,7 +122,6 @@ switch ($step) {
 
         // Delete template_c file
         if ($handle = opendir(XOOPS_ROOT_PATH . '/templates_c')) {
-
             while (false !== ($file = readdir($handle))) {
                 if ($file != '.' && $file != '..' && $file != 'index.html') {
                     unlink(XOOPS_ROOT_PATH . '/templates_c/' . $file);

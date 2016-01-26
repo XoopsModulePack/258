@@ -33,7 +33,6 @@ class EasyPeasyICS
         $this->calendarName = $calendarName;
     }//function
 
-
     /**
      * Add event to calendar
      *
@@ -54,8 +53,7 @@ class EasyPeasyICS
             "description" => $description,
             "url"         => $url
         );
-}//function
-
+    }//function
 
 /**
  * @param bool $output
@@ -91,7 +89,6 @@ URL;VALUE=URI:" . $event['url'] . "
 END:VEVENT";
     }//foreach
 
-
     //Footer
     $ics
         .= "
@@ -105,7 +102,6 @@ END:VCALENDAR";
     } else {
         return $ics;
     }
-
 }//function
-
 }//class
+

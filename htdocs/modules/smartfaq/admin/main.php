@@ -117,9 +117,9 @@ $totalnewanswers = isset($totalfaqbystatus[_SF_STATUS_NEW_ANSWER])? $totalfaqbys
 //echo "<br />";
 
 //$indexAdmin = new ModuleAdmin();
-$indexAdmin->addItemButton(_AM_SF_CATEGORY_CREATE, 'category.php?op=mod', 'add' , '');
-$indexAdmin->addItemButton(_AM_SF_CREATEART, 'faq.php?op=mod', 'add' , '');
-$indexAdmin->addItemButton(_AM_SF_CREATEQUESTION, 'question.php?op=mod', 'add' , '');
+$indexAdmin->addItemButton(_AM_SF_CATEGORY_CREATE, 'category.php?op=mod', 'add', '');
+$indexAdmin->addItemButton(_AM_SF_CREATEART, 'faq.php?op=mod', 'add', '');
+$indexAdmin->addItemButton(_AM_SF_CREATEQUESTION, 'question.php?op=mod', 'add', '');
 echo $indexAdmin->renderButton('left', '');
 
 //echo "<form><div style=\"margin-bottom: 24px;\">";
@@ -319,7 +319,7 @@ if ($numrows > 0) {
     //$answer_handler =& sf_gethandler('answer');
     //$answer_arr = $answer_handler->getCountByFAQ($answer_criteria);
 
-    foreach ( array_keys($faqsObj) as $i ) {
+    foreach (array_keys($faqsObj) as $i) {
         // Creating the category object to which this faq is linked
         $categoryObj =& $allcats[$faqsObj[$i]->categoryid()];
         global $pathIcon16, $smartModuleConfig;
@@ -430,7 +430,6 @@ if ($numrows > 0) {
             $answerSubmitterID = $answerObj->vars['uid']['value'];
 
             $answerSubmitter = sf_getLinkedUnameFromId($answerSubmitterID, $smartModuleConfig['userealname']);
-
         } else {
             $answerSubmitter = '--------';
         }

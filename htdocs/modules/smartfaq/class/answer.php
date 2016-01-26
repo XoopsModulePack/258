@@ -21,11 +21,11 @@ define("_SF_NOT_ANSWER_REJECTED", 4);
 
 class sfAnswer extends XoopsObject
 {
-    var $attachment_array = array();
+    public $attachment_array = array();
     /**
     * constructor
     */
-    function __construct ($id = null)
+    public function __construct($id = null)
     {
         $this->db =& XoopsDatabaseFactory::getDatabaseConnection();
         $this->initVar("answerid", XOBJ_DTYPE_INT, null, false);
@@ -60,29 +60,38 @@ class sfAnswer extends XoopsObject
 
     // ////////////////////////////////////////////////////////////////////////////////////
     // attachment functions    TODO: there should be a file/attachment management class
-    function getAttachment()
+    public function getAttachment()
     {
-        if (count($this->attachment_array)) return $this->attachment_array;
+        if (count($this->attachment_array)) {
+            return $this->attachment_array;
+        }
         $attachment = $this->getVar('attachment');
-        if (empty($attachment)) $this->attachment_array = null;
-        else $this->attachment_array = @unserialize(base64_decode($attachment));
+        if (empty($attachment)) {
+            $this->attachment_array = null;
+        } else {
+            $this->attachment_array = @unserialize(base64_decode($attachment));
+        }
 
         return $this->attachment_array;
     }
 
-    function incrementDownload($attach_key)
+    public function incrementDownload($attach_key)
     {
-        if (!$attach_key) return false;
+        if (!$attach_key) {
+            return false;
+        }
         $this->attachment_array[strval($attach_key)]['num_download'] ++;
 
         return $this->attachment_array[strval($attach_key)]['num_download'];
     }
 
-    function saveAttachment()
+    public function saveAttachment()
     {
-        if (is_array($this->attachment_array) && count($this->attachment_array) > 0)
+        if (is_array($this->attachment_array) && count($this->attachment_array) > 0) {
             $attachment_save = base64_encode(serialize($this->attachment_array));
-        else $attachment_save = '';
+        } else {
+            $attachment_save = '';
+        }
         $this->setVar('attachment', $attachment_save);
         $sql = "UPDATE " . $GLOBALS["xoopsDB"]->prefix("smartfaq_answers") . " SET attachment=" . $GLOBALS["xoopsDB"]->quoteString($attachment_save) . " WHERE post_id = " . $this->getVar('answerid');
         if (!$result = $GLOBALS["xoopsDB"]->queryF($sql)) {
@@ -93,16 +102,22 @@ class sfAnswer extends XoopsObject
         return true;
     }
 
-    function deleteAttachment($attach_array = null)
+    public function deleteAttachment($attach_array = null)
     {
         global $xoopsModuleConfig;
 
         $attach_old = $this->getAttachment();
-        if (!is_array($attach_old) || count($attach_old) < 1) return true;
+        if (!is_array($attach_old) || count($attach_old) < 1) {
+            return true;
+        }
         $this->attachment_array = array();
 
-        if ($attach_array === null) $attach_array = array_keys($attach_old); // to delete all!
-        if (!is_array($attach_array)) $attach_array = array($attach_array);
+        if ($attach_array === null) {
+            $attach_array = array_keys($attach_old);
+        } // to delete all!
+        if (!is_array($attach_array)) {
+            $attach_array = array($attach_array);
+        }
 
         foreach ($attach_old as $key => $attach) {
             if (in_array($key, $attach_array)) {
@@ -112,15 +127,17 @@ class sfAnswer extends XoopsObject
             }
             $this->attachment_array[$key] = $attach;
         }
-        if (is_array($this->attachment_array) && count($this->attachment_array) > 0)
+        if (is_array($this->attachment_array) && count($this->attachment_array) > 0) {
             $attachment_save = base64_encode(serialize($this->attachment_array));
-        else $attachment_save = '';
+        } else {
+            $attachment_save = '';
+        }
         $this->setVar('attachment', $attachment_save);
 
         return true;
     }
 
-    function setAttachment($name_saved = '', $name_display = '', $mimetype = '', $num_download = 0)
+    public function setAttachment($name_saved = '', $name_display = '', $mimetype = '', $num_download = 0)
     {
         static $counter=0;
         $this->attachment_array = $this->getAttachment();
@@ -145,7 +162,7 @@ class sfAnswer extends XoopsObject
     /**
      * TODO: refactor
      */
-    function displayAttachment($asSource = false)
+    public function displayAttachment($asSource = false)
     {
         global $xoopsModule, $xoopsModuleConfig;
 
@@ -167,16 +184,16 @@ class sfAnswer extends XoopsObject
                     $icon_filetype = XOOPS_URL . '/' . $mime_path . '/unknown.gif';
                 }
                 $file_size = @filesize(XOOPS_ROOT_PATH . '/' . $xoopsModuleConfig['dir_attachments'] . '/' . $att['name_saved']);
-                $file_size = number_format ($file_size / 1024, 2)." KB";
+                $file_size = number_format($file_size / 1024, 2)." KB";
                 if (in_array(strtolower($file_extension), $image_extensions) && $xoopsModuleConfig['media_allowed']) {
-                        $post_attachment .= '<br /><img src="' . $icon_filetype . '" alt="' . $filetype . '" /><strong>&nbsp; ' . $att['name_display'] . '</strong> <small>('.$file_size.')</small>';
-                        $post_attachment .= '<br />' . sf_attachmentImage($att['name_saved']);
-                        $isDisplayed = true;
+                    $post_attachment .= '<br /><img src="' . $icon_filetype . '" alt="' . $filetype . '" /><strong>&nbsp; ' . $att['name_display'] . '</strong> <small>('.$file_size.')</small>';
+                    $post_attachment .= '<br />' . sf_attachmentImage($att['name_saved']);
+                    $isDisplayed = true;
                 } else {
                     global $xoopsUser;
                     if (empty($xoopsModuleConfig['show_userattach'])) {
                         $post_attachment .= '<a href="' . XOOPS_URL . '/modules/' . $xoopsModule->getVar("dirname", "n") . '/dl_attachment.php?attachid=' . $key . '&amp;post_id=' . $this->getVar('post_id') . '"> <img src="' . $icon_filetype . '" alt="' . $filetype . '" /> ' . $att['name_display'] . '</a> ' . _MD_FILESIZE . ': '. $file_size . '; '._MD_HITS.': ' . $att['num_download'];
-                    } elseif (($xoopsUser && $xoopsUser->uid() > 0 && $xoopsUser->isactive()) ) {
+                    } elseif (($xoopsUser && $xoopsUser->uid() > 0 && $xoopsUser->isactive())) {
                         $post_attachment .= '<a href="' . XOOPS_URL . '/modules/' . $xoopsModule->getVar("dirname", "n") . '/dl_attachment.php?attachid=' . $key . '&amp;post_id=' . $this->getVar('post_id') . '"> <img src="' . $icon_filetype . '" alt="' . $filetype . '" /> ' . $att['name_display'] . '</a> ' . _MD_FILESIZE . ': '. $file_size . '; '._MD_HITS.': ' . $att['num_download'];
                     } else {
                         $post_attachment .= _MD_NEWBB_SEENOTGUEST;
@@ -184,14 +201,14 @@ class sfAnswer extends XoopsObject
                 }
                 $post_attachment .= '<br />';
             }
-       }
+        }
 
         return $post_attachment;
     }
     // attachment functions
     // ////////////////////////////////////////////////////////////////////////////////////
 
-    function store($force = true)
+    public function store($force = true)
     {
         $answer_handler = new sfAnswerHandler($this->db);
 
@@ -203,27 +220,27 @@ class sfAnswer extends XoopsObject
         return $answer_handler->insert($this, $force);
     }
 
-    function answerid()
+    public function answerid()
     {
         return $this->getVar("answerid");
     }
 
-    function faqid()
+    public function faqid()
     {
         return $this->getVar("faqid");
     }
 
-    function answer($format="S")
+    public function answer($format="S")
     {
         return $this->getVar("answer", $format);
     }
 
-    function uid()
+    public function uid()
     {
         return $this->getVar("uid");
     }
 
-    function datesub($dateFormat='none', $format="S")
+    public function datesub($dateFormat='none', $format="S")
     {
         if ($dateFormat == 'none') {
             $smartModuleConfig =& sf_getModuleConfig();
@@ -233,17 +250,17 @@ class sfAnswer extends XoopsObject
         return formatTimestamp($this->getVar('datesub', $format), $dateFormat);
     }
 
-    function status()
+    public function status()
     {
         return $this->getVar("status");
     }
 
-    function notLoaded()
+    public function notLoaded()
     {
-       return ($this->getVar('answerid')== -1);
+        return ($this->getVar('answerid')== -1);
     }
 
-    function sendNotifications($notifications=array())
+    public function sendNotifications($notifications=array())
     {
         $smartModule =& sf_getModuleInfo();
 
@@ -278,7 +295,6 @@ class sfAnswer extends XoopsObject
             }
         }
     }
-
 }
 
 /**
@@ -299,7 +315,7 @@ class sfAnswerHandler extends XoopsPersistableObjectHandler
     * @param bool $isNew flag the new objects as "new"?
     * @return object sfAnswer
     */
-    function &create($isNew = true)
+    public function &create($isNew = true)
     {
         $answer = new sfAnswer();
         if ($isNew) {
@@ -315,7 +331,7 @@ class sfAnswerHandler extends XoopsPersistableObjectHandler
     * @param int $id answerid of the answer
     * @return mixed reference to the {@link sfAnswer} object, FALSE if failed
     */
-    function &get($id)
+    public function &get($id)
     {
         if (intval($id) > 0) {
             $sql = 'SELECT * FROM '.$this->db->prefix('smartfaq_answers').' WHERE answerid='.$id;
@@ -342,7 +358,7 @@ class sfAnswerHandler extends XoopsPersistableObjectHandler
     * @param bool $force
     * @return bool FALSE if failed, TRUE if already present and unchanged or successful
     */
-    function insert(&$answerObj, $force = false)
+    public function insert(&$answerObj, $force = false)
     {
         if (strtolower(get_class($answerObj)) != 'sfanswer') {
             return false;
@@ -390,7 +406,7 @@ class sfAnswerHandler extends XoopsPersistableObjectHandler
     * @param bool $force
     * @return bool FALSE if failed.
     */
-    function delete(&$answer, $force = false)
+    public function delete(&$answer, $force = false)
     {
         if (strtolower(get_class($answer)) != 'sfanswer') {
             return false;
@@ -418,7 +434,7 @@ class sfAnswerHandler extends XoopsPersistableObjectHandler
     * @param bool $force
     * @return bool FALSE if failed.
     */
-    function deleteFaqAnswers(&$faqObj)
+    public function deleteFaqAnswers(&$faqObj)
     {
         if (strtolower(get_class($faqObj)) != 'sffaq') {
             return false;
@@ -441,7 +457,7 @@ class sfAnswerHandler extends XoopsPersistableObjectHandler
     * @param bool $id_as_key use the answerid as key for the array?
     * @return array array of {@link sfAnswer} objects
     */
-    function &getObjects($criteria = null, $id_as_key = false)
+    public function &getObjects($criteria = null, $id_as_key = false)
     {
         $ret = array();
         $limit = $start = 0;
@@ -480,7 +496,7 @@ class sfAnswerHandler extends XoopsPersistableObjectHandler
     * @param int $faqid
     * @return mixed reference to the {@link sfAnswer} object, FALSE if failed
     */
-    function &getOfficialAnswer($faqid=0)
+    public function &getOfficialAnswer($faqid=0)
     {
         $theaAnswers =& $this->getAllAnswers($faqid, _SF_AN_STATUS_APPROVED, 1, 0);
         if (count($theaAnswers) == 1) {
@@ -499,11 +515,11 @@ class sfAnswerHandler extends XoopsPersistableObjectHandler
     * @param int $faqid
     * @return array array of {@link sfAnswer} objects
     */
-    function &getAllAnswers($faqid=0, $status = -1, $limit = 0, $start = 0, $sort = 'datesub', $order = 'DESC')
+    public function &getAllAnswers($faqid=0, $status = -1, $limit = 0, $start = 0, $sort = 'datesub', $order = 'DESC')
     {
         $hasStatusCriteria = false;
         $criteriaStatus = new CriteriaCompo();
-        if ( is_array($status)) {
+        if (is_array($status)) {
             $hasStatusCriteria = true;
             foreach ($status as $v) {
                 $criteriaStatus->add(new Criteria('status', $v), 'OR');
@@ -536,7 +552,7 @@ class sfAnswerHandler extends XoopsPersistableObjectHandler
     * @param object $criteria {@link CriteriaElement} to match
     * @return int count of answers
     */
-    function getCount($criteria = null)
+    public function getCount($criteria = null)
     {
         $sql = 'SELECT COUNT(*) FROM '.$this->db->prefix('smartfaq_answers');
         if (isset($criteria) && is_subclass_of($criteria, 'criteriaelement')) {
@@ -557,7 +573,7 @@ class sfAnswerHandler extends XoopsPersistableObjectHandler
     * @param object $criteria {@link CriteriaElement} to match
     * @return array
     */
-    function getCountByFAQ($criteria = null)
+    public function getCountByFAQ($criteria = null)
     {
         $sql = 'SELECT faqid, COUNT(*) FROM '.$this->db->prefix('smartfaq_answers');
         if (isset($criteria) && is_subclass_of($criteria, 'criteriaelement')) {
@@ -585,7 +601,7 @@ class sfAnswerHandler extends XoopsPersistableObjectHandler
     * @param object $criteria {@link CriteriaElement}
     * @return bool FALSE if deletion failed
     */
-    function deleteAll($criteria = null)
+    public function deleteAll($criteria = null)
     {
         $sql = 'DELETE FROM '.$this->db->prefix('smartfaq_answers');
         if (isset($criteria) && is_subclass_of($criteria, 'criteriaelement')) {
@@ -607,7 +623,7 @@ class sfAnswerHandler extends XoopsPersistableObjectHandler
     *
     * @return  bool
     **/
-    function updateAll($fieldname, $fieldvalue, $criteria = null)
+    public function updateAll($fieldname, $fieldvalue, $criteria = null)
     {
         $set_clause = is_numeric($fieldvalue)? $fieldname.' = '.$fieldvalue : $fieldname.' = '.$this->db->quoteString($fieldvalue);
         $sql = 'UPDATE '.$this->db->prefix('smartfaq_answers').' SET '.$set_clause;
@@ -622,7 +638,7 @@ class sfAnswerHandler extends XoopsPersistableObjectHandler
         return true;
     }
 
-    function getLastPublishedByFaq($faqids)
+    public function getLastPublishedByFaq($faqids)
     {
         $ret = array();
         $sql = "SELECT faqid, answer, uid, datesub FROM ".$this->db->prefix("smartfaq_answers")."

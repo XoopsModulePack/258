@@ -111,7 +111,6 @@ class Post extends ArtObject
         $attachment_save = '';
         if (is_array($this->attachment_array) && count($this->attachment_array) > 0) {
             $attachment_save = base64_encode(serialize($this->attachment_array));
-
         }
         $this->setVar('attachment', $attachment_save);
         $sql = 'UPDATE ' . $GLOBALS['xoopsDB']->prefix('bb_posts') . ' SET attachment=' . $GLOBALS['xoopsDB']->quoteString($attachment_save) . ' WHERE post_id = ' . $this->getVar('post_id');
@@ -191,7 +190,7 @@ class Post extends ArtObject
 
     /**
      * TODO: refactor
-     * @param  bool $asSource
+     * @param  bool   $asSource
      * @return string
      */
     public function displayAttachment($asSource = false)
@@ -386,7 +385,7 @@ class Post extends ArtObject
     }
 
     /**
-     * @param  int $uid
+     * @param  int  $uid
      * @return bool
      */
     public function checkIdentity($uid = -1)
@@ -535,9 +534,7 @@ class Post extends ArtObject
                 $thread_buttons['quote']['link']  = $GLOBALS['xoops']->url('modules/' . $GLOBALS['xoopsModule']->getVar('dirname') . "/reply.php?{$page_query}&amp;quotedac=1");
                 $thread_buttons['quote']['name']  = _MD_QUOTE;
             }
-
         } else {
-
             $mod_buttons['edit']['image'] = newbb_displayImage('p_edit', _EDIT);
             $mod_buttons['edit']['link']  = $GLOBALS['xoops']->url('modules/' . $GLOBALS['xoopsModule']->getVar('dirname') . "/edit.php?{$page_query}");
             $mod_buttons['edit']['name']  = _EDIT;
@@ -549,7 +546,6 @@ class Post extends ArtObject
             $thread_buttons['reply']['image'] = newbb_displayImage('p_reply', _MD_REPLY);
             $thread_buttons['reply']['link']  = $GLOBALS['xoops']->url('modules/' . $GLOBALS['xoopsModule']->getVar('dirname') . "/reply.php?{$page_query}");
             $thread_buttons['reply']['name']  = _MD_REPLY;
-
         }
 
         if (!$isadmin && $GLOBALS['xoopsModuleConfig']['reportmod_enabled']) {
@@ -575,7 +571,6 @@ class Post extends ArtObject
         }
 
         if ($GLOBALS['xoopsModuleConfig']['show_sociallinks']) {
-
             $full_title  = $this->getVar('subject');
             $clean_title = preg_replace('/[^A-Za-z0-9-]+/', '+', $this->getVar('subject'));
             $full_link   = $GLOBALS['xoops']->url("modules/newbb/viewtopic.php?post_id={$post_id}");
@@ -619,7 +614,6 @@ class Post extends ArtObject
             $thread_action['social_wong']['link']   = "http://www.mister-wong.de/index.php?action=addurl&bm_url=$full_link}";
             $thread_action['social_wong']['name']   = _MD_SHARE_MRWONG;
             $thread_action['social_wong']['target'] = '_blank';
-
         }
 
         $post = array(
@@ -644,7 +638,6 @@ class Post extends ArtObject
 
         return $post;
     }
-
 }
 
 /**
@@ -669,7 +662,7 @@ class NewbbPostHandler extends ArtObjectHandler //class NewbbPostHandler extends
     }
 
     /**
-     * @param  mixed|null $id
+     * @param  mixed|null  $id
      * @return null|object
      */
     public function &get($id)
@@ -686,9 +679,9 @@ class NewbbPostHandler extends ArtObjectHandler //class NewbbPostHandler extends
     }
 
     /**
-     * @param  int $topic_id
-     * @param  int $limit
-     * @param  int $approved
+     * @param  int   $topic_id
+     * @param  int   $limit
+     * @param  int   $approved
      * @return array
      */
     public function &getByLimit($topic_id, $limit, $approved = 1)
@@ -1083,8 +1076,8 @@ class NewbbPostHandler extends ArtObjectHandler //class NewbbPostHandler extends
 
     // START irmtfan enhance getPostCount when there is join (read_mode = 2)
     /**
-     * @param  null $criteria
-     * @param  null $join
+     * @param  null     $criteria
+     * @param  null     $join
      * @return int|null
      */
     public function getPostCount($criteria = null, $join = null)
@@ -1116,10 +1109,10 @@ class NewbbPostHandler extends ArtObjectHandler //class NewbbPostHandler extends
      *@TODO: combining viewtopic.php
      */
     /**
-     * @param  null $criteria
-     * @param  int  $limit
-     * @param  int  $start
-     * @param  null $join
+     * @param  null  $criteria
+     * @param  int   $limit
+     * @param  int   $start
+     * @param  null  $join
      * @return array
      */
     public function &getPostsByLimit($criteria = null, $limit = 1, $start = 0, $join = null)
@@ -1194,7 +1187,7 @@ class NewbbPostHandler extends ArtObjectHandler //class NewbbPostHandler extends
     /**
      * clean expired objects from database
      *
-     * @param  int $expire time limit for expiration
+     * @param  int  $expire time limit for expiration
      * @return bool true on success
      */
     public function cleanExpires($expire = 0)

@@ -767,3 +767,4 @@ $modversion['notification']['event'][8]['mail_subject']  = _MI_XOOPSTUBE_VIDEO_A
 //) {
 //    include __DIR__ . '/include/onupdate.inc.php';
 //}
+

@@ -47,21 +47,20 @@ class Image_Transform_Driver_IM extends Image_Transform
      * @var array
      * @access private
      */
-    var $command;
+    public $command;
 
     /**
      * Class constructor
      */
-    function Image_Transform_Driver_IM()
+    public function Image_Transform_Driver_IM()
     {
         $this->__construct();
     } // End Image_IM
 
-
     /**
      * Class constructor
      */
-    function __construct()
+    public function __construct()
     {
         $this->_init();
         require_once XOOPS_ROOT_PATH.'/modules/extgallery/class/pear/System.php';
@@ -78,11 +77,10 @@ class Image_Transform_Driver_IM extends Image_Transform
         }
     } // End Image_IM
 
-
     /**
      * Initialize the state of the object
      **/
-    function _init()
+    public function _init()
     {
         $this->command = array();
     }
@@ -97,7 +95,7 @@ class Image_Transform_Driver_IM extends Image_Transform
      * @return mixed TRUE or a PEAR error object on error
      * @see PEAR::isError()
      */
-    function load($image)
+    public function load($image)
     {
         $this->_init();
         if (!file_exists($image)) {
@@ -111,18 +109,17 @@ class Image_Transform_Driver_IM extends Image_Transform
         }
 
         return true;
-
     } // End load
 
     /**
      * Adds a border of constant width around an image
      *
-     * @param  int  $border_width Width of border to add
+     * @param int $border_width Width of border to add
      * @author Peter Bowyer
      * @return bool TRUE
      * @access public
      */
-    function addBorder($border_width, $borderNum, $color = '')
+    public function addBorder($border_width, $borderNum, $color = '')
     {
         $this->command['border'.$borderNum] = ' -bordercolor ' . escapeshellarg($color)
             . ' -border ' . escapeshellarg($border_width);
@@ -133,10 +130,10 @@ class Image_Transform_Driver_IM extends Image_Transform
     /**
      * Adds multiple border of constant width around an image
      */
-    function addBorders($borders)
+    public function addBorders($borders)
     {
-        foreach($borders as $k=>$border) {
-            $this->addBorder($border['borderWidth'],$k,$border['borderColor']);
+        foreach ($borders as $k=>$border) {
+            $this->addBorder($border['borderWidth'], $k, $border['borderColor']);
         }
 
         return true;
@@ -148,7 +145,7 @@ class Image_Transform_Driver_IM extends Image_Transform
      * @param  string $image the path and name of the image file
      * @return none
      */
-    function _get_image_details($image)
+    public function _get_image_details($image)
     {
         $retval = Image_Transform::_get_image_details($image);
         if (PEAR::isError($retval)) {
@@ -171,7 +168,6 @@ class Image_Transform_Driver_IM extends Image_Transform
             } else {
                 return PEAR::raiseError("Cannot fetch image or images details.", true);
             }
-
         }
 
         return $retval;
@@ -189,7 +185,7 @@ class Image_Transform_Driver_IM extends Image_Transform
      * @return true on success or PEAR Error object on error
      * @see PEAR::isError()
      */
-    function _resize($new_x, $new_y, $options = null)
+    public function _resize($new_x, $new_y, $options = null)
     {
         if (isset($this->command['resize'])) {
             return PEAR::raiseError('You cannot scale or resize an image more than once without calling save() or display()', true);
@@ -210,7 +206,7 @@ class Image_Transform_Driver_IM extends Image_Transform
      * @param   array   options no option allowed
      * @return mixed TRUE or a PEAR error object on error
      */
-    function rotate($angle, $options = null)
+    public function rotate($angle, $options = null)
     {
         $angle = $this->_rotation_angle($angle);
         if ($angle % 360) {
@@ -218,9 +214,7 @@ class Image_Transform_Driver_IM extends Image_Transform
         }
 
         return true;
-
     } // End rotate
-
 
     /**
      * Crop image
@@ -235,7 +229,8 @@ class Image_Transform_Driver_IM extends Image_Transform
      *
      * @return mixed TRUE or a PEAR error object on error
      */
-    function crop($width, $height, $x = 0, $y = 0) {
+    public function crop($width, $height, $x = 0, $y = 0)
+    {
         // Do we want a safety check - i.e. if $width+$x > $this->img_x then we
         // raise a warning? [and obviously same for $height+$y]
         $this->command['crop'] = '-crop '
@@ -268,40 +263,40 @@ class Image_Transform_Driver_IM extends Image_Transform
      * @return mixed TRUE or a PEAR error object on error
      * @see PEAR::isError()
      */
-    function addText($params)
+    public function addText($params)
     {
-         $params = array_merge($this->_get_default_text_params(), $params);
-         extract($params);
-         if (true === $resize_first) {
-             // Set the key so that this will be the last item in the array
+        $params = array_merge($this->_get_default_text_params(), $params);
+        extract($params);
+        if (true === $resize_first) {
+            // Set the key so that this will be the last item in the array
             $key = 'ztext';
-         } else {
+        } else {
             $key = 'text';
-         }
+        }
 
-        if($y == 0) {
+        if ($y == 0) {
             $position = "North";
-        } elseif($y == -1) {
+        } elseif ($y == -1) {
             $position = "South";
         }
-        if($x == 0) {
+        if ($x == 0) {
             $position .= "West";
-        } elseif($x == -1) {
+        } elseif ($x == -1) {
             $position .= "East";
         }
-        if($x == 1 && $y == 0) {
+        if ($x == 1 && $y == 0) {
             $position = "North";
-        } elseif($x == 1 && $y == -1) {
+        } elseif ($x == 1 && $y == -1) {
             $position = "South";
-        } elseif($x == 0 && $y == 1) {
+        } elseif ($x == 0 && $y == 1) {
             $position = "West";
-        } elseif($x == -1 && $y == 1) {
+        } elseif ($x == -1 && $y == 1) {
             $position = "East";
-        } elseif($x == 1 && $y == 1) {
+        } elseif ($x == 1 && $y == 1) {
             $position = "Center";
         }
 
-         $this->command[$key] = ' -font ' . escapeshellarg($font)
+        $this->command[$key] = ' -font ' . escapeshellarg($font)
             . ' -pointsize ' . escapeshellarg($size)
             . ' -gravity ' . escapeshellarg($position)
             . ' -fill ' . escapeshellarg($color)
@@ -309,7 +304,6 @@ class Image_Transform_Driver_IM extends Image_Transform
             . ' ' . escapeshellarg('"'.$text.'"');
          // Producing error: gs: not found gs: not found convert: Postscript delegate failed [No such file or directory].
         return true;
-
     } // End addText
 
     /**
@@ -319,7 +313,8 @@ class Image_Transform_Driver_IM extends Image_Transform
      * @param  float $outputgamma
      * @return mixed TRUE or a PEAR error object on error
      */
-    function gamma($outputgamma = 1.0) {
+    public function gamma($outputgamma = 1.0)
+    {
         if ($outputgamme != 1.0) {
             $this->command['gamma'] = '-gamma ' . (float) $outputgamma;
         }
@@ -333,7 +328,8 @@ class Image_Transform_Driver_IM extends Image_Transform
      * @access public
      * @return mixed TRUE or a PEAR error object on error
      */
-    function greyscale() {
+    public function greyscale()
+    {
         $this->command['type'] = '-type Grayscale';
 
         return true;
@@ -345,7 +341,8 @@ class Image_Transform_Driver_IM extends Image_Transform
      * @access public
      * @return TRUE or PEAR Error object on error
      */
-    function mirror() {
+    public function mirror()
+    {
         // We can only apply "flop" once
         if (isset($this->command['flop'])) {
             unset($this->command['flop']);
@@ -362,7 +359,8 @@ class Image_Transform_Driver_IM extends Image_Transform
      * @access public
      * @return TRUE or PEAR Error object on error
      */
-    function flip() {
+    public function flip()
+    {
         // We can only apply "flip" once
         if (isset($this->command['flip'])) {
             unset($this->command['flip']);
@@ -384,7 +382,7 @@ class Image_Transform_Driver_IM extends Image_Transform
      *
      * @return mixed TRUE or a PEAR error object on error
      */
-    function save($filename, $type = '', $quality = null)
+    public function save($filename, $type = '', $quality = null)
     {
         $type = strtoupper(($type == '') ? $this->type : $type);
         switch ($type) {
@@ -426,7 +424,7 @@ class Image_Transform_Driver_IM extends Image_Transform
      *
      * @return mixed TRUE or a PEAR error object on error
      */
-    function display($type = '', $quality = null)
+    public function display($type = '', $quality = null)
     {
         $type    = strtoupper(($type == '') ? $type : $this->type);
         switch ($type) {
@@ -461,12 +459,11 @@ class Image_Transform_Driver_IM extends Image_Transform
      *
      * @return void
      */
-    function free()
+    public function free()
     {
         $this->command = array();
         $this->image = '';
         $this->type = '';
     }
-
 } // End class ImageIM
 ;

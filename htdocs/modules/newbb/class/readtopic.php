@@ -201,6 +201,6 @@ class NewbbReadtopicHandler extends NewbbReadHandler
 
     public function synchronization()
     {
-//        return;
+        //        return;
     }
 }

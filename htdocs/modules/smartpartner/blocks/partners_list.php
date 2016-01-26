@@ -12,7 +12,7 @@ if (!defined("XOOPS_ROOT_PATH")) {
 
 function b_partners_list_show($options)
 {
-    include_once (XOOPS_ROOT_PATH . "/modules/smartpartner/include/common.php");
+    include_once(XOOPS_ROOT_PATH . "/modules/smartpartner/include/common.php");
 
     // Creating the partner handler object
     $smartpartner_partner_handler =& smartpartner_gethandler('partner');
@@ -20,7 +20,7 @@ function b_partners_list_show($options)
 
     // Randomize
     $partnersObj =& $smartpartner_partner_handler->getPartners(0, 0, _SPARTNER_STATUS_ACTIVE);
-    If (count($partnersObj) > 1) {
+    if (count($partnersObj) > 1) {
         $key_arr = array_keys($partnersObj);
         $key_rand = array_rand($key_arr, count($key_arr));
         for ($i = 0; (($i < count($partnersObj)) && (($options[2] == 0) || ($i < $options[2]))); $i++) {
@@ -43,7 +43,7 @@ function b_partners_list_show($options)
     }
 
     $block = array();
-    If ($partnersObj) {
+    if ($partnersObj) {
         for ($j = 0; $j < count($cat_id); $j++) {
             $categoryObj = $smartpartner_category_handler->get($cat_id[$j]);
             $block['categories'][$cat_id[$j]]['link'] = ($cat_id[$j] != 0) ? $categoryObj->getCategoryLink() : false;
@@ -53,10 +53,10 @@ function b_partners_list_show($options)
                 if ($partnersObj[$i]->categoryid() == $cat_id[$j]) {
                     $partner['id'] = $partnersObj[$i]->id();
                     $partner['urllink'] = $partnersObj[$i]->getUrlLink('block');
-                    If (($partnersObj[$i]->image()) && (($options[3] == 1) || ($options[3] == 3))) {
+                    if (($partnersObj[$i]->image()) && (($options[3] == 1) || ($options[3] == 3))) {
                         $partner['image'] = $partnersObj[$i]->getImageUrl();
                     }
-                    If (($partnersObj[$i]->image()) && (($options[3] == 2) || ($options[3] == 3))) {
+                    if (($partnersObj[$i]->image()) && (($options[3] == 2) || ($options[3] == 3))) {
                         $partner['title'] = $partnersObj[$i]->title();
                     } else {
                         $partner['title'] = '';

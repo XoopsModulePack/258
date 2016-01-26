@@ -75,7 +75,7 @@ if ($record) {
             if (count($old_vals) == count($def_vals)) {
                 $modversion['blocks'][$i]['options'] = $fblock['options'];
                 $local_msgs[] = "Option's values of the block <b>" . $fblock['name'] . "</b> will be kept. (value = <b>" . $fblock['options'] . "</b>)";
-            } else if (count($old_vals) < count($def_vals)) {
+            } elseif (count($old_vals) < count($def_vals)) {
                 for ($j = 0; $j < count($old_vals); $j++) {
                     $def_vals[$j] = $old_vals[$j];
                 }

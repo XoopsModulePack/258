@@ -19,10 +19,11 @@ class Parsedown
     # Multiton (http://en.wikipedia.org/wiki/Multiton_pattern)
     #
 
-    static function instance($name = 'default')
+    public static function instance($name = 'default')
     {
-        if (isset(self::$instances[$name]))
+        if (isset(self::$instances[$name])) {
             return self::$instances[$name];
+        }
 
         $instance = new Parsedown();
 
@@ -39,7 +40,7 @@ class Parsedown
 
     private $break_marker = "  \n";
 
-    function set_breaks_enabled($breaks_enabled)
+    public function set_breaks_enabled($breaks_enabled)
     {
         $this->break_marker = $breaks_enabled ? "\n" : "  \n";
 
@@ -57,7 +58,7 @@ class Parsedown
     # Public Methods
     #
 
-    function parse($text)
+    public function parse($text)
     {
         # removes \r characters
         $text = str_replace("\r\n", "\n", $text);
@@ -68,11 +69,11 @@ class Parsedown
 
         # encodes escape sequences
 
-        if (strpos($text, '\\') !== FALSE) {
+        if (strpos($text, '\\') !== false) {
             $escape_sequences = array('\\\\', '\`', '\*', '\_', '\{', '\}', '\[', '\]', '\(', '\)', '\>', '\#', '\+', '\-', '\.', '\!');
 
             foreach ($escape_sequences as $index => $escape_sequence) {
-                if (strpos($text, $escape_sequence) !== FALSE) {
+                if (strpos($text, $escape_sequence) !== false) {
                     $code = "\x1A".'\\'.$index.';';
 
                     $text = str_replace($escape_sequence, $code, $text);
@@ -121,7 +122,7 @@ class Parsedown
             switch ($element['type']) {
                 case 'fenced block':
 
-                    if ( ! isset($element['closed'])) {
+                    if (! isset($element['closed'])) {
                         if (preg_match('/^[ ]*'.$element['fence'][0].'{3,}[ ]*$/', $line)) {
                             $element['closed'] = true;
                         } else {
@@ -137,7 +138,7 @@ class Parsedown
 
                 case 'block-level markup':
 
-                    if ( ! isset($element['closed'])) {
+                    if (! isset($element['closed'])) {
                         if (strpos($line, $element['start']) !== false) { # opening tag
                             $element['depth']++;
                         }
@@ -171,7 +172,7 @@ class Parsedown
             switch ($element['type']) {
                 case 'blockquote':
 
-                    if ( ! isset($element['interrupted'])) {
+                    if (! isset($element['interrupted'])) {
                         $line = preg_replace('/^[ ]*>[ ]?/', '', $line);
 
                         $element['lines'] []= $line;
@@ -241,7 +242,7 @@ class Parsedown
                             if (isset($element['interrupted'])) {
                                 $element['text'] .= "\n";
 
-                                unset ($element['interrupted']);
+                                unset($element['interrupted']);
                             }
 
                             $element['text'] .= "\n".$code_line;
@@ -333,7 +334,7 @@ class Parsedown
                             $name = substr($name, 0, $position);
                         }
 
-                        if ( ! ctype_alpha($name)) {
+                        if (! ctype_alpha($name)) {
                             break;
                         }
 
@@ -547,7 +548,7 @@ class Parsedown
 
                     $text = htmlspecialchars($element['text'], ENT_NOQUOTES, 'UTF-8');
 
-                    strpos($text, "\x1A\\") !== FALSE and $text = strtr($text, $this->escape_sequence_map);
+                    strpos($text, "\x1A\\") !== false and $text = strtr($text, $this->escape_sequence_map);
 
                     $markup .= isset($element['language'])
                         ? '<pre><code class="language-'.$element['language'].'">'.$text.'</code></pre>'
@@ -561,7 +562,7 @@ class Parsedown
 
                     $text = $element['text'];
 
-                    strpos($text, "\x1A\\") !== FALSE and $text = strtr($text, $this->escape_sequence_map);
+                    strpos($text, "\x1A\\") !== false and $text = strtr($text, $this->escape_sequence_map);
 
                     $markup .= rex_highlight_string($text, true) . "\n";
 

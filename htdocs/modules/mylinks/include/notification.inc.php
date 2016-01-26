@@ -42,15 +42,14 @@ function mylinks_notify_iteminfo($category, $item_id)
         $config =& $xoopsModuleConfig;
     }
 
-    switch ($category)
-    {
+    switch ($category) {
         case 'category':
             // Assume we have a valid category id
             $mylinksCatHandler = xoops_getmodulehandler('category', $dirname);
             $catObj = $mylinksCatHandler->get($item_id);
             if ($catObj) {
-            $item['name'] = $catObj->getVar('title');
-            $item['url']  = XOOPS_URL . "/modules/{$dirname}/viewcat.php?cid={$item_id}";
+                $item['name'] = $catObj->getVar('title');
+                $item['url']  = XOOPS_URL . "/modules/{$dirname}/viewcat.php?cid={$item_id}";
 /*
             $sql          = "SELECT title FROM " . $xoopsDB->prefix('mylinks_cat') . " WHERE cid={$item_id}";
             $result       = $xoopsDB->query($sql); // TODO: error check

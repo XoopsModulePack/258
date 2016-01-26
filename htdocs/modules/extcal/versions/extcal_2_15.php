@@ -20,15 +20,15 @@
 //----------------------------------------------------
 class extcal_2_15
 {
-//----------------------------------------------------
+    //----------------------------------------------------
 
     /**
      * @param $module
      * @param $options
      */
-    function extcal_2_15(& $module, $options)
-{
-global $xoopsDB;
+    public function extcal_2_15(& $module, $options)
+    {
+        global $xoopsDB;
 
         //$xoopsDB =& Database::getInstance();
         $xoopsDB =& XoopsDatabaseFactory::getDatabaseConnection();
@@ -53,8 +53,8 @@ global $xoopsDB;
 
         $sql = "CREATE TABLE `".$xoopsDB->prefix('extcal_file')."` (`file_id` int(11) NOT NULL auto_increment,`file_name` varchar(255) NOT NULL,`file_nicename` varchar(255) NOT NULL,`file_mimetype` varchar(255) NOT NULL,`file_size` int(11) NOT NULL,`file_download` int(11) NOT NULL,`file_date` int(11) NOT NULL,`file_approved` tinyint(1) NOT NULL,`event_id` int(11) NOT NULL,`uid` int(11) NOT NULL,PRIMARY KEY  (`file_id`)) COMMENT='eXtcal By Zoullou' ;";
         $xoopsDB->query($sql);
-
-}
+    }
 
 //-----------------------------------------------------------------
 }   // fin de la classe
+

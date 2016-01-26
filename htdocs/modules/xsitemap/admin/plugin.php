@@ -36,16 +36,15 @@ if (isset($_REQUEST["op"])) {
 
 echo $index_admin->addNavigation('plugin.php');
 
-switch ($op)
-{
+switch ($op) {
     case "save_plugin":
-        if ( !$GLOBALS["xoopsSecurity"]->check() ) {
-           redirect_header("plugin.php", 3, implode(",", $GLOBALS["xoopsSecurity"]->getErrors()));
+        if (!$GLOBALS["xoopsSecurity"]->check()) {
+            redirect_header("plugin.php", 3, implode(",", $GLOBALS["xoopsSecurity"]->getErrors()));
         }
         if (isset($_REQUEST["plugin_id"])) {
-           $obj =& $pluginHandler->get($_REQUEST["plugin_id"]);
+            $obj =& $pluginHandler->get($_REQUEST["plugin_id"]);
         } else {
-           $obj =& $pluginHandler->create();
+            $obj =& $pluginHandler->create();
         }
 
         //Form plugin_name
@@ -72,9 +71,8 @@ switch ($op)
         $verif_plugin_online = ($_REQUEST["plugin_online"] == 1) ? "1" : "0";
         $obj->setVar("plugin_online", $verif_plugin_online);
 
-
         if ($pluginHandler->insert($obj)) {
-           redirect_header("plugin.php?op=show_list_plugin", 2, _AM_XSITEMAP_FORMOK);
+            redirect_header("plugin.php?op=show_list_plugin", 2, _AM_XSITEMAP_FORMOK);
         }
         //include_once("../include/forms.php");
         echo $obj->getHtmlErrors();
@@ -89,7 +87,7 @@ switch ($op)
     case "delete_plugin":
         $obj =& $pluginHandler->get($_REQUEST["plugin_id"]);
         if (isset($_REQUEST["ok"]) && $_REQUEST["ok"] == 1) {
-            if ( !$GLOBALS["xoopsSecurity"]->check() ) {
+            if (!$GLOBALS["xoopsSecurity"]->check()) {
                 redirect_header("plugin.php", 3, implode(",", $GLOBALS["xoopsSecurity"]->getErrors()));
             }
             if ($pluginHandler->delete($obj)) {
@@ -126,8 +124,7 @@ switch ($op)
         $plugin_arr = $pluginHandler->getall($criteria);
 
             //Affichage du tableau
-            if ($numrows>0)
-            {
+            if ($numrows>0) {
                 echo "<table width=\"100%\" cellspacing=\"1\" class=\"outer\">
                     <tr>
                         <th align=\"center\">"._AM_XSITEMAP_PLUGIN_NAME."</th>
@@ -147,31 +144,29 @@ switch ($op)
 
                 $class = "odd";
 
-                foreach (array_keys($plugin_arr) as $i)
-                {
-                    if ( $plugin_arr[$i]->getVar("topic_pid") == 0)
-                    {
+                foreach (array_keys($plugin_arr) as $i) {
+                    if ($plugin_arr[$i]->getVar("topic_pid") == 0) {
                         echo "<tr class=\"".$class."\">";
                         $class = ($class == "even") ? "odd" : "even";
                         echo "<td align=\"center\">".$plugin_arr[$i]->getVar("plugin_name")."</td>";
-                    echo "<td align=\"center\">".$plugin_arr[$i]->getVar("plugin_mod_version")."</td>";
-                    echo "<td align=\"center\">".$plugin_arr[$i]->getVar("plugin_mod_table")."</td>";
-                    echo "<td align=\"center\">".$plugin_arr[$i]->getVar("plugin_cat_id")."</td>";
-                    echo "<td align=\"center\">".$plugin_arr[$i]->getVar("plugin_cat_pid")."</td>";
-                    echo "<td align=\"center\">".$plugin_arr[$i]->getVar("plugin_cat_name")."</td>";
-                    echo "<td align=\"center\">".$plugin_arr[$i]->getVar("plugin_weight")."</td>";
-                    echo "<td align=\"center\">".$plugin_arr[$i]->getVar("plugin_call")."</td>";
-                    echo "<td align=\"center\">".XoopsUser::getUnameFromId($plugin_arr[$i]->getVar("plugin_submitter"),"S")."</td>";
-                    echo "<td align=\"center\">".formatTimeStamp($plugin_arr[$i]->getVar("plugin_date_created"),"S")."</td>";
+                        echo "<td align=\"center\">".$plugin_arr[$i]->getVar("plugin_mod_version")."</td>";
+                        echo "<td align=\"center\">".$plugin_arr[$i]->getVar("plugin_mod_table")."</td>";
+                        echo "<td align=\"center\">".$plugin_arr[$i]->getVar("plugin_cat_id")."</td>";
+                        echo "<td align=\"center\">".$plugin_arr[$i]->getVar("plugin_cat_pid")."</td>";
+                        echo "<td align=\"center\">".$plugin_arr[$i]->getVar("plugin_cat_name")."</td>";
+                        echo "<td align=\"center\">".$plugin_arr[$i]->getVar("plugin_weight")."</td>";
+                        echo "<td align=\"center\">".$plugin_arr[$i]->getVar("plugin_call")."</td>";
+                        echo "<td align=\"center\">".XoopsUser::getUnameFromId($plugin_arr[$i]->getVar("plugin_submitter"), "S")."</td>";
+                        echo "<td align=\"center\">".formatTimeStamp($plugin_arr[$i]->getVar("plugin_date_created"), "S")."</td>";
 
-                    $online = $plugin_arr[$i]->getVar("plugin_online");
+                        $online = $plugin_arr[$i]->getVar("plugin_online");
 
-                    if( $online == 1 ) {
-                        echo "<td align=\"center\"><a href=\"./plugin.php?op=update_online_plugin&plugin_id=".$plugin_arr[$i]->getVar("plugin_id")."&plugin_online=0\"><img src=\"./../images/icons/on.png\" border=\"0\" alt=\""._AM_XSITEMAP_ON."\" title=\""._AM_XSITEMAP_ON."\"></a></td>";
-                    } else {
-                        echo "<td align=\"center\"><a href=\"./plugin.php?op=update_online_plugin&plugin_id=".$plugin_arr[$i]->getVar("plugin_id")."&plugin_online=1\"><img src=\"./../images/icons/off.png\" border=\"0\" alt=\""._AM_XSITEMAP_OFF."\" title=\""._AM_XSITEMAP_OFF."\"></a></td>";
-                    }
-                                    echo "<td align=\"center\" width=\"10%\">
+                        if ($online == 1) {
+                            echo "<td align=\"center\"><a href=\"./plugin.php?op=update_online_plugin&plugin_id=".$plugin_arr[$i]->getVar("plugin_id")."&plugin_online=0\"><img src=\"./../images/icons/on.png\" border=\"0\" alt=\""._AM_XSITEMAP_ON."\" title=\""._AM_XSITEMAP_ON."\"></a></td>";
+                        } else {
+                            echo "<td align=\"center\"><a href=\"./plugin.php?op=update_online_plugin&plugin_id=".$plugin_arr[$i]->getVar("plugin_id")."&plugin_online=1\"><img src=\"./../images/icons/off.png\" border=\"0\" alt=\""._AM_XSITEMAP_OFF."\" title=\""._AM_XSITEMAP_OFF."\"></a></td>";
+                        }
+                        echo "<td align=\"center\" width=\"10%\">
                                         <a href=\"plugin.php?op=edit_plugin&plugin_id=".$plugin_arr[$i]->getVar("plugin_id")."\"><img src=\"../images/icons/edit.png\" alt=\""._AM_XSITEMAP_EDIT."\" title=\""._AM_XSITEMAP_EDIT."\"></a>
                                         <a href=\"plugin.php?op=delete_plugin&plugin_id=".$plugin_arr[$i]->getVar("plugin_id")."\"><img src=\"../images/icons/delete.png\" alt=\""._AM_XSITEMAP_DELETE."\" title=\""._AM_XSITEMAP_DELETE."\"></a>
                                       </td>";

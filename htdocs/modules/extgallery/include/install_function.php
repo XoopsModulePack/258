@@ -16,32 +16,32 @@
  * @version     $Id: install_function.php 8088 2011-11-06 09:38:12Z beckmi $
  */
 
-function xoops_module_pre_install_extgallery(&$xoopsModule) {
+function xoops_module_pre_install_extgallery(&$xoopsModule)
+{
 
  // Check if this XOOPS version is supported
  $minSupportedVersion = explode('.', '2.5.0');
- $currentVersion = explode('.', substr(XOOPS_VERSION,6));
+    $currentVersion = explode('.', substr(XOOPS_VERSION, 6));
 
- if($currentVersion[0] > $minSupportedVersion[0]) {
-  return true;
- } elseif($currentVersion[0] == $minSupportedVersion[0]) {
-  if($currentVersion[1] > $minSupportedVersion[1]) {
-   return true;
-  } elseif($currentVersion[1] == $minSupportedVersion[1]) {
-   if($currentVersion[2] > $minSupportedVersion[2]) {
-    return true;
-   } elseif ($currentVersion[2] == $minSupportedVersion[2]) {
-    return true;
-   }
-  }
- }
+    if ($currentVersion[0] > $minSupportedVersion[0]) {
+        return true;
+    } elseif ($currentVersion[0] == $minSupportedVersion[0]) {
+        if ($currentVersion[1] > $minSupportedVersion[1]) {
+            return true;
+        } elseif ($currentVersion[1] == $minSupportedVersion[1]) {
+            if ($currentVersion[2] > $minSupportedVersion[2]) {
+                return true;
+            } elseif ($currentVersion[2] == $minSupportedVersion[2]) {
+                return true;
+            }
+        }
+    }
 
- return false;
-
+    return false;
 }
 
-function xoops_module_install_extgallery(&$xoopsModule) {
-
+function xoops_module_install_extgallery(&$xoopsModule)
+{
     $module_id = $xoopsModule->getVar('mid');
     $gpermHandler =& xoops_gethandler('groupperm');
     $configHandler =& xoops_gethandler('config');
@@ -99,35 +99,45 @@ function xoops_module_install_extgallery(&$xoopsModule) {
     // Private autoapprove
     $gpermHandler->addRight('extgallery_private', 16, XOOPS_GROUP_ADMIN, $module_id);
 
-
-
     // Create eXtGallery main upload directory
     $dir = XOOPS_ROOT_PATH."/uploads/extgallery";
-    if(!is_dir($dir))
-        mkdir($dir, 0777);       chmod($dir, 0777);
+    if (!is_dir($dir)) {
+        mkdir($dir, 0777);
+    }
+    chmod($dir, 0777);
     // Create directory for photo in public album
     $dir = XOOPS_ROOT_PATH."/uploads/extgallery/public-photo";
-    if(!is_dir($dir))
-        mkdir($dir, 0777);       chmod($dir, 0777);
+    if (!is_dir($dir)) {
+        mkdir($dir, 0777);
+    }
+    chmod($dir, 0777);
     $dir = XOOPS_ROOT_PATH."/uploads/extgallery/public-photo/original";
-    if(!is_dir($dir))
-        mkdir($dir, 0777);       chmod($dir, 0777);
+    if (!is_dir($dir)) {
+        mkdir($dir, 0777);
+    }
+    chmod($dir, 0777);
     $dir = XOOPS_ROOT_PATH."/uploads/extgallery/public-photo/large";
-    if(!is_dir($dir))
-        mkdir($dir, 0777);       chmod($dir, 0777);
+    if (!is_dir($dir)) {
+        mkdir($dir, 0777);
+    }
+    chmod($dir, 0777);
     $dir = XOOPS_ROOT_PATH."/uploads/extgallery/public-photo/medium";
-    if(!is_dir($dir))
-        mkdir($dir, 0777);       chmod($dir, 0777);
+    if (!is_dir($dir)) {
+        mkdir($dir, 0777);
+    }
+    chmod($dir, 0777);
     $dir = XOOPS_ROOT_PATH."/uploads/extgallery/public-photo/thumb";
-    if(!is_dir($dir))
-        mkdir($dir, 0777);       chmod($dir, 0777);
+    if (!is_dir($dir)) {
+        mkdir($dir, 0777);
+    }
+    chmod($dir, 0777);
     // Create directory for photo in user's album
     //mkdir(XOOPS_ROOT_PATH."/uploads/extgallery/user-photo");
 
     // Copy index.html files on uploads folders
     $indexFile = XOOPS_ROOT_PATH."/modules/extgallery/include/index.html";
-   copy($indexFile, XOOPS_ROOT_PATH."/uploads/extgallery/index.html");
-   copy($indexFile, XOOPS_ROOT_PATH."/uploads/extgallery/public-photo/index.html");
+    copy($indexFile, XOOPS_ROOT_PATH."/uploads/extgallery/index.html");
+    copy($indexFile, XOOPS_ROOT_PATH."/uploads/extgallery/public-photo/index.html");
     copy($indexFile, XOOPS_ROOT_PATH."/uploads/extgallery/public-photo/original/index.html");
     copy($indexFile, XOOPS_ROOT_PATH."/uploads/extgallery/public-photo/large/index.html");
     copy($indexFile, XOOPS_ROOT_PATH."/uploads/extgallery/public-photo/medium/index.html");

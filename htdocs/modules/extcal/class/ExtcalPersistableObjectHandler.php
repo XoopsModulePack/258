@@ -17,10 +17,10 @@ class ExtcalPersistableObjectHandler extends XoopsPersistableObjectHandler //Xoo
      *
      * @var string
      */
-    var $table;
-    var $keyName;
-    var $className;
-    var $identifierName;
+    public $table;
+    public $keyName;
+    public $className;
+    public $identifierName;
 
     /**#@-*/
 
@@ -36,7 +36,7 @@ class ExtcalPersistableObjectHandler extends XoopsPersistableObjectHandler //Xoo
      *
      * @return void
      */
-    function __construct(
+    public function __construct(
         &$db,
         $tablename,
         $classname,
@@ -57,7 +57,7 @@ class ExtcalPersistableObjectHandler extends XoopsPersistableObjectHandler //Xoo
      *
      * @access protected
      */
-    function ExtcalPersistableObjectHandler(&$db, $tablename, $classname, $keyname, $idenfierName = false)
+    public function ExtcalPersistableObjectHandler(&$db, $tablename, $classname, $keyname, $idenfierName = false)
     {
         $this->__construct($db, $tablename, $classname, $keyname, $idenfierName);
     }
@@ -69,7 +69,7 @@ class ExtcalPersistableObjectHandler extends XoopsPersistableObjectHandler //Xoo
      *
      * @return object
      */
-    function &create($isNew = true)
+    public function &create($isNew = true)
     {
         $obj = new $this->className();
         if ($isNew === true) {
@@ -87,7 +87,7 @@ class ExtcalPersistableObjectHandler extends XoopsPersistableObjectHandler //Xoo
      *
      * @return mixed reference to the object, FALSE if failed
      */
-    function &get($id, $asObject = true)
+    public function &get($id, $asObject = true)
     {
         if (is_array($this->keyName)) {
             $criteria = new CriteriaCompo();
@@ -117,7 +117,7 @@ class ExtcalPersistableObjectHandler extends XoopsPersistableObjectHandler //Xoo
      *
      * @return array
      */
-    function &getObjects(
+    public function &getObjects(
         $criteria = null,
         $idAsKey = false,
         $asObject = true
@@ -152,7 +152,7 @@ class ExtcalPersistableObjectHandler extends XoopsPersistableObjectHandler //Xoo
      *
      * @return array
      */
-    function convertResultSet($result, $idAsKey = false, $asObject = true)
+    public function convertResultSet($result, $idAsKey = false, $asObject = true)
     {
         $ret = array();
         while ($myrow = $this->db->fetchArray($result)) {
@@ -200,7 +200,7 @@ class ExtcalPersistableObjectHandler extends XoopsPersistableObjectHandler //Xoo
      *
      * @return array
      */
-    function getList($criteria = null, $limit = 0, $start = 0)
+    public function getList($criteria = null, $limit = 0, $start = 0)
     {
         $ret = array();
         if ($criteria == null) {
@@ -245,7 +245,7 @@ class ExtcalPersistableObjectHandler extends XoopsPersistableObjectHandler //Xoo
      *
      * @return int count of objects
      */
-    function getCount($criteria = null)
+    public function getCount($criteria = null)
     {
         $field   = "";
         $groupby = false;
@@ -288,7 +288,7 @@ class ExtcalPersistableObjectHandler extends XoopsPersistableObjectHandler //Xoo
      *
      * @return bool FALSE if failed.
      */
-    function delete($id, $force = false)
+    public function delete($id, $force = false)
     {
         if (is_array($this->keyName)) {
             $clause = array();
@@ -324,7 +324,7 @@ class ExtcalPersistableObjectHandler extends XoopsPersistableObjectHandler //Xoo
      * @return bool FALSE if failed, TRUE if already present and unchanged or successful
      */
 
-    function insert(&$obj, $force = false, $checkObject = true)
+    public function insert(&$obj, $force = false, $checkObject = true)
     {
         if ($checkObject != false) {
             if (!is_object($obj)) {
@@ -424,7 +424,7 @@ class ExtcalPersistableObjectHandler extends XoopsPersistableObjectHandler //Xoo
      *
      * @return bool
      */
-    function updateAll(
+    public function updateAll(
         $fieldname,
         $fieldvalue,
         $criteria = null,
@@ -462,7 +462,7 @@ class ExtcalPersistableObjectHandler extends XoopsPersistableObjectHandler //Xoo
      *
      * @return bool
      */
-    function updateFieldValue(
+    public function updateFieldValue(
         $fieldname,
         $fieldvalue,
         $criteria = null,
@@ -492,7 +492,7 @@ class ExtcalPersistableObjectHandler extends XoopsPersistableObjectHandler //Xoo
      * @return bool
      */
 
-    function deleteAll($criteria = null)
+    public function deleteAll($criteria = null)
     {
         if (isset($criteria) && is_subclass_of($criteria, 'criteriaelement')) {
             $sql = 'DELETE FROM ' . $this->table;
@@ -513,7 +513,7 @@ class ExtcalPersistableObjectHandler extends XoopsPersistableObjectHandler //Xoo
      *
      * @return array
      */
-    function _toObject($data)
+    public function _toObject($data)
     {
         if (is_array($data)) {
             $ret = array();
@@ -541,7 +541,7 @@ class ExtcalPersistableObjectHandler extends XoopsPersistableObjectHandler //Xoo
      *
      * @return array
      */
-    function objectToArray($objects, $externalKeys = array(), $format = 's')
+    public function objectToArray($objects, $externalKeys = array(), $format = 's')
     {
         static $cache;
         if (!is_array($externalKeys)) {
@@ -616,7 +616,7 @@ class ExtcalPersistableObjectHandler extends XoopsPersistableObjectHandler //Xoo
      *
      * @return array
      */
-    function objectToArrayWithoutExternalKey($object, $format = 's')
+    public function objectToArrayWithoutExternalKey($object, $format = 's')
     {
         $ret = array();
         if ($object != null) {
@@ -638,7 +638,7 @@ class ExtcalPersistableObjectHandler extends XoopsPersistableObjectHandler //Xoo
      *
      * @return bool
      */
-    function updateCounter($fieldname, $criteria, $op = '+')
+    public function updateCounter($fieldname, $criteria, $op = '+')
     {
         $sql
             = 'UPDATE ' . $this->table . ' SET ' . $fieldname . ' = ' . $fieldname . $op . '1';
@@ -657,7 +657,7 @@ class ExtcalPersistableObjectHandler extends XoopsPersistableObjectHandler //Xoo
      *
      * @return array|string
      */
-    function getSum($criteria = null, $sum = '*')
+    public function getSum($criteria = null, $sum = '*')
     {
         $field   = "";
         $groupby = false;
@@ -698,7 +698,7 @@ class ExtcalPersistableObjectHandler extends XoopsPersistableObjectHandler //Xoo
      *
      * @return array|string
      */
-    function getMax($criteria = null, $max = '*')
+    public function getMax($criteria = null, $max = '*')
     {
         $field   = "";
         $groupby = false;
@@ -739,7 +739,7 @@ class ExtcalPersistableObjectHandler extends XoopsPersistableObjectHandler //Xoo
      *
      * @return int
      */
-    function getAvg($criteria = null, $avg = '*')
+    public function getAvg($criteria = null, $avg = '*')
     {
         $field = "";
 
@@ -756,9 +756,8 @@ class ExtcalPersistableObjectHandler extends XoopsPersistableObjectHandler //Xoo
         return $sum;
     }
 
-    function getInsertId()
+    public function getInsertId()
     {
         return $this->db->getInsertId();
     }
-
 }

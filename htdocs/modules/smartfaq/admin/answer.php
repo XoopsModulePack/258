@@ -12,15 +12,18 @@ include_once __DIR__ . '/admin_header.php';
 $op = '';
 
 // Getting the operation we are doing
-if (isset($_GET['op'])) $op = $_GET['op'];
-if (isset($_POST['op'])) $op = $_POST['op'];
+if (isset($_GET['op'])) {
+    $op = $_GET['op'];
+}
+if (isset($_POST['op'])) {
+    $op = $_POST['op'];
+}
 
 // Creating the answer handler object
 $answer_handler =& sf_gethandler('answer');
 
 function editfaq($faqid = '')
 {
-
     global $answer_handler, $xoopsUser, $xoopsUser, $xoopsConfig, $xoopsDB, $modify, $xoopsModuleConfig, $xoopsModule, $XOOPS_URL, $myts, $pathIcon16, $smartModuleConfig;
 
     include_once XOOPS_ROOT_PATH . '/class/xoopsformloader.php';
@@ -134,7 +137,7 @@ switch ($op) {
     case "mod":
     xoops_cp_header();
     include_once XOOPS_ROOT_PATH . "/class/xoopsformloader.php";
-    Global $xoopsUser, $xoopsUser, $xoopsConfig, $xoopsDB, $xoopsModuleConfig, $xoopsModule, $modify, $myts;
+    global $xoopsUser, $xoopsUser, $xoopsConfig, $xoopsDB, $xoopsModuleConfig, $xoopsModule, $modify, $myts;
     $faqid = isset($_GET['faqid'])? intval($_GET['faqid']) : 0;
     editfaq($faqid);
     break;
@@ -194,13 +197,13 @@ switch ($op) {
     }
 
     // Storing the FAQ object in the database
-    if ( !$faqObj->store() ) {
+    if (!$faqObj->store()) {
         redirect_header("javascript:history.go(-1)", 2, _AM_SF_ERROR_FAQ_NOT_SAVED);
         exit();
     }
 
     // Storing the answer object in the database
-    if ( !$answerObj->store() ) {
+    if (!$answerObj->store()) {
         redirect_header("javascript:history.go(-1)", 2, _AM_SF_ERROR_ANSWER_NOT_SAVED);
         exit();
     }
@@ -220,7 +223,7 @@ switch ($op) {
     break;
 
     case "del":
-    Global $xoopsUser, $xoopsUser, $xoopsConfig, $xoopsDB;
+    global $xoopsUser, $xoopsUser, $xoopsConfig, $xoopsDB;
 
     $faqid = isset($_POST['faqid'])? intval($_POST['faqid']) : 0;
     $faqid = isset($_GET['faqid'])? intval($_GET['faqid']) : $faqid;

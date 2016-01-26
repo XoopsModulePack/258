@@ -39,7 +39,7 @@ class ExtgalleryModelReadIterator extends XoopsModelRead
      * @param  bool   $id_as_key use the ID as key for the array
      * @return array  of objects/array {@link XoopsObject}
      */
-    function &getAll($criteria = null, $fields = null, $asObject = true, $id_as_key = true)
+    public function &getAll($criteria = null, $fields = null, $asObject = true, $id_as_key = true)
     {
         if (is_array($fields) && count($fields) > 0) {
             if (!in_array($this->handler->keyName, $fields)) {
@@ -104,7 +104,7 @@ class ExtgalleryModelReadIterator extends XoopsModelRead
      *
      * @return array
      */
-    function &getObjects($criteria = null, $id_as_key = false, $as_object = true)
+    public function &getObjects($criteria = null, $id_as_key = false, $as_object = true)
     {
         $objects = $this->getAll($criteria, null, $as_object, $id_as_key);
 
@@ -120,7 +120,7 @@ class ExtgalleryModelReadIterator extends XoopsModelRead
     *
     * @return array
     */
-    function getList($criteria = null, $limit = 0, $start = 0)
+    public function getList($criteria = null, $limit = 0, $start = 0)
     {
         $ret = array();
         if ($criteria == null) {
@@ -160,7 +160,7 @@ class ExtgalleryModelReadIterator extends XoopsModelRead
      * @param  object $criteria {@link CriteriaElement} to match
      * @return array  of object IDs
      */
-    function &getIds($criteria = null)
+    public function &getIds($criteria = null)
     {
         $ret = array();
         $sql = "SELECT `{$this->handler->keyName}` FROM `{$this->handler->table}`";
@@ -192,7 +192,7 @@ class ExtgalleryModelReadIterator extends XoopsModelRead
      * @param  bool   $asObject flag indicating as object, otherwise as array
      * @return array  of objects    {@link XoopsObject}
      */
-    function &getByLimit($limit=0, $start = 0, $criteria = null, $fields = null, $asObject=true)
+    public function &getByLimit($limit=0, $start = 0, $criteria = null, $fields = null, $asObject=true)
     {
         trigger_error(__CLASS__ . '::' . __FUNCTION__ . '() is deprecated, please use getAll instead.', E_USER_WARNING);
         if (isset($criteria) && is_subclass_of($criteria, "criteriaelement")) {
@@ -217,7 +217,7 @@ class ExtgalleryModelReadIterator extends XoopsModelRead
      *
      * @return array
      */
-    function convertResultSet($result, $id_as_key = false, $as_object = true)
+    public function convertResultSet($result, $id_as_key = false, $as_object = true)
     {
         trigger_error(__CLASS__ . '::' . __FUNCTION__ . '() is deprecated.', E_USER_WARNING);
         $ret = array();
@@ -238,8 +238,7 @@ class ExtgalleryModelReadIterator extends XoopsModelRead
             } else {
                 if ($as_object) {
                     $ret[$myrow[$this->handler->keyName]] =& $obj;
-                }
-                else {
+                } else {
                     $row = array();
                     $vars = $obj->getVars();
                     foreach (array_keys($vars) as $i) {

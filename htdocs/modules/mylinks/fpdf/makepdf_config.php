@@ -14,10 +14,10 @@ $xcreator=('FPDF v1.52');
 $xurl=XOOPS_URL;
 
 //your contact email
-$xmail=('mailto:'.checkEmail($xoopsConfig['adminmail'],true));
+$xmail=('mailto:'.checkEmail($xoopsConfig['adminmail'], true));
 
 //the slogan of your site
-$xslogan=xoops_substr($myts->htmlSpecialChars( $xoopsConfig['slogan'] ),0,20);
+$xslogan=xoops_substr($myts->htmlSpecialChars($xoopsConfig['slogan']), 0, 20);
 
 //your logo name, located in .../makepdf/ (if you wish)
 //must be a png (best, recommended!), gif (only with gif.php!, slow) or jpg (good)

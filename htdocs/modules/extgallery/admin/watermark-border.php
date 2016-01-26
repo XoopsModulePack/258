@@ -21,30 +21,30 @@ include '../../../include/cp_header.php';
 include '../../../class/xoopsformloader.php';
 include 'function.php';
 
-if(isset($_GET['op'])) {
+if (isset($_GET['op'])) {
     $op = $_GET['op'];
 } else {
     $op = 'default';
 }
 
-if(isset($_POST['step'])) {
+if (isset($_POST['step'])) {
     $step = $_POST['step'];
 } else {
     $step = 'default';
 }
 
-switch($op) {
+switch ($op) {
 
     case 'uploadfont':
 
-        switch($step) {
+        switch ($step) {
 
             case 'enreg':
 
                 $uploaddir = XOOPS_ROOT_PATH.'/modules/extgallery/fonts/';
                 $uploadfile = $uploaddir . basename($_FILES['font_file']['name']);
 
-                if(file_exists($uploadfile)) {
+                if (file_exists($uploadfile)) {
                     echo "La police est déja présente sur le serveur.";
                 }
 
@@ -66,8 +66,8 @@ switch($op) {
                 $rep = XOOPS_ROOT_PATH.'/modules/extgallery/fonts/';
                 $dir = opendir($rep);
                 while ($f = readdir($dir)) {
-                    if(is_file($rep.$f)) {
-                        if(preg_match("/.*ttf/",strtolower($f))) {
+                    if (is_file($rep.$f)) {
+                        if (preg_match("/.*ttf/", strtolower($f))) {
                             $fonts[] = $f;
                         }
                     }
@@ -77,7 +77,7 @@ switch($op) {
 
                 $form = new XoopsThemeForm(_AM_EXTGALLERY_ADD_FONT, 'add_font', 'watermark-border.php?op=uploadfont', 'post', true);
                 $form->setExtra('enctype="multipart/form-data"');
-                $form->addElement(new XoopsFormFile(_AM_EXTGALLERY_FONT_FILE, 'font_file', get_cfg_var('upload_max_filesize')*1024*1024),false);
+                $form->addElement(new XoopsFormFile(_AM_EXTGALLERY_FONT_FILE, 'font_file', get_cfg_var('upload_max_filesize')*1024*1024), false);
                 $form->addElement(new XoopsFormHidden("step", 'enreg'));
                 $form->addElement(new XoopsFormButton("", "submit", _SUBMIT, "submit"));
 
@@ -95,12 +95,12 @@ switch($op) {
 
     case 'conf':
 
-        switch($step) {
+        switch ($step) {
 
             case 'enreg':
 
                 $configHandler =& xoops_gethandler('config');
-                $moduleIdCriteria = new Criteria('conf_modid',$xoopsModule->getVar('mid'));
+                $moduleIdCriteria = new Criteria('conf_modid', $xoopsModule->getVar('mid'));
 
                 // Param for applied to the test photo
                 $testParam = array();
@@ -116,13 +116,12 @@ switch($op) {
                 $testParam['outer_border_color'] = $xoopsModuleConfig['outer_border_color'];
                 $testParam['outer_border_size'] = $xoopsModuleConfig['outer_border_size'];
 
-                if(isset($_POST['watermark_font'])) {
-
+                if (isset($_POST['watermark_font'])) {
                     $testParam['watermark_font'] = $_POST['watermark_font'];
-                    if($xoopsModuleConfig['watermark_font'] != $_POST['watermark_font']) {
+                    if ($xoopsModuleConfig['watermark_font'] != $_POST['watermark_font']) {
                         $criteria = new CriteriaCompo();
                         $criteria->add($moduleIdCriteria);
-                        $criteria->add(new Criteria('conf_name','watermark_font'));
+                        $criteria->add(new Criteria('conf_name', 'watermark_font'));
                         $config = $configHandler->getConfigs($criteria);
                         $config = $config[0];
                         $configValue = array(
@@ -138,10 +137,10 @@ switch($op) {
                     }
 
                     $testParam['watermark_type'] = $_POST['watermark_type'];
-                    if($xoopsModuleConfig['watermark_type'] != $_POST['watermark_type']) {
+                    if ($xoopsModuleConfig['watermark_type'] != $_POST['watermark_type']) {
                         $criteria = new CriteriaCompo();
                         $criteria->add($moduleIdCriteria);
-                        $criteria->add(new Criteria('conf_name','watermark_type'));
+                        $criteria->add(new Criteria('conf_name', 'watermark_type'));
                         $config = $configHandler->getConfigs($criteria);
                         $config = $config[0];
                         $configValue = array(
@@ -156,12 +155,12 @@ switch($op) {
                         $configHandler->insertConfig($config);
                     }
 
-                    if(isset($_POST['watermark_text'])) {
+                    if (isset($_POST['watermark_text'])) {
                         $testParam['watermark_text'] = $_POST['watermark_text'];
-                        if($xoopsModuleConfig['watermark_text'] != $_POST['watermark_text']) {
+                        if ($xoopsModuleConfig['watermark_text'] != $_POST['watermark_text']) {
                             $criteria = new CriteriaCompo();
                             $criteria->add($moduleIdCriteria);
-                            $criteria->add(new Criteria('conf_name','watermark_text'));
+                            $criteria->add(new Criteria('conf_name', 'watermark_text'));
                             $config = $configHandler->getConfigs($criteria);
                             $config = $config[0];
                             $configValue = array(
@@ -178,10 +177,10 @@ switch($op) {
                     }
 
                     $testParam['watermark_position'] = $_POST['watermark_position'];
-                    if($xoopsModuleConfig['watermark_position'] != $_POST['watermark_position']) {
+                    if ($xoopsModuleConfig['watermark_position'] != $_POST['watermark_position']) {
                         $criteria = new CriteriaCompo();
                         $criteria->add($moduleIdCriteria);
-                        $criteria->add(new Criteria('conf_name','watermark_position'));
+                        $criteria->add(new Criteria('conf_name', 'watermark_position'));
                         $config = $configHandler->getConfigs($criteria);
                         $config = $config[0];
                         $configValue = array(
@@ -197,10 +196,10 @@ switch($op) {
                     }
 
                     $testParam['watermark_color'] = $_POST['watermark_color'];
-                    if($xoopsModuleConfig['watermark_color'] != $_POST['watermark_color']) {
+                    if ($xoopsModuleConfig['watermark_color'] != $_POST['watermark_color']) {
                         $criteria = new CriteriaCompo();
                         $criteria->add($moduleIdCriteria);
-                        $criteria->add(new Criteria('conf_name','watermark_color'));
+                        $criteria->add(new Criteria('conf_name', 'watermark_color'));
                         $config = $configHandler->getConfigs($criteria);
                         $config = $config[0];
                         $configValue = array(
@@ -216,10 +215,10 @@ switch($op) {
                     }
 
                     $testParam['watermark_fontsize'] = $_POST['watermark_fontsize'];
-                    if($xoopsModuleConfig['watermark_fontsize'] != $_POST['watermark_fontsize']) {
+                    if ($xoopsModuleConfig['watermark_fontsize'] != $_POST['watermark_fontsize']) {
                         $criteria = new CriteriaCompo();
                         $criteria->add($moduleIdCriteria);
-                        $criteria->add(new Criteria('conf_name','watermark_fontsize'));
+                        $criteria->add(new Criteria('conf_name', 'watermark_fontsize'));
                         $config = $configHandler->getConfigs($criteria);
                         $config = $config[0];
                         $configValue = array(
@@ -235,10 +234,10 @@ switch($op) {
                     }
 
                     $testParam['watermark_padding'] = $_POST['watermark_padding'];
-                    if($xoopsModuleConfig['watermark_padding'] != $_POST['watermark_padding']) {
+                    if ($xoopsModuleConfig['watermark_padding'] != $_POST['watermark_padding']) {
                         $criteria = new CriteriaCompo();
                         $criteria->add($moduleIdCriteria);
-                        $criteria->add(new Criteria('conf_name','watermark_padding'));
+                        $criteria->add(new Criteria('conf_name', 'watermark_padding'));
                         $config = $configHandler->getConfigs($criteria);
                         $config = $config[0];
                         $configValue = array(
@@ -254,13 +253,12 @@ switch($op) {
                     }
                 }
 
-                if(isset($_POST['inner_border_color'])) {
-
+                if (isset($_POST['inner_border_color'])) {
                     $testParam['inner_border_color'] = $_POST['inner_border_color'];
-                    if($xoopsModuleConfig['inner_border_color'] != $_POST['inner_border_color']) {
+                    if ($xoopsModuleConfig['inner_border_color'] != $_POST['inner_border_color']) {
                         $criteria = new CriteriaCompo();
                         $criteria->add($moduleIdCriteria);
-                        $criteria->add(new Criteria('conf_name','inner_border_color'));
+                        $criteria->add(new Criteria('conf_name', 'inner_border_color'));
                         $config = $configHandler->getConfigs($criteria);
                         $config = $config[0];
                         $configValue = array(
@@ -276,10 +274,10 @@ switch($op) {
                     }
 
                     $testParam['inner_border_size'] = $_POST['inner_border_size'];
-                    if($xoopsModuleConfig['inner_border_size'] != $_POST['inner_border_size']) {
+                    if ($xoopsModuleConfig['inner_border_size'] != $_POST['inner_border_size']) {
                         $criteria = new CriteriaCompo();
                         $criteria->add($moduleIdCriteria);
-                        $criteria->add(new Criteria('conf_name','inner_border_size'));
+                        $criteria->add(new Criteria('conf_name', 'inner_border_size'));
                         $config = $configHandler->getConfigs($criteria);
                         $config = $config[0];
                         $configValue = array(
@@ -295,10 +293,10 @@ switch($op) {
                     }
 
                     $testParam['outer_border_color'] = $_POST['outer_border_color'];
-                    if($xoopsModuleConfig['outer_border_color'] != $_POST['outer_border_color']) {
+                    if ($xoopsModuleConfig['outer_border_color'] != $_POST['outer_border_color']) {
                         $criteria = new CriteriaCompo();
                         $criteria->add($moduleIdCriteria);
-                        $criteria->add(new Criteria('conf_name','outer_border_color'));
+                        $criteria->add(new Criteria('conf_name', 'outer_border_color'));
                         $config = $configHandler->getConfigs($criteria);
                         $config = $config[0];
                         $configValue = array(
@@ -314,10 +312,10 @@ switch($op) {
                     }
 
                     $testParam['outer_border_size'] = $_POST['outer_border_size'];
-                    if($xoopsModuleConfig['outer_border_size'] != $_POST['outer_border_size']) {
+                    if ($xoopsModuleConfig['outer_border_size'] != $_POST['outer_border_size']) {
                         $criteria = new CriteriaCompo();
                         $criteria->add($moduleIdCriteria);
-                        $criteria->add(new Criteria('conf_name','outer_border_size'));
+                        $criteria->add(new Criteria('conf_name', 'outer_border_size'));
                         $config = $configHandler->getConfigs($criteria);
                         $config = $config[0];
                         $configValue = array(
@@ -339,38 +337,38 @@ switch($op) {
 
                 // Loading original image
                 // Define Graphical library path
-                if($xoopsModuleConfig['graphic_lib'] == 'IM') {
+                if ($xoopsModuleConfig['graphic_lib'] == 'IM') {
                     define('IMAGE_TRANSFORM_IM_PATH', $xoopsModuleConfig['graphic_lib_path']);
                 }
                 $imageTransform = Image_Transform::factory($xoopsModuleConfig['graphic_lib']);
                 $imageTransform->load("../images/watermark-border-orig.jpg");
 
                 // Making Watermark
-                if($testParam['watermark_position'] == "tl") {
+                if ($testParam['watermark_position'] == "tl") {
                     $x = 0;
                     $y = 0;
-                } elseif($testParam['watermark_position'] == "tr") {
+                } elseif ($testParam['watermark_position'] == "tr") {
                     $x = -1;
                     $y = 0;
-                } elseif($testParam['watermark_position'] == "bl") {
+                } elseif ($testParam['watermark_position'] == "bl") {
                     $x = 0;
                     $y = -1;
-                } elseif($testParam['watermark_position'] == "br") {
+                } elseif ($testParam['watermark_position'] == "br") {
                     $x = -1;
                     $y = -1;
-                } elseif($testParam['watermark_position'] == "tc") {
+                } elseif ($testParam['watermark_position'] == "tc") {
                     $x = 1;
                     $y = 0;
-                } elseif($testParam['watermark_position'] == "bc") {
+                } elseif ($testParam['watermark_position'] == "bc") {
                     $x = 1;
                     $y = -1;
-                } elseif($testParam['watermark_position'] == "lc") {
+                } elseif ($testParam['watermark_position'] == "lc") {
                     $x = 0;
                     $y = 1;
-                } elseif($testParam['watermark_position'] == "rc") {
+                } elseif ($testParam['watermark_position'] == "rc") {
                     $x = -1;
                     $y = 1;
-                } elseif($testParam['watermark_position'] == "cc") {
+                } elseif ($testParam['watermark_position'] == "cc") {
                     $x = 1;
                     $y = 1;
                 }
@@ -398,7 +396,7 @@ switch($op) {
                 // Remove old test image
                 deleteImageTest();
                 // Saving transformation on test image
-                $imageTransform->save("../images/watermark-border-test-".substr(md5(uniqid(rand())),27).".jpg");
+                $imageTransform->save("../images/watermark-border-test-".substr(md5(uniqid(rand())), 27).".jpg");
                 $imageTransform->free();
 
                 redirect_header("watermark-border.php", 3, _AM_EXTGALLERY_CONFIGURATION_SAVED);
@@ -420,26 +418,25 @@ switch($op) {
         $rep = XOOPS_ROOT_PATH.'/modules/extgallery/fonts/';
         $dir = opendir($rep);
         while ($f = readdir($dir)) {
-            if(is_file($rep.$f)) {
-                if(preg_match("/.*ttf/",strtolower($f))) {
+            if (is_file($rep.$f)) {
+                if (preg_match("/.*ttf/", strtolower($f))) {
                     $nbFonts++;
                     $fonts[] = $f;
                 }
             }
         }
 
-        $xoopsTpl->assign('nbfonts', sprintf(_AM_EXTGALLERY_ADD_FONT_LINK,$nbFonts));
+        $xoopsTpl->assign('nbfonts', sprintf(_AM_EXTGALLERY_ADD_FONT_LINK, $nbFonts));
 
         $xoopsTpl->assign('fonts', $fonts);
 
         // Display Watermark param form if FreeType is supported
-        if(function_exists('imagettfbbox')) {
-
+        if (function_exists('imagettfbbox')) {
             $xoopsTpl->assign('imagettfbbox', true);
 
             $form = new XoopsThemeForm(_AM_EXTGALLERY_WATERMARK_CONF, 'watermark_conf', 'watermark-border.php?op=conf', 'post', true);
             $fontSelect = new XoopsFormSelect(_AM_EXTGALLERY_FONT, 'watermark_font', $xoopsModuleConfig['watermark_font']);
-            foreach($fonts as $font) {
+            foreach ($fonts as $font) {
                 $fontSelect->addOption($font, $font);
             }
             $form->addElement($fontSelect);
@@ -458,7 +455,7 @@ switch($op) {
 
             $elementTray->addElement(new XoopsFormLabel("", $WTextForm), false);
             $form->addElement($elementTray);
-            $positionSelect = new XoopsFormSelect(_AM_EXTGALLERY_POSITION, 'watermark_position',$xoopsModuleConfig['watermark_position']);
+            $positionSelect = new XoopsFormSelect(_AM_EXTGALLERY_POSITION, 'watermark_position', $xoopsModuleConfig['watermark_position']);
             $positionSelect->addOption("tl", _AM_EXTGALLERY_TOP_LEFT);
             $positionSelect->addOption("tr", _AM_EXTGALLERY_TOP_RIGHT);
             $positionSelect->addOption("bl", _AM_EXTGALLERY_BOTTOM_LEFT);
@@ -469,9 +466,9 @@ switch($op) {
             $positionSelect->addOption("rc", _AM_EXTGALLERY_RIGHT_CENTER);
             $positionSelect->addOption("cc", _AM_EXTGALLERY_CENTER_CENTER);
             $form->addElement($positionSelect);
-            $form->addElement(new XoopsFormColorPicker(_AM_EXTGALLERY_WATERMARK_COLOR, 'watermark_color', $xoopsModuleConfig['watermark_color']),false);
-            $form->addElement(new XoopsFormText(_AM_EXTGALLERY_WATERMARK_FONT_SIZE, 'watermark_fontsize', '2', '2', $xoopsModuleConfig['watermark_fontsize']),false);
-            $form->addElement(new XoopsFormText(_AM_EXTGALLERY_WATERMARK_PADDING, 'watermark_padding', '2', '2', $xoopsModuleConfig['watermark_padding']),false);
+            $form->addElement(new XoopsFormColorPicker(_AM_EXTGALLERY_WATERMARK_COLOR, 'watermark_color', $xoopsModuleConfig['watermark_color']), false);
+            $form->addElement(new XoopsFormText(_AM_EXTGALLERY_WATERMARK_FONT_SIZE, 'watermark_fontsize', '2', '2', $xoopsModuleConfig['watermark_fontsize']), false);
+            $form->addElement(new XoopsFormText(_AM_EXTGALLERY_WATERMARK_PADDING, 'watermark_padding', '2', '2', $xoopsModuleConfig['watermark_padding']), false);
             $form->addElement(new XoopsFormHidden("step", 'enreg'));
             $form->addElement(new XoopsFormButton("", "submit", _SUBMIT, "submit"));
 
@@ -479,16 +476,14 @@ switch($op) {
 
         // Else display Warning message
         } else {
-
             $xoopsTpl->assign('freetypewarn', _AM_EXTGALLERY_WATERMARK_FREETYPE_WARN);
-
         }
 
         $form = new XoopsThemeForm(_AM_EXTGALLERY_BORDER_CONF, 'border_conf', 'watermark-border.php?op=conf', 'post', true);
-        $form->addElement(new XoopsFormColorPicker(_AM_EXTGALLERY_INNER_BORDER_COLOR, 'inner_border_color', $xoopsModuleConfig['inner_border_color']),false);
-        $form->addElement(new XoopsFormText(_AM_EXTGALLERY_INNER_BORDER_SIZE, 'inner_border_size', '2', '2', $xoopsModuleConfig['inner_border_size']),false);
-        $form->addElement(new XoopsFormColorPicker(_AM_EXTGALLERY_OUTER_BORDER_COLOR, 'outer_border_color', $xoopsModuleConfig['outer_border_color']),false);
-        $form->addElement(new XoopsFormText(_AM_EXTGALLERY_OUTER_BORDER_SIZE, 'outer_border_size', '2', '2', $xoopsModuleConfig['outer_border_size']),false);
+        $form->addElement(new XoopsFormColorPicker(_AM_EXTGALLERY_INNER_BORDER_COLOR, 'inner_border_color', $xoopsModuleConfig['inner_border_color']), false);
+        $form->addElement(new XoopsFormText(_AM_EXTGALLERY_INNER_BORDER_SIZE, 'inner_border_size', '2', '2', $xoopsModuleConfig['inner_border_size']), false);
+        $form->addElement(new XoopsFormColorPicker(_AM_EXTGALLERY_OUTER_BORDER_COLOR, 'outer_border_color', $xoopsModuleConfig['outer_border_color']), false);
+        $form->addElement(new XoopsFormText(_AM_EXTGALLERY_OUTER_BORDER_SIZE, 'outer_border_size', '2', '2', $xoopsModuleConfig['outer_border_size']), false);
         $form->addElement(new XoopsFormHidden("step", 'enreg'));
         $form->addElement(new XoopsFormButton("", "submit", _SUBMIT, "submit"));
 
@@ -506,24 +501,26 @@ switch($op) {
 
 }
 
-function getImageTest() {
+function getImageTest()
+{
     $ret = array();
     $rep = XOOPS_ROOT_PATH.'/modules/extgallery/images/';
     $dir = opendir($rep);
     while ($f = readdir($dir)) {
-       if(is_file($rep.$f)) {
-          if(preg_match('/watermark-border-test/',$f)) {
-              $ret[] = $f;
-          }
-       }
+        if (is_file($rep.$f)) {
+            if (preg_match('/watermark-border-test/', $f)) {
+                $ret[] = $f;
+            }
+        }
     }
 
     return $ret;
 }
 
-function deleteImageTest() {
+function deleteImageTest()
+{
     $files = getImageTest();
-    foreach($files as $file) {
+    foreach ($files as $file) {
         unlink(XOOPS_ROOT_PATH.'/modules/extgallery/images/'.$file);
     }
 }

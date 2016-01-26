@@ -466,7 +466,6 @@ switch ($op) {
             //        xoops_template_clear_module_cache($GLOBALS['xoopsModule']->getVar('mid'));
             //        xoops_template_clear_module_cache($xoopspoll->getVar('mid'));
             //        redirect_header("viewtopic.php?topic_id={$topic_id}", XoopspollConstants::REDIRECT_DELAY_SHORT, _MD_POLL_DBUPDATED);
-
         } else { // Umfrage
             $poll_obj = new Umfrage($poll_id);
             $poll_obj->setVar('question', @$_POST['question']);

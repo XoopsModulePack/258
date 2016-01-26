@@ -82,8 +82,6 @@ $modversion['templates'] = array(
     array('file'        => 'about_page.tpl', 'description' => '')
 );
 
-
-
 // Blocks
 $modversion["blocks"] = array();
 
@@ -147,4 +145,3 @@ $modversion['config'][] = array(
     'valuetype' => 'text',
     'options' => array_flip($editor_handler->getList()),
     'default' => 'dhtml');
-

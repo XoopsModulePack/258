@@ -347,7 +347,7 @@ if (true == xtubeCheckGroups($cid, 'XTubeSubPerm')) {
         $sform->addElement($keywords);
 
         if ($xoopsModuleConfig['usercantag'] == 1) {
-// Insert tags if Tag-module is installed
+            // Insert tags if Tag-module is installed
             if (xtubeIsModuleTagInstalled()) {
                 include_once XOOPS_ROOT_PATH . '/modules/tag/include/formtag.php';
                 $text_tags = new XoopsFormTag('item_tag', 70, 255, $video_array['item_tag'], 0);

@@ -28,7 +28,7 @@ function b_faqs_recent_questions_show($options)
     $faq_handler =& sf_gethandler('faq');
 
     // creating the FAQ objects that belong to the selected category
-    $faqsObj = $faq_handler->getFaqs( $limit, 0, _SF_STATUS_OPENED, $categoryid, $sort);
+    $faqsObj = $faq_handler->getFaqs($limit, 0, _SF_STATUS_OPENED, $categoryid, $sort);
     $totalfaqs = count($faqsObj);
 
     if ($faqsObj) {

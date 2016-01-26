@@ -109,7 +109,7 @@ if ($faqObj->cancomment() == 1) {
 //code to include smartie
 if (file_exists(XOOPS_ROOT_PATH . '/modules/smarttie/smarttie_links.php')) {
     include_once XOOPS_ROOT_PATH . '/modules/smarttie/smarttie_links.php';
-        $xoopsTpl->assign('smarttie',1);
+    $xoopsTpl->assign('smarttie', 1);
 }
 //end code for smarttie
 

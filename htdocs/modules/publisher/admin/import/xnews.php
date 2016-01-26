@@ -159,7 +159,7 @@ if ('start' === $op) {
 if ($op === 'go') {
     publisherCpHeader();
     //publisher_adminMenu(-1, _AM_PUBLISHER_IMPORT);
-    include_once (dirname(dirname(__DIR__))) . '/include/common.php';
+    include_once(dirname(dirname(__DIR__))) . '/include/common.php';
     publisherOpenCollapsableBar('xnewsimportgo', 'xnewsimportgoicon', sprintf(_AM_PUBLISHER_IMPORT_FROM, $importFromModuleName), _AM_PUBLISHER_IMPORT_RESULT);
 
     $moduleHandler   =& xoops_getHandler('module');

@@ -1125,7 +1125,7 @@ class PublisherItemHandler extends XoopsPersistableObjectHandler
     /**
      * insert a new item in the database
      *
-     * @param object $item reference to the {@link PublisherItem} object
+     * @param object $item  reference to the {@link PublisherItem} object
      * @param bool   $force
      *
      * @return bool FALSE if failed, TRUE if already present and unchanged or successful
@@ -1161,7 +1161,7 @@ class PublisherItemHandler extends XoopsPersistableObjectHandler
     /**
      * delete an item from the database
      *
-     * @param object $item reference to the ITEM to delete
+     * @param object $item  reference to the ITEM to delete
      * @param bool   $force
      *
      * @return bool FALSE if failed.
@@ -1189,8 +1189,8 @@ class PublisherItemHandler extends XoopsPersistableObjectHandler
     /**
      * retrieve items from the database
      *
-     * @param object $criteria {@link CriteriaElement} conditions to be met
-     * @param string $idKey    what shall we use as array key ? none, itemid, categoryid
+     * @param object $criteria      {@link CriteriaElement} conditions to be met
+     * @param string $idKey         what shall we use as array key ? none, itemid, categoryid
      * @param string $notNullFields
      *
      * @return array array of {@link PublisherItem} objects
@@ -1246,7 +1246,7 @@ class PublisherItemHandler extends XoopsPersistableObjectHandler
     /**
      * count items matching a condition
      *
-     * @param object $criteria {@link CriteriaElement} to match
+     * @param object $criteria      {@link CriteriaElement} to match
      * @param string $notNullFields
      *
      * @return int count of items

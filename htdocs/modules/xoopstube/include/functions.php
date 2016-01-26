@@ -1053,7 +1053,7 @@ function xtubeRenderCategoryListBody($published)
         formatTimestamp($published['expired'], $xoopsModuleConfig['dateformatadmin'])
     ) : _AM_XOOPSTUBE_MINDEX_NOTSET;
 
-    if ((($published['expired'] && $published['expired'] > time()) OR $published['expired'] == 0)
+    if ((($published['expired'] && $published['expired'] > time()) or $published['expired'] == 0)
         && ($published['published'] && $published['published'] < time())
         && $published['offline'] == 0
     ) {
@@ -1168,13 +1168,12 @@ function xtubeRenderVideoListBody($published)
         formatTimestamp($published['expired'], $xoopsModuleConfig['dateformatadmin'])
     ) : _AM_XOOPSTUBE_MINDEX_NOTSET;
 
-    if ((($published['expired'] && $published['expired'] > time()) OR $published['expired'] == 0)
+    if ((($published['expired'] && $published['expired'] > time()) or $published['expired'] == 0)
         && ($published['published'] && $published['published'] < time())
         && $published['offline'] == 0
     ) {
-//        $published_status = $xtubeImageArray['online'];
+        //        $published_status = $xtubeImageArray['online'];
         $published_status = '<a href="main.php?op=toggle&amp;lid=' . $lid . '&amp;offline=' . $published['offline'] . '"><img src="' . $pathIcon16 . '/1.png' . '" /></a>';
-
     } elseif (($published['expired'] && $published['expired'] < time()) && $published['offline'] == 0) {
         $published_status = $xtubeImageArray['expired'];
     } else {
@@ -1357,11 +1356,11 @@ function xtubeUpdateCounter($lid)
  */
 function xtubeGetBannerFromBannerId($banner_id)
 {
-###### Hack by www.stefanosilvestrini.com ######
+    ###### Hack by www.stefanosilvestrini.com ######
     global $xoopsConfig;
     $db      =& XoopsDatabaseFactory::getDatabaseConnection();
     $bresult = $db->query('SELECT COUNT(*) FROM ' . $db->prefix('banner') . ' WHERE bid=' . $banner_id);
-    list ($numrows) = $db->fetchRow($bresult);
+    list($numrows) = $db->fetchRow($bresult);
     if ($numrows > 1) {
         $numrows = $numrows - 1;
         mt_srand((double)microtime() * 1000000);
@@ -1371,7 +1370,7 @@ function xtubeGetBannerFromBannerId($banner_id)
     }
     if ($numrows > 0) {
         $bresult = $db->query('SELECT * FROM ' . $db->prefix('banner') . ' WHERE bid=' . $banner_id, 1, $bannum);
-        list ($bid, $cid, $imptotal, $impmade, $clicks, $imageurl, $clickurl, $date, $htmlbanner, $htmlcode) = $db->fetchRow(
+        list($bid, $cid, $imptotal, $impmade, $clicks, $imageurl, $clickurl, $date, $htmlbanner, $htmlcode) = $db->fetchRow(
             $bresult
         );
         if ($xoopsConfig['my_ip'] == xoops_getenv('REMOTE_ADDR')) {
@@ -1424,11 +1423,11 @@ function xtubeGetBannerFromBannerId($banner_id)
  */
 function xtubeGetBannerFromClientId($client_id)
 {
-###### Hack by www.stefanosilvestrini.com ######
+    ###### Hack by www.stefanosilvestrini.com ######
     global $xoopsConfig;
     $db      =& XoopsDatabaseFactory::getDatabaseConnection();
     $bresult = $db->query('SELECT COUNT(*) FROM ' . $db->prefix('banner') . ' WHERE cid=' . $client_id);
-    list ($numrows) = $db->fetchRow($bresult);
+    list($numrows) = $db->fetchRow($bresult);
     if ($numrows > 1) {
         $numrows = $numrows - 1;
         mt_srand((double)microtime() * 1000000);
@@ -1442,7 +1441,7 @@ function xtubeGetBannerFromClientId($client_id)
             1,
             $bannum
         );
-        list ($bid, $cid, $imptotal, $impmade, $clicks, $imageurl, $clickurl, $date, $htmlbanner, $htmlcode) = $db->fetchRow(
+        list($bid, $cid, $imptotal, $impmade, $clicks, $imageurl, $clickurl, $date, $htmlbanner, $htmlcode) = $db->fetchRow(
             $bresult
         );
         if ($xoopsConfig['my_ip'] == xoops_getenv('REMOTE_ADDR')) {
@@ -1649,7 +1648,6 @@ function xtubeFileChecks()
     //print_r($inithingy);
 
     echo "</fieldset>";
-
 }
 
 /**
@@ -1693,7 +1691,6 @@ function xtubeGetLetters()
     unset($sql);
 
     while (list(, $ltr) = each($alphabet)) {
-
         if (in_array($ltr, $distinctDbLetters_arr)) {
             $letterchoice
                 .= '<a class="xoopstube_letters xoopstube_letters_green" href="';

@@ -17,7 +17,6 @@ $action  = ((isset($_GET['action'])) ? $_GET['action'] : 'edit');
 //exit;
 if (count($permHandler->getAuthorizedCat($xoopsUser, 'extcal_cat_submit')) > 0
 ) {
-
     include XOOPS_ROOT_PATH . '/header.php';
 
     // Title of the page
@@ -61,7 +60,6 @@ if (count($permHandler->getAuthorizedCat($xoopsUser, 'extcal_cat_submit')) > 0
     $xoopsTpl->assign('view', "newevent");
 
     include XOOPS_ROOT_PATH . '/footer.php';
-
 } else {
     redirect_header("index.php", 3);
 }

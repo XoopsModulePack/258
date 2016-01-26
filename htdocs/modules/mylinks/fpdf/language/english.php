@@ -31,7 +31,7 @@
 
 // For end users
 if (!defined('XOOPS_ROOT_PATH')) {
-  die("XOOPS root path not defined");
+    die("XOOPS root path not defined");
 }
 
 $valid_pfd_charset = 'ISO-8859-1';
@@ -102,7 +102,7 @@ $pdf_config['action_on_error'] = 0; // 0 - continue; 1 - die
 $pdf_config['creator'] = 'NEWS BASED ON FPDF v1.53';
 $pdf_config['url'] = XOOPS_URL;
 $pdf_config['mail'] = 'mailto:'.$xoopsConfig['adminmail'];
-$pdf_config['slogan']=xoops_substr($myts->htmlspecialchars( $xoopsConfig['sitename'] ),0,30);
+$pdf_config['slogan']=xoops_substr($myts->htmlspecialchars($xoopsConfig['sitename']), 0, 30);
 $pdf_config['scale'] = '0.8';
 $pdf_config['dateformat'] = _DATESTRING;
 $pdf_config['footerpage'] = _MD_PDF_PAGE;
@@ -118,38 +118,40 @@ define('NEWS_PDF_DATE', _MD_POSTEDON);
 // For more details, refer to: http://fpdf.org
 class PDF_language extends FPDF
 {
-  function PDF_language($orientation='P',$unit='mm',$format='A4')
-  {
-      //Call parent constructor
-      $this->FPDF($orientation,$unit,$format);
-  }
-
-  function Error($msg)
-  {
-    global $pdf_config;
-    if($pdf_config['action_on_error']){
-      //Fatal error
-      die('<B>FPDF error: </B>'.$msg);
+    public function PDF_language($orientation='P', $unit='mm', $format='A4')
+    {
+        //Call parent constructor
+      $this->FPDF($orientation, $unit, $format);
     }
-  }
 
-  function encoding(&$text, $in_charset)
-  {
-    $out_charset = $GLOBALS["valid_pfd_charset"];
-      if (empty($in_charset) || empty($out_charset) || !strcasecmp($out_charset, $in_charset)) return;
-
-      if(is_array($text) && count($text)>0){
-        foreach($text as $key=>$val){
-          $this->_encoding($text[$key], $in_charset, $out_charset);
+    public function Error($msg)
+    {
+        global $pdf_config;
+        if ($pdf_config['action_on_error']) {
+            //Fatal error
+      die('<B>FPDF error: </B>'.$msg);
         }
-      }else{
-        $this->_encoding($text, $in_charset, $out_charset);
-      }
-  }
+    }
 
-  function _encoding(&$text, $in_charset, $out_charset)
-  {
-    // some conversion goes here
+    public function encoding(&$text, $in_charset)
+    {
+        $out_charset = $GLOBALS["valid_pfd_charset"];
+        if (empty($in_charset) || empty($out_charset) || !strcasecmp($out_charset, $in_charset)) {
+            return;
+        }
+
+        if (is_array($text) && count($text)>0) {
+            foreach ($text as $key=>$val) {
+                $this->_encoding($text[$key], $in_charset, $out_charset);
+            }
+        } else {
+            $this->_encoding($text, $in_charset, $out_charset);
+        }
+    }
+
+    public function _encoding(&$text, $in_charset, $out_charset)
+    {
+        // some conversion goes here
     // refer to schinese.php for example
-  }
+    }
 }

@@ -20,28 +20,27 @@
 //----------------------------------------------------
 class extcal_2_28
 {
-//----------------------------------------------------
+    //----------------------------------------------------
 
     /**
      * @param $module
      * @param $options
      */
-    function extcal_2_28(& $module, $options)
-{
-global $xoopsDB;
+    public function extcal_2_28(& $module, $options)
+    {
+        global $xoopsDB;
 
-  $this->addTable_etablissement();
-  $this->alterTable_event();
-
-}
+        $this->addTable_etablissement();
+        $this->alterTable_event();
+    }
 //----------------------------------------------------
-function alterTable_event()
+public function alterTable_event()
 {
-global $xoopsDB;
+    global $xoopsDB;
 
-  $tbl = $xoopsDB->prefix('extcal_event');
+    $tbl = $xoopsDB->prefix('extcal_event');
 
-$sql = <<<__sql__
+    $sql = <<<__sql__
 ALTER TABLE `{$tbl}`
   add  `event_organisateur` varchar(255) NOT NULL default '',
   add  `event_picture1` varchar(255) NOT NULL,
@@ -50,18 +49,17 @@ ALTER TABLE `{$tbl}`
   add  `event_etablissement` int(5) NOT NULL DEFAULT '1';
 __sql__;
 
-  $xoopsDB->queryF($sql);
-
+    $xoopsDB->queryF($sql);
 }
 
 //----------------------------------------------------
-function addTable_etablissement()
+public function addTable_etablissement()
 {
-global $xoopsDB;
+    global $xoopsDB;
 
-  $tbl = $xoopsDB->prefix('extcal_etablissement');
+    $tbl = $xoopsDB->prefix('extcal_etablissement');
 
-$sql = <<<__sql__
+    $sql = <<<__sql__
 CREATE TABLE `{$tbl}` (
   `id` int(5) NOT NULL auto_increment,
   `nom` varchar(255) NOT NULL,
@@ -85,9 +83,9 @@ CREATE TABLE `{$tbl}` (
 ) ENGINE = MYISAM ;
 __sql__;
 
-  $xoopsDB->queryF($sql);
+    $xoopsDB->queryF($sql);
 //---------------------------------------------------
-
 }
 //-----------------------------------------------------------------
 }   // fin de la classe
+

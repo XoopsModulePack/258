@@ -79,7 +79,7 @@ function smartpartner_findMetaKeywords($text, $minChar)
     foreach ($originalKeywords as $originalKeyword) {
         $secondRoundKeywords = explode("'", $originalKeyword);
         foreach ($secondRoundKeywords as $secondRoundKeyword) {
-            If (strlen($secondRoundKeyword) >= $minChar) {
+            if (strlen($secondRoundKeyword) >= $minChar) {
                 if (!in_array($secondRoundKeyword, $keywords)) {
                     $keywords[] = trim($secondRoundKeyword);
                 }
@@ -100,19 +100,19 @@ function smartpartner_createMetaTags($title, $categoryPath = '', $description = 
     $title = $myts->displayTarea($title);
     $title = $myts->undoHtmlSpecialChars($title);
 
-    If (isset($categoryPath)) {
+    if (isset($categoryPath)) {
         $categoryPath = $myts->displayTarea($categoryPath);
         $categoryPath = $myts->undoHtmlSpecialChars($categoryPath);
     }
 
     // Creating Meta Keywords
-    If (isset($title) && ($title != '')) {
+    if (isset($title) && ($title != '')) {
         $keywords = smartpartner_findMetaKeywords($title, $minChar);
 
-        If (isset($xoopsModuleConfig) && isset($xoopsModuleConfig['moduleMetaKeywords']) && $xoopsModuleConfig['moduleMetaKeywords'] != '') {
+        if (isset($xoopsModuleConfig) && isset($xoopsModuleConfig['moduleMetaKeywords']) && $xoopsModuleConfig['moduleMetaKeywords'] != '') {
             $moduleKeywords = explode(",", $xoopsModuleConfig['moduleMetaKeywords']);
             foreach ($moduleKeywords as $moduleKeyword) {
-                If (!in_array($moduleKeyword, $keywords)) {
+                if (!in_array($moduleKeyword, $keywords)) {
                     $keywords[] = trim($moduleKeyword);
                 }
             }
@@ -129,7 +129,7 @@ function smartpartner_createMetaTags($title, $categoryPath = '', $description = 
         $xoopsTpl->assign('xoops_meta_keywords', $ret);
     }
     // Creating Meta Description
-    If ($description != '') {
+    if ($description != '') {
         $xoopsTpl->assign('xoops_meta_description', smartpartner_createMetaDescription($description));
     }
 
@@ -137,37 +137,36 @@ function smartpartner_createMetaTags($title, $categoryPath = '', $description = 
     $moduleName = '';
     $titleTag = array();
 
-    If (isset($xoopsModule)) {
+    if (isset($xoopsModule)) {
         $moduleName = $myts->displayTarea($xoopsModule->name());
         $titleTag['module'] = $moduleName;
     }
 
-    If (isset($title) && ($title != '') && (strtoupper($title) != strtoupper($moduleName))) {
+    if (isset($title) && ($title != '') && (strtoupper($title) != strtoupper($moduleName))) {
         $titleTag['title'] = $title;
     }
 
-    If (isset($categoryPath) && ($categoryPath != '')) {
+    if (isset($categoryPath) && ($categoryPath != '')) {
         $titleTag['category'] = $categoryPath;
     }
 
     $ret = '';
 
-    If (isset($titleTag['title']) && $titleTag['title'] != '') {
+    if (isset($titleTag['title']) && $titleTag['title'] != '') {
         $ret .= $titleTag['title'];
     }
 
-    If (isset($titleTag['category']) && $titleTag['category'] != '') {
-        If ($ret != '') {
+    if (isset($titleTag['category']) && $titleTag['category'] != '') {
+        if ($ret != '') {
             $ret .= ' - ';
         }
         $ret .= $titleTag['category'];
     }
-    If (isset($titleTag['module']) && $titleTag['module'] != '') {
-        If ($ret != '') {
+    if (isset($titleTag['module']) && $titleTag['module'] != '') {
+        if ($ret != '') {
             $ret .= ' - ';
         }
         $ret .= $titleTag['module'];
     }
     $xoopsTpl->assign('xoops_pagetitle', $ret);
-
 }

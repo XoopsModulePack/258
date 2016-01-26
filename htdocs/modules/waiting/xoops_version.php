@@ -74,6 +74,6 @@ $modversion['blocks'][1]['template'] = 'waiting_block_waiting.html';
 $modversion['blocks'][1]['options'] = '1|5';
 
 // On Update
-if( ! empty( $_POST['fct'] ) && ! empty( $_POST['op'] ) && $_POST['fct'] == 'modulesadmin' && $_POST['op'] == 'update_ok' && $_POST['dirname'] == $modversion['dirname'] ) {
-    include dirname( __FILE__ ) . "/include/updateblock.inc.php" ;
+if (! empty($_POST['fct']) && ! empty($_POST['op']) && $_POST['fct'] == 'modulesadmin' && $_POST['op'] == 'update_ok' && $_POST['dirname'] == $modversion['dirname']) {
+    include dirname(__FILE__) . "/include/updateblock.inc.php" ;
 }

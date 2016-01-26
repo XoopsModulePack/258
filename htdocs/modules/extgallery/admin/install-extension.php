@@ -17,7 +17,7 @@
  * @version     $Id: install-extension.php 8088 2011-11-06 09:38:12Z beckmi $
  */
 
-if(isset($_POST['step'])) {
+if (isset($_POST['step'])) {
     $step = $_POST['step'];
 } else {
     $step = 'default';
@@ -33,13 +33,13 @@ $downloadServer = 'http://downloads.sourceforge.net/xoops/';
 //$downloadServer = 'http://localhost/divers/extgallery/';
 $extensionFileName = 'extgallery-extension-hook.tar.gz';
 
-switch($step) {
+switch ($step) {
 
     case 'download':
 
         xoops_cp_header();
 
-        if(!$handle = @fopen($downloadServer.$extensionFileName, 'r')) {
+        if (!$handle = @fopen($downloadServer.$extensionFileName, 'r')) {
             printf(_AM_EXTGALLERY_EXT_FILE_DONT_EXIST, $downloadServer, $extensionFileName);
             xoops_cp_footer();
             break;
@@ -64,9 +64,8 @@ switch($step) {
 
     case 'install':
 
-        if(!file_exists(XOOPS_ROOT_PATH."/uploads/".$extensionFileName)) {
-
-   xoops_cp_header();
+        if (!file_exists(XOOPS_ROOT_PATH."/uploads/".$extensionFileName)) {
+            xoops_cp_header();
             echo _AM_EXTGALLERY_EXT_FILE_DONT_EXIST_SHORT;
             xoops_cp_footer();
 
@@ -77,19 +76,19 @@ switch($step) {
         include "../class/pcltar.lib.php";
 
         // Extract extension files
-        PclTarExtract(XOOPS_ROOT_PATH."/uploads/".$extensionFileName,XOOPS_ROOT_PATH."/class/textsanitizer/","class/textsanitizer/");
+        PclTarExtract(XOOPS_ROOT_PATH."/uploads/".$extensionFileName, XOOPS_ROOT_PATH."/class/textsanitizer/", "class/textsanitizer/");
         // Delete downloaded extension's files
         unlink(XOOPS_ROOT_PATH."/uploads/".$extensionFileName);
 
     // Delete folder created by a small issu in PclTar lib
-  if(is_dir(XOOPS_ROOT_PATH."/class/textsanitizer/class")) {
-   rmdir(XOOPS_ROOT_PATH."/class/textsanitizer/class");
+  if (is_dir(XOOPS_ROOT_PATH."/class/textsanitizer/class")) {
+      rmdir(XOOPS_ROOT_PATH."/class/textsanitizer/class");
   }
 
   // Activate extension
   $conf = include XOOPS_ROOT_PATH.'/class/textsanitizer/config.php';
   $conf['extensions']['gallery'] = 1;
-  file_put_contents(XOOPS_ROOT_PATH.'/class/textsanitizer/config.custom.php', "<?php\rreturn \$config = ".var_export($conf,true)."\r?>");
+  file_put_contents(XOOPS_ROOT_PATH.'/class/textsanitizer/config.custom.php', "<?php\rreturn \$config = ".var_export($conf, true)."\r?>");
 
   redirect_header("extension.php", 3, _AM_EXTGALLERY_EXTENSION_INSTALLED);
 

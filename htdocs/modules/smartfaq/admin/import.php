@@ -11,8 +11,12 @@ include_once __DIR__ . '/admin_header.php';
 
 $op='none';
 
-if (isset($_GET['op'])) $op = $_GET['op'];
-if (isset($_POST['op'])) $op = $_POST['op'];
+if (isset($_GET['op'])) {
+    $op = $_GET['op'];
+}
+if (isset($_POST['op'])) {
+    $op = $_POST['op'];
+}
 
 global $xoopsDB;
 
@@ -61,7 +65,7 @@ switch ($op) {
 
     include_once XOOPS_ROOT_PATH . '/class/xoopsformloader.php';
 
-    $module_handler =& xoops_gethandler ('module');
+    $module_handler =& xoops_gethandler('module');
     if ($module_handler->getByDirname('xoopsfaq')) {
         $importfile_select_array["xoopsfaq"] = _AM_SF_IMPORT_XOOPSFAQ_110;
     }
@@ -70,15 +74,14 @@ switch ($op) {
         $importfile_select_array["wffaq"] = _AM_SF_IMPORT_WFFAQ_105;
     }
 
-    if (isset($importfile_select_array) && count($importfile_select_array) > 0 ) {
-
+    if (isset($importfile_select_array) && count($importfile_select_array) > 0) {
         $sform = new XoopsThemeForm(_AM_SF_IMPORT_SELECTION, "op", xoops_getenv('PHP_SELF'));
         $sform->setExtra('enctype="multipart/form-data"');
 
         // Q&A set to import
         $importfile_select = new XoopsFormSelect('', 'importfile', $importfile);
         $importfile_select->addOptionArray($importfile_select_array);
-        $importfile_tray = new XoopsFormElementTray(_AM_SF_IMPORT_SELECT_FILE , '&nbsp;');
+        $importfile_tray = new XoopsFormElementTray(_AM_SF_IMPORT_SELECT_FILE, '&nbsp;');
         $importfile_tray->addElement($importfile_select);
         $sform->addElement($importfile_tray);
 
@@ -99,7 +102,7 @@ switch ($op) {
         $sform->display();
         unset($hidden);
     } else {
-      echo "<span style=\"color: #567; margin: 3px 0 12px 0; font-weight: bold; font-size: small; display: block; \">" . _AM_SF_IMPORT_NO_MODULE . "</span>";
+        echo "<span style=\"color: #567; margin: 3px 0 12px 0; font-weight: bold; font-size: small; display: block; \">" . _AM_SF_IMPORT_NO_MODULE . "</span>";
     }
 
     // End of collapsable bar

@@ -13,9 +13,8 @@ class ExtcalFormDateTime
      * @param int $startTS
      * @param int $endTS
      */
-    function ExtcalFormDateTime(&$form, $startTS = 0, $endTS = 0)
+    public function ExtcalFormDateTime(&$form, $startTS = 0, $endTS = 0)
     {
-
         $startTS       = intval($startTS);
         $startTS       = ($startTS > 0) ? $startTS : time();
         $startDatetime = getDate($startTS);
@@ -78,7 +77,5 @@ class ExtcalFormDateTime
 
         $endElmtTray->addElement($endDateElmtTray);
         $form->addElement($endElmtTray);
-
     }
-
 }

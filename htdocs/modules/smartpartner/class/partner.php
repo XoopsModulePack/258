@@ -28,9 +28,9 @@ define("_SPARTNER_NOT_OFFER_NEW", 4);
 
 class SmartpartnerPartner extends SmartObject
 {
-    var $_extendedInfo = null;
+    public $_extendedInfo = null;
 
-    function SmartpartnerPartner($id = null)
+    public function SmartpartnerPartner($id = null)
     {
         $this->db =& Database::getInstance();
         $this->initVar("id", XOBJ_DTYPE_INT, 0, false);
@@ -66,52 +66,52 @@ class SmartpartnerPartner extends SmartObject
         }
     }
 
-    function id()
+    public function id()
     {
         return $this->getVar("id");
     }
 
-    function categoryid()
+    public function categoryid()
     {
         return $this->getVar("categoryid");
     }
 
-    function weight()
+    public function weight()
     {
         return $this->getVar("weight");
     }
 
-    function email_priv()
+    public function email_priv()
     {
         return $this->getVar("email_priv");
     }
 
-    function phone_priv()
+    public function phone_priv()
     {
         return $this->getVar("phone_priv");
     }
 
-    function adress_priv()
+    public function adress_priv()
     {
         return $this->getVar("adress_priv");
     }
 
-    function hits()
+    public function hits()
     {
         return $this->getVar("hits");
     }
 
-    function hits_page()
+    public function hits_page()
     {
         return $this->getVar("hits_page");
     }
 
-    function url($format = "S")
+    public function url($format = "S")
     {
         return $this->getVar('url', $format);
     }
 
-    function image($format = "S")
+    public function image($format = "S")
     {
         if ($this->getVar('image') != '') {
             return $this->getVar('image', $format);
@@ -120,15 +120,15 @@ class SmartpartnerPartner extends SmartObject
         }
     }
 
-    function image_url($format = "S")
+    public function image_url($format = "S")
     {
         return $this->getVar('image_url', $format);
     }
 
-    function title($format = "S")
+    public function title($format = "S")
     {
         $ret = $this->getVar("title", $format);
-        If (($format == 's') || ($format == 'S') || ($format == 'show')) {
+        if (($format == 's') || ($format == 'S') || ($format == 'show')) {
             $myts = &MyTextSanitizer::getInstance();
             $ret = $myts->displayTarea($ret);
         }
@@ -136,21 +136,21 @@ class SmartpartnerPartner extends SmartObject
         return $ret;
     }
 
-    function datesub($format = "S")
+    public function datesub($format = "S")
     {
         $ret = $this->getVar("datesub", $format);
-        If (($format == 's') || ($format == 'S') || ($format == 'show')) {
+        if (($format == 's') || ($format == 'S') || ($format == 'show')) {
             $ret = formatTimestamp($ret, 's');
         }
 
         return $ret;
     }
 
-    function summary($maxLength = 0, $format = "S")
+    public function summary($maxLength = 0, $format = "S")
     {
         $ret = $this->getVar("summary", $format);
 
-        If ($maxLength != 0) {
+        if ($maxLength != 0) {
             if (!XOOPS_USE_MULTIBYTES) {
                 if (strlen($ret) >= $maxLength) {
                     $ret = xoops_substr(smartpartner_metagen_html2text($ret), 0, $maxLength);
@@ -161,15 +161,15 @@ class SmartpartnerPartner extends SmartObject
         return $ret;
     }
 
-    function description($format = "S")
+    public function description($format = "S")
     {
         return $this->getVar('description', $format);
     }
 
-    function contact_name($format = "S")
+    public function contact_name($format = "S")
     {
         $ret = $this->getVar("contact_name", $format);
-        If (($format == 's') || ($format == 'S') || ($format == 'show')) {
+        if (($format == 's') || ($format == 'S') || ($format == 'show')) {
             $myts = &MyTextSanitizer::getInstance();
             $ret = $myts->displayTarea($ret);
         }
@@ -177,10 +177,10 @@ class SmartpartnerPartner extends SmartObject
         return $ret;
     }
 
-    function contact_email($format = "S")
+    public function contact_email($format = "S")
     {
         $ret = $this->getVar("contact_email", $format);
-        If (($format == 's') || ($format == 'S') || ($format == 'show')) {
+        if (($format == 's') || ($format == 'S') || ($format == 'show')) {
             $myts = &MyTextSanitizer::getInstance();
             $ret = $myts->displayTarea($ret);
         }
@@ -188,10 +188,10 @@ class SmartpartnerPartner extends SmartObject
         return $ret;
     }
 
-    function contact_phone($format = "S")
+    public function contact_phone($format = "S")
     {
         $ret = $this->getVar("contact_phone", $format);
-        If (($format == 's') || ($format == 'S') || ($format == 'show')) {
+        if (($format == 's') || ($format == 'S') || ($format == 'show')) {
             $myts = &MyTextSanitizer::getInstance();
             $ret = $myts->displayTarea($ret);
         }
@@ -199,19 +199,19 @@ class SmartpartnerPartner extends SmartObject
         return $ret;
     }
 
-    function adress($format = "S")
+    public function adress($format = "S")
     {
         $ret = $this->getVar("adress", $format);
 
         return $ret;
     }
 
-    function status()
+    public function status()
     {
         return $this->getVar("status");
     }
 
-    function getUrlLink($forWhere)
+    public function getUrlLink($forWhere)
     {
         if ($forWhere == 'block') {
             if ($this->extentedInfo()) {
@@ -242,7 +242,7 @@ class SmartpartnerPartner extends SmartObject
         }
     }
 
-    function getImageUrl()
+    public function getImageUrl()
     {
         if (($this->getVar('image') != '') && ($this->getVar('image') != 'blank.png') && ($this->getVar('image') != '-1')) {
             return smartpartner_getImageDir('', false) . $this->image();
@@ -253,15 +253,16 @@ class SmartpartnerPartner extends SmartObject
         }
     }
 
-    function getImagePath()
+    public function getImagePath()
     {
         if (($this->getVar('image') != '') && ($this->getVar('image') != 'blank.png')) {
             return smartpartner_getImageDir() . $this->image();
-        } else
+        } else {
             return false;
+        }
     }
 
-    function getImageLink()
+    public function getImageLink()
     {
         $ret = "<a href='rrvpartner.php?id=" . $this->id() . "' target='_blank'>";
         if ($this->getVar('image') != '') {
@@ -271,10 +272,9 @@ class SmartpartnerPartner extends SmartObject
         }
 
         return $ret;
-
     }
 
-    function getStatusName()
+    public function getStatusName()
     {
         switch ($this->status()) {
             case _SPARTNER_STATUS_ACTIVE :
@@ -301,12 +301,12 @@ class SmartpartnerPartner extends SmartObject
         }
     }
 
-    function notLoaded()
+    public function notLoaded()
     {
         return ($this->getVar('id') == 0);
     }
 
-    function extentedInfo()
+    public function extentedInfo()
     {
         if ($this->_extendedInfo) {
             return $this->_extendedInfo;
@@ -325,34 +325,34 @@ class SmartpartnerPartner extends SmartObject
         return $this->_extendedInfo;
     }
 
-    function store($force = true)
+    public function store($force = true)
     {
         $smartpartner_partner_handler = new SmartpartnerPartnerHandler($this->db);
 
         return $smartpartner_partner_handler->insert($this, $force);
     }
 
-    function updateHits()
+    public function updateHits()
     {
         $sql = "UPDATE " . $this->db->prefix("smartpartner_partner") . " SET hits=hits+1 WHERE id = " . $this->id();
-        If ($this->db->queryF($sql)) {
+        if ($this->db->queryF($sql)) {
             return true;
         } else {
             return false;
         }
     }
 
-    function updateHits_page()
+    public function updateHits_page()
     {
         $sql = "UPDATE " . $this->db->prefix("smartpartner_partner") . " SET hits_page=hits_page+1 WHERE id = " . $this->id();
-        If ($this->db->queryF($sql)) {
+        if ($this->db->queryF($sql)) {
             return true;
         } else {
             return false;
         }
     }
 
-    function sendNotifications($notifications = array())
+    public function sendNotifications($notifications = array())
     {
         $smartModule =& smartpartner_getModuleInfo();
         $module_id = $smartModule->getVar('mid');
@@ -388,7 +388,7 @@ class SmartpartnerPartner extends SmartObject
         }
     }
 
-    function getRedirectMsg($original_status, $new_status)
+    public function getRedirectMsg($original_status, $new_status)
     {
         $redirect_msgs = array();
 
@@ -480,9 +480,8 @@ class SmartpartnerPartner extends SmartObject
         return $redirect_msgs;
     }
 
-    function getAvailableStatus()
+    public function getAvailableStatus()
     {
-
         switch ($this->status()) {
             case _SPARTNER_STATUS_NOTSET :
                 $ret = array(
@@ -524,20 +523,20 @@ class SmartpartnerPartner extends SmartObject
         return $ret;
     }
 
-    function setUpdated()
+    public function setUpdated()
     {
         $this->setVar('last_update', time());
         $this->store();
     }
 
-    function getFiles()
+    public function getFiles()
     {
         global $smartpartner_file_handler;
 
         return $smartpartner_file_handler->getAllFiles($this->id(), _SPARTNER_STATUS_FILE_ACTIVE);
     }
 
-    function toArray($url_link_type = 'partner')
+    public function toArray($url_link_type = 'partner')
     {
         $smartConfig = smartpartner_getModuleConfig();
 
@@ -592,7 +591,7 @@ class SmartpartnerPartner extends SmartObject
         } else {
             $partner['display_type'] = 'none';
         }
-        If ($this->description() != '' && $partner['display_type'] == 'full') {
+        if ($this->description() != '' && $partner['display_type'] == 'full') {
             $partner['description'] = $this->description();
         } else {
             //$partner['description'] = $this->summary();
@@ -606,7 +605,7 @@ class SmartpartnerPartner extends SmartObject
         if ($highlight && isset($_GET['keywords'])) {
             $myts =& MyTextSanitizer::getInstance();
             $keywords = $myts->htmlSpecialChars(trim(urldecode($_GET['keywords'])));
-            $h = new SmartpartnerKeyhighlighter ($keywords, true, 'smartpartner_highlighter');
+            $h = new SmartpartnerKeyhighlighter($keywords, true, 'smartpartner_highlighter');
             $partner['title'] = $h->highlight($partner['title']);
             $partner['summary'] = $h->highlight($partner['summary']);
             $partner['description'] = $h->highlight($partner['description']);
@@ -618,7 +617,6 @@ class SmartpartnerPartner extends SmartObject
 
         return $partner;
     }
-
 }
 
 /**
@@ -639,13 +637,12 @@ class SmartpartnerPartnerHandler extends SmartPersistableObjectHandler
      * @param object $db reference to a xoops_db object
      */
 
-    function SmartpartnerPartnerHandler($db)
+    public function SmartpartnerPartnerHandler($db)
     {
         xoops_loadLanguage('common', 'smartpartner');
         $this->SmartPersistableObjectHandler($db, 'partner', 'id', 'title', false, 'smartpartner');
         $this->addPermission('full_view', _CO_SPARTNER_FULL_PERM_READ, _CO_SPARTNER_FULL_PERM_READ_DSC);
         $this->addPermission('partial_view', _CO_SPARTNER_PART_PERM_READ, _CO_SPARTNER_PART_PERM_READ_DSC);
-
     }
 
     /**
@@ -655,7 +652,7 @@ class SmartpartnerPartnerHandler extends SmartPersistableObjectHandler
      * @return object {@link SmartpartnerCategoryHandler}
      * @access public
      */
-    function &getInstance(&$db)
+    public function &getInstance(&$db)
     {
         static $instance;
         if (!isset($instance)) {
@@ -665,7 +662,7 @@ class SmartpartnerPartnerHandler extends SmartPersistableObjectHandler
         return $instance;
     }
 
-    function &create($isNew = true)
+    public function &create($isNew = true)
     {
         $partner = new SmartpartnerPartner();
         if ($isNew) {
@@ -681,7 +678,7 @@ class SmartpartnerPartnerHandler extends SmartPersistableObjectHandler
      * @param  int   $id partnerid of the user
      * @return mixed reference to the {@link SmartpartnerPartner} object, FALSE if failed
      */
-    function &get($id)
+    public function &get($id)
     {
         if (intval($id) > 0) {
             $sql = 'SELECT * FROM ' . $this->table . ' WHERE id=' . $id;
@@ -714,7 +711,7 @@ class SmartpartnerPartnerHandler extends SmartPersistableObjectHandler
      * @param  bool   $force
      * @return bool   FALSE if failed, TRUE if already present and unchanged or successful
      */
-    function insert(&$partner, $force = false)
+    public function insert(&$partner, $force = false)
     {
         if (strtolower(get_class($partner)) != strtolower($this->className)) {
             return false;
@@ -788,7 +785,7 @@ class SmartpartnerPartnerHandler extends SmartPersistableObjectHandler
      * @param  bool   $force
      * @return bool   FALSE if failed.
      */
-    function delete(&$partner, $force = false)
+    public function delete(&$partner, $force = false)
     {
         global $smartpartner_offer_handler, $smartpartner_partner_cat_link_handler;
         $partnerModule =& smartpartner_getModuleInfo();
@@ -821,7 +818,6 @@ class SmartpartnerPartnerHandler extends SmartPersistableObjectHandler
         }
 
         return true;
-
     }
 
     /**
@@ -831,7 +827,7 @@ class SmartpartnerPartnerHandler extends SmartPersistableObjectHandler
      * @param  bool   $id_as_key use the partnerid as key for the array?
      * @return array  array of {@link SmartpartnerPartner} objects
      */
-    function &getObjects($criteria = null, $id_as_key = false)
+    public function &getObjects($criteria = null, $id_as_key = false)
     {
         $ret = array();
         $limit = $start = 0;
@@ -840,7 +836,7 @@ class SmartpartnerPartnerHandler extends SmartPersistableObjectHandler
         if (isset($criteria) && is_subclass_of($criteria, 'criteriaelement')) {
             $whereClause = $criteria->renderWhere();
 
-            If ($whereClause != 'WHERE ()') {
+            if ($whereClause != 'WHERE ()') {
                 $sql .= ' ' . $criteria->renderWhere();
                 if ($criteria->getSort() != '') {
                     $sql .= ' ORDER BY ' . $criteria->getSort() . ' ' . $criteria->getOrder();
@@ -856,7 +852,7 @@ class SmartpartnerPartnerHandler extends SmartPersistableObjectHandler
             return $ret;
         }
 
-        If (count($result) == 0) {
+        if (count($result) == 0) {
             return $ret;
         }
         global $smartpartner_partner_cat_link_handler;
@@ -885,12 +881,12 @@ class SmartpartnerPartnerHandler extends SmartPersistableObjectHandler
      * @param  object $criteria {@link CriteriaElement} to match
      * @return int    count of partners
      */
-    function getCount($criteria = null)
+    public function getCount($criteria = null)
     {
         $sql = 'SELECT COUNT(*) FROM ' . $this->table;
         if (isset($criteria) && is_subclass_of($criteria, 'criteriaelement')) {
             $whereClause = $criteria->renderWhere();
-            If ($whereClause != 'WHERE ()') {
+            if ($whereClause != 'WHERE ()') {
                 $sql .= ' ' . $criteria->renderWhere();
             }
         }
@@ -905,23 +901,22 @@ class SmartpartnerPartnerHandler extends SmartPersistableObjectHandler
         return $count;
     }
 
-    function getPartnerCount($status = _SPARTNER_STATUS_ACTIVE)
+    public function getPartnerCount($status = _SPARTNER_STATUS_ACTIVE)
     {
-
-        If ($status != _SPARTNER_STATUS_ALL) {
+        if ($status != _SPARTNER_STATUS_ALL) {
             $criteriaStatus = new CriteriaCompo();
             $criteriaStatus->add(new Criteria('status', $status));
         }
 
         $criteria = new CriteriaCompo();
-        If (isset($criteriaStatus)) {
+        if (isset($criteriaStatus)) {
             $criteria->add($criteriaStatus);
         }
 
         return $this->getCount($criteria);
     }
 
-    function &getObjectsForSearch($queryarray = array(), $andor = 'AND', $limit = 0, $offset = 0, $userid = 0)
+    public function &getObjectsForSearch($queryarray = array(), $andor = 'AND', $limit = 0, $offset = 0, $userid = 0)
     {
         global $xoopsConfig;
 
@@ -929,7 +924,7 @@ class SmartpartnerPartnerHandler extends SmartPersistableObjectHandler
         $sql = "SELECT title, id
                    FROM " . $this->table . "
                    ";
-        If ($queryarray) {
+        if ($queryarray) {
             $criteriaKeywords = new CriteriaCompo();
             for ($i = 0; $i < count($queryarray); $i++) {
                 $criteriaKeyword = new CriteriaCompo();
@@ -947,7 +942,7 @@ class SmartpartnerPartnerHandler extends SmartPersistableObjectHandler
 
         $criteria = new CriteriaCompo();
 
-        If (!empty($criteriaKeywords)) {
+        if (!empty($criteriaKeywords)) {
             $criteria->add($criteriaKeywords, 'AND');
         }
 
@@ -987,16 +982,16 @@ class SmartpartnerPartnerHandler extends SmartPersistableObjectHandler
         return $ret;
     }
 
-    function getPartners($limit = 0, $start = 0, $status = _SPARTNER_STATUS_ACTIVE, $sort = 'title', $order = 'ASC', $asobject = true)
+    public function getPartners($limit = 0, $start = 0, $status = _SPARTNER_STATUS_ACTIVE, $sort = 'title', $order = 'ASC', $asobject = true)
     {
         global $xoopsUser;
-        If ($status != _SPARTNER_STATUS_ALL) {
+        if ($status != _SPARTNER_STATUS_ALL) {
             $criteriaStatus = new CriteriaCompo();
             $criteriaStatus->add(new Criteria('status', $status));
         }
 
         $criteria = new CriteriaCompo();
-        If (isset($criteriaStatus)) {
+        if (isset($criteriaStatus)) {
             $criteria->add($criteriaStatus);
         }
         $criteria->setLimit($limit);
@@ -1008,19 +1003,19 @@ class SmartpartnerPartnerHandler extends SmartPersistableObjectHandler
         return $ret;
     }
 
-    function getPartnersForIndex($categoryid = 0, $status = _SPARTNER_STATUS_ACTIVE, $sort = 'title', $order = 'ASC', $asobject = true)
+    public function getPartnersForIndex($categoryid = 0, $status = _SPARTNER_STATUS_ACTIVE, $sort = 'title', $order = 'ASC', $asobject = true)
     {
         global $xoopsUser;
-        If ($status != _SPARTNER_STATUS_ALL) {
+        if ($status != _SPARTNER_STATUS_ALL) {
             $criteriaStatus = new CriteriaCompo();
             $criteriaStatus->add(new Criteria('status', $status));
         }
 
         $criteria = new CriteriaCompo();
-        If (isset($criteriaStatus)) {
+        if (isset($criteriaStatus)) {
             $criteria->add($criteriaStatus);
         }
-        If ($categoryid != -1) {
+        if ($categoryid != -1) {
             $criteria->add(new Criteria('categoryid', $categoryid));
         }
         $criteria->setSort($sort);
@@ -1030,7 +1025,7 @@ class SmartpartnerPartnerHandler extends SmartPersistableObjectHandler
         return $ret;
     }
 
-    function getRandomPartner($status = null)
+    public function getRandomPartner($status = null)
     {
         $ret = false;
 
@@ -1042,13 +1037,12 @@ class SmartpartnerPartnerHandler extends SmartPersistableObjectHandler
             mt_srand((double) microtime() * 1000000);
             $entrynumber = mt_rand(0, $totalPartners);
             $partner =& $this->getPartners(1, $entrynumber, $status);
-            If ($partner) {
+            if ($partner) {
                 $ret =& $partner[0];
             }
         }
 
         return $ret;
-
     }
 
     /**
@@ -1057,7 +1051,7 @@ class SmartpartnerPartnerHandler extends SmartPersistableObjectHandler
      * @param  object $criteria {@link CriteriaElement}
      * @return bool   FALSE if deletion failed
      */
-    function deleteAll($criteria = null)
+    public function deleteAll($criteria = null)
     {
         $sql = 'DELETE FROM ' . $this->db->prefix('smartpartner_partner');
         if (isset($criteria) && is_subclass_of($criteria, 'criteriaelement')) {
@@ -1079,7 +1073,7 @@ class SmartpartnerPartnerHandler extends SmartPersistableObjectHandler
      *
      * @return bool
      **/
-    function updateAll($fieldname, $fieldvalue, $criteria = null)
+    public function updateAll($fieldname, $fieldvalue, $criteria = null)
     {
         $set_clause = is_numeric($fieldvalue) ? $fieldname . ' = ' . $fieldvalue : $fieldname . ' = ' . $this->db->quoteString($fieldvalue);
         $sql = 'UPDATE ' . $this->db->prefix('smartpartner_partner') . ' SET ' . $set_clause;
@@ -1093,7 +1087,7 @@ class SmartpartnerPartnerHandler extends SmartPersistableObjectHandler
         return true;
     }
 
-    function getRandomPartners($limit = 0, $status = _SPARTNER_STATUS_ACTIVE)
+    public function getRandomPartners($limit = 0, $status = _SPARTNER_STATUS_ACTIVE)
     {
         $ret = false;
         $sql = 'SELECT id FROM ' . $this->db->prefix('smartpartner_partner') . ' ';
@@ -1107,7 +1101,7 @@ class SmartpartnerPartnerHandler extends SmartPersistableObjectHandler
             return $ret;
         }
 
-        If (count($result) == 0) {
+        if (count($result) == 0) {
             return $ret;
         }
 
@@ -1116,7 +1110,7 @@ class SmartpartnerPartnerHandler extends SmartPersistableObjectHandler
             $partners_ids[] = $myrow['id'];
         }
 
-        If ((count($partners_ids) > 1)) {
+        if ((count($partners_ids) > 1)) {
             $key_arr = array_values($partners_ids);
             $key_rand = array_rand($key_arr, count($key_arr));
             $ids = implode(', ', $key_rand);
@@ -1126,7 +1120,6 @@ class SmartpartnerPartnerHandler extends SmartPersistableObjectHandler
         } else {
             return $ret;
         }
-
     }
 
 /*  function getFaqsFromSearch($queryarray = array(), $andor = 'AND', $limit = 0, $offset = 0, $userid = 0)

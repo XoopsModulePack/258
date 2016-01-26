@@ -75,7 +75,7 @@ function newbb_tag_iteminfo(&$items)
 /**
  * Remove orphan tag-item links
  *
- * @param int $mid module id
+ * @param  int     $mid module id
  * @return boolean
  *
  */

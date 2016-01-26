@@ -256,7 +256,7 @@ class PublisherMetagen
      * Return true if the string is length > 0
      *
      * @credit psylove
-     * @var    string $string Chaine de caractère
+     * @var    string  $string Chaine de caractère
      * @return boolean
      */
     public function emptyString($var)

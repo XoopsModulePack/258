@@ -17,7 +17,7 @@ function b_waiting_publisher()
     // publisher submitted
     $block = array();
     $result = $xoopsDB->query("SELECT COUNT(*) FROM ".$xoopsDB->prefix("publisher_items")." WHERE status=1");
-    if ( $result ) {
+    if ($result) {
         $block['adminlink'] = XOOPS_URL."/modules/publisher/admin/item.php";
         list($block['pendingnum']) = $xoopsDB->fetchRow($result);
         $block['lang_linkname'] = _PI_WAITING_SUBMITTED;

@@ -23,7 +23,7 @@ $GLOBALS['xoopsOption']['template_main'] = 'extgallery_public-upload-applet.html
 include XOOPS_ROOT_PATH.'/header.php';
 
 $permHandler = ExtgalleryPublicPermHandler::getHandler();
-if(count($permHandler->getAuthorizedPublicCat($xoopsUser, 'public_upload')) < 1) {
+if (count($permHandler->getAuthorizedPublicCat($xoopsUser, 'public_upload')) < 1) {
     redirect_header("index.php", 3, _MD_EXTGALLERY_NOPERM);
     exit;
 }
@@ -37,12 +37,12 @@ $xoopsTpl->assign('imageQuality', $xoopsModuleConfig['medium_quality'] / 100);
 $xoopsTpl->assign('appletLang', _MD_EXTGALLERY_APPLET_LANG);
 $xoopsTpl->assign('maxphotosize', $xoopsModuleConfig['max_photosize']);
 
-if($xoopsModuleConfig['save_large'] || $xoopsModuleConfig['save_original']) {
- $xoopsTpl->assign('imageWidth', -1);
- $xoopsTpl->assign('imageHeight', -1);
+if ($xoopsModuleConfig['save_large'] || $xoopsModuleConfig['save_original']) {
+    $xoopsTpl->assign('imageWidth', -1);
+    $xoopsTpl->assign('imageHeight', -1);
 } else {
- $xoopsTpl->assign('imageWidth', $xoopsModuleConfig['medium_width']);
- $xoopsTpl->assign('imageHeight', $xoopsModuleConfig['medium_heigth']);
+    $xoopsTpl->assign('imageWidth', $xoopsModuleConfig['medium_width']);
+    $xoopsTpl->assign('imageHeight', $xoopsModuleConfig['medium_heigth']);
 }
 
 include XOOPS_ROOT_PATH.'/footer.php';

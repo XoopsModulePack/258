@@ -20,15 +20,15 @@
 //----------------------------------------------------
 class extcal_2_21
 {
-//----------------------------------------------------
+    //----------------------------------------------------
 
     /**
      * @param $module
      * @param $options
      */
-    function extcal_2_21(& $module, $options)
-{
-global $xoopsDB;
+    public function extcal_2_21(& $module, $options)
+    {
+        global $xoopsDB;
 
         // Create eXtcal upload directory if don't exist
         $dir = XOOPS_ROOT_PATH."/uploads/extcal";
@@ -43,8 +43,8 @@ global $xoopsDB;
         // Create who's not going table to fix bug. If the table exist, the query will faile
         $sql = "CREATE TABLE `".$xoopsDB->prefix('extcal_eventnotmember')."` (`eventnotmember_id` int(11) NOT NULL auto_increment,`event_id` int(11) NOT NULL default '0',`uid` int(11) NOT NULL default '0',PRIMARY KEY  (`eventnotmember_id`),UNIQUE KEY `eventnotmember` (`event_id`,`uid`)) COMMENT='eXtcal By Zoullou' ;";
         $xoopsDB->query($sql);
-
-}
+    }
 
 //-----------------------------------------------------------------
 }   // fin de la classe
+

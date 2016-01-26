@@ -84,7 +84,7 @@ class XnewsletterSubscr extends XoopsObject
 
         // captcha
         xoops_load('xoopscaptcha');
-        $form->addElement(new XoopsFormCaptcha ('', 'xoopscaptcha', true));
+        $form->addElement(new XoopsFormCaptcha('', 'xoopscaptcha', true));
 
         // op
         $form->addElement(new XoopsFormHidden('op', 'list_subscriptions'));

@@ -125,7 +125,7 @@ function sf_createCategorySelect($selectedid=0, $parentcategory=0, $allCatOption
     return $ret;
 }
 
-function sf_getStatusArray ()
+function sf_getStatusArray()
 {
     $result = array("1" => _AM_SF_STATUS1,
     "2" => _AM_SF_STATUS2,
@@ -139,7 +139,7 @@ function sf_getStatusArray ()
     return $result;
 }
 
-function sf_moderator ()
+function sf_moderator()
 {
     global $xoopsUser;
 
@@ -159,7 +159,7 @@ function sf_moderator ()
     return $result;
 }
 
-function sf_modFooter ()
+function sf_modFooter()
 {
     $smartModule =& sf_getModuleInfo();
 
@@ -209,7 +209,7 @@ function sf_userIsAdmin()
 // TODO : Move this function to sfFaq class
 function faqAccessGranted($faqObj)
 {
-    Global $xoopsUser;
+    global $xoopsUser;
 
     if (sf_userIsAdmin()) {
         $result = 1;
@@ -252,7 +252,7 @@ function faqAccessGranted($faqObj)
 */
 function sf_overrideFaqsPermissions($groups, $categoryid)
 {
-    Global $xoopsDB;
+    global $xoopsDB;
 
     $result = true;
     $smartModule =& sf_getModuleInfo();
@@ -479,7 +479,7 @@ function sf_getxoopslink($url = '')
     return $xurl;
 }
 
-function sf_adminMenu ($currentoption = 0, $breadcrumb = '')
+function sf_adminMenu($currentoption = 0, $breadcrumb = '')
 {
 
     /* Nice buttons styles */
@@ -506,7 +506,7 @@ function sf_adminMenu ($currentoption = 0, $breadcrumb = '')
     global $xoopsModule, $xoopsConfig;
     $myts = &MyTextSanitizer::getInstance();
 
-    $tblColors = Array();
+    $tblColors = array();
     $tblColors[0] = $tblColors[1] = $tblColors[2] = $tblColors[3] = $tblColors[4] = $tblColors[5] = $tblColors[6] = $tblColors[7] = $tblColors[8] = '';
     $tblColors[$currentoption] = 'current';
     if (file_exists(XOOPS_ROOT_PATH . '/modules/' . $xoopsModule->getVar('dirname') . '/language/' . $xoopsConfig['language'] . '/modinfo.php')) {
@@ -535,8 +535,7 @@ function sf_adminMenu ($currentoption = 0, $breadcrumb = '')
 
 function sf_collapsableBar($tablename = '', $iconname = '')
 {
-
-   ?>
+    ?>
     <script type="text/javascript"><!--
     function goto_URL(object)
     {
@@ -581,12 +580,12 @@ function sf_collapsableBar($tablename = '', $iconname = '')
     echo "<h3 style=\"color: #2F5376; margin: 6px 0 0 0; \"><a href='#' onClick=\"toggle('" . $tablename . "'); toggleIcon('" . $iconname . "');\">";
 }
 
-function sf_gethandler($name, $optional = false )
+function sf_gethandler($name, $optional = false)
 {
     static $handlers;
     $name = strtolower(trim($name));
     if (!isset($handlers[$name])) {
-        if ( file_exists( $hnd_file = XOOPS_ROOT_PATH.'/modules/smartfaq/class/'.$name.'.php' ) ) {
+        if (file_exists($hnd_file = XOOPS_ROOT_PATH.'/modules/smartfaq/class/'.$name.'.php')) {
             require_once $hnd_file;
         }
         $class = 'sf'.ucfirst($name).'Handler';
@@ -594,7 +593,7 @@ function sf_gethandler($name, $optional = false )
             $handlers[$name] = new $class($GLOBALS['xoopsDB']);
         }
     }
-    if (!isset($handlers[$name]) && !$optional ) {
+    if (!isset($handlers[$name]) && !$optional) {
         trigger_error('Class <b>'.$class.'</b> does not exist<br />Handler Name: '.$name, E_USER_ERROR);
     }
     $false = false;

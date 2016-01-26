@@ -62,8 +62,8 @@ if ($version >= 1.2 || $count > 0) {
     $sql[] =
     "INSERT INTO `".$xoopsDB->prefix('xforms_forms')."` VALUES (1, '".$method."', ".intval($sendto).", 1, '".$delimiter."', 'Contact Us', '"._SUBMIT."', 'Tell us about your comments for this site.', 'Contact us by filling out this form.', '');";
 
-    for ( $i=0; $i<count($sql); $i++ ) {
-        if ( false != $xoopsDB->query($sql[$i]) ) {
+    for ($i=0; $i<count($sql); $i++) {
+        if (false != $xoopsDB->query($sql[$i])) {
             $ret[] = $msgs[$i].'done.';
         } else {
             $ret[] = $msgs[$i].'failed.';
@@ -81,7 +81,7 @@ if ($version >= 1.2 || $count > 0) {
             $perm->setVar('gperm_itemid', 1);
             $perm->setVar('gperm_groupid', $i);
             $perm->setVar('gperm_modid', $xoopsModule->getVar('mid'));
-            if ( !$moduleperm_handler->insert($perm) ) {
+            if (!$moduleperm_handler->insert($perm)) {
                 $ret[] = sprintf($m, $i, 'failed.');
                 $error = true;
             } else {

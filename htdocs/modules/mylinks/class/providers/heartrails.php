@@ -45,7 +45,7 @@ class MylinksHeartrails implements MylinksThumbPlugin
     private $provider_url    = "http://capture.heartrails.com";
     private $provider_name   = "Heartrails";
 
-    function __construct()
+    public function __construct()
     {
     }
     public function getProviderUrl()

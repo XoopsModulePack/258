@@ -18,7 +18,8 @@
 
 $mylinksDir = basename(dirname(dirname(__FILE__)));
 
-function xoops_module_pre_install_mylinks_base(&$xoopsModule) {
+function xoops_module_pre_install_mylinks_base(&$xoopsModule)
+{
     global $xoopsDB;
     $retVal = true;
 
@@ -49,7 +50,7 @@ function xoops_module_pre_install_mylinks_base(&$xoopsModule) {
         if ($sqlVerArray[0] < $minSQLSupported[0]) {
             $retVal = false;
             $xoopsModule->setErrors($mysqlErrMsg);
-        } elseif ( ($sqlVerArray[0] ==  $minSQLSupported[0]) ) {
+        } elseif (($sqlVerArray[0] ==  $minSQLSupported[0])) {
             if ($sqlVerArray[1] <  $minSQLSupported[1]) {
                 $retVal = false;
                 $xoopsModule->setErrors($mysqlErrMsg);
@@ -63,7 +64,7 @@ function xoops_module_pre_install_mylinks_base(&$xoopsModule) {
             // Check if this XOOPS version is supported
             $minSupportedVersion = explode('.', $minXoopsVersion);
             $curXoopsVersion = substr(XOOPS_VERSION, 6);
-            $currentVersion = explode('.', $curXoopsVersion );
+            $currentVersion = explode('.', $curXoopsVersion);
 
 //            $xoopsErrMsg = "<span style='color: red; font-weight: bold;'>YOUR XOOPS VERSION ({$curXoopsVersion}) MUST BE UPGRADED TO AT LEAST VERSION {$minXoopsVersion} TO USE THIS MODULE</span>";
             if ($currentVersion[0] < $minSupportedVersion[0]) {
@@ -91,13 +92,13 @@ function xoops_module_install_mylinks_base(&$xoopsModule)
 /**
  * eval functions to support module relocation (directory renaming)
  */
-eval( 'function xoops_module_install_' . $mylinksDir . '(&$module=NULL)
+eval('function xoops_module_install_' . $mylinksDir . '(&$module=NULL)
         {
         return xoops_module_install_mylinks_base($module);
         }
-    ' );
-eval( 'function xoops_module_pre_install_' . $mylinksDir . '(&$module=NULL)
+    ');
+eval('function xoops_module_pre_install_' . $mylinksDir . '(&$module=NULL)
         {
         return xoops_module_pre_install_mylinks_base($module);
         }
-    ' );
+    ');

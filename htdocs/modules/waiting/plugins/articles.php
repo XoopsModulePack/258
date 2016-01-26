@@ -1,10 +1,11 @@
 <?php
-function b_waiting_articles(){
+function b_waiting_articles()
+{
     $xoopsDB =& XoopsDatabaseFactory::getDatabaseConnection();
     $block = array();
 
     $result = $xoopsDB->query("SELECT COUNT(*) FROM ".$xoopsDB->prefix("articles_main")." WHERE art_validated = 0");
-    if ( $result ) {
+    if ($result) {
         $block['adminlink'] = XOOPS_URL."/modules/articles/admin/validate.php" ;
         list($block['pendingnum']) = $xoopsDB->fetchRow($result);
         $block['lang_linkname'] = _PI_WAITING_SUBMITTED ;

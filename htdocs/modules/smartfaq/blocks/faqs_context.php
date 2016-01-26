@@ -31,10 +31,10 @@ function b_faqs_context_show($options)
 
     if ($faqsObj) {
         for ($i = 0; $i < $totalfaqs; ++$i) {
-                $faq = array();
-                $faq['id'] = $faqsObj[$i]->faqid();
-                $faq['question'] = $faqsObj[$i]->question();
-                $block['faqs'][] = $faq;
+            $faq = array();
+            $faq['id'] = $faqsObj[$i]->faqid();
+            $faq['question'] = $faqsObj[$i]->question();
+            $block['faqs'][] = $faq;
         }
     }
 

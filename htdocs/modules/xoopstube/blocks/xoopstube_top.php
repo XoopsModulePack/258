@@ -283,7 +283,6 @@ function showTopVideoBlock($options)
     include_once XOOPS_ROOT_PATH . '/modules/' . $xtubeModule->getVar('dirname') . '/include/functions.php';
 
     while ($myrow = $xoopsDB->fetchArray($result)) {
-
         if (false == checkBlockGroups($myrow['cid']) || $myrow['cid'] == 0) {
             continue;
         }
@@ -371,7 +370,6 @@ function getRandomVideo($options)
     include_once XOOPS_ROOT_PATH . '/modules/' . $xtubeModule->getVar('dirname') . '/include/functions.php';
 
     while ($myrow = $xoopsDB->fetchArray($result2)) {
-
         if (false == checkBlockGroups($myrow['cid']) || $myrow['cid'] == 0) {
             continue;
         }
@@ -451,7 +449,6 @@ function getRandomVideoForHorizontalBlock($options)
     include_once XOOPS_ROOT_PATH . '/modules/' . $xtubeModule->getVar('dirname') . '/include/functions.php';
 
     while ($myrow = $xoopsDB->fetchArray($result2)) {
-
         if (false == checkBlockGroups($myrow['cid']) || $myrow['cid'] == 0) {
             continue;
         }

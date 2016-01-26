@@ -17,10 +17,10 @@
  * @author John Neill
  * @version $Id: index.php catzwolf$
  */
-defined( 'XOOPS_ROOT_PATH' ) or die( 'Restricted access');
+defined('XOOPS_ROOT_PATH') or die('Restricted access');
 
 /**
  * Module Menu Items
  */
-define('_XO_MI_MEMBERS_NAME','Members');
-define('_XO_MI_MEMBERS_DESC','Shows a list of registered users');
+define('_XO_MI_MEMBERS_NAME', 'Members');
+define('_XO_MI_MEMBERS_DESC', 'Shows a list of registered users');

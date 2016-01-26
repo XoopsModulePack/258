@@ -10,7 +10,7 @@
     $po        =  $controller->getPictureObject();
 
     $fileName  = $po->getRelativePath();
-    $thumbnail = $image->getThumbnail($po,intval($controller->thumbnailWidth), intval($controller->thumbnailHeight));
+    $thumbnail = $image->getThumbnail($po, intval($controller->thumbnailWidth), intval($controller->thumbnailHeight));
 // get file description (in the file manager attributes) of the picture object
     $fileDescription = $po->getDescription();
 ?>

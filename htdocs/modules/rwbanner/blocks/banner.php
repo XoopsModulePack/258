@@ -29,83 +29,87 @@
 // Descrição: Sistema de gerenciamento de mídias publicitárias               //
 // ------------------------------------------------------------------------- //
 
-function exibe_banner($options){
-  include_once (dirname(dirname(__FILE__)) .'/class/class.categoria.php');
-  include_once (dirname(dirname(__FILE__)) .'/class/class.banner.php');
+function exibe_banner($options)
+{
+    include_once(dirname(dirname(__FILE__)) .'/class/class.categoria.php');
+    include_once(dirname(dirname(__FILE__)) .'/class/class.banner.php');
 //    include_once (dirname(dirname(__FILE__)) .'/admin/admin_header.php');
 
     global $xoopsTpl;
     $dirname        = basename(dirname(dirname(__FILE__)));
-    $xoopsTpl->assign('module_dir', $dirname );
+    $xoopsTpl->assign('module_dir', $dirname);
 
-  $block = array();
+    $block = array();
 
   //recebendo parâmetros de configuração
   $block['categ'] = $options[0];
-  $block['qtde']  = $options[1];
-  $block['cols']  = $options[2];
-  $block['redim']  = $options[3];
-  $block['title'] = _MI_RWBANNER_BLOCK1_NAME;
+    $block['qtde']  = $options[1];
+    $block['cols']  = $options[2];
+    $block['redim']  = $options[3];
+    $block['title'] = _MI_RWBANNER_BLOCK1_NAME;
 
-  $categ = new Categoria(null,$options[0]);
-  $block['larg'] = $categ->getLarg();
-  $block['alt'] = $categ->getAlt();
+    $categ = new Categoria(null, $options[0]);
+    $block['larg'] = $categ->getLarg();
+    $block['alt'] = $categ->getAlt();
 
-  $banner = new RWbanners();
-  $arr = $banner->getBanners(false, 'ORDER BY RAND()', $options[0], $options[1]);
+    $banner = new RWbanners();
+    $arr = $banner->getBanners(false, 'ORDER BY RAND()', $options[0], $options[1]);
 
-  $arr2 = array();
-  $arr3 = array();
-  for($i = 0; $i <= count($arr)-1; $i++){
-    $arr[$i]->inchits();
-    foreach($arr[$i] as $key=>$value){
-      $arr2[$key] = $value;
+    $arr2 = array();
+    $arr3 = array();
+    for ($i = 0; $i <= count($arr)-1; $i++) {
+        $arr[$i]->inchits();
+        foreach ($arr[$i] as $key=>$value) {
+            $arr2[$key] = $value;
+        }
+        $arr3[] = $arr2;
     }
-    $arr3[] = $arr2;
-  }
-  for($i = 0; $i <= count($arr3)-1; $i++){
-    if (stristr($arr3[$i]['grafico'], '.swf')) {
-      $arr3[$i]['swf'] = 1;
-      $arq = explode('/',$arr3[$i]['grafico']);
-      $grafico1 = _RWBANNER_DIRIMAGES.'/'.$arq[count($arq)-1];
-      include_once(dirname(dirname(__FILE__)) .'/class/FlashHeader.php');
-      $f = new FlashHeader($grafico1);
-      $result = $f->getimagesize();
-      $arr3[$i]['fps'] = ($result['frameRate']);
+    for ($i = 0; $i <= count($arr3)-1; $i++) {
+        if (stristr($arr3[$i]['grafico'], '.swf')) {
+            $arr3[$i]['swf'] = 1;
+            $arq = explode('/', $arr3[$i]['grafico']);
+            $grafico1 = _RWBANNER_DIRIMAGES.'/'.$arq[count($arq)-1];
+            include_once(dirname(dirname(__FILE__)) .'/class/FlashHeader.php');
+            $f = new FlashHeader($grafico1);
+            $result = $f->getimagesize();
+            $arr3[$i]['fps'] = ($result['frameRate']);
+        }
     }
-  }
-  $block['banners'] = $arr3;
+    $block['banners'] = $arr3;
 
-  return $block;
+    return $block;
 }
 
-function edita_banner($options){
-  global $xoopsDB;
-  $query = "SELECT cod,titulo FROM ".$xoopsDB->prefix("rw_categorias");
-  $consulta = $xoopsDB->queryF($query);
-  $categ = _MB_RWBANNER_OPTION1."&nbsp;<select options[0] name=\"options[0]\" onchange='javascript:options0.value = this.value;'>";
-  while(list($cod,$titulo) = $xoopsDB->fetchRow($consulta)){
-  if ($options[0] == $cod)
-    $sel = 'selected';
-  else
-    $sel = '';
-  $categ .= '<option value="'.$cod.'" '.$sel.'>'.$titulo.'</option>';
-  }
-  $categ .= '</select>';
-  $form = $categ;
+function edita_banner($options)
+{
+    global $xoopsDB;
+    $query = "SELECT cod,titulo FROM ".$xoopsDB->prefix("rw_categorias");
+    $consulta = $xoopsDB->queryF($query);
+    $categ = _MB_RWBANNER_OPTION1."&nbsp;<select options[0] name=\"options[0]\" onchange='javascript:options0.value = this.value;'>";
+    while (list($cod, $titulo) = $xoopsDB->fetchRow($consulta)) {
+        if ($options[0] == $cod) {
+            $sel = 'selected';
+        } else {
+            $sel = '';
+        }
+        $categ .= '<option value="'.$cod.'" '.$sel.'>'.$titulo.'</option>';
+    }
+    $categ .= '</select>';
+    $form = $categ;
   //Quantidade de banners à exibir no bloco
   $qtde = _MB_RWBANNER_OPTION2."&nbsp;<input type='text' name='options[]' value='".$options[1]."' onchange='javascript:options1.value = this.value;' />";
-  $form .= "<br />".$qtde;
+    $form .= "<br />".$qtde;
   //Quantidade de colunas em que os banners serão exibidos
   $qtde = _MB_RWBANNER_OPTION3."&nbsp;<input type='text' name='options[]' value='".$options[2]."' onchange='javascript:options2.value = this.value;' />";
-  $form .= "<br />".$qtde;
+    $form .= "<br />".$qtde;
   //Redimensionar imagens?
-  if ($options[3] == 1)
-    $check = 'checked="checked"';
-  else
-    $check = '';
-  $qtde = _MB_RWBANNER_OPTION4."&nbsp;<input type='checkbox' name='options[]' value='1' ".$check." onchange='javascript:options3.value = this.value;' />"._YES;
-  $form .= "<br />".$qtde.'<br />'._MB_RWBANNER_OPTION4_DESC;
+  if ($options[3] == 1) {
+      $check = 'checked="checked"';
+  } else {
+      $check = '';
+  }
+    $qtde = _MB_RWBANNER_OPTION4."&nbsp;<input type='checkbox' name='options[]' value='1' ".$check." onchange='javascript:options3.value = this.value;' />"._YES;
+    $form .= "<br />".$qtde.'<br />'._MB_RWBANNER_OPTION4_DESC;
 
-  return $form;
+    return $form;
 }

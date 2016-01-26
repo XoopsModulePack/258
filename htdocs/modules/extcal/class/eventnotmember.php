@@ -10,13 +10,12 @@ include_once XOOPS_ROOT_PATH . '/modules/extcal/class/ExtcalPersistableObjectHan
 class ExtcalEventnotmember extends XoopsObject
 {
 
-    function ExtcalEventnotmember()
+    public function ExtcalEventnotmember()
     {
         $this->initVar('eventnotmember_id', XOBJ_DTYPE_INT, null, false);
         $this->initVar('event_id', XOBJ_DTYPE_INT, null, true);
         $this->initVar('uid', XOBJ_DTYPE_INT, null, true);
     }
-
 }
 
 /**
@@ -28,7 +27,7 @@ class ExtcalEventnotmemberHandler extends ExtcalPersistableObjectHandler
     /**
      * @param $db
      */
-    function __construct(&$db)
+    public function __construct(&$db)
     {
         parent::__construct($db, 'extcal_eventnotmember', _EXTCAL_CLN_NOT_MEMBER, array('event_id', 'uid'));
     }
@@ -36,16 +35,14 @@ class ExtcalEventnotmemberHandler extends ExtcalPersistableObjectHandler
     /**
      * @param $varArr
      */
-    function createEventnotmember($varArr)
+    public function createEventnotmember($varArr)
     {
         $eventnotmember = $this->create();
         $eventnotmember->setVars($varArr);
 
         if ($this->insert($eventnotmember, true)) {
-
             $eventMemberHandler = xoops_getmodulehandler(_EXTCAL_CLS_MEMBER, _EXTCAL_MODULE);
             $eventMemberHandler->delete(array($varArr['event_id'], $varArr['uid']));
-
         }
     }
 
@@ -54,7 +51,7 @@ class ExtcalEventnotmemberHandler extends ExtcalPersistableObjectHandler
      *
      * @return bool
      */
-    function deleteEventnotmember($key)
+    public function deleteEventnotmember($key)
     {
         return $this->delete($key, true);
     }
@@ -64,7 +61,7 @@ class ExtcalEventnotmemberHandler extends ExtcalPersistableObjectHandler
      *
      * @return mixed
      */
-    function getMembers($eventId)
+    public function getMembers($eventId)
     {
         $memberHandler  = xoops_gethandler('member');
         $eventNotMember = $this->getObjects(new Criteria('event_id', $eventId));
@@ -91,11 +88,10 @@ class ExtcalEventnotmemberHandler extends ExtcalPersistableObjectHandler
      *
      * @return int
      */
-    function getNbMember($eventId)
+    public function getNbMember($eventId)
     {
         $criteria = new Criteria('event_id', $eventId);
 
         return $this->getCount($criteria);
     }
-
 }

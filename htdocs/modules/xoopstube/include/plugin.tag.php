@@ -32,7 +32,7 @@
  * uname
  * tags
  *
- * @var        array $items associative array of items: [modid][catid][itemid]
+ * @var array $items associative array of items: [modid][catid][itemid]
  *
  * @return boolean
  *
@@ -40,7 +40,6 @@
 
 function xoopstube_tag_iteminfo(&$items)
 {
-
     $mydirname = basename(dirname(__DIR__));
 
     if (empty($items) || !is_array($items)) {

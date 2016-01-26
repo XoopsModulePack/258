@@ -73,7 +73,7 @@ function xnewsletter_plugin_getdata_subscribers($cat_id, $action_after_read, $li
     $sql .= " FROM " . $xoopsDB->prefix("subscribers_user");
     $sql .= " WHERE (`user_email` is not null and not(`user_email`=''))";
     if (!$result_users = $xoopsDB->query($sql)) {
-        die ("MySQL-Error: " . mysql_error());
+        die("MySQL-Error: " . mysql_error());
     }
     while ($lineArray = mysql_fetch_array($result_users)) {
         ++$i;

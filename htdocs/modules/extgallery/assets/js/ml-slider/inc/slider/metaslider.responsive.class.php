@@ -56,6 +56,7 @@ class MetaResponsiveSlider extends MetaSlider
 
         $return_value .= "\n        </ul>";
 
-        return apply_filters('metaslider_responsive_slider_get_html', $return_value, $this->id, $this->settings);;
+        return apply_filters('metaslider_responsive_slider_get_html', $return_value, $this->id, $this->settings);
+        ;
     }
 }

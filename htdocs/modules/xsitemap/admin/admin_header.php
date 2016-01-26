@@ -40,13 +40,13 @@ $pathIcon16 = '../'.$xoopsModule->getInfo('icons16');
 $pathIcon32 = '../'.$xoopsModule->getInfo('icons32');
 $pathModuleAdmin = $xoopsModule->getInfo('dirmoduleadmin');
 
-if ( file_exists($GLOBALS['xoops']->path($pathModuleAdmin.'/moduleadmin.php'))){
-        include_once $GLOBALS['xoops']->path($pathModuleAdmin.'/moduleadmin.php');
-    }else{
-        redirect_header("../../../admin.php", 5, _AM_XSITEMAP_MODULEADMIN_MISSING, false);
-    }
+if (file_exists($GLOBALS['xoops']->path($pathModuleAdmin.'/moduleadmin.php'))) {
+    include_once $GLOBALS['xoops']->path($pathModuleAdmin.'/moduleadmin.php');
+} else {
+    redirect_header("../../../admin.php", 5, _AM_XSITEMAP_MODULEADMIN_MISSING, false);
+}
 
-function xsitemap_adminmenu ($currentoption = 0, $breadcrumb = "")
+function xsitemap_adminmenu($currentoption = 0, $breadcrumb = "")
 {
     global $xoopsModule, $xoopsConfig;
 
@@ -67,7 +67,7 @@ function xsitemap_adminmenu ($currentoption = 0, $breadcrumb = "")
         </style>
     ";
 
-    $tblColors = Array();
+    $tblColors = array();
     $tblColors[0] = $tblColors[1] = $tblColors[2] = $tblColors[3] = $tblColors[4] = $tblColors[5] = $tblColors[6] = $tblColors[7] = $tblColors[8] = "";
     $tblColors[$currentoption] = "current";
     if (file_exists("".XOOPS_ROOT_PATH."/modules/".$xoopsModule->getVar("dirname")."/language/".$xoopsConfig["language"]."/modinfo.php")) {

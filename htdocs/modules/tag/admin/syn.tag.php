@@ -41,7 +41,7 @@ $sql .= " FROM " . $GLOBALS['xoopsDB']->prefix("tag_link");
 $sql .= " GROUP BY tag_modid";
 $counts_module = array();
 $module_list = array();
-if ( $result = $GLOBALS['xoopsDB']->query($sql)) {
+if ($result = $GLOBALS['xoopsDB']->query($sql)) {
     while ($myrow = $GLOBALS['xoopsDB']->fetchArray($result)) {
         $counts_module[$myrow["tag_modid"]] = $myrow["count_tag"];
     }

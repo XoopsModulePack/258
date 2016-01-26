@@ -8,7 +8,7 @@
  * @since          4.00
  * @version        $Id $
  * @package        module::newbb
- * @param XoopsModule $module
+ * @param  XoopsModule $module
  * @return bool
  */
 

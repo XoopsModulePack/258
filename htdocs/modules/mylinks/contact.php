@@ -26,7 +26,7 @@ include_once $GLOBALS['xoops']->path('class' . DIRECTORY_SEPARATOR . 'xoopsforml
 xoops_loadLanguage('main', $GLOBALS['xoopsModule']->getVar('dirname'));
 $myts =& MyTextSanitizer::getInstance();
 
-if ( !($GLOBALS['xoopsUser'] instanceof XoopsUser) && !$GLOBALS['xoopsModuleConfig']['anontellafriend'] ) {
+if (!($GLOBALS['xoopsUser'] instanceof XoopsUser) && !$GLOBALS['xoopsModuleConfig']['anontellafriend']) {
     redirect_header('index.php', 3, _NOPERM);
     exit();
 }
@@ -58,13 +58,13 @@ if (!isset($_POST['submit'])) {
     }
 
     $tfform = new XoopsThemeForm(_MD_MYLINKS_TELLAFRIEND, 'tfform', $_SERVER['PHP_SELF'], 'post', true);
-    $tfform->addElement(new XoopsFormText( _MD_MYLINKS_FRIEND . ' ' . _MD_MYLINKS_NAME , 'frname', 50, 50, trim($frname)), TRUE);
-    $tfform->addElement(new XoopsFormText( _MD_MYLINKS_FRIEND . ' ' . _MD_MYLINKS_EMAIL, 'fremail', 50, 50, trim($fremail)), TRUE);
-    if ( !$GLOBALS['xoopsUser'] instanceof XoopsUser ) {
-        $tfform->addElement(new XoopsFormText( _MD_MYLINKS_SENDER . ' ' . _MD_MYLINKS_NAME , 'sname', 50, 50, trim($sname)), TRUE);
-        $tfform->addElement(new XoopsFormText( _MD_MYLINKS_SENDER . ' ' . _MD_MYLINKS_EMAIL, 'semail', 50, 50, trim($semail)), TRUE);
+    $tfform->addElement(new XoopsFormText(_MD_MYLINKS_FRIEND . ' ' . _MD_MYLINKS_NAME, 'frname', 50, 50, trim($frname)), true);
+    $tfform->addElement(new XoopsFormText(_MD_MYLINKS_FRIEND . ' ' . _MD_MYLINKS_EMAIL, 'fremail', 50, 50, trim($fremail)), true);
+    if (!$GLOBALS['xoopsUser'] instanceof XoopsUser) {
+        $tfform->addElement(new XoopsFormText(_MD_MYLINKS_SENDER . ' ' . _MD_MYLINKS_NAME, 'sname', 50, 50, trim($sname)), true);
+        $tfform->addElement(new XoopsFormText(_MD_MYLINKS_SENDER . ' ' . _MD_MYLINKS_EMAIL, 'semail', 50, 50, trim($semail)), true);
     }
-    $tfform->addElement(new XoopsFormLabel( _MD_MYLINKS_TITLE, $linktitle ));
+    $tfform->addElement(new XoopsFormLabel(_MD_MYLINKS_TITLE, $linktitle));
     $tfform->addElement(new XoopsFormTextArea(_COMMENTS, 'comments', trim($comments)));
     $tfform->addElement(new XoopsFormHidden('lid', $lid));
     $tfform->addElement(new XoopsFormCaptcha());
@@ -73,8 +73,8 @@ if (!isset($_POST['submit'])) {
     $tfform->display();
     include_once $GLOBALS['xoops']->path("footer.php");
 } else {
-    if ( ($GLOBALS['xoopsSecurity'] instanceof XoopsSecurity) ) {
-        if ( !$GLOBALS['xoopsSecurity']->check() ) {
+    if (($GLOBALS['xoopsSecurity'] instanceof XoopsSecurity)) {
+        if (!$GLOBALS['xoopsSecurity']->check()) {
             // failed xoops security check
             redirect_header('index.php', 3, $GLOBALS['xoopsSecurity']->getErrors(true));
             exit();
@@ -93,8 +93,8 @@ if (!isset($_POST['submit'])) {
     //Check captcha
     xoops_load('XoopsCaptcha');
     $xoopsCaptcha =& XoopsCaptcha::getInstance();
-    if ( !$xoopsCaptcha->verify() ) {
-        if ( $_SESSION["xoopscaptcha_attempt"] < $_SESSION["_maxattempts"] ) {
+    if (!$xoopsCaptcha->verify()) {
+        if ($_SESSION["xoopscaptcha_attempt"] < $_SESSION["_maxattempts"]) {
             $form_contents = array('lid' => $lid,
                                 'frname' => $frname,
                                'fremail' => $fremail,
@@ -115,20 +115,20 @@ if (!isset($_POST['submit'])) {
     $xsitename  = $GLOBALS['xoopsConfig']['sitename'];     //adding site title as sender (mod config this?)
 
     // set from name / email for registered user
-    if ( $GLOBALS['xoopsUser'] instanceof XoopsUser ) {
+    if ($GLOBALS['xoopsUser'] instanceof XoopsUser) {
         $semail = $GLOBALS['xoopsUser']->getVar('email');
         $sname = ucfirst($GLOBALS['xoopsUser']->getVar('uname'));
-        $sname = ( '' == $sname ) ? $GLOBALS['xoopsUser']->getVar('name') :  $sname;
+        $sname = ('' == $sname) ? $GLOBALS['xoopsUser']->getVar('name') :  $sname;
     }
     // check to see if email for recipient and sender are 'sane'
-    if ( !filter_var($fremail, FILTER_VALIDATE_EMAIL) || !filter_var($semail, FILTER_VALIDATE_EMAIL) ) {
+    if (!filter_var($fremail, FILTER_VALIDATE_EMAIL) || !filter_var($semail, FILTER_VALIDATE_EMAIL)) {
         redirect_header('index.php', 2, _MD_MYLINKS_INVALIDEMAIL);
     }
     // set the url to the link
-    if ( $lid > 0 ) {
+    if ($lid > 0) {
         $linkurl = $GLOBALS['xoops']->url("modules/" . $GLOBALS['xoopsModule']->getVar('dirname') . "/singlelink.php?lid={$lid}");
         // now check to make sure that the link the user is sharing is valid
-        $result = $GLOBALS['xoopsDB']->query("SELECT title FROM {$GLOBALS['xoopsDB']->prefix( 'mylinks_links' )} WHERE `lid` = '{$lid}' AND status>0 LIMIT 0,1");
+        $result = $GLOBALS['xoopsDB']->query("SELECT title FROM {$GLOBALS['xoopsDB']->prefix('mylinks_links')} WHERE `lid` = '{$lid}' AND status>0 LIMIT 0,1");
         if ($result) {
             list($linktitle) = $GLOBALS['xoopsDB']->fetchRow($result);
             $linktitle = $myts->stripSlashesGPC($linktitle);
@@ -147,7 +147,7 @@ if (!isset($_POST['submit'])) {
     //now send mail to friend
     $xMailer =& xoops_getMailer();
     $xMailer->useMail(); // Set it to use email (as opposed to PM)
-    $xMailer->setTemplateDir( $GLOBALS['xoops']->path("modules" . DIRECTORY_SEPARATOR
+    $xMailer->setTemplateDir($GLOBALS['xoops']->path("modules" . DIRECTORY_SEPARATOR
                                 . DIRECTORY_SEPARATOR . $GLOBALS['xoopsModule']->getVar('dirname')
                                 . DIRECTORY_SEPARATOR . 'language'
                                 . DIRECTORY_SEPARATOR . $GLOBALS['xoopsConfig']['language']

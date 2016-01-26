@@ -35,7 +35,7 @@ include_once XOOPS_ROOT_PATH . "/modules/smartobject/class/smartobjecthandler.ph
 class SmartpartnerOffer extends SmartObject
 {
 
-    function SmartpartnerOffer()
+    public function SmartpartnerOffer()
     {
         $this->initVar('offerid', XOBJ_DTYPE_INT, '', true);
         $this->initVar('partnerid', XOBJ_DTYPE_INT, '', true, 255, '', false, _CO_SPARTNER_OFFER_PARTNER, _CO_SPARTNER_OFFER_PARTNER_DSC, true);
@@ -68,7 +68,7 @@ class SmartpartnerOffer extends SmartObject
                                              'module' => 'smartpartner'));
     }
 
-    function getVar($key, $format = 's')
+    public function getVar($key, $format = 's')
     {
         if ($format == 's' && in_array($key, array('partnerid', 'status'))) {
             return call_user_func(array($this, $key));
@@ -77,7 +77,7 @@ class SmartpartnerOffer extends SmartObject
         return parent::getVar($key, $format);
     }
 
-    function partnerid()
+    public function partnerid()
     {
         global $smartpartner_partner_handler;
         if (!$smartpartner_partner_handler) {
@@ -89,7 +89,7 @@ class SmartpartnerOffer extends SmartObject
         return $partnerObj->getVar('title');
     }
 
-    function status()
+    public function status()
     {
         global $statusArray;
         $ret = $this->getVar('status', 'e');
@@ -97,7 +97,7 @@ class SmartpartnerOffer extends SmartObject
         return $statusArray [$ret];
     }
 
-    function sendNotifications($notifications = array())
+    public function sendNotifications($notifications = array())
     {
         global $smartpartner_partner_handler;
         $partnerObj = $smartpartner_partner_handler->get($this->getVar('partnerid', 'e'));
@@ -125,7 +125,7 @@ class SmartpartnerOffer extends SmartObject
         }
     }
 
-    function toArray($format = 's')
+    public function toArray($format = 's')
     {
         global $myts;
         if (!$myts) {
@@ -139,25 +139,23 @@ class SmartpartnerOffer extends SmartObject
 
         return $ret;
     }
-
 }
 
 class SmartpartnerOfferHandler extends SmartPersistableObjectHandler
 {
-    function SmartpartnerOfferHandler($db)
+    public function SmartpartnerOfferHandler($db)
     {
-
         $this->SmartPersistableObjectHandler($db, 'offer', 'offerid', 'title', false, 'smartpartner');
     }
 
-    function getStatus()
+    public function getStatus()
     {
         global $statusArray;
 
         return $statusArray;
     }
 
-    function getObjectsForUserSide()
+    public function getObjectsForUserSide()
     {
         global $xoopsModuleConfig, $smartpartner_category_handler, $smartpartner_partner_handler, $xoopsUser;
 
@@ -170,7 +168,6 @@ class SmartpartnerOfferHandler extends SmartPersistableObjectHandler
 
         $offersObj = $this->getObjects($criteria);
         foreach ($offersObj as $offerObj) {
-
         }
         $catsObj = $smartpartner_category_handler->getObjects(null, true);
         $partnersObj = $smartpartner_partner_handler->getObjects(null, true);
@@ -234,10 +231,9 @@ class SmartpartnerOfferHandler extends SmartPersistableObjectHandler
         }
 
         return $this->hierarchize($categoriesArray);
-
     }
 
-    function hierarchize($categoriesArray, $parentid = 0)
+    public function hierarchize($categoriesArray, $parentid = 0)
     {
         $hierachizedArray = array();
         foreach ($categoriesArray as $cat) {
@@ -251,7 +247,7 @@ class SmartpartnerOfferHandler extends SmartPersistableObjectHandler
         return $hierachizedArray;
     }
 
-    function hasOffer($category)
+    public function hasOffer($category)
     {
         $partners = $category['partners'];
         $subcats = $category['subcats'];
@@ -274,14 +270,14 @@ class SmartpartnerOfferHandler extends SmartPersistableObjectHandler
         }
     }
 
-    function getPartnerList()
+    public function getPartnerList()
     {
         global $smartpartner_partner_handler;
 
         return $smartpartner_partner_handler->getList();
     }
 
-    function getstatusList()
+    public function getstatusList()
     {
         global $statusArray;
 

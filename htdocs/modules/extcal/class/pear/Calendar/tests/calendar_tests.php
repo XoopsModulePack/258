@@ -9,7 +9,7 @@ require_once 'calendar_include.php';
  */
 class CalendarTests extends GroupTest
 {
-    function CalendarTests()
+    public function CalendarTests()
     {
         $this->GroupTest('Calendar Tests');
         $this->addTestFile('calendar_test.php');

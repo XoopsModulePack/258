@@ -84,7 +84,7 @@ if ($total_subcats != 0) {
     $subcat_keys = array_keys($subcatsObj);
     foreach ($subcat_keys as $i) {
         $subcat_id = $subcatsObj[$i]->getVar('categoryid');
-        if (isset($totalQnas[$subcat_id]) && $totalQnas[$subcat_id] > 0 ) {
+        if (isset($totalQnas[$subcat_id]) && $totalQnas[$subcat_id] > 0) {
             if (isset($last_qnaObj[$subcat_id])) {
                 $subcatsObj[$i]->setVar('last_faqid', $last_qnaObj[$subcat_id]->getVar('faqid'));
                 $subcatsObj[$i]->setVar('last_question_link', "<a href='faq.php?faqid=" . $last_qnaObj[$subcat_id]->getVar('faqid') . "'>" . $last_qnaObj[$subcat_id]->question($lastfaqsize) . "</a>");
@@ -183,7 +183,7 @@ $xoopsTpl->assign('xoops_pagetitle', $module_name . ' - ' . $category['name']);
 //code to include smartie
 if (file_exists(XOOPS_ROOT_PATH . '/modules/smarttie/smarttie_links.php')) {
     include_once XOOPS_ROOT_PATH . '/modules/smarttie/smarttie_links.php';
-        $xoopsTpl->assign('smarttie',1);
+    $xoopsTpl->assign('smarttie', 1);
 }
 //end code for smarttie
 

@@ -303,7 +303,7 @@ class PublisherFileHandler extends XoopsPersistableObjectHandler
     /**
      * delete a file from the database
      *
-     * @param object $file reference to the file to delete
+     * @param object $file  reference to the file to delete
      * @param bool   $force
      *
      * @return bool FALSE if failed.

@@ -19,8 +19,8 @@ if (!defined('NEWBB_FUNCTIONS_LANGUAGE')) {
     define('NEWBB_FUNCTIONS_LANGUAGE', 1);
 
     /**
-     * @param        $page
-     * @param string $dirname
+     * @param         $page
+     * @param  string $dirname
      * @return bool
      */
     function newbb_load_language($page, $dirname = 'newbb')

@@ -20,9 +20,7 @@ function editoffer($showmenu = false, $offerid = 0, $fct = '')
         $form_name = _AM_SPARTNER_OFFER_CREATE;
         $submit_button_caption = null;
         $offerObj->setVar('date_sub', time());
-    }
-
-    else {
+    } else {
         $breadcrumb = _AM_SPARTNER_OFFERS . " > " . _AM_SPARTNER_EDITING;
         $title = _AM_SPARTNER_OFFER_EDIT;
         $info = _AM_SPARTNER_OFFER_EDIT_INFO;
@@ -51,8 +49,12 @@ function editoffer($showmenu = false, $offerid = 0, $fct = '')
 include_once("admin_header.php");
 
 $op = '';
-if (isset($_GET['op'])) $op = $_GET['op'];
-if (isset($_POST['op'])) $op = $_POST['op'];
+if (isset($_GET['op'])) {
+    $op = $_GET['op'];
+}
+if (isset($_POST['op'])) {
+    $op = $_POST['op'];
+}
 
 switch ($op) {
     case "mod":

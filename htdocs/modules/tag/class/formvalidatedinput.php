@@ -55,7 +55,7 @@ class TagFormValidatedInput extends XoopsFormText
      * @param int    $maxlength Maximum length of text
      * @param string $value     Initial text
      */
-    function __construct($caption, $name, $size, $maxlength, $value = '', $type='text')
+    public function __construct($caption, $name, $size, $maxlength, $value = '', $type='text')
     {
         $this->_htmlTypes = array('color', 'date', 'datetime', 'datetime-local', 'email', 'month', 'number', 'range',
                                   'search', 'tel', 'text', 'time', 'url', 'week');

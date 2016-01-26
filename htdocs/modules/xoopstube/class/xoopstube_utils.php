@@ -1080,7 +1080,6 @@ class XoopstubeUtilities
                     $resize = false;
                 }
             }
-
         }
 
         $img = wiImage::load($src_path);
@@ -1866,5 +1865,4 @@ class XoopstubeUtilities
 
         return XoopsLists::getCountryList();
     }
-
 }

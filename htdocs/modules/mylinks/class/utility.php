@@ -25,7 +25,7 @@ defined('XOOPS_ROOT_PATH') or die('Restricted access');
  */
 class mylinksUtility
 {
-/**
+    /**
      * Sanitize input variables
      * @param  string          $global  the input array ($_REQUEST, $_GET, $_POST)
      * @param  unknown_type    $key     the array key for variable to clean
@@ -34,29 +34,28 @@ class mylinksUtility
      * @param  array           $limit   'min' 'max' keys - the lower/upper limit for integer values
      * @return number|Ambigous <boolean, unknown>
      */
-    function mylinks_cleanVars( &$global, $key, $default = '', $type = 'int', $limit=NULL)
+    public function mylinks_cleanVars(&$global, $key, $default = '', $type = 'int', $limit=null)
     {
-        switch ( $type )
-        {
+        switch ($type) {
             case 'string':
-                $ret = ( isset( $global[$key] ) ) ? filter_var( $global[$key], FILTER_SANITIZE_MAGIC_QUOTES ) : $default;
+                $ret = (isset($global[$key])) ? filter_var($global[$key], FILTER_SANITIZE_MAGIC_QUOTES) : $default;
                 break;
             case 'email':
-                $ret = ( isset( $global[$key] ) ) ? filter_var( $global[$key], FILTER_SANITIZE_EMAIL ) : $default;
+                $ret = (isset($global[$key])) ? filter_var($global[$key], FILTER_SANITIZE_EMAIL) : $default;
                 break;
             case 'url':
-                $ret = ( isset( $global[$key] ) ) ? filter_var( $global[$key], FILTER_SANITIZE_URL ) : $default;
+                $ret = (isset($global[$key])) ? filter_var($global[$key], FILTER_SANITIZE_URL) : $default;
                 break;
             case 'int':
             default:
                 $default = intval($default);
-                $ret = ( isset( $global[$key] ) ) ? filter_var( $global[$key], FILTER_SANITIZE_NUMBER_INT ) : false;
-                if ( isset($limit) && is_array($limit) && ( false !== $ret) ) {
+                $ret = (isset($global[$key])) ? filter_var($global[$key], FILTER_SANITIZE_NUMBER_INT) : false;
+                if (isset($limit) && is_array($limit) && (false !== $ret)) {
                     if (array_key_exists('min', $limit)) {
-                        $ret = ( $ret >= $limit['min'] ) ? $ret : false;
+                        $ret = ($ret >= $limit['min']) ? $ret : false;
                     }
                     if (array_key_exists('max', $limit)) {
-                        $ret = ( $ret <= $limit['max'] ) ? $ret : false;
+                        $ret = ($ret <= $limit['max']) ? $ret : false;
                     }
                 }
                 break;
@@ -74,7 +73,8 @@ class mylinksUtility
      * @param  string $type  error||info to add errorMsg CSS to display
      * @return null
      */
-    function show_message($msg, $pages=1, $type='error') {
+    public function show_message($msg, $pages=1, $type='error')
+    {
         switch (mb_strtolower($type)) {
             case 'error':
                 $div_class = "class='errorMsg'";
@@ -87,12 +87,12 @@ class mylinksUtility
         echo "<div{$div_class}><strong>{$xoopsConfig['sitename']} Error</strong><br /><br />\n"
            . "Error Code: {$e_code}<br /><br /><br />\n"
            . "<strong>ERROR:</strong> {$msg}<br />\n";
-           $pages = intval($pages);
-           if (0 != $pages) {
-               $pages = '-' . abs($pages);
-               echo "<br /><br />\n"
+        $pages = intval($pages);
+        if (0 != $pages) {
+            $pages = '-' . abs($pages);
+            echo "<br /><br />\n"
                   . "[ <a href=\'javascript:history.go(-{$pages})\'>" . _BACK . "</a> ]</div>";
-           }
+        }
         include_once XOOPS_ROOT_PATH . '/footer.php';
 
         return;

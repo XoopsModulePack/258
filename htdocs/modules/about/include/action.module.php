@@ -21,8 +21,8 @@ function xoops_module_install_about(&$module)
 }
 
 /**
- * @param      $module
- * @param null $prev_version
+ * @param       $module
+ * @param  null $prev_version
  * @return bool
  */
 function xoops_module_update_about(&$module, $prev_version = null)

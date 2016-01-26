@@ -11,7 +11,6 @@ $permHandler = ExtcalPerm::getHandler();
 $xoopsUser   = $xoopsUser ? $xoopsUser : null;
 if (count($permHandler->getAuthorizedCat($xoopsUser, 'extcal_cat_submit')) > 0
 ) {
-
     include XOOPS_ROOT_PATH . '/header.php';
 
     // Title of the page
@@ -23,7 +22,6 @@ if (count($permHandler->getAuthorizedCat($xoopsUser, 'extcal_cat_submit')) > 0
     //$form->display();
 
     include XOOPS_ROOT_PATH . '/footer.php';
-
 } else {
     redirect_header("index.php", 3);
 }

@@ -2847,3 +2847,4 @@ class ExtcalEventHandler extends ExtcalPersistableObjectHandler
 
 //-------------------------------------------------
 } // -------- Fin e la classe ---------------------
+

@@ -118,7 +118,7 @@ $sql = "SHOW TABLES FROM ".XOOPS_DB_NAME;
 $tables = mysql_query($sql);
 $num_tables = @mysql_numrows($tables);
 $options = array(_NONE=>"0", _ALL=>"1");
-for($i=0; $i<$num_tables; $i++){
+for ($i=0; $i<$num_tables; $i++) {
     $name = mysql_tablename($tables, $i);
     $options[$name] = $name;
 }
@@ -138,6 +138,6 @@ $modversion['config'][$i]['formtype'] = 'yesno';
 $modversion['config'][$i]['valuetype'] = 'int';
 $modversion['config'][$i]['default'] = 0;
 
-if(!file_exists(XOOPS_ROOT_PATH."/uploads/backup")) {
-mkdir(XOOPS_ROOT_PATH."/uploads/backup", 0755);
+if (!file_exists(XOOPS_ROOT_PATH."/uploads/backup")) {
+    mkdir(XOOPS_ROOT_PATH."/uploads/backup", 0755);
 }

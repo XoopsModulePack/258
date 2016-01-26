@@ -22,7 +22,7 @@ defined('XOOPS_ROOT_PATH') or die('Restricted access');
  * @version::   $Id:$
  * @access::    public
  */
-class XoopsheadlineUtility
+class xoopsheadlineutility
 {
     /**
      * XoopsheadlineUtility
@@ -31,19 +31,19 @@ class XoopsheadlineUtility
      * (based on locale)
      *
      */
-    function &xoopsheadline_getrenderer(&$headline)
+    public function &xoopsheadline_getrenderer(&$headline)
     {
-      include_once XOOPS_ROOT_PATH.'/modules/xoopsheadline/class/headlinerenderer.php';
-      if (file_exists(XOOPS_ROOT_PATH.'/modules/xoopsheadline/language/'.$GLOBALS['xoopsConfig']['language'].'/headlinerenderer.php')) {
-        include_once XOOPS_ROOT_PATH.'/modules/xoopsheadline/language/'.$GLOBALS['xoopsConfig']['language'].'/headlinerenderer.php';
-        if (class_exists('XoopsHeadlineRendererLocal')) {
-            $myhl = new XoopsHeadlineRendererLocal($headline);
+        include_once XOOPS_ROOT_PATH.'/modules/xoopsheadline/class/headlinerenderer.php';
+        if (file_exists(XOOPS_ROOT_PATH.'/modules/xoopsheadline/language/'.$GLOBALS['xoopsConfig']['language'].'/headlinerenderer.php')) {
+            include_once XOOPS_ROOT_PATH.'/modules/xoopsheadline/language/'.$GLOBALS['xoopsConfig']['language'].'/headlinerenderer.php';
+            if (class_exists('XoopsHeadlineRendererLocal')) {
+                $myhl = new XoopsHeadlineRendererLocal($headline);
 
-            return $myhl;
+                return $myhl;
+            }
         }
-      }
-      $myhl = new XoopsHeadlineRenderer($headline);
+        $myhl = new XoopsHeadlineRenderer($headline);
 
-      return $myhl;
+        return $myhl;
     }
 }

@@ -16,11 +16,12 @@
  * @version     $Id: NestedTree.php 8088 2011-11-06 09:38:12Z beckmi $
  */
 
-class NestedTree {
+class NestedTree
+{
 
-    var $db;
-    var $table;
-    var $fields;
+    public $db;
+    public $table;
+    public $fields;
 
     /**
      * Constructor. Set the database table name and necessary field names
@@ -30,10 +31,11 @@ class NestedTree {
      * @param string $parentField Name of the parent ID field
      * @param string $sortField   Name of the field to sort data.
      */
-    function NestedTree(&$db, $table, $idField, $parentField, $sortField) {
+    public function NestedTree(&$db, $table, $idField, $parentField, $sortField)
+    {
         $this->db = $db;
         $this->table = $db->prefix($table);
-        $this->fields = array (
+        $this->fields = array(
             'id' => $idField,
             'parent' => $parentField,
             'sort' => $sortField
@@ -47,7 +49,8 @@ class NestedTree {
     * @return  object          An object containing the node's
     *                          data, or null if node not found
     */
-    function getNode($id) {
+    public function getNode($id)
+    {
         $query = sprintf('select * from %s where %s = %d', $this->table, $this->fields['id'], $id);
 
         $result = $this->db->query($query);
@@ -71,7 +74,8 @@ class NestedTree {
     *                                  returning all descendant data
     * @return  array                   The descendants of the passed now
     */
-    function getDescendants($id = 0, $includeSelf = false, $childrenOnly = false) {
+    public function getDescendants($id = 0, $includeSelf = false, $childrenOnly = false)
+    {
         $idField = $this->fields['id'];
 
         $node = $this->getNode($id);
@@ -105,7 +109,7 @@ class NestedTree {
 
         $result = $this->db->query($query);
 
-        $arr = array ();
+        $arr = array();
         while ($row = $this->db->fetchArray($result)) {
             $arr[$row[$idField]] = $row;
         }
@@ -122,7 +126,8 @@ class NestedTree {
     *                                  the results.
     * @return  array                   The children of the passed node
     */
-    function getChildren($id = 0, $includeSelf = false) {
+    public function getChildren($id = 0, $includeSelf = false)
+    {
         return $this->getDescendants($id, $includeSelf, true);
     }
 
@@ -136,10 +141,12 @@ class NestedTree {
     *                                  the results.
     * @return  array                   An array of each node to passed node
     */
-    function getPath($id = 0, $includeSelf = false) {
+    public function getPath($id = 0, $includeSelf = false)
+    {
         $node = $this->getNode($id);
-        if (is_null($node))
-            return array ();
+        if (is_null($node)) {
+            return array();
+        }
 
         if ($includeSelf) {
             $query = sprintf('select * from %s where nleft <= %d and nright >= %d order by nlevel', $this->table, $node['nleft'], $node['nright']);
@@ -150,7 +157,7 @@ class NestedTree {
         $result = $this->db->query($query);
 
         $idField = $this->fields['id'];
-        $arr = array ();
+        $arr = array();
         while ($row = $this->db->fetchArray($result)) {
             $arr[$row[$idField]] = $row;
         }
@@ -166,10 +173,12 @@ class NestedTree {
     * @param   int     $ancestor_id    The node that is potentially descended from
     * @return  bool                    True if $descendant_id descends from $ancestor_id, false otherwise
     */
-    function isDescendantOf($descendant_id, $ancestor_id) {
+    public function isDescendantOf($descendant_id, $ancestor_id)
+    {
         $node = $this->getNode($ancestor_id);
-        if (is_null($node))
+        if (is_null($node)) {
             return false;
+        }
 
         $query = sprintf('select count(*) as is_descendant
                                       from %s
@@ -194,7 +203,8 @@ class NestedTree {
     * @param   int     $parent_id      The node that is possibly a parent
     * @return  bool                    True if $child_id is a child of $parent_id, false otherwise
     */
-    function isChildOf($child_id, $parent_id) {
+    public function isChildOf($child_id, $parent_id)
+    {
         $query = sprintf('select count(*) as is_child from %s where %s = %d and %s = %d', $this->table, $this->fields['id'], $child_id, $this->fields['parent'], $parent_id);
 
         $result = $this->db->query($query);
@@ -212,12 +222,14 @@ class NestedTree {
     * @param   int     $id     The ID of the node to search for. Pass 0 to count all nodes in the tree.
     * @return  int             The number of descendants the node has, or -1 if the node isn't found.
     */
-    function numDescendants($id) {
+    public function numDescendants($id)
+    {
         if ($id == 0) {
             $query = sprintf('select count(*) as num_descendants from %s', $this->table);
             $result = $this->db->query($query);
-            if ($row = $this->db->fetchArray($result))
+            if ($row = $this->db->fetchArray($result)) {
                 return $row['num_descendants'];
+            }
         } else {
             $node = $this->getNode($id);
             if (!is_null($node)) {
@@ -234,24 +246,28 @@ class NestedTree {
     * @param   int     $id     The ID of the node to search for. Pass 0 to count the first level items
     * @return  int             The number of descendants the node has, or -1 if the node isn't found.
     */
-    function numChildren($id) {
+    public function numChildren($id)
+    {
         $query = sprintf('select count(*) as num_children from %s where %s = %d', $this->table, $this->fields['parent'], $id);
         $result = $this->db->query($query);
-        if ($row = $this->db->fetchArray($result))
+        if ($row = $this->db->fetchArray($result)) {
             return $row['num_children'];
+        }
 
         return -1;
     }
 
-    function numLeef($id) {
+    public function numLeef($id)
+    {
         $query = sprintf('select count(*) as num_leef from %s where nright - nleft = 1', $this->table);
-        if($id != 0) {
-                       $node = $this->getNode($id);
-                       $query .= sprintf(' AND nleft > %d AND nright < %d', $node['nleft'], $node['nright']);
-                  }
+        if ($id != 0) {
+            $node = $this->getNode($id);
+            $query .= sprintf(' AND nleft > %d AND nright < %d', $node['nleft'], $node['nright']);
+        }
         $result = $this->db->query($query);
-        if ($row = $this->db->fetchArray($result))
+        if ($row = $this->db->fetchArray($result)) {
             return $row['num_leef'];
+        }
 
         return -1;
     }
@@ -261,7 +277,8 @@ class NestedTree {
     *
     * @return  array       The tree with the node's child data
     */
-    function getTreeWithChildren() {
+    public function getTreeWithChildren()
+    {
         $idField = $this->fields['id'];
         $parentField = $this->fields['parent'];
 
@@ -272,22 +289,23 @@ class NestedTree {
         // create a root node to hold child data about first level items
         $root = array();
         $root[$this->fields['id']] = 0;
-        $root['children'] = array ();
+        $root['children'] = array();
 
-        $arr = array (
+        $arr = array(
             $root
         );
 
         // populate the array and create an empty children array
         while ($row = $this->db->fetchArray($result)) {
             $arr[$row[$this->fields['id']]] = $row;
-            $arr[$row[$this->fields['id']]]['children'] = array ();
+            $arr[$row[$this->fields['id']]]['children'] = array();
         }
 
         // now process the array and build the child data
         foreach ($arr as $id => $row) {
-            if (isset ($row[$this->fields['parent']]))
+            if (isset($row[$this->fields['parent']])) {
                 $arr[$row[$this->fields['parent']]]['children'][$id] = $id;
+            }
         }
 
         return $arr;
@@ -296,7 +314,8 @@ class NestedTree {
     /**
     * Rebuilds the tree data and saves it to the database
     */
-    function rebuild() {
+    public function rebuild()
+    {
         $data = $this->getTreeWithChildren();
 
         $n = 0; // need a variable to hold the running n tally
@@ -314,8 +333,9 @@ class NestedTree {
         foreach ($data as $id => $row) {
 
             // skip the root node
-            if ($id == 0)
+            if ($id == 0) {
                 continue;
+            }
 
             $query = sprintf('update %s set nlevel = %d, nleft = %d, nright = %d where %s = %d', $this->table, $row['nlevel'], $row['nleft'], $row['nright'], $this->fields['id'], $id);
             $this->db->queryF($query);
@@ -338,7 +358,8 @@ class NestedTree {
     * @param   int     $level  The nlevel to assign to the current node
     * @param   int     &$n     A reference to the running tally for the n-value
     */
-    function _generateTreeData(& $arr, $id, $level, & $n) {
+    public function _generateTreeData(& $arr, $id, $level, & $n)
+    {
         $arr[$id]['nlevel'] = $level;
         $arr[$id]['nleft'] = $n++;
 

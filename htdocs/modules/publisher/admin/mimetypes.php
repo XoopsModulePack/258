@@ -84,7 +84,6 @@ switch ($op) {
         break;
 }
 
-
 /**
  * Class PublisherMimetypesUtilities
  */
@@ -337,7 +336,6 @@ class PublisherMimetypesUtilities
             publisherCloseCollapsableBar('mimeedittable', 'mimeediticon');
 //            xoops_cp_footer();
             include_once __DIR__ . '/admin_footer.php';
-
         } else {
             $mimeAdmin = 0;
             $mimeUser  = 0;

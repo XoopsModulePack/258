@@ -29,43 +29,44 @@
 // Descrição: Sistema de gerenciamento de mídias publicitárias               //
 // ------------------------------------------------------------------------- //
 
-include( "admin_header.php" );
+include("admin_header.php");
 
 include_once XOOPS_ROOT_PATH."/include/cp_functions.php";
 
 include_once XOOPS_ROOT_PATH.'/class/uploader.php';
-include_once ("../class/class.banner.php");
+include_once("../class/class.banner.php");
 $local_folder = $xoopsModuleConfig['dir_images'];
 
 $op = (isset($_GET['op']))?$_GET['op']:((isset($_POST['op']))?$_POST['op']:'');
 $id = (isset($_GET['id']))?$_GET['id']:((isset($_POST['id']))?$_POST['id']:'');
 
-if (isset($_POST['post'])){
-  $op='grava';
+if (isset($_POST['post'])) {
+    $op='grava';
 }
-if (isset($_POST['form']))
-  $form = $_POST['form'];
+if (isset($_POST['form'])) {
+    $form = $_POST['form'];
+}
 
 global $xoopsDB,$XoopsModule;
-switch ($op){
+switch ($op) {
   case 'grava':
          $data = date("y:m:d h:i:s");
-         if ($form['grafico'] == ''){
-         //Inicio da rotina de upload de arquivo
+         if ($form['grafico'] == '') {
+             //Inicio da rotina de upload de arquivo
           $maxfilesize = 500000;
-          $uploader = new XoopsMediaUploader($local_folder, include_once XOOPS_ROOT_PATH.'/modules/'.$xoopsModule->dirname().'/include/mimetypes.inc.php', $maxfilesize);
-          for ($i = 0; $i <= count($_POST["xoops_upload_file"]); $i++){
-            if ($uploader->fetchMedia($_POST["xoops_upload_file"][$i])) {
-              if (!$uploader->upload()) {
-                 redirect_header('index.php',2,$uploader->getErrors());
-              } else {
-                 $file_name = $uploader->getSavedFileName();
-              }
-            }
-          }
+             $uploader = new XoopsMediaUploader($local_folder, include_once XOOPS_ROOT_PATH.'/modules/'.$xoopsModule->dirname().'/include/mimetypes.inc.php', $maxfilesize);
+             for ($i = 0; $i <= count($_POST["xoops_upload_file"]); $i++) {
+                 if ($uploader->fetchMedia($_POST["xoops_upload_file"][$i])) {
+                     if (!$uploader->upload()) {
+                         redirect_header('index.php', 2, $uploader->getErrors());
+                     } else {
+                         $file_name = $uploader->getSavedFileName();
+                     }
+                 }
+             }
          //Fim da rotina de upload de arquivo
-         $upfolder = substr($local_folder,strlen(XOOPS_ROOT_PATH)+1,strlen($local_folder));
-         $form['grafico'] = ($form['usarhtml'] != 1)?XOOPS_URL.'/'.$upfolder.'/'.$file_name:'';
+         $upfolder = substr($local_folder, strlen(XOOPS_ROOT_PATH)+1, strlen($local_folder));
+             $form['grafico'] = ($form['usarhtml'] != 1)?XOOPS_URL.'/'.$upfolder.'/'.$file_name:'';
          }
 
          $form['usarhtml'] = (isset($form['usarhtml']))?$form['usarhtml']:0;
@@ -76,18 +77,21 @@ switch ($op){
 
          $banner = new RWbanners($form);
 
-         if ($_POST['post'] == _AM_RWBANNER_BTN_OP1){
-           if($banner->grava())
-             redirect_header('index.php',1,_AM_RWBANNER_MSG8);
-           else
-             redirect_header('index.php',1,_AM_RWBANNER_MSG10);
-         }elseif ($_POST['post'] == _AM_RWBANNER_BTN_OP2){
-           if ($banner->getStatus() == 2 && $banner->getCategoria() != 0)
-             $banner->setStatus(1);
-           if($banner->edita())
-             redirect_header('index.php',1,_AM_RWBANNER_MSG2);
-           else
-             redirect_header('index.php',1,_AM_RWBANNER_MSG11);
+         if ($_POST['post'] == _AM_RWBANNER_BTN_OP1) {
+             if ($banner->grava()) {
+                 redirect_header('index.php', 1, _AM_RWBANNER_MSG8);
+             } else {
+                 redirect_header('index.php', 1, _AM_RWBANNER_MSG10);
+             }
+         } elseif ($_POST['post'] == _AM_RWBANNER_BTN_OP2) {
+             if ($banner->getStatus() == 2 && $banner->getCategoria() != 0) {
+                 $banner->setStatus(1);
+             }
+             if ($banner->edita()) {
+                 redirect_header('index.php', 1, _AM_RWBANNER_MSG2);
+             } else {
+                 redirect_header('index.php', 1, _AM_RWBANNER_MSG11);
+             }
          }
          break;
   case 'editar':
@@ -111,11 +115,12 @@ switch ($op){
          break;
 }
 
-function monta_form($value){
-  global $xoopsDB, $form, $file_name;
-  include_once XOOPS_ROOT_PATH.'/class/xoopsformloader.php';
+function monta_form($value)
+{
+    global $xoopsDB, $form, $file_name;
+    include_once XOOPS_ROOT_PATH.'/class/xoopsformloader.php';
 
-  echo '
+    echo '
   <script>
     function vai(){
       if (document.getElementById(\'banner\').value != ""){
@@ -126,38 +131,39 @@ function monta_form($value){
   </script>
   ';
 
-  $banner_form = new XoopsThemeForm(_AM_RWBANNER_VALUE_BTN1, "form", "inser.php", "post", false);
-  $banner_form->setExtra('enctype="multipart/form-data"');
-  $user_selbox = new XoopsFormSelectUser(_AM_RWBANNER_TITLE22, 'form[idcliente]', false, $form['idcliente']);
-  $categ_selbox = new XoopsFormSelect(_AM_RWBANNER_TITLE23, 'form[categoria]', $form['categoria']);
-  $categ_selbox->addOption('rodrigo', '--------');
-  $js = 'var campo = document.getElementById("form[categoria]");
+    $banner_form = new XoopsThemeForm(_AM_RWBANNER_VALUE_BTN1, "form", "inser.php", "post", false);
+    $banner_form->setExtra('enctype="multipart/form-data"');
+    $user_selbox = new XoopsFormSelectUser(_AM_RWBANNER_TITLE22, 'form[idcliente]', false, $form['idcliente']);
+    $categ_selbox = new XoopsFormSelect(_AM_RWBANNER_TITLE23, 'form[categoria]', $form['categoria']);
+    $categ_selbox->addOption('rodrigo', '--------');
+    $js = 'var campo = document.getElementById("form[categoria]");
   if (campo.value == \'rodrigo\'){
     alert("Você precisa selecionar uma categoria.");
     campo.focus();
     return false;
   }';
-  if (method_exists( $categ_selbox, 'getEspecValid' ))
-    $categ_selbox->setEspecValid($js);
-  $query = "SELECT titulo,cod FROM ".$xoopsDB->prefix("rw_categorias");
-  $consulta = $xoopsDB->queryF($query);
-  while (list($titulo,$cod) = $xoopsDB->fetchRow($consulta)) {
-    $categ_selbox->addOption($cod, $titulo);
-  }
+    if (method_exists($categ_selbox, 'getEspecValid')) {
+        $categ_selbox->setEspecValid($js);
+    }
+    $query = "SELECT titulo,cod FROM ".$xoopsDB->prefix("rw_categorias");
+    $consulta = $xoopsDB->queryF($query);
+    while (list($titulo, $cod) = $xoopsDB->fetchRow($consulta)) {
+        $categ_selbox->addOption($cod, $titulo);
+    }
 
-  if ($form['maxexib'] == 0){
-    $exibe = _AM_RWBANNER_BANNER_EXIBREST;
-    $check = 'checked';
-    $disa = 'disabled';
-  }else{
-    $exibe = $form['maxexib'];
-    $check = '';
-    $disa = '';
-  }
-  $label = new XoopsFormElementTray(_AM_RWBANNER_TITLE24,'');
-  $max = new XoopsFormText('', "form[maxexibe]", 10, 255, $exibe);
-  $max->setExtra($disa);
-  echo '
+    if ($form['maxexib'] == 0) {
+        $exibe = _AM_RWBANNER_BANNER_EXIBREST;
+        $check = 'checked';
+        $disa = 'disabled';
+    } else {
+        $exibe = $form['maxexib'];
+        $check = '';
+        $disa = '';
+    }
+    $label = new XoopsFormElementTray(_AM_RWBANNER_TITLE24, '');
+    $max = new XoopsFormText('', "form[maxexibe]", 10, 255, $exibe);
+    $max->setExtra($disa);
+    echo '
   <script>
     function checa(){
       if (document.getElementById(\'form[maxexibe]\').disabled == false){
@@ -171,22 +177,22 @@ function monta_form($value){
     }
   </script>
   ';
-  $ilimitado = new XoopsFormCheckBox('',_AM_RWBANNER_BTN_OP3);
-  $ilimitado->setExtra('onClick="javascript:checa();" '.$check);
-  $ilimitado->addOption(1,_AM_RWBANNER_BTN_OP3);
-  if ($form['maxclick'] == 0){
-    $exibe1 = _AM_RWBANNER_BANNER_EXIBREST;
-    $check1 = 'checked';
-    $disa1 = 'disabled';
-  }else{
-    $exibe1 = $form['maxclick'];
-    $check1 = '';
-    $disa1 = '';
-  }
-  $label1 = new XoopsFormElementTray(_AM_RWBANNER_TITLE500,'');
-  $maxclick = new XoopsFormText('', "form[maxclick]", 10, 255, $exibe1);
-  $maxclick->setExtra($disa1);
-  echo '
+    $ilimitado = new XoopsFormCheckBox('', _AM_RWBANNER_BTN_OP3);
+    $ilimitado->setExtra('onClick="javascript:checa();" '.$check);
+    $ilimitado->addOption(1, _AM_RWBANNER_BTN_OP3);
+    if ($form['maxclick'] == 0) {
+        $exibe1 = _AM_RWBANNER_BANNER_EXIBREST;
+        $check1 = 'checked';
+        $disa1 = 'disabled';
+    } else {
+        $exibe1 = $form['maxclick'];
+        $check1 = '';
+        $disa1 = '';
+    }
+    $label1 = new XoopsFormElementTray(_AM_RWBANNER_TITLE500, '');
+    $maxclick = new XoopsFormText('', "form[maxclick]", 10, 255, $exibe1);
+    $maxclick->setExtra($disa1);
+    echo '
   <script>
     function checa1(){
       if (document.getElementById(\'form[maxclick]\').disabled == false){
@@ -200,22 +206,22 @@ function monta_form($value){
     }
   </script>
   ';
-  $ilimitado1 = new XoopsFormCheckBox('',_AM_RWBANNER_BTN_OP3);
-  $ilimitado1->setExtra('onClick="javascript:checa1();" '.$check1);
-  $ilimitado1->addOption(1,_AM_RWBANNER_BTN_OP3);
-  if ($form['periodo'] == 0){
-    $exibe2 = _AM_RWBANNER_BANNER_EXIBREST;
-    $check2 = 'checked';
-    $disa2 = 'disabled';
-  }else{
-    $exibe2 = $form['periodo'];
-    $check2 = '';
-    $disa2 = '';
-  }
-  $label2 = new XoopsFormElementTray(_AM_RWBANNER_TITLE5001,'');
-  $periodo = new XoopsFormText('', "form[periodo]", 10, 255, $exibe2);
-  $periodo->setExtra($disa2);
-  echo '
+    $ilimitado1 = new XoopsFormCheckBox('', _AM_RWBANNER_BTN_OP3);
+    $ilimitado1->setExtra('onClick="javascript:checa1();" '.$check1);
+    $ilimitado1->addOption(1, _AM_RWBANNER_BTN_OP3);
+    if ($form['periodo'] == 0) {
+        $exibe2 = _AM_RWBANNER_BANNER_EXIBREST;
+        $check2 = 'checked';
+        $disa2 = 'disabled';
+    } else {
+        $exibe2 = $form['periodo'];
+        $check2 = '';
+        $disa2 = '';
+    }
+    $label2 = new XoopsFormElementTray(_AM_RWBANNER_TITLE5001, '');
+    $periodo = new XoopsFormText('', "form[periodo]", 10, 255, $exibe2);
+    $periodo->setExtra($disa2);
+    echo '
   <script>
     function checa2(){
       if (document.getElementById(\'form[periodo]\').disabled == false){
@@ -229,11 +235,11 @@ function monta_form($value){
     }
   </script>
   ';
-  $ilimitado2 = new XoopsFormCheckBox('',_AM_RWBANNER_BTN_OP3);
-  $ilimitado2->setExtra('onClick="javascript:checa2();" '.$check2);
-  $ilimitado2->addOption(1,_AM_RWBANNER_BTN_OP3);
-  $imagem = new XoopsFormText(_AM_RWBANNER_TITLE25, "form[grafico]", 45, 255, $form['grafico']);
-  $js = '
+    $ilimitado2 = new XoopsFormCheckBox('', _AM_RWBANNER_BTN_OP3);
+    $ilimitado2->setExtra('onClick="javascript:checa2();" '.$check2);
+    $ilimitado2->addOption(1, _AM_RWBANNER_BTN_OP3);
+    $imagem = new XoopsFormText(_AM_RWBANNER_TITLE25, "form[grafico]", 45, 255, $form['grafico']);
+    $js = '
   var campo = document.getElementById("form[grafico]");
   var campo1 = document.getElementById("banner");
   if (campo.value == \'\' && campo1.value == \'\'){
@@ -241,14 +247,15 @@ function monta_form($value){
     campo.focus();
     return false;
   }';
-  if (method_exists( $imagem, 'getEspecValid' ))
-    $imagem->setEspecValid($js);
-  $max_size = 5000000;
-  $file_box = new XoopsFormFile(_AM_RWBANNER_TITLE51_ED, "banner", $max_size);
-  $file_box->setExtra('size ="45" onChange="vai();"') ;
-  $file_box->setDescription($file_name);
-  $link = new XoopsFormText(_AM_RWBANNER_TITLE26, "form[url]", 45, 255, $form['url']);
-  echo '
+    if (method_exists($imagem, 'getEspecValid')) {
+        $imagem->setEspecValid($js);
+    }
+    $max_size = 5000000;
+    $file_box = new XoopsFormFile(_AM_RWBANNER_TITLE51_ED, "banner", $max_size);
+    $file_box->setExtra('size ="45" onChange="vai();"') ;
+    $file_box->setDescription($file_name);
+    $link = new XoopsFormText(_AM_RWBANNER_TITLE26, "form[url]", 45, 255, $form['url']);
+    echo '
   <script>
     function checar(){
       if (document.getElementById(\'form[htmlcode]\').disabled == true){
@@ -260,53 +267,57 @@ function monta_form($value){
     }
   </script>
   ';
-  $usarhtml = new XoopsFormCheckBox(_AM_RWBANNER_TITLE27,'form[usarhtml]',$form['usarhtml']);
-  $usarhtml->setExtra('onClick="javascript:checar();"');
-  $usarhtml->addOption(1,_MI_RWBANNER_YES);
-  $htmlcode = new XoopsFormTextArea(_AM_RWBANNER_TITLE28,'form[htmlcode]', $form['htmlcode']);
-  if ($form['usarhtml'] != 1)
-    $htmlcode->setExtra('disabled');
-  $target_selbox = new XoopsFormSelect(_AM_RWBANNER_TITLE29, 'form[target]', $form['target']);
-  $target_selbox->addOption('_blank', '_blank');
-  $target_selbox->addOption('_self', '_self');
-  $target_selbox->addOption('_parent', '_parent');
-  $target_selbox->addOption('_top', '_top');
-  $button_tray = new XoopsFormElementTray('' ,'');
-  if ($value == _AM_RWBANNER_BTN_OP2){
-    $id = new XoopsFormHidden('form[codigo]',$form['codigo']);
-    $status = new XoopsFormHidden('form[status]',$form['status']);
-  }
-  $submit_btn = new XoopsFormButton('', 'post', $value, 'submit');
-  if ($value == _AM_RWBANNER_BTN_OP2 && $form['status'] == 2){
-    $obs = new XoopsFormTextArea(_AM_RWBANNER_TITLE5000,'form[obs]', $form['obs']);
-    $obs->setDescription(_AM_RWBANNER_TITLE5000_DESC);
-  }
-  $banner_form->addElement($user_selbox);
-  $banner_form->addElement($categ_selbox);
-  if (method_exists( $categ_selbox, 'getEspecValid' ))
-    $banner_form->setRequired($categ_selbox);
-  $label->addElement($max);
-  $label->addElement($ilimitado);
-  $banner_form->addElement($label);
-  $label1->addElement($maxclick);
-  $label1->addElement($ilimitado1);
-  $banner_form->addElement($label1);
-  $label2->addElement($periodo);
-  $label2->addElement($ilimitado2);
-  $banner_form->addElement($label2);
-  $banner_form->addElement($imagem);
-  if (method_exists( $imagem, 'getEspecValid' ))
-    $banner_form->setRequired($imagem);
-  $banner_form->addElement($file_box);
-  $banner_form->addElement($link);
-  $banner_form->addElement($usarhtml);
-  $banner_form->addElement($htmlcode);
-  $banner_form->addElement($target_selbox);
-  if ($value == _AM_RWBANNER_BTN_OP2 && $form['status'] == 2)
-    $banner_form->addElement($obs);
-  $button_tray->addElement($submit_btn);
-  $banner_form->addElement($button_tray);
-  $banner_form->addElement($id);
-  $banner_form->addElement($status);
-  $banner_form->display();
+    $usarhtml = new XoopsFormCheckBox(_AM_RWBANNER_TITLE27, 'form[usarhtml]', $form['usarhtml']);
+    $usarhtml->setExtra('onClick="javascript:checar();"');
+    $usarhtml->addOption(1, _MI_RWBANNER_YES);
+    $htmlcode = new XoopsFormTextArea(_AM_RWBANNER_TITLE28, 'form[htmlcode]', $form['htmlcode']);
+    if ($form['usarhtml'] != 1) {
+        $htmlcode->setExtra('disabled');
+    }
+    $target_selbox = new XoopsFormSelect(_AM_RWBANNER_TITLE29, 'form[target]', $form['target']);
+    $target_selbox->addOption('_blank', '_blank');
+    $target_selbox->addOption('_self', '_self');
+    $target_selbox->addOption('_parent', '_parent');
+    $target_selbox->addOption('_top', '_top');
+    $button_tray = new XoopsFormElementTray('', '');
+    if ($value == _AM_RWBANNER_BTN_OP2) {
+        $id = new XoopsFormHidden('form[codigo]', $form['codigo']);
+        $status = new XoopsFormHidden('form[status]', $form['status']);
+    }
+    $submit_btn = new XoopsFormButton('', 'post', $value, 'submit');
+    if ($value == _AM_RWBANNER_BTN_OP2 && $form['status'] == 2) {
+        $obs = new XoopsFormTextArea(_AM_RWBANNER_TITLE5000, 'form[obs]', $form['obs']);
+        $obs->setDescription(_AM_RWBANNER_TITLE5000_DESC);
+    }
+    $banner_form->addElement($user_selbox);
+    $banner_form->addElement($categ_selbox);
+    if (method_exists($categ_selbox, 'getEspecValid')) {
+        $banner_form->setRequired($categ_selbox);
+    }
+    $label->addElement($max);
+    $label->addElement($ilimitado);
+    $banner_form->addElement($label);
+    $label1->addElement($maxclick);
+    $label1->addElement($ilimitado1);
+    $banner_form->addElement($label1);
+    $label2->addElement($periodo);
+    $label2->addElement($ilimitado2);
+    $banner_form->addElement($label2);
+    $banner_form->addElement($imagem);
+    if (method_exists($imagem, 'getEspecValid')) {
+        $banner_form->setRequired($imagem);
+    }
+    $banner_form->addElement($file_box);
+    $banner_form->addElement($link);
+    $banner_form->addElement($usarhtml);
+    $banner_form->addElement($htmlcode);
+    $banner_form->addElement($target_selbox);
+    if ($value == _AM_RWBANNER_BTN_OP2 && $form['status'] == 2) {
+        $banner_form->addElement($obs);
+    }
+    $button_tray->addElement($submit_btn);
+    $banner_form->addElement($button_tray);
+    $banner_form->addElement($id);
+    $banner_form->addElement($status);
+    $banner_form->display();
 }

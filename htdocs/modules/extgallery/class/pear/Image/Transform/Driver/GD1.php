@@ -27,7 +27,7 @@ require_once XOOPS_ROOT_PATH."/modules/extgallery/class/pear/Image/Transform/Dri
  * @version $Id: GD1.php 8088 2011-11-06 09:38:12Z beckmi $
  * @access public
  **/
-Class Image_Transform_Driver_GD1 extends Image_Transform_Driver_GD
+class Image_Transform_Driver_GD1 extends Image_Transform_Driver_GD
 {
     /**
      * Check settings
@@ -36,7 +36,7 @@ Class Image_Transform_Driver_GD1 extends Image_Transform_Driver_GD
      *
      * @see PEAR::isError()
      */
-    function Image_Transform_Driver_GD1()
+    public function Image_Transform_Driver_GD1()
     {
         $this->__construct();
     } // End function Image
@@ -48,11 +48,10 @@ Class Image_Transform_Driver_GD1 extends Image_Transform_Driver_GD
      *
      * @see PEAR::isError()
      */
-    function __construct()
+    public function __construct()
     {
         parent::__construct();
     } // End function Image
-
 
    /**
     * Resize Action
@@ -67,11 +66,12 @@ Class Image_Transform_Driver_GD1 extends Image_Transform_Driver_GD
     * @return true on success or PEAR Error object on error
     * @see PEAR::isError()
     */
-    function _resize($new_x, $new_y) {
+    public function _resize($new_x, $new_y)
+    {
         if ($this->resized === true) {
             return PEAR::raiseError('You have already resized the image without saving it.  Your previous resizing will be overwritten', null, PEAR_ERROR_TRIGGER, E_USER_NOTICE);
         }
-        $new_img =ImageCreate($new_x,$new_y);
+        $new_img =ImageCreate($new_x, $new_y);
         ImageCopyResized($new_img, $this->imageHandle, 0, 0, 0, 0, $new_x, $new_y, $this->img_x, $this->img_y);
         $this->old_image = $this->imageHandle;
         $this->imageHandle = $new_img;
@@ -83,9 +83,9 @@ Class Image_Transform_Driver_GD1 extends Image_Transform_Driver_GD
         return true;
     }
 
-    function rotate($angle, $options = null)
+    public function rotate($angle, $options = null)
     {
-        if ($options == null){
+        if ($options == null) {
             $autoresize = true;
             $color_mask = array(255,255,0);
         } else {
@@ -101,9 +101,9 @@ Class Image_Transform_Driver_GD1 extends Image_Transform_Driver_GD
 
         $t = deg2rad($angle);
 
-        if( !is_array($color_mask) ){
+        if (!is_array($color_mask)) {
             // Not already in numberical format, so we convert it.
-            if ($color_mask{0} == '#'){
+            if ($color_mask{0} == '#') {
                 $color_mask = $this->colorhex2colorarray($color_mask);
             } else {
                 include_once('Image/Transform/Driver/ColorsDefs.php');
@@ -122,13 +122,13 @@ Class Image_Transform_Driver_GD1 extends Image_Transform_Driver_GD
         $min_y  = 0;
         $min_x  = 0;
 
-        $x1     = round($max_x/2,0);
-        $y1     = round($max_y/2,0);
+        $x1     = round($max_x/2, 0);
+        $y1     = round($max_y/2, 0);
 
-        if ( $autoresize ){
+        if ($autoresize) {
             $t      = abs($t);
-            $a      = round($angle,0);
-            switch((int)($angle)){
+            $a      = round($angle, 0);
+            switch ((int)($angle)) {
                 case 0:
                         $width2     = $width;
                         $height2    = $height;
@@ -163,9 +163,9 @@ Class Image_Transform_Driver_GD1 extends Image_Transform_Driver_GD
             $max_y2     = $height2;
         }
 
-        $img2   = @imagecreateTrueColor($width2,$height2);
+        $img2   = @imagecreateTrueColor($width2, $height2);
 
-        if ( !is_resource($img2) ){
+        if (!is_resource($img2)) {
             return PEAR::raiseError('Cannot create buffer for the rotataion.',
                                 null, PEAR_ERROR_TRIGGER, E_USER_NOTICE);
         }
@@ -173,67 +173,67 @@ Class Image_Transform_Driver_GD1 extends Image_Transform_Driver_GD
         $this->img_x = $width2;
         $this->img_y = $height2;
 
-        imagepalettecopy($img2,$img);
+        imagepalettecopy($img2, $img);
 
-        $mask   = imagecolorresolve($img2,$color_mask[0],$color_mask[1],$color_mask[2]);
+        $mask   = imagecolorresolve($img2, $color_mask[0], $color_mask[1], $color_mask[2]);
 
         // use simple lines copy for axes angles
-        switch((int)($angle)){
+        switch ((int)($angle)) {
             case 0:
-                imagefill ($img2, 0, 0,$mask);
+                imagefill($img2, 0, 0, $mask);
                 for ($y=0; $y < $max_y; $y++) {
-                    for ($x = $min_x; $x < $max_x; $x++){
-                        $c  = @imagecolorat ( $img, $x, $y);
-                        imagesetpixel($img2,$x+$x_offset,$y+$y_offset,$c);
+                    for ($x = $min_x; $x < $max_x; $x++) {
+                        $c  = @imagecolorat($img, $x, $y);
+                        imagesetpixel($img2, $x+$x_offset, $y+$y_offset, $c);
                     }
                 }
                 break;
             case 90:
-                imagefill ($img2, 0, 0,$mask);
-                for ($x = $min_x; $x < $max_x; $x++){
+                imagefill($img2, 0, 0, $mask);
+                for ($x = $min_x; $x < $max_x; $x++) {
                     for ($y=$min_y; $y < $max_y; $y++) {
-                        $c  = imagecolorat ( $img, $x, $y);
-                        imagesetpixel($img2,$max_y-$y-1,$x,$c);
+                        $c  = imagecolorat($img, $x, $y);
+                        imagesetpixel($img2, $max_y-$y-1, $x, $c);
                     }
                 }
                 break;
             case 180:
-                imagefill ($img2, 0, 0,$mask);
+                imagefill($img2, 0, 0, $mask);
                 for ($y=0; $y < $max_y; $y++) {
-                    for ($x = $min_x; $x < $max_x; $x++){
-                        $c  = @imagecolorat ( $img, $x, $y);
+                    for ($x = $min_x; $x < $max_x; $x++) {
+                        $c  = @imagecolorat($img, $x, $y);
                         imagesetpixel($img2, $max_x2-$x-1, $max_y2-$y-1, $c);
                     }
                 }
                 break;
             case 270:
-                imagefill ($img2, 0, 0,$mask);
+                imagefill($img2, 0, 0, $mask);
                 for ($y=0; $y < $max_y; $y++) {
-                    for ($x = $max_x; $x >= $min_x; $x--){
-                        $c  = @imagecolorat ( $img, $x, $y);
-                        imagesetpixel($img2,$y,$max_x-$x-1,$c);
+                    for ($x = $max_x; $x >= $min_x; $x--) {
+                        $c  = @imagecolorat($img, $x, $y);
+                        imagesetpixel($img2, $y, $max_x-$x-1, $c);
                     }
                 }
                 break;
             // simple reverse rotation algo
             default:
                 $i=0;
-                for ($y = $min_y2; $y < $max_y2; $y++){
+                for ($y = $min_y2; $y < $max_y2; $y++) {
 
                     // Algebra :)
-                    $x2 = round((($min_x2-$x1) * $cosT) + (($y-$y1) * $sinT + $x1),0);
-                    $y2 = round((($y-$y1) * $cosT - ($min_x2-$x1) * $sinT + $y1),0);
+                    $x2 = round((($min_x2-$x1) * $cosT) + (($y-$y1) * $sinT + $x1), 0);
+                    $y2 = round((($y-$y1) * $cosT - ($min_x2-$x1) * $sinT + $y1), 0);
 
-                    for ($x = $min_x2; $x < $max_x2; $x++){
+                    for ($x = $min_x2; $x < $max_x2; $x++) {
 
                         // Check if we are out of original bounces, if we are
                         // use the default color mask
-                        if ( $x2>=0 && $x2<$max_x && $y2>=0 && $y2<$max_y ){
-                            $c  = imagecolorat ( $img, $x2, $y2);
+                        if ($x2>=0 && $x2<$max_x && $y2>=0 && $y2<$max_y) {
+                            $c  = imagecolorat($img, $x2, $y2);
                         } else {
                             $c  = $mask;
                         }
-                        imagesetpixel($img2,$x+$x_offset,$y+$y_offset,$c);
+                        imagesetpixel($img2, $x+$x_offset, $y+$y_offset, $c);
 
                         // round verboten!
                         $x2  += $cosT;

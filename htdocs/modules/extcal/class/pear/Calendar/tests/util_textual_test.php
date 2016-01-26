@@ -11,43 +11,43 @@ require_once './decorator_test.php';
  */
 class TestOfUtilTextual extends UnitTestCase
 {
-    var $mockengine;
-    var $mockcal;
-    function TestOfUtilTextual()
+    public $mockengine;
+    public $mockcal;
+    public function TestOfUtilTextual()
     {
         $this->UnitTestCase('Test of Calendar_Util_Textual');
     }
-    function setUp()
+    public function setUp()
     {
         $this->mockengine = new Mock_Calendar_Engine($this);
         $this->mockcal = new Mock_Calendar_Second($this);
-        $this->mockcal->setReturnValue('prevYear',2002);
-        $this->mockcal->setReturnValue('thisYear',2003);
-        $this->mockcal->setReturnValue('nextYear',2004);
-        $this->mockcal->setReturnValue('prevMonth',9);
-        $this->mockcal->setReturnValue('thisMonth',10);
-        $this->mockcal->setReturnValue('nextMonth',11);
-        $this->mockcal->setReturnValue('prevDay',14);
-        $this->mockcal->setReturnValue('thisDay',15);
-        $this->mockcal->setReturnValue('nextDay',16);
-        $this->mockcal->setReturnValue('prevHour',12);
-        $this->mockcal->setReturnValue('thisHour',13);
-        $this->mockcal->setReturnValue('nextHour',14);
-        $this->mockcal->setReturnValue('prevMinute',29);
-        $this->mockcal->setReturnValue('thisMinute',30);
-        $this->mockcal->setReturnValue('nextMinute',31);
-        $this->mockcal->setReturnValue('prevSecond',44);
-        $this->mockcal->setReturnValue('thisSecond',45);
-        $this->mockcal->setReturnValue('nextSecond',46);
-        $this->mockcal->setReturnValue('getEngine',$this->mockengine);
-        $this->mockcal->setReturnValue('getTimestamp',12345);
+        $this->mockcal->setReturnValue('prevYear', 2002);
+        $this->mockcal->setReturnValue('thisYear', 2003);
+        $this->mockcal->setReturnValue('nextYear', 2004);
+        $this->mockcal->setReturnValue('prevMonth', 9);
+        $this->mockcal->setReturnValue('thisMonth', 10);
+        $this->mockcal->setReturnValue('nextMonth', 11);
+        $this->mockcal->setReturnValue('prevDay', 14);
+        $this->mockcal->setReturnValue('thisDay', 15);
+        $this->mockcal->setReturnValue('nextDay', 16);
+        $this->mockcal->setReturnValue('prevHour', 12);
+        $this->mockcal->setReturnValue('thisHour', 13);
+        $this->mockcal->setReturnValue('nextHour', 14);
+        $this->mockcal->setReturnValue('prevMinute', 29);
+        $this->mockcal->setReturnValue('thisMinute', 30);
+        $this->mockcal->setReturnValue('nextMinute', 31);
+        $this->mockcal->setReturnValue('prevSecond', 44);
+        $this->mockcal->setReturnValue('thisSecond', 45);
+        $this->mockcal->setReturnValue('nextSecond', 46);
+        $this->mockcal->setReturnValue('getEngine', $this->mockengine);
+        $this->mockcal->setReturnValue('getTimestamp', 12345);
     }
-    function tearDown()
+    public function tearDown()
     {
-        unset ( $this->engine );
-        unset ( $this->mockcal );
+        unset($this->engine);
+        unset($this->mockcal);
     }
-    function testMonthNamesLong()
+    public function testMonthNamesLong()
     {
         $monthNames = array(
             1=>'January',
@@ -63,9 +63,9 @@ class TestOfUtilTextual extends UnitTestCase
             11=>'November',
             12=>'December',
         );
-        $this->assertEqual($monthNames,Calendar_Util_Textual::monthNames());
+        $this->assertEqual($monthNames, Calendar_Util_Textual::monthNames());
     }
-    function testMonthNamesShort()
+    public function testMonthNamesShort()
     {
         $monthNames = array(
             1=>'Jan',
@@ -81,9 +81,9 @@ class TestOfUtilTextual extends UnitTestCase
             11=>'Nov',
             12=>'Dec',
         );
-        $this->assertEqual($monthNames,Calendar_Util_Textual::monthNames('short'));
+        $this->assertEqual($monthNames, Calendar_Util_Textual::monthNames('short'));
     }
-    function testMonthNamesTwo()
+    public function testMonthNamesTwo()
     {
         $monthNames = array(
             1=>'Ja',
@@ -99,9 +99,9 @@ class TestOfUtilTextual extends UnitTestCase
             11=>'No',
             12=>'De',
         );
-        $this->assertEqual($monthNames,Calendar_Util_Textual::monthNames('two'));
+        $this->assertEqual($monthNames, Calendar_Util_Textual::monthNames('two'));
     }
-    function testMonthNamesOne()
+    public function testMonthNamesOne()
     {
         $monthNames = array(
             1=>'J',
@@ -117,9 +117,9 @@ class TestOfUtilTextual extends UnitTestCase
             11=>'N',
             12=>'D',
         );
-        $this->assertEqual($monthNames,Calendar_Util_Textual::monthNames('one'));
+        $this->assertEqual($monthNames, Calendar_Util_Textual::monthNames('one'));
     }
-    function testWeekdayNamesLong()
+    public function testWeekdayNamesLong()
     {
         $weekdayNames = array(
             0=>'Sunday',
@@ -130,9 +130,9 @@ class TestOfUtilTextual extends UnitTestCase
             5=>'Friday',
             6=>'Saturday',
         );
-        $this->assertEqual($weekdayNames,Calendar_Util_Textual::weekdayNames());
+        $this->assertEqual($weekdayNames, Calendar_Util_Textual::weekdayNames());
     }
-    function testWeekdayNamesShort()
+    public function testWeekdayNamesShort()
     {
         $weekdayNames = array(
             0=>'Sun',
@@ -143,9 +143,9 @@ class TestOfUtilTextual extends UnitTestCase
             5=>'Fri',
             6=>'Sat',
         );
-        $this->assertEqual($weekdayNames,Calendar_Util_Textual::weekdayNames('short'));
+        $this->assertEqual($weekdayNames, Calendar_Util_Textual::weekdayNames('short'));
     }
-    function testWeekdayNamesTwo()
+    public function testWeekdayNamesTwo()
     {
         $weekdayNames = array(
             0=>'Su',
@@ -156,9 +156,9 @@ class TestOfUtilTextual extends UnitTestCase
             5=>'Fr',
             6=>'Sa',
         );
-        $this->assertEqual($weekdayNames,Calendar_Util_Textual::weekdayNames('two'));
+        $this->assertEqual($weekdayNames, Calendar_Util_Textual::weekdayNames('two'));
     }
-    function testWeekdayNamesOne()
+    public function testWeekdayNamesOne()
     {
         $weekdayNames = array(
             0=>'S',
@@ -169,25 +169,25 @@ class TestOfUtilTextual extends UnitTestCase
             5=>'F',
             6=>'S',
         );
-        $this->assertEqual($weekdayNames,Calendar_Util_Textual::weekdayNames('one'));
+        $this->assertEqual($weekdayNames, Calendar_Util_Textual::weekdayNames('one'));
     }
-    function testPrevMonthNameShort()
+    public function testPrevMonthNameShort()
     {
-        $this->assertEqual('Sep',Calendar_Util_Textual::prevMonthName($this->mockcal,'short'));
+        $this->assertEqual('Sep', Calendar_Util_Textual::prevMonthName($this->mockcal, 'short'));
     }
-    function testThisMonthNameShort()
+    public function testThisMonthNameShort()
     {
-        $this->assertEqual('Oct',Calendar_Util_Textual::thisMonthName($this->mockcal,'short'));
+        $this->assertEqual('Oct', Calendar_Util_Textual::thisMonthName($this->mockcal, 'short'));
     }
-    function testNextMonthNameShort()
+    public function testNextMonthNameShort()
     {
-        $this->assertEqual('Nov',Calendar_Util_Textual::nextMonthName($this->mockcal,'short'));
+        $this->assertEqual('Nov', Calendar_Util_Textual::nextMonthName($this->mockcal, 'short'));
     }
-    function testThisDayNameShort()
+    public function testThisDayNameShort()
     {
-        $this->assertEqual('Wed',Calendar_Util_Textual::thisDayName($this->mockcal,'short'));
+        $this->assertEqual('Wed', Calendar_Util_Textual::thisDayName($this->mockcal, 'short'));
     }
-    function testOrderedWeekdaysShort()
+    public function testOrderedWeekdaysShort()
     {
         $weekdayNames = array(
             0=>'Sun',
@@ -203,9 +203,8 @@ class TestOfUtilTextual extends UnitTestCase
             $day = array_shift($weekdayNames);
             array_push($weekdayNames, $day);
         }
-        $this->assertEqual($weekdayNames,Calendar_Util_Textual::orderedWeekdays($this->mockcal,'short'));
+        $this->assertEqual($weekdayNames, Calendar_Util_Textual::orderedWeekdays($this->mockcal, 'short'));
     }
-
 }
 
 if (!defined('TEST_RUNNING')) {

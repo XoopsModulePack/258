@@ -43,7 +43,7 @@ class MylinksShrinktheweb implements MylinksThumbPlugin
     private $provider_url    = "http://images.shrinktheweb.com/xino.php";
     private $provider_name   = "ShrinkTheWeb";
 
-    function __construct()
+    public function __construct()
     {
     }
     public function getProviderUrl()

@@ -1,6 +1,8 @@
 <?php
 
-if (!defined('XOOPS_ROOT_PATH')) exit;
+if (!defined('XOOPS_ROOT_PATH')) {
+    exit;
+}
 
 function myDeleteByModule($DB, $gperm_modid, $gperm_name = null, $gperm_itemid = null)
 {
@@ -28,17 +30,17 @@ if ($modid <= 0 || !is_object($xoopsUser) || !$xoopsUser->isAdmin($modid)) {
 $module_handler =& xoops_gethandler('module');
 $module =& $module_handler->get($modid);
 if (!is_object($module) || !$module->getVar('isactive')) {
-  redirect_header(XOOPS_URL.'/admin.php', 1, _MODULENOEXIST);
-  exit();
+    redirect_header(XOOPS_URL.'/admin.php', 1, _MODULENOEXIST);
+    exit();
 }
 $member_handler =& xoops_gethandler('member');
 $group_list = $member_handler->getGroupList();
 if (is_array($_POST['perms']) && !empty($_POST['perms'])) {
     $gperm_handler = xoops_gethandler('groupperm');
     foreach ($_POST['perms'] as $perm_name => $perm_data) {
-        foreach( $perm_data['itemname' ] as $item_id => $item_name ) {
-            if (false != myDeleteByModule($gperm_handler->db , $modid , $perm_name , $item_id)) {
-                if( !empty( $perm_data['groups'] ) ) {
+        foreach ($perm_data['itemname' ] as $item_id => $item_name) {
+            if (false != myDeleteByModule($gperm_handler->db, $modid, $perm_name, $item_id)) {
+                if (!empty($perm_data['groups'])) {
                     foreach ($perm_data['groups'] as $group_id => $item_ids) {
                         $selected = isset($item_ids[$item_id]) ? $item_ids[$item_id] : 0;
                         if ($selected == 1) {

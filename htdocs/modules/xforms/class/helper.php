@@ -134,7 +134,9 @@ class XformHelper   /*extends Xform_Module_Helper_Abstract*/
         }
         $criteria->add(new Criteria('isactive', 1), 'AND');
         $modules = $module_handler->getObjects($criteria, true);
-        if($asObj) return $modules;
+        if ($asObj) {
+            return $modules;
+        }
         $dirs['system-root'] = _YOURHOME;
         foreach ($modules as $module) {
             $dirs[$module->dirname()] = $module->name();

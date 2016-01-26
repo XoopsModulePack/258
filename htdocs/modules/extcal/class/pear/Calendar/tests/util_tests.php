@@ -9,7 +9,7 @@ require_once 'calendar_include.php';
  */
 class UtilTests extends GroupTest
 {
-    function UtilTests()
+    public function UtilTests()
     {
         $this->GroupTest('Util Tests');
         $this->addTestFile('util_uri_test.php');

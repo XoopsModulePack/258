@@ -55,7 +55,7 @@ function &tag_getTagHandler()
  * @var array $args            array of indexed variables: name and value
  * @var array $args_string    array of string variable values
  *
- * @return bool    true on args parsed
+ * @return bool true on args parsed
  */
 
 /* known issues:

@@ -1,7 +1,9 @@
 <?php
 // $Id: updateblock.inc.php,v 1.1 2005/04/05 02:48:40 gij Exp $
 
-    if( ! defined( 'XOOPS_ROOT_PATH' ) ) exit ;
+    if (! defined('XOOPS_ROOT_PATH')) {
+        exit ;
+    }
 
     // Keep Block option values when update (by nobunobu)
     global $xoopsDB;
@@ -67,17 +69,17 @@
             $sql = "SELECT name,options FROM ".$xoopsDB->prefix('newblocks')." WHERE mid=".$mid." AND func_num=".$i." AND show_func='".addslashes($modversion['blocks'][$i]['show_func'])."' AND func_file='".addslashes($modversion['blocks'][$i]['file'])."'";
             $fresult = $xoopsDB->query($sql);
             $fblock = $xoopsDB->fetchArray($fresult);
-            if ( isset( $fblock['options'] ) ) {
-                $old_vals=explode("|",$fblock['options']);
-                $def_vals=explode("|",$modversion['blocks'][$i]['options']);
+            if (isset($fblock['options'])) {
+                $old_vals=explode("|", $fblock['options']);
+                $def_vals=explode("|", $modversion['blocks'][$i]['options']);
                 if (count($old_vals) == count($def_vals)) {
                     $modversion['blocks'][$i]['options'] = $fblock['options'];
                     $local_msgs[] = "Option's values of the block <b>".$fblock['name']."</b> will be kept. (value = <b>".$fblock['options']."</b>)";
-                } else if (count($old_vals) < count($def_vals)){
+                } elseif (count($old_vals) < count($def_vals)) {
                     for ($j=0; $j < count($old_vals); $j++) {
                         $def_vals[$j] = $old_vals[$j];
                     }
-                    $modversion['blocks'][$i]['options'] = implode("|",$def_vals);
+                    $modversion['blocks'][$i]['options'] = implode("|", $def_vals);
                     $local_msgs[] = "Option's values of the block <b>".$fblock['name']."</b> will be kept and new option(s) are added. (value = <b>".$modversion['blocks'][$i]['options']."</b>)";
                 } else {
                     $local_msgs[] = "Option's values of the block <b>".$fblock['name']."</b> will be reset to the default, because of some decrease of options. (value = <b>".$modversion['blocks'][$i]['options']."</b>)";
@@ -87,7 +89,7 @@
     }
 
     global $msgs , $myblocksadmin_parsed_updateblock ;
-    if( ! empty( $msgs ) && empty( $myblocksadmin_parsed_updateblock ) ) {
-        $msgs = array_merge( $msgs , $local_msgs ) ;
+    if (! empty($msgs) && empty($myblocksadmin_parsed_updateblock)) {
+        $msgs = array_merge($msgs, $local_msgs) ;
         $myblocksadmin_parsed_updateblock = true ;
     }

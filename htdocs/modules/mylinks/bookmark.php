@@ -37,7 +37,7 @@ switch ($mylinks_can_bookmark) {
         $can_bookmark = _MD_MYLINKS_DISALLOW;
         break;
 }
-if ( _MD_MYLINKS_DISALLOW == $can_bookmark ) {
+if (_MD_MYLINKS_DISALLOW == $can_bookmark) {
     redirect_header('index.php', 3, _MD_MYLINKS_BOOKMARKDISALLOWED);
     exit();
 }
@@ -160,17 +160,35 @@ function zeroFill($a, $b)
 
 function mix($a, $b, $c)
 {
-  $a -= $b; $a -= $c; $a ^= (zeroFill($c, 13));
-  $b -= $c; $b -= $a; $b ^= ($a<<8);
-  $c -= $a; $c -= $b; $c ^= (zeroFill($b, 13));
-  $a -= $b; $a -= $c; $a ^= (zeroFill($c, 12));
-  $b -= $c; $b -= $a; $b ^= ($a<<16);
-  $c -= $a; $c -= $b; $c ^= (zeroFill($b, 5));
-  $a -= $b; $a -= $c; $a ^= (zeroFill($c, 3));
-  $b -= $c; $b -= $a; $b ^= ($a<<10);
-  $c -= $a; $c -= $b; $c ^= (zeroFill($b, 15));
+    $a -= $b;
+    $a -= $c;
+    $a ^= (zeroFill($c, 13));
+    $b -= $c;
+    $b -= $a;
+    $b ^= ($a<<8);
+    $c -= $a;
+    $c -= $b;
+    $c ^= (zeroFill($b, 13));
+    $a -= $b;
+    $a -= $c;
+    $a ^= (zeroFill($c, 12));
+    $b -= $c;
+    $b -= $a;
+    $b ^= ($a<<16);
+    $c -= $a;
+    $c -= $b;
+    $c ^= (zeroFill($b, 5));
+    $a -= $b;
+    $a -= $c;
+    $a ^= (zeroFill($c, 3));
+    $b -= $c;
+    $b -= $a;
+    $b ^= ($a<<10);
+    $c -= $a;
+    $c -= $b;
+    $c ^= (zeroFill($b, 15));
 
-  return array($a, $b, $c);
+    return array($a, $b, $c);
 }
 
 function GoogleCH($url, $length=null, $init=GOOGLE_MAGIC)
@@ -187,14 +205,15 @@ function GoogleCH($url, $length=null, $init=GOOGLE_MAGIC)
         $b += ($url[$k+4] +($url[$k+5]<<8) +($url[$k+6]<<16) +($url[$k+7]<<24));
         $c += ($url[$k+8] +($url[$k+9]<<8) +($url[$k+10]<<16)+($url[$k+11]<<24));
         $mix = mix($a, $b, $c);
-        $a = $mix[0]; $b = $mix[1]; $c = $mix[2];
+        $a = $mix[0];
+        $b = $mix[1];
+        $c = $mix[2];
         $k += 12;
         $len -= 12;
     }
 
     $c += $length;
-    switch($len)
-    {
+    switch ($len) {
         case 11: $c+=($url[$k+10]<<24);
         case 10: $c+=($url[$k+9]<<16);
         case 9 : $c+=($url[$k+8]<<8);
@@ -240,7 +259,8 @@ function getrank($url)
         while (!feof($fp)) {
             $data = fgets($fp, 128);
             $pos = strpos($data, "Rank_");
-            if($pos === false){} else{
+            if ($pos === false) {
+            } else {
                 $pagerank = substr($data, $pos + 9);
             }
         }
@@ -288,8 +308,8 @@ var addtoMethod=0;
     <tr><td colspan="2" style="text-align: center;"><h3>'._MD_MYLINKS_BOOKMARK_SERVICE.'</h3></td></tr>
     <tr><td class="head" style="text-align: center; font-weight: bold;">' . _MD_MYLINKS_SITETITLE . '</td><td class="even" style="text-align: center;">'.$sitetitle.'</td></tr>
     <tr><td class="head" style="text-align: center; font-weight: bold;">' . _MD_MYLINKS_SITEURL . '</td><td class="even" style="text-align: center;"><a href="'.$siteurl.'" target="_blank">'.$siteurl.'</a><br />(&nbsp;<strong>Google PageRank :</strong>&nbsp;<img src="'.XOOPSMYLINKIMGURL.'/addto/pr'.getrank($siteurl).'.gif" alt="pagerank" />&nbsp;)</td></tr>';
-if ( $mylinks_can_qrcode ) {
-            echo '<tr><td  class="head" style="text-align: center; font-weight: bold;">' . _MD_MYLINKS_QRCODE . '<br />(' . _MD_MYLINKS_SITEURL . ')</td><td class="even" style="text-align: center;">'.$siteqrcode.'</td></tr>';
+if ($mylinks_can_qrcode) {
+    echo '<tr><td  class="head" style="text-align: center; font-weight: bold;">' . _MD_MYLINKS_QRCODE . '<br />(' . _MD_MYLINKS_SITEURL . ')</td><td class="even" style="text-align: center;">'.$siteqrcode.'</td></tr>';
 }
   echo '
     <tr><td class="head" style="text-align: center; font-weight: bold;">' . _MD_MYLINKS_WEBBROWSER . '</td><td  class="even" style="text-align: center;">

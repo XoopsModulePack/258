@@ -34,9 +34,9 @@ if (tag_parse_args($args_num, $args, $args_str)) {
     $args["start"] = !empty($args["start"]) ? $args["start"] : @$args_num[2];
 }
 
-$modid = intval( empty($_GET["modid"]) ? @$args["modid"] : $_GET["modid"] );
-$catid = intval( empty($_GET["catid"]) ? @$args["catid"] : $_GET["catid"] );
-$start = intval( empty($_GET["start"]) ? @$args["start"] : $_GET["start"] );
+$modid = intval(empty($_GET["modid"]) ? @$args["modid"] : $_GET["modid"]);
+$catid = intval(empty($_GET["catid"]) ? @$args["catid"] : $_GET["catid"]);
+$start = intval(empty($_GET["start"]) ? @$args["start"] : $_GET["start"]);
 $sort  = "";
 $order = "";
 
@@ -84,7 +84,7 @@ $criteria->add(new Criteria("o.tag_status", TagConstants::STATUS_ACTIVE));
 if (!empty($modid)) {
     $criteria->add(new Criteria("l.tag_modid", $modid));
     if ($catid >= 0) {
-        $criteria->add( new Criteria("l.tag_catid", $catid) );
+        $criteria->add(new Criteria("l.tag_catid", $catid));
     }
 }
 $tags = $tag_handler->getByLimit($criteria);
@@ -93,8 +93,12 @@ $count_max = 0;
 $count_min = 0;
 $tags_term = array();
 foreach (array_keys($tags) as $key) {
-    if ($tags[$key]["count"] > $count_max) $count_max = $tags[$key]["count"];
-    if ($tags[$key]["count"] < $count_min) $count_min = $tags[$key]["count"];
+    if ($tags[$key]["count"] > $count_max) {
+        $count_max = $tags[$key]["count"];
+    }
+    if ($tags[$key]["count"] < $count_min) {
+        $count_min = $tags[$key]["count"];
+    }
     $tags_term[] = strtolower($tags[$key]["term"]);
 }
 array_multisort($tags_term, SORT_ASC, $tags);
@@ -111,7 +115,7 @@ foreach (array_keys($tags) as $key) {
      * Font-size = ((tag.count - count.min) * (font.max - font.min) / (count.max - count.min) ) * 100%
      */
     $tags_data[] = array("id" => $tags[$key]["id"],
-                       "font" => empty($count_interval) ? 100 : floor( ($tags[$key]["count"] - $count_min) * $font_ratio ) + $font_min,
+                       "font" => empty($count_interval) ? 100 : floor(($tags[$key]["count"] - $count_min) * $font_ratio) + $font_min,
                       "level" => empty($count_max) ? 0 : floor(($tags[$key]["count"] - $count_min) * $level_limit / $count_max),
                        "term" => urlencode($tags[$key]["term"]),
                       "title" => htmlspecialchars($tags[$key]["term"]),
@@ -120,7 +124,7 @@ foreach (array_keys($tags) as $key) {
 }
 unset($tags, $tags_term);
 
-if ( !empty($start) || count($tags_data) >= $limit) {
+if (!empty($start) || count($tags_data) >= $limit) {
     $count_tag = $tag_handler->getCount($criteria); // modid, catid
 
     if ("list" == mb_strtolower($mode_display)) {

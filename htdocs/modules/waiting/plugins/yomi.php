@@ -1,5 +1,6 @@
 <?php
-function b_waiting_yomi(){
+function b_waiting_yomi()
+{
     ////////////////////////////////////
     //仮登録ログファイルのディレクトリ名
     $log_path = XOOPS_ROOT_PATH."/modules/yomi/log/";
@@ -13,7 +14,7 @@ function b_waiting_yomi(){
     $block = array();
     $Ctemp=0;
     $fp=fopen($log_path.$log_file, "r");
-    while($tmp=fgets($fp, 4096)){
+    while ($tmp=fgets($fp, 4096)) {
         $Ctemp++;
     }
     fclose($fp);

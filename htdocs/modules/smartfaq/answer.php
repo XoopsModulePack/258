@@ -20,8 +20,12 @@ if (!$xoopsUser && ($xoopsModuleConfig['anonpost'] != 1)) {
 $op = 'form';
 
 // Getting the operation we are doing
-if (isset($_GET['op'])) $op = $_GET['op'];
-if (isset($_POST['op'])) $op = $_POST['op'];
+if (isset($_GET['op'])) {
+    $op = $_GET['op'];
+}
+if (isset($_POST['op'])) {
+    $op = $_POST['op'];
+}
 
 // Getting the faqid
 $faqid = isset($_GET['faqid'])? intval($_GET['faqid']) : 0;
@@ -43,7 +47,7 @@ switch ($op) {
     // The answer is posted
     case 'post':
 
-    Global $faqObj, $xoopsUser, $xoopsConfig, $xoopsModule, $xoopsModuleConfig, $xoopsDB;
+    global $faqObj, $xoopsUser, $xoopsConfig, $xoopsModule, $xoopsModuleConfig, $xoopsDB;
 
     // If user is anonymous and we don't allow anonymous posting, exit; else, get the uid
     if (!$xoopsUser) {
@@ -74,7 +78,7 @@ switch ($op) {
 
     // Putting the values in the answer object
     $newAnswerObj->setVar('faqid', $faqObj->faqid());
-    $newAnswerObj->setVar('answer',$_POST['answer']);
+    $newAnswerObj->setVar('answer', $_POST['answer']);
     $newAnswerObj->setVar('uid', $uid);
 
     // Depending of the status of the FAQ, some values need to be set
@@ -127,13 +131,13 @@ switch ($op) {
     }
 
     // Storing the FAQ object in the database
-    if ( !$faqObj->store() ) {
+    if (!$faqObj->store()) {
         redirect_header("javascript:history.go(-1)", 3, _MD_SF_SUBMIT_ERROR . sf_formatErrors($faqObj->getErrors()));
         exit();
     }
 
     // Storing the answer object in the database
-    if ( !$newAnswerObj->store() ) {
+    if (!$newAnswerObj->store()) {
         redirect_header("javascript:history.go(-1)", 3, _MD_SF_SUBMIT_ERROR . sf_formatErrors($newAnswerObj->getErrors()));
         exit();
     }

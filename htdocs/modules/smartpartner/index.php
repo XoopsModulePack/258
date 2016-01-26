@@ -58,7 +58,6 @@ function get_subcats($every_categories_array, $categoryid, $level)
     $level++;
 
     foreach ($every_categories_array as $subcatObj) {
-
         if ($subcatObj->parentid() == $categoryid) {
             $subcatArray[] = get_cat_content($every_categories_array, $subcatObj, $level);
         }
@@ -106,8 +105,7 @@ $partners_total = $smartpartner_partner_handler->getPartnerCount();
 
 if ($xoopsModuleConfig['index_sortby'] == 'title' || $xoopsModuleConfig['index_sortby'] == 'weight') {
     $order = 'ASC';
-}
-else {
+} else {
     $order = 'DESC';
 }
 //Retreive all records from database

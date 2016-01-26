@@ -10,7 +10,7 @@
 include_once __DIR__ . '/admin_header.php';
 $myts = &MyTextSanitizer::getInstance();
 
-Global $xoopsModule;
+global $xoopsModule;
 
 xoops_cp_header();
 

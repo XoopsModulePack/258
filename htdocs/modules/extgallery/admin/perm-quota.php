@@ -21,13 +21,13 @@ include '../../../include/cp_header.php';
 include '../class/grouppermform.php';
 include 'function.php';
 
-if(isset($_POST['step'])) {
+if (isset($_POST['step'])) {
     $step = $_POST['step'];
 } else {
     $step = 'default';
 }
 
-if(isset($_GET['op'])) {
+if (isset($_GET['op'])) {
     $op = $_GET['op'];
 } else {
     $op = 'default';
@@ -35,26 +35,25 @@ if(isset($_GET['op'])) {
 
 $module_id = $xoopsModule->getVar('mid');
 
-switch($step) {
+switch ($step) {
 
     case 'enreg':
 
         $gpermHandler = xoops_gethandler('groupperm');
 
-        if($_POST['type'] == "public") {
+        if ($_POST['type'] == "public") {
 
             // Delete old public mask
             $criteria = new CriteriaCompo();
-            $criteria->add(new Criteria('gperm_name','extgallery_public_mask'));
-            $criteria->add(new Criteria('gperm_modid',$module_id));
+            $criteria->add(new Criteria('gperm_name', 'extgallery_public_mask'));
+            $criteria->add(new Criteria('gperm_modid', $module_id));
             $gpermHandler->deleteAll($criteria);
 
-            foreach($_POST['perms']['extgallery_public_mask']['group'] as $groupId => $perms) {
-                foreach(array_keys($perms) as $perm) {
+            foreach ($_POST['perms']['extgallery_public_mask']['group'] as $groupId => $perms) {
+                foreach (array_keys($perms) as $perm) {
                     $gpermHandler->addRight('extgallery_public_mask', $perm, $groupId, $module_id);
                 }
             }
-
         }
 
         redirect_header("perm-quota.php", 3, _AM_EXTGALLERY_PERM_MASK_UPDATED);
@@ -79,8 +78,9 @@ switch($step) {
         // Retriving the group list
         $glist =& $member_handler->getGroupList();
 
-        function getChecked($array,$v) {
-            if(in_array($v,$array)) {
+        function getChecked($array, $v)
+        {
+            if (in_array($v, $array)) {
                 return ' checked="checked"';
             } else {
                 return '';
@@ -98,16 +98,16 @@ switch($step) {
         <select size='1'onchange=\"document.forms.opform.submit()\" name='op' id='op'>\n
         <option value=''></option>\n";
 
-        foreach($modulePermArray as $perm) {
-            if($op == $perm['name']) {
+        foreach ($modulePermArray as $perm) {
+            if ($op == $perm['name']) {
                 echo "<option value='".$perm['name']."' selected='selected'>".constant($perm['title'])."</option>\n";
             } else {
                 echo "<option value='".$perm['name']."'>".constant($perm['title'])."</option>\n";
             }
         }
 
-        foreach($pluginPermArray as $perm) {
-            if($op == $perm['name']) {
+        foreach ($pluginPermArray as $perm) {
+            if ($op == $perm['name']) {
                 echo "<option value='".$perm['name']."' selected='selected'>".constant($perm['title'])."</option>\n";
             } else {
                 echo "<option value='".$perm['name']."'>".constant($perm['title'])."</option>\n";
@@ -122,48 +122,44 @@ switch($step) {
         $catHandler = xoops_getmodulehandler('publiccat', 'extgallery');
         $cats = $catHandler->getTree();
 
-        foreach($modulePermArray as $perm) {
-
-            if($op != $perm['name']) {
+        foreach ($modulePermArray as $perm) {
+            if ($op != $perm['name']) {
                 continue;
             }
 
             $form = new ExtgalleryGroupPermForm(constant($perm['title']), $module_id, $perm['name'], constant($perm['desc']), 'admin/perm-quota.php');
-              foreach ($cats as $cat) {
-                  $form->addItem($cat->getVar('cat_id'), $cat->getVar('cat_name'), $cat->getVar('cat_pid'));
-              }
+            foreach ($cats as $cat) {
+                $form->addItem($cat->getVar('cat_id'), $cat->getVar('cat_name'), $cat->getVar('cat_pid'));
+            }
 
-              echo '<fieldset id="'.$perm['name'].'Bookmark"><legend><a href="#'.$perm['name'].'Bookmark" style="font-weight:bold; color:#990000;" onClick="toggle(\''.$perm['name'].'\'); toggleIcon(\''.$perm['name'].'Icon\');"><img id="'.$perm['name'].'Icon" src="../images/minus.gif" />&nbsp;'.constant($perm['title']).'</a></legend><div id="'.$perm['name'].'">';
-              echo '<fieldset><legend style="font-weight:bold; color:#0A3760;">'._AM_EXTGALLERY_INFORMATION.'</legend>';
-              echo constant($perm['info']);
-              echo '</fieldset>';
-              echo $form->render().'<br />';
-              echo '</div></fieldset><br />';
+            echo '<fieldset id="'.$perm['name'].'Bookmark"><legend><a href="#'.$perm['name'].'Bookmark" style="font-weight:bold; color:#990000;" onClick="toggle(\''.$perm['name'].'\'); toggleIcon(\''.$perm['name'].'Icon\');"><img id="'.$perm['name'].'Icon" src="../images/minus.gif" />&nbsp;'.constant($perm['title']).'</a></legend><div id="'.$perm['name'].'">';
+            echo '<fieldset><legend style="font-weight:bold; color:#0A3760;">'._AM_EXTGALLERY_INFORMATION.'</legend>';
+            echo constant($perm['info']);
+            echo '</fieldset>';
+            echo $form->render().'<br />';
+            echo '</div></fieldset><br />';
 
             break;
-
         }
 
-        foreach($pluginPermArray as $perm) {
-
-            if($op != $perm['name']) {
+        foreach ($pluginPermArray as $perm) {
+            if ($op != $perm['name']) {
                 continue;
             }
 
             $form = new ExtgalleryGroupPermForm(constant($perm['title']), $module_id, $perm['name'], constant($perm['desc']), 'admin/perm-quota.php');
-              foreach ($cats as $cat) {
-                  $form->addItem($cat->getVar('cat_id'), $cat->getVar('cat_name'), $cat->getVar('cat_pid'));
-              }
+            foreach ($cats as $cat) {
+                $form->addItem($cat->getVar('cat_id'), $cat->getVar('cat_name'), $cat->getVar('cat_pid'));
+            }
 
-              echo '<fieldset id="'.$perm['name'].'Bookmark"><legend><a href="#'.$perm['name'].'Bookmark" style="font-weight:bold; color:#990000;" onClick="toggle(\''.$perm['name'].'\'); toggleIcon(\''.$perm['name'].'Icon\');"><img id="'.$perm['name'].'Icon" src="../images/minus.gif" />&nbsp;'.constant($perm['title']).'</a></legend><div id="'.$perm['name'].'">';
-              echo '<fieldset><legend style="font-weight:bold; color:#0A3760;">'._AM_EXTGALLERY_INFORMATION.'</legend>';
-              echo constant($perm['info']);
-              echo '</fieldset>';
-              echo $form->render().'<br />';
-              echo '</div></fieldset><br />';
+            echo '<fieldset id="'.$perm['name'].'Bookmark"><legend><a href="#'.$perm['name'].'Bookmark" style="font-weight:bold; color:#990000;" onClick="toggle(\''.$perm['name'].'\'); toggleIcon(\''.$perm['name'].'Icon\');"><img id="'.$perm['name'].'Icon" src="../images/minus.gif" />&nbsp;'.constant($perm['title']).'</a></legend><div id="'.$perm['name'].'">';
+            echo '<fieldset><legend style="font-weight:bold; color:#0A3760;">'._AM_EXTGALLERY_INFORMATION.'</legend>';
+            echo constant($perm['info']);
+            echo '</fieldset>';
+            echo $form->render().'<br />';
+            echo '</div></fieldset><br />';
 
             break;
-
         }
 
         /**
@@ -181,11 +177,11 @@ switch($step) {
         echo '<tr>';
         echo '<td class="head">'._AM_EXTGALLERY_GROUP_NAME.'</td>';
 
-        foreach($modulePermArray as $perm) {
+        foreach ($modulePermArray as $perm) {
             echo '<td class="head" style="text-align:center;">'.constant($perm['maskTitle']).'</td>';
         }
 
-        foreach($pluginPermArray as $perm) {
+        foreach ($pluginPermArray as $perm) {
             echo '<td class="head" style="text-align:center;">'.constant($perm['maskTitle']).'</td>';
         }
 
@@ -196,14 +192,14 @@ switch($step) {
             echo '<tr>';
             echo '<td class="'.$style.'">'.$v.'</td>';
 
-            foreach($modulePermArray as $perm) {
+            foreach ($modulePermArray as $perm) {
                 $permAccessGroup = $gperm_handler->getGroupIds('extgallery_public_mask', $perm['maskId'], $module_id);
-                echo '<td class="'.$style.'" style="text-align:center;"><input name="perms[extgallery_public_mask][group]['.$k.']['.$perm['maskId'].']" type="checkbox"'.getChecked($permAccessGroup,$k).' /></td>';
+                echo '<td class="'.$style.'" style="text-align:center;"><input name="perms[extgallery_public_mask][group]['.$k.']['.$perm['maskId'].']" type="checkbox"'.getChecked($permAccessGroup, $k).' /></td>';
             }
 
-            foreach($pluginPermArray as $perm) {
+            foreach ($pluginPermArray as $perm) {
                 $permAccessGroup = $gperm_handler->getGroupIds('extgallery_public_mask', $perm['maskId'], $module_id);
-                echo '<td class="'.$style.'" style="text-align:center;"><input name="perms[extgallery_public_mask][group]['.$k.']['.$perm['maskId'].']" type="checkbox"'.getChecked($permAccessGroup,$k).' /></td>';
+                echo '<td class="'.$style.'" style="text-align:center;"><input name="perms[extgallery_public_mask][group]['.$k.']['.$perm['maskId'].']" type="checkbox"'.getChecked($permAccessGroup, $k).' /></td>';
             }
 
             echo '</tr>';

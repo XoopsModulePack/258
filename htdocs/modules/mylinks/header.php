@@ -62,14 +62,14 @@ $mylinks_right_wide_theme = false;
 $mylinks_left_wide_theme  = false;
 $mylinks_both_wide_theme  = false;
 
-if ( true == $valid_theme ) {
-    if ( (strpos($mylinks_theme, '-RW') || strpos($mylinks_theme, '-w')) ) {
+if (true == $valid_theme) {
+    if ((strpos($mylinks_theme, '-RW') || strpos($mylinks_theme, '-w'))) {
         $mylinks_wide_theme       = true;
         $mylinks_right_wide_theme = true;
-    } elseif ( strpos($mylinks_theme, '-LW') ) {
+    } elseif (strpos($mylinks_theme, '-LW')) {
         $mylinks_wide_theme      = true;
         $mylinks_left_wide_theme = true;
-    } elseif ( strpos($mylinks_theme, '-BW') ) {
+    } elseif (strpos($mylinks_theme, '-BW')) {
         $mylinks_wide_theme      = true;
         $mylinks_both_wide_theme = true;
     }
@@ -132,7 +132,7 @@ $mylinks_can_pdf      = $xoopsModuleConfig['canpdf'];
 $mylinks_can_bookmark = $xoopsModuleConfig['canbookmark'];
 
 //if qrcode module exists
-if ( file_exists(XOOPS_ROOT_PATH."/modules/qrcode/qrcode_image.php") ) {
+if (file_exists(XOOPS_ROOT_PATH."/modules/qrcode/qrcode_image.php")) {
     // disallow=0, allow =1, memberonly =2
     $mylinks_can_qrcode = $xoopsModuleConfig['canqrcode'];
 } else {
@@ -141,9 +141,9 @@ if ( file_exists(XOOPS_ROOT_PATH."/modules/qrcode/qrcode_image.php") ) {
 }
 
 //logo
-if ( $mylinks_show_logo && !is_dir(XOOPSMYLINKIMGPATH."/{$mylinks_theme}/icons/logo.gif") && file_exists(XOOPSMYLINKIMGPATH."/{$mylinks_theme}/icons/logo.gif") ) {
+if ($mylinks_show_logo && !is_dir(XOOPSMYLINKIMGPATH."/{$mylinks_theme}/icons/logo.gif") && file_exists(XOOPSMYLINKIMGPATH."/{$mylinks_theme}/icons/logo.gif")) {
     $logoimage = "<a href='" . XOOPSMYLINKURL . "/index.php'><img src='" . XOOPSMYLINKIMGURL . "/{$mylinks_theme}/icons/logo.gif' style='border-width: 0px;' alt='' /></a>";
-} elseif ( $mylinks_show_logo && !is_dir(XOOPSMYLINKIMGPATH."/icons/logo.gif") && file_exists(XOOPSMYLINKIMGPATH."/icons/logo.gif") ) {
+} elseif ($mylinks_show_logo && !is_dir(XOOPSMYLINKIMGPATH."/icons/logo.gif") && file_exists(XOOPSMYLINKIMGPATH."/icons/logo.gif")) {
     $logoimage = "<a href='" . XOOPSMYLINKURL . "/index.php'><img src='" . XOOPSMYLINKIMGURL . "/icons/logo.gif' style='border-width: 0px' alt='' /></a>";
 } else {
     $logoimage = "";

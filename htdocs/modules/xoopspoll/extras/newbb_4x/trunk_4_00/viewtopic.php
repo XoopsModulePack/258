@@ -407,7 +407,6 @@ if (($xoopspoll instanceof XoopsModule) && $xoopspoll->isactive()) {
                 $xoopsTpl->assign('forum_addpoll', "<a href=\"" . XOOPS_URL . '/modules/' . $xoopsModule->getVar('dirname', 'n') . "/polls.php?op=add&amp;topic_id={$topic_id}\">{$t_poll}</a>");
             }
         } elseif ($isadmin || (is_object($poll) && ($xoopsUser instanceof XoopsUser) && $xoopsUser->getVar('uid') === $poll_obj->getVar('user_id'))) {
-
             $poll_edit    = '';
             $poll_delete  = '';
             $poll_restart = '';

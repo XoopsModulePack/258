@@ -21,15 +21,15 @@ define("SASL_NTLM_STATE_DONE", 3);
  */
 class ntlm_sasl_client_class
 {
-    var $credentials = array();
-    var $state = SASL_NTLM_STATE_START;
+    public $credentials = array();
+    public $state = SASL_NTLM_STATE_START;
 
     /**
      * @param $client
      *
      * @return int
      */
-    function Initialize(&$client)
+    public function Initialize(&$client)
     {
         if (!function_exists($function = "mcrypt_encrypt")
             || !function_exists($function = "mhash")
@@ -51,7 +51,7 @@ class ntlm_sasl_client_class
      *
      * @return string
      */
-    function ASCIIToUnicode($ascii)
+    public function ASCIIToUnicode($ascii)
     {
         for ($unicode = "", $a = 0; $a < strlen($ascii); $a++) {
             $unicode .= substr($ascii, $a, 1) . chr(0);
@@ -66,7 +66,7 @@ class ntlm_sasl_client_class
      *
      * @return string
      */
-    function TypeMsg1($domain, $workstation)
+    public function TypeMsg1($domain, $workstation)
     {
         $domain_length      = strlen($domain);
         $workstation_length = strlen($workstation);
@@ -85,7 +85,7 @@ class ntlm_sasl_client_class
      *
      * @return string
      */
-    function NTLMResponse($challenge, $password)
+    public function NTLMResponse($challenge, $password)
     {
         $unicode = $this->ASCIIToUnicode($password);
         $md4     = mhash(MHASH_MD4, $unicode);
@@ -116,7 +116,7 @@ class ntlm_sasl_client_class
      *
      * @return string
      */
-    function TypeMsg3($ntlm_response, $user, $domain, $workstation)
+    public function TypeMsg3($ntlm_response, $user, $domain, $workstation)
     {
         $domain_unicode      = $this->ASCIIToUnicode($domain);
         $domain_length       = strlen($domain_unicode);
@@ -152,7 +152,7 @@ class ntlm_sasl_client_class
      *
      * @return mixed
      */
-    function Start(&$client, &$message, &$interactions)
+    public function Start(&$client, &$message, &$interactions)
     {
         if ($this->state != SASL_NTLM_STATE_START) {
             $client->error = "NTLM authentication state is not at the start";
@@ -170,7 +170,7 @@ class ntlm_sasl_client_class
         if ($status == SASL_CONTINUE) {
             $this->state = SASL_NTLM_STATE_IDENTIFY_DOMAIN;
         }
-        Unset($message);
+        unset($message);
 
         return ($status);
     }
@@ -183,7 +183,7 @@ class ntlm_sasl_client_class
      *
      * @return mixed
      */
-    function Step(&$client, $response, &$message, &$interactions)
+    public function Step(&$client, $response, &$message, &$interactions)
     {
         switch ($this->state) {
             case SASL_NTLM_STATE_IDENTIFY_DOMAIN:

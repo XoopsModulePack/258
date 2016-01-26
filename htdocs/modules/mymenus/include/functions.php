@@ -42,9 +42,9 @@ function mymenusUserIsAdmin()
 }
 
 /**
- * @param string $moduleSkin
+ * @param string  $moduleSkin
  * @param boolean $useThemeSkin
- * @param string $themeSkin
+ * @param string  $themeSkin
  *
  * @return array
  */

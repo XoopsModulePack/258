@@ -53,12 +53,12 @@ class MymenusMenus extends XoopsObject
      */
     public function getForm($action = false)
     {
-//        $grouppermHandler = xoops_gethandler('groupperm');
+        //        $grouppermHandler = xoops_gethandler('groupperm');
         //
         xoops_load('XoopsFormLoader');
         //
         if ($action === false) {
-//            $action = $_SERVER['REQUEST_URI'];
+            //            $action = $_SERVER['REQUEST_URI'];
             $action = XoopsRequest::getString('REQUEST_URI', '', 'SERVER');
         }
         //
