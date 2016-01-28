@@ -12,7 +12,7 @@
 /**
  * Avaman module
  *
- * @copyright    The XOOPS Project (http://www.xoops.org)
+ * @copyright    XOOPS Project (http://xoops.org)
  * @license   {@link http://www.gnu.org/licenses/gpl-2.0.html GNU Public License}
  * @package    Avaman
  * @since      2.5.0
@@ -28,9 +28,9 @@ $avaman_allowed_exts = array(
 ) ;
 $realmyname = 'smilies.php' ;
 
-include_once('../../../include/cp_header.php') ;
-include_once "../include/gtickets.php" ;
-include_once 'admin_header.php';
+include_once dirname(dirname(dirname(__DIR__))) . '/include/cp_header.php' ;
+include_once dirname(__DIR__) . '/include/gtickets.php';
+include_once __DIR__ . '/admin_header.php';
 $indexAdmin = new ModuleAdmin();
 
 $db =& XoopsDatabaseFactory::getDatabaseConnection();
@@ -51,8 +51,8 @@ if (! empty($_POST['modify_smilies'])) {
     $smiles_ids = array() ;
     if (is_array(@$_POST['emotions'])) {
         foreach ($_POST['emotions'] as $smiles_id => $emotion) {
-            $smiles_id = intval($smiles_id) ;
-            $db->query("UPDATE ".$db->prefix("smiles")." SET emotion='".$myts->addSlashes($emotion)."' WHERE id=".intval($smiles_id)) ;
+            $smiles_id = (int)($smiles_id) ;
+            $db->query("UPDATE ".$db->prefix("smiles")." SET emotion='".$myts->addSlashes($emotion)."' WHERE id=".(int)($smiles_id)) ;
             $smiles_ids[] = $smiles_id ;
         }
     }
@@ -77,7 +77,7 @@ if (! empty($_POST['modify_smilies'])) {
             $result = $db->query("SELECT smile_url FROM ".$db->prefix("smiles")." WHERE id=$smiles_id") ;
             if ($result) {
                 list($file) = $db->fetchRow($result) ;
-                if (strstr($file, '..')) {
+                if (false !== strpos($file, '..')) {
                     die('.. found.') ;
                 }
                 @unlink(XOOPS_UPLOAD_PATH . '/' . $file) ;
@@ -99,7 +99,7 @@ if (! empty($_FILES['upload_archive']['tmp_name']) && is_uploaded_file($_FILES['
     if ($orig_ext4check == 'zip') {
 
         // zip
-        include_once dirname(dirname(__FILE__)).'/include/Archive_Zip.php' ;
+        include_once dirname(__DIR__).'/include/Archive_Zip.php' ;
         $reader = new Archive_Zip($_FILES['upload_archive']['tmp_name']) ;
         $files = $reader->extract(array( 'extract_as_string' => true )) ;
         if (! is_array(@$files)) {
@@ -161,7 +161,7 @@ if (! empty($_FILES['upload_archive']['tmp_name']) && is_uploaded_file($_FILES['
         @fclose($fw) ;
         $db->query("INSERT INTO ".$db->prefix("smiles")." SET smile_url='".addslashes($save_file_name)."', code='".addslashes(rawurldecode($file_node))."', display=0, emotion=''") ;
 
-        $imported ++ ;
+        ++$imported  ;
     }
 
     redirect_header($realmyname, 3, sprintf(_AM_AVAMAN_FILEUPLOADED, $imported)) ;
@@ -172,7 +172,7 @@ if (! empty($_FILES['upload_archive']['tmp_name']) && is_uploaded_file($_FILES['
 xoops_cp_header() ;
 echo $indexAdmin->addNavigation('smilies.php');
 
-//include(dirname(__FILE__).'/mymenu.php');
+//include(__DIR__.'/mymenu.php');
 
 $sql = "SELECT id , code , smile_url , emotion , display FROM ".$db->prefix("smiles")." ORDER BY id" ;
 $result = $db->query($sql) ;
@@ -192,7 +192,7 @@ echo "
         <th>"._AM_AVAMAN_TH_CODE."</th>
         <th>"._AM_AVAMAN_TH_EMOTION."</th>
         <th>"._AM_AVAMAN_TH_SMILEDISPLAY."</th>
-        <th>"._AM_AVAMAN_TH_DELETE."<input type='checkbox' name='selectall' onclick=\"with(document.avaman_list){for(i=0;i<length;i++){if(elements[i].type=='checkbox'&&elements[i].disabled==false&&elements[i].name.indexOf('deletes')>=0){elements[i].checked=this.checked;}}}\" title='"._AM_AVAMAN_CB_SELECTALL."' /></th>
+        <th>"._AM_AVAMAN_TH_DELETE."<input type='checkbox' name='selectall' onclick=\"with(document.avaman_list){for (i=0;i<length;i++) {if(elements[i].type=='checkbox'&&elements[i].disabled==false&&elements[i].name.indexOf('deletes')>=0) {elements[i].checked=this.checked;}}}\" title='"._AM_AVAMAN_CB_SELECTALL."' /></th>
     </tr>\n" ;
 
 while (list($smiles_id, $code, $file, $emotion, $display) = $db->fetchRow($result)) {
@@ -215,4 +215,4 @@ echo "
 </form>
 " ;
 
-include "admin_footer.php";
+include_once __DIR__ . '/admin_footer.php';

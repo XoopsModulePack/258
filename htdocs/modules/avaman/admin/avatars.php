@@ -12,7 +12,7 @@
 /**
  * Avaman module
  *
- * @copyright    The XOOPS Project (http://www.xoops.org)
+ * @copyright    XOOPS Project (http://xoops.org)
  * @license   {@link http://www.gnu.org/licenses/gpl-2.0.html GNU Public License}
  * @package    Avaman
  * @since      2.5.0
@@ -52,8 +52,8 @@ if (! empty($_POST['modify_avatars'])) {
     $avatar_ids = array() ;
     if (is_array(@$_POST['avatar_names'])) {
         foreach ($_POST['avatar_names'] as $avatar_id => $avatar_name) {
-            $avatar_id = intval($avatar_id) ;
-            $db->query("UPDATE ".$db->prefix("avatar")." SET avatar_name='".$myts->addSlashes($avatar_name)."' WHERE avatar_id=".intval($avatar_id)) ;
+            $avatar_id = (int)($avatar_id) ;
+            $db->query("UPDATE ".$db->prefix("avatar")." SET avatar_name='".$myts->addSlashes($avatar_name)."' WHERE avatar_id=".(int)($avatar_id)) ;
             $avatar_ids[] = $avatar_id ;
         }
     }
@@ -69,7 +69,7 @@ if (! empty($_POST['modify_avatars'])) {
 
     // weight
     foreach ($avatar_ids as $avatar_id) {
-        $db->query("UPDATE ".$db->prefix("avatar")." SET avatar_weight='".intval(@$_POST['avatar_weights'][$avatar_id])."' WHERE avatar_id=$avatar_id") ;
+        $db->query("UPDATE ".$db->prefix("avatar")." SET avatar_weight='".(int)(@$_POST['avatar_weights'][$avatar_id])."' WHERE avatar_id=$avatar_id") ;
     }
 
     // delete
@@ -81,7 +81,7 @@ if (! empty($_POST['modify_avatars'])) {
                 if ($users > 0) {
                     continue ;
                 }
-                if (strstr($file, '..')) {
+                if (false !== strpos($file, '..')) {
                     die('.. found.') ;
                 }
                 @unlink(XOOPS_UPLOAD_PATH . '/' . $file) ;
@@ -212,7 +212,7 @@ while (list($avatar_id, $avatar_file, $avatar_name, $avatar_created, $avatar_dis
         <td class='$evenodd' align='center'> ".formatTimestamp($avatar_created)."</td>
         <td class='$evenodd' align='center'><input type='checkbox' name='avatar_displays[$avatar_id]' ".($avatar_display?"checked='checked'":"")." /></td>
         <td class='$evenodd' align='center'><input type='text' size='4' name='avatar_weights[$avatar_id]' value='$avatar_weight' style='text-align:right;' /></td>
-        <td class='$evenodd' align='center'>".intval($avatar_users)."</td>
+        <td class='$evenodd' align='center'>".(int)($avatar_users)."</td>
         <td class='$evenodd' align='center'><input type='checkbox' name='avatar_deletes[$avatar_id]' $delete_disabled /></td>
     </tr>\n" ;
 }

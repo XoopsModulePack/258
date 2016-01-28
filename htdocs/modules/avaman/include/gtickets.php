@@ -5,7 +5,6 @@
 if (! class_exists('XoopsGTicket')) {
     class XoopsGTicket
     {
-
         public $_errors = array() ;
         public $_latest_token = '' ;
 
@@ -55,7 +54,7 @@ if (! class_exists('XoopsGTicket')) {
         }
 
         // limit max stubs 10
-        if (sizeof($_SESSION['XOOPS_G_STUBS']) > 10) {
+        if (count($_SESSION['XOOPS_G_STUBS']) > 10) {
             $_SESSION['XOOPS_G_STUBS'] = array_slice($_SESSION['XOOPS_G_STUBS'], -10) ;
         }
 
@@ -151,11 +150,11 @@ if (! class_exists('XoopsGTicket')) {
         if (@$found_stub['area'] == $area) {
             $area_check = true ;
         }
-        if (! empty($found_stub['referer']) && strstr(@$_SERVER['HTTP_REFERER'], $found_stub['referer'])) {
+        if (! empty($found_stub['referer']) && true === strpos(@$_SERVER['HTTP_REFERER'], $found_stub['referer'])) {
             $referer_check = true ;
         }
 
-        // if( empty( $area_check ) || empty( $referer_check ) ) { // restrict
+        // if ( empty( $area_check ) || empty( $referer_check ) ) { // restrict
         if (empty($area_check) && empty($referer_check)) { // loose
             $this->clear() ;
             $this->_errors[] = 'Invalid area or referer' ;
