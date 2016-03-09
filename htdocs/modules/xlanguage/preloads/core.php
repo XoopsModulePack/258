@@ -29,7 +29,7 @@ class XlanguageCorePreload extends XoopsPreloadItem
     /**
      * @param $args
      */
-    public function eventCoreIncludeCommonLanguage($args)
+    public static function eventCoreIncludeCommonLanguage($args)
     {
         if (XlanguageCorePreload::isActive()) {
             global $xoopsConfig;
@@ -40,11 +40,11 @@ class XlanguageCorePreload extends XoopsPreloadItem
     /**
      * @return bool
      */
-    public function isActive()
+    public static function isActive()
     {
-        $module_handler =& xoops_getHandler('module');
+        $module_handler = xoops_getHandler('module');
         $module = $module_handler->getByDirname('xlanguage');
 
-        return ($module && $module->getVar('isactive')) ? true : false;
+        return ($module && $module->getVar('isactive'));
     }
 }
