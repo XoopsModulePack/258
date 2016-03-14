@@ -211,7 +211,7 @@ define('_MI_NEWBB_INSTALL_FORUM_NAME', 'Forum Test');
 define('_MI_NEWBB_INSTALL_FORUM_DESC', 'Forum for test.');
 define('_MI_NEWBB_INSTALL_POST_SUBJECT', 'Congratulations! The forum is working.');
 define('_MI_NEWBB_INSTALL_POST_TEXT', '
-    Welcome to ' . (htmlspecialchars($GLOBALS['xoopsConfig']['sitename'], ENT_QUOTES)) . ' forum.
+    Welcome to ' . htmlspecialchars($GLOBALS['xoopsConfig']['sitename'], ENT_QUOTES) . ' forum.
     Feel free to register and login to start your topics.
 
     If you have any question concerning NewBB usage, plz visit your local support site or [url=http://xoops.org/modules/newbb/]XOOPS Support Site[/url].
@@ -249,4 +249,3 @@ define('_MI_USERATTACH_ENABLE', 'Display attachments only for registered users')
 define('_MI_USERATTACH_DESC', 'shows attachments in the forum only after logging in.');
 // 4.3
 define('_MI_NEWBB_BLOCK_LIST_TOPIC', 'Render a list of topics');// irmtfan
-

@@ -17,7 +17,7 @@
                 <{$sforum.forum_desc}>
                 <{if $sforum.forum_moderators}>
                     <br/>
-                    <span class="extra"><{$smarty.const._MD_MODERATOR}>:&nbsp;</strong><{$sforum.forum_moderators}>
+                    <span class="extra"><{$smarty.const._MD_MODERATOR}>:&nbsp;</span><{$sforum.forum_moderators}>
                 <{/if}>
             </div>
            </div>

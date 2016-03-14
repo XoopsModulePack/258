@@ -5,7 +5,7 @@
 /**
  * Class IpCheck
  */
-class ipcheck
+class IpCheck
 {
     public $ipin;
     public $ipout;
@@ -17,7 +17,7 @@ class ipcheck
      */
     public function address_type($ipValue)
     {
-        $this->ipin = $ipValue;
+        $this->ipin  = $ipValue;
         $this->ipver = 0;
 
         // IPv4 addresses are easy-peasy

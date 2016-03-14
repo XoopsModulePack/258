@@ -35,7 +35,7 @@ include_once $GLOBALS['xoops']->path('class/xoopstree.php');
 /**
  * Class Newbbtree
  */
-class newbbtree extends XoopsTree
+class Newbbtree extends XoopsTree
 {
     public $prefix    = '&nbsp;&nbsp;';
     public $increment = '&nbsp;&nbsp;';
@@ -46,9 +46,9 @@ class newbbtree extends XoopsTree
      * @param string $id_name
      * @param string $pid_name
      */
-    public function NewBBTree($table_name, $id_name = 'post_id', $pid_name = 'pid')
+    public function __construct($table_name, $id_name = 'post_id', $pid_name = 'pid')
     {
-        $this->XoopsTree($table_name, $id_name, $pid_name);
+        parent::__construct($table_name, $id_name, $pid_name);
     }
 
     /**
@@ -74,13 +74,13 @@ class newbbtree extends XoopsTree
      */
     public function setPostArray($postArray)
     {
-        $this->postArray = &$postArray;
+        $this->postArray = $postArray;
     }
 
     // returns an array of first child objects for a given id($sel_id)
     /**
      * @param         $postTree_array
-     * @param  int    $pid
+     * @param  int $pid
      * @param  string $prefix
      * @return bool
      */

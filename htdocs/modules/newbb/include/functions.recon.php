@@ -28,7 +28,7 @@ if (!defined('NEWBB_FUNCTIONS_RECON')) {
         $type     = array();
         $type     = empty($type) ? $allTypes : (is_array($type) ? $type : array($type));
         foreach ($type as $item) {
-            $handler = &xoops_getmodulehandler($item, 'newbb');
+            $handler = xoops_getModuleHandler($item, 'newbb');
             if ($item !== 'stats') {
                 $handler->synchronization();
             } else {
