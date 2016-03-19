@@ -582,11 +582,7 @@ class Timthumb
      */
     protected function haveErrors()
     {
-        if (count($this->errors) > 0) {
-            return true;
-        }
-
-        return false;
+        return count($this->errors) > 0;
     }
 
     protected function serveErrors()
@@ -1537,10 +1533,9 @@ class Timthumb
             $img = @file_get_contents($url);
             if ($img === false) {
                 $err = error_get_last();
+                $this->lastURLError = $err;
                 if (is_array($err) && $err['message']) {
                     $this->lastURLError = $err['message'];
-                } else {
-                    $this->lastURLError = $err;
                 }
                 if (false !== strpos($this->lastURLError, '404')) {
                     $this->set404();

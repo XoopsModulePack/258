@@ -34,7 +34,7 @@ if (function_exists('mb_http_output')) {
 $categoryid = XoopsRequest::getInt('categoryid', -1, 'GET');
 
 if ($categoryid != -1) {
-    $categoryObj =& $publisher->getHandler('category')->get($categoryid);
+    $categoryObj = $publisher->getHandler('category')->get($categoryid);
 }
 
 header('Content-Type:text/xml; charset=' . _CHARSET);
@@ -79,7 +79,7 @@ if (!$tpl->is_cached('db:publisher_rss.tpl')) {
     }
     $tpl->assign('image_width', $width);
     $tpl->assign('image_height', $height);
-    $sarray =& $publisher->getHandler('item')->getAllPublished(10, 0, $categoryid);
+    $sarray = $publisher->getHandler('item')->getAllPublished(10, 0, $categoryid);
     if (!empty($sarray) && is_array($sarray)) {
         $count = $sarray;
         foreach ($sarray as $item) {
