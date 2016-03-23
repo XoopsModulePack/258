@@ -10,7 +10,6 @@ include XOOPS_ROOT_PATH . '/modules/extcal/class/form/formrrulecheckbox.php';
  */
 class ExtcalThemeForm extends XoopsThemeForm
 {
-
     /**
      * create HTML to output the form as a theme-enabled table with validation.
      *

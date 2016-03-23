@@ -14,9 +14,12 @@ class TestOfUtilUri extends UnitTestCase
 {
     public $MockCal;
 
-    public function TestOfUtilUri()
+    /**
+     * TestOfUtilUri constructor.
+     */
+    public function __construct()
     {
-        $this->UnitTestCase('Test of Calendar_Util_Uri');
+        parent::__construct('Test of Calendar_Util_Uri');
     }
 
     public function setUp()
@@ -29,28 +32,21 @@ class TestOfUtilUri extends UnitTestCase
     {
         $Uri = new Calendar_Util_Uri('y', 'm', 'd', 'h', 'm', 's');
         $Uri->setFragments('year', 'month', 'day', 'hour', 'minute', 'second');
-        $this->assertEqual(
-            'year=&amp;month=&amp;day=&amp;hour=&amp;minute=&amp;second=',
-            $Uri->this($this->MockCal, 'second')
-        );
+        $this->assertEqual('year=&amp;month=&amp;day=&amp;hour=&amp;minute=&amp;second=', $Uri->this($this->MockCal, 'second'));
     }
+
     public function testScalarFragments()
     {
-        $Uri = new Calendar_Util_Uri('year', 'month', 'day', 'hour', 'minute', 'second');
+        $Uri         = new Calendar_Util_Uri('year', 'month', 'day', 'hour', 'minute', 'second');
         $Uri->scalar = true;
-        $this->assertEqual(
-            '&amp;&amp;&amp;&amp;&amp;',
-            $Uri->this($this->MockCal, 'second')
-        );
+        $this->assertEqual('&amp;&amp;&amp;&amp;&amp;', $Uri->this($this->MockCal, 'second'));
     }
+
     public function testSetSeperator()
     {
-        $Uri = new Calendar_Util_Uri('year', 'month', 'day', 'hour', 'minute', 'second');
+        $Uri            = new Calendar_Util_Uri('year', 'month', 'day', 'hour', 'minute', 'second');
         $Uri->separator = '/';
-        $this->assertEqual(
-            'year=/month=/day=/hour=/minute=/second=',
-            $Uri->this($this->MockCal, 'second')
-        );
+        $this->assertEqual('year=/month=/day=/hour=/minute=/second=', $Uri->this($this->MockCal, 'second'));
     }
 }
 

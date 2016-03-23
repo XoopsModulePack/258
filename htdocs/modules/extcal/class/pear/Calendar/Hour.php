@@ -47,7 +47,7 @@ if (!defined('CALENDAR_ROOT')) {
 /**
  * Load Calendar base class
  */
-require_once CALENDAR_ROOT.'Calendar.php';
+require_once CALENDAR_ROOT . 'Calendar.php';
 
 /**
  * Represents an Hour and builds Minutes
@@ -55,7 +55,7 @@ require_once CALENDAR_ROOT.'Calendar.php';
  * require_once 'Calendar/Hour.php';
  * $Hour = new Calendar_Hour(2003, 10, 21, 15); // Oct 21st 2003, 3pm
  * $Hour->build(); // Build Calendar_Minute objects
- * while ($Minute = & $Hour->fetch()) {
+ * while ($Minute = $Hour->fetch()) {
  *     echo $Minute->thisMinute().'<br />';
  * }
  * </code>
@@ -80,9 +80,9 @@ class Calendar_Hour extends Calendar
      *
      * @access public
      */
-    public function Calendar_Hour($y, $m, $d, $h)
+    public function __construct($y, $m, $d, $h)
     {
-        parent::Calendar($y, $m, $d, $h);
+        parent::__construct($y, $m, $d, $h);
     }
 
     /**
@@ -95,13 +95,10 @@ class Calendar_Hour extends Calendar
      */
     public function build($sDates = array())
     {
-        include_once CALENDAR_ROOT.'Minute.php';
-        $mIH = $this->cE->getMinutesInHour($this->year, $this->month, $this->day,
-                           $this->hour);
-        for ($i=0; $i < $mIH; ++$i) {
-            $this->children[$i] =
-                new Calendar_Minute($this->year, $this->month, $this->day,
-                           $this->hour, $i);
+        include_once CALENDAR_ROOT . 'Minute.php';
+        $mIH = $this->cE->getMinutesInHour($this->year, $this->month, $this->day, $this->hour);
+        for ($i = 0; $i < $mIH; ++$i) {
+            $this->children[$i] = new Calendar_Minute($this->year, $this->month, $this->day, $this->hour, $i);
         }
         if (count($sDates) > 0) {
             $this->setSelection($sDates);
@@ -121,11 +118,8 @@ class Calendar_Hour extends Calendar
     public function setSelection($sDates)
     {
         foreach ($sDates as $sDate) {
-            if ($this->year == $sDate->thisYear()
-                && $this->month == $sDate->thisMonth()
-                && $this->day == $sDate->thisDay()
-                && $this->hour == $sDate->thisHour()) {
-                $key = (int) $sDate->thisMinute();
+            if ($this->year == $sDate->thisYear() && $this->month == $sDate->thisMonth() && $this->day == $sDate->thisDay() && $this->hour == $sDate->thisHour()) {
+                $key = (int)$sDate->thisMinute();
                 if (isset($this->children[$key])) {
                     $sDate->setSelected();
                     $this->children[$key] = $sDate;

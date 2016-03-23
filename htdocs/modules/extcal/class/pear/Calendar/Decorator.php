@@ -45,8 +45,8 @@
  * {
  *     function thisDay($format = 'int')
  *     {
-.*         $day = parent::thisDay('timestamp');
-.*         return date('D', $day);
+ * .*         $day = parent::thisDay('timestamp');
+ * .*         return date('D', $day);
  *     }
  * }
  * $Day = new Calendar_Day(2003, 10, 25);
@@ -76,9 +76,9 @@ class Calendar_Decorator
      *
      * @param object &$calendar subclass to Calendar to decorate
      */
-    public function Calendar_Decorator(&$calendar)
+    public function __construct(&$calendar)
     {
-        $this->calendar = & $calendar;
+        $this->calendar =& $calendar;
     }
 
     /**
@@ -104,7 +104,7 @@ class Calendar_Decorator
      */
     public function getTimestamp()
     {
-        return $this->calendar->getTimeStamp();
+        return $this->calendar->getTimestamp();
     }
 
     /**
@@ -158,10 +158,10 @@ class Calendar_Decorator
     /**
      * Returns the value as an associative array (helper method)
      *
-     * @param string  $returnType type of date object that return value represents
-     * @param string  $format     ['int'|'timestamp'|'object'|'array']
-     * @param mixed   $stamp      timestamp (depending on Calendar engine being used)
-     * @param integer $default    default value (i.e. give me the answer quick)
+     * @param string $returnType type of date object that return value represents
+     * @param string $format     ['int'|'timestamp'|'object'|'array']
+     * @param mixed $stamp       timestamp (depending on Calendar engine being used)
+     * @param integer $default   default value (i.e. give me the answer quick)
      *
      * @return mixed
      * @access private
@@ -395,7 +395,7 @@ class Calendar_Decorator
      *
      * @return int e.g. 4 or Unix timestamp
      * @access public
-      */
+     */
     public function prevMonth($format = 'int')
     {
         return $this->calendar->prevMonth($format);
@@ -434,17 +434,14 @@ class Calendar_Decorator
      *
      * @return int e.g. 4 or Unix timestamp
      * @access public
-      */
+     */
     public function prevWeek($format = 'n_in_month')
     {
         if (method_exists($this->calendar, 'prevWeek')) {
             return $this->calendar->prevWeek($format);
         } else {
             include_once 'PEAR.php';
-            PEAR::raiseError(
-                'Cannot call prevWeek on Calendar object of type: '.
-                get_class($this->calendar), 133, PEAR_ERROR_TRIGGER,
-                E_USER_NOTICE, 'Calendar_Decorator::prevWeek()');
+            PEAR::raiseError('Cannot call prevWeek on Calendar object of type: ' . get_class($this->calendar), 133, PEAR_ERROR_TRIGGER, E_USER_NOTICE, 'Calendar_Decorator::prevWeek()');
 
             return false;
         }
@@ -464,10 +461,7 @@ class Calendar_Decorator
             return $this->calendar->thisWeek($format);
         } else {
             include_once 'PEAR.php';
-            PEAR::raiseError(
-                'Cannot call thisWeek on Calendar object of type: '.
-                get_class($this->calendar), 133, PEAR_ERROR_TRIGGER,
-                E_USER_NOTICE, 'Calendar_Decorator::thisWeek()');
+            PEAR::raiseError('Cannot call thisWeek on Calendar object of type: ' . get_class($this->calendar), 133, PEAR_ERROR_TRIGGER, E_USER_NOTICE, 'Calendar_Decorator::thisWeek()');
 
             return false;
         }
@@ -487,10 +481,7 @@ class Calendar_Decorator
             return $this->calendar->nextWeek($format);
         } else {
             include_once 'PEAR.php';
-            PEAR::raiseError(
-                'Cannot call thisWeek on Calendar object of type: '.
-                get_class($this->calendar), 133, PEAR_ERROR_TRIGGER,
-                E_USER_NOTICE, 'Calendar_Decorator::nextWeek()');
+            PEAR::raiseError('Cannot call thisWeek on Calendar object of type: ' . get_class($this->calendar), 133, PEAR_ERROR_TRIGGER, E_USER_NOTICE, 'Calendar_Decorator::nextWeek()');
 
             return false;
         }

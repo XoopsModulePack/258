@@ -3,7 +3,7 @@
 /**
  * Class ColorTools
  */
-class colorTools
+class ColorTools
 {
     /**
      *
@@ -30,18 +30,8 @@ class colorTools
      *
      * @return string
      */
-    public function modifierCouleur(
-        $colorHexa,
-        $incrementRouge,
-        $incrementVert,
-        $incrementBleu,
-        $plancherRouge = 0,
-        $plafondRouge = 255,
-        $plancherVert = 0,
-        $plafondVert = 255,
-        $plancherBleu = 0,
-        $plafondBleu = 255
-    ) {
+    public function modifierCouleur($colorHexa, $incrementRouge, $incrementVert, $incrementBleu, $plancherRouge = 0, $plafondRouge = 255, $plancherVert = 0, $plafondVert = 255, $plancherBleu = 0, $plafondBleu = 255)
+    {
         $t10 = ColorTools::hexa2rgbA($colorHexa);
 
         $t10[1] = ColorTools::bornerValeur($t10[1] + $incrementRouge, $plancherRouge, $plafondRouge);
@@ -62,15 +52,15 @@ class colorTools
      * @param int $plancher
      * @param int $plafond
      * @return string
-*/
-    public function eclaircir($colorHexa, $plancher = 0, $plafond = 255)
+     */
+    public static function eclaircir($colorHexa, $plancher = 0, $plafond = 255)
     {
         $tMin = array('', $plancher, $plancher, $plancher);
         $tMax = array('', $plafond, $plafond, $plafond);
 
         $t10 = ColorTools::hexa2rgbA($colorHexa);
-// echo "<hr>";
-// ext_echoArray($t10);
+        // echo "<hr>";
+        // ext_echoArray($t10);
         $max = $plancher;
         for ($h = 1; $h <= 3; ++$h) {
             if ($max < $t10[$h]) {
@@ -80,29 +70,29 @@ class colorTools
 
         $increment = $plafond - $max;
 
-//     $t10[1] = $t10[1] + $increment;
-//     $t10[2] = $t10[2] + $increment;
-//     $t10[3] = $t10[3] + $increment;
+        //     $t10[1] = $t10[1] + $increment;
+        //     $t10[2] = $t10[2] + $increment;
+        //     $t10[3] = $t10[3] + $increment;
 
         $min = 0;
         for ($h = 1; $h <= 3; ++$h) {
-            $t10[$h] = $t10[$h] + $increment;
+            $t10[$h] += $increment;
             if ($t10[$h] < $tMin[$h] && $min < ($tMin[$h] - $t10[$h])) {
                 $min = ($tMin[$h] - $t10[$h]);
             }
         }
 
-// echo "{$colorHexa}-{$plancher}-{$plafond}<br>";
-// echo "{$min}-{$max}-{$increment}<br>";
+        // echo "{$colorHexa}-{$plancher}-{$plafond}<br>";
+        // echo "{$min}-{$max}-{$increment}<br>";
 
         $t10[1] = ColorTools::bornerValeur($t10[1] + $min, $plancher, $plafond);
         $t10[2] = ColorTools::bornerValeur($t10[2] + $min, $plancher, $plafond);
         $t10[3] = ColorTools::bornerValeur($t10[3] + $min, $plancher, $plafond);
 
-// ext_echoArray($t10);
+        // ext_echoArray($t10);
 
         $newColorHexa = ColorTools::getHexaColorFromA($t10);
-// echo "colorHexa = {$newColorHexa}-{$colorHexa}<br>";
+        // echo "colorHexa = {$newColorHexa}-{$colorHexa}<br>";
         return $newColorHexa;
     }
 
@@ -115,7 +105,7 @@ class colorTools
      * @param int $plancher
      * @param int $plafond
      * @return string
-*/
+     */
     public function foncer($colorHexa, $plancher = 0, $plafond = 255)
     {
         $tMin = array('', $plancher, $plancher, $plancher);
@@ -132,13 +122,13 @@ class colorTools
 
         $increment = -$max;
 
-//     $t10[1] = $t10[1] + $increment;
-//     $t10[2] = $t10[2] + $increment;
-//     $t10[3] = $t10[3] + $increment;
+        //     $t10[1] = $t10[1] + $increment;
+        //     $t10[2] = $t10[2] + $increment;
+        //     $t10[3] = $t10[3] + $increment;
 
         $min = 0;
         for ($h = 1; $h <= 3; ++$h) {
-            $t10[$h] = $t10[$h] + $increment;
+            $t10[$h] += $increment;
             if ($t10[$h] > $tMax[$h] && $min < ($t10[$h] - $tMax[$h])) {
                 $min = ($t10[$h] - $tMax[$h]);
             }
@@ -163,10 +153,10 @@ class colorTools
      **************************************************************
      * @param $aColors
      * @return string
-*/
+     */
     public function getHexaColorFromA($aColors)
     {
-        $tHex = array("", "", "", "");
+        $tHex = array('', '', '', '');
 
         $tHex[0] = $aColors[0];
         $tHex[1] = substr('00' . dechex($aColors[1]), -2);
@@ -187,7 +177,7 @@ class colorTools
      * @param        $b
      * @param string $prefixe
      * @return string
-*/
+     */
     public function rgb2hexa($r, $g, $b, $prefixe = '')
     {
         $colorHexa = ColorTools::getHexaColorFromA(array($prefixe, $r, $g, $b));
@@ -205,12 +195,12 @@ class colorTools
      **************************************************************
      * @param $colorHexa
      * @return array
-*/
+     */
     public function hexa2rgbA($colorHexa)
     {
-        $t = array("", "", "", "");
+        $t = array('', '', '', '');
 
-        if (substr($colorHexa, 0, 1) == '#') {
+        if (0 === strpos($colorHexa, '#')) {
             $t[0]      = '#';
             $offsetCar = 1;
         } else {
@@ -234,7 +224,7 @@ class colorTools
      * @param $b
      * @param $diese
      * @return bool
-*/
+     */
     public function hexa2rgb($colorHexa, &$r, &$v, &$b, &$diese)
     {
         $t     = ColorTools::hexa2rgbA($colorHexa);
@@ -252,8 +242,8 @@ class colorTools
      * @param $val
      * @param $min
      * @param $max
-     * @return
-*/
+     * @return mixed
+     */
     public function bornerValeur($val, $min, $max)
     {
         if ($val < $min) {
@@ -265,7 +255,7 @@ class colorTools
         return $val;
     }
 
-//--------------------------------------------------------
+    //--------------------------------------------------------
 } // --- fin de la classe colors
 //--------------------------------------------------------
 

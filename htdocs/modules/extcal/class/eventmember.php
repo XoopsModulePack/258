@@ -1,6 +1,6 @@
 <?php
 
-// defined("XOOPS_ROOT_PATH") || exit("XOOPS root path not defined");
+// defined('XOOPS_ROOT_PATH') || exit('XOOPS root path not defined');
 
 include_once XOOPS_ROOT_PATH . '/modules/extcal/class/ExtcalPersistableObjectHandler.php';
 
@@ -10,6 +10,9 @@ include_once XOOPS_ROOT_PATH . '/modules/extcal/class/ExtcalPersistableObjectHan
 class ExtcalEventmember extends XoopsObject
 {
 
+    /**
+     * ExtcalEventmember constructor.
+     */
     public function __construct()
     {
         $this->initVar('eventmember_id', XOBJ_DTYPE_INT, null, false);
@@ -27,7 +30,7 @@ class ExtcalEventmemberHandler extends ExtcalPersistableObjectHandler
     /**
      * @param $db
      */
-    public function __construct(&$db)
+    public function __construct(XoopsDatabase $db)
     {
         parent::__construct($db, 'extcal_eventmember', _EXTCAL_CLN_MEMBER, array('event_id', 'uid'));
     }
@@ -40,7 +43,7 @@ class ExtcalEventmemberHandler extends ExtcalPersistableObjectHandler
         $eventmember = $this->create();
         $eventmember->setVars($varArr);
         if ($this->insert($eventmember, true)) {
-            $eventNotMemberHandler = xoops_getmodulehandler(_EXTCAL_CLS_NOT_MEMBER, _EXTCAL_MODULE);
+            $eventNotMemberHandler = xoops_getModuleHandler(_EXTCAL_CLS_NOT_MEMBER, _EXTCAL_MODULE);
             $eventNotMemberHandler->delete(array($varArr['event_id'], $varArr['uid']));
         }
     }
@@ -62,15 +65,13 @@ class ExtcalEventmemberHandler extends ExtcalPersistableObjectHandler
      */
     public function getMembers($eventId)
     {
-        $memberHandler = xoops_gethandler('member');
-        $eventMember   = $this->getObjects(new Criteria('event_id', $eventId));
+        $memberHandler = xoops_getHandler('member');
+        $eventMember   =& $this->getObjects(new Criteria('event_id', $eventId));
         $count         = count($eventMember);
         if ($count > 0) {
             $in = '(' . $eventMember[0]->getVar('uid');
             array_shift($eventMember);
-            foreach (
-                $eventMember as $member
-            ) {
+            foreach ($eventMember as $member) {
                 $in .= ',' . $member->getVar('uid');
             }
             $in .= ')';

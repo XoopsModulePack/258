@@ -9,14 +9,13 @@
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  *
- * @copyright   The XOOPS Project http://sourceforge.net/projects/xoops/
+ * @copyright           XOOPS Project (http://xoops.org)
  * @license             http://www.fsf.org/copyleft/gpl.html GNU public license
- * @package extcal
- * @since       2.2
- * @author      JJDai <http://xoops.kiolo.com>
- * @version     $Id$
-**/
-
+ * @package             extcal
+ * @since               2.2
+ * @author              JJDai <http://xoops.kiolo.com>
+ * @version             $Id$
+ **/
 //----------------------------------------------------
 class extcal_2_37
 {
@@ -33,33 +32,34 @@ class extcal_2_37
         $this->alterTable_event();
         $this->alterTable_cat();
     }
-//----------------------------------------------------
-public function alterTable_event()
-{
-    global $xoopsDB;
-    $tbl = $xoopsDB->prefix('extcal_event');
 
-    $sql = <<<__sql__
+    //----------------------------------------------------
+    public function alterTable_event()
+    {
+        global $xoopsDB;
+        $tbl = $xoopsDB->prefix('extcal_event');
+
+        $sql = <<<__sql__
 ALTER TABLE `{$tbl}` ADD `event_icone` VARCHAR(50) NOT NULL;
 __sql__;
 
-    $xoopsDB->queryF($sql);
-}
+        $xoopsDB->queryF($sql);
+    }
 
-//-----------------------------------------------------------------
+    //-----------------------------------------------------------------
 
-public function alterTable_cat()
-{
-    global $xoopsDB;
-    $tbl = $xoopsDB->prefix('extcal_cat');
+    public function alterTable_cat()
+    {
+        global $xoopsDB;
+        $tbl = $xoopsDB->prefix('extcal_cat');
 
-    $sql = <<<__sql__
+        $sql = <<<__sql__
 ALTER TABLE `{$tbl}` ADD `cat_icone` VARCHAR(50) NOT NULL ;
 __sql__;
 
-    $xoopsDB->queryF($sql);
-}
+        $xoopsDB->queryF($sql);
+    }
 
-//-----------------------------------------------------------------
+    //-----------------------------------------------------------------
 }   // fin de la classe
 

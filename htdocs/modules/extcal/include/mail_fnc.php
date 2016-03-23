@@ -17,7 +17,7 @@
  **/
 
 include_once(XOOPS_ROOT_PATH . '/class/uploader.php');
-require(XOOPS_ROOT_PATH . "/class/mail/phpmailer/class.phpmailer.php"); // First we require the PHPMailer libary in our script
+require(XOOPS_ROOT_PATH . '/class/mail/phpmailer/class.phpmailer.php'); // First we require the PHPMailer libary in our script
 include_once(XOOPS_ROOT_PATH . '/modules/extcal/include/functions.php');
 include_once(XOOPS_ROOT_PATH . '/modules/extcal/include/constantes.php');
 include_once(XOOPS_ROOT_PATH . '/class/template.php');
@@ -34,12 +34,12 @@ include_once(XOOPS_ROOT_PATH . '/class/template.php');
 function sendMail2member($mode, $event_id, $member_uid, $subject, $tplMessage)
 {
     //mode = 0 pas d'entete
-//mode = 1 format text
-//mode = 2: format html
+    //mode = 1 format text
+    //mode = 2: format html
 
     global $xoopsConfig, $xoopsDB;
-// $t = print_r($xoopsConfig, true);
-// echo "<pre>{$t}</pre>";
+    // $t = print_r($xoopsConfig, true);
+    // echo "<pre>{$t}</pre>";
     /*
     $member_uid = 1;
     $event_id = 393;
@@ -51,7 +51,7 @@ function sendMail2member($mode, $event_id, $member_uid, $subject, $tplMessage)
 
     //l'utilisateur ne pas etre notifié par mail
     //if ($mode == 0) exit;
-//-------------------------------------------------------
+    //-------------------------------------------------------
     $tblMember    = $xoopsDB->prefix('extcal_eventmember');
     $tblNotMember = $xoopsDB->prefix('extcal_eventnotmember');
     $tblUsers     = $xoopsDB->prefix('users');
@@ -60,17 +60,16 @@ function sendMail2member($mode, $event_id, $member_uid, $subject, $tplMessage)
     //--------------------------------------------------------------
     //Recuperation des données event,user et member
     //Recuperation des données de l'evennement
-    $eventHandler = xoops_getmodulehandler(_EXTCAL_CLS_EVENT, _EXTCAL_MODULE);
+    $eventHandler = xoops_getModuleHandler(_EXTCAL_CLS_EVENT, _EXTCAL_MODULE);
     $obj          = $eventHandler->getEvent($event_id);
     $event        = $eventHandler->objectToArray($obj);
     $eventHandler->formatEventDate($event, _MD_EXTCAL_FORMAT_DATE);
 
     $submiter_uid = $event['event_submitter'];
-// ext_echoArray($event,'event');
+    // ext_echoArray($event,'event');
     //--------------------------------------------------------------
     //Recuperation des données du user createur de l'evennement
-    $sql
-        = <<<__sql__
+    $sql = <<<__sql__
   SELECT if(tu.name='', tu.uname, tu.name) AS name,     tu.uname,   tu.email
   FROM {$tblUsers} tu
   WHERE tu.uid = {$submiter_uid};
@@ -78,12 +77,11 @@ __sql__;
 
     $rst      = $xoopsDB->query($sql);
     $submiter = $xoopsDB->fetchArray($rst);
-// echo "{$sql}<br>";
-// ext_echoArray($submiter,'submiter');
+    // echo "{$sql}<br>";
+    // ext_echoArray($submiter,'submiter');
     //--------------------------------------------------------------
     //Recuperation des données du membre inscrit
-    $sql
-        = <<<__sql__
+    $sql = <<<__sql__
   SELECT if(tu.name='', tu.uname, tu.name) AS name,     tu.uname,   tu.email
   FROM {$tblUsers} tu
   WHERE tu.uid = {$member_uid};
@@ -91,12 +89,11 @@ __sql__;
 
     $rst    = $xoopsDB->query($sql);
     $acteur = $xoopsDB->fetchArray($rst);
-//echo "{$sql}<br>";
-// ext_echoArray($acteur,'acteur');
+    //echo "{$sql}<br>";
+    // ext_echoArray($acteur,'acteur');
     //--------------------------------------------------------------
     //Recuperation des données des membres présents
-    $sql
-        = <<<__sql__
+    $sql = <<<__sql__
 SELECT tu.uid, if(tu.name='', tu.uname, tu.name) AS name,   tu.uname,   tu.email,
         tm.status
 FROM {$tblMember} tm,
@@ -114,8 +111,7 @@ __sql__;
 
     //--------------------------------------------------------------
     //Recuperation des données des membres absents
-    $sql
-        = <<<__sql__
+    $sql = <<<__sql__
 SELECT tu.uid, if(tu.name='', tu.uname, tu.name) AS name,   tu.uname,   tu.email,
         tm.status
 FROM {$tblNotMember} tm,
@@ -130,12 +126,12 @@ __sql__;
         $members[$row['uid']] = $row;
     }
 
-// ext_echoArray($members,'members');
-// exit;
+    // ext_echoArray($members,'members');
+    // exit;
 
     //--------------------------------------------------------------
     //Message et sujet du mail
-    $action  = ""; //a voir   JJD
+    $action  = ''; //a voir   JJD
     $message = sprintf($tplMessage, $acteur['name']);
     //$subject .= ' (' . rand(1, 100) . ')';
     $subject .= ' - ' . $acteur['name'];
@@ -164,8 +160,8 @@ __sql__;
         $destinataires[$row['email']] = $row['email'];
     }
 
-// ext_echoArray($destinataires);
-// exit;
+    // ext_echoArray($destinataires);
+    // exit;
 
     $mail_fromName  = $xoopsConfig['sitename'];
     $mail_fromemail = $xoopsConfig['adminmail'];
@@ -175,23 +171,13 @@ __sql__;
     $mode  = _EXTCAL_HEADER_HTML;
     $sep   = '|';
 
+    $template = 'extcal_mail_member_text.tpl';
     if ($mode == _EXTCAL_HEADER_HTML) {
         $template = 'extcal_mail_member_html.tpl';
-    } else {
-        $template = 'extcal_mail_member_text.tpl';
     }
     $mail_body = $tpl->fetch('db:' . $template);
 
-    extcal_SendMail(
-        $destinataires,
-        $mail_fromName,
-        $mail_fromemail,
-        $mail_subject,
-        $mail_body,
-        $bEcho = false,
-        $mode = 0,
-        $sep = '|'
-    );
+    extcal_SendMail($destinataires, $mail_fromName, $mail_fromemail, $mail_subject, $mail_body, $bEcho = false, $mode = 0, $sep = '|');
 
     //Prépartion de l'envoi
 
@@ -205,20 +191,12 @@ __sql__;
  * @param        $mail_fromemail
  * @param        $mail_subject
  * @param        $mail_body
- * @param bool   $bEcho
- * @param int    $mode
+ * @param bool $bEcho
+ * @param int $mode
  * @param string $sep
  */
-function extcal_SendMail(
-    $destinataires,
-    $mail_fromname,
-    $mail_fromemail,
-    $mail_subject,
-    $mail_body,
-    $bEcho = false,
-    $mode = 0,
-    $sep = '|'
-) {
+function extcal_SendMail($destinataires, $mail_fromname, $mail_fromemail, $mail_subject, $mail_body, $bEcho = false, $mode = 0, $sep = '|')
+{
     global $ModName, $signature, $mail_admin, $xoopsConfig, $xoopsDB, $xoopsModule;
 
     //$bEcho=false;
@@ -252,7 +230,7 @@ function extcal_SendMail(
         //echo "setToUsers : {$destinataires[$i]}<br>";
     }
 
-    $xoopsMailer->multimailer->IsHTML(true);
+    $xoopsMailer->multimailer->isHTML(true);
     $xoopsMailer->setFromName($myts->oopsStripSlashesGPC($mail_fromname));
 
     $xoopsMailer->setFromEmail($myts->oopsStripSlashesGPC($mail_fromemail));
@@ -263,7 +241,7 @@ function extcal_SendMail(
 
     $xoopsMailer->useMail();
 
-//function $xoopsMailer->sendMail($email, $subject, $body, $headers)
+    //function $xoopsMailer->sendMail($email, $subject, $body, $headers)
     $xoopsMailer->send($bEcho);
 
     if ($bEcho) {
@@ -277,7 +255,7 @@ function extcal_SendMail(
           ."mail_subject : {$mail_subject}<br>"
           ."mail_body : {$mail_body}<br><hr>";
     */
-//---------------------------
+    //---------------------------
     /*
 
       $adresse = "jjd@kiolo.com";
@@ -298,16 +276,16 @@ function extcal_SendMail(
 function extcal_getHeader($mode, $emailSender)
 {
     //mode = 0 pas d'entete
-//mode = 1 format text
-//mode = 2: format html
+    //mode = 1 format text
+    //mode = 2: format html
 
     global $xoopsConfig;
 
-// $t = print_r($xoopsConfig, true);
-// echo "<pre>{$t}</pre>";
+    // $t = print_r($xoopsConfig, true);
+    // echo "<pre>{$t}</pre>";
 
     //------------------------------------------------------
-    $d = date("d-m-Y h:m:h", time());
+    $d = date('d-m-Y h:m:h', time());
     //-----------------------------------------------------------
     //defini l'expediteur du mail
     if ($emailSender == '') {
@@ -321,15 +299,15 @@ function extcal_getHeader($mode, $emailSender)
     $header   = array();
     $header[] = "From: {$emailSender}";
     $header[] = "Reply-To: {$emailSender}";
-    $header[] = "X-Mailer: PHP/" . phpversion();
+    $header[] = 'X-Mailer: PHP/' . phpversion();
 
     if ($mode == _EXTCAL_HEADER_HTML) {
-        $header[] = "MIME-Version: 1.0";
-        $header[] = "Content-type: text/html; charset=iso-8859-1";
+        $header[] = 'MIME-Version: 1.0';
+        $header[] = 'Content-type: text/html; charset=iso-8859-1';
     } else {
         //bin rien a prori
     }
-    $header[] = "";
+    $header[] = '';
 
     //$sHeader = implode("\r\n", $header);
     $sHeader = implode("\r\n", $header);

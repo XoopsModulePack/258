@@ -48,12 +48,12 @@ if (!defined('CALENDAR_ROOT')) {
 /**
  * Load Calendar decorator base class
  */
-require_once CALENDAR_ROOT.'Decorator.php';
+require_once CALENDAR_ROOT . 'Decorator.php';
 
 /**
  * Load the Uri utility
  */
-require_once CALENDAR_ROOT.'Util/Textual.php';
+require_once CALENDAR_ROOT . 'Util/Textual.php';
 
 /**
  * Decorator to help with fetching textual representations of months and
@@ -75,13 +75,13 @@ class Calendar_Decorator_Textual extends Calendar_Decorator
     /**
      * Constructs Calendar_Decorator_Textual
      *
-     * @param object &$Calendar subclass of Calendar
+     * @param object $Calendar subclass of Calendar
      *
      * @access public
      */
-    public function Calendar_Decorator_Textual(&$Calendar)
+    public function __construct(&$Calendar)
     {
-        parent::Calendar_Decorator($Calendar);
+        parent::__construct($Calendar);
     }
 
     /**

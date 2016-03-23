@@ -48,12 +48,12 @@ if (!defined('CALENDAR_ROOT')) {
 /**
  * Load Calendar base class
  */
-require_once CALENDAR_ROOT.'Calendar.php';
+require_once CALENDAR_ROOT . 'Calendar.php';
 
 /**
  * Load base month
  */
-require_once CALENDAR_ROOT.'Month.php';
+require_once CALENDAR_ROOT . 'Month.php';
 
 /**
  * Represents a Month and builds Weeks
@@ -61,7 +61,7 @@ require_once CALENDAR_ROOT.'Month.php';
  * require_once 'Calendar/Month/Weeks.php';
  * $Month = new Calendar_Month_Weeks(2003, 10); // Oct 2003
  * $Month->build(); // Build Calendar_Day objects
- * while ($Week = & $Month->fetch()) {
+ * while ($Week = $Month->fetch()) {
  *     echo $Week->thisWeek().'<br />';
  * }
  * </code>
@@ -100,9 +100,9 @@ class Calendar_Month_Weeks extends Calendar_Month
      *
      * @access public
      */
-    public function Calendar_Month_Weeks($y, $m, $firstDay=null)
+    public function __construct($y, $m, $firstDay = null)
     {
-        parent::Calendar_Month($y, $m, $firstDay);
+        parent::__construct($y, $m, $firstDay);
     }
 
     /**
@@ -116,19 +116,12 @@ class Calendar_Month_Weeks extends Calendar_Month
      */
     public function build($sDates = array())
     {
-        include_once CALENDAR_ROOT.'Table/Helper.php';
+        include_once CALENDAR_ROOT . 'Table/Helper.php';
         $this->tableHelper = new Calendar_Table_Helper($this, $this->firstDay);
-        include_once CALENDAR_ROOT.'Week.php';
+        include_once CALENDAR_ROOT . 'Week.php';
         $numWeeks = $this->tableHelper->getNumWeeks();
-        for ($i=1, $d=1; $i<=$numWeeks; ++$i,
-            $d+=$this->cE->getDaysInWeek(
-                $this->thisYear(),
-                $this->thisMonth(),
-                $this->thisDay()
-            )
-        ) {
-            $this->children[$i] = new Calendar_Week(
-                $this->year, $this->month, $d, $this->tableHelper->getFirstDay());
+        for ($i = 1, $d = 1; $i <= $numWeeks; ++$i, $d += $this->cE->getDaysInWeek($this->thisYear(), $this->thisMonth(), $this->thisDay())) {
+            $this->children[$i] = new Calendar_Week($this->year, $this->month, $d, $this->tableHelper->getFirstDay());
         }
         //used to set empty days
         $this->children[1]->setFirst(true);
@@ -153,8 +146,7 @@ class Calendar_Month_Weeks extends Calendar_Month
     public function setSelection($sDates)
     {
         foreach ($sDates as $sDate) {
-            if ($this->year == $sDate->thisYear()
-                && $this->month == $sDate->thisMonth()) {
+            if ($this->year == $sDate->thisYear() && $this->month == $sDate->thisMonth()) {
                 $key = $sDate->thisWeek('n_in_month');
                 if (isset($this->children[$key])) {
                     $this->children[$key]->setSelected();

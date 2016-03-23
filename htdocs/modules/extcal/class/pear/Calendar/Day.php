@@ -47,14 +47,14 @@ if (!defined('CALENDAR_ROOT')) {
 /**
  * Load Calendar base class
  */
-require_once CALENDAR_ROOT.'Calendar.php';
+require_once CALENDAR_ROOT . 'Calendar.php';
 
 /**
  * Represents a Day and builds Hours.
  * <code>
  * require_once 'Calendar/Day.php';
  * $Day = new Calendar_Day(2003, 10, 21); // Oct 21st 2003
- * while ($Hour = & $Day->fetch()) {
+ * while ($Hour = $Day->fetch()) {
  *    echo $Hour->thisHour().'<br />';
  * }
  * </code>
@@ -99,9 +99,9 @@ class Calendar_Day extends Calendar
      *
      * @access public
      */
-    public function Calendar_Day($y, $m, $d)
+    public function __construct($y, $m, $d)
     {
-        parent::Calendar($y, $m, $d);
+        parent::__construct($y, $m, $d);
     }
 
     /**
@@ -114,12 +114,11 @@ class Calendar_Day extends Calendar
      */
     public function build($sDates = array())
     {
-        include_once CALENDAR_ROOT.'Hour.php';
+        include_once CALENDAR_ROOT . 'Hour.php';
 
         $hID = $this->cE->getHoursInDay($this->year, $this->month, $this->day);
-        for ($i=0; $i < $hID; ++$i) {
-            $this->children[$i] =
-                new Calendar_Hour($this->year, $this->month, $this->day, $i);
+        for ($i = 0; $i < $hID; ++$i) {
+            $this->children[$i] = new Calendar_Hour($this->year, $this->month, $this->day, $i);
         }
         if (count($sDates) > 0) {
             $this->setSelection($sDates);
@@ -139,10 +138,8 @@ class Calendar_Day extends Calendar
     public function setSelection($sDates)
     {
         foreach ($sDates as $sDate) {
-            if ($this->year == $sDate->thisYear()
-                && $this->month == $sDate->thisMonth()
-                && $this->day == $sDate->thisDay()) {
-                $key = (int) $sDate->thisHour();
+            if ($this->year == $sDate->thisYear() && $this->month == $sDate->thisMonth() && $this->day == $sDate->thisDay()) {
+                $key = (int)$sDate->thisHour();
                 if (isset($this->children[$key])) {
                     $sDate->setSelected();
                     $this->children[$key] = $sDate;

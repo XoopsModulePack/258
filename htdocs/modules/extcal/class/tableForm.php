@@ -34,8 +34,6 @@ class XoopsTableForm extends XoopsForm
     public function setAddBaliseTable($addBaliseTable)
     {
         $this->_addBaliseTable = $addBaliseTable;
-
-        return;
     }
 
     /**
@@ -139,4 +137,3 @@ class XoopsTableForm extends XoopsForm
         return $ret;
     }
 } // fin de la classe
-

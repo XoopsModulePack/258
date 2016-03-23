@@ -21,18 +21,18 @@
         </th>
     </tr>
     <tr>
-        <td colspan="3" class="odd" style="padding-right:30px; padding-top:10px">
+        <td colspan="3" class="odd" style="padding-right:30px; padding-top:10px;">
             <div style="padding-right:0;">
                 <{if $etablissement.logo}>
                     <a id="<{$id}>" class="highslide" onclick="return hs.expand(this)" href="<{$smarty.const.XOOPS_URL}>/uploads/extcal/etablissement/<{$etablissement.logo}>">
-                        <img align=right style="border:1px solid #FFFFFF;margin-right:6px" src="<{$smarty.const.XOOPS_URL}>/uploads/extcal/etablissement/<{$etablissement.logo}>" height="150px"/>
+                        <img align=right style="border:1px solid #FFFFFF;margin-right:6px;" src="<{$smarty.const.XOOPS_URL}>/uploads/extcal/etablissement/<{$etablissement.logo}>" height="150px"/>
                     </a>
                 <{elseif $smarty.const._EXTCAL_SHOW_NO_PICTURE}>
-                    <img align=right style="border:1px solid #FFFFFF;margin-right:6px" src="<{$smarty.const.XOOPS_URL}>/modules/extcal/assets/images/no_picture.png" width="150px" height="150px"/>
+                    <img align=right style="border:1px solid #FFFFFF;margin-right:6px;" src="<{$smarty.const.XOOPS_URL}>/modules/extcal/assets/images/no_picture.png" width="180" height="180"/>
                 <{/if}>
             </div>
-            <div style="font-size:16px; font-weight:bold; width:280px; overflow:hidden; margin-left:30px">
-                <u><{$etablissement.nom}></u><br/>
+            <div style="font-size:16px; font-weight:bold; width:280px; overflow:hidden; margin-left:30px;">
+                <span style="text-decoration: underline;"><{$etablissement.nom}></span><br/>
 
                 <div style="font-size:14px; ">
                     <{if $etablissement.categorie}><{$etablissement.categorie}><br/><{/if}>
@@ -54,8 +54,8 @@
     </tr>
 </table>
 <hr>
-<div style=" overflow:hidden;  font-weight:bold; margin-left:30px; text-align:left">
-    <strong><u><{$smarty.const._MD_EXTCAL_ETABLISSEMENT_INFO_COMPL}></strong></u><br/><br/>
+<div style=" overflow:hidden;  font-weight:bold; margin-left:30px; text-align:left;">
+    <strong style="text-decoration: underline;"><{$smarty.const._MD_EXTCAL_ETABLISSEMENT_INFO_COMPL}></strong></u><br/><br/>
     <{if $etablissement.description}><{$etablissement.description}><br/><br/><{/if}>
     <{if $etablissement.horaires}><{$etablissement.horaires}><br/><{/if}>
     <{if $etablissement.tarifs}><{$etablissement.tarifs}>&nbsp; <{$smarty.const._MD_EXTCAL_DEVISE2}><br/><{/if}>
@@ -94,7 +94,7 @@
         </td>
     </tr>
 </table>-->
-<div id="map" align="center" style="visibility: hidden"><br/>
+<div id="map" align="center" style="visibility: hidden;"><br/>
     <{$map}>
 </div>
 <p style="text-align:right;">

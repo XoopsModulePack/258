@@ -48,12 +48,12 @@ if (!defined('CALENDAR_ROOT')) {
 /**
  * Load Calendar decorator base class
  */
-require_once CALENDAR_ROOT.'Decorator.php';
+require_once CALENDAR_ROOT . 'Decorator.php';
 
 /**
  * Load the Uri utility
  */
-require_once CALENDAR_ROOT.'Util/Uri.php';
+require_once CALENDAR_ROOT . 'Util/Uri.php';
 
 /**
  * Decorator to help with building HTML links for navigating the calendar<br />
@@ -78,7 +78,6 @@ require_once CALENDAR_ROOT.'Util/Uri.php';
  */
 class Calendar_Decorator_Uri extends Calendar_Decorator
 {
-
     /**
      * @var Calendar_Util_Uri
      * @access private
@@ -92,9 +91,9 @@ class Calendar_Decorator_Uri extends Calendar_Decorator
      *
      * @access public
      */
-    public function Calendar_Decorator_Uri(&$Calendar)
+    public function __construct(&$Calendar)
     {
-        parent::Calendar_Decorator($Calendar);
+        parent::__construct($Calendar);
     }
 
     /**

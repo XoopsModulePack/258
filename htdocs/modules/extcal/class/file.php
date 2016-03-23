@@ -1,6 +1,6 @@
 <?php
 
-// defined("XOOPS_ROOT_PATH") || exit("XOOPS root path not defined");
+// defined('XOOPS_ROOT_PATH') || exit('XOOPS root path not defined');
 
 include_once XOOPS_ROOT_PATH . '/modules/extcal/class/ExtcalPersistableObjectHandler.php';
 include_once XOOPS_ROOT_PATH . '/class/uploader.php';
@@ -11,7 +11,10 @@ include_once XOOPS_ROOT_PATH . '/class/uploader.php';
 class ExtcalFile extends XoopsObject
 {
 
-    public function ExtcalFile()
+    /**
+     * ExtcalFile constructor.
+     */
+    public function __construct()
     {
         $this->initVar('file_id', XOBJ_DTYPE_INT, null, false);
         $this->initVar('file_name', XOBJ_DTYPE_TXTBOX, null, false, 255);
@@ -35,7 +38,7 @@ class ExtcalFileHandler extends ExtcalPersistableObjectHandler
     /**
      * @param $db
      */
-    public function __construct(&$db)
+    public function __construct(XoopsDatabase $db)
     {
         parent::__construct($db, 'extcal_file', _EXTCAL_CLN_FILE, 'file_id');
     }
@@ -47,19 +50,15 @@ class ExtcalFileHandler extends ExtcalPersistableObjectHandler
      */
     public function createFile($eventId)
     {
-        $userId = ($GLOBALS['xoopsUser']) ? $GLOBALS['xoopsUser']->getVar('uid') : 0;
+        $userId = $GLOBALS['xoopsUser'] ? $GLOBALS['xoopsUser']->getVar('uid') : 0;
 
         $allowedMimeType = array();
         $mimeType        = include(XOOPS_ROOT_PATH . '/include/mimetypes.inc.php');
-        foreach (
-            $GLOBALS['xoopsModuleConfig']['allowed_file_extention'] as $fileExt
-        ) {
+        foreach ($GLOBALS['xoopsModuleConfig']['allowed_file_extention'] as $fileExt) {
             $allowedMimeType[] = $mimeType[$fileExt];
         }
 
-        $uploader = new XoopsMediaUploader(
-            XOOPS_ROOT_PATH . '/uploads/extcal', $allowedMimeType, 3145728
-        );
+        $uploader = new XoopsMediaUploader(XOOPS_ROOT_PATH . '/uploads/extcal', $allowedMimeType, 3145728);
         $uploader->setPrefix($userId . '-' . $eventId . '_');
         if ($uploader->fetchMedia('event_file')) {
             if (!$uploader->upload()) {
@@ -77,8 +76,7 @@ class ExtcalFileHandler extends ExtcalPersistableObjectHandler
             'file_date'     => time(),
             'file_approved' => 1,
             'event_id'      => $eventId,
-            'uid'           => $userId
-        );
+            'uid'           => $userId);
 
         $file = $this->create();
         $file->setVars($data);
@@ -123,9 +121,7 @@ class ExtcalFileHandler extends ExtcalPersistableObjectHandler
                 $count = count($_POST['filetokeep']);
                 $in    = '(' . $_POST['filetokeep'][0];
                 array_shift($_POST['filetokeep']);
-                foreach (
-                    $_POST['filetokeep'] as $elmt
-                ) {
+                foreach ($_POST['filetokeep'] as $elmt) {
                     $in .= ',' . $elmt;
                 }
                 $in .= ')';
@@ -135,10 +131,8 @@ class ExtcalFileHandler extends ExtcalPersistableObjectHandler
             $criteria->add(new Criteria('file_id', $in, 'NOT IN'));
         }
 
-        $files = $this->getObjects($criteria);
-        foreach (
-            $files as $file
-        ) {
+        $files =& $this->getObjects($criteria);
+        foreach ($files as $file) {
             $this->deleteFile($file);
         }
     }
@@ -158,9 +152,7 @@ class ExtcalFileHandler extends ExtcalPersistableObjectHandler
      */
     public function formatFilesSize(&$files)
     {
-        for (
-            $i = 0; $i < count($files); ++$i
-        ) {
+        for ($i = 0; $i < count($files); ++$i) {
             $this->formatFileSize($files[$i]);
         }
     }
@@ -171,10 +163,9 @@ class ExtcalFileHandler extends ExtcalPersistableObjectHandler
     public function formatFileSize(&$file)
     {
         if ($file['file_size'] > 1000) {
-            $file['formated_file_size']
-                = round($file['file_size'] / 1000) . "kb";
+            $file['formated_file_size'] = round($file['file_size'] / 1000) . 'kb';
         } else {
-            $file['formated_file_size'] = "1kb";
+            $file['formated_file_size'] = '1kb';
         }
     }
 
@@ -183,12 +174,8 @@ class ExtcalFileHandler extends ExtcalPersistableObjectHandler
      */
     public function _deleteFile(&$file)
     {
-        if (file_exists(
-            XOOPS_ROOT_PATH . "/uploads/extcal/" . $file->getVar('file_name')
-        )) {
-            unlink(
-                XOOPS_ROOT_PATH . "/uploads/extcal/" . $file->getVar('file_name')
-            );
+        if (file_exists(XOOPS_ROOT_PATH . '/uploads/extcal/' . $file->getVar('file_name'))) {
+            unlink(XOOPS_ROOT_PATH . '/uploads/extcal/' . $file->getVar('file_name'));
         }
     }
 }

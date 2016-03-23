@@ -14,12 +14,13 @@
 
     <{foreach item=cat from=$cats}>
 
-        <{if ++$i is odd by 1}>
-            <{assign var='colour' value=even}>
-        <{else}>
-            <{assign var='colour' value=odd}>
-        <{/if}>
-        <tr class="<{$colour}>">
+        <{*<{if $i++ is odd by 1}>*}>
+        <{*<{assign var='colour' value=even}>*}>
+        <{*<{else}>*}>
+        <{*<{assign var='colour' value=odd}>*}>
+        <{*<{/if}>*}>
+        <{*<tr class="<{$colour}>">*}>
+        <tr class="<{cycle values = "even,odd"}>">
 
             <td align='center'>
                 <{$cat.cat_id}>

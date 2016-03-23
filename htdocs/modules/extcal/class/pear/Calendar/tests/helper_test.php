@@ -14,10 +14,15 @@ class TestOfTableHelper extends UnitTestCase
 {
     public $mockengine;
     public $mockcal;
-    public function TestOfTableHelper()
+
+    /**
+     * TestOfTableHelper constructor.
+     */
+    public function __construct()
     {
-        $this->UnitTestCase('Test of Calendar_Table_Helper');
+        parent::__construct('Test of Calendar_Table_Helper');
     }
+
     public function setUp()
     {
         $this->mockengine = new Mock_Calendar_Engine($this);
@@ -41,6 +46,7 @@ class TestOfTableHelper extends UnitTestCase
         $this->mockcal->setReturnValue('thisSecond', 45);
         $this->mockcal->setReturnValue('getEngine', $this->mockengine);
     }
+
     public function testGetFirstDay()
     {
         for ($i = 0; $i <= 7; ++$i) {
@@ -48,41 +54,49 @@ class TestOfTableHelper extends UnitTestCase
             $this->assertEqual($Helper->getFirstDay(), $i);
         }
     }
+
     public function testGetDaysOfWeekMonday()
     {
         $Helper = new Calendar_Table_Helper($this->mockcal);
         $this->assertEqual($Helper->getDaysOfWeek(), array(1, 2, 3, 4, 5, 6, 0));
     }
+
     public function testGetDaysOfWeekSunday()
     {
         $Helper = new Calendar_Table_Helper($this->mockcal, 0);
         $this->assertEqual($Helper->getDaysOfWeek(), array(0, 1, 2, 3, 4, 5, 6));
     }
+
     public function testGetDaysOfWeekThursday()
     {
         $Helper = new Calendar_Table_Helper($this->mockcal, 4);
         $this->assertEqual($Helper->getDaysOfWeek(), array(4, 5, 6, 0, 1, 2, 3));
     }
+
     public function testGetNumWeeks()
     {
         $Helper = new Calendar_Table_Helper($this->mockcal);
         $this->assertEqual($Helper->getNumWeeks(), 5);
     }
+
     public function testGetNumTableDaysInMonth()
     {
         $Helper = new Calendar_Table_Helper($this->mockcal);
         $this->assertEqual($Helper->getNumTableDaysInMonth(), 35);
     }
+
     public function testGetEmptyDaysBefore()
     {
         $Helper = new Calendar_Table_Helper($this->mockcal);
         $this->assertEqual($Helper->getEmptyDaysBefore(), 2);
     }
+
     public function testGetEmptyDaysAfter()
     {
         $Helper = new Calendar_Table_Helper($this->mockcal);
         $this->assertEqual($Helper->getEmptyDaysAfter(), 33);
     }
+
     public function testGetEmptyDaysAfterOffset()
     {
         $Helper = new Calendar_Table_Helper($this->mockcal);

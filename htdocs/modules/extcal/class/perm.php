@@ -1,6 +1,6 @@
 <?php
 
-// defined("XOOPS_ROOT_PATH") || exit("XOOPS root path not defined");
+// defined('XOOPS_ROOT_PATH') || exit('XOOPS root path not defined');
 
 /**
  * Class ExtcalPerm
@@ -11,7 +11,7 @@ class ExtcalPerm
     /**
      * @return ExtcalPerm
      */
-    public static function &getHandler()
+    public static function getHandler()
     {
         static $permHandler;
         if (!isset($permHandler)) {
@@ -44,15 +44,15 @@ class ExtcalPerm
     public function getAuthorizedCat(&$user, $perm)
     {
         static $authorizedCat;
-        $userId = ($user) ? $user->getVar('uid') : 0;
+        $userId = $user ? $user->getVar('uid') : 0;
         if (!isset($authorizedCat[$perm][$userId])) {
-            $groupPermHandler =& xoops_gethandler('groupperm');
-            $moduleHandler    =& xoops_gethandler('module');
+            $groupPermHandler = xoops_getHandler('groupperm');
+            $moduleHandler    = xoops_getHandler('module');
             $module           = $moduleHandler->getByDirname('extcal');
             if (!$module) {
                 return false;
             }
-            $authorizedCat[$perm][$userId] = $groupPermHandler->getItemIds($perm, $this->_getUserGroup($user), $module->getVar("mid"));
+            $authorizedCat[$perm][$userId] = $groupPermHandler->getItemIds($perm, $this->_getUserGroup($user), $module->getVar('mid'));
         }
 
         return $authorizedCat[$perm][$userId];

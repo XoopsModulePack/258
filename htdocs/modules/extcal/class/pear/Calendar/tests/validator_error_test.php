@@ -10,26 +10,35 @@ require_once 'calendar_include.php';
 class TestOfValidationError extends UnitTestCase
 {
     public $vError;
-    public function TestOfValidationError()
+
+    /**
+     * TestOfValidationError constructor.
+     */
+    public function __construct()
     {
-        $this->UnitTestCase('Test of Validation Error');
+        parent::__construct('Test of Validation Error');
     }
+
     public function setUp()
     {
         $this->vError = new Calendar_Validation_Error('foo', 20, 'bar');
     }
+
     public function testGetUnit()
     {
         $this->assertEqual($this->vError->getUnit(), 'foo');
     }
+
     public function testGetValue()
     {
         $this->assertEqual($this->vError->getValue(), 20);
     }
+
     public function testGetMessage()
     {
         $this->assertEqual($this->vError->getMessage(), 'bar');
     }
+
     public function testToString()
     {
         $this->assertEqual($this->vError->toString(), 'foo = 20 [bar]');
