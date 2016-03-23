@@ -50,5 +50,3 @@ define('_MI_CONTACT_HEAD_ADMIN', "Admin setting");
 define('_MI_CONTACT_HEAD_INFO', "Information");
 //1.81
 define('_MI_CONTACT_FORM_CAPTCHA_ANONYMOUS', "Use Captcha for Anonymous Users?");
-
-

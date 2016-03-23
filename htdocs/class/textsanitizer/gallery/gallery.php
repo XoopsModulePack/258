@@ -2,10 +2,10 @@
 
 class MytsGallery extends MyTextSanitizerExtension
 {
-    function encode($textarea_id)
+    public function encode($textarea_id)
     {
-        xoops_loadLanguage('extention', 'extgallery'); 
-    
+        xoops_loadLanguage('extention', 'extgallery');
+
         $code = "<img src='".XOOPS_URL."/modules/extgallery/images/extgallery-posticon.gif' alt='" . _EXT_EXTGALLERY_ALTWMP . "' onclick='xoopsCodeGallery(\"{$textarea_id}\", \""._EXT_EXTGALLERY_TEXTID."\", \""._EXT_EXTGALLERY_TEXTTITLE."\");'  onmouseover='style.cursor=\"hand\"'/>&nbsp;";
         $javascript = <<<EOH
             function xoopsCodeGallery(id, textId, photoTitle) {
@@ -35,10 +35,11 @@ class MytsGallery extends MyTextSanitizerExtension
                 domobj.focus();
             }
 EOH;
+
         return array($code, $javascript);
     }
-    
-    function load(&$ts) 
+
+    public function load(&$ts)
     {
         $ts->patterns[] = "/\[gallery]([0-9]*)\[\/gallery\]/sU";
         $ts->replacements[] = '<a href="'.XOOPS_URL.'/modules/extgallery/hook-photo.php?id=\\1" rel="lightbox"><img src="'.XOOPS_URL.'/modules/extgallery/hook-thumb.php?id=\\1" alt="" /></a>';
@@ -55,7 +56,4 @@ EOH;
         $ts->patterns[] = "/\[gallery title=(['\"]?)([ a-zA-Z0-9]*)\\1 group=(['\"]?)([a-zA-Z0-9]*)\\3]([0-9]*)\[\/gallery\]/sU";
         $ts->replacements[] = '<a href="'.XOOPS_URL.'/modules/extgallery/hook-photo.php?id=\\5" rel="lightbox[\\4]" title="\\2" alt="\\2"><img src="'.XOOPS_URL.'/modules/extgallery/hook-thumb.php?id=\\5" title="\\2" alt="\\2" /></a>';
     }
-    
 }
-
-?>

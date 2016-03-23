@@ -41,14 +41,14 @@ switch ($op) {
         break;
 
     case 'prune':
-     $timestamp = $contact_handler->Contact_CleanVars( $_REQUEST, 'prune_date', '', 'int' );
-     $onlyreply = $contact_handler->Contact_CleanVars( $_REQUEST, 'onlyreply', 0, 'int' );
+     $timestamp = $contact_handler->Contact_CleanVars($_REQUEST, 'prune_date', '', 'int');
+     $onlyreply = $contact_handler->Contact_CleanVars($_REQUEST, 'onlyreply', 0, 'int');
       $timestamp = strtotime($timestamp);
-      $count = $contact_handler->Contact_PruneCount($timestamp,$onlyreply);
-     $contact_handler->Contact_DeleteBeforeDate($timestamp,$onlyreply);
-     redirect_header ( 'tools.php', 1, sprintf(_AM_CONTACT_MSG_PRUNE_DELETED,$count) );
-      xoops_cp_footer ();
-      exit ();
+      $count = $contact_handler->Contact_PruneCount($timestamp, $onlyreply);
+     $contact_handler->Contact_DeleteBeforeDate($timestamp, $onlyreply);
+     redirect_header('tools.php', 1, sprintf(_AM_CONTACT_MSG_PRUNE_DELETED, $count));
+      xoops_cp_footer();
+      exit();
       break;
 }
 

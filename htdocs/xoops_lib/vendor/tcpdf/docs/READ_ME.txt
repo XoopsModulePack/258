@@ -19,9 +19,9 @@ Xoops 2.5.7 and higher
 - unzip the file and copy the directory TCPDF to the directory ./xoops_lib/vendor/
 - replace files makepdf.php for modules you need
 - Check the following directories have write access
-	* ./xoops_lib/vendor/tcpdf/fonts
-	* ./xoops_lib/vendor/tcpdf/cache
-	* ./xoops_lib/vendor/tcpdf/images
+    * ./xoops_lib/vendor/tcpdf/fonts
+    * ./xoops_lib/vendor/tcpdf/cache
+    * ./xoops_lib/vendor/tcpdf/images
 - For specifics characters (japanese, korean, chinese, taiwanese) download
   the specific font (see below) and copy the directory ./Frameworks/tcpdf/fonts or ./language/fonts
     * For Chinese character download : http://sourceforge.net/projects/chgxoops/files/Frameworks/chinese_simplified_font_tcpdf_for_xoops.zip/download

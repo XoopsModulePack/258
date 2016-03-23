@@ -19,7 +19,7 @@
  * @author      Hossein Azizabadi (AKA Voltan)
  * @version     $Id$
  */
- 
+
 $path = dirname(dirname(dirname(dirname(__FILE__))));
 
 include_once $path . '/mainfile.php';
@@ -41,13 +41,13 @@ $pathIcon32 = '../'.$xoopsModule->getInfo('icons32');
 $pathModuleAdmin = $xoopsModule->getInfo('dirmoduleadmin');
 
 // Contact Handler
-$contact_handler = & xoops_getModuleHandler ( 'contact', 'contact' );
+$contact_handler = & xoops_getModuleHandler('contact', 'contact');
 
 // Locad admin menu class
-if ( file_exists($GLOBALS['xoops']->path($pathModuleAdmin.'/moduleadmin.php'))){
-	include_once $GLOBALS['xoops']->path($pathModuleAdmin.'/moduleadmin.php');
-}else{
-	redirect_header("../../../admin.php", 5, _AM_MODULEADMIN_MISSING, false);
+if (file_exists($GLOBALS['xoops']->path($pathModuleAdmin.'/moduleadmin.php'))) {
+    include_once $GLOBALS['xoops']->path($pathModuleAdmin.'/moduleadmin.php');
+} else {
+    redirect_header("../../../admin.php", 5, _AM_MODULEADMIN_MISSING, false);
 }
 
 $admin_class = new ModuleAdmin();

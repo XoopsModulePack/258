@@ -110,7 +110,6 @@ switch ($op) {
             }
 
             $contact_handler->Contact_AddReply($contact['contact_cid']);
-
         }
 
         // send mail can seet message
@@ -133,7 +132,7 @@ switch ($op) {
 
         if (!$obj) {
             redirect_header('contact.php', 3, _AM_CONTACT_MSG_EXIST);
-            exit ();
+            exit();
         }
 
         $contact                       = array();
@@ -178,22 +177,22 @@ switch ($op) {
         if (!$contact_id > 0) {
             redirect_header('contact.php', 3, _AM_CONTACT_MSG_EXIST);
             xoops_cp_footer();
-            exit ();
+            exit();
         }
 
-        $criteria = new CriteriaCompo ();
-        $criteria->add(new Criteria ('contact_id', $contact_id));
-        $criteria->add(new Criteria ('contact_cid', $contact_id), 'OR');
+        $criteria = new CriteriaCompo();
+        $criteria->add(new Criteria('contact_id', $contact_id));
+        $criteria->add(new Criteria('contact_cid', $contact_id), 'OR');
 
         if (!$contact_handler->deleteAll($criteria)) {
             redirect_header('contact.php', 1, _AM_CONTACT_MSG_DELETEERROR);
             xoops_cp_footer();
-            exit ();
+            exit();
         }
 
         redirect_header('contact.php', 1, _AM_CONTACT_MSG_DELETED);
         xoops_cp_footer();
-        exit ();
+        exit();
         break;
 }
 
