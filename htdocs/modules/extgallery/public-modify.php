@@ -9,15 +9,15 @@
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  *
- * @copyright   The XOOPS Project http://sourceforge.net/projects/xoops/
+ * @copyright   {@link http://xoops.org/ XOOPS Project}
  * @license     GNU GPL 2 (http://www.gnu.org/licenses/old-licenses/gpl-2.0.html)
  * @author      Zoullou (http://www.zoullou.net)
  * @package     ExtGallery
  * @version     $Id: public-modify.php 8088 2011-11-06 09:38:12Z beckmi $
  */
 
-require '../../mainfile.php';
-include_once XOOPS_ROOT_PATH.'/class/xoopsformloader.php';
+require dirname(dirname(__DIR__)) . '/mainfile.php';
+include_once XOOPS_ROOT_PATH . '/class/xoopsformloader.php';
 include_once 'include/functions.php';
 
 if (isset($_GET['op'])) {
@@ -33,10 +33,10 @@ if (isset($_POST['step'])) {
 }
 
 if (!isset($xoopsUser)) {
-    redirect_header("index.php");
+    redirect_header('index.php');
     exit;
 } elseif (!$xoopsUser->isAdmin()) {
-    redirect_header("index.php");
+    redirect_header('index.php');
     exit;
 }
 
@@ -48,35 +48,35 @@ switch ($op) {
 
             case 'enreg':
 
-                $photoHandler = xoops_getmodulehandler('publicphoto', 'extgallery');
-                $myts =& MyTextSanitizer::getInstance();
-                $photo = $photoHandler->getPhoto($_POST['photo_id']);
+                $photoHandler = xoops_getModuleHandler('publicphoto', 'extgallery');
+                $myts         = MyTextSanitizer::getInstance();
+                $photo        = $photoHandler->getPhoto($_POST['photo_id']);
 
-                $data['cat_id'] = $_POST['cat_id'];
-                $data['photo_desc'] = $_POST['photo_desc'];
-                $data['photo_title'] = $_POST['photo_title'];
+                $data['cat_id']       = $_POST['cat_id'];
+                $data['photo_desc']   = $_POST['photo_desc'];
+                $data['photo_title']  = $_POST['photo_title'];
                 $data['photo_weight'] = $_POST['photo_weight'];
 
                 if (isset($_POST['photo_extra'])) {
                     $data['photo_extra'] = $_POST['photo_extra'];
                 }
 
-                $photoHandler->modifyPhoto(intval($_POST['photo_id']), $data);
+                $photoHandler->modifyPhoto((int)$_POST['photo_id'], $data);
 
                 // For xoops tag
-                if (($xoopsModuleConfig['usetag'] == 1) and (is_dir('../tag'))) {
-                    $tag_handler = xoops_getmodulehandler('tag', 'tag');
+                if (($xoopsModuleConfig['usetag'] == 1) and is_dir('../tag')) {
+                    $tag_handler = xoops_getModuleHandler('tag', 'tag');
                     $tag_handler->updateByItem($_POST['tag'], $_POST['photo_id'], $xoopsModule->getVar('dirname'), 0);
                 }
 
                 // If the photo category change
                 if ($photo->getVar('cat_id') != $_POST['cat_id']) {
-                    $catHandler = xoops_getmodulehandler('publiccat', 'extgallery');
-                    $oldCat = $catHandler->getCat($photo->getVar('cat_id'));
-                    $newCat = $catHandler->getCat($_POST['cat_id']);
+                    $catHandler = xoops_getModuleHandler('publiccat', 'extgallery');
+                    $oldCat     = $catHandler->getCat($photo->getVar('cat_id'));
+                    $newCat     = $catHandler->getCat($_POST['cat_id']);
 
                     // Set new category as album
-                    $catHandler->modifyCat(array('cat_id'=>intval($_POST['cat_id']), 'cat_isalbum'=>1));
+                    $catHandler->modifyCat(array('cat_id' => (int)$_POST['cat_id'], 'cat_isalbum' => 1));
 
                     // Update album count
                     if ($oldCat->getVar('cat_nb_photo') == 1) {
@@ -106,13 +106,13 @@ switch ($op) {
 
                     // If the old album don't contains other photo
                     if ($photoHandler->nbPhoto($oldCat) == 0) {
-                        $catHandler->modifyCat(array('cat_id'=>$photo->getVar('cat_id'), 'cat_isalbum'=>0));
-                        redirect_header("public-categories.php?id=".$photo->getVar('cat_id'), 3, _MD_EXTGALLERY_PHOTO_UPDATED);
+                        $catHandler->modifyCat(array('cat_id' => $photo->getVar('cat_id'), 'cat_isalbum' => 0));
+                        redirect_header('public-categories.php?id=' . $photo->getVar('cat_id'), 3, _MD_EXTGALLERY_PHOTO_UPDATED);
                     } else {
-                        redirect_header("public-album.php?id=".$photo->getVar('cat_id'), 3, _MD_EXTGALLERY_PHOTO_UPDATED);
+                        redirect_header('public-album.php?id=' . $photo->getVar('cat_id'), 3, _MD_EXTGALLERY_PHOTO_UPDATED);
                     }
                 } else {
-                    redirect_header("public-photo.php?photoId=".$photo->getVar('photo_id'), 3, _MD_EXTGALLERY_PHOTO_UPDATED);
+                    redirect_header('public-photo.php?photoId=' . $photo->getVar('photo_id'), 3, _MD_EXTGALLERY_PHOTO_UPDATED);
                 }
 
                 break;
@@ -120,14 +120,14 @@ switch ($op) {
             case 'default':
             default:
 
-                include_once XOOPS_ROOT_PATH.'/header.php';
-                $myts =& MyTextSanitizer::getInstance();
-                $catHandler = xoops_getmodulehandler('publiccat', 'extgallery');
-                $photoHandler = xoops_getmodulehandler('publicphoto', 'extgallery');
+                include_once XOOPS_ROOT_PATH . '/header.php';
+                $myts         = MyTextSanitizer::getInstance();
+                $catHandler   = xoops_getModuleHandler('publiccat', 'extgallery');
+                $photoHandler = xoops_getModuleHandler('publicphoto', 'extgallery');
 
-                $photo = $photoHandler->getPhoto(intval($_GET['id']));
+                $photo = $photoHandler->getPhoto((int)$_GET['id']);
 
-                echo '<img src="'.XOOPS_URL.'/uploads/extgallery/public-photo/thumb/thumb_'.$photo->getVar('photo_name').'" />';
+                echo '<img src="' . XOOPS_URL . '/uploads/extgallery/public-photo/thumb/thumb_' . $photo->getVar('photo_name') . '" />';
 
                 $form = new XoopsThemeForm(_MD_EXTGALLERY_MODIFY_PHOTO, 'add_photo', 'public-modify.php?op=edit', 'post', true);
                 $form->addElement(new XoopsFormLabel(_MD_EXTGALLERY_CATEGORY, $catHandler->getLeafSelect('cat_id', false, $photo->getVar('cat_id'))));
@@ -136,25 +136,25 @@ switch ($op) {
                 //DNPROSSI - wysiwyg editors from xoopseditors
                 //TODO dohtml - dobr
                 $photo_desc = $myts->displayTarea($photo->getVar('photo_desc'), 0, 1, 1, 1, 0);
-                $editor = gal_getWysiwygForm(_MD_EXTGALLERY_DESC, 'photo_desc', $photo_desc, 15, 60, '100%', '350px', 'hometext_hidden');
+                $editor     = gal_getWysiwygForm(_MD_EXTGALLERY_DESC, 'photo_desc', $photo_desc, 15, 60, '100%', '350px', 'hometext_hidden');
                 $form->addElement($editor, false);
                 if ($xoopsModuleConfig['display_extra_field']) {
-                    $form->addElement(new XoopsFormTextArea(_MD_EXTGALLERY_EXTRA_INFO, "photo_extra", $photo->getVar('photo_extra')));
+                    $form->addElement(new XoopsFormTextArea(_MD_EXTGALLERY_EXTRA_INFO, 'photo_extra', $photo->getVar('photo_extra')));
                 }
 
                 // For xoops tag
-                if (($xoopsModuleConfig['usetag'] == 1) and (is_dir('../tag'))) {
+                if (($xoopsModuleConfig['usetag'] == 1) and is_dir('../tag')) {
                     $tagId = $photo->isNew() ? 0 : $photo->getVar('photo_id');
-                    require_once XOOPS_ROOT_PATH.'/modules/tag/include/formtag.php';
-                    $form->addElement(new XoopsFormTag('tag', 60, 255, $tagId, 0));
+                    require_once XOOPS_ROOT_PATH . '/modules/tag/include/formtag.php';
+                    $form->addElement(new TagFormTag('tag', 60, 255, $tagId, 0));
                 }
 
-                $form->addElement(new XoopsFormHidden("photo_id", $_GET['id']));
-                $form->addElement(new XoopsFormHidden("step", 'enreg'));
-                $form->addElement(new XoopsFormButton("", "submit", _SUBMIT, "submit"));
+                $form->addElement(new XoopsFormHidden('photo_id', $_GET['id']));
+                $form->addElement(new XoopsFormHidden('step', 'enreg'));
+                $form->addElement(new XoopsFormButton('', 'submit', _SUBMIT, 'submit'));
                 $form->display();
 
-                include(XOOPS_ROOT_PATH."/footer.php");
+                include(XOOPS_ROOT_PATH . '/footer.php');
 
                 break;
 
@@ -164,10 +164,10 @@ switch ($op) {
 
     case 'delete':
 
-        $catHandler = xoops_getmodulehandler('publiccat', 'extgallery');
-        $photoHandler = xoops_getmodulehandler('publicphoto', 'extgallery');
+        $catHandler   = xoops_getModuleHandler('publiccat', 'extgallery');
+        $photoHandler = xoops_getModuleHandler('publicphoto', 'extgallery');
 
-        $photo = $photoHandler->getPhoto(intval($_GET['id']));
+        $photo = $photoHandler->getPhoto((int)$_GET['id']);
         $photoHandler->deletePhoto($photo);
 
         $cat = $catHandler->getCat($photo->getVar('cat_id'));
@@ -186,11 +186,11 @@ switch ($op) {
             $criteria->add(new Criteria('nright', $cat->getVar('nright'), '>'));
             $catHandler->updateFieldValue('cat_nb_album', 'cat_nb_album - 1', $criteria);
 
-            $catHandler->modifyCat(array('cat_id'=>$photo->getVar('cat_id'), 'cat_isalbum'=>0));
+            $catHandler->modifyCat(array('cat_id' => $photo->getVar('cat_id'), 'cat_isalbum' => 0));
 
-            redirect_header("public-categories.php?id=".$photo->getVar('cat_id'));
+            redirect_header('public-categories.php?id=' . $photo->getVar('cat_id'));
         } else {
-            redirect_header("public-album.php?id=".$photo->getVar('cat_id'));
+            redirect_header('public-album.php?id=' . $photo->getVar('cat_id'));
         }
 
         break;

@@ -6,7 +6,7 @@
             </td>
             <td id="viewecardtd">
                 <div class="txtright">
-                    <img src="<{xoAppUrl modules/extgallery/}>images/stamp.gif" alt="<{$ecard.ecard_greetings}>" />
+                    <img src="<{xoAppUrl modules/extgallery/}>assets/images/stamp.gif" alt="<{$ecard.ecard_greetings}>" />
                 </div>
                 <h2><{$ecard.ecard_greetings}></h2>
                 <p><{$ecard.ecard_desc}></p>

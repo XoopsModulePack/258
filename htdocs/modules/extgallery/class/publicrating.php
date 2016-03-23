@@ -9,55 +9,74 @@
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  *
- * @copyright   The XOOPS Project http://sourceforge.net/projects/xoops/
+ * @copyright   {@link http://xoops.org/ XOOPS Project}
  * @license     GNU GPL 2 (http://www.gnu.org/licenses/old-licenses/gpl-2.0.html)
  * @author      Zoullou (http://www.zoullou.net)
  * @package     ExtGallery
  * @version     $Id: publicrating.php 8088 2011-11-06 09:38:12Z beckmi $
  */
 
-if (!defined("XOOPS_ROOT_PATH")) {
-    die("XOOPS root path not defined");
-}
+// defined('XOOPS_ROOT_PATH') || exit('XOOPS root path not defined');
 
 include_once 'ExtgalleryPersistableObjectHandler.php';
 
+/**
+ * Class ExtgalleryPublicrating
+ */
 class ExtgalleryPublicrating extends XoopsObject
 {
-
     public $externalKey = array();
 
-    public function ExtgalleryPublicrating()
+    /**
+     * ExtgalleryPublicrating constructor.
+     */
+    public function __construct()
     {
         $this->initVar('rating_id', XOBJ_DTYPE_INT, 0, false);
         $this->initVar('photo_id', XOBJ_DTYPE_INT, 0, false);
         $this->initVar('uid', XOBJ_DTYPE_INT, 0, false);
         $this->initVar('rating_rate', XOBJ_DTYPE_INT, 0, false);
 
-        $this->externalKey['photo_id'] = array('className'=>'publicphoto', 'getMethodeName'=>'getPhoto', 'keyName'=>'photo', 'core'=>false);
-        $this->externalKey['uid'] = array('className'=>'user', 'getMethodeName'=>'get', 'keyName'=>'user', 'core'=>true);
+        $this->externalKey['photo_id'] = array('className' => 'publicphoto', 'getMethodeName' => 'getPhoto', 'keyName' => 'photo', 'core' => false);
+        $this->externalKey['uid']      = array('className' => 'user', 'getMethodeName' => 'get', 'keyName' => 'user', 'core' => true);
     }
 
+    /**
+     * @param $key
+     *
+     * @return mixed
+     */
     public function getExternalKey($key)
     {
         return $this->externalKey[$key];
     }
 }
 
+/**
+ * Class ExtgalleryPublicratingHandler
+ */
 class ExtgalleryPublicratingHandler extends ExtgalleryPersistableObjectHandler
 {
-
-    public function ExtgalleryPublicratingHandler(&$db)
+    /**
+     * @param $db
+     */
+    public function __construct(XoopsDatabase $db)
     {
-        $this->ExtgalleryPersistableObjectHandler($db, 'extgallery_publicrating', 'ExtgalleryPublicrating', 'rating_id');
+        parent::__construct($db, 'extgallery_publicrating', 'ExtgalleryPublicrating', 'rating_id');
     }
 
+    /**
+     * @param $photoId
+     * @param $rating
+     *
+     * @return bool
+     */
     public function rate($photoId, $rating)
     {
-        $photoHandler = xoops_getmodulehandler('publicphoto', 'extgallery');
+        $photoHandler = xoops_getModuleHandler('publicphoto', 'extgallery');
 
-        $userId = (is_object($GLOBALS['xoopsUser'])) ? $GLOBALS['xoopsUser']->getVar('uid') : 0 ;
-        $rate = $this->create();
+        $userId = is_object($GLOBALS['xoopsUser']) ? $GLOBALS['xoopsUser']->getVar('uid') : 0;
+        $rate   = $this->create();
         $rate->assignVar('photo_id', $photoId);
         $rate->assignVar('uid', $userId);
         $rate->assignVar('rating_rate', $rating);
@@ -73,14 +92,24 @@ class ExtgalleryPublicratingHandler extends ExtgalleryPersistableObjectHandler
         return $photoHandler->updateNbRating($photoId);
     }
 
+    /**
+     * @param $photoId
+     *
+     * @return float
+     */
     public function getRate($photoId)
     {
         $criteria = new Criteria('photo_id', $photoId);
-        $avg = $this->getAvg($criteria, 'rating_rate');
+        $avg      = $this->getAvg($criteria, 'rating_rate');
 
         return round($avg);
     }
 
+    /**
+     * @param $rate
+     *
+     * @return bool
+     */
     public function _haveRated(&$rate)
     {
         // If the user is annonymous

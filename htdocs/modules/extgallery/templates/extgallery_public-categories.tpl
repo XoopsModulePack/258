@@ -1,10 +1,10 @@
 <div class="extgallery">
     <a title="<{$extgalleryName}>" href="<{xoAppUrl modules/extgallery/}>"><{$extgalleryName}></a>
     <{foreachq item=node from=$catPath name=breadcrumb}>
-      <img src="images/breadcrumb-link.gif" alt="BreadCrumb" />
+      <img src="assets/images/breadcrumb-link.gif" alt="BreadCrumb" />
       <a title="<{$node.cat_name}>" href="<{xoAppUrl modules/extgallery/}>public-categories.php?id=<{$node.cat_id}>"><{$node.cat_name}></a>
     <{/foreach}>
-    <img src="images/breadcrumb-link.gif" alt="BreadCrumb" /> <{$cat.cat_name}>
+    <img src="assets/images/breadcrumb-link.gif" alt="BreadCrumb" /> <{$cat.cat_name}>
 
     <table class="outer">
         <tr>
@@ -77,5 +77,5 @@
     </div>
     <{/if}>
 
-    <{include file='db:system_notification_select.html'}>
+    <{include file='db:system_notification_select.tpl'}>
 </div>

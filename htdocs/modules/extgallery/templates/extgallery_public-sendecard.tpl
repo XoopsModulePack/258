@@ -44,7 +44,7 @@
         <td class="head bold" colspan="3"><{$send_ecard.elements.captcha.caption}></td>
     </tr>
     <tr>
-        <td class="odd"><img src="<{xoAppUrl modules/extgallery/}>images/captcha.php" alt="captcha" /></td>
+        <td class="odd"><img src="<{xoAppUrl modules/extgallery/}>assets/images/captcha.php" alt="captcha" /></td>
         <td class="odd" colspan="2"><{$send_ecard.elements.captcha.body}></td>
     </tr>
     <{/if}>

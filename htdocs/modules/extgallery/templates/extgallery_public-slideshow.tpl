@@ -36,7 +36,7 @@
          #galleria{height:<{$galleria_height}>px;}
          .galleria-container {background-color: <{$galleria_bgcolor}> !important;}
          .galleria-thumbnails .galleria-image {border: 1px solid <{$galleria_bcolor}>;}
-         .galleria-thumb-nav-left, .galleria-thumb-nav-right, .galleria-info-link, .galleria-info-close, .galleria-image-nav-left, .galleria-image-nav-right {background-image: url(<{xoAppUrl modules/extgallery/}>images/galleria/<{$galleria_bgimg}>.png) !important; background-repeat: no-repeat !important;}
+         .galleria-thumb-nav-left, .galleria-thumb-nav-right, .galleria-info-link, .galleria-info-close, .galleria-image-nav-left, .galleria-image-nav-right {background-image: url(<{xoAppUrl modules/extgallery/}>assets/images/galleria/<{$galleria_bgimg}>.png) !important; background-repeat: no-repeat !important;}
      </style>
     <{/if}>
     <{if $use_slideshow_effects == microgallery}>
@@ -93,7 +93,7 @@
                 #galleria{height:<{$galleria_height}>px;}
                 .galleria-container {background-color: <{$galleria_bgcolor}> !important;}
                 .galleria-thumbnails .galleria-image {border: 1px solid <{$galleria_bcolor}>;}
-                .galleria-thumb-nav-left, .galleria-thumb-nav-right, .galleria-info-link, .galleria-info-close, .galleria-image-nav-left, .galleria-image-nav-right {background-image: url(<{xoAppUrl modules/extgallery/}>images/galleria/<{$galleria_bgimg}>.png) !important; background-repeat: no-repeat !important;}
+                .galleria-thumb-nav-left, .galleria-thumb-nav-right, .galleria-info-link, .galleria-info-close, .galleria-image-nav-left, .galleria-image-nav-right {background-image: url(<{xoAppUrl modules/extgallery/}>assets/images/galleria/<{$galleria_bgimg}>.png) !important; background-repeat: no-repeat !important;}
             </style>
     <{/if}>
     <{if $use_slideshow_effects == microgallery}>
@@ -118,7 +118,7 @@
 <{/if}>
 
 <div class="extgallery">
-    <a title="<{$extgalleryName}>" href="<{xoAppUrl modules/extgallery/}>"><{$extgalleryName}></a><{foreachq item=node from=$catPath name=breadcrumb}> <img src="images/breadcrumb-link.gif" alt="BreadCrumb" /> <a title="<{$node.cat_name}>" href="<{xoAppUrl modules/extgallery/}>public-categories.php?id=<{$node.cat_id}>"><{$node.cat_name}></a><{/foreach}> <img src="images/breadcrumb-link.gif" alt="BreadCrumb" /> <{$cat.cat_name}>
+    <a title="<{$extgalleryName}>" href="<{xoAppUrl modules/extgallery/}>"><{$extgalleryName}></a><{foreachq item=node from=$catPath name=breadcrumb}> <img src="assets/images/breadcrumb-link.gif" alt="BreadCrumb" /> <a title="<{$node.cat_name}>" href="<{xoAppUrl modules/extgallery/}>public-categories.php?id=<{$node.cat_id}>"><{$node.cat_name}></a><{/foreach}> <img src="assets/images/breadcrumb-link.gif" alt="BreadCrumb" /> <{$cat.cat_name}>
 
     <{if $use_slideshow_effects == galleryview}>
         <ul id="gallery">
@@ -201,7 +201,7 @@
     </div>
     <{/if}>
 
-    <{include file='db:system_notification_select.html'}>
+    <{include file='db:system_notification_select.tpl'}>
 </div>
 
 <{if $use_slideshow_effects == galleria}>

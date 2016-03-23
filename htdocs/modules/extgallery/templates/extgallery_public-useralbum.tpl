@@ -115,7 +115,7 @@
 <{/if}>
 
 <div class="extgallery">
-    <a title="<{$extgalleryName}>" href="<{xoAppUrl modules/extgallery/}>"><{$extgalleryName}></a> <img src="images/breadcrumb-link.gif" alt="BreadCrumb" /> <{$lang.albumName}>
+    <a title="<{$extgalleryName}>" href="<{xoAppUrl modules/extgallery/}>"><{$extgalleryName}></a> <img src="assets/images/breadcrumb-link.gif" alt="BreadCrumb" /> <{$lang.albumName}>
     <div class="center">
         <div class="bold"><{$extgallerySortbyOrderby}></div>
         <div class="margin-top10">
@@ -155,8 +155,8 @@
                 <!-- Start Admin link -->
                 <{if $xoops_isadmin}>
                 <div class="photoadmin">
-                    <a title="edit" href="<{xoAppUrl modules/extgallery/}>public-modify.php?op=edit&id=<{$photos[photo].photo_id}>"><img src="images/edit.png" alt="edit"  /></a>&nbsp;
-                    <a title="delete" href="<{xoAppUrl modules/extgallery/}>public-modify.php?op=delete&id=<{$photos[photo].photo_id}>"><img src="images/delete.png" alt="delete" /></a>
+                    <a title="edit" href="<{xoAppUrl modules/extgallery/}>public-modify.php?op=edit&id=<{$photos[photo].photo_id}>"><img src="assets/images/edit.png" alt="edit"  /></a>&nbsp;
+                    <a title="delete" href="<{xoAppUrl modules/extgallery/}>public-modify.php?op=delete&id=<{$photos[photo].photo_id}>"><img src="assets/images/delete.png" alt="delete" /></a>
                 </div>
                 <{/if}>
                 <!-- End Admin link -->
@@ -267,7 +267,7 @@
 
                 <{if $enableRating}>
                 <!-- Start Rating score -->
-                <div class="photoRating"><img src="<{xoAppUrl modules/extgallery/}>images/rating_<{$photos[photo].photo_rating}>.gif" alt="<{$lang.rate_score}> : <{$photos[photo].photo_rating}>" title="<{$lang.rate_score}>" /></div>
+                <div class="photoRating"><img src="<{xoAppUrl modules/extgallery/}>assets/images/rating_<{$photos[photo].photo_rating}>.gif" alt="<{$lang.rate_score}> : <{$photos[photo].photo_rating}>" title="<{$lang.rate_score}>" /></div>
                 <!-- End Rating score -->
                 <{/if}>
 
@@ -308,7 +308,7 @@
     </div>
     <{/if}>
 
-    <{include file='db:system_notification_select.html'}>
+    <{include file='db:system_notification_select.tpl'}>
 </div>
 
 <{if $use_ajax_effects == overlay}>

@@ -9,26 +9,29 @@
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  *
- * @copyright   The XOOPS Project http://sourceforge.net/projects/xoops/
+ * @copyright   {@link http://xoops.org/ XOOPS Project}
  * @license     GNU GPL 2 (http://www.gnu.org/licenses/old-licenses/gpl-2.0.html)
  * @author      Zoullou (http://www.zoullou.net)
  * @package     ExtGallery
  * @version     $Id: catHandler.php 8088 2011-11-06 09:38:12Z beckmi $
  */
 
-if (!defined("XOOPS_ROOT_PATH")) {
-    die("XOOPS root path not defined");
-}
+// defined('XOOPS_ROOT_PATH') || exit('XOOPS root path not defined');
 
 include_once 'publicPerm.php';
 include_once 'ExtgalleryPersistableObjectHandler.php';
 
+/**
+ * Class ExtgalleryCat
+ */
 class ExtgalleryCat extends XoopsObject
 {
-
     public $externalKey = array();
 
-    public function ExtgalleryCat()
+    /**
+     * ExtgalleryCat constructor.
+     */
+    public function __construct()
     {
         $this->initVar('cat_id', XOBJ_DTYPE_INT, 0, false);
         $this->initVar('cat_pid', XOBJ_DTYPE_INT, 0, false);
@@ -45,28 +48,44 @@ class ExtgalleryCat extends XoopsObject
         $this->initVar('cat_imgurl', XOBJ_DTYPE_URL, '', false, 150);
         $this->initVar('photo_id', XOBJ_DTYPE_INT, 0, false);
 
-        $this->externalKey['photo_id'] = array('className'=>'publicphoto', 'getMethodeName'=>'getPhoto', 'keyName'=>'photo', 'core'=>false);
+        $this->externalKey['photo_id'] = array('className' => 'publicphoto', 'getMethodeName' => 'getPhoto', 'keyName' => 'photo', 'core' => false);
     }
 
+    /**
+     * @param $key
+     *
+     * @return mixed
+     */
     public function getExternalKey($key)
     {
         return $this->externalKey[$key];
     }
 }
 
+/**
+ * Class ExtgalleryCatHandler
+ */
 class ExtgalleryCatHandler extends ExtgalleryPersistableObjectHandler
 {
-
     //var $_nestedTree;
     public $_photoHandler;
 
-    public function ExtgalleryCatHandler(&$db, $type)
+    /**
+     * @param $db
+     * @param $type
+     */
+    public function __construct(XoopsDatabase $db, $type)
     {
-        $this->ExtgalleryPersistableObjectHandler($db, 'extgallery_'.$type.'cat', 'Extgallery'.ucfirst($type).'cat', 'cat_id');
+        parent::__construct($db, 'extgallery_' . $type . 'cat', 'Extgallery' . ucfirst($type) . 'cat', 'cat_id');
         //$this->_nestedTree = new NestedTree($db, 'extgallery_'.$type.'cat', 'cat_id', 'cat_pid', 'cat_id');
-        $this->_photoHandler = xoops_getmodulehandler($type.'photo', 'extgallery');
+        $this->_photoHandler = xoops_getModuleHandler($type . 'photo', 'extgallery');
     }
 
+    /**
+     * @param $data
+     *
+     * @return bool
+     */
     public function createCat($data)
     {
         $cat = $this->create();
@@ -78,8 +97,15 @@ class ExtgalleryCatHandler extends ExtgalleryPersistableObjectHandler
 
         $this->insert($cat, true);
         $this->rebuild();
+
+        return true;
     }
 
+    /**
+     * @param $data
+     *
+     * @return bool
+     */
     public function modifyCat($data)
     {
         $cat = $this->get($data['cat_id']);
@@ -96,6 +122,9 @@ class ExtgalleryCatHandler extends ExtgalleryPersistableObjectHandler
         }
     }
 
+    /**
+     * @param $catId
+     */
     public function deleteCat($catId)
     {
         $children = $this->getDescendants($catId, false, true);
@@ -107,12 +136,21 @@ class ExtgalleryCatHandler extends ExtgalleryPersistableObjectHandler
         $this->delete($catId);
     }
 
-    public function getDescendants($id = 0, $includeSelf = false, $childrenOnly = false, $withRestrict = true, $permType = "public_access")
+    /**
+     * @param int $id
+     * @param bool $includeSelf
+     * @param bool $childrenOnly
+     * @param bool $withRestrict
+     * @param string $permType
+     *
+     * @return array
+     */
+    public function getDescendants($id = 0, $includeSelf = false, $childrenOnly = false, $withRestrict = true, $permType = 'public_access')
     {
         $cat = $this->get($id);
 
-        $nleft = $cat->getVar('nleft');
-        $nright = $cat->getVar('nright');
+        $nleft     = $cat->getVar('nleft');
+        $nright    = $cat->getVar('nright');
         $parent_id = $cat->getVar('cat_id');
 
         $criteria = new CriteriaCompo();
@@ -149,6 +187,11 @@ class ExtgalleryCatHandler extends ExtgalleryPersistableObjectHandler
         return $this->getObjects($criteria);
     }
 
+    /**
+     * @param int $id
+     *
+     * @return null
+     */
     public function getCat($id = 0)
     {
         $criteria = new CriteriaCompo();
@@ -165,9 +208,14 @@ class ExtgalleryCatHandler extends ExtgalleryPersistableObjectHandler
 
     public function _haveValidParent()
     {
-        exit("_haveValidParent() method must be defined on sub classes");
+        exit('_haveValidParent() method must be defined on sub classes');
     }
 
+    /**
+     * @param $cat
+     *
+     * @return bool
+     */
     public function _isAlbum(&$cat)
     {
         $nbPhoto = $this->nbPhoto($cat);
@@ -175,15 +223,26 @@ class ExtgalleryCatHandler extends ExtgalleryPersistableObjectHandler
         return $nbPhoto != 0;
     }
 
+    /**
+     * @param $cat
+     *
+     * @return mixed
+     */
     public function nbPhoto(&$cat)
     {
         return $this->_photoHandler->nbPhoto($cat);
     }
 
+    /**
+     * @param int $id
+     * @param bool $includeSelf
+     *
+     * @return array
+     */
     public function getPath($id = 0, $includeSelf = false)
     {
         $cat = $this->get($id);
-        if (is_null($cat)) {
+        if (null === $cat) {
             return array();
         }
 
@@ -204,16 +263,30 @@ class ExtgalleryCatHandler extends ExtgalleryPersistableObjectHandler
         return $this->getObjects($criteria);
     }
 
+    /**
+     * @return array
+     */
     public function getTree()
     {
         return $this->getDescendants(0, false, false, false);
     }
 
+    /**
+     * @param int $id
+     * @param bool $includeSelf
+     *
+     * @return array
+     */
     public function getChildren($id = 0, $includeSelf = false)
     {
         return $this->getDescendants($id, $includeSelf, true);
     }
 
+    /**
+     * @param int $id
+     *
+     * @return int
+     */
     public function nbAlbum($id = 0)
     {
         $criteria = new CriteriaCompo(new Criteria('nright - nleft', 1));
@@ -228,78 +301,122 @@ class ExtgalleryCatHandler extends ExtgalleryPersistableObjectHandler
         return $this->getCount($criteria);
     }
 
-    public function getSelect($name, $selectMode, $addEmpty = false, $selected = 0, $extra = "", $displayWeight = false, $permType = "public_access")
+    /**
+     * @param        $name
+     * @param        $selectMode
+     * @param bool $addEmpty
+     * @param int $selected
+     * @param string $extra
+     * @param bool $displayWeight
+     * @param string $permType
+     *
+     * @return string
+     */
+    public function getSelect($name, $selectMode, $addEmpty = false, $selected = 0, $extra = '', $displayWeight = false, $permType = 'public_access')
     {
         $cats = $this->getDescendants(0, false, false, true, $permType);
 
         return $this->makeSelect($cats, $name, $selectMode, $addEmpty, $selected, $extra, $displayWeight);
     }
 
-    public function getLeafSelect($name, $addEmpty = false, $selected = 0, $extra = "", $permType = "public_access")
+    /**
+     * @param        $name
+     * @param bool $addEmpty
+     * @param int $selected
+     * @param string $extra
+     * @param string $permType
+     *
+     * @return string
+     */
+    public function getLeafSelect($name, $addEmpty = false, $selected = 0, $extra = '', $permType = 'public_access')
     {
         return $this->getSelect($name, 'node', $addEmpty, $selected, $extra, false, $permType);
     }
 
-    public function getNodeSelect($name, $addEmpty = false, $selected = 0, $extra = "")
+    /**
+     * @param        $name
+     * @param bool $addEmpty
+     * @param int $selected
+     * @param string $extra
+     *
+     * @return string
+     */
+    public function getNodeSelect($name, $addEmpty = false, $selected = 0, $extra = '')
     {
         return $this->getSelect($name, 'leaf', $addEmpty, $selected, $extra);
     }
 
+    /**
+     * @param $cats
+     * @param $name
+     * @param $selectMode
+     * @param $addEmpty
+     * @param $selected
+     * @param $extra
+     * @param $displayWeight
+     *
+     * @return string
+     */
     public function makeSelect(&$cats, $name, $selectMode, $addEmpty, $selected, $extra, $displayWeight)
     {
-        $ret = '<select name="'.$name.'" id="'.$name.'"'.$extra.'>';
+        $ret = '<select name="' . $name . '" id="' . $name . '"' . $extra . '>';
         if ($addEmpty) {
             $ret .= '<option value="0">-----</option>';
         }
         foreach ($cats as $cat) {
-            $disableOption = "";
-            if ($selectMode == 'node' && ($cat->getVar('nright') - $cat->getVar('nleft') != 1)) {
+            $disableOption = '';
+            if ($selectMode === 'node' && ($cat->getVar('nright') - $cat->getVar('nleft') != 1)) {
                 // If the brownser is IE the parent cat isn't displayed
                 if (preg_match('`MSIE`', $_SERVER['HTTP_USER_AGENT'])) {
                     continue;
                 }
                 $disableOption = ' disabled="disabled"';
-            } elseif ($selectMode == 'leaf' && ($cat->getVar('cat_isalbum') == 1)) {
+            } elseif ($selectMode === 'leaf' && ($cat->getVar('cat_isalbum') == 1)) {
                 continue;
             }
 
-            $selectedOption = "";
+            $selectedOption = '';
             if ($cat->getVar('cat_id') == $selected) {
                 $selectedOption = ' selected="selected"';
             }
 
-            $prefix = "";
-            for ($i=0 ; $i < $cat->getVar('nlevel')-1 ; $i++) {
-                $prefix .= "--";
+            $prefix = '';
+            for ($i = 0; $i < $cat->getVar('nlevel') - 1; ++$i) {
+                $prefix .= '--';
             }
-            $catName = $prefix.' '.$cat->getVar('cat_name');
+            $catName = $prefix . ' ' . $cat->getVar('cat_name');
             if ($displayWeight) {
-                $catName .= ' ['.$cat->getVar('cat_weight').']';
+                $catName .= ' [' . $cat->getVar('cat_weight') . ']';
             }
 
-            $ret .= '<option value="'.$cat->getVar('cat_id').'"'.$selectedOption.''.$disableOption.'>'.$catName.'</option>';
+            $ret .= '<option value="' . $cat->getVar('cat_id') . '"' . $selectedOption . '' . $disableOption . '>' . $catName . '</option>';
         }
         $ret .= '</select>';
 
         return $ret;
     }
 
+    /**
+     * @param array $selected
+     *
+     * @return string
+     */
     public function getBlockSelect($selected = array())
     {
-        $cats = $this->getDescendants();
-        $ret = '<select name="options[]" multiple="multiple">';
-        $selectedOption = "";
+        $cats           = $this->getDescendants();
+        $ret            = '<select name="options[]" multiple="multiple">';
+        $selectedOption = '';
         if ($allCat = in_array(0, $selected)) {
             $selectedOption = ' selected="selected"';
         }
-        $ret .= '<option value="0"'.$selectedOption.'>'._MB_EXTGALLERY_ALL_CATEGORIES.'</option>';
+        $ret .= '<option value="0"' . $selectedOption . '>' . _MB_EXTGALLERY_ALL_CATEGORIES . '</option>';
         foreach ($cats as $cat) {
-            $prefix = "";
-            for ($i=0 ; $i < $cat->getVar('nlevel')-1 ; $i++) {
-                $prefix .= "-";
+            $prefix = '';
+            for ($i = 0; $i < $cat->getVar('nlevel') - 1; ++$i) {
+                $prefix .= '-';
             }
-            $selectedOption = "";
-            $disableOption = "";
+            $selectedOption = '';
+            $disableOption  = '';
 
             if (!$allCat && in_array($cat->getVar('cat_id'), $selected)) {
                 $selectedOption = ' selected="selected"';
@@ -309,13 +426,16 @@ class ExtgalleryCatHandler extends ExtgalleryPersistableObjectHandler
                 $disableOption = ' disabled="disabled"';
             }
 
-            $ret .= '<option value="'.$cat->getVar('cat_id').'"'.$selectedOption.''.$disableOption.'>'.$prefix.' '.$cat->getVar('cat_name').'</option>';
+            $ret .= '<option value="' . $cat->getVar('cat_id') . '"' . $selectedOption . '' . $disableOption . '>' . $prefix . ' ' . $cat->getVar('cat_name') . '</option>';
         }
         $ret .= '</select>';
 
         return $ret;
     }
 
+    /**
+     * @return array
+     */
     public function getTreeWithChildren()
     {
         $criteria = new CriteriaCompo();
@@ -323,16 +443,15 @@ class ExtgalleryCatHandler extends ExtgalleryPersistableObjectHandler
         //$query = sprintf('select * from %s order by %s', $this->table, $this->fields['sort']);
 
         //$result = $this->db->query($query);
-        $categories = $this->getObjects($criteria, false, false);
+        $categories =& $this->getObjects($criteria, false, false);
 
         // create a root node to hold child data about first level items
-        $root = array();
-        $root['cat_id'] = 0;
+        $root             = array();
+        $root['cat_id']   = 0;
         $root['children'] = array();
 
         $arr = array(
-            $root
-        );
+            $root);
 
         // populate the array and create an empty children array
         /*while ($row = $this->db->fetchArray($result)) {
@@ -340,7 +459,7 @@ class ExtgalleryCatHandler extends ExtgalleryPersistableObjectHandler
             $arr[$row[$this->fields['id']]]['children'] = array ();
         }*/
         foreach ($categories as $row) {
-            $arr[$row['cat_id']] = $row;
+            $arr[$row['cat_id']]             = $row;
             $arr[$row['cat_id']]['children'] = array();
         }
 
@@ -355,13 +474,13 @@ class ExtgalleryCatHandler extends ExtgalleryPersistableObjectHandler
     }
 
     /**
-    * Rebuilds the tree data and saves it to the database
-    */
+     * Rebuilds the tree data and saves it to the database
+     */
     public function rebuild()
     {
         $data = $this->getTreeWithChildren();
 
-        $n = 0; // need a variable to hold the running n tally
+        $n     = 0; // need a variable to hold the running n tally
         $level = 0; // need a variable to hold the running level tally
 
         // invoke the recursive function. Start it processing
@@ -397,13 +516,13 @@ class ExtgalleryCatHandler extends ExtgalleryPersistableObjectHandler
                 if ($nbPhoto != 0) {
                     $upNbAlbum = 'cat_nb_album = cat_nb_album + 1, ';
                 }
-                $sql = 'UPDATE %s SET '.$upNbAlbum.'cat_nb_photo = cat_nb_photo + %d WHERE nleft < %d AND nright > %d;';
+                $sql   = 'UPDATE %s SET ' . $upNbAlbum . 'cat_nb_photo = cat_nb_photo + %d WHERE nleft < %d AND nright > %d;';
                 $query = sprintf($sql, $this->table, $nbPhoto, $row['nleft'], $row['nright']);
                 $this->db->queryF($query);
 
                 // Update this album if needed
                 if ($nbPhoto != 0) {
-                    $sql = 'UPDATE %s SET cat_nb_photo = %d WHERE %s = %d';
+                    $sql   = 'UPDATE %s SET cat_nb_photo = %d WHERE %s = %d';
                     $query = sprintf($sql, $this->table, $nbPhoto, $this->keyName, $id);
                     $this->db->queryF($query);
                 }
@@ -415,45 +534,50 @@ class ExtgalleryCatHandler extends ExtgalleryPersistableObjectHandler
     }
 
     /**
-    * Generate the tree data. A single call to this generates the n-values for
-    * 1 node in the tree. This function assigns the passed in n value as the
-    * node's nleft value. It then processes all the node's children (which
-    * in turn recursively processes that node's children and so on), and when
-    * it is finally done, it takes the update n-value and assigns it as its
-    * nright value. Because it is passed as a reference, the subsequent changes
-    * in subrequests are held over to when control is returned so the nright
-    * can be assigned.
-    *
-    * @param   array   &$arr   A reference to the data array, since we need to
-    *                          be able to update the data in it
-    * @param   int     $id     The ID of the current node to process
-    * @param   int     $level  The nlevel to assign to the current node
-    * @param   int     &$n     A reference to the running tally for the n-value
-    */
+     * Generate the tree data. A single call to this generates the n-values for
+     * 1 node in the tree. This function assigns the passed in n value as the
+     * node's nleft value. It then processes all the node's children (which
+     * in turn recursively processes that node's children and so on), and when
+     * it is finally done, it takes the update n-value and assigns it as its
+     * nright value. Because it is passed as a reference, the subsequent changes
+     * in subrequests are held over to when control is returned so the nright
+     * can be assigned.
+     *
+     * @param   array &$arr     A reference to the data array, since we need to
+     *                          be able to update the data in it
+     * @param   int $id         The ID of the current node to process
+     * @param   int $level      The nlevel to assign to the current node
+     * @param   int &$n         A reference to the running tally for the n-value
+     */
     public function _generateTreeData(&$arr, $id, $level, &$n)
     {
         $arr[$id]['nlevel'] = $level;
-        $arr[$id]['nleft'] = $n++;
+        $arr[$id]['nleft']  = ++$n;
 
         // loop over the node's children and process their data
         // before assigning the nright value
         foreach ($arr[$id]['children'] as $child_id) {
-            $this->_generateTreeData($arr, $child_id, $level +1, $n);
+            $this->_generateTreeData($arr, $child_id, $level + 1, $n);
         }
-        $arr[$id]['nright'] = $n++;
+        $arr[$id]['nright'] = ++$n;
     }
 
-    public function &getCatRestrictCriteria($permType = "public_access")
+    /**
+     * @param string $permType
+     *
+     * @return Criteria
+     */
+    public function &getCatRestrictCriteria($permType = 'public_access')
     {
-        $permHandler = $this->_getPermHandler();
+        $permHandler       = $this->_getPermHandler();
         $allowedCategories = $permHandler->getAuthorizedPublicCat($GLOBALS['xoopsUser'], $permType);
 
         $count = count($allowedCategories);
         if ($count > 0) {
-            $in = '('.$allowedCategories[0];
+            $in = '(' . $allowedCategories[0];
             array_shift($allowedCategories);
             foreach ($allowedCategories as $allowedCategory) {
-                $in .= ','.$allowedCategory;
+                $in .= ',' . $allowedCategory;
             }
             $in .= ')';
             $criteria = new Criteria('cat_id', $in, 'IN');

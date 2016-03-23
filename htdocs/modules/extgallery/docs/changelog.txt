@@ -1,4 +1,9 @@
 ============================
+1.13 Beta 1     2016-03-20
+============================
+- updates for PHP7, XOOPS 2.5.8 (mamba)
+
+============================
 1.12 Beta 2       2014-04-23
 ============================
 - added Ajax effects for slideshow block : jQuery Touch Optimized Sliders "R"Us (luciorota)
@@ -13,8 +18,6 @@
 - updated jQuery Tools to 1.2.7 (overlay)
 - updated prettyPhoto to 3.1.5
 - updated Galleria 1.3.5
-
-
 
 blocks.php
 _MB_EXTGALLERY_AJAX_TOSRUS (added) (luciorota)
@@ -31,7 +34,7 @@ _MB_EXTGALLERY_AJAX_TOSRUS (added) (luciorota)
 ============================
 - Updated PEAR
 - updated Google Buzz to Google Plus
-- updated English and French translations (Cesag)
+- updated English and French translations (cesagonchu)
 - bug fixed : MD5 checksum error (Kavok fr)
 
 ============================

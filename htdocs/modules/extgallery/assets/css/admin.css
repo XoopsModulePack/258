@@ -97,7 +97,7 @@
 }
 div.rmmenuicon {
     margin:                3px;
-    font-family:           Tahoma, Arial, Helvetica;
+    font-family:           Tahoma, Arial, Helvetica, sans-serif;
     text-align:            center;
 }
 div.rmmenuicon a {

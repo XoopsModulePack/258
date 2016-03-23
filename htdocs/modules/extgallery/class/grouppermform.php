@@ -9,44 +9,55 @@
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  *
- * @copyright   The XOOPS Project http://sourceforge.net/projects/xoops/
+ * @copyright   {@link http://xoops.org/ XOOPS Project}
  * @license     GNU GPL 2 (http://www.gnu.org/licenses/old-licenses/gpl-2.0.html)
  * @author      Zoullou (http://www.zoullou.net)
  * @package     ExtGallery
  * @version     $Id: grouppermform.php 8088 2011-11-06 09:38:12Z beckmi $
  */
 
-if (!defined('XOOPS_ROOT_PATH')) {
-    die("XOOPS root path not defined");
-}
+// defined('XOOPS_ROOT_PATH') || exit('XOOPS root path not defined');
 
-require XOOPS_ROOT_PATH.'/class/xoopsform/grouppermform.php';
+require XOOPS_ROOT_PATH . '/class/xoopsform/grouppermform.php';
 
+/**
+ * Class ExtgalleryGroupPermForm
+ */
 class ExtgalleryGroupPermForm extends XoopsGroupPermForm
 {
-
-    public function ExtgalleryGroupPermForm($title, $modid, $permname, $permdesc, $url = "", $anonymous = true)
+    /**
+     * @param        $title
+     * @param        $modid
+     * @param        $permname
+     * @param        $permdesc
+     * @param string $url
+     * @param bool $anonymous
+     */
+    public function __construct($title, $modid, $permname, $permdesc, $url = '', $anonymous = true)
     {
-        $this->XoopsGroupPermForm($title, $modid, $permname, $permdesc, $url, $anonymous);
+        parent::__construct($title, $modid, $permname, $permdesc, $url, $anonymous);
     }
 
+    /**
+     *
+     */
     public function render()
     {
         // load all child ids for javascript codes
-  foreach (array_keys($this->_itemTree)as $item_id) {
-      $this->_itemTree[$item_id]['allchild'] = array();
-      $this->_loadAllChildItemIds($item_id, $this->_itemTree[$item_id]['allchild']);
-  }
-        $gperm_handler =& xoops_gethandler('groupperm');
-        $member_handler =& xoops_gethandler('member');
-        $glist = $member_handler->getGroupList();
+        foreach (array_keys($this->_itemTree) as $item_id) {
+            $this->_itemTree[$item_id]['allchild'] = array();
+            $this->_loadAllChildItemIds($item_id, $this->_itemTree[$item_id]['allchild']);
+        }
+        $gperm_handler  = xoops_getHandler('groupperm');
+        $member_handler = xoops_getHandler('member');
+        $glist          = $member_handler->getGroupList();
         foreach (array_keys($glist) as $i) {
             if ($i == XOOPS_GROUP_ANONYMOUS && !$this->_showAnonymous) {
                 continue;
             }
-   // get selected item id(s) for each group
-   $selected = $gperm_handler->getItemIds($this->_permName, $i, $this->_modid);
-            $ele = new ExtgalleryGroupFormCheckBox($glist[$i], 'perms[' . $this->_permName . ']', $i, $selected);
+            // get selected item id(s) for each group
+            $selected = $gperm_handler->getItemIds($this->_permName, $i, $this->_modid);
+            $ele      = new ExtgalleryGroupFormCheckBox($glist[$i], 'perms[' . $this->_permName . ']', $i, $selected);
             $ele->setOptionTree($this->_itemTree);
             $this->addElement($ele);
             unset($ele);
@@ -60,8 +71,8 @@ class ExtgalleryGroupPermForm extends XoopsGroupPermForm
             echo $this->_permDesc . '<br /><br />';
         }
         echo "<form name='" . $this->getName() . "' id='" . $this->getName() . "' action='" . $this->getAction() . "' method='" . $this->getMethod() . "'" . $this->getExtra() . ">\n<table width='100%' class='outer' cellspacing='1' valign='top'>\n";
-        $elements = $this->getElements();
-        $hidden = '';
+        $elements =& $this->getElements();
+        $hidden   = '';
         foreach (array_keys($elements) as $i) {
             if (!is_object($elements[$i])) {
                 echo $elements[$i];
@@ -86,14 +97,25 @@ class ExtgalleryGroupPermForm extends XoopsGroupPermForm
     }
 }
 
+/**
+ * Class ExtgalleryGroupFormCheckBox
+ */
 class ExtgalleryGroupFormCheckBox extends XoopsGroupFormCheckBox
 {
-
-    public function ExtgalleryGroupFormCheckBox($caption, $name, $groupId, $values = null)
+    /**
+     * @param      $caption
+     * @param      $name
+     * @param      $groupId
+     * @param null $values
+     */
+    public function __construct($caption, $name, $groupId, $values = null)
     {
-        $this->XoopsGroupFormCheckBox($caption, $name, $groupId, $values);
+        parent::__construct($caption, $name, $groupId, $values);
     }
 
+    /**
+     *
+     */
     public function render()
     {
         $ele_name = $this->getName();
@@ -104,23 +126,23 @@ class ExtgalleryGroupFormCheckBox extends XoopsGroupFormCheckBox
                 echo '</tr><tr>';
                 $cols = 1;
             }
-            $tree = '<td valign="top">';
+            $tree   = '<td valign="top">';
             $prefix = '';
             $this->_renderOptionTree($tree, $this->_optionTree[$topitem], $prefix);
             echo $tree;
             echo '</td>';
-            $cols++;
+            ++$cols;
         }
         echo '</tr></table></td><td class="even" valign="top">';
         $option_ids = array();
         foreach (array_keys($this->_optionTree) as $id) {
             if (!empty($id)) {
-                $option_ids[] = "'".$ele_name.'[groups]['.$this->_groupId.']['.$id.']'."'";
+                $option_ids[] = "'" . $ele_name . '[groups][' . $this->_groupId . '][' . $id . ']' . "'";
             }
         }
-        $checkallbtn_id = $ele_name.'[checkallbtn]['.$this->_groupId.']';
+        $checkallbtn_id = $ele_name . '[checkallbtn][' . $this->_groupId . ']';
         $option_ids_str = implode(', ', $option_ids);
-        echo _ALL." <input id=\"".$checkallbtn_id."\" type=\"checkbox\" value=\"\" onclick=\"var optionids = new Array(".$option_ids_str."); xoopsCheckAllElements(optionids, '".$checkallbtn_id."');\" />";
+        echo _ALL . " <input id=\"" . $checkallbtn_id . "\" type=\"checkbox\" value=\"\" onclick=\"var optionids = new Array(" . $option_ids_str . "); xoopsCheckAllElements(optionids, '" . $checkallbtn_id . "');\" />";
         echo '</td></tr></table>';
     }
 }

@@ -1,10 +1,13 @@
 <?php defined('C5_EXECUTE') || die('Access denied.');
 
+/**
+ * Class MagnificPopupBlockController
+ */
 class MagnificPopupBlockController extends BlockController
 {
     protected $btTable           = 'btMagnificPopup';
-    protected $btInterfaceWidth  = "590";
-    protected $btInterfaceHeight = "500";
+    protected $btInterfaceWidth  = '590';
+    protected $btInterfaceHeight = '500';
     protected $btWrapperClass    = 'ccm-ui';
 
     // disabled cache during development
@@ -16,28 +19,38 @@ class MagnificPopupBlockController extends BlockController
     protected $btCacheBlockOutputForRegisteredUsers = true;
     protected $btCacheBlockOutputLifetime           = CACHE_LIFETIME;
 
+    /**
+     * @return mixed
+     */
     public function getBlockTypeDescription()
     {
         return t('Magnific Popup is a responsive jQuery lightbox & dialog plugin that is focused on performance and providing best experience for user with any device (Zepto.js compatible).');
     }
 
+    /**
+     * @return mixed
+     */
     public function getBlockTypeName()
     {
         return t('Magnific Popup');
     }
+
     // on page view insert magnific javascript and vimeo thumb javascript into footer (these are minified)
     public function on_page_view()
     {
         $html = Loader::helper('html');
         $bv   = new BlockView();
         $bv->setBlockObject($this->getBlockObject());
-        $this->addFooterItem($html->javascript($bv->getBlockURL() . '/magnific/magnific-combined-1.0.0.min.js', array( 'minify' => true )));
+        $this->addFooterItem($html->javascript($bv->getBlockURL() . '/magnific/magnific-combined-1.0.0.min.js', array('minify' => true)));
     }
 
     // JavaScript form validation strings
     // these are used in the add and edit dialog window
     // they create a modal/popup if incorrect data or no data is inserted
     // into the text area/ text input.
+    /**
+     * @return array
+     */
     public function getJavaScriptStrings()
     {
         return array(
@@ -50,14 +63,21 @@ class MagnificPopupBlockController extends BlockController
             'video-map-selection-required' => t('Please Make a Video or Map Selection'),
             'dialog-type-required'         => t('Please Choose a Dialog Type'),
             'dialog-text-required'         => t('Please Enter the Dialog Text'),
-            'dialog-link-text-required'    => t('Pleaes Enter the Dialog Link Text')
-        );
+            'dialog-link-text-required'    => t('Pleaes Enter the Dialog Link Text'));
     }
+
     // getting a picture for the file picker
+    /**
+     * @return mixed
+     */
     public function getPicture()
     {
         return $this->fIDpicture;
     }
+
+    /**
+     * @return mixed
+     */
     public function getPictureObject()
     {
         return File::getByID($this->fIDpicture);
@@ -67,6 +87,7 @@ class MagnificPopupBlockController extends BlockController
     {
         $this->addEdit();
     }
+
     public function edit()
     {
         $this->addEdit();
@@ -75,7 +96,7 @@ class MagnificPopupBlockController extends BlockController
     public function addEdit()
     {
         $fsList = new FileSetList();
-        $sets = $fsList->get();
+        $sets   = $fsList->get();
 
         $options = array();
 
@@ -88,7 +109,7 @@ class MagnificPopupBlockController extends BlockController
 
     public function view()
     {
-        $fs = FileSet::getByID($this->fsID);
+        $fs       = FileSet::getByID($this->fsID);
         $fileList = new FileList();
         $fileList->filterBySet($fs);
         $fileList->filterByType(FileType::T_IMAGE);

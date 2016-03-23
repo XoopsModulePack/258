@@ -9,25 +9,28 @@
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  *
- * @copyright   The XOOPS Project http://sourceforge.net/projects/xoops/
+ * @copyright   {@link http://xoops.org/ XOOPS Project}
  * @license     GNU GPL 2 (http://www.gnu.org/licenses/old-licenses/gpl-2.0.html)
  * @author      Zoullou (http://www.zoullou.net)
  * @package     ExtGallery
  * @version     $Id: quota.php 8088 2011-11-06 09:38:12Z beckmi $
  */
 
-if (!defined("XOOPS_ROOT_PATH")) {
-    die("XOOPS root path not defined");
-}
+// defined('XOOPS_ROOT_PATH') || exit('XOOPS root path not defined');
 
 include_once 'ExtgalleryPersistableObjectHandler.php';
 
+/**
+ * Class ExtgalleryQuota
+ */
 class ExtgalleryQuota extends XoopsObject
 {
-
     public $externalKey = array();
 
-    public function ExtgalleryQuota()
+    /**
+     * ExtgalleryQuota constructor.
+     */
+    public function __construct()
     {
         $this->initVar('quota_id', XOBJ_DTYPE_INT, null, false);
         $this->initVar('groupid', XOBJ_DTYPE_INT, 0, false);
@@ -35,20 +38,33 @@ class ExtgalleryQuota extends XoopsObject
         $this->initVar('quota_value', XOBJ_DTYPE_INT, 0, false);
     }
 
+    /**
+     * @return array
+     */
     public function getExternalKey()
     {
         return $this->externalKey;
     }
 }
 
+/**
+ * Class ExtgalleryQuotaHandler
+ */
 class ExtgalleryQuotaHandler extends ExtgalleryPersistableObjectHandler
 {
-
-    public function ExtgalleryQuotaHandler(&$db)
+    /**
+     * @param $db
+     */
+    public function __construct(XoopsDatabase $db)
     {
-        $this->ExtgalleryPersistableObjectHandler($db, 'extgallery_quota', 'ExtgalleryQuota', 'quota_id');
+        parent::__construct($db, 'extgallery_quota', 'ExtgalleryQuota', 'quota_id');
     }
 
+    /**
+     * @param $data
+     *
+     * @return bool
+     */
     public function createQuota($data)
     {
         $quota = $this->create();
@@ -57,6 +73,9 @@ class ExtgalleryQuotaHandler extends ExtgalleryPersistableObjectHandler
         return $this->insert($quota, true);
     }
 
+    /**
+     * @return bool
+     */
     public function deleteQuota()
     {
         $criteria = new Criteria('quota_name', 'private');
@@ -64,12 +83,18 @@ class ExtgalleryQuotaHandler extends ExtgalleryPersistableObjectHandler
         return $this->deleteAll($criteria);
     }
 
+    /**
+     * @param $groupid
+     * @param $quotaName
+     *
+     * @return object
+     */
     public function getQuota($groupid, $quotaName)
     {
         $criteria = new CriteriaCompo();
         $criteria->add(new Criteria('groupid', $groupid));
         $criteria->add(new Criteria('quota_name', $quotaName));
-        $ret = $this->getObjects($criteria);
+        $ret =& $this->getObjects($criteria);
         if (empty($ret)) {
             return $this->create();
         } else {
